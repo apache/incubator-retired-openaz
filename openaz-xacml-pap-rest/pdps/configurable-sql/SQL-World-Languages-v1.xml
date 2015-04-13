@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Policy xmlns="urn:oasis:names:tc:xacml:3.0:core:schema:wd-17" PolicyId="urn:com:att:xacml:policy:id:25e12b06-11d5-4895-b2a2-6f6c594de069" Version="1" RuleCombiningAlgId="urn:oasis:names:tc:xacml:1.0:rule-combining-algorithm:first-applicable">
+        <Description>Policy for speaking a language in a city.</Description>
+        <Target>
+            <AnyOf>
+                <AllOf>
+                    <Match MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">speak</AttributeValue>
+                        <AttributeDesignator Category="urn:oasis:names:tc:xacml:3.0:attribute-category:action" AttributeId="urn:oasis:names:tc:xacml:1.0:action:action-id" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="false"/>
+                    </Match>
+                </AllOf>
+            </AnyOf>
+        </Target>
+        <Rule RuleId="urn:com:att:xacml:rule:id:e1e8c5c0-e2ba-47d5-9289-6c015305ed21" Effect="Permit">
+            <Description>PERMIT - People in this city speak my language.</Description>
+            <Target/>
+            <Condition>
+                <VariableReference VariableId="cityLanguage"/>
+            </Condition>
+        </Rule>
+        <VariableDefinition VariableId="cityLanguage">
+            <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:string-is-in">
+                <Description>The city's language must match exactly the subject's language.</Description>
+                <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:string-one-and-only">
+                    <AttributeDesignator Category="urn:oasis:names:tc:xacml:1.0:subject-category:access-subject" AttributeId="urn:oasis:names:tc:xacml:1.0:subject:subject-id" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/>
+                </Apply>
+                <AttributeDesignator Category="urn:oasis:names:tc:xacml:3.0:attribute-category:resource" AttributeId="com:att:research:xacml:test:sql:resource:city:language" DataType="http://www.w3.org/2001/XMLSchema#string" Issuer="com:att:research:xacml:test:sql" MustBePresent="false"/>
+            </Apply>
+        </VariableDefinition>
+        <Rule RuleId="urn:com:att:xacml:rule:id:c9a3fb7d-d0b9-48bb-bdca-87eb4957120c" Effect="Deny">
+            <Description>DENY - default.</Description>
+            <Target/>
+        </Rule>
+</Policy>

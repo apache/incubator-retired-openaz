@@ -1,0 +1,134 @@
+{
+   "Request" : {
+		"AccessSubject" : {
+			"Attribute" : [
+			   {
+                  "Value" : "jeterde01",
+                  "AttributeId" : "urn:oasis:names:tc:xacml:1.0:subject:subject-id"
+               },
+			   {
+                  "Value" : "1995-05-29",
+                  "AttributeId" : "com:att:research:xacml:test:csv:subject:debut",
+                  "DataType" : "http://www.w3.org/2001/XMLSchema#date",
+                  "Issuer" : "com:att:research:xacml:test:csv"
+               },
+			   {
+                  "Value" : "Derek",
+                  "AttributeId" : "com:att:research:xacml:test:csv:subject:firstname",
+                  "Issuer" : "com:att:research:xacml:test:csv"
+               },
+			   {
+                  "Value" : "Jeter",
+                  "AttributeId" : "com:att:research:xacml:test:csv:subject:lastname",
+                  "Issuer" : "com:att:research:xacml:test:csv"
+               },
+			   {
+                  "Value" : 2009,
+                  "AttributeId" : "com:att:research:xacml:test:csv:subject:appearance",
+                  "DataType" : "http://www.w3.org/2001/XMLSchema#integer",
+                  "Issuer" : "com:att:research:xacml:test:csv"
+               },
+			   {
+                  "Value" : 2008,
+                  "AttributeId" : "com:att:research:xacml:test:csv:subject:appearance",
+                  "DataType" : "http://www.w3.org/2001/XMLSchema#integer",
+                  "Issuer" : "com:att:research:xacml:test:csv"
+               },
+			   {
+                  "Value" : 2007,
+                  "AttributeId" : "com:att:research:xacml:test:csv:subject:appearance",
+                  "DataType" : "http://www.w3.org/2001/XMLSchema#integer",
+                  "Issuer" : "com:att:research:xacml:test:csv"
+               },
+			   {
+                  "Value" : 2006,
+                  "AttributeId" : "com:att:research:xacml:test:csv:subject:appearance",
+                  "DataType" : "http://www.w3.org/2001/XMLSchema#integer",
+                  "Issuer" : "com:att:research:xacml:test:csv"
+               },
+			   {
+                  "Value" : 2005,
+                  "AttributeId" : "com:att:research:xacml:test:csv:subject:appearance",
+                  "DataType" : "http://www.w3.org/2001/XMLSchema#integer",
+                  "Issuer" : "com:att:research:xacml:test:csv"
+               },
+			   {
+                  "Value" : 2004,
+                  "AttributeId" : "com:att:research:xacml:test:csv:subject:appearance",
+                  "DataType" : "http://www.w3.org/2001/XMLSchema#integer",
+                  "Issuer" : "com:att:research:xacml:test:csv"
+               },
+			   {
+                  "Value" : 2003,
+                  "AttributeId" : "com:att:research:xacml:test:csv:subject:appearance",
+                  "DataType" : "http://www.w3.org/2001/XMLSchema#integer",
+                  "Issuer" : "com:att:research:xacml:test:csv"
+               },
+			   {
+                  "Value" : 2002,
+                  "AttributeId" : "com:att:research:xacml:test:csv:subject:appearance",
+                  "DataType" : "http://www.w3.org/2001/XMLSchema#integer",
+                  "Issuer" : "com:att:research:xacml:test:csv"
+               },
+			   {
+                  "Value" : 2001,
+                  "AttributeId" : "com:att:research:xacml:test:csv:subject:appearance",
+                  "DataType" : "http://www.w3.org/2001/XMLSchema#integer",
+                  "Issuer" : "com:att:research:xacml:test:csv"
+               },
+			   {
+                  "Value" : 2000,
+                  "AttributeId" : "com:att:research:xacml:test:csv:subject:appearance",
+                  "DataType" : "http://www.w3.org/2001/XMLSchema#integer",
+                  "Issuer" : "com:att:research:xacml:test:csv"
+               },
+			   {
+                  "Value" : 1999,
+                  "AttributeId" : "com:att:research:xacml:test:csv:subject:appearance",
+                  "DataType" : "http://www.w3.org/2001/XMLSchema#integer",
+                  "Issuer" : "com:att:research:xacml:test:csv"
+               },
+			   {
+                  "Value" : 1998,
+                  "AttributeId" : "com:att:research:xacml:test:csv:subject:appearance",
+                  "DataType" : "http://www.w3.org/2001/XMLSchema#integer",
+                  "Issuer" : "com:att:research:xacml:test:csv"
+               },
+			   {
+                  "Value" : 1997,
+                  "AttributeId" : "com:att:research:xacml:test:csv:subject:appearance",
+                  "DataType" : "http://www.w3.org/2001/XMLSchema#integer",
+                  "Issuer" : "com:att:research:xacml:test:csv"
+               },
+			   {
+                  "Value" : 1996,
+                  "AttributeId" : "com:att:research:xacml:test:csv:subject:appearance",
+                  "DataType" : "http://www.w3.org/2001/XMLSchema#integer",
+                  "Issuer" : "com:att:research:xacml:test:csv"
+               },
+			   {
+                  "Value" : 1995,
+                  "AttributeId" : "com:att:research:xacml:test:csv:subject:appearance",
+                  "DataType" : "http://www.w3.org/2001/XMLSchema#integer",
+                  "Issuer" : "com:att:research:xacml:test:csv"
+               }
+             ]
+        },
+        "Action" : {
+        	"Attribute" : [
+	           {
+	              "Value" : "eligible",
+	              "AttributeId" : "urn:oasis:names:tc:xacml:1.0:action:action-id"
+               }
+            ]
+   	    },
+        "Resource" : {
+        	"Attribute" : [
+               {
+	              "Value" : "HOF",
+	              "AttributeId" : "urn:oasis:names:tc:xacml:1.0:resource:resource-id"
+               }
+	       ]
+	    }
+   }
+}

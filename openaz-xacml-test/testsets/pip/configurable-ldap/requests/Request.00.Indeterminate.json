@@ -1,0 +1,31 @@
+{
+   "Request" : {
+		"AccessSubject" : {
+			"Attribute" : [
+			   {
+                  "Value" : "hnelson",
+                  "AttributeId" : "urn:oasis:names:tc:xacml:1.0:subject:subject-id"
+               },
+               {
+                 "Value" : "uid",
+                 "AttributeId" : "urn:oasis:names:tc:xacml:1.0:subject:subject-id-qualifier"
+               }
+             ]
+        },
+        "Action" : {
+        	"Attribute" : 
+	           {
+	              "Value" : "sink",
+	              "AttributeId" : "urn:oasis:names:tc:xacml:1.0:action:action-id"
+               }
+	    },
+        "Resource" : {
+        	"Attribute" : [
+               {
+	              "Value" : "HMS Victory",
+	              "AttributeId" : "urn:oasis:names:tc:xacml:1.0:resource:resource-id"
+               }	        
+	       ]
+	    }
+   }
+}

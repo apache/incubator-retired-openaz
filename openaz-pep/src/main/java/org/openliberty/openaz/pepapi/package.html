@@ -1,0 +1,75 @@
+<html>
+<body>
+The goal of this 
+<a href="http://openaz.svn.sourceforge.net/viewvc/openaz/test/doc/org/openliberty/openaz/azapi/pep/package-summary.html"
+>"PepApi interface package"</a>
+is to provide a set of interfaces that provide a framework
+that will simplify the creation of Policy Enforcement Points (PEPs) 
+that use an underlying authorization provider that is accessed through the 
+<a href="http://openaz.svn.sourceforge.net/viewvc/openaz/test/doc/org/openliberty/openaz/azapi/package-summary.html"
+>"AzApi"</a> package.  
+<p>
+To accomplish this goal, the PepApi interface package provides a common 
+interface that applications and containers can use to make authorization
+calls to possibly any kind of authorization provider that uses a
+request/response interface.
+<p> 
+To keep the common interface both flexible and easy to use, this
+PepApi package makes some simplifying assumptions:
+
+<P>
+<ul>
+	<li>An authorization request context can be one of three varieties:
+	<ul>
+	<li>A single request for authorization of a single action on 
+	a single resource
+	<li>A bulk request that consists of multiple single requests.
+	<li>A query request that returns (in minimal or verbose form) 
+	the set of decisions on all resources and actions within a "scope"
+	</ul> 
+    <li>An authorization request consists of a single subject, 
+    a single action, and a single resource, with an optional environment
+    <li>Most applications can represent the subject,action,resource as Strings. 
+    <li>Most applications need the Date, Boolean, Double, Integer, String, Time and DateTime types of XACML
+    <li>All attributes have a single issuer
+    <li>Some applications need to represent the subject,action,resource as an object with attributes (i.e a Map)
+    <li>Some frameworks and containers needs to represent the subject,action,resources as native objects, and want to
+    use the same API as their applications.
+    <li>An authorization response is primarily a yes/no decision
+    <li>Applications use obligations, and want to consume the attributes of the obligation as Strings.
+    
+</ul>
+</P>
+The pep package is a simple layer on top of the azapi package.  
+All of the state is held inside of the classes in the azapi package.  
+This was done for both simplicity and to accommodate the creation of PEPs 
+that can benefit from the simpler API but may need a little more than the 
+above assumptions allow.  
+This additional capability is accomplished by being able to retrieve the 
+AzApiRequestContext from the PepRequest and being able to retrieve the 
+AzApiResponseContext from the PepResponse.  
+Since all of the state is in the azapi package, PEPs can just grab a 
+handle and continue building the request or processing the response.
+<p>
+Note: the "scope" of the PepApi has been conceptually expanded to
+include non-AzApi authorization providers as well as AzApi-based 
+providers. This change has not impacted the PepApi, but it has impacted
+how to most effectively conceptualize the implementations of PepApi.
+<p>
+The primary concept is to consider the 
+<a href="http://openaz.svn.sourceforge.net/viewvc/openaz/test/doc/org/openliberty/openaz/pep/package-summary.html"
+>reference impl</a>
+to be an application of a general framework, where this particular 
+instance the framework is being applied to an AzApi-packaged authorization
+provider. In fact, the 
+<a href="http://openaz.svn.sourceforge.net/viewvc/openaz/test/doc/org/openliberty/openaz/pdp/provider/SimpleConcreteSunXacmlService.html"
+>"reference AzApi SunXacml PDP impl"</a>, 
+may be considered to be just such an "AzApi-packaged" provider.
+<p>
+There is a tutorial provided with the 
+<a href="http://openaz.svn.sourceforge.net/viewvc/openaz/test/doc/org/openliberty/openaz/pep/package-summary.html#package_description"
+>PepApiImpl</a>
+package javadoc page that provides general guidelines for implementing a
+non-AzApi provider to be used by PepApi.
+</body>
+</html>

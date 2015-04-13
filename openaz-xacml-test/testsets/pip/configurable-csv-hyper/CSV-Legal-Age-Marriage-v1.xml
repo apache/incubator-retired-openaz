@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<PolicySet xmlns="urn:oasis:names:tc:xacml:3.0:core:schema:wd-17" PolicySetId="urn:com:att:xacml:policy:id:98779898-b880-44d7-bee5-ce54e42266eb" Version="1" PolicyCombiningAlgId="urn:oasis:names:tc:xacml:3.0:policy-combining-algorithm:deny-overrides">
+    <Description>Sample policy for the XACML-TEST project that tests the configurable CSV PIP.</Description>
+    <Target>
+        <AnyOf>
+            <AllOf>
+                <Match MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+                    <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">Marry</AttributeValue>
+                    <AttributeDesignator Category="urn:oasis:names:tc:xacml:3.0:attribute-category:action" AttributeId="urn:oasis:names:tc:xacml:1.0:action:action-id" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="false"/>
+                </Match>
+            </AllOf>
+        </AnyOf>
+    </Target>
+    <Policy PolicyId="urn:com:att:xacml:policy:id:c6791398-7e1f-4564-8f5c-19f406ea9950" Version="1" RuleCombiningAlgId="urn:oasis:names:tc:xacml:3.0:rule-combining-algorithm:deny-unless-permit">
+        <Description>Checks the subject. </Description>
+        <Target/>
+        <VariableDefinition VariableId="isSubjectFemale">
+            <Apply FunctionId="urn:oasis:names:tc:xacml:3.0:function:string-equal-ignore-case">
+                <Description>sex=Female</Description>
+                <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:string-one-and-only">
+                    <Description>un-bag</Description>
+                    <AttributeDesignator Category="urn:oasis:names:tc:xacml:1.0:subject-category:access-subject" AttributeId="com:att:research:xacml:test:csv:subject:sex" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/>
+                </Apply>
+                <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">Female</AttributeValue>
+            </Apply>
+        </VariableDefinition>
+        <VariableDefinition VariableId="isSubjectMale">
+            <Apply FunctionId="urn:oasis:names:tc:xacml:3.0:function:string-equal-ignore-case">
+                <Description>subject sex=Male</Description>
+                <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:string-one-and-only">
+                    <Description>Un-bag</Description>
+                    <AttributeDesignator Category="urn:oasis:names:tc:xacml:1.0:subject-category:access-subject" AttributeId="com:att:research:xacml:test:csv:subject:sex" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/>
+                </Apply>
+                <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">Male</AttributeValue>
+            </Apply>
+        </VariableDefinition>
+        <VariableDefinition VariableId="doesSubjectNeedParentalConsent">
+            <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:or">
+                <Description>Is the subject a female OR male?</Description>
+                <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:and">
+                    <Description>Is female AND does not need parental consent.</Description>
+                    <VariableReference VariableId="isSubjectFemale"/>
+                    <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:integer-less-than">
+                        <Description>age &gt;= consent age</Description>
+                        <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:integer-one-and-only">
+                            <Description>Un-bag attribute.</Description>
+                            <AttributeDesignator Category="urn:oasis:names:tc:xacml:1.0:subject-category:access-subject" AttributeId="com:att:research:xacml:test:csv:subject:age" DataType="http://www.w3.org/2001/XMLSchema#integer" MustBePresent="true"/>
+                        </Apply>
+                        <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:integer-one-and-only">
+                            <Description>Un-bag attribute.</Description>
+                            <AttributeDesignator Category="com:att:research:xacml:test:csv:category:country" AttributeId="com:att:research:xacml:test:csv:country:no-consent:female" DataType="http://www.w3.org/2001/XMLSchema#integer" Issuer="com:att:research:xacml:test:csv" MustBePresent="false"/>
+                        </Apply>
+                    </Apply>
+                </Apply>
+                <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:and">
+                    <Description>Is subject male AND age &gt;= male consent age.</Description>
+                    <VariableReference VariableId="isSubjectMale"/>
+                    <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:integer-less-than">
+                        <Description>age &gt;= legal age of consent for male.</Description>
+                        <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:integer-one-and-only">
+                            <Description>Un-bag attribute.</Description>
+                            <AttributeDesignator Category="urn:oasis:names:tc:xacml:1.0:subject-category:access-subject" AttributeId="com:att:research:xacml:test:csv:subject:age" DataType="http://www.w3.org/2001/XMLSchema#integer" MustBePresent="true"/>
+                        </Apply>
+                        <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:integer-one-and-only">
+                            <Description>Un-bag attribute.</Description>
+                            <AttributeDesignator Category="com:att:research:xacml:test:csv:category:country" AttributeId="com:att:research:xacml:test:csv:country:no-consent:male" DataType="http://www.w3.org/2001/XMLSchema#integer" Issuer="com:att:research:xacml:test:csv" MustBePresent="false"/>
+                        </Apply>
+                    </Apply>
+                </Apply>
+            </Apply>
+        </VariableDefinition>
+         <VariableDefinition VariableId="doesSubjectHaveParentalConsent">
+            <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:boolean-equal">
+                <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:boolean-one-and-only">
+                    <AttributeDesignator Category="urn:oasis:names:tc:xacml:1.0:subject-category:access-subject" AttributeId="com:att:research:xacml:test:csv:subject:parental-consent" DataType="http://www.w3.org/2001/XMLSchema#boolean" MustBePresent="true"/>
+                </Apply>
+                <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#boolean">true</AttributeValue>
+            </Apply>
+        </VariableDefinition>
+        <Rule RuleId="urn:com:att:xacml:rule:id:5970b5d2-c0f3-4132-bfa2-268467b21ed7" Effect="Permit">
+            <Description>If the subject does NOT need consent, then PERMIT.</Description>
+            <Target/>
+            <Condition>
+                <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:boolean-equal">
+                    <VariableReference VariableId="doesSubjectNeedParentalConsent"/>
+                    <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#boolean">false</AttributeValue>
+                </Apply>
+            </Condition>
+        </Rule>
+        <Rule RuleId="urn:com:att:xacml:rule:id:04b3e93d-ec4e-4cce-a00e-6a54cf3c4056" Effect="Permit">
+            <Description>If the subject needs consent AND has parental consent, then Permit.</Description>
+            <Target/>
+            <Condition>
+                <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:and">
+                    <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:boolean-equal">
+                        <VariableReference VariableId="doesSubjectNeedParentalConsent"/>
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#boolean">true</AttributeValue>
+                    </Apply>
+                    <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:boolean-equal">
+                        <VariableReference VariableId="doesSubjectHaveParentalConsent"/>
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#boolean">true</AttributeValue>
+                    </Apply>
+                </Apply>
+            </Condition>
+        </Rule>
+    </Policy>
+    <Policy PolicyId="urn:com:att:xacml:policy:id:32474315-9d06-47a4-bc2d-319e0568742c" Version="1" RuleCombiningAlgId="urn:oasis:names:tc:xacml:3.0:rule-combining-algorithm:deny-unless-permit">
+        <Description>Check the resource.</Description>
+        <Target/>
+        <VariableDefinition VariableId="isResourceFemale">
+            <Apply FunctionId="urn:oasis:names:tc:xacml:3.0:function:string-equal-ignore-case">
+                <Description>sex=Female</Description>
+                <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:string-one-and-only">
+                    <Description>un-bag</Description>
+                    <AttributeDesignator Category="urn:oasis:names:tc:xacml:3.0:attribute-category:resource" AttributeId="com:att:research:xacml:test:csv:resource:sex" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/>
+                </Apply>
+                <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">Female</AttributeValue>
+            </Apply>
+        </VariableDefinition>
+        <VariableDefinition VariableId="isResourceMale">
+            <Apply FunctionId="urn:oasis:names:tc:xacml:3.0:function:string-equal-ignore-case">
+                <Description>subject sex=Male</Description>
+                <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:string-one-and-only">
+                    <Description>Un-bag</Description>
+                    <AttributeDesignator Category="urn:oasis:names:tc:xacml:3.0:attribute-category:resource" AttributeId="com:att:research:xacml:test:csv:resource:sex" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/>
+                </Apply>
+                <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">Male</AttributeValue>
+            </Apply>
+        </VariableDefinition>
+        <VariableDefinition VariableId="doesResourceNeedParentalConsent">
+            <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:or">
+                <Description>Is resource female OR male?</Description>
+                <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:and">
+                    <Description>Is female AND does not need parental consent.</Description>
+                    <VariableReference VariableId="isResourceFemale"/>
+                    <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:integer-less-than">
+                        <Description>age &gt;= consent age for female.</Description>
+                        <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:integer-one-and-only">
+                            <Description>Un-bag attribute</Description>
+                            <AttributeDesignator Category="urn:oasis:names:tc:xacml:3.0:attribute-category:resource" AttributeId="com:att:research:xacml:test:csv:resource:age" DataType="http://www.w3.org/2001/XMLSchema#integer" MustBePresent="true"/>
+                        </Apply>
+                        <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:integer-one-and-only">
+                            <Description>un-bag attribute</Description>
+                            <AttributeDesignator Category="com:att:research:xacml:test:csv:category:country" AttributeId="com:att:research:xacml:test:csv:country:no-consent:female" DataType="http://www.w3.org/2001/XMLSchema#integer" Issuer="com:att:research:xacml:test:csv" MustBePresent="false"/>
+                        </Apply>
+                    </Apply>
+                </Apply>
+                <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:and">
+                    <Description>Is male and AND does not need parental consent.</Description>
+                    <VariableReference VariableId="isResourceMale"/>
+                    <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:integer-less-than">
+                        <Description>age &gt;= consent age for male.</Description>
+                        <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:integer-one-and-only">
+                            <Description>Un-bag</Description>
+                            <AttributeDesignator Category="urn:oasis:names:tc:xacml:3.0:attribute-category:resource" AttributeId="com:att:research:xacml:test:csv:resource:age" DataType="http://www.w3.org/2001/XMLSchema#integer" MustBePresent="false"/>
+                        </Apply>
+                        <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:integer-one-and-only">
+                            <Description>Un-bag</Description>
+                            <AttributeDesignator Category="com:att:research:xacml:test:csv:category:country" AttributeId="com:att:research:xacml:test:csv:country:no-consent:male" DataType="http://www.w3.org/2001/XMLSchema#integer" MustBePresent="false"/>
+                        </Apply>
+                    </Apply>
+                </Apply>
+            </Apply>
+        </VariableDefinition>
+        <VariableDefinition VariableId="doesResourceHaveParentalConsent">
+            <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:boolean-equal">
+                <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:boolean-one-and-only">
+                    <AttributeDesignator Category="urn:oasis:names:tc:xacml:3.0:attribute-category:resource" AttributeId="com:att:research:xacml:test:csv:resource:parental-consent" DataType="http://www.w3.org/2001/XMLSchema#boolean" MustBePresent="true"/>
+                </Apply>
+                <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#boolean">true</AttributeValue>
+            </Apply>
+        </VariableDefinition>
+        <Rule RuleId="urn:com:att:xacml:rule:id:7d1c6802-97f7-44f6-9819-12edc1801fb7" Effect="Permit">
+            <Description>If the resource does NOT need consent, then PERMIT.</Description>
+            <Target/>
+            <Condition>
+                <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:boolean-equal">
+                    <VariableReference VariableId="doesResourceNeedParentalConsent"/>
+                    <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#boolean">false</AttributeValue>
+                </Apply>
+            </Condition>
+        </Rule>
+        <Rule RuleId="urn:com:att:xacml:rule:id:62e07da4-f0e5-46eb-9894-f5e6d2e5868b" Effect="Permit">
+            <Description>The resources needs parental consent and has parental consent then PERMIT.</Description>
+            <Target/>
+            <Condition>
+                <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:and">
+                    <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:boolean-equal">
+                        <VariableReference VariableId="doesResourceNeedParentalConsent"/>
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#boolean">true</AttributeValue>
+                    </Apply>
+                    <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:boolean-equal">
+                        <VariableReference VariableId="doesResourceHaveParentalConsent"/>
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#boolean">true</AttributeValue>
+                    </Apply>
+                </Apply>
+            </Condition>
+        </Rule>
+    </Policy>
+</PolicySet>

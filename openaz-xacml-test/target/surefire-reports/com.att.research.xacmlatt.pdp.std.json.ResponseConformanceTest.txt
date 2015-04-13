@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.att.research.xacmlatt.pdp.std.json.ResponseConformanceTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 2.621 sec - in com.att.research.xacmlatt.pdp.std.json.ResponseConformanceTest

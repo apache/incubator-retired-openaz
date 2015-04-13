@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<PolicySet xmlns="urn:oasis:names:tc:xacml:3.0:core:schema:wd-17" PolicySetId="urn:com:att:xacml:policy:id:f3047eab-6f97-49b4-8127-a2737a184b35" Version="1" PolicyCombiningAlgId="urn:oasis:names:tc:xacml:3.0:policy-combining-algorithm:deny-overrides">
+    <Description>This policy enforces the BBWAA rules for baseball Hall of Fame induction.
+
+http://baseballhall.org/hall-famers/rules-election/bbwaa
+</Description>
+    <Target>
+        <AnyOf>
+            <AllOf>
+                <Match MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+                    <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">eligible</AttributeValue>
+                    <AttributeDesignator Category="urn:oasis:names:tc:xacml:3.0:attribute-category:action" AttributeId="urn:oasis:names:tc:xacml:1.0:action:action-id" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/>
+                </Match>
+                <Match MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+                    <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">HOF</AttributeValue>
+                    <AttributeDesignator Category="urn:oasis:names:tc:xacml:3.0:attribute-category:resource" AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/>
+                </Match>
+            </AllOf>
+        </AnyOf>
+    </Target>
+    <Policy PolicyId="urn:com:att:xacml:policy:id:8f295c67-7b6e-4db6-b558-005b36abd970" Version="1" RuleCombiningAlgId="urn:oasis:names:tc:xacml:1.0:rule-combining-algorithm:first-applicable">
+        <Description>Active Timeframe:
+
+A. A baseball player must have been active as a player in the Major Leagues at some time during a period beginning twenty (20) years before and ending five (5) years prior to election.</Description>
+        <Target/>
+        <Rule RuleId="urn:com:att:xacml:rule:id:f04b2700-1236-4066-81e4-e341b5b2f3b5" Effect="Permit">
+            <Description>Player's debut date &gt;= (today's date - 20 years) AND final date &lt;= (today's date - 5 years).</Description>
+            <Target/>
+            <Condition>
+                <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:and">
+                    <Description>debut within 20 years AND final game more than 5 years ago.</Description>
+                    <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:date-less-than-or-equal">
+                        <Description>Debut date &lt;= (today's date - 20 years)</Description>
+                        <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:date-one-and-only">
+                            <Description>UN-bag player's debut date.</Description>
+                            <AttributeDesignator Category="urn:oasis:names:tc:xacml:1.0:subject-category:access-subject" AttributeId="com:att:research:xacml:test:csv:subject:debut" DataType="http://www.w3.org/2001/XMLSchema#date" Issuer="com:att:research:xacml:test:csv" MustBePresent="false"/>
+                        </Apply>
+                        <Apply FunctionId="urn:oasis:names:tc:xacml:3.0:function:date-subtract-yearMonthDuration">
+                            <Description>Subtract 20 years from  today's date.</Description>
+                            <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:date-one-and-only">
+<Description>UN-bag today's date.</Description>
+<AttributeDesignator Category="urn:oasis:names:tc:xacml:3.0:attribute-category:environment" AttributeId="urn:oasis:names:tc:xacml:1.0:environment:current-date" DataType="http://www.w3.org/2001/XMLSchema#date" MustBePresent="false"/>
+                            </Apply>
+                            <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#yearMonthDuration">P20Y</AttributeValue>
+                        </Apply>
+                    </Apply>
+                    <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:date-less-than-or-equal">
+                        <Description>Final Game &lt;= (today's date - 5 years)</Description>
+                        <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:date-one-and-only">
+                            <Description>UN-bag final game date</Description>
+                            <AttributeDesignator Category="urn:oasis:names:tc:xacml:1.0:subject-category:access-subject" AttributeId="com:att:research:xacml:test:csv:subject:finalgame" DataType="http://www.w3.org/2001/XMLSchema#date" Issuer="com:att:research:xacml:test:csv" MustBePresent="false"/>
+                        </Apply>
+                        <Apply FunctionId="urn:oasis:names:tc:xacml:3.0:function:date-subtract-yearMonthDuration">
+                            <Description>Subtract 5 years from today's date.</Description>
+                            <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:date-one-and-only">
+<Description>UN-bag today's date.</Description>
+<AttributeDesignator Category="urn:oasis:names:tc:xacml:3.0:attribute-category:environment" AttributeId="urn:oasis:names:tc:xacml:1.0:environment:current-date" DataType="http://www.w3.org/2001/XMLSchema#date" MustBePresent="false"/>
+                            </Apply>
+                            <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#yearMonthDuration">P5Y</AttributeValue>
+                        </Apply>
+                    </Apply>
+                </Apply>
+            </Condition>
+        </Rule>
+        <Rule RuleId="urn:com:att:xacml:rule:id:33a42a79-9d82-4aa1-99d3-9fd168363695" Effect="Deny">
+            <Description>DENY - Default</Description>
+            <Target/>
+        </Rule>
+    </Policy>
+    <Policy PolicyId="urn:com:att:xacml:policy:id:1bf74cc4-658f-4e87-be22-5d5cb741f1f5" Version="1" RuleCombiningAlgId="urn:oasis:names:tc:xacml:1.0:rule-combining-algorithm:first-applicable">
+        <Description>B. Player must have played in each of ten (10) Major League championship seasons, some part of which must have been within the period described in 3 (A).</Description>
+        <Target/>
+        <Rule RuleId="urn:com:att:xacml:rule:id:54405c39-a3f6-4a88-89bd-084f68567acd" Effect="Permit">
+            <Description>There should be &gt;= 10 years of appearance(s) values.</Description>
+            <Target/>
+            <Condition>
+                <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:integer-greater-than-or-equal">
+                    <Description>The number of years a player appeared.</Description>
+                    <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:integer-bag-size">
+                        <Description>Count the number.</Description>
+                        <AttributeDesignator Category="urn:oasis:names:tc:xacml:1.0:subject-category:access-subject" AttributeId="com:att:research:xacml:test:csv:subject:appearance" DataType="http://www.w3.org/2001/XMLSchema#integer" Issuer="com:att:research:xacml:test:csv" MustBePresent="false"/>
+                    </Apply>
+                    <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#integer">10</AttributeValue>
+                </Apply>
+            </Condition>
+        </Rule>
+        <Rule RuleId="urn:com:att:xacml:rule:id:912dd1a2-1527-4b6f-a95b-6a729ff9caab" Effect="Deny">
+            <Description>DENY - Default</Description>
+            <Target/>
+        </Rule>
+    </Policy>
+</PolicySet>

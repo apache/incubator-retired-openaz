@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Policy xmlns="urn:oasis:names:tc:xacml:3.0:core:schema:wd-17" PolicyId="urn:com:att:xacml:policy:id:94378f81-6810-408f-a072-a1a8a7585a24" Version="1" RuleCombiningAlgId="urn:oasis:names:tc:xacml:1.0:rule-combining-algorithm:first-applicable">
+	<Description>Sample policy that demonstrates use of Configurable LDAP Resolver with sample data.
+
+The PEP Request should provide the following attributes:
+action-id=board
+subject-id-qualifer=uid|mail
+subject-id=hnelson|hnelson@royalnavy.mod.uk
+resource-id=HMS Lydia|HMS Victory|HMS Bounty
+	</Description>
+        <Target>
+            <AnyOf>
+                <AllOf>
+                    <Match MatchId="urn:oasis:names:tc:xacml:3.0:function:string-equal-ignore-case">
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">board</AttributeValue>
+                        <AttributeDesignator Category="urn:oasis:names:tc:xacml:3.0:attribute-category:action" AttributeId="urn:oasis:names:tc:xacml:1.0:action:action-id" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/>
+                    </Match>
+                </AllOf>
+            </AnyOf>
+        </Target>
+        <Rule RuleId="urn:com:att:xacml:rule:id:bf241671-54de-404c-ac59-bb17b919783f" Effect="Permit">
+            <Description>This sailor is a member of the crew for the ship.</Description>
+            <Target/>
+            <Condition>
+                <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+                    <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:string-one-and-only">
+                        <AttributeDesignator Category="urn:oasis:names:tc:xacml:3.0:attribute-category:resource" AttributeId="com:att:research:xacml:test:ldap:subject:ship" DataType="http://www.w3.org/2001/XMLSchema#string" Issuer="com:att:research:xacml:test:ldap" MustBePresent="false"/>
+                    </Apply>
+                    <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:string-one-and-only">
+                        <AttributeDesignator Category="urn:oasis:names:tc:xacml:3.0:attribute-category:resource" AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/>
+                    </Apply>
+                </Apply>
+            </Condition>
+        </Rule>
+        <Rule RuleId="urn:com:att:xacml:rule:id:490228ea-98ee-48d8-84c9-da07334726fd" Effect="Deny">
+            <Description>Default is to DENY.</Description>
+            <Target/>
+        </Rule>
+</Policy>

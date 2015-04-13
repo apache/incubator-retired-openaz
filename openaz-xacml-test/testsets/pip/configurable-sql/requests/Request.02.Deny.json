@@ -1,0 +1,41 @@
+{
+   "Request" : {
+		"AccessSubject" : {
+			"Attribute" : [
+			   {
+                  "Value" : "Pashto",
+                  "AttributeId" : "urn:oasis:names:tc:xacml:1.0:subject:subject-id"
+               },
+               {
+                 "Value" : "language",
+                 "AttributeId" : "urn:oasis:names:tc:xacml:1.0:subject:subject-id-qualifier"
+               }
+             ]
+        },
+        "Action" : {
+        	"Attribute" : 
+	           {
+	              "Value" : "speak",
+	              "AttributeId" : "urn:oasis:names:tc:xacml:1.0:action:action-id"
+               }
+	    },
+        "Resource" : {
+        	"Attribute" : [
+               {
+	              "Value" : "Haag",
+	              "AttributeId" : "urn:oasis:names:tc:xacml:1.0:resource:resource-id"
+               },
+               {
+	              "Value" : "Dutch",
+	              "AttributeId" : "com:att:research:xacml:test:sql:resource:city:language",
+	              "Issuer" : "com:att:research:xacml:test:sql"
+               },
+               {
+	              "Value" : "Fries",
+	              "AttributeId" : "com:att:research:xacml:test:sql:resource:city:language",
+	              "Issuer" : "com:att:research:xacml:test:sql"
+               }
+	       ]
+	    }
+   }
+}

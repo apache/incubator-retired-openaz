@@ -1,0 +1,63 @@
+{
+   "Request" : {
+        "Category" : [ 
+        	{
+	        	"CategoryId" : "com:att:research:xacml:test:csv:category:country",
+	        	"Attribute" : [
+	               {
+		              "Value" : "Norway",
+		              "AttributeId" : "com:att:research:xacml:test:csv:country:name"
+	               }
+	            ]
+            }
+	    ],
+		"AccessSubject" : {
+			"Attribute" : [
+			   {
+                  "Value" : "Mary",
+                  "AttributeId" : "urn:oasis:names:tc:xacml:1.0:subject:subject-id"
+               },
+               {
+                 "Value" : "Female",
+                 "AttributeId" : "com:att:research:xacml:test:csv:subject:sex"
+               },
+               {
+                 "Value" : 17,
+                 "AttributeId" : "com:att:research:xacml:test:csv:subject:age"
+               },
+               {
+                 "Value" : true,
+                 "AttributeId" : "com:att:research:xacml:test:csv:subject:parental-consent"
+               }
+             ]
+        },
+        "Action" : {
+        	"Attribute" : [
+	           {
+	              "Value" : "Marry",
+	              "AttributeId" : "urn:oasis:names:tc:xacml:1.0:action:action-id"
+               }
+            ]
+   	    },
+        "Resource" : {
+        	"Attribute" : [
+               {
+	              "Value" : "Joe",
+	              "AttributeId" : "urn:oasis:names:tc:xacml:1.0:resource:resource-id"
+               },
+               {
+                 "Value" : "Male",
+                 "AttributeId" : "com:att:research:xacml:test:csv:resource:sex"
+               },
+               {
+                 "Value" : 18,
+                 "AttributeId" : "com:att:research:xacml:test:csv:resource:age"
+               },
+               {
+                 "Value" : false,
+                 "AttributeId" : "com:att:research:xacml:test:csv:resource:parental-consent"
+               }
+	       ]
+	    }
+   }
+}

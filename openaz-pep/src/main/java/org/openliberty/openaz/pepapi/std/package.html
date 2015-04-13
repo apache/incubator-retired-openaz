@@ -1,0 +1,1058 @@
+<html>
+<body>
+This package is the 
+<a href="http://openaz.svn.sourceforge.net/viewvc/openaz/test/doc/org/openliberty/openaz/pep/package-summary.html"
+>OpenAz reference "implementation"</a>
+of the OpenAz 
+<a href="http://openaz.svn.sourceforge.net/viewvc/openaz/test/doc/org/openliberty/openaz/azapi/pep/package-summary.html"
+>"PepApi interface package"</a>,
+and therefore generally contains implementation classes
+and only implementation-specific interfaces, also included is a
+<a href="#tutorial">PepApi tutorial</a> that describes the approach
+to building a PepApi implementation for a specific authorization
+provider, as well as a 2nd <a href="#tutorialmappers">Mapper tutorial</a>
+that describes the overall approach to writing mappers.
+<p>
+The goal of this package is twofold:
+<ul>
+<li>The primary goal is to provide a reference implementation of PepApi
+that uses an AzApi-based authorization provider, which in this case is the
+<a href="http://openaz.svn.sourceforge.net/viewvc/openaz/test/doc/org/openliberty/openaz/pdp/provider/SimpleConcreteSunXacmlService.html"
+>SimpleConcreteSunXacmlService</a>, 
+which is the SunXacml PDP wrapped in an
+<a href="http://openaz.svn.sourceforge.net/viewvc/openaz/test/doc/org/openliberty/openaz/pdp/package-summary.html"
+>implementation of the AzApi interface</a>.
+<li>The secondary goal is to provide a reference framework, which other
+providers can use as a model for implementation strategy of both AzApi
+and non-AzApi based authorization providers.
+</ul>
+
+In order to support the 2nd objective, the following is a high level
+"tutorial" about the PepApi and this implementation of it. At present,
+this tutorial is in preliminary form, however, even in the current
+state, the information may prove useful to anyone who is interested in
+developing an implementation of PepApi.
+
+<a name="tutorial"><H2>OpenAz PepApi Implementation Tutorial (v113)</H2></a>
+<H3>Contents</H3>
+<ul>
+<li><a href="#highleveloverview">High Level Overview</a>
+<li><a href="#sixlayerlist">List of Six OpenAz Layers</a>
+<li><a href="#separationapispi">Separation of PepApi to application API 
+and provider SPI</a>
+<li><a href="#highlevelsepapispi">High Level Overview API/SPI Separation</a>
+<li><a href="#detailsepapispi">Detail list of API/SPI separated methods</a>
+<li><a href="#pepapilayer">Appl client PepApi "API LAYER"</a>
+<li><a href="#suggestedspiapproaches">Suggested approaches for XyzApi provider SPI implementation</a>
+<li><a href="#pepapiseqmodel">PepApi Object Sequence Model</a>
+<li><a href="#somediscussion">Some discussion items</a>
+<ul>
+<li><a href="#basicpattern">Basic Processing Pattern</a>
+<li><a href="#highlowinterfacHigh Level and Low Level Interface Layers</a>
+<li><a href="#basicpurpose">Basic Purpose of PepApi</a>
+<li><a href="#standardpdps">Standard PDPs</a>
+<li><a href="#xacmlreps">Representations of XACML</a>
+<li><a href="#openazreleases">OpenAz Release Philosophy</a>
+<li><a href="#thesixlayersdisc">The Six Layers</a>
+<li><a href="#layer5disc">Layer 5: AzApi Impl</a>
+<li><a href="#azapivssunxacml">AzApi vs SunXacml</a>
+<li><a href="#canonicalform">Canonical Form</a>
+</ul>
+<li><a href="#tutorialmappers">Part II: Mappers Tutorial</a>
+</ul>
+
+<a name="highleveloverview">
+<H3>High Level Overview: Appl, PepApi, AzApi, AzProvider</H3></a>
+<p>
+To understand the "top level" picture of what is currently provided
+for implementations in the OpenAz project, we can identify six layers
+of operational modules (including "interfaces" as a layer). Each layer
+description starts with the identifier of a jar file in the OpenAz project
+that contains an implementation of the functionality described in the layer.
+<p>
+In addition, experience with OpenAz has shown, the PepApi is best represented
+as having 2 portions: an application-oriented API, and a provider-oriented SPI,
+which will be noted in the following list and explained further below.
+<p>
+The PepApi provider is primarily concerned with implementing Layer 3 in the
+list below. The other layers are generally provided either from the OpenAz site
+(layers 2,4 for interfaces, layer 1 for test code, layers 5,6 for sample
+AzApi impl and PDP), or from customer application environments (layer 1,
+when customer is ready to implement PepApi client), or from PDP vendors
+(layers 5 and 6). 
+<p>
+<a name="sixlayerlist"><H4>List of the Six OpenAz Module Layers</H4></a>
+<ul>
+<li><b>Layer 1:</b> 
+"<top-of-project>\openaz\test\build\openliberty-openaz-test.jar"
+<br>
+This layer is implemented by a package that contains sample test programs,
+and may be thought of as the "application layer", and generally only
+uses the "API" portion of PepApi. 
+For example, test.TestStyles, demonstrates various usage scenarios
+of PepApi. 
+ 
+<li><b>Layer 2:</b> "<top-of-project>
+"<top-of-project>\openaz\azapi\build\openliberty-openaz-azapi.jar"
+<br>
+This layer is implemented by a package that contains the actual 
+"PepApi interfaces" (API and SPI), and may be considered to be the second layer 
+of "modules", which, while not having any executable code, do control 
+what code can be compiled that is purported to "implement" the interface.
+(Note: Even though the jar file contains "azapi" in the name, 
+it also contains the "pepapi".)
+
+<li><b>Layer 3:</b>  
+"<top-of-project>\openaz\pep\build\openliberty-openaz-pep.jar"
+<br>
+This package contains an example implementation of the PepApi,
+and may be considered to be the "third layer" of OpenAz. 
+It also contains an implementation of an "AzApi client", i.e. a
+module that uses AzApi directly to make authorization decisions.
+As such, this layer may be considered to both implement a PepApi
+provider, as well as, in this case, an AzApi client, or in the more
+general, case a client to any request-response oriented 
+authorization provider.
+<br>
+In addition, this layer generally uses its own implementation of
+the SPI portion of PepApi, which facilitates its implementation 
+of the API portion.
+ 
+<li><b>Layer 4:</b> 
+"<top-of-project>\openaz\azapi\build\openliberty-openaz-azapi.jar"
+<br>
+This package contains the actual "interfaces" that comprise the AzApi, 
+and, in the same sense as the layer 2 PepApi above, may be considered
+to be a layer of modules that control compatibility with other
+modules, esp in layer 5. (Note: this is the same jar file as used
+by layer 2, i.e. it contains both sets of interfaces.)
+ 
+<li><b>Layer 5:</b> 
+"<top-of-project>\openaz\pdp\build\openliberty-openaz-pdp.jar"
+<br>
+This package contains an example implementation of AzApi, and may be 
+considered to be the "fifth layer" of OpenAz. Similarly to Layer 3,
+this package also contains a client implementation, where the client
+in this case is to the SunXacml PDP provider.
+ 
+<li><b>Layer 6:</b> 
+"<top-of-project>/pdp/lib/sunxacml.jar" 
+<br>
+This jar file contains the SunXacml PDP impl, which may be considered 
+as the sixth layer of modules in OpenAz.
+</ul>
+
+
+<a name="separationapispi">
+<H3>Separation of PepApi into API and SPI parts.</H3></a>
+This section first describes the approach at a high level, then
+provides a detailed review of the complete PepApi interface to
+designate the API and SPI parts of each PepApi interface.
+
+<a name="highlevelsepapispi">
+<H4>High level view of API/SPI separation</H4></a>
+The first thing that is probably useful to recognize is that the PepApi
+really consists of an application facing API plus an implementer's SPI
+(Service Provider Interface).
+If there is sufficient demand for a more formal separation, that will be
+considered in the future.
+<p>
+The following is a high level view of the API/SPI separation:
+<pre>
+      Consider the following functionality as being the main
+      part of each portion of the PepApi:
+
+      APPL API LAYER:
+
+	Use newPepRequest methods to build request
+	Use decide() method to make decision
+	Use allowed and next methods to look at results
+	Use getObligations, getObligationId, getStringValues to
+	     look at obligations within each result
+
+      PROVIDER SPI LAYER:
+
+	Take Appl Api Request and 
+	  submit as Authorization Provider Request
+
+	Take Authorization Provider Response objects and 
+	  process and return them as Appl Api Response objects
+
+
+      Summary of architecture:
+
+	Appl Client Impl
+	  PepApi Appl Client API 
+	  PepApi Provider SPI 
+	PepApi Provider Impl
+	  &lt;AzProvider&gt;API  {AzProvider = Az | Xyz}
+	&lt;AzProvider&gt; Impl
+
+
+	Current AzApi strategy:
+
+	        +--------------------+
+	        | Appl client (impl) |          <b><i>Layer 1</i></b>
+	        +--------------------+
+	              |       ^
+	              v       |
+	+-----------------------------------+
+	|   PepApi appl client api (intf)   |   <b><i>Layer 2</i></b>
+	| - - - - - - - - - - - - - - - - - |
+	|  PepApi provider api/spi (impl)   |   <b><i>Layer 3</i></b>
+	|   includes use of PepApi spi      |	
+	|         plus AzApi Client         |
+	+-----------------------------------+
+	           |             ^
+	           v             |
+	+-----------------------------------+
+	|      AzApi client api (intf)      |   <b><i>Layer 4</i></b>
+	| - - - - - - - - - - - - - - - - - |
+	|        AzApi provider (impl)      |   <b><i>Layer 5</i></b>
+	|        plus SunXacml client       |
+	+-----------------------------------+
+	           |             ^
+	           v             |
+	   +----------------------------+
+	   |  SunXacml provider (impl)  |       <b><i>Layer 6</i></b>
+	   +----------------------------+
+
+
+
+	Suggested strategy for an Xyz provider:
+
+	        +--------------------+
+	        | Appl client (impl) |          <b><i>Layer 1</i></b>
+	        +--------------------+
+	              |       ^
+	              v       |
+	+-----------------------------------+
+	|   PepApi appl client api (intf)   |   <b><i>Layer 2</i></b>
+	| - - - - - - - - - - - - - - - - - |
+	|  PepApi provider api/spi (impl)   |   <b><i>Layer 3</i></b>
+	| includes use of custom PepApi spi |	
+	|        plus XyzApi Client         |
+	+-----------------------------------+
+	           |             ^
+	           v             |
+	+-----------------------------------+
+	|     <i>XyzApi client api</i> (intf)      |   <b><i>Layer 4</i></b>
+	| - - - - - - - - - - - - - - - - - |
+	|       XyzApi provider (impl)      |   <b><i>Layers 5,6</i></b>
+	+-----------------------------------+
+
+
+</pre>
+Note: because in the XyzApi provider case, the "standard" api is effectively
+the XyzApi, itself, there is no need for the impl to act as a client to a
+different interface, and so layers 5 and 6 are effectively consolidated to
+a single logical layer.
+
+<a name="detailsepapispi">
+<H4>Detail list of API/SPI separated methods</H4></a>
+The following list of interfaces and methods describe the API/SPI
+separation. 
+<p>Note 
+<ul>
+<li>There are only a few interfaces and methods involved with
+the application-facing API, namely: 
+<ul>
+<li>PepRequestFactory
+<li>PepRequest
+<li>PepResponse
+<li>Obligation
+</ul>
+<li>All the PepApi interfaces are used and/or include methods that appear
+in the SPI portion.
+<li>Methods marked with "**" have AzApi-specific items in the interface
+that need to be addressed by non-AzApi implementations. In most cases,
+simply making the item null will satisfactorily address the situation for
+a non-AzApi implementation, however, it is likely that a corresponding
+element of the implementation will need to be used instead to fulfill
+the functional capability. For example, a non-AzApi impl will have no
+use for an AzRequestContext, however, it will likely have its own
+RequestContext that will need to be considered as an alternative which
+can be included in an extension class that has an additional provider-specific
+method.
+Note: items marked with "**" are followed by comment at end of line
+with number referring to the suggested approaches for these issues
+described at the end of the SPI detail section.
+</ul>
+
+<pre>
+   -------------------------------------------------------------------
+</pre>
+<a name="pepapilayer"><H4>   APPL CLIENT PepApi "API LAYER":</H4></a>
+<pre>
+<a name="apipepreqfact"><H5>Interface PepRequestFactory</H5></a>
+ 	PepRequest newPepRequest(
+		Object subjectObj, Object actionObj, 
+		Object resourceObj, Object environmentObj) 
+ 	PepRequest newPepRequest(
+		Object subjectObj, Object actionResourceObject,
+		Object environmentObj) 
+ 	PepRequest newPepRequest(
+		String subjectName, String actionId, 
+		String resourceId) 
+
+ 	PepRequest newBulkPepRequest(
+		Object subjectObj, List actionObjects, 
+		List resourceObjects, Object environmentObj) 
+ 	PepRequest newBulkPepRequest(
+		Object subjectObj, List actionResourceObjects, 
+		Object environmentObj) 
+
+ 	PepRequest newQueryPepRequest(
+		Object subjectObj, Object environmentObj, 
+		String scope, PepRequestQueryType queryType) 
+
+<a name="apipepreq"><H5>Interface PepRequest</H5></a>
+ 	PepResponse decide() 
+
+<a name="apipeprsp"><H5>Interface PepResponse</H5></a>
+	boolean allowed() 
+	Object getAction()
+	Object getResource()
+	Map&lt;String,Obligation&gt; getObligations() 
+	boolean next()
+
+<a name="apiobligation"><H5>Interface Obligation</H5></a>
+	String getObligationId() 
+	Map&lt;String,String&gt; getStringValues() 
+
+   -------------------------------------------------------------------
+</pre>
+<a name="pepspilayer"><H4>  PROVIDER PepApi "SPI LAYER":</H4></a>
+<pre>
+<a name="spipepreqfact"><H5>Interface PepRequestFactory</H5></a>
+   ** 	AzService getAzService() 	       // (#1) return null for non-AzApi
+
+	String getContainerName() 
+	String getProviderClassName() 
+
+	RequestAttributesFactory&lt;T&gt; getRequestAttributesFactory(T t)
+		&lt;T extends Enum&lt;T&gt; & AzCategoryId&gt;  
+	PepResponseFactory getResponseFactory() 
+ 
+ 	DecisionHandler getDecisionHandler() 
+	List&lt;PostDecisionHandler&gt; getPostDecisionHandlers() 
+	List&lt;PreDecisionHandler&gt; getPreDecisionHandlers() 
+
+<a name="spipepreq"><H5>Interface PepRequest</H5></a>
+   ** 	AzRequestContext getAzRequestContext()	// return null for non-AzApi
+
+	PepRequestFactory getPepRequestFactory() 
+
+	void setAccessSubject(Object subjectObject) 
+	void setResourceAction(Object resource, Object action) 
+	void setEnvironment(Object envObject) 
+	void setBulkResourceActions(List resourceObjects, List actionObjects) 
+
+ 	PepRequestOperation getOperation() 
+   ** 	Object getActionObject(AzResourceActionAssociation azRaa) 	// (#3)
+   **	Object getResourceObject(AzResourceActionAssociation azRaa) // (#3)
+
+ 	void setScope(String scope) 
+	String getScope() 
+
+ 	void setQueryReturnAllowed(boolean queryReturnAllowed) 
+ 	boolean isQueryForAllowedResults() 
+
+<a name="spijavaobjmap"><H5>Interface JavaObjectMapper:</H5></a>
+	Set&lt;Class&gt; getSupportedClasses() 
+
+	boolean canMapObject(Object obj) 
+
+	&lt;T extends Enum&lt;T&gt; & AzCategoryId&gt; 
+	RequestAttributes&lt;T&gt; map(
+		Object javaObject, 
+		RequestAttributes&lt;T&gt; azWrapperObject) 
+
+<a name="spireqattrfact">
+<H5>Interface RequestAttributesFactory&lt;T extends Enum&lt;T&gt; & AzCategoryId&gt;</H5></a>
+	RequestAttributes&lt;T&gt; createObject(PepRequest ctx) 
+ 	void setMappers(List&lt;JavaObjectMapper&gt; mappers) 
+	List&lt;JavaObjectMapper&gt; getMappers() 
+	Set&lt;Class&gt; getSupportedClasses() 
+ 
+<a name="spiattr">
+<H5>Interface Attributes&lt;T extends Enum&lt;T&gt; & AzCategoryId&gt;</H5></a>
+   **	AzEntity&lt;T&gt; getAzEntity()  // (#1) return null for non-AzApi
+
+<a name="spireqattr">
+<H5>Interface RequestAttributes&lt;T extends Enum&lt;T&gt; & AzCategoryId&gt;
+		extends Attributes&lt;T&gt;</H5></a>
+ 	PepRequest getPepRequest() 
+
+ 	void setAttribute(String name, Boolean value) 
+ 	void setAttribute(String name, Date date) 
+ 	void setAttribute(String name, Integer value) 
+ 	void setAttribute(String name, String value) 
+
+<a name="spidechnd"><H5>Interface DecisionHandler</H5></a>
+ 	PepResponse decide(PepRequest request) 
+<a name="spipredechnd"><H5>Interface PreDecisionHandler</H5></a>
+	void preDecide(PepRequest request)
+<a name="spipostdechnd"><H5>Interface PostDecisionHandler</H5></a>
+ 	void postDecide(PepRequest request, PepResponse response) 
+
+<a name="spipepreqrspfact"><H5>Interface PepResponseFactory:</H5></a>
+   **	PepResponse createPepResponse(
+		AzResponseContext responseContext, 	// (#1) pass null for non-AzApi
+		PepRequest pepRequest, 
+		PepRequestOperation operation) 
+
+   **	PepResponse createPepResponse(
+		Set&lt;AzResourceActionAssociation&gt; actionResourceAssociations, // (#3) 
+		PepRequest pepRequest, 
+		boolean queryAllowed) 
+ 
+ 	ObligationFactory   getObligationFactory() 
+
+	PepResponseBehavior getMissingAttributeBehavior() 
+	PepResponseBehavior getNotApplicableBehavior() 
+ 	PepResponseBehavior getProcessingErrorBehavior() 
+ 	PepResponseBehavior getSyntaxErrorBehavior() 
+
+ 	void setMissingAttributeBehavior(
+		PepResponseBehavior missingAttributeBehavior) 
+ 	void setNotApplicableBehavior(   
+		PepResponseBehavior notApplicableBehavior) 
+ 	void setProcessingErrorBehavior( 
+		PepResponseBehavior processingErrorBehavior) 
+ 	void setSyntaxErrorBehavior(     
+		PepResponseBehavior syntaxErrorBehavior)  
+
+<a name="spipeprsp"><H5>Interface PepResponse</H5></a>
+   **	AzResponseContext getAzResponseContext()  // (#1) return null for non-AzApi
+
+<a name="spioblfact"><H5>Interface ObligationFactory</H5></a>
+   **	Obligation createObject(AzEntity&lt;AzCategoryIdObligation&gt; entity) // (#2) pass null for non-AzApi 
+
+<a name="spiobl"><H5>Interface Obligation
+		extends ResponseAttributes&lt;AzCategoryIdObligation&gt;</H5></a>
+
+<a name="spirspattrfact">
+<H5>Interface ResponseAttributesFactory&lt;T extends Enum&lt;T&gt; & AzCategoryId&gt;</H5></a>
+   **	ResponseAttributes&lt;T&gt; createObject(AzEntity&lt;T&gt; entity) // (#2) pass null for non-AzApi
+
+<a name="spirspattr">
+<H5>Interface ResponseAttributes&lt;T extends Enum&lt;T&gt; & AzCategoryId&gt;
+		extends Attributes&lt;T&gt;</H5></a>
+
+   -------------------------------------------------------------------
+</pre>
+<a name="suggestedspiapproaches">
+<H4>Suggested approaches for XyzApi provider SPI implementation</H4></a>
+<pre>
+Note: these suggestions presume the Xyz provider is following the
+code structure in the org.openliberty.openaz.pep impl package
+and that the approach is to substitute Xyz request and response objects,
+and Xyz entity attribute collections for those provided by AzApi.
+The basic idea would be to have a parallel impl, for example: 
+org.openliberty.openaz.xyz, with basically the same set of classes,
+but with some of the following modifications considered.
+
+	1. return null for getAz&lt;object&gt;() in:
+		PepRequestFactory.getAzService()
+		PepRequest.getAzRequestContext()
+		Attributes&lt;T&gt;.getAzEntity()
+		PepResponse.getAzResponseContext()
+
+	2. Pass null for az&lt;object&gt; parameter in:
+		PepResponseFactory.createPepResponse(azResponseContext, ...)
+		ResponseAttributesFactory.createObject(azEntity)
+		ObligationFactory.createObject(azEntity)
+
+	3. Consider extending AzResourceActionAssociation as
+	   XyzResourceActionAssociation and use in the following:
+
+		PepRequest.getActionObject(AzResourceActionAssociation azRaa) 
+		PepRequest.getResourceObject(AzResourceActionAssociation azRaa) 
+
+		PepResponseFactory.createPepResponse(
+			Set&lt;AzResourceActionAssociation&gt; azRaas, 
+			PepRequest pepRequest, 
+			boolean queryAllowed) 
+
+	   AzResourceActionAssociation javadoc is here:
+	     http://openaz.svn.sourceforge.net/viewvc/openaz/test/doc/org/openliberty/openaz/azapi/AzResourceActionAssociation.html
+
+	   Within XyzResourceActionAssociation extension return null for the 
+	   following AzApi-dependent methods:
+
+ 		AzResourceActionAssociation.getAzAction() 
+		AzResourceActionAssociation.getAzResource() 
+		AzResourceActionAssociation.getAzResourceActionAssociationId() 
+ 
+	   Add new XyzResourceActionAssociation method to return
+	   action and resource objects:
+
+		XyzObject getXyzAction()
+		XyzObject getXyzResource()
+
+	   Then the XyzResourceActionAssociation object can be used
+	   for correlation based on the XyzObject references for
+	   action and resource in the XyzPepRequestImpl that
+	   implement PepRequest, i.e.
+
+		PepRequest.getActionObject(XyzResourceActionAssociation xyzRaa) 
+		PepRequest.getResourceObject(XyzResourceActionAssociation xyzRaa) 
+
+	   Similarly for creating a collection of return objects
+	   in response to a query, the XyzPepResponseFactoryImpl
+	   should be able to pass:
+
+		PepResponseFactory.createPepResponse(
+			Set&lt;XyzResourceActionAssociation&gt; xyzRaas, 
+			PepRequest pepRequest, 
+			boolean queryAllowed) 
+
+	   although one needs to check if generics will allow this pass
+	   of a Set of subclasses of the class for which the interface
+	   is defined.
+
+</pre>
+<a name="pepapiseqmodel"><H3>PepApi Object sequence model</H3></a>
+The following section contains a quasi-sequence diagram that shows the
+relations between the components of the PepApi in approximate order of
+their invocation at runtime.
+<pre>
+
+	+------------------------------------------+
+	| PepRequestFactory                        |
+	|  PepReqFactImpl(azSvc) // impl azSvc set |
+	|  pr = newPepRequest                      |
+	|   |   (sObj,aObj,rObj,eObj)              |
+	|   | newPEPRequest(op)                    |
+	|   |   azReqCtx = azSvc.createAzReqCtx()  |
+	|   |   new PepReqImpl(azReqCtx, this, op) |
+	|   | setAccessSubject(sObj)               |
+	+---|--------------------------------------+
+	    |
+	    V 
+	+---------------------------------------------------------------+
+	| PepRequest                                                    |
+	|      PepReqImpl(azReqCtx, this, op) // set values from params |
+	|      setAccessSubject(subjObj)                                |
+	|       createAccessSubject(subjObj) //'Subject' implies &lt;T&gt;    |
+	|         subjFact = getPepReqFact.getReqAttrFact(catId&lt;T&gt;)     |
+	|    +<-- subjInit = subjFact.createObj(this)                   |
+	|    |    subjMapd = mapJavObject(subjObj, subjInit, subjFact)  |
+	|    |  mapJavaObject(subjObj, subjInit, subjFact)              |
+	|  +<---- mapper = subjFact.getMappers().next()                 |
+	|  | |    mapper.map(subjObj, subjInit)                         |
+	|+<--- decide()                                                 |
+	+|-|-|----------------------------------------------------------+
+	 | | |
+	 | | V
+	 | | +-----------------------------------------------------------+
+	 | | | SubjectFactory                                            |
+	 | | |   createObject(pr)                                        |
+	 | | |     azReqCtx = pr.getAzReqCtx()                           |
+	 | | |     azSubjInit = azReqCtx.createAzEntity(catIdSubj)       |
+	 | | |     azReqCtx.addAzEntity(azSubjInit)                      |
+	 | | | +<- return new Subject(azSubjInit, pr, this)              |
+	 | | +-|---------------------------------------------------------+
+	 | |   |
+	 | |   V
+	 | | +-----------------------------------------------------------+
+	 | | | Subject                                                   |
+	 | | |   Subject(azSubjInit, pr, subjFact)                       |
+	 | | | +<- super[RequestAttributes](azSubjInit, pr, subjFact)    |
+	 | | +-|---------------------------------------------------------+
+	 | |   |
+	 | |   V
+	 | | +-----------------------------------------------------------+
+	 | | | RequestAttributes                                         |
+	 | | |   RequestAttributes(azSubjInit, pr, subjFact)             |
+	 | | |     set this.pr, this.subjFact                            |
+	 | | | +<- super[Attributes](azSubjInit)                         |
+	 | | +-|---------------------------------------------------------+
+	 | |   |
+	 | |   V
+	 | | +-----------------------------------------------------------+
+	 | | | Attributes                                                |
+	 | | |   Attributes(azSubjInit)                                  |
+	 | | |     this.azEntity = azSubjInit                            |
+	 | | +-----------------------------------------------------------+
+	 | | 
+	 | V 
+	 | +-----------------------------------------------------------+
+	 | | JavaObjectMapper                                          |
+	 | |   map(subjObj, reqAttrSubjInit)                           |
+	 | |     convertObj(subjObj, reqAttrSubjInit)                  |
+	 | |       attrId = getVocab(subjObj)                          |
+	 | |   +<- reqAttrSubjInit.setAttribute(attrId, subjObj)       |
+	 | +---|-------------------------------------------------------+
+	 |     |
+	 |     V 
+	 | +-----------------------------------------------------------+
+	 | | RequestAttributes                                         |
+	 | |   setAttribute(attrId, subjObj)                           |
+	 | |     azEntity.createAzAttribute(issuer, attrId,            |
+	 | |       azEntity.createAzAttributeValue(azDataTyp, subjObj) |
+	 | +-----------------------------------------------------------+
+	 | 
+	 V 
+	+----------------------------------------------------------+
+	| DecisionHandler                                          |
+	|   decide(pepReq)                                         |
+	|     azRspCtx = azSvc.decide(pepReq.getAzReqCtx()         |
+	| +<- pepRspFact = pepReq.getPepReqFact.getRspFact()       |
+	| |   pepRsp = pepRspFact.createPepRsp(azRspCtx,pepReq,op) |                        |
+	| |   return pepRsp                                        |
+	+-|--------------------------------------------------------+
+	  |
+	  V
+	+----------------------------------------------------------+
+	| PepResponseFactory                                       |
+	|   createPepRsp(azRspCtx,pepReq,op)                       |
+	| +<- pepRsp = new PepRspImpl(azRspCtx, pepReq, this, op)  |
+	| |   return pepRsp                                        |
+	+-|--------------------------------------------------------+
+	  |
+	  V
+	+----------------------------------------------------------+
+	| PepResponse                                              |
+	|   PepRspImpl(azRspCtx,pepReq,pepRspFact,op)              |
+	|    set this.azRspCtx,this.pepReq,this.pepRspFact,this.op |
+	|    this.azResultIterator = azRspCtx.getRslts.iterator()  |
+	|   allowed()                                              |
+	|   next()  // point to next azResult                      |
+	|     curAzResult = azResultIterator.next()                |
+	|   getResource(), getAction()                             |
+	|     azRaa = this.getAzResourceActionAssociation()        |
+	|     resObj = this.getPepReq.getResourceObject(azRaa)     |
+	|     return resObj                                        |
+	|   getObligations()                                       |
+	|     curAzObls = curAzResult.getAzObligations()           |
+	|     curAzObl = curAzObls.next()                          |
+	|     oblFact = this.getRspFact.getOblFact()               |
+	|     Obligation pepObl = oblFact.createObject(curAzObl)   |
+	+-|--------------------------------------------------------+
+	  |
+	  V
+	+----------------------------------------------------------+
+	| ObligationFactory                                        |
+	|   createObject(azObligation)                             |
+	| +<- return new Obligation(azObligation)                  |
+	+----------------------------------------------------------+
+	  |
+	  V
+	+-----------------------------------------------------------+
+	| Obligation                                                |
+	|   Obligation(azObligaion)                                 |
+	| +<- super[ResponseAttributes](azObligation)               |
+	+-|---------------------------------------------------------+
+	  |
+	  V
+	+-----------------------------------------------------------+
+	| ResponseAttributes                                        |
+	|   ResponseAttributes(azObligation)                        |
+	| +<- super[Attributes](azObligation)                       |
+	+-|---------------------------------------------------------+
+	  |
+	  V
+	+-----------------------------------------------------------+
+	| Attributes                                                |
+	|   Attributes(azObligation)                                |
+	|     this.azEntity = azObligation                          |
+	+-----------------------------------------------------------+
+
+
+</pre>
+
+<a name="somediscussion"><h3>Some discussion items</h3></a>
+
+<a name="basicpattern"><h4>Basic Processing Pattern</h4></a>
+The basic pattern is that the "container" of applications provides
+both checking requests before the application receives them, and
+checking requests in the process of application execution, where
+it is necessary to determine if the current user has sufficient
+authorization established to continue the current operation.
+<p>
+
+<a name="highlowinterfaces">
+<h4>High Level and Low Level Interface Layers</h4></a>
+PepApi is a "high level interface" intended to be totally flexible
+in terms of the applications and containers that can use it, and
+to also be "easy to use", comparable to existing platform-specific
+authorization models, such as J2SE checkPermission and WebLogic
+isAccessAllowed.
+<p>
+By contrast, AzApi is a "low level interface" intended to provide
+a Java binding to the more general platform independent XACML
+authorization model, which provides a general interface consisting
+of a collection of collections of "canonical" Attributes that contain
+both Attribute metadata and AttributeValues.
+<p>
+
+<a name="basicpurpose"><h4>Basic Purpose of PepApi</h4></a>
+Therefore, the intended purpose of a PepApi Impl, for example,
+this package ({@link org.openliberty.openaz.pep}), is
+to provide a "mapping" from the simple, application-friendly, PepApi
+that the applications (and containers) use, to the more complex
+AzApi, that the container would then typically use
+to submit requests to standard XACML PDPs.
+<p>
+
+<a name="standardpdps"><h4>Standard PDPs</h4></a>
+"Standard XACML PDPs" are accessed using the XACML 
+Request/Response protocol, which is described in the XACML 
+specifications using XML to represent the details. However, 
+implementations are not required to use XML, but they are
+required to maintain the semantics of XACML, which are normatively
+defined in the specifications using the XML representation.
+<p>
+
+<a name="xacmlreps"><h4>Representations of XACML</h4></a>
+Furthermore, the XACML specifications do not specify what
+representation is required in the PEP-PDP connection, so it is
+possible that one end is expecting to use XML and the other
+end is expecting to use some other serialization format of the
+same information. Therefore, interoperability is somewhat
+dependent on the "bindings" that XACML PEP and XACML PDPs have
+provided for support. In the absence of a match, it would be
+up to the vendors and/or enterprise system developers to either
+provide a translation module or to simply select another 
+product that would be compatible.
+<p>
+It is not a goal of either the XACML Technical Committee nor
+of the OpenAz project to attempt to resolve this issue, except
+on an as-needed basis to serve the purposes of implementations
+that are used within or want to integrate with the OpenAz Project.
+<p>
+So, for example, the initial release of OpenAz has, effectively,
+two "providers" for AzApi, the top level classes of which are:
+<a href="http://openaz.svn.sourceforge.net/viewvc/openaz/test/doc/org/openliberty/openaz/pdp/provider/SimpleConcreteDummyService.html">
+<b>SimpleConcreteDummyService</b></a> and 
+<a href="http://openaz.svn.sourceforge.net/viewvc/openaz/test/doc/org/openliberty/openaz/pdp/provider/SimpleConcreteSunXacmlService.html">
+<b>SimpleConcreteSunXacmlService</b></a>. 
+The former, the "dummy service",
+simply gives canned responses, and should be regarded as no more than
+a test tool, however, its existence as an independent "provider" may
+be useful for some types of demos.
+<p>
+
+<a name="openazreleases"><h4>OpenAz Release Philosophy</h4></a>
+To understand the working example in the "initial release of OpenAz"
+(which is the current release, which should be considered to be
+using the interfaces, i.e. AzApi and PepApi, in their "final form".
+The "final form" is "final" in the sense that until there is a critical
+mass (for example 3 implementations, including the current ref impl),
+fixes to "bugs" found in either API should be considered fair game.
+However, any "functionality" above and beyond what is currently
+represented as the functionality of those interfaces, should be
+considered candidates for a "second" or "next" release.)
+ 
+<a name="thesixlayersdisc"><H4>The Six Layers</H4></a>
+One may think of the 6 layers as kind of a "stepladder" of mapping
+the Objects from the local form within the application (Layer 1) to the 
+canonical form within AzApi (Layer 5).
+<p>
+
+<a name="layer5disc"><H5>Layer 5: AzApi Impl</H5></a>
+Then, from the AzApi impl (layer 5) the canonical form objects may
+be mapped a 2nd time into the local object form required by the 
+XACML PDP.
+
+From the perspective of the six layers, we can examine some of the
+possible "usage scenarios" for OpenAz. It turns out that there
+really are two major pieces of standardization that OpenAz facilitates:
+
+<ul>
+<li> First is the upper level "PepApi" (layer two), which provides
+a standard Java interface to application environments, regardless
+of the specific Objects the applications pass to PepApi. 
+
+<ul>
+<li>Note: It is "standard" in the sense that 
+applications do not have to be aware that
+what is done with the Objects when they are passed to PepApi.
+is that the Objects are "mapped" by the 
+layer 3 PepApi Impl to be used as input to the layer 4 AzApi
+interface.
+</ul>
+
+<li> Second is the lower level "AzApi" (layer four), which provides
+a standard Java interface to XACML PDPs.
+
+<ul>
+<li>Note: Again that the layer 5 AzApi Impl needs to generally
+"map" the AzApi objects to those of the XACML Impl.
+</ul> 
+</ul>
+
+The reason that layer 5 may need to do mapping is the existing
+XACML implementations, in general, will not yet be using AzApi,
+and so the most effective path to use AzApi is to implement a
+mapping to the current objects used by the XACML PDP.
+<ul>
+<li> In fact, this is exactly what is done in the OpenAz layer five, 
+where the AzApi top level impl,
+<a href="http://openaz.svn.sourceforge.net/viewvc/openaz/test/doc/org/openliberty/openaz/pdp/provider/SimpleConcreteSunXacmlService.html">
+<b>SimpleConcreteSunXacmlService</b></a>, 
+wraps the SunXacml PDP, which has its own interface, 
+<ul>
+<li> <a href="http://sunxacml.sourceforge.net/javadoc/com/sun/xacml/PDP.html#evaluate(com.sun.xacml.ctx.RequestCtx)">
+ResponseCtx response = PDP.evaluate(RequestCtx request)</a>
+</ul>
+</ul>
+
+<a name="azapivssunxacml"><H4>AzApi vs SunXacml</H4></a>
+
+<p>
+While the SunXacml interface is "similar" to the AzApi interface, 
+particularly the AzApi "decide()" call 
+<p>
+<a href="http://openaz.svn.sourceforge.net/viewvc/openaz/test/doc/org/openliberty/openaz/azapi/AzService.html#decide(org.openliberty.openaz.azapi.AzRequestContext)">
+<b>AzService.decide</b></a>
+(
+<a href="http://openaz.svn.sourceforge.net/viewvc/openaz/test/doc/org/openliberty/openaz/azapi/AzRequestContext.html">
+<b>AzRequestContext</b></a>
+};
+
+<ul>
+<li> AzResponseContext azRspCtx = AzService.decide(AzRequestContext azReqCtx)
+</ul>
+
+<p>
+there is still a "mapping" required to go from the AzApi implementation
+objects to the SunXacml implementation objects. i.e. one must map the
+AzApi 
+<a href="http://sunxacml.sourceforge.net/javadoc/com/sun/xacml/ctx/RequestCtx.html">
+<b>RequestCtx</b></a>
+to the SunXacml and on the return, map the SunXacml 
+<a href="http://sunxacml.sourceforge.net/javadoc/com/sun/xacml/ctx/ResponseCtx.html">
+<b>ResponseCtx</b></a> to the AzApi 
+<a href="http://openaz.svn.sourceforge.net/viewvc/openaz/test/doc/org/openliberty/openaz/azapi/AzResponseContext.html">
+<b>AzResponseContext</b></a>
+
+
+<a name="canonicalform"><H4>Canonical Form</H4></a>
+Given the above description, one may ask why map to the canonical form
+at all? Why not have layer 3 map directly to the local form of the 
+PDP, and therefore skip layers 4 and 5?
+
+<ul>
+<li>In fact, the architecture is designed so that is a perfectly
+legitimate strategy to take. However, the major drawback to this strategy
+is that if the enterprise has a mix of PDPs from multiple vendors,
+then configuration may begin to become complex, as one must keep track
+of which vendor's PDP is servicing which application, so as to ensure
+that the proper mappers are in place to map from the application
+objects to the specific PDP vendor objects.
+
+<li>From a purely technical engineering for performance perspective,
+it may appear that the benefit of an intermediate canonical form in
+the runtime path, as kind of a standard "clearinghouse" is not 
+compelling enough on its own to justify the effort to achieve it.
+
+<li>However, there are additional considerations. Security Policy
+is an all-encompassing concern for an enterprise that generally 
+applies to every activity conducted by the enterprise, whether
+for concern of privacy, risk-avoidance, compliance, integrity, etc.,
+there needs to be a way to integrate security Policy to any activity.
+
+<li>In order to effectively manage security Policy, there needs to
+be standard representations of the information in those Policies,
+as well as a method to relate that information to the corresponding
+representation of information in the enterprise that is collected
+and assembled to a Request to be evaluated by Policy.
+</ul>
+
+<a name="tutorialmappers"><H2>OpenAz Mappers Writing Tutorial (v114)</H2></a>
+<H3>Contents</H3>
+<ul>
+<li><a href="#highleveloverviewmappers">High Level Overview: Mappers</a>
+<li><a href="#structuremappers">Mapper structure</a>
+<li><a href="#methodimplmappers">Mapper method implementation</a>
+<li><a href="#permissionmappers">Permission Mapper</a>
+
+</ul>
+</ul>
+
+<a name="highleveloverviewmappers">
+<H3>High Level Overview: Mappers</H3></a>
+At the most fundamental level, the philosophy of OpenAz and PepApi/AzApi
+that the process of authorization can be abstracted as Policy defined in
+terms of "entities" represented as collections of "attributes", where the
+entities and attributes can be represented by a common standard such
+as XACML. Therefore, in theory, all that is required at runtime when an
+authorization check is required is to look at the entities involved and
+evaluate the Policy to determine if the attributes of the entities meet
+the Policy criteria for granting access.
+<p>
+The "entities" involved in a typical access check include:
+<ul>
+<li>A User Entity, or "Subject", where the Subject is the entity that
+is requesting access.
+<li>A Resource Entity, where the Resource is the entity to which the
+User Entity is requesting access.
+<li>An Action Entity, where the action specifies the explicit operations
+that the User Entity is requesting to apply to the Resource Entity.
+<li>An optional Environment Entity, where the "environment" is generally
+to be considered system conditions, such as time of day, that may factor
+into the decision making process. All such attributes are generally 
+collected in an Environment Entity collection of Attributes.
+</li>
+</ul>
+In the XACML Specification, all attributes are of a specific XACML
+DataType, which means, as described in XACML Specification Section A.2:
+<pre>
+  A.2. Data-types
+  
+    Although XML instances represent all data-types as strings,
+    an XACML PDP must reason about types of data that, while they
+    have string representations, are not just strings. 
+    
+    Types such as Boolean, integer and double MUST be converted:
+    
+        - from their XML string representations
+        - to values that can be compared with values in their domain
+          of discourse, such as numbers.
+</pre>
+(Note: the XACML Specification uses both the term "data-type" and the
+term "DataType", where the former refers to a generic notion of a
+"data type", but within the XACML context, thus also implicitly
+referring to the latter term, "DataType", which is the name of the
+"XML attribute" used to specify the specific instance of XACML 
+data-type to be used in conjunction with the XACML Attribute element
+that contains both the DataType attribute and AttributeValue element.
+OpenAz will not make such a distinction and simply use the term "DataType"
+or "datatype" interchangeably to in any of these contexts.)
+<p>
+In OpenAz, the "lower level" AzApi contains a separate interface for each
+of the Xacml DataTypes and a specific Java Object Type is also associated
+with each Xacml DataType. The collection of 
+<a href="http://openaz.svn.sourceforge.net/viewvc/openaz/test/doc/org/openliberty/openaz/azapi/AzAttributeValue.html"
+>AzAttributeValue subinterfaces</a>
+along with the associated list of "Known Implementing Classes" that reference
+the reference impl implementations of these interfaces, effectively can
+be considered the specification of the "AzApi Java Language Binding".
+<p>
+As such, in order to make an AzRequest to a XACML PDP, one needs to
+collect the attributes associated with each entity (where the entities
+are distinguished by 
+<a href ="">AzCategoryId</a> and submit the Java objects containing the
+attribute values thru these standard interfaces.
+<p>
+The purpose of the lower level AzApi interface is to provide a
+well-structured framework that has a standard representation of all
+information that may ultimately prove necessary to submit a complete
+authorization request.
+<p>
+However, in general, information in the runtime environment is not
+in any particular standard form, so, in order to enable minimal impact
+on existing runtime development practices, the PepApi was developed to
+enable applications to submit whatever information objects are preferred
+to be used in a particular application environment. 
+<p>
+In order to make this strategy work the PepApi implementation needs to
+"map" the information in the objects supplied by the application from
+that environment-specific form to the AzApi standard form, which will
+then enable seamless submission to a XACML PDP.
+<p>
+However, as described in the first tutorial above, the same strategy 
+will work with almost any PDP. This second tutorial will explain how
+the reference impl mappers are designed, and it is expected that the
+same design strategy can be applied to mapping to other PDP APIs,
+as well, where instead of mapping application objects to azapi objects,
+the mapping would be to the non-Xacml-PDP-specific objects.
+<H3>How to build a Mapper</H3>
+Probably the most straight-forward way to explain how to build a mapper
+is to explain how the existing mappers provided in PepApi work.
+<a name="structuremappers"><h4>Mapper structure</h4></a>
+Looking at the javadoc for 
+<a href="http://openaz.svn.sourceforge.net/viewvc/openaz/test/doc/org/openliberty/openaz/pep/SimpleJavaObjectMapper.html"
+>org.openliberty.openaz.pep.SimpleJavaObjectMapper</a> as a
+typical example, we can make the following observations about its structure:
+<ul>
+<li>It implements the 
+<a href="http://openaz.svn.sourceforge.net/viewvc/openaz/test/doc/org/openliberty/openaz/azapi/pep/JavaObjectMapper.html"
+>org.openliberty.openaz.azapi.pep.JavaObjectMapper</a>
+interface.
+<li>The javadoc says that it supports 3 objects: String, Date, and HashMap,
+and that it maps those objects into RequestAttributes.
+<li>The 3 JavaObjectMapper interface methods: canMapObject(), map(), and
+getSupportedObjects() appear in the Method Summary for the 
+SimpleJavaObjectMapper.
+<li>There are additional methods used within the implementation: 
+convertDate, convertString, convertMap. These methods do the actual
+conversion of the application input object to the AzAttribute structures.
+</ul>
+<a name="methodimplmappers"><h4>Mapper method implementation</h4></a>
+<h5>getSupportedObjects</h5>
+Implementation of getSupportedObjects() in SimpleJavaObjectMapper is
+to simply create a set containing a class object for each class that
+the mapper supports. This is simply a hard-coded set which can be used
+when configuring mappers to preliminarily determine object types supported.
+<p>
+For the SimpleJavaObjectMapper, this consists of a list of 3 class types:
+String, Date, HashMap.
+<h5>canMapObject</h5>
+Implementation of canMapObject(Object obj) should be straight-forward.
+In SimpleJavaObjectMapper there is simply a sequence of "if statements"
+that use "instanceof" to test whether the obj parameter is an "instanceof"
+one of the supported object classes. If there is a match then true
+is returned, otherwise false is returned.
+<h5>map</h5>
+Implementation of the 
+<a href="http://openaz.svn.sourceforge.net/viewvc/openaz/test/doc/org/openliberty/openaz/azapi/pep/JavaObjectMapper.html#map(java.lang.Object,%20org.openliberty.openaz.azapi.pep.RequestAttributes)"
+>map(Object obj, RequestAttributes<T> reqAttrs)</a> method is the
+only place where there might be some non-trivial complexity to work thru.
+<p>
+In SimpleJavaObjectMapper, map(obj,reqAttrs) dispatches to a conversion
+method for one of the supported object types by going thru a similar
+sequence of "if instanceof" test and dispatching when a matching object
+class is found.
+<p>
+Within the conversion methods, the first thing considered is the AzCategoryId
+of the RequestAttributes target object, which for AzApi is an AzEntity
+AzAttribute collection. When the Mapper.map method is invoked, the caller
+needs to determine which AzCategoryId to pass to the method as the 
+generic parameter T of the RequestAttributes<T> object being passed.
+<p>
+Generally, this will be implicitly determined by the entity for which
+the object being converted is intended. In the 
+<a href="http://openaz.svn.sourceforge.net/viewvc/openaz/test/doc/org/openliberty/openaz/azapi/pep/PepRequestFactory.html"
+>PepApi PepRequestFactory.newPepRequest(*) methods</a>,
+the objects passed are in an order that determines whether the object is
+to be considered a Subject, Action, Resource, or Environment as
+described in the signature to the newPepRequest methods. 
+<p>
+One can get a rough idea of how this is implemented by following the 
+<a href="#pepapiseqmodel">PepApi sequence model</a> in the first tutorial
+above. In particular, starting with PepRequestFactoryImpl call to
+setAccessSubject(sObj), one can follow the diagram logic down to
+the RequestAttributes.setAttribute(attrId, subjObj) method where the
+Mapper has been invoked and the convertObject method within the Mapper
+is setting the attribute on the AzEntity.
+<a name="permissionmappers"><H4>Permission Mapper</H4></a>
+A slightly more interesting case is the 
+<a href="http://openaz.svn.sourceforge.net/viewvc/openaz/test/doc/org/openliberty/openaz/pep/SimpleJavaPermissionMapper.html">SimpleJavaPermissionMapper</a>
+<p>
+As described in the javadoc for
+<a href="http://openaz.svn.sourceforge.net/viewvc/openaz/test/doc/org/openliberty/openaz/pep/SimpleJavaPermissionMapper.html#map(java.lang.Object,%20org.openliberty.openaz.azapi.pep.RequestAttributes)"
+>SimpleJavaPermissionMapper.map()</a>
+a Permission or any subclass of Permission can be processed and effectively
+serialized into 3 String parameters, where the Permission subclass is assumed
+to be a "resource-type", the name parameter is assumed to be the "resource-id",
+and the action is assumed to be the "action-id", where resource-id and action-id
+are as defined in Xacml, and resource-type is an OpenAz identifier used to
+name a resource type.
+<p>
+Therefore these 3 parameters can be passed to the Xacml PDP and generally
+policies will contain regular expression conditions on resource name in order
+to create scopes of resources and actions subject to the policy. Some examples
+demonstrating this technique are included in the test program
+<a href="http://openaz.svn.sourceforge.net/viewvc/openaz/test/doc/test/TestStyles.html"
+>TestStyles</a>
+where the code and javadoc of the testStyle* methods describe some of 
+the test cases, and the 
+<a href="http://openaz.svn.sourceforge.net/viewvc/openaz/test/src/test/"
+>code from the project</a>
+ may be examined.
+</body>
+</html>

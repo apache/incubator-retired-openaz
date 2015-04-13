@@ -1,0 +1,31 @@
+{
+   "Request" : {
+		"AccessSubject" : {
+			"Attribute" : [
+			   {
+                  "Value" : "pashto",
+                  "AttributeId" : "urn:oasis:names:tc:xacml:1.0:subject:subject-id"
+               },
+               {
+                 "Value" : "language",
+                 "AttributeId" : "urn:oasis:names:tc:xacml:1.0:subject:subject-id-qualifier"
+               }
+             ]
+        },
+        "Action" : {
+        	"Attribute" : 
+	           {
+	              "Value" : "jibberjabber",
+	              "AttributeId" : "urn:oasis:names:tc:xacml:1.0:action:action-id"
+               }
+	    },
+        "Resource" : {
+        	"Attribute" : [
+               {
+	              "Value" : "Kabul",
+	              "AttributeId" : "urn:oasis:names:tc:xacml:1.0:resource:resource-id"
+               }	        
+	       ]
+	    }
+   }
+}

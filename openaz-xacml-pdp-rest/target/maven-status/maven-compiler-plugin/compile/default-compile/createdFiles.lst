@@ -1,0 +1,6 @@
+com/att/research/xacml/rest/impl/XACMLPdpPolicyFinderFactory.class
+com/att/research/xacml/rest/XACMLPdpServlet$PutRequest.class
+com/att/research/xacml/rest/XACMLPdpServlet.class
+com/att/research/xacml/rest/XACMLPdpLoader.class
+com/att/research/xacml/rest/impl/XACMLPdpPIPFinderFactory.class
+com/att/research/xacml/rest/XACMLPdpRegisterThread.class

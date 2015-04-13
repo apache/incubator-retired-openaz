@@ -1,0 +1,2 @@
+1067,"biggicr01","","",1965,12,14,"USA","NY","Smithtown",,,,,,,"Craig","Biggio",,"Craig Alan",,185,71.0,"R","R","1988-06-26","2007-09-30","Seton Hall","biggicr01","biggicr01","biggc001","biggicr01","biggicr01"
+6955,"jeterde01","","",1974,6,26,"USA","NJ","Pequannock",,,,,,,"Derek","Jeter",,"Derek Sanderson","Mr. November,Captain Clutch",195,75.0,"R","R","1995-05-29",,"","jeterde01","jeterde01","jeted001","jeterde01","jeterde01"
