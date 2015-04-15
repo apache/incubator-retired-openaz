@@ -1,4 +1,0 @@
--------------------------------------------------------------------------------
-Test set: org.openliberty.openaz.pepapi.std.test.TestAPI
--------------------------------------------------------------------------------
-Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.736 sec - in org.openliberty.openaz.pepapi.std.test.TestAPI

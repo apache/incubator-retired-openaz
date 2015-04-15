@@ -1,4 +1,0 @@
--------------------------------------------------------------------------------
-Test set: com.att.research.xacmlatt.pdp.std.functions.FunctionDefinitionURIStringConcatenateTest
--------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.152 sec - in com.att.research.xacmlatt.pdp.std.functions.FunctionDefinitionURIStringConcatenateTest

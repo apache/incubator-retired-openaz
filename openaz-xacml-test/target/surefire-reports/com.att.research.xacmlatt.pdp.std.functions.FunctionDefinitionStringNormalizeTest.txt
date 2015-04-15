@@ -1,4 +1,0 @@
--------------------------------------------------------------------------------
-Test set: com.att.research.xacmlatt.pdp.std.functions.FunctionDefinitionStringNormalizeTest
--------------------------------------------------------------------------------
-Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.133 sec - in com.att.research.xacmlatt.pdp.std.functions.FunctionDefinitionStringNormalizeTest

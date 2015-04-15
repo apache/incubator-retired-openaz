@@ -1,4 +1,0 @@
--------------------------------------------------------------------------------
-Test set: com.att.research.xacmlatt.pdp.std.json.RequestDefaultCategoryTest
--------------------------------------------------------------------------------
-Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.613 sec - in com.att.research.xacmlatt.pdp.std.json.RequestDefaultCategoryTest
