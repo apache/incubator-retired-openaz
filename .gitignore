@@ -1,0 +1,10 @@
+target
+.project
+.classpath
+.settings
+*.log
+*.iml
+*.ipr
+build
+dist
+
