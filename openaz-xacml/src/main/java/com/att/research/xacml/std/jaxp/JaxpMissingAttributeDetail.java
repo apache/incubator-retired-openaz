@@ -6,16 +6,16 @@
  *  to you under the Apache License, Version 2.0 (the
  *  "License"); you may not use this file except in compliance
  *  with the License.  You may obtain a copy of the License at
- *  
+ *
  *    http://www.apache.org/licenses/LICENSE-2.0
- *  
+ *
  *  Unless required by applicable law or agreed to in writing,
  *  software distributed under the License is distributed on an
  *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  *  KIND, either express or implied.  See the License for the
  *  specific language governing permissions and limitations
- *  under the License. 
- *  
+ *  under the License.
+ *
  */
 
 /*
@@ -46,38 +46,38 @@ import com.att.research.xacml.std.StdMutableMissingAttributeDetail;
 /**
  * JaxpMissingAttributeDetail extends {@link com.att.research.xacml.std.StdMutableMissingAttributeDetail} with methods for creation from
  * JAXP elements.
- * 
+ *
  * @author car
  * @version $Revision: 1.1 $
  */
 public class JaxpMissingAttributeDetail extends StdMutableMissingAttributeDetail {
 
-        protected JaxpMissingAttributeDetail(Identifier categoryIdIn, Identifier attributeIdIn, Identifier dataTypeIdIn, String issuerIn, Collection<AttributeValue<?>> attributeValuesIn) {
-                super(categoryIdIn, attributeIdIn, dataTypeIdIn, issuerIn, attributeValuesIn);
-        }
+    protected JaxpMissingAttributeDetail(Identifier categoryIdIn, Identifier attributeIdIn, Identifier dataTypeIdIn, String issuerIn, Collection<AttributeValue<?>> attributeValuesIn) {
+        super(categoryIdIn, attributeIdIn, dataTypeIdIn, issuerIn, attributeValuesIn);
+    }
 
-        public static JaxpMissingAttributeDetail newInstance(MissingAttributeDetailType missingAttributeDetailType) {
-                if (missingAttributeDetailType == null) {
-                        throw new NullPointerException("Null MissingAttributeDetailType");
-                } else if (missingAttributeDetailType.getCategory() == null) {
-                        throw new IllegalArgumentException("Null categoryId for MissingAttributeDetailType");
-                } else if (missingAttributeDetailType.getAttributeId() == null) {
-                        throw new IllegalArgumentException("Null attributeId for MissingAttributeDetailType");
-                } else if (missingAttributeDetailType.getDataType() == null) {
-                        throw new IllegalArgumentException("Null dataTypeId for MissingAttributeDetailType");
-                }
-                Identifier	categoryId	= new IdentifierImpl(missingAttributeDetailType.getCategory());
-                Identifier	attributeId	= new IdentifierImpl(missingAttributeDetailType.getAttributeId());
-                Identifier	dataTypeId	= new IdentifierImpl(missingAttributeDetailType.getDataType());
-                
-                List<AttributeValue<?>>	attributeValues	= null;
-                if (missingAttributeDetailType.getAttributeValue() != null && missingAttributeDetailType.getAttributeValue().size() > 0) {
-                        attributeValues	= new ArrayList<AttributeValue<?>>();
-                        Iterator<AttributeValueType>	iterAttributeValueTypes	= missingAttributeDetailType.getAttributeValue().iterator();
-                        while (iterAttributeValueTypes.hasNext()) {
-                                attributeValues.add(JaxpAttributeValue.newInstance(iterAttributeValueTypes.next()));
-                        }
-                }
-                return new JaxpMissingAttributeDetail(categoryId, attributeId, dataTypeId, missingAttributeDetailType.getIssuer(), attributeValues);
+    public static JaxpMissingAttributeDetail newInstance(MissingAttributeDetailType missingAttributeDetailType) {
+        if (missingAttributeDetailType == null) {
+            throw new NullPointerException("Null MissingAttributeDetailType");
+        } else if (missingAttributeDetailType.getCategory() == null) {
+            throw new IllegalArgumentException("Null categoryId for MissingAttributeDetailType");
+        } else if (missingAttributeDetailType.getAttributeId() == null) {
+            throw new IllegalArgumentException("Null attributeId for MissingAttributeDetailType");
+        } else if (missingAttributeDetailType.getDataType() == null) {
+            throw new IllegalArgumentException("Null dataTypeId for MissingAttributeDetailType");
         }
+        Identifier	categoryId	= new IdentifierImpl(missingAttributeDetailType.getCategory());
+        Identifier	attributeId	= new IdentifierImpl(missingAttributeDetailType.getAttributeId());
+        Identifier	dataTypeId	= new IdentifierImpl(missingAttributeDetailType.getDataType());
+
+        List<AttributeValue<?>>	attributeValues	= null;
+        if (missingAttributeDetailType.getAttributeValue() != null && missingAttributeDetailType.getAttributeValue().size() > 0) {
+            attributeValues	= new ArrayList<AttributeValue<?>>();
+            Iterator<AttributeValueType>	iterAttributeValueTypes	= missingAttributeDetailType.getAttributeValue().iterator();
+            while (iterAttributeValueTypes.hasNext()) {
+                attributeValues.add(JaxpAttributeValue.newInstance(iterAttributeValueTypes.next()));
+            }
+        }
+        return new JaxpMissingAttributeDetail(categoryId, attributeId, dataTypeId, missingAttributeDetailType.getIssuer(), attributeValues);
+    }
 }

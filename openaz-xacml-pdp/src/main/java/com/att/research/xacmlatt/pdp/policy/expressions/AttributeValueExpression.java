@@ -6,16 +6,16 @@
  *  to you under the Apache License, Version 2.0 (the
  *  "License"); you may not use this file except in compliance
  *  with the License.  You may obtain a copy of the License at
- *  
+ *
  *    http://www.apache.org/licenses/LICENSE-2.0
- *  
+ *
  *  Unless required by applicable law or agreed to in writing,
  *  software distributed under the License is distributed on an
  *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  *  KIND, either express or implied.  See the License for the
  *  specific language governing permissions and limitations
- *  under the License. 
- *  
+ *  under the License.
+ *
  */
 
 /*
@@ -43,67 +43,67 @@ import com.att.research.xacmlatt.pdp.policy.PolicyDefaults;
 /**
  * AttributeValueExpression extends {@link com.att.research.xacmlatt.pdp.policy.Expression} to represent XACML
  * AttributeValue elements in an Expression context.
- * 
+ *
  * @author car
  * @version $Revision: 1.1 $
  */
 public class AttributeValueExpression extends Expression {
-        private AttributeValue<?> attributeValue;
-        
-        public AttributeValueExpression(StatusCode statusCodeIn, String statusMessageIn) {
-                super(statusCodeIn, statusMessageIn);
+    private AttributeValue<?> attributeValue;
+
+    public AttributeValueExpression(StatusCode statusCodeIn, String statusMessageIn) {
+        super(statusCodeIn, statusMessageIn);
+    }
+
+    public AttributeValueExpression(StatusCode statusCodeIn) {
+        super(statusCodeIn);
+    }
+
+    public AttributeValueExpression() {
+    }
+
+    public AttributeValueExpression(AttributeValue<?> attributeValueIn) {
+        this.attributeValue	= attributeValueIn;
+    }
+
+    public AttributeValue<?> getAttributeValue() {
+        return this.attributeValue;
+    }
+
+    public void setAttributeValue(AttributeValue<?> attributeValueIn) {
+        this.attributeValue	= attributeValueIn;
+    }
+
+    @Override
+    public ExpressionResult evaluate(EvaluationContext evaluationContext, PolicyDefaults policyDefaults) throws EvaluationException {
+        if (!this.validate()) {
+            return ExpressionResult.newError(new StdStatus(this.getStatusCode(), this.getStatusMessage()));
         }
 
-        public AttributeValueExpression(StatusCode statusCodeIn) {
-                super(statusCodeIn);
-        }
+        return ExpressionResult.newSingle(this.getAttributeValue());
+    }
 
-        public AttributeValueExpression() {
+    @Override
+    protected boolean validateComponent() {
+        if (this.getAttributeValue() == null) {
+            this.setStatus(StdStatusCode.STATUS_CODE_SYNTAX_ERROR, "Missing AttributeValue");
+            return false;
+        } else {
+            this.setStatus(StdStatusCode.STATUS_CODE_OK, null);
+            return true;
         }
-        
-        public AttributeValueExpression(AttributeValue<?> attributeValueIn) {
-                this.attributeValue	= attributeValueIn;
-        }
-        
-        public AttributeValue<?> getAttributeValue() {
-                return this.attributeValue;
-        }
-        
-        public void setAttributeValue(AttributeValue<?> attributeValueIn) {
-                this.attributeValue	= attributeValueIn;
-        }
-        
-        @Override
-        public ExpressionResult evaluate(EvaluationContext evaluationContext, PolicyDefaults policyDefaults) throws EvaluationException {
-                if (!this.validate()) {
-                        return ExpressionResult.newError(new StdStatus(this.getStatusCode(), this.getStatusMessage()));
-                }
-                
-                return ExpressionResult.newSingle(this.getAttributeValue());
-        }
+    }
 
-        @Override
-        protected boolean validateComponent() {
-                if (this.getAttributeValue() == null) {
-                        this.setStatus(StdStatusCode.STATUS_CODE_SYNTAX_ERROR, "Missing AttributeValue");
-                        return false;
-                } else {
-                        this.setStatus(StdStatusCode.STATUS_CODE_OK, null);
-                        return true;
-                }
+    @Override
+    public String toString() {
+        StringBuilder stringBuilder	= new StringBuilder("{");
+
+        Object objectToDump;
+        if ((objectToDump = this.getAttributeValue()) != null) {
+            stringBuilder.append("attributeValue=");
+            stringBuilder.append(objectToDump.toString());
         }
-        
-        @Override
-        public String toString() {
-                StringBuilder stringBuilder	= new StringBuilder("{");
-                
-                Object objectToDump;
-                if ((objectToDump = this.getAttributeValue()) != null) {
-                        stringBuilder.append("attributeValue=");
-                        stringBuilder.append(objectToDump.toString());
-                }
-                stringBuilder.append('}');
-                return stringBuilder.toString();
-        }
+        stringBuilder.append('}');
+        return stringBuilder.toString();
+    }
 
 }

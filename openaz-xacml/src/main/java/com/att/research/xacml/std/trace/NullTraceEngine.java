@@ -6,16 +6,16 @@
  *  to you under the Apache License, Version 2.0 (the
  *  "License"); you may not use this file except in compliance
  *  with the License.  You may obtain a copy of the License at
- *  
+ *
  *    http://www.apache.org/licenses/LICENSE-2.0
- *  
+ *
  *  Unless required by applicable law or agreed to in writing,
  *  software distributed under the License is distributed on an
  *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  *  KIND, either express or implied.  See the License for the
  *  specific language governing permissions and limitations
- *  under the License. 
- *  
+ *  under the License.
+ *
  */
 
 /*
@@ -38,44 +38,44 @@ import com.att.research.xacml.api.trace.TraceEvent;
 /**
  * Implements the {@link com.att.research.xacml.api.trace.TraceEngine} interface to just ignore {@link com.att.research.xacml.api.trace.TraceEvent}s.
  * This is the default implementation, returned by the default {@link com.att.research.xacml.api.trace.TraceEngineFactory}.
- * 
+ *
  * @author Christopher A. Rath
  * @version $Revision$
  */
 public class NullTraceEngine implements TraceEngine {
-        private static final NullTraceEngine nullTraceEngine	= new NullTraceEngine();
-        
-        protected NullTraceEngine() {
-        }
-        
-        protected NullTraceEngine(Properties properties) {
-        }
-        
-        /**
-         * Gets the single instance of the <code>NullTraceEngine</code> class.
-         * 
-         * @return the single instance of the <code>NullTraceEngine</code> class.
-         */
-        public static NullTraceEngine newInstance() {
-                return nullTraceEngine;
-        }
+    private static final NullTraceEngine nullTraceEngine	= new NullTraceEngine();
 
-        /**
-         * Gets the single instance of the <code>NullTraceEngine</code> class.
-         * 
-         * @return the single instance of the <code>NullTraceEngine</code> class.
-         */
-        public static NullTraceEngine newInstance(Properties properties) {
-                return nullTraceEngine;
-        }
+    protected NullTraceEngine() {
+    }
 
-        @Override
-        public void trace(TraceEvent<?> traceEvent) {
-        }
+    protected NullTraceEngine(Properties properties) {
+    }
 
-        @Override
-        public boolean isTracing() {
-                return false;
-        }
+    /**
+     * Gets the single instance of the <code>NullTraceEngine</code> class.
+     *
+     * @return the single instance of the <code>NullTraceEngine</code> class.
+     */
+    public static NullTraceEngine newInstance() {
+        return nullTraceEngine;
+    }
+
+    /**
+     * Gets the single instance of the <code>NullTraceEngine</code> class.
+     *
+     * @return the single instance of the <code>NullTraceEngine</code> class.
+     */
+    public static NullTraceEngine newInstance(Properties properties) {
+        return nullTraceEngine;
+    }
+
+    @Override
+    public void trace(TraceEvent<?> traceEvent) {
+    }
+
+    @Override
+    public boolean isTracing() {
+        return false;
+    }
 
 }

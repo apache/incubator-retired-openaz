@@ -6,16 +6,16 @@
  *  to you under the Apache License, Version 2.0 (the
  *  "License"); you may not use this file except in compliance
  *  with the License.  You may obtain a copy of the License at
- *  
+ *
  *    http://www.apache.org/licenses/LICENSE-2.0
- *  
+ *
  *  Unless required by applicable law or agreed to in writing,
  *  software distributed under the License is distributed on an
  *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  *  KIND, either express or implied.  See the License for the
  *  specific language governing permissions and limitations
- *  under the License. 
- *  
+ *  under the License.
+ *
  */
 
 package org.openliberty.openaz.pepapi;
@@ -25,21 +25,21 @@ package org.openliberty.openaz.pepapi;
  * @author Josh Bregman, Rich Levinson, Prateek Mishra
  */
 public enum PepResponseType {
-        /** The PepResponse returned for this query type will contain
-         * only the list of resource action associations that are
-         * allowed.
-         */
-        ONLY_ALLOWED_RESULTS, 
-        /**
-         * The PepResponse returned for this query type will contain
-         * only the list of resource action associations that are
-         * denied.
-         */
-        ONLY_DENIED_RESULTS, 
-        /** The PepResponse returned for this query type will contain
-         * the complete list of results for each resource action association
-         * that was requested, including allowed, denied, notapplicable,
-         * and indeterminate.
-         */
-        ALL_RESULTS;
+    /** The PepResponse returned for this query type will contain
+     * only the list of resource action associations that are
+     * allowed.
+     */
+    ONLY_ALLOWED_RESULTS,
+    /**
+     * The PepResponse returned for this query type will contain
+     * only the list of resource action associations that are
+     * denied.
+     */
+    ONLY_DENIED_RESULTS,
+    /** The PepResponse returned for this query type will contain
+     * the complete list of results for each resource action association
+     * that was requested, including allowed, denied, notapplicable,
+     * and indeterminate.
+     */
+    ALL_RESULTS;
 }

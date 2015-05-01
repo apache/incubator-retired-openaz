@@ -6,16 +6,16 @@
  *  to you under the Apache License, Version 2.0 (the
  *  "License"); you may not use this file except in compliance
  *  with the License.  You may obtain a copy of the License at
- *  
+ *
  *    http://www.apache.org/licenses/LICENSE-2.0
- *  
+ *
  *  Unless required by applicable law or agreed to in writing,
  *  software distributed under the License is distributed on an
  *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  *  KIND, either express or implied.  See the License for the
  *  specific language governing permissions and limitations
- *  under the License. 
- *  
+ *  under the License.
+ *
  */
 
 /*
@@ -37,59 +37,59 @@ import com.att.research.xacml.api.trace.Traceable;
 
 /**
  * Immutable implementation of the {@link com.att.research.xacml.api.trace.TraceEvent} interface.
- * 
+ *
  * @author Christopher A. Rath
  * @version $Revision$
- * 
+ *
  * @param <T>
  */
 public class StdTraceEvent<T> implements TraceEvent<T> {
-        private Date	timestamp;
-        private String	message;
-        private Traceable cause;
-        private T value;
-        
-        public StdTraceEvent(Date timestampIn, String messageIn, Traceable causeIn, T valueIn) {
-                this.timestamp	= timestampIn;
-                this.message	= messageIn;
-                this.cause		= causeIn;
-                this.value		= valueIn;
-        }
-        
-        public StdTraceEvent(String messageIn, Traceable causeIn, T valueIn) {
-                this(new Date(), messageIn, causeIn, valueIn);
-        }
-        
-        public StdTraceEvent(Date timestampIn, String messageIn, T valueIn) {
-                this(timestampIn, messageIn, null, valueIn);
-        }
-        
-        public StdTraceEvent(String messageIn, T valueIn) {
-                this(new Date(), messageIn, null, valueIn);
-        }
-        
-        public StdTraceEvent() {
-                this(new Date(), null, null, null);
-        }
+    private Date	timestamp;
+    private String	message;
+    private Traceable cause;
+    private T value;
 
-        @Override
-        public Date getTimestamp() {
-                return this.timestamp;
-        }
+    public StdTraceEvent(Date timestampIn, String messageIn, Traceable causeIn, T valueIn) {
+        this.timestamp	= timestampIn;
+        this.message	= messageIn;
+        this.cause		= causeIn;
+        this.value		= valueIn;
+    }
 
-        @Override
-        public String getMessage() {
-                return this.message;
-        }
+    public StdTraceEvent(String messageIn, Traceable causeIn, T valueIn) {
+        this(new Date(), messageIn, causeIn, valueIn);
+    }
 
-        @Override
-        public Traceable getCause() {
-                return this.cause;
-        }
+    public StdTraceEvent(Date timestampIn, String messageIn, T valueIn) {
+        this(timestampIn, messageIn, null, valueIn);
+    }
 
-        @Override
-        public T getValue() {
-                return this.value;
-        }
+    public StdTraceEvent(String messageIn, T valueIn) {
+        this(new Date(), messageIn, null, valueIn);
+    }
+
+    public StdTraceEvent() {
+        this(new Date(), null, null, null);
+    }
+
+    @Override
+    public Date getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
+    public String getMessage() {
+        return this.message;
+    }
+
+    @Override
+    public Traceable getCause() {
+        return this.cause;
+    }
+
+    @Override
+    public T getValue() {
+        return this.value;
+    }
 
 }

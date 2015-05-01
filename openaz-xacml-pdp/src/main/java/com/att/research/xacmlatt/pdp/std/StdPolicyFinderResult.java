@@ -6,16 +6,16 @@
  *  to you under the Apache License, Version 2.0 (the
  *  "License"); you may not use this file except in compliance
  *  with the License.  You may obtain a copy of the License at
- *  
+ *
  *    http://www.apache.org/licenses/LICENSE-2.0
- *  
+ *
  *  Unless required by applicable law or agreed to in writing,
  *  software distributed under the License is distributed on an
  *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  *  KIND, either express or implied.  See the License for the
  *  specific language governing permissions and limitations
- *  under the License. 
- *  
+ *  under the License.
+ *
  */
 
 /*
@@ -37,36 +37,36 @@ import com.att.research.xacmlatt.pdp.policy.PolicyFinderResult;
 
 /**
  * StdPolicyFinderResult implements the {@link com.att.research.xacmlatt.pdp.policy.PolicyFinderResult} interface.
- * 
+ *
  * @author car
  * @version $Revision: 1.1 $
  * @param <T> the java class extending {@link com.att.research.xacmlatt.pdp.policy.PolicyDef} held by the <code>StdPolicyFinderResult</code>
  */
 public class StdPolicyFinderResult<T extends PolicyDef> implements PolicyFinderResult<T> {
-        private Status status;
-        private T policyDef;
-        
-        public StdPolicyFinderResult(Status statusIn, T policyDefIn) {
-                this.status	= (statusIn == null ? StdStatus.STATUS_OK : statusIn);
-                this.policyDef	= policyDefIn;
-        }
-        
-        public StdPolicyFinderResult(Status statusIn) {
-                this(statusIn, null);
-        }
-        
-        public StdPolicyFinderResult(T policyDefIn) {
-                this(null, policyDefIn);
-        }
+    private Status status;
+    private T policyDef;
 
-        @Override
-        public Status getStatus() {
-                return this.status;
-        }
+    public StdPolicyFinderResult(Status statusIn, T policyDefIn) {
+        this.status	= (statusIn == null ? StdStatus.STATUS_OK : statusIn);
+        this.policyDef	= policyDefIn;
+    }
 
-        @Override
-        public T getPolicyDef() {
-                return this.policyDef;
-        }
+    public StdPolicyFinderResult(Status statusIn) {
+        this(statusIn, null);
+    }
+
+    public StdPolicyFinderResult(T policyDefIn) {
+        this(null, policyDefIn);
+    }
+
+    @Override
+    public Status getStatus() {
+        return this.status;
+    }
+
+    @Override
+    public T getPolicyDef() {
+        return this.policyDef;
+    }
 
 }

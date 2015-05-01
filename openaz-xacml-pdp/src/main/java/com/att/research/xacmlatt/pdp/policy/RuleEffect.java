@@ -6,16 +6,16 @@
  *  to you under the Apache License, Version 2.0 (the
  *  "License"); you may not use this file except in compliance
  *  with the License.  You may obtain a copy of the License at
- *  
+ *
  *    http://www.apache.org/licenses/LICENSE-2.0
- *  
+ *
  *  Unless required by applicable law or agreed to in writing,
  *  software distributed under the License is distributed on an
  *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  *  KIND, either express or implied.  See the License for the
  *  specific language governing permissions and limitations
- *  under the License. 
- *  
+ *  under the License.
+ *
  */
 
 /*
@@ -35,47 +35,47 @@ import com.att.research.xacml.api.Decision;
 /**
  * RuleEffect is an enumeration of the XACML decision effects that a {@link Rule} may apply
  * to.
- * 
+ *
  * @author car
  * @version $Revision: 1.1 $
  */
 public enum RuleEffect {
-        DENY("Deny", Decision.DENY),
-        PERMIT("Permit", Decision.PERMIT)
-        ;
-        
-        private String name;
-        private Decision decision;
-        private RuleEffect(String nameIn, Decision decisionIn) {
-                this.name		= nameIn;
-                this.decision	= decisionIn;
+    DENY("Deny", Decision.DENY),
+    PERMIT("Permit", Decision.PERMIT)
+    ;
+
+    private String name;
+    private Decision decision;
+    private RuleEffect(String nameIn, Decision decisionIn) {
+        this.name		= nameIn;
+        this.decision	= decisionIn;
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public Decision getDecision() {
+        return this.decision;
+    }
+
+    @Override
+    public String toString() {
+        return this.getName();
+    }
+
+    /**
+     * Maps a XACML rule effect <code>String</code> name to the matching <code>RuleEffect</code>.
+     *
+     * @param effectName the <code>String</code> effect name to match
+     * @return the matching <code>RuleEffect</code> or null if there is no match
+     */
+    public static RuleEffect getRuleEffect(String effectName) {
+        for (RuleEffect ruleEffect: RuleEffect.values()) {
+            if (ruleEffect.getName().equalsIgnoreCase(effectName)) {
+                return ruleEffect;
+            }
         }
-        
-        public String getName() {
-                return this.name;
-        }
-        
-        public Decision getDecision() {
-                return this.decision;
-        }
-        
-        @Override
-        public String toString() {
-                return this.getName();
-        }
-        
-        /**
-         * Maps a XACML rule effect <code>String</code> name to the matching <code>RuleEffect</code>.
-         * 
-         * @param effectName the <code>String</code> effect name to match
-         * @return the matching <code>RuleEffect</code> or null if there is no match
-         */
-        public static RuleEffect getRuleEffect(String effectName) {
-                for (RuleEffect ruleEffect: RuleEffect.values()) {
-                        if (ruleEffect.getName().equalsIgnoreCase(effectName)) {
-                                return ruleEffect;
-                        }
-                }
-                return null;
-        }
+        return null;
+    }
 }

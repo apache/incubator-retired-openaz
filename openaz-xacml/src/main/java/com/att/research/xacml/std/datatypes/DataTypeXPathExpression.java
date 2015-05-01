@@ -6,16 +6,16 @@
  *  to you under the Apache License, Version 2.0 (the
  *  "License"); you may not use this file except in compliance
  *  with the License.  You may obtain a copy of the License at
- *  
+ *
  *    http://www.apache.org/licenses/LICENSE-2.0
- *  
+ *
  *  Unless required by applicable law or agreed to in writing,
  *  software distributed under the License is distributed on an
  *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  *  KIND, either express or implied.  See the License for the
  *  specific language governing permissions and limitations
- *  under the License. 
- *  
+ *  under the License.
+ *
  */
 
 /*
@@ -40,33 +40,33 @@ import com.att.research.xacml.api.XACML3;
 /**
  * DataTypeXPathExpression extends {@link DataTypeBase} to implement the XACML
  * xpathExpression data type.
- * 
+ *
  * @author car
  * @version $Revision: 1.1 $
  */
 public class DataTypeXPathExpression extends DataTypeBase<XPathExpressionWrapper> {
-        private static final DataTypeXPathExpression	singleInstance	= new DataTypeXPathExpression();
-        
-        private DataTypeXPathExpression() {
-                super(XACML3.ID_DATATYPE_XPATHEXPRESSION, XPathExpressionWrapper.class);
-        }
-        
-        public static DataTypeXPathExpression newInstance() {
-                return singleInstance;
-        }
+    private static final DataTypeXPathExpression	singleInstance	= new DataTypeXPathExpression();
 
-        @Override
-        public XPathExpressionWrapper convert(Object source) throws DataTypeException {
-                if (source == null || (source instanceof XPathExpressionWrapper)) {
-                        return (XPathExpressionWrapper)source;
-                } else if (source instanceof XPathExpression) {
-                        return new XPathExpressionWrapper((XPathExpression)source);
-                } else if (source instanceof Node) {
-                        Node node			= (Node)source;
-                        return new XPathExpressionWrapper(node.getOwnerDocument(), node.getTextContent());
-                } else {
-                        return new XPathExpressionWrapper(this.convertToString(source));
-                }
+    private DataTypeXPathExpression() {
+        super(XACML3.ID_DATATYPE_XPATHEXPRESSION, XPathExpressionWrapper.class);
+    }
+
+    public static DataTypeXPathExpression newInstance() {
+        return singleInstance;
+    }
+
+    @Override
+    public XPathExpressionWrapper convert(Object source) throws DataTypeException {
+        if (source == null || (source instanceof XPathExpressionWrapper)) {
+            return (XPathExpressionWrapper)source;
+        } else if (source instanceof XPathExpression) {
+            return new XPathExpressionWrapper((XPathExpression)source);
+        } else if (source instanceof Node) {
+            Node node			= (Node)source;
+            return new XPathExpressionWrapper(node.getOwnerDocument(), node.getTextContent());
+        } else {
+            return new XPathExpressionWrapper(this.convertToString(source));
         }
+    }
 
 }

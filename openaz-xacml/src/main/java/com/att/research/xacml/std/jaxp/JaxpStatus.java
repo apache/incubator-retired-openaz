@@ -6,16 +6,16 @@
  *  to you under the Apache License, Version 2.0 (the
  *  "License"); you may not use this file except in compliance
  *  with the License.  You may obtain a copy of the License at
- *  
+ *
  *    http://www.apache.org/licenses/LICENSE-2.0
- *  
+ *
  *  Unless required by applicable law or agreed to in writing,
  *  software distributed under the License is distributed on an
  *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  *  KIND, either express or implied.  See the License for the
  *  specific language governing permissions and limitations
- *  under the License. 
- *  
+ *  under the License.
+ *
  */
 
 /*
@@ -39,29 +39,29 @@ import com.att.research.xacml.std.StdMutableStatus;
 /**
  * JaxpStatus extends {@link com.att.research.StdMutableStatus.common.std.StdStatus} with methods for creation from
  * JAXP elements.
- * 
+ *
  * @author car
  * @version $Revision: 1.1 $
  */
 public class JaxpStatus extends StdMutableStatus {
 
-        protected JaxpStatus(StatusCode statusCodeIn, String statusMessageIn, StatusDetail statusDetailIn) {
-                super(statusCodeIn, statusMessageIn, statusDetailIn);
+    protected JaxpStatus(StatusCode statusCodeIn, String statusMessageIn, StatusDetail statusDetailIn) {
+        super(statusCodeIn, statusMessageIn, statusDetailIn);
+    }
+
+    public static JaxpStatus newInstance(StatusType statusType) {
+        if (statusType == null) {
+            throw new NullPointerException("Null StatusType");
+        } else if (statusType.getStatusCode() == null) {
+            throw new IllegalArgumentException("Null StatusCode in StatusType");
         }
-        
-        public static JaxpStatus newInstance(StatusType statusType) {
-                if (statusType == null) {
-                        throw new NullPointerException("Null StatusType");
-                } else if (statusType.getStatusCode() == null) {
-                        throw new IllegalArgumentException("Null StatusCode in StatusType");
-                }
-                StatusCode		statusCode		= JaxpStatusCode.newInstance(statusType.getStatusCode());
-                StatusDetail	statusDetail	= null;
-                if (statusType.getStatusDetail() != null) {
-                        statusDetail	= JaxpStatusDetail.newInstance(statusType.getStatusDetail());
-                }
-                
-                return new JaxpStatus(statusCode, statusType.getStatusMessage(), statusDetail);
-                
+        StatusCode		statusCode		= JaxpStatusCode.newInstance(statusType.getStatusCode());
+        StatusDetail	statusDetail	= null;
+        if (statusType.getStatusDetail() != null) {
+            statusDetail	= JaxpStatusDetail.newInstance(statusType.getStatusDetail());
         }
+
+        return new JaxpStatus(statusCode, statusType.getStatusMessage(), statusDetail);
+
+    }
 }

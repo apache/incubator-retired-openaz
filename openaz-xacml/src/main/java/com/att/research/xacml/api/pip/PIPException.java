@@ -6,16 +6,16 @@
  *  to you under the Apache License, Version 2.0 (the
  *  "License"); you may not use this file except in compliance
  *  with the License.  You may obtain a copy of the License at
- *  
+ *
  *    http://www.apache.org/licenses/LICENSE-2.0
- *  
+ *
  *  Unless required by applicable law or agreed to in writing,
  *  software distributed under the License is distributed on an
  *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  *  KIND, either express or implied.  See the License for the
  *  specific language governing permissions and limitations
- *  under the License. 
- *  
+ *  under the License.
+ *
  */
 
 /*
@@ -33,57 +33,57 @@ package com.att.research.xacml.api.pip;
 /**
  * PIPException extends <code>Exception</code> to represent errors that can occur as a result of querying a
  * {@link PIPEngine} for {@link com.att.research.xacml.api.Attribute}s.
- * 
+ *
  * @author car
  * @version $Revision: 1.1 $
  */
 public class PIPException extends Exception {
-        private static final long serialVersionUID = -6656926395983776184L;
-        private PIPRequest pipRequest;
-        private PIPEngine pipEngine;
-        
-        public PIPException() {
-        }
+    private static final long serialVersionUID = -6656926395983776184L;
+    private PIPRequest pipRequest;
+    private PIPEngine pipEngine;
 
-        public PIPException(String message) {
-                super(message);
-        }
+    public PIPException() {
+    }
 
-        public PIPException(Throwable cause) {
-                super(cause);
-        }
+    public PIPException(String message) {
+        super(message);
+    }
 
-        public PIPException(String message, Throwable cause) {
-                super(message, cause);
-        }
-        
-        public PIPException(PIPEngine pipEngineIn, PIPRequest pipRequestIn, String message, Throwable cause) {
-                this(message, cause);
-                this.pipEngine	= pipEngineIn;
-                this.pipRequest	= pipRequestIn;
-        }
-        
-        public PIPException(PIPEngine pipEngineIn, PIPRequest pipRequestIn, String message) {
-                this(message);
-                this.pipEngine	= pipEngineIn;
-                this.pipRequest	= pipRequestIn;
-        }
+    public PIPException(Throwable cause) {
+        super(cause);
+    }
 
-        /**
-         * Gets the <code>PIPRequest</code> that caused this <code>PIPException</code>
-         * 
-         * @return the <code>PIPRequest</code> that caused this <code>PIPException</code>
-         */
-        public PIPRequest getPIPRequest() {
-                return this.pipRequest;
-        }
-        
-        /**
-         * Gets the <code>PIPEngine</code> that caused this <code>PIPException</code>.
-         * 
-         * @return the <code>PIPEngine</code> that caused this <code>PIPException</code>
-         */
-        public PIPEngine getPIPEngine() {
-                return this.pipEngine;
-        }
+    public PIPException(String message, Throwable cause) {
+        super(message, cause);
+    }
+
+    public PIPException(PIPEngine pipEngineIn, PIPRequest pipRequestIn, String message, Throwable cause) {
+        this(message, cause);
+        this.pipEngine	= pipEngineIn;
+        this.pipRequest	= pipRequestIn;
+    }
+
+    public PIPException(PIPEngine pipEngineIn, PIPRequest pipRequestIn, String message) {
+        this(message);
+        this.pipEngine	= pipEngineIn;
+        this.pipRequest	= pipRequestIn;
+    }
+
+    /**
+     * Gets the <code>PIPRequest</code> that caused this <code>PIPException</code>
+     *
+     * @return the <code>PIPRequest</code> that caused this <code>PIPException</code>
+     */
+    public PIPRequest getPIPRequest() {
+        return this.pipRequest;
+    }
+
+    /**
+     * Gets the <code>PIPEngine</code> that caused this <code>PIPException</code>.
+     *
+     * @return the <code>PIPEngine</code> that caused this <code>PIPException</code>
+     */
+    public PIPEngine getPIPEngine() {
+        return this.pipEngine;
+    }
 }

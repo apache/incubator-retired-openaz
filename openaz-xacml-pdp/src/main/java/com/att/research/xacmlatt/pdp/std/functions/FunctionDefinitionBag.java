@@ -6,16 +6,16 @@
  *  to you under the Apache License, Version 2.0 (the
  *  "License"); you may not use this file except in compliance
  *  with the License.  You may obtain a copy of the License at
- *  
+ *
  *    http://www.apache.org/licenses/LICENSE-2.0
- *  
+ *
  *  Unless required by applicable law or agreed to in writing,
  *  software distributed under the License is distributed on an
  *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  *  KIND, either express or implied.  See the License for the
  *  specific language governing permissions and limitations
- *  under the License. 
- *  
+ *  under the License.
+ *
  */
 
 /*
@@ -42,7 +42,7 @@ import com.att.research.xacmlatt.pdp.policy.FunctionArgument;
 /**
  * FunctionDefinitionBag implements {@link com.att.research.xacmlatt.pdp.policy.FunctionDefinition} to
  * implement the XACML 'type'-bag predicates as functions taking 0, 1 or multiple arguments of the same data type and returning a <code>Bag</code>.
- * 
+ *
  * In the first implementation of XACML we had separate files for each XACML Function.
  * This release combines multiple Functions in fewer files to minimize code duplication.
  * This file supports the following XACML codes:
@@ -62,66 +62,66 @@ import com.att.research.xacmlatt.pdp.policy.FunctionArgument;
  * 		rfc822Name-bag
  * 		ipAddress-bag
  * 		dnsName-bag
- * 
- * 
+ *
+ *
  * @author glenngriffin
  * @version $Revision: 1.1 $
- * 
+ *
  * @param <I> the java class for the data type of the function Input arguments,
  * 		which is also the "type" of the returned bag
  */
 public class FunctionDefinitionBag<I> extends FunctionDefinitionBase<I, I> {
 
-        
-        /**
-         * Constructor - need dataType input because of java Generic type-erasure during compilation.
-         * 
-         * @param idIn
-         * @param dataTypeArgsIn
-         */
-        public FunctionDefinitionBag(Identifier idIn, DataType<I> dataTypeArgsIn) {
-                super(idIn, dataTypeArgsIn, dataTypeArgsIn, true);
-        }
 
-        /**
-         * Evaluates this <code>FunctionDefinition</code> on the given <code>List</code> of{@link com.att.research.xacmlatt.pdp.policy.FunctionArgument}s.
-         * 
-         * @param evaluationContext the {@link com.att.research.xacmlatt.pdp.eval.EvaluationContext} to use in the evaluation
-         * @param arguments the <code>List</code> of <code>FunctionArgument</code>s for the evaluation
-         * @return an {@link com.att.research.xacmlatt.pdp.policy.ExpressionResult} with the results of the call
-         */
-        @Override
-        public ExpressionResult evaluate(EvaluationContext evaluationContext, List<FunctionArgument> arguments) {
+    /**
+     * Constructor - need dataType input because of java Generic type-erasure during compilation.
+     *
+     * @param idIn
+     * @param dataTypeArgsIn
+     */
+    public FunctionDefinitionBag(Identifier idIn, DataType<I> dataTypeArgsIn) {
+        super(idIn, dataTypeArgsIn, dataTypeArgsIn, true);
+    }
 
-                // create a list to put the values into
-                Bag elementBag	= new Bag();
-                
-                // see if we have arguments
-                if (arguments != null && arguments.size() > 0) {
-        
-                        // for each arg, evaluate it, check type, and put on the list
-                        for (FunctionArgument argument : arguments) {
-                                // get the argument, evaluate it and check status
-                                ConvertedArgument<I> convertedArgument = new ConvertedArgument<I>(argument, this.getDataTypeArgs(), false);
-                                
-                                // check the status
-                                if ( ! convertedArgument.isOk()) {
-                                        return ExpressionResult.newError(getFunctionStatus(convertedArgument.getStatus()));
-                                }
-                                
-                                // Special case: Most methods want the value contained in the AttributeValue object inside the FunctionArgument.
-                                // This one wants the AttributeValue itself.
-                                // We use the ConvertedArgument constructor to validate that the argument is ok, then use the AttributeValue
-                                // from the FunctionArgument.
-                                elementBag.add(argument.getValue());
-                        }
+    /**
+     * Evaluates this <code>FunctionDefinition</code> on the given <code>List</code> of{@link com.att.research.xacmlatt.pdp.policy.FunctionArgument}s.
+     *
+     * @param evaluationContext the {@link com.att.research.xacmlatt.pdp.eval.EvaluationContext} to use in the evaluation
+     * @param arguments the <code>List</code> of <code>FunctionArgument</code>s for the evaluation
+     * @return an {@link com.att.research.xacmlatt.pdp.policy.ExpressionResult} with the results of the call
+     */
+    @Override
+    public ExpressionResult evaluate(EvaluationContext evaluationContext, List<FunctionArgument> arguments) {
+
+        // create a list to put the values into
+        Bag elementBag	= new Bag();
+
+        // see if we have arguments
+        if (arguments != null && arguments.size() > 0) {
+
+            // for each arg, evaluate it, check type, and put on the list
+            for (FunctionArgument argument : arguments) {
+                // get the argument, evaluate it and check status
+                ConvertedArgument<I> convertedArgument = new ConvertedArgument<I>(argument, this.getDataTypeArgs(), false);
+
+                // check the status
+                if ( ! convertedArgument.isOk()) {
+                    return ExpressionResult.newError(getFunctionStatus(convertedArgument.getStatus()));
                 }
-                
-                // return it
-                return ExpressionResult.newBag(elementBag);
+
+                // Special case: Most methods want the value contained in the AttributeValue object inside the FunctionArgument.
+                // This one wants the AttributeValue itself.
+                // We use the ConvertedArgument constructor to validate that the argument is ok, then use the AttributeValue
+                // from the FunctionArgument.
+                elementBag.add(argument.getValue());
+            }
         }
 
-        
-        
+        // return it
+        return ExpressionResult.newBag(elementBag);
+    }
+
+
+
 
 }

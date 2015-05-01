@@ -6,16 +6,16 @@
  *  to you under the Apache License, Version 2.0 (the
  *  "License"); you may not use this file except in compliance
  *  with the License.  You may obtain a copy of the License at
- *  
+ *
  *    http://www.apache.org/licenses/LICENSE-2.0
- *  
+ *
  *  Unless required by applicable law or agreed to in writing,
  *  software distributed under the License is distributed on an
  *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  *  KIND, either express or implied.  See the License for the
  *  specific language governing permissions and limitations
- *  under the License. 
- *  
+ *  under the License.
+ *
  */
 
 /*
@@ -44,108 +44,108 @@ import com.att.research.xacml.util.Wrapper;
 
 /**
  * Immutable implementation of the {@link com.att.research.xacml.api.Request} interface.
- * 
+ *
  * @author car
  * @version $Revison$
  */
 public class StdRequest extends Wrapper<Request> implements Request {
-        /**
-         * Creates a new <code>StdRequest</code> that is a copy of the given {@link com.att.research.xacml.api.Request}.
-         * 
-         * @param request the <code>Request</code> to copy
-         */
-        public StdRequest(Request request) {
-                super(request);
-        }
-        
-        /**
-         * Creates a new <code>StdMutableRequest</code> with the given parameters.
-         * 
-         * @param statusIn the {@link com.att.research.xacml.api.Status} of the <code>StdMutableRequest</code> representing its validity
-         * @param requestDefaultsIn the {@link com.att.research.xacml.api.RequestDefaults} representing the XACML RequestDefaults
-         * @param returnPolicyIdListIn a boolean indicating whether XACML PolicyId and PolicySetIds should be returned with the Results
-         * @param combinedDecisionIn a boolean indicating whether multiple Decision Request Results should be combined into a single Result
-         * @param listRequestAttributes a <code>Collection</code> of {@link com.att.research.xacml.api.RequestAttributes} defining the parameters of the Request
-         * @param listRequestReferences a <code>Collection</code> of {@link com.att.research.xacml.api.RequestReference}s for multiple decision requests
-         */
-        public StdRequest(Status statusIn, 
-                                          RequestDefaults requestDefaultsIn, 
-                                          boolean returnPolicyIdListIn, 
-                                          boolean combinedDecisionIn, 
-                                          Collection<RequestAttributes> listRequestAttributes, 
-                                          Collection<RequestReference> listRequestReferences) {
-                this(new StdMutableRequest(statusIn, requestDefaultsIn, returnPolicyIdListIn, combinedDecisionIn, listRequestAttributes, listRequestReferences));
-        }
-        
-        /**
-         * Creates a new <code>StdMutableRequest</code> with the given parameters and a default {@link com.att.research.xacmo.api.Status} of OK.
-         * 
-         * @param requestDefaultsIn the {@link com.att.research.xacml.api.RequestDefaults} representing the XACML RequestDefaults
-         * @param returnPolicyIdListIn a boolean indicating whether XACML PolicyId and PolicySetIds should be returned with the Results
-         * @param combinedDecisionIn a boolean indicating whether multiple Decision Request Results should be combined into a single Result
-         * @param listRequestAttributes a <code>Collection</code> of {@link com.att.research.xacml.api.RequestAttributes} defining the parameters of the Request
-         * @param listRequestReferences a <code>Collection</code> of {@link com.att.research.xacml.api.RequestReference}s for multiple decision requests
-         */
-        public StdRequest(RequestDefaults requestDefaultsIn, 
-                                          boolean returnPolicyIdListIn, 
-                                          boolean combinedDecisionIn, 
-                                          Collection<RequestAttributes> listRequestAttributes, 
-                                          Collection<RequestReference> listRequestReferences) {
-                this(new StdMutableRequest(requestDefaultsIn, returnPolicyIdListIn, combinedDecisionIn, listRequestAttributes, listRequestReferences));
-        }
-        
-        /**
-         * Creates a new <code>StdRequest</code> with the given {@link com.att.research.xacml.api.Status} and defaults for all other attributes.
-         * 
-         * @param statusIn the <code>Status</code> for the new <code>StdRequest</code>.
-         */
-        public StdRequest(Status statusIn) {
-                this(new StdMutableRequest(statusIn));
-        }
-        
-        @Override
-        public RequestDefaults getRequestDefaults() {
-                return this.getWrappedObject().getRequestDefaults();
-        }
+    /**
+     * Creates a new <code>StdRequest</code> that is a copy of the given {@link com.att.research.xacml.api.Request}.
+     *
+     * @param request the <code>Request</code> to copy
+     */
+    public StdRequest(Request request) {
+        super(request);
+    }
 
-        @Override
-        public boolean getReturnPolicyIdList() {
-                return this.getWrappedObject().getReturnPolicyIdList();
-        }
+    /**
+     * Creates a new <code>StdMutableRequest</code> with the given parameters.
+     *
+     * @param statusIn the {@link com.att.research.xacml.api.Status} of the <code>StdMutableRequest</code> representing its validity
+     * @param requestDefaultsIn the {@link com.att.research.xacml.api.RequestDefaults} representing the XACML RequestDefaults
+     * @param returnPolicyIdListIn a boolean indicating whether XACML PolicyId and PolicySetIds should be returned with the Results
+     * @param combinedDecisionIn a boolean indicating whether multiple Decision Request Results should be combined into a single Result
+     * @param listRequestAttributes a <code>Collection</code> of {@link com.att.research.xacml.api.RequestAttributes} defining the parameters of the Request
+     * @param listRequestReferences a <code>Collection</code> of {@link com.att.research.xacml.api.RequestReference}s for multiple decision requests
+     */
+    public StdRequest(Status statusIn,
+                      RequestDefaults requestDefaultsIn,
+                      boolean returnPolicyIdListIn,
+                      boolean combinedDecisionIn,
+                      Collection<RequestAttributes> listRequestAttributes,
+                      Collection<RequestReference> listRequestReferences) {
+        this(new StdMutableRequest(statusIn, requestDefaultsIn, returnPolicyIdListIn, combinedDecisionIn, listRequestAttributes, listRequestReferences));
+    }
 
-        @Override
-        public boolean getCombinedDecision() {
-                return this.getWrappedObject().getCombinedDecision();
-        }
+    /**
+     * Creates a new <code>StdMutableRequest</code> with the given parameters and a default {@link com.att.research.xacmo.api.Status} of OK.
+     *
+     * @param requestDefaultsIn the {@link com.att.research.xacml.api.RequestDefaults} representing the XACML RequestDefaults
+     * @param returnPolicyIdListIn a boolean indicating whether XACML PolicyId and PolicySetIds should be returned with the Results
+     * @param combinedDecisionIn a boolean indicating whether multiple Decision Request Results should be combined into a single Result
+     * @param listRequestAttributes a <code>Collection</code> of {@link com.att.research.xacml.api.RequestAttributes} defining the parameters of the Request
+     * @param listRequestReferences a <code>Collection</code> of {@link com.att.research.xacml.api.RequestReference}s for multiple decision requests
+     */
+    public StdRequest(RequestDefaults requestDefaultsIn,
+                      boolean returnPolicyIdListIn,
+                      boolean combinedDecisionIn,
+                      Collection<RequestAttributes> listRequestAttributes,
+                      Collection<RequestReference> listRequestReferences) {
+        this(new StdMutableRequest(requestDefaultsIn, returnPolicyIdListIn, combinedDecisionIn, listRequestAttributes, listRequestReferences));
+    }
 
-        @Override
-        public Collection<RequestAttributes> getRequestAttributes() {
-                return this.getWrappedObject().getRequestAttributes();
-        }
-        
-        @Override
-        public Collection<AttributeCategory> getRequestAttributesIncludedInResult() {
-                return this.getWrappedObject().getRequestAttributesIncludedInResult();
-        }
+    /**
+     * Creates a new <code>StdRequest</code> with the given {@link com.att.research.xacml.api.Status} and defaults for all other attributes.
+     *
+     * @param statusIn the <code>Status</code> for the new <code>StdRequest</code>.
+     */
+    public StdRequest(Status statusIn) {
+        this(new StdMutableRequest(statusIn));
+    }
 
-        @Override
-        public Iterator<RequestAttributes> getRequestAttributes(Identifier category) {
-                return this.getWrappedObject().getRequestAttributes(category);
-        }
+    @Override
+    public RequestDefaults getRequestDefaults() {
+        return this.getWrappedObject().getRequestDefaults();
+    }
 
-        @Override
-        public RequestAttributes getRequestAttributesByXmlId(String xmlId) {
-                return this.getWrappedObject().getRequestAttributesByXmlId(xmlId);
-        }
+    @Override
+    public boolean getReturnPolicyIdList() {
+        return this.getWrappedObject().getReturnPolicyIdList();
+    }
 
-        @Override
-        public Collection<RequestReference> getMultiRequests() {
-                return this.getWrappedObject().getMultiRequests();
-        }
+    @Override
+    public boolean getCombinedDecision() {
+        return this.getWrappedObject().getCombinedDecision();
+    }
 
-        @Override
-        public Status getStatus() {
-                return this.getWrappedObject().getStatus();
-        }
+    @Override
+    public Collection<RequestAttributes> getRequestAttributes() {
+        return this.getWrappedObject().getRequestAttributes();
+    }
+
+    @Override
+    public Collection<AttributeCategory> getRequestAttributesIncludedInResult() {
+        return this.getWrappedObject().getRequestAttributesIncludedInResult();
+    }
+
+    @Override
+    public Iterator<RequestAttributes> getRequestAttributes(Identifier category) {
+        return this.getWrappedObject().getRequestAttributes(category);
+    }
+
+    @Override
+    public RequestAttributes getRequestAttributesByXmlId(String xmlId) {
+        return this.getWrappedObject().getRequestAttributesByXmlId(xmlId);
+    }
+
+    @Override
+    public Collection<RequestReference> getMultiRequests() {
+        return this.getWrappedObject().getMultiRequests();
+    }
+
+    @Override
+    public Status getStatus() {
+        return this.getWrappedObject().getStatus();
+    }
 
 }

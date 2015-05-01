@@ -6,16 +6,16 @@
  *  to you under the Apache License, Version 2.0 (the
  *  "License"); you may not use this file except in compliance
  *  with the License.  You may obtain a copy of the License at
- *  
+ *
  *    http://www.apache.org/licenses/LICENSE-2.0
- *  
+ *
  *  Unless required by applicable law or agreed to in writing,
  *  software distributed under the License is distributed on an
  *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  *  KIND, either express or implied.  See the License for the
  *  specific language governing permissions and limitations
- *  under the License. 
- *  
+ *  under the License.
+ *
  */
 
 /*
@@ -47,110 +47,110 @@ import com.att.research.xacmlatt.pdp.eval.Matchable;
 /**
  * AnyOf extends {@link com.att.research.xacmlatt.pdp.policy.PolicyComponent} and implements the {@link com.att.research.xacmlatt.pdp.policy.Matchable}
  * interface to represent XACML AllOf elements in a XACML Target.
- * 
+ *
  * @author car
  * @version $Revision
  */
 public class AllOf extends PolicyComponent implements Matchable {
-        private List<Match>	matches;
-        
-        protected List<Match> getMatchList(boolean bNoNulls) {
-                if (this.matches == null && bNoNulls) {
-                        this.matches	= new ArrayList<Match>();
-                }
-                return this.matches;
-        }
-        
-        protected void clearMatchList() {
-                if (this.matches != null) {
-                        this.matches.clear();
-                }
-        }
-        
-        public AllOf(StatusCode statusCodeIn, String statusMessageIn) {
-                super(statusCodeIn, statusMessageIn);
-        }
+    private List<Match>	matches;
 
-        public AllOf(StatusCode statusCodeIn) {
-                super(statusCodeIn);
+    protected List<Match> getMatchList(boolean bNoNulls) {
+        if (this.matches == null && bNoNulls) {
+            this.matches	= new ArrayList<Match>();
         }
+        return this.matches;
+    }
 
-        public AllOf() {
+    protected void clearMatchList() {
+        if (this.matches != null) {
+            this.matches.clear();
         }
-        
-        public Iterator<Match> getMatches() {
-                return (this.matches == null ? null : this.matches.iterator());
-        }
-        
-        public void setMatches(Collection<Match> matchesIn) {
-                this.clearMatchList();
-                if (matchesIn != null) {
-                        this.addMatches(matchesIn);
-                }
-        }
-        
-        public void addMatch(Match match) {
-                List<Match> matchList	= this.getMatchList(true);
-                matchList.add(match);
-        }
-        
-        public void addMatches(Collection<Match> matchesIn) {
-                List<Match> matchList	= this.getMatchList(true);
-                matchList.addAll(matchesIn);
-        }
+    }
 
-        @Override
-        public MatchResult match(EvaluationContext evaluationContext) throws EvaluationException {
-                if (!this.validate()) {
-                        return new MatchResult(new StdStatus(this.getStatusCode(), this.getStatusMessage()));
-                }
-                Iterator<Match> iterMatches	= this.getMatches();
-                assert(iterMatches != null && iterMatches.hasNext());
-                
-                MatchResult matchResultFallThrough	= MatchResult.MM_MATCH;
-                while (iterMatches.hasNext()) {
-                        MatchResult matchResultMatch	= iterMatches.next().match(evaluationContext);
-                        assert(matchResultMatch != null);
-                        switch(matchResultMatch.getMatchCode()) {
-                        case INDETERMINATE:
-                                if (matchResultFallThrough.getMatchCode() != MatchResult.MatchCode.INDETERMINATE) {
-                                        matchResultFallThrough	= matchResultMatch;
-                                }
-                                break;
-                        case MATCH:
-                                break;
-                        case NOMATCH:
-                                return matchResultMatch;
-                        }
-                }
-                return matchResultFallThrough;
-        }
+    public AllOf(StatusCode statusCodeIn, String statusMessageIn) {
+        super(statusCodeIn, statusMessageIn);
+    }
 
-        @Override
-        protected boolean validateComponent() {
-                Iterator<Match>	iterMatches	= this.getMatches();
-                if (iterMatches == null || !iterMatches.hasNext()) {
-                        this.setStatus(StdStatusCode.STATUS_CODE_SYNTAX_ERROR, "Missing matches");
-                        return false;
-                } else {
-                        this.setStatus(StdStatusCode.STATUS_CODE_OK, null);
-                        return true;
-                }
-        }
-        
-        @Override
-        public String toString() {
-                StringBuilder stringBuilder	= new StringBuilder("{");
-                stringBuilder.append("super=");
-                stringBuilder.append(super.toString());
+    public AllOf(StatusCode statusCodeIn) {
+        super(statusCodeIn);
+    }
 
-                String stringMatches	= StringUtils.toString(this.getMatches());
-                if (stringMatches != null) {
-                        stringBuilder.append(",matches=");
-                        stringBuilder.append(stringMatches);
-                }
-                stringBuilder.append('}');
-                return stringBuilder.toString();
+    public AllOf() {
+    }
+
+    public Iterator<Match> getMatches() {
+        return (this.matches == null ? null : this.matches.iterator());
+    }
+
+    public void setMatches(Collection<Match> matchesIn) {
+        this.clearMatchList();
+        if (matchesIn != null) {
+            this.addMatches(matchesIn);
         }
+    }
+
+    public void addMatch(Match match) {
+        List<Match> matchList	= this.getMatchList(true);
+        matchList.add(match);
+    }
+
+    public void addMatches(Collection<Match> matchesIn) {
+        List<Match> matchList	= this.getMatchList(true);
+        matchList.addAll(matchesIn);
+    }
+
+    @Override
+    public MatchResult match(EvaluationContext evaluationContext) throws EvaluationException {
+        if (!this.validate()) {
+            return new MatchResult(new StdStatus(this.getStatusCode(), this.getStatusMessage()));
+        }
+        Iterator<Match> iterMatches	= this.getMatches();
+        assert(iterMatches != null && iterMatches.hasNext());
+
+        MatchResult matchResultFallThrough	= MatchResult.MM_MATCH;
+        while (iterMatches.hasNext()) {
+            MatchResult matchResultMatch	= iterMatches.next().match(evaluationContext);
+            assert(matchResultMatch != null);
+            switch(matchResultMatch.getMatchCode()) {
+            case INDETERMINATE:
+                if (matchResultFallThrough.getMatchCode() != MatchResult.MatchCode.INDETERMINATE) {
+                    matchResultFallThrough	= matchResultMatch;
+                }
+                break;
+            case MATCH:
+                break;
+            case NOMATCH:
+                return matchResultMatch;
+            }
+        }
+        return matchResultFallThrough;
+    }
+
+    @Override
+    protected boolean validateComponent() {
+        Iterator<Match>	iterMatches	= this.getMatches();
+        if (iterMatches == null || !iterMatches.hasNext()) {
+            this.setStatus(StdStatusCode.STATUS_CODE_SYNTAX_ERROR, "Missing matches");
+            return false;
+        } else {
+            this.setStatus(StdStatusCode.STATUS_CODE_OK, null);
+            return true;
+        }
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder stringBuilder	= new StringBuilder("{");
+        stringBuilder.append("super=");
+        stringBuilder.append(super.toString());
+
+        String stringMatches	= StringUtils.toString(this.getMatches());
+        if (stringMatches != null) {
+            stringBuilder.append(",matches=");
+            stringBuilder.append(stringMatches);
+        }
+        stringBuilder.append('}');
+        return stringBuilder.toString();
+    }
 
 }

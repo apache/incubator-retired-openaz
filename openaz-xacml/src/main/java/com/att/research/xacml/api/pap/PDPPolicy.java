@@ -6,16 +6,16 @@
  *  to you under the Apache License, Version 2.0 (the
  *  "License"); you may not use this file except in compliance
  *  with the License.  You may obtain a copy of the License at
- *  
+ *
  *    http://www.apache.org/licenses/LICENSE-2.0
- *  
+ *
  *  Unless required by applicable law or agreed to in writing,
  *  software distributed under the License is distributed on an
  *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  *  KIND, either express or implied.  See the License for the
  *  specific language governing permissions and limitations
- *  under the License. 
- *  
+ *  under the License.
+ *
  */
 
 /*
@@ -43,30 +43,31 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 /*
  * The following allows us to use Jackson to convert sub-types of this type into JSON and back to objects.
  */
-@JsonTypeInfo(  
-            use = JsonTypeInfo.Id.NAME,  
-            include = JsonTypeInfo.As.PROPERTY,  
-            property = "PDPPolicyType")  
-@JsonSubTypes({  
-            @Type(value = StdPDPPolicy.class, name = "StdPDPPolicy") })  
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    include = JsonTypeInfo.As.PROPERTY,
+    property = "PDPPolicyType")
+@JsonSubTypes({
+    @Type(value = StdPDPPolicy.class, name = "StdPDPPolicy")
+})
 public interface PDPPolicy {
-        
-        public String 		getId();
-        
-        public String		getName();
-        
-        public String		getPolicyId();
-        
-        public String		getDescription();
 
-        public String 		getVersion();
-        public int[]		getVersionInts();
-        
-        public boolean		isRoot();
-        
-        public boolean		isValid();
+    public String 		getId();
 
-        public InputStream 	getStream() throws PAPException, IOException;
+    public String		getName();
 
-        public URI			getLocation() throws PAPException, IOException;
+    public String		getPolicyId();
+
+    public String		getDescription();
+
+    public String 		getVersion();
+    public int[]		getVersionInts();
+
+    public boolean		isRoot();
+
+    public boolean		isValid();
+
+    public InputStream 	getStream() throws PAPException, IOException;
+
+    public URI			getLocation() throws PAPException, IOException;
 }

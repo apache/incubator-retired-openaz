@@ -6,16 +6,16 @@
  *  to you under the Apache License, Version 2.0 (the
  *  "License"); you may not use this file except in compliance
  *  with the License.  You may obtain a copy of the License at
- *  
+ *
  *    http://www.apache.org/licenses/LICENSE-2.0
- *  
+ *
  *  Unless required by applicable law or agreed to in writing,
  *  software distributed under the License is distributed on an
  *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  *  KIND, either express or implied.  See the License for the
  *  specific language governing permissions and limitations
- *  under the License. 
- *  
+ *  under the License.
+ *
  */
 
 /*
@@ -46,31 +46,31 @@ import com.att.research.xacml.std.StdAttributeCategory;
 /**
  * JaxpAttributeCategory extends {@link com.att.research.xacml.std.StdAttributeCategory} with methods for creation from
  * JAXP elements.
- * 
+ *
  * @author car
  * @version $Revision: 1.1 $
  */
 public class JaxpAttributeCategory {
 
-        protected JaxpAttributeCategory() {
+    protected JaxpAttributeCategory() {
+    }
+
+    public static AttributeCategory newInstance(AttributesType attributesType) {
+        if (attributesType == null) {
+            throw new NullPointerException("Null AttributesType");
+        } else if (attributesType.getCategory() == null) {
+            throw new IllegalArgumentException("Null categoryId for AttributesType");
         }
-        
-        public static AttributeCategory newInstance(AttributesType attributesType) {
-                if (attributesType == null) {
-                        throw new NullPointerException("Null AttributesType");
-                } else if (attributesType.getCategory() == null) {
-                        throw new IllegalArgumentException("Null categoryId for AttributesType");
-                }
-                Identifier identifierCategory	= new IdentifierImpl(attributesType.getCategory());
-                List<Attribute> listAttributes	= new ArrayList<Attribute>();
-                
-                if (attributesType.getAttribute() != null && attributesType.getAttribute().size() > 0) {
-                        Iterator<AttributeType>	iterAttributeTypes	= attributesType.getAttribute().iterator();
-                        while (iterAttributeTypes.hasNext()) {
-                                listAttributes.add(JaxpAttribute.newInstance(identifierCategory, iterAttributeTypes.next()));
-                        }
-                }
-                return new StdAttributeCategory(identifierCategory, listAttributes);
+        Identifier identifierCategory	= new IdentifierImpl(attributesType.getCategory());
+        List<Attribute> listAttributes	= new ArrayList<Attribute>();
+
+        if (attributesType.getAttribute() != null && attributesType.getAttribute().size() > 0) {
+            Iterator<AttributeType>	iterAttributeTypes	= attributesType.getAttribute().iterator();
+            while (iterAttributeTypes.hasNext()) {
+                listAttributes.add(JaxpAttribute.newInstance(identifierCategory, iterAttributeTypes.next()));
+            }
         }
+        return new StdAttributeCategory(identifierCategory, listAttributes);
+    }
 
 }

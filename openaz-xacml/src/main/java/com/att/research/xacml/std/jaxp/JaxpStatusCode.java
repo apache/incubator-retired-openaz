@@ -6,16 +6,16 @@
  *  to you under the Apache License, Version 2.0 (the
  *  "License"); you may not use this file except in compliance
  *  with the License.  You may obtain a copy of the License at
- *  
+ *
  *    http://www.apache.org/licenses/LICENSE-2.0
- *  
+ *
  *  Unless required by applicable law or agreed to in writing,
  *  software distributed under the License is distributed on an
  *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  *  KIND, either express or implied.  See the License for the
  *  specific language governing permissions and limitations
- *  under the License. 
- *  
+ *  under the License.
+ *
  */
 
 /*
@@ -39,33 +39,33 @@ import com.att.research.xacml.std.StdStatusCode;
 
 /**
  * JaxpStatusCode extends {@link com.att.research.xacml.std.StdStatusCode} with static methods
- * for creating a <code>StatusCode</code> object by parsing JAXP elements based on the XACML 3.0 schema. 
- * 
+ * for creating a <code>StatusCode</code> object by parsing JAXP elements based on the XACML 3.0 schema.
+ *
  * @author car
  * @version $Revision: 1.1 $
  */
 public class JaxpStatusCode extends StdStatusCode {
 
-        protected JaxpStatusCode(Identifier statusCodeValueIn, StatusCode childIn) {
-                super(statusCodeValueIn, childIn);
+    protected JaxpStatusCode(Identifier statusCodeValueIn, StatusCode childIn) {
+        super(statusCodeValueIn, childIn);
+    }
+
+    public static JaxpStatusCode newInstance(StatusCodeType statusCodeType) {
+        if (statusCodeType == null) {
+            throw new NullPointerException("Null StatusCodeType");
+        } else if (statusCodeType.getValue() == null) {
+            throw new IllegalArgumentException("Null StatusCodeValue");
         }
-        
-        public static JaxpStatusCode newInstance(StatusCodeType statusCodeType) {
-                if (statusCodeType == null) {
-                        throw new NullPointerException("Null StatusCodeType");
-                } else if (statusCodeType.getValue() == null) {
-                        throw new IllegalArgumentException("Null StatusCodeValue");
-                }
-                Identifier	statusCodeValue	= new IdentifierImpl(statusCodeType.getValue());
-                
-                StatusCode		statusCodeChild	= null;
-                if (statusCodeType.getStatusCode() != null) {
-                        try {
-                                statusCodeChild	= JaxpStatusCode.newInstance(statusCodeType.getStatusCode());
-                        } catch (Exception ex) {
-                                throw new IllegalArgumentException("Invalid child StatusCodeValue", ex);
-                        }
-                }
-                return new JaxpStatusCode(statusCodeValue, statusCodeChild);
+        Identifier	statusCodeValue	= new IdentifierImpl(statusCodeType.getValue());
+
+        StatusCode		statusCodeChild	= null;
+        if (statusCodeType.getStatusCode() != null) {
+            try {
+                statusCodeChild	= JaxpStatusCode.newInstance(statusCodeType.getStatusCode());
+            } catch (Exception ex) {
+                throw new IllegalArgumentException("Invalid child StatusCodeValue", ex);
+            }
         }
+        return new JaxpStatusCode(statusCodeValue, statusCodeChild);
+    }
 }

@@ -6,16 +6,16 @@
  *  to you under the Apache License, Version 2.0 (the
  *  "License"); you may not use this file except in compliance
  *  with the License.  You may obtain a copy of the License at
- *  
+ *
  *    http://www.apache.org/licenses/LICENSE-2.0
- *  
+ *
  *  Unless required by applicable law or agreed to in writing,
  *  software distributed under the License is distributed on an
  *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  *  KIND, either express or implied.  See the License for the
  *  specific language governing permissions and limitations
- *  under the License. 
- *  
+ *  under the License.
+ *
  */
 
 /*
@@ -47,79 +47,79 @@ import com.att.research.xacmlatt.pdp.policy.PolicyDefaults;
 
 /**
  * Function extends {@link com.att.research.xacmlatt.pdp.policy.Expression} to implement the XACML Function element.
- * 
+ *
  * @author car
  * @version $Revision: 1.1 $
  */
 public class Function extends Expression {
-        private Identifier functionId;
-        private AttributeValue<URI> attributeValue;
-        private ExpressionResult expressionResultOk;
-        
-        protected ExpressionResult getExpressionResultOk() {
-                if (this.expressionResultOk == null) {
-                        this.expressionResultOk	= ExpressionResult.newSingle(this.getAttributeValue());
-                }
-                return this.expressionResultOk;
-        }
-        
-        public Function(StatusCode statusCodeIn, String statusMessageIn) {
-                super(statusCodeIn, statusMessageIn);
-        }
+    private Identifier functionId;
+    private AttributeValue<URI> attributeValue;
+    private ExpressionResult expressionResultOk;
 
-        public Function(StatusCode statusCodeIn) {
-                super(statusCodeIn);
+    protected ExpressionResult getExpressionResultOk() {
+        if (this.expressionResultOk == null) {
+            this.expressionResultOk	= ExpressionResult.newSingle(this.getAttributeValue());
         }
+        return this.expressionResultOk;
+    }
 
-        public Function() {
-        }
-        
-        public Function(Identifier functionIdIn) {
-                this.functionId	= functionIdIn;
-        }
-        
-        public Identifier getFunctionId() {
-                return this.functionId;
-        }
-        
-        public void setFunctionId(Identifier identifier) {
-                this.functionId	= identifier;
-                this.attributeValue	= null;
-                this.expressionResultOk	= null;
-        }
-        
-        public AttributeValue<URI> getAttributeValue() {
-                if (this.attributeValue == null) {
-                        Identifier thisFunctionId	= this.getFunctionId();
-                        if (thisFunctionId != null) {
-                                try {
-                                        this.attributeValue	= DataTypes.DT_ANYURI.createAttributeValue(thisFunctionId);
-                                } catch (DataTypeException ex) {
-                                        this.attributeValue	= null;
-                                }
-                        }
-                }
-                return this.attributeValue;
-        }
+    public Function(StatusCode statusCodeIn, String statusMessageIn) {
+        super(statusCodeIn, statusMessageIn);
+    }
 
-        @Override
-        public ExpressionResult evaluate(EvaluationContext evaluationContext, PolicyDefaults policyDefaults) throws EvaluationException {
-                if (!this.validate()) {
-                        return ExpressionResult.newError(new StdStatus(this.getStatusCode(), this.getStatusMessage()));
-                } else {
-                        return this.getExpressionResultOk();
-                }
-        }
+    public Function(StatusCode statusCodeIn) {
+        super(statusCodeIn);
+    }
 
-        @Override
-        protected boolean validateComponent() {
-                if (this.getFunctionId() == null) {
-                        this.setStatus(StdStatusCode.STATUS_CODE_SYNTAX_ERROR, "Missing FunctionId");
-                        return false;
-                } else {
-                        this.setStatus(StdStatusCode.STATUS_CODE_OK, null);
-                        return true;
+    public Function() {
+    }
+
+    public Function(Identifier functionIdIn) {
+        this.functionId	= functionIdIn;
+    }
+
+    public Identifier getFunctionId() {
+        return this.functionId;
+    }
+
+    public void setFunctionId(Identifier identifier) {
+        this.functionId	= identifier;
+        this.attributeValue	= null;
+        this.expressionResultOk	= null;
+    }
+
+    public AttributeValue<URI> getAttributeValue() {
+        if (this.attributeValue == null) {
+            Identifier thisFunctionId	= this.getFunctionId();
+            if (thisFunctionId != null) {
+                try {
+                    this.attributeValue	= DataTypes.DT_ANYURI.createAttributeValue(thisFunctionId);
+                } catch (DataTypeException ex) {
+                    this.attributeValue	= null;
                 }
+            }
         }
+        return this.attributeValue;
+    }
+
+    @Override
+    public ExpressionResult evaluate(EvaluationContext evaluationContext, PolicyDefaults policyDefaults) throws EvaluationException {
+        if (!this.validate()) {
+            return ExpressionResult.newError(new StdStatus(this.getStatusCode(), this.getStatusMessage()));
+        } else {
+            return this.getExpressionResultOk();
+        }
+    }
+
+    @Override
+    protected boolean validateComponent() {
+        if (this.getFunctionId() == null) {
+            this.setStatus(StdStatusCode.STATUS_CODE_SYNTAX_ERROR, "Missing FunctionId");
+            return false;
+        } else {
+            this.setStatus(StdStatusCode.STATUS_CODE_OK, null);
+            return true;
+        }
+    }
 
 }

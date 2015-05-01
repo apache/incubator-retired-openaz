@@ -6,16 +6,16 @@
  *  to you under the Apache License, Version 2.0 (the
  *  "License"); you may not use this file except in compliance
  *  with the License.  You may obtain a copy of the License at
- *  
+ *
  *    http://www.apache.org/licenses/LICENSE-2.0
- *  
+ *
  *  Unless required by applicable law or agreed to in writing,
  *  software distributed under the License is distributed on an
  *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  *  KIND, either express or implied.  See the License for the
  *  specific language governing permissions and limitations
- *  under the License. 
- *  
+ *  under the License.
+ *
  */
 
 /*
@@ -44,33 +44,33 @@ import com.att.research.xacml.std.StdMutableStatusDetail;
 /**
  * JaxpStatusDetail extends {@link com.att.research.xacml.std.StdMutableStatusDetail} with methods for creation from
  * JAXP elements.
- * 
+ *
  * @author car
  * @version $Revision: 1.1 $
  */
 public class JaxpStatusDetail extends StdMutableStatusDetail {
 
-        protected JaxpStatusDetail(Collection<MissingAttributeDetail> missingAttributeDetailsIn) {
-                super(missingAttributeDetailsIn);
-        }
+    protected JaxpStatusDetail(Collection<MissingAttributeDetail> missingAttributeDetailsIn) {
+        super(missingAttributeDetailsIn);
+    }
 
-        public static JaxpStatusDetail newInstance(StatusDetailType statusDetailType) {
-                if (statusDetailType == null) {
-                        throw new NullPointerException("Null StatusDetailType");
-                }
-                List<MissingAttributeDetail>	listMissingAttributeDetails	= null;
-                if (statusDetailType.getAny() != null && statusDetailType.getAny().size() > 0) {
-                        Iterator<Object>	iterObjects	= statusDetailType.getAny().iterator();
-                        while (iterObjects.hasNext()) {
-                                Object object	= iterObjects.next();
-                                if (object instanceof MissingAttributeDetailType) {
-                                        if (listMissingAttributeDetails == null) {
-                                                listMissingAttributeDetails	= new ArrayList<MissingAttributeDetail>();
-                                        }
-                                        listMissingAttributeDetails.add(JaxpMissingAttributeDetail.newInstance((MissingAttributeDetailType)object));
-                                }
-                        }
-                }
-                return new JaxpStatusDetail(listMissingAttributeDetails);
+    public static JaxpStatusDetail newInstance(StatusDetailType statusDetailType) {
+        if (statusDetailType == null) {
+            throw new NullPointerException("Null StatusDetailType");
         }
+        List<MissingAttributeDetail>	listMissingAttributeDetails	= null;
+        if (statusDetailType.getAny() != null && statusDetailType.getAny().size() > 0) {
+            Iterator<Object>	iterObjects	= statusDetailType.getAny().iterator();
+            while (iterObjects.hasNext()) {
+                Object object	= iterObjects.next();
+                if (object instanceof MissingAttributeDetailType) {
+                    if (listMissingAttributeDetails == null) {
+                        listMissingAttributeDetails	= new ArrayList<MissingAttributeDetail>();
+                    }
+                    listMissingAttributeDetails.add(JaxpMissingAttributeDetail.newInstance((MissingAttributeDetailType)object));
+                }
+            }
+        }
+        return new JaxpStatusDetail(listMissingAttributeDetails);
+    }
 }

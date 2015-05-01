@@ -6,16 +6,16 @@
  *  to you under the Apache License, Version 2.0 (the
  *  "License"); you may not use this file except in compliance
  *  with the License.  You may obtain a copy of the License at
- *  
+ *
  *    http://www.apache.org/licenses/LICENSE-2.0
- *  
+ *
  *  Unless required by applicable law or agreed to in writing,
  *  software distributed under the License is distributed on an
  *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  *  KIND, either express or implied.  See the License for the
  *  specific language governing permissions and limitations
- *  under the License. 
- *  
+ *  under the License.
+ *
  */
 
 /*
@@ -40,64 +40,64 @@ import com.att.research.xacmlatt.pdp.util.ATTPDPProperties;
 /**
  * FunctionDefinitionFactory is an abstract class for mapping function {@link com.att.research.xacml.api.Identifier} ids to
  * {@link FunctionDefinition} objects.
- * 
+ *
  * @author car
  * @version $Revision: 1.3 $
  */
 public abstract class FunctionDefinitionFactory {
-        private static final String	FACTORYID					= ATTPDPProperties.PROP_FUNCTIONDEFINITIONFACTORY;
-        private static final String DEFAULT_FACTORY_CLASSNAME	= "com.att.research.xacmlatt.pdp.std.StdFunctionDefinitionFactory";
-        
-        protected FunctionDefinitionFactory() {
-        }
-        
-        protected FunctionDefinitionFactory(Properties properties) {
-        }
-        
-        /**
-         * Maps the given <code>Identifier</code> representing a XACML function to a <code>FunctionDefinition</code> object.
-         * 
-         * @param functionId the <code>Identifier</code> of the <code>FunctionDefinition</code> to retrieve
-         * @return the <code>FunctionDefinition</code> for the given <code>Identifier</code> or null if not found
-         */
-        public abstract FunctionDefinition getFunctionDefinition(Identifier functionId);
-        
-        /**
-         * Creates an instance of the <code>FunctionDefinitionFactory</code> using default configuration information.
-         * 
-         * @return the default <code>FunctionDefinitionFactory</code>
-         */
-        public static FunctionDefinitionFactory newInstance() throws FactoryException {
-                return FactoryFinder.find(FACTORYID, DEFAULT_FACTORY_CLASSNAME, FunctionDefinitionFactory.class);
-        }
-        
-        /**
-         * Creates an instance of the <code>FunctionDefinitionFactory</code> using default configuration information.
-         * 
-         * @return the default <code>FunctionDefinitionFactory</code>
-         */
-        public static FunctionDefinitionFactory newInstance(Properties properties) throws FactoryException {
-                return FactoryFinder.find(FACTORYID, DEFAULT_FACTORY_CLASSNAME, FunctionDefinitionFactory.class, properties);
-        }
-        
-        /**
-         * Creates an instance of the <code>FunctionDefinitionFactory</code> using the given class name.
-         * 
-         * @param className the <code>String</code> class name of the <code>FunctionDefinitionFactory</code> to create
-         * @return the <code>FunctionDefinitionFactory</code> for the given class name.
-         */
-        public static FunctionDefinitionFactory newInstance(String className) throws FactoryException {
-                return FactoryFinder.newInstance(className, FunctionDefinitionFactory.class, null, true);
-        }
-        
-        /**
-         * Creates an instance of the <code>FunctionDefinitionFactory</code> using the given class name using the given <code>ClassLoader</code>.
-         * 
-         * @param className the <code>String</code> class name of the <code>FunctionDefinitionFactory</code> to create
-         * @param classLoader the <code>ClassLoader</code> to use to load the class with the given class name
-         * @return the <code>FunctionDefinitionFactory</code> for the given class name
-         */
-        public static FunctionDefinitionFactory newInstance(String className, ClassLoader classLoader) throws FactoryException {
-                return FactoryFinder.newInstance(className, FunctionDefinitionFactory.class, classLoader, false);
-        }
+    private static final String	FACTORYID					= ATTPDPProperties.PROP_FUNCTIONDEFINITIONFACTORY;
+    private static final String DEFAULT_FACTORY_CLASSNAME	= "com.att.research.xacmlatt.pdp.std.StdFunctionDefinitionFactory";
+
+    protected FunctionDefinitionFactory() {
+    }
+
+    protected FunctionDefinitionFactory(Properties properties) {
+    }
+
+    /**
+     * Maps the given <code>Identifier</code> representing a XACML function to a <code>FunctionDefinition</code> object.
+     *
+     * @param functionId the <code>Identifier</code> of the <code>FunctionDefinition</code> to retrieve
+     * @return the <code>FunctionDefinition</code> for the given <code>Identifier</code> or null if not found
+     */
+    public abstract FunctionDefinition getFunctionDefinition(Identifier functionId);
+
+    /**
+     * Creates an instance of the <code>FunctionDefinitionFactory</code> using default configuration information.
+     *
+     * @return the default <code>FunctionDefinitionFactory</code>
+     */
+    public static FunctionDefinitionFactory newInstance() throws FactoryException {
+        return FactoryFinder.find(FACTORYID, DEFAULT_FACTORY_CLASSNAME, FunctionDefinitionFactory.class);
+    }
+
+    /**
+     * Creates an instance of the <code>FunctionDefinitionFactory</code> using default configuration information.
+     *
+     * @return the default <code>FunctionDefinitionFactory</code>
+     */
+    public static FunctionDefinitionFactory newInstance(Properties properties) throws FactoryException {
+        return FactoryFinder.find(FACTORYID, DEFAULT_FACTORY_CLASSNAME, FunctionDefinitionFactory.class, properties);
+    }
+
+    /**
+     * Creates an instance of the <code>FunctionDefinitionFactory</code> using the given class name.
+     *
+     * @param className the <code>String</code> class name of the <code>FunctionDefinitionFactory</code> to create
+     * @return the <code>FunctionDefinitionFactory</code> for the given class name.
+     */
+    public static FunctionDefinitionFactory newInstance(String className) throws FactoryException {
+        return FactoryFinder.newInstance(className, FunctionDefinitionFactory.class, null, true);
+    }
+
+    /**
+     * Creates an instance of the <code>FunctionDefinitionFactory</code> using the given class name using the given <code>ClassLoader</code>.
+     *
+     * @param className the <code>String</code> class name of the <code>FunctionDefinitionFactory</code> to create
+     * @param classLoader the <code>ClassLoader</code> to use to load the class with the given class name
+     * @return the <code>FunctionDefinitionFactory</code> for the given class name
+     */
+    public static FunctionDefinitionFactory newInstance(String className, ClassLoader classLoader) throws FactoryException {
+        return FactoryFinder.newInstance(className, FunctionDefinitionFactory.class, classLoader, false);
+    }
 }

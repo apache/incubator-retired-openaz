@@ -6,16 +6,16 @@
  *  to you under the Apache License, Version 2.0 (the
  *  "License"); you may not use this file except in compliance
  *  with the License.  You may obtain a copy of the License at
- *  
+ *
  *    http://www.apache.org/licenses/LICENSE-2.0
- *  
+ *
  *  Unless required by applicable law or agreed to in writing,
  *  software distributed under the License is distributed on an
  *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  *  KIND, either express or implied.  See the License for the
  *  specific language governing permissions and limitations
- *  under the License. 
- *  
+ *  under the License.
+ *
  */
 
 /*
@@ -44,33 +44,33 @@ import com.att.research.xacml.std.StdMutableAttribute;
 
 /**
  * JaxpAttribute extends {@link com.att.research.xacml.std.StdMutableAttribute} with methods for creation from JAXP elements.
- * 
+ *
  * @author car
  * @version $Revision: 1.1 $
  */
 public class JaxpAttribute extends StdMutableAttribute {
 
-        protected JaxpAttribute(Identifier attributeIdIn, Identifier categoryIdIn, List<AttributeValue<?>> valuesIn, String issuerIn, boolean includeInResultsIn) {
-                super(attributeIdIn, categoryIdIn, valuesIn, issuerIn, includeInResultsIn);
+    protected JaxpAttribute(Identifier attributeIdIn, Identifier categoryIdIn, List<AttributeValue<?>> valuesIn, String issuerIn, boolean includeInResultsIn) {
+        super(attributeIdIn, categoryIdIn, valuesIn, issuerIn, includeInResultsIn);
+    }
+
+    public static JaxpAttribute newInstance(Identifier categoryId, AttributeType attributeType) {
+        if (categoryId == null) {
+            throw new NullPointerException("Null categoryId");
+        } else if (attributeType == null) {
+            throw new NullPointerException("Null AttributeType");
+        } else if (attributeType.getAttributeId() == null) {
+            throw new IllegalArgumentException("Null attributeId in AttributeType");
+        } else if (attributeType.getAttributeValue() == null) {
+            throw new IllegalArgumentException("Null attributeValue in AttributeType");
+        }
+        Identifier						attributeId				= new IdentifierImpl(attributeType.getAttributeId());
+        List<AttributeValue<?>>			values					= new ArrayList<AttributeValue<?>>();
+        Iterator<AttributeValueType>	iterAttributeValueTypes	= attributeType.getAttributeValue().iterator();
+        while (iterAttributeValueTypes.hasNext()) {
+            values.add(JaxpAttributeValue.newInstance(iterAttributeValueTypes.next()));
         }
 
-        public static JaxpAttribute newInstance(Identifier categoryId, AttributeType attributeType) {
-                if (categoryId == null) {
-                        throw new NullPointerException("Null categoryId");
-                } else if (attributeType == null) {
-                        throw new NullPointerException("Null AttributeType");
-                } else if (attributeType.getAttributeId() == null) {
-                        throw new IllegalArgumentException("Null attributeId in AttributeType");
-                } else if (attributeType.getAttributeValue() == null) {
-                        throw new IllegalArgumentException("Null attributeValue in AttributeType");
-                }
-                Identifier						attributeId				= new IdentifierImpl(attributeType.getAttributeId());
-                List<AttributeValue<?>>			values					= new ArrayList<AttributeValue<?>>();
-                Iterator<AttributeValueType>	iterAttributeValueTypes	= attributeType.getAttributeValue().iterator();
-                while (iterAttributeValueTypes.hasNext()) {
-                        values.add(JaxpAttributeValue.newInstance(iterAttributeValueTypes.next()));
-                }
-                
-                return new JaxpAttribute(attributeId, categoryId, values, attributeType.getIssuer(), attributeType.isIncludeInResult());
-        }
+        return new JaxpAttribute(attributeId, categoryId, values, attributeType.getIssuer(), attributeType.isIncludeInResult());
+    }
 }

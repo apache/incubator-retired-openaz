@@ -6,16 +6,16 @@
  *  to you under the Apache License, Version 2.0 (the
  *  "License"); you may not use this file except in compliance
  *  with the License.  You may obtain a copy of the License at
- *  
+ *
  *    http://www.apache.org/licenses/LICENSE-2.0
- *  
+ *
  *  Unless required by applicable law or agreed to in writing,
  *  software distributed under the License is distributed on an
  *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  *  KIND, either express or implied.  See the License for the
  *  specific language governing permissions and limitations
- *  under the License. 
- *  
+ *  under the License.
+ *
  */
 
 /*
@@ -36,29 +36,29 @@ import com.att.research.xacmlatt.pdp.eval.EvaluationException;
 
 /**
  * Expression extends {@link com.att.research.xacmlatt.pdp.policy.PolicyComponent} to represent a XACML ExpressionType element.
- * 
+ *
  * @author car
  * @version $Revision: 1.1 $
  */
 public abstract class Expression extends PolicyComponent {
 
-        public Expression(StatusCode statusCodeIn, String statusMessageIn) {
-                super(statusCodeIn, statusMessageIn);
-        }
+    public Expression(StatusCode statusCodeIn, String statusMessageIn) {
+        super(statusCodeIn, statusMessageIn);
+    }
 
-        public Expression(StatusCode statusCodeIn) {
-                super(statusCodeIn);
-        }
+    public Expression(StatusCode statusCodeIn) {
+        super(statusCodeIn);
+    }
 
-        public Expression() {
-        }
-        
-        /**
-         * Evaluates this <code>Expression</code> in the given {@link com.att.research.xacmlatt.pdp.eval.EvaluationContext}.
-         * 
-         * @param evaluationContext the <code>EvaluationContext</code> in which to evaluate this <code>Expression</code>
-         * @param policyDefaults the {@link com.att.research.xacml.pdp.policy.PolicyDefaults} to use in evaluating this <code>Expression</code>
-         * @return a {@link com.att.research.xacmlatt.pdp.policy.ExpressionResult}
-         */
-        public abstract ExpressionResult evaluate(EvaluationContext evaluationContext, PolicyDefaults policyDefaults) throws EvaluationException;
+    public Expression() {
+    }
+
+    /**
+     * Evaluates this <code>Expression</code> in the given {@link com.att.research.xacmlatt.pdp.eval.EvaluationContext}.
+     *
+     * @param evaluationContext the <code>EvaluationContext</code> in which to evaluate this <code>Expression</code>
+     * @param policyDefaults the {@link com.att.research.xacml.pdp.policy.PolicyDefaults} to use in evaluating this <code>Expression</code>
+     * @return a {@link com.att.research.xacmlatt.pdp.policy.ExpressionResult}
+     */
+    public abstract ExpressionResult evaluate(EvaluationContext evaluationContext, PolicyDefaults policyDefaults) throws EvaluationException;
 }

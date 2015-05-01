@@ -6,16 +6,16 @@
  *  to you under the Apache License, Version 2.0 (the
  *  "License"); you may not use this file except in compliance
  *  with the License.  You may obtain a copy of the License at
- *  
+ *
  *    http://www.apache.org/licenses/LICENSE-2.0
- *  
+ *
  *  Unless required by applicable law or agreed to in writing,
  *  software distributed under the License is distributed on an
  *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  *  KIND, either express or implied.  See the License for the
  *  specific language governing permissions and limitations
- *  under the License. 
- *  
+ *  under the License.
+ *
  */
 
 /*
@@ -35,37 +35,37 @@ import com.att.research.xacml.api.Identifier;
 /**
  * PIPRequest is the interface that objects implement to represent a request to a {@link PIPEngine} to retrieve
  * attributes with values that meet a given request.
- * 
+ *
  * @author car
  * @version $Revision: 1.1 $
  */
 public interface PIPRequest {
-        /**
-         * Gets the {@link com.att.research.xacml.api.Identifier} of the category of the attributes to retrieve.
-         * 
-         * @return the <code>Identifier</code> for the category of the attributes to retrieve
-         */ 
-        public Identifier getCategory();
-        
-        /**
-         * Gets the <code>Identifier</code> of the attributes to retrieve.
-         * 
-         * @return the <code>Identifier</code> of the attributes to retrieve.
-         */
-        public Identifier getAttributeId();
-        
-        /**
-         * Gets the <code>Identifier</code> of the requested data type for attribute values.
-         * 
-         * @return the <code>Identifier</code> of the requested data type for attribute values
-         */
-        public Identifier getDataTypeId();
-        
-        /**
-         * Gets the <code>String</code> issuer identifier for the attributes to retrieve.
-         * 
-         * @return the <code>String</code> issuer identifier for the attributes to retrieve or null if there is no requirement to match the issuer.
-         */
-        public String getIssuer();
-        
+    /**
+     * Gets the {@link com.att.research.xacml.api.Identifier} of the category of the attributes to retrieve.
+     *
+     * @return the <code>Identifier</code> for the category of the attributes to retrieve
+     */
+    public Identifier getCategory();
+
+    /**
+     * Gets the <code>Identifier</code> of the attributes to retrieve.
+     *
+     * @return the <code>Identifier</code> of the attributes to retrieve.
+     */
+    public Identifier getAttributeId();
+
+    /**
+     * Gets the <code>Identifier</code> of the requested data type for attribute values.
+     *
+     * @return the <code>Identifier</code> of the requested data type for attribute values
+     */
+    public Identifier getDataTypeId();
+
+    /**
+     * Gets the <code>String</code> issuer identifier for the attributes to retrieve.
+     *
+     * @return the <code>String</code> issuer identifier for the attributes to retrieve or null if there is no requirement to match the issuer.
+     */
+    public String getIssuer();
+
 }

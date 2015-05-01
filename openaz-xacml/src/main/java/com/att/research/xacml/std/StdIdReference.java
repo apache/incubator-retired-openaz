@@ -6,16 +6,16 @@
  *  to you under the Apache License, Version 2.0 (the
  *  "License"); you may not use this file except in compliance
  *  with the License.  You may obtain a copy of the License at
- *  
+ *
  *    http://www.apache.org/licenses/LICENSE-2.0
- *  
+ *
  *  Unless required by applicable law or agreed to in writing,
  *  software distributed under the License is distributed on an
  *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  *  KIND, either express or implied.  See the License for the
  *  specific language governing permissions and limitations
- *  under the License. 
- *  
+ *  under the License.
+ *
  */
 
 /*
@@ -37,79 +37,79 @@ import com.att.research.xacml.util.ObjUtil;
 
 /**
  * Immutable implementation of the {@link com.att.research.xacml.api.IdReference} interface.
- * 
+ *
  * @author Christopher A. Rath
  * @version $Revision: 1.1 $
  */
 public class StdIdReference implements IdReference {
-        private Identifier	id;
-        private Version		version;
-        
-        /**
-         * Creates a new <code>StdIdReference</code> with the given {@link com.att.research.xacml.api.Identifier} representing the
-         * XACML PolicyId or PolicySetId, and the given {@link com.att.research.xacml.api.Version} representing the PolicyVersion or PolicySetVersion.
-         * 
-         * @param idIn the <code>Identifier</code> representing the PolicyId or PolicySetId.
-         * @param versionIn the <code>Version</code> representing the PolicyVersion or PolicySetVersion.
-         */
-        public StdIdReference(Identifier idIn, Version versionIn) {
-                this.id			= idIn;
-                this.version	= versionIn;
-        }
-        
-        /**
-         * Creates a new <code>StdIdReference</code> with the given {@link com.att.research.xacml.api.Identifier} representing the
-         * XACML PolicyId or PolicySetId.
-         * 
-         * @param idIn the <code>Identifier</code> representing the PolicyId or PolicySetId.
-         */
-        public StdIdReference(Identifier idIn) {
-                this(idIn, null);
-        }
-        
-        @Override
-        public Identifier getId() {
-                return this.id;
-        }
+    private Identifier	id;
+    private Version		version;
 
-        @Override
-        public Version getVersion() {
-                return this.version;
+    /**
+     * Creates a new <code>StdIdReference</code> with the given {@link com.att.research.xacml.api.Identifier} representing the
+     * XACML PolicyId or PolicySetId, and the given {@link com.att.research.xacml.api.Version} representing the PolicyVersion or PolicySetVersion.
+     *
+     * @param idIn the <code>Identifier</code> representing the PolicyId or PolicySetId.
+     * @param versionIn the <code>Version</code> representing the PolicyVersion or PolicySetVersion.
+     */
+    public StdIdReference(Identifier idIn, Version versionIn) {
+        this.id			= idIn;
+        this.version	= versionIn;
+    }
+
+    /**
+     * Creates a new <code>StdIdReference</code> with the given {@link com.att.research.xacml.api.Identifier} representing the
+     * XACML PolicyId or PolicySetId.
+     *
+     * @param idIn the <code>Identifier</code> representing the PolicyId or PolicySetId.
+     */
+    public StdIdReference(Identifier idIn) {
+        this(idIn, null);
+    }
+
+    @Override
+    public Identifier getId() {
+        return this.id;
+    }
+
+    @Override
+    public Version getVersion() {
+        return this.version;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        } else if (obj == null || !(obj instanceof IdReference)) {
+            return false;
+        } else {
+            IdReference objIdReference	= (IdReference)obj;
+            return ObjUtil.equalsAllowNull(this.getId(), objIdReference.getId()) &&
+                   ObjUtil.equalsAllowNull(this.getVersion(), objIdReference.getVersion());
         }
-        
-        @Override
-        public boolean equals(Object obj) {
-                if (obj == this) {
-                        return true;
-                } else if (obj == null || !(obj instanceof IdReference)) {
-                        return false;
-                } else {
-                        IdReference objIdReference	= (IdReference)obj;
-                        return ObjUtil.equalsAllowNull(this.getId(), objIdReference.getId()) &&
-                                        ObjUtil.equalsAllowNull(this.getVersion(), objIdReference.getVersion());
-                }
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder	stringBuilder	= new StringBuilder("{");
+        boolean			needsComma		= false;
+        Object			objectToDump;
+
+        if ((objectToDump = this.getId()) != null) {
+            stringBuilder.append("id=");
+            stringBuilder.append(objectToDump.toString());
+            needsComma	= true;
         }
-        
-        @Override
-        public String toString() {
-                StringBuilder	stringBuilder	= new StringBuilder("{");
-                boolean			needsComma		= false;
-                Object			objectToDump;
-                
-                if ((objectToDump = this.getId()) != null) {
-                        stringBuilder.append("id=");
-                        stringBuilder.append(objectToDump.toString());
-                        needsComma	= true;
-                }
-                if ((objectToDump = this.getVersion()) != null) {
-                        if (needsComma) {
-                                stringBuilder.append(',');
-                        }
-                        stringBuilder.append("version=");
-                        stringBuilder.append(objectToDump.toString());
-                        needsComma	= true;
-                }
-                stringBuilder.append('}');
-                return stringBuilder.toString();
+        if ((objectToDump = this.getVersion()) != null) {
+            if (needsComma) {
+                stringBuilder.append(',');
+            }
+            stringBuilder.append("version=");
+            stringBuilder.append(objectToDump.toString());
+            needsComma	= true;
         }
+        stringBuilder.append('}');
+        return stringBuilder.toString();
+    }
 }

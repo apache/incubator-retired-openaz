@@ -6,16 +6,16 @@
  *  to you under the Apache License, Version 2.0 (the
  *  "License"); you may not use this file except in compliance
  *  with the License.  You may obtain a copy of the License at
- *  
+ *
  *    http://www.apache.org/licenses/LICENSE-2.0
- *  
+ *
  *  Unless required by applicable law or agreed to in writing,
  *  software distributed under the License is distributed on an
  *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  *  KIND, either express or implied.  See the License for the
  *  specific language governing permissions and limitations
- *  under the License. 
- *  
+ *  under the License.
+ *
  */
 
 /*
@@ -39,58 +39,58 @@ import com.att.research.xacml.util.Wrapper;
 
 /**
  * Immutable implementation of the {@link com.att.research.xacml.api.Advice} interface.
- * 
+ *
  * @author Christopher A. Rath
  * @version $Revision$
  */
 public class StdAdvice extends Wrapper<Advice> implements Advice {
-        /**
-         * Creates an immutable <code>StdAdvice</code> that wraps the given {@link com.att.research.xacml.api.Advice}.
-         * 
-         * @param advice the <code>Advice</code> object to wrap in the new <code>StdAdvice</code>
-         */
-        public StdAdvice(Advice advice) {
-                super(advice);
-        }
-        
-        /**
-         * Creates an immutable <code>StdAdvice</code> with the given {@link com.att.research.xacml.api.Identifier} as the XACML AdviceId
-         * and the given <code>Collection</code> of {@link com.att.research.xacml.api.AttributeAssignment}s representing the XACML AttributeAssignment elements.
-         * 
-         * @param adviceId the <code>Identifier</code> representing the XACML AdviceId
-         * @param attributeAssignmentsIn the <code>Collection</code> of <code>AttributeAssignment</code>s representing the XACML AttributeAssignment elements.
-         */
-        public StdAdvice(Identifier adviceId, Collection<AttributeAssignment> attributeAssignmentsIn) {
-                this(new StdMutableAdvice(adviceId, attributeAssignmentsIn));
-        }
-        
-        /**
-         * Creates an immutable <code>StdAdvice</code> with the given {@link com.att.research.xacml.api.Identifier} as the XACML AdviceId and
-         * an empty list of <code>AttributeAssignment</code>s.
-         * 
-         * @param adviceId the <code>Identifier</code> representing the XACML AdviceId
-         */
-        public StdAdvice(Identifier adviceId) {
-                this(new StdMutableAdvice(adviceId));
-        }
-        
-        /**
-         * Creates a copy of the given {@link com.att.research.xacml.api.Advice}.
-         * 
-         * @param advice the <code>Advice</code> to copy
-         * @return a new <code>StdAdvice</code> that is a copy of the given <code>Advice</code>.
-         */
-        public static StdAdvice copy(Advice advice) {
-                return new StdAdvice(advice.getId(), advice.getAttributeAssignments());
-        }
+    /**
+     * Creates an immutable <code>StdAdvice</code> that wraps the given {@link com.att.research.xacml.api.Advice}.
+     *
+     * @param advice the <code>Advice</code> object to wrap in the new <code>StdAdvice</code>
+     */
+    public StdAdvice(Advice advice) {
+        super(advice);
+    }
 
-        @Override
-        public Identifier getId() {
-                return this.getWrappedObject().getId();
-        }
+    /**
+     * Creates an immutable <code>StdAdvice</code> with the given {@link com.att.research.xacml.api.Identifier} as the XACML AdviceId
+     * and the given <code>Collection</code> of {@link com.att.research.xacml.api.AttributeAssignment}s representing the XACML AttributeAssignment elements.
+     *
+     * @param adviceId the <code>Identifier</code> representing the XACML AdviceId
+     * @param attributeAssignmentsIn the <code>Collection</code> of <code>AttributeAssignment</code>s representing the XACML AttributeAssignment elements.
+     */
+    public StdAdvice(Identifier adviceId, Collection<AttributeAssignment> attributeAssignmentsIn) {
+        this(new StdMutableAdvice(adviceId, attributeAssignmentsIn));
+    }
 
-        @Override
-        public Collection<AttributeAssignment> getAttributeAssignments() {
-                return this.getWrappedObject().getAttributeAssignments();
-        }
+    /**
+     * Creates an immutable <code>StdAdvice</code> with the given {@link com.att.research.xacml.api.Identifier} as the XACML AdviceId and
+     * an empty list of <code>AttributeAssignment</code>s.
+     *
+     * @param adviceId the <code>Identifier</code> representing the XACML AdviceId
+     */
+    public StdAdvice(Identifier adviceId) {
+        this(new StdMutableAdvice(adviceId));
+    }
+
+    /**
+     * Creates a copy of the given {@link com.att.research.xacml.api.Advice}.
+     *
+     * @param advice the <code>Advice</code> to copy
+     * @return a new <code>StdAdvice</code> that is a copy of the given <code>Advice</code>.
+     */
+    public static StdAdvice copy(Advice advice) {
+        return new StdAdvice(advice.getId(), advice.getAttributeAssignments());
+    }
+
+    @Override
+    public Identifier getId() {
+        return this.getWrappedObject().getId();
+    }
+
+    @Override
+    public Collection<AttributeAssignment> getAttributeAssignments() {
+        return this.getWrappedObject().getAttributeAssignments();
+    }
 }

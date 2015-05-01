@@ -6,16 +6,16 @@
  *  to you under the Apache License, Version 2.0 (the
  *  "License"); you may not use this file except in compliance
  *  with the License.  You may obtain a copy of the License at
- *  
+ *
  *    http://www.apache.org/licenses/LICENSE-2.0
- *  
+ *
  *  Unless required by applicable law or agreed to in writing,
  *  software distributed under the License is distributed on an
  *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  *  KIND, either express or implied.  See the License for the
  *  specific language governing permissions and limitations
- *  under the License. 
- *  
+ *  under the License.
+ *
  */
 
 /*
@@ -41,24 +41,25 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 /*
  * The following allows us to use Jackson to convert sub-types of this type into JSON and back to objects.
  */
-@JsonTypeInfo(  
-            use = JsonTypeInfo.Id.NAME,  
-            include = JsonTypeInfo.As.PROPERTY,  
-            property = "PDPPIPConfigType")  
-@JsonSubTypes({  
-            @Type(value = StdPDPPIPConfig.class, name = "StdPDPPIPConfig") })  
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    include = JsonTypeInfo.As.PROPERTY,
+    property = "PDPPIPConfigType")
+@JsonSubTypes({
+    @Type(value = StdPDPPIPConfig.class, name = "StdPDPPIPConfig")
+})
 public interface PDPPIPConfig {
-        
-        public String				getId();
-        
-        public String 				getName();
-        
-        public String				getDescription();
 
-        public String 				getClassname();
+    public String				getId();
 
-        public Map<String,String>	getConfiguration();
-        
-        public boolean				isConfigured();
+    public String 				getName();
+
+    public String				getDescription();
+
+    public String 				getClassname();
+
+    public Map<String,String>	getConfiguration();
+
+    public boolean				isConfigured();
 
 }

@@ -6,16 +6,16 @@
  *  to you under the Apache License, Version 2.0 (the
  *  "License"); you may not use this file except in compliance
  *  with the License.  You may obtain a copy of the License at
- *  
+ *
  *    http://www.apache.org/licenses/LICENSE-2.0
- *  
+ *
  *  Unless required by applicable law or agreed to in writing,
  *  software distributed under the License is distributed on an
  *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  *  KIND, either express or implied.  See the License for the
  *  specific language governing permissions and limitations
- *  under the License. 
- *  
+ *  under the License.
+ *
  */
 
 /*
@@ -38,17 +38,17 @@ import com.att.research.xacml.api.pip.PIPException;
 /**
  * ConfigurableEngine extends the {@link com.att.research.xacml.api.pip.PIPEngine} interface with methods
  * for configuring the engine from a <code>Properties</code> object.
- * 
+ *
  * @author car
  * @version $Revision: 1.1 $
  */
 public interface ConfigurableEngine extends PIPEngine {
-        /**
-         * Configures this <code>ConfigurableEngine</code> from the given <code>Properties</code>.
-         * 
-         * @param id the <code>String</code> name for this <code>ConfigurableEngine</code> used also to locate properties
-         * @param properties the <code>Properties</code> containing the configuration parameters for this <code>ConfigurableEngine</code>
-         * @throws com.att.research.xacml.api.pip.PIPException if there is an error configuring the <code>ConfigurableEngine</code>
-         */
-        public void configure(String id, Properties properties) throws PIPException;
+    /**
+     * Configures this <code>ConfigurableEngine</code> from the given <code>Properties</code>.
+     *
+     * @param id the <code>String</code> name for this <code>ConfigurableEngine</code> used also to locate properties
+     * @param properties the <code>Properties</code> containing the configuration parameters for this <code>ConfigurableEngine</code>
+     * @throws com.att.research.xacml.api.pip.PIPException if there is an error configuring the <code>ConfigurableEngine</code>
+     */
+    public void configure(String id, Properties properties) throws PIPException;
 }

@@ -6,16 +6,16 @@
  *  to you under the Apache License, Version 2.0 (the
  *  "License"); you may not use this file except in compliance
  *  with the License.  You may obtain a copy of the License at
- *  
+ *
  *    http://www.apache.org/licenses/LICENSE-2.0
- *  
+ *
  *  Unless required by applicable law or agreed to in writing,
  *  software distributed under the License is distributed on an
  *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  *  KIND, either express or implied.  See the License for the
  *  specific language governing permissions and limitations
- *  under the License. 
- *  
+ *  under the License.
+ *
  */
 
 /*
@@ -32,26 +32,26 @@ package com.att.research.xacml.api;
 
 /**
  * Defines the API for objects that implement XACML AttributesReference elements.
- *  
+ *
  * @author Christopher A. Rath
  * @version $Revision: 1.1 $
  */
 public interface RequestAttributesReference {
-        /**
-         * Gets the <String> representing the xml:Id of the XACML AttributesReference element represented by this <code>RequestAttributesReference</code>
-         * 
-         * @return the <code>String</code> representing the xml:Id of the XACML AttributesReference element represented by this <code>RequestAttributesReference</code>
-         */
-        public String getReferenceId();
-        
-        /**
-         * {@inheritDoc}
-         * 
-         * Implementations of this interface must override the <code>equals</code> method with the following semantics:
-         * 
-         * 		Two <code>RequestAttributesReference</code>s (<code>r1</code> and <code>r2</code>) are equal if:
-         * 			{@code r1.getReferenceId() == null && r2.getReferenceId() == null} OR {@code r1.getReferenceId().equals(r2.getReferenceId())}	
-         */
-        @Override
-        public boolean equals(Object obj);
+    /**
+     * Gets the <String> representing the xml:Id of the XACML AttributesReference element represented by this <code>RequestAttributesReference</code>
+     *
+     * @return the <code>String</code> representing the xml:Id of the XACML AttributesReference element represented by this <code>RequestAttributesReference</code>
+     */
+    public String getReferenceId();
+
+    /**
+     * {@inheritDoc}
+     *
+     * Implementations of this interface must override the <code>equals</code> method with the following semantics:
+     *
+     * 		Two <code>RequestAttributesReference</code>s (<code>r1</code> and <code>r2</code>) are equal if:
+     * 			{@code r1.getReferenceId() == null && r2.getReferenceId() == null} OR {@code r1.getReferenceId().equals(r2.getReferenceId())}
+     */
+    @Override
+    public boolean equals(Object obj);
 }

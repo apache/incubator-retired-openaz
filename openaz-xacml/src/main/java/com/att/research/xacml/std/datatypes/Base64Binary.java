@@ -6,16 +6,16 @@
  *  to you under the Apache License, Version 2.0 (the
  *  "License"); you may not use this file except in compliance
  *  with the License.  You may obtain a copy of the License at
- *  
+ *
  *    http://www.apache.org/licenses/LICENSE-2.0
- *  
+ *
  *  Unless required by applicable law or agreed to in writing,
  *  software distributed under the License is distributed on an
  *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  *  KIND, either express or implied.  See the License for the
  *  specific language governing permissions and limitations
- *  under the License. 
- *  
+ *  under the License.
+ *
  */
 
 /*
@@ -40,97 +40,97 @@ import com.att.research.xacml.util.StringUtils;
 
 /**
  * Base64Binary provides utilities for converting the XACML base64Binary data type to and from <code>String</code> values.
- * 
+ *
  * @author car
  * @version $Revision: 1.1 $
  */
 public class Base64Binary implements SemanticString {
-        private byte[]	data;
-        
-        /**
-         * Creates a <code>Base64Binary</code> object from an array of <code>byte</code>s.
-         * 
-         * @param dataIn the array of <code>byte</code>s
-         */
-        public Base64Binary(byte[] dataIn) {
-                this.data	= dataIn;
-        }
-        
-        /**
-         * Creates a new <code>Base64Binary</code> by parsing the given <code>String</code> as hex binary data.
-         * 
-         * @param stringBase64Binary the <code>String</code> to convert
-         * @return a new <code>Base64Binary</code> from the converted <code>String</code>.
-         */
-        public static Base64Binary newInstance(String stringBase64Binary) throws DecoderException {
-                if (stringBase64Binary == null) {
-                        return null;
-                }
-                byte[]	base64Bytes	= (byte[])new Base64().decode(stringBase64Binary);
-                return new Base64Binary(base64Bytes);
-        }
+    private byte[]	data;
 
-        /**
-         * Gets the array of <code>byte</code>s for this <code>Base64Binary</code>.
-         * 
-         * @return the array of <code>byte</code>s for this <code>Base64Binary</code>.
-         */
-        public byte[] getData() {
-                return this.data;
+    /**
+     * Creates a <code>Base64Binary</code> object from an array of <code>byte</code>s.
+     *
+     * @param dataIn the array of <code>byte</code>s
+     */
+    public Base64Binary(byte[] dataIn) {
+        this.data	= dataIn;
+    }
+
+    /**
+     * Creates a new <code>Base64Binary</code> by parsing the given <code>String</code> as hex binary data.
+     *
+     * @param stringBase64Binary the <code>String</code> to convert
+     * @return a new <code>Base64Binary</code> from the converted <code>String</code>.
+     */
+    public static Base64Binary newInstance(String stringBase64Binary) throws DecoderException {
+        if (stringBase64Binary == null) {
+            return null;
         }
-        
-        @Override
-        public int hashCode() {
-                return (this.getData() == null ? 0 : this.getData().hashCode());
-        }
-        
-        @Override
-        public boolean equals(Object obj) {
-                if (obj == null || !(obj instanceof Base64Binary)) {
-                        return false;
-                } else if (obj == this) {
-                        return true;
+        byte[]	base64Bytes	= (byte[])new Base64().decode(stringBase64Binary);
+        return new Base64Binary(base64Bytes);
+    }
+
+    /**
+     * Gets the array of <code>byte</code>s for this <code>Base64Binary</code>.
+     *
+     * @return the array of <code>byte</code>s for this <code>Base64Binary</code>.
+     */
+    public byte[] getData() {
+        return this.data;
+    }
+
+    @Override
+    public int hashCode() {
+        return (this.getData() == null ? 0 : this.getData().hashCode());
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null || !(obj instanceof Base64Binary)) {
+            return false;
+        } else if (obj == this) {
+            return true;
+        } else {
+            Base64Binary	hexBinaryObj	= (Base64Binary)obj;
+            if (this.getData() == null) {
+                if (hexBinaryObj.getData() == null) {
+                    return true;
                 } else {
-                        Base64Binary	hexBinaryObj	= (Base64Binary)obj;
-                        if (this.getData() == null) {
-                                if (hexBinaryObj.getData() == null) {
-                                        return true;
-                                } else {
-                                        return false;
-                                }
-                        } else {
-                                if (hexBinaryObj.getData() == null) {
-                                        return false;
-                                } else {
-                                        return Arrays.equals(this.getData(), hexBinaryObj.getData());
-                                }
-                        }
+                    return false;
                 }
-        }
-        
-        /**
-         * Gets the <code>String</code> Base 64 binary representation of this <code>Base64Binary</code> object.
-         *  
-         * @return the <code>String</code> Base 64 binary representation of this <code>Base64Binary</code> object.
-         */
-        public String stringValue() {
-                if (this.getData() == null) {
-                        return null;
+            } else {
+                if (hexBinaryObj.getData() == null) {
+                    return false;
                 } else {
-                        return Base64.encodeBase64String(this.getData());
-                }		
-        }
-        
-        @Override
-        public String toString() {
-                StringBuilder stringBuilder	= new StringBuilder("{");
-                
-                byte[] thisData	= this.getData();
-                if (thisData != null) {
-                        stringBuilder.append("data=");
-                        stringBuilder.append(StringUtils.toString(thisData));
+                    return Arrays.equals(this.getData(), hexBinaryObj.getData());
                 }
-                stringBuilder.append("}");
-                return stringBuilder.toString();
+            }
         }
+    }
+
+    /**
+     * Gets the <code>String</code> Base 64 binary representation of this <code>Base64Binary</code> object.
+     *
+     * @return the <code>String</code> Base 64 binary representation of this <code>Base64Binary</code> object.
+     */
+    public String stringValue() {
+        if (this.getData() == null) {
+            return null;
+        } else {
+            return Base64.encodeBase64String(this.getData());
+        }
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder stringBuilder	= new StringBuilder("{");
+
+        byte[] thisData	= this.getData();
+        if (thisData != null) {
+            stringBuilder.append("data=");
+            stringBuilder.append(StringUtils.toString(thisData));
+        }
+        stringBuilder.append("}");
+        return stringBuilder.toString();
+    }
 }

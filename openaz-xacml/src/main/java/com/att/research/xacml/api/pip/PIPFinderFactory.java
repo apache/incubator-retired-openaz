@@ -6,16 +6,16 @@
  *  to you under the Apache License, Version 2.0 (the
  *  "License"); you may not use this file except in compliance
  *  with the License.  You may obtain a copy of the License at
- *  
+ *
  *    http://www.apache.org/licenses/LICENSE-2.0
- *  
+ *
  *  Unless required by applicable law or agreed to in writing,
  *  software distributed under the License is distributed on an
  *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  *  KIND, either express or implied.  See the License for the
  *  specific language governing permissions and limitations
- *  under the License. 
- *  
+ *  under the License.
+ *
  */
 
 /*
@@ -38,62 +38,62 @@ import com.att.research.xacml.util.XACMLProperties;
 
 /**
  * PIPFinderFactory is the factory class for getting the configured {@link PIPFinder}.
- * 
+ *
  * @author car
  * @version $Revision: 1.4 $
  */
 public abstract class PIPFinderFactory {
-        private static final String	FACTORYID					= XACMLProperties.PROP_PIPFINDERFACTORY;
-        private static final String	DEFAULT_FACTORY_CLASSNAME	= "com.att.research.xacml.std.pip.StdPIPFinderFactory";
-        
-        protected Properties properties = null;
-        
-        /**
-         * Protected constructor so this class cannot be instantiated.
-         */
-        protected PIPFinderFactory() {
-        }
+    private static final String	FACTORYID					= XACMLProperties.PROP_PIPFINDERFACTORY;
+    private static final String	DEFAULT_FACTORY_CLASSNAME	= "com.att.research.xacml.std.pip.StdPIPFinderFactory";
 
-        /**
-         * Protected constructor so this class cannot be instantiated.
-         */
-        protected PIPFinderFactory(Properties properties) {
-                this.properties = properties;
-        }
+    protected Properties properties = null;
 
-        /**
-         * Gets an instance of the configured <code>PIPFinderFactory</code> class.
-         * 
-         * @return the configured <code>PIPFinderFactory</code>
-         * @throws FactoryException if there is an error instantiating the factory
-         */
-        public static PIPFinderFactory newInstance() throws FactoryException {
-                return FactoryFinder.find(FACTORYID, DEFAULT_FACTORY_CLASSNAME, PIPFinderFactory.class);
-        }
-        
-        public static PIPFinderFactory newInstance(Properties properties) throws FactoryException {
-                return FactoryFinder.find(FACTORYID, DEFAULT_FACTORY_CLASSNAME, PIPFinderFactory.class, properties);
-        }
-        
-        public static PIPFinderFactory newInstance(String factoryClassName, ClassLoader classLoader) throws FactoryException {
-                return FactoryFinder.newInstance(factoryClassName, PIPFinderFactory.class, classLoader, false);
-        }
-        
-        public static PIPFinderFactory newInstance(String factoryClassName) throws FactoryException {
-                return FactoryFinder.newInstance(factoryClassName, PIPFinderFactory.class, null, true);
-        }
-        
-        /**
-         * Gets an instance of the configured <code>PIPFinder</code> class.
-         * 
-         * @return an instance of the configured <code>PIPFinder</code>
-         */
-        abstract public PIPFinder getFinder() throws PIPException ;
+    /**
+     * Protected constructor so this class cannot be instantiated.
+     */
+    protected PIPFinderFactory() {
+    }
 
-        /**
-         * Gets an instance of the configured <code>PIPFinder</code> class.
-         * 
-         * @return an instance of the configured <code>PIPFinder</code>
-         */
-        abstract public PIPFinder getFinder(Properties properties) throws PIPException ;
+    /**
+     * Protected constructor so this class cannot be instantiated.
+     */
+    protected PIPFinderFactory(Properties properties) {
+        this.properties = properties;
+    }
+
+    /**
+     * Gets an instance of the configured <code>PIPFinderFactory</code> class.
+     *
+     * @return the configured <code>PIPFinderFactory</code>
+     * @throws FactoryException if there is an error instantiating the factory
+     */
+    public static PIPFinderFactory newInstance() throws FactoryException {
+        return FactoryFinder.find(FACTORYID, DEFAULT_FACTORY_CLASSNAME, PIPFinderFactory.class);
+    }
+
+    public static PIPFinderFactory newInstance(Properties properties) throws FactoryException {
+        return FactoryFinder.find(FACTORYID, DEFAULT_FACTORY_CLASSNAME, PIPFinderFactory.class, properties);
+    }
+
+    public static PIPFinderFactory newInstance(String factoryClassName, ClassLoader classLoader) throws FactoryException {
+        return FactoryFinder.newInstance(factoryClassName, PIPFinderFactory.class, classLoader, false);
+    }
+
+    public static PIPFinderFactory newInstance(String factoryClassName) throws FactoryException {
+        return FactoryFinder.newInstance(factoryClassName, PIPFinderFactory.class, null, true);
+    }
+
+    /**
+     * Gets an instance of the configured <code>PIPFinder</code> class.
+     *
+     * @return an instance of the configured <code>PIPFinder</code>
+     */
+    abstract public PIPFinder getFinder() throws PIPException ;
+
+    /**
+     * Gets an instance of the configured <code>PIPFinder</code> class.
+     *
+     * @return an instance of the configured <code>PIPFinder</code>
+     */
+    abstract public PIPFinder getFinder(Properties properties) throws PIPException ;
 }

@@ -6,16 +6,16 @@
  *  to you under the Apache License, Version 2.0 (the
  *  "License"); you may not use this file except in compliance
  *  with the License.  You may obtain a copy of the License at
- *  
+ *
  *    http://www.apache.org/licenses/LICENSE-2.0
- *  
+ *
  *  Unless required by applicable law or agreed to in writing,
  *  software distributed under the License is distributed on an
  *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  *  KIND, either express or implied.  See the License for the
  *  specific language governing permissions and limitations
- *  under the License. 
- *  
+ *  under the License.
+ *
  */
 
 /*
@@ -35,20 +35,20 @@ import com.att.research.xacml.api.Attribute;
 /**
  * ScopeResolver is the interface that objects implement that can be used to resolve attribute scopes to individual
  * identifiers.
- * 
+ *
  * @author car
  * @version $Revision$
  */
 public interface ScopeResolver {
-        /**
-         * Examines the given {@link com.att.research.xacml.api.Attribute} representing a resource identifier for a hierarchical
-         * resource and returns an <code>Iterator</code> over a set of <code>Attribute</code>s representing individual resource identifiers
-         * that are part of the requested hierarchy as specified by the {@link com.att.research.xacml.api.pdp.ScopeQualifier}.
-         * 
-         * @param attributeResourceId the <code>Attribute</code> for the resource identifier
-         * @param scopeQualifier the <code>ScopeQualifier</code> determining which nodes are returned
-         * @return a {@link com.att.research.xacml.api.pdp.ScopeResolverResult} with the results of the request
-         * @throws ScopeResolverException if there is an error resolving the resource identifier to a scope.
-         */
-        public ScopeResolverResult resolveScope(Attribute attributeResourceId, ScopeQualifier scopeQualifier) throws ScopeResolverException;
+    /**
+     * Examines the given {@link com.att.research.xacml.api.Attribute} representing a resource identifier for a hierarchical
+     * resource and returns an <code>Iterator</code> over a set of <code>Attribute</code>s representing individual resource identifiers
+     * that are part of the requested hierarchy as specified by the {@link com.att.research.xacml.api.pdp.ScopeQualifier}.
+     *
+     * @param attributeResourceId the <code>Attribute</code> for the resource identifier
+     * @param scopeQualifier the <code>ScopeQualifier</code> determining which nodes are returned
+     * @return a {@link com.att.research.xacml.api.pdp.ScopeResolverResult} with the results of the request
+     * @throws ScopeResolverException if there is an error resolving the resource identifier to a scope.
+     */
+    public ScopeResolverResult resolveScope(Attribute attributeResourceId, ScopeQualifier scopeQualifier) throws ScopeResolverException;
 }

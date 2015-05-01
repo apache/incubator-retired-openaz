@@ -6,16 +6,16 @@
  *  to you under the Apache License, Version 2.0 (the
  *  "License"); you may not use this file except in compliance
  *  with the License.  You may obtain a copy of the License at
- *  
+ *
  *    http://www.apache.org/licenses/LICENSE-2.0
- *  
+ *
  *  Unless required by applicable law or agreed to in writing,
  *  software distributed under the License is distributed on an
  *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  *  KIND, either express or implied.  See the License for the
  *  specific language governing permissions and limitations
- *  under the License. 
- *  
+ *  under the License.
+ *
  */
 
 /*
@@ -34,27 +34,27 @@ import com.att.research.xacml.api.Identifier;
 import com.att.research.xacmlatt.pdp.policy.CombiningAlgorithm;
 
 public abstract class CombiningAlgorithmBase<T extends com.att.research.xacmlatt.pdp.eval.Evaluatable> implements CombiningAlgorithm<T> {
-        private Identifier id;
-        
-        public CombiningAlgorithmBase(Identifier identifierIn) {
-                this.id	= identifierIn;
-        }
+    private Identifier id;
 
-        @Override
-        public Identifier getId() {
-                return this.id;
-        }
+    public CombiningAlgorithmBase(Identifier identifierIn) {
+        this.id	= identifierIn;
+    }
 
-        @Override
-        public String toString() {
-                StringBuilder stringBuilder	= new StringBuilder("{");
-                
-                Object objectToDump;
-                if ((objectToDump = this.getId()) != null) {
-                        stringBuilder.append("id=");
-                        stringBuilder.append(objectToDump.toString());
-                }
-                stringBuilder.append('}');
-                return stringBuilder.toString();
+    @Override
+    public Identifier getId() {
+        return this.id;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder stringBuilder	= new StringBuilder("{");
+
+        Object objectToDump;
+        if ((objectToDump = this.getId()) != null) {
+            stringBuilder.append("id=");
+            stringBuilder.append(objectToDump.toString());
         }
+        stringBuilder.append('}');
+        return stringBuilder.toString();
+    }
 }

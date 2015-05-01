@@ -6,16 +6,16 @@
  *  to you under the Apache License, Version 2.0 (the
  *  "License"); you may not use this file except in compliance
  *  with the License.  You may obtain a copy of the License at
- *  
+ *
  *    http://www.apache.org/licenses/LICENSE-2.0
- *  
+ *
  *  Unless required by applicable law or agreed to in writing,
  *  software distributed under the License is distributed on an
  *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  *  KIND, either express or implied.  See the License for the
  *  specific language governing permissions and limitations
- *  under the License. 
- *  
+ *  under the License.
+ *
  */
 
 /*
@@ -54,123 +54,123 @@ import com.att.research.xacml.std.pip.StdSinglePIPResponse;
 /**
  * EnvironmentEngine implements the {@link com.att.research.xacml.api.pip.PipEngine} interface to provide values
  * for standard environment attributes.
- * 
+ *
  * @author car
  * @version $Revision: 1.1 $
  */
 public class EnvironmentEngine implements PIPEngine {
-        private Date contextTime;
-        
-        private StdSinglePIPResponse responseTime;
-        private StdSinglePIPResponse responseDate;
-        private StdSinglePIPResponse responseDateTime;
-        
-        protected StdSinglePIPResponse getResponseTime() throws DataTypeException {
-                if (this.responseTime == null) {
-                        this.responseTime	
-                                = new StdSinglePIPResponse(
-                                                new StdMutableAttribute(XACML3.ID_ATTRIBUTE_CATEGORY_ENVIRONMENT, 
-                                                                                 XACML3.ID_ENVIRONMENT_CURRENT_TIME, 
-                                                                                 DataTypes.DT_TIME.createAttributeValue(this.contextTime)));
-                }
-                return this.responseTime;
+    private Date contextTime;
+
+    private StdSinglePIPResponse responseTime;
+    private StdSinglePIPResponse responseDate;
+    private StdSinglePIPResponse responseDateTime;
+
+    protected StdSinglePIPResponse getResponseTime() throws DataTypeException {
+        if (this.responseTime == null) {
+            this.responseTime
+                = new StdSinglePIPResponse(
+                new StdMutableAttribute(XACML3.ID_ATTRIBUTE_CATEGORY_ENVIRONMENT,
+                                        XACML3.ID_ENVIRONMENT_CURRENT_TIME,
+                                        DataTypes.DT_TIME.createAttributeValue(this.contextTime)));
         }
-        
-        protected StdSinglePIPResponse getResponseDate() throws DataTypeException {
-                if (this.responseDate == null) {
-                        this.responseDate
-                                = new StdSinglePIPResponse(
-                                                new StdMutableAttribute(XACML3.ID_ATTRIBUTE_CATEGORY_ENVIRONMENT,
-                                                                                 XACML3.ID_ENVIRONMENT_CURRENT_DATE,
-                                                                                 DataTypes.DT_DATE.createAttributeValue(this.contextTime)));
-                }
-                return this.responseDate;
+        return this.responseTime;
+    }
+
+    protected StdSinglePIPResponse getResponseDate() throws DataTypeException {
+        if (this.responseDate == null) {
+            this.responseDate
+                = new StdSinglePIPResponse(
+                new StdMutableAttribute(XACML3.ID_ATTRIBUTE_CATEGORY_ENVIRONMENT,
+                                        XACML3.ID_ENVIRONMENT_CURRENT_DATE,
+                                        DataTypes.DT_DATE.createAttributeValue(this.contextTime)));
         }
-        
-        protected StdSinglePIPResponse getResponseDateTime() throws DataTypeException {
-                if (this.responseDateTime == null) {
-                        this.responseDateTime
-                        = new StdSinglePIPResponse(
-                                        new StdMutableAttribute(XACML3.ID_ATTRIBUTE_CATEGORY_ENVIRONMENT,
-                                                                         XACML3.ID_ENVIRONMENT_CURRENT_DATETIME,
-                                                                         DataTypes.DT_DATETIME.createAttributeValue(this.contextTime)));			
-                }
-                return this.responseDateTime;
+        return this.responseDate;
+    }
+
+    protected StdSinglePIPResponse getResponseDateTime() throws DataTypeException {
+        if (this.responseDateTime == null) {
+            this.responseDateTime
+                = new StdSinglePIPResponse(
+                new StdMutableAttribute(XACML3.ID_ATTRIBUTE_CATEGORY_ENVIRONMENT,
+                                        XACML3.ID_ENVIRONMENT_CURRENT_DATETIME,
+                                        DataTypes.DT_DATETIME.createAttributeValue(this.contextTime)));
         }
-        
-        public EnvironmentEngine(Date dateContextTimeIn) {
-                this.contextTime	= dateContextTimeIn;
+        return this.responseDateTime;
+    }
+
+    public EnvironmentEngine(Date dateContextTimeIn) {
+        this.contextTime	= dateContextTimeIn;
+    }
+
+    @Override
+    public String getName() {
+        return this.getClass().getName();
+    }
+
+    @Override
+    public String getDescription() {
+        return "Environment attribute PIP";
+    }
+
+    @Override
+    public Collection<PIPRequest> attributesRequired() {
+        return Collections.emptyList();
+    }
+
+    @Override
+    public Collection<PIPRequest> attributesProvided() {
+        List<PIPRequest> attributes = new ArrayList<PIPRequest>();
+        attributes.add(new StdPIPRequest(XACML3.ID_ATTRIBUTE_CATEGORY_ENVIRONMENT,
+                                         XACML3.ID_ENVIRONMENT_CURRENT_DATE,
+                                         XACML3.ID_DATATYPE_DATE, null));
+        attributes.add(new StdPIPRequest(XACML3.ID_ATTRIBUTE_CATEGORY_ENVIRONMENT,
+                                         XACML3.ID_ENVIRONMENT_CURRENT_TIME,
+                                         XACML3.ID_DATATYPE_TIME, null));
+        attributes.add(new StdPIPRequest(XACML3.ID_ATTRIBUTE_CATEGORY_ENVIRONMENT,
+                                         XACML3.ID_ENVIRONMENT_CURRENT_DATETIME,
+                                         XACML3.ID_DATATYPE_DATETIME, null));
+        return attributes;
+    }
+
+    @Override
+    public PIPResponse getAttributes(PIPRequest pipRequest, PIPFinder pipFinder) throws PIPException {
+        /*
+         * Make sure this is a request for an environment attribute and no issuer has been set
+         */
+        if (!XACML3.ID_ATTRIBUTE_CATEGORY_ENVIRONMENT.equals(pipRequest.getCategory()) || (pipRequest.getIssuer() != null && pipRequest.getIssuer().length() > 0)) {
+            return StdPIPResponse.PIP_RESPONSE_EMPTY;
         }
 
-        @Override
-        public String getName() {
-                return this.getClass().getName();
+        /*
+         * See which environment attribute is requested
+         */
+        Identifier attributeIdRequest		= pipRequest.getAttributeId();
+        StdSinglePIPResponse pipResponse	= null;
+        try {
+            if (XACML3.ID_ENVIRONMENT_CURRENT_DATE.equals(attributeIdRequest)) {
+                pipResponse	= this.getResponseDate();
+            } else if (XACML3.ID_ENVIRONMENT_CURRENT_TIME.equals(attributeIdRequest)) {
+                pipResponse	= this.getResponseTime();
+            } else if (XACML3.ID_ENVIRONMENT_CURRENT_DATETIME.equals(attributeIdRequest)) {
+                pipResponse	= this.getResponseDateTime();
+            }
+        } catch (DataTypeException ex) {
+            throw new PIPException("DataTypeException getting \"" + attributeIdRequest.stringValue() + "\"", ex);
         }
 
-        @Override
-        public String getDescription() {
-                return "Environment attribute PIP";
+        if (pipResponse == null) {
+            return StdPIPResponse.PIP_RESPONSE_EMPTY;
         }
 
-        @Override
-        public Collection<PIPRequest> attributesRequired() {
-                return Collections.emptyList();
+        /*
+         * Ensure the data types match
+         */
+        AttributeValue<?> attributeValuePipResponse	= pipResponse.getSingleAttribute().getValues().iterator().next();
+        if (attributeValuePipResponse.getDataTypeId().equals(pipRequest.getDataTypeId())) {
+            return pipResponse;
+        } else {
+            return StdPIPResponse.PIP_RESPONSE_EMPTY;
         }
-
-        @Override
-        public Collection<PIPRequest> attributesProvided() {
-                List<PIPRequest> attributes = new ArrayList<PIPRequest>();
-                attributes.add(new StdPIPRequest(XACML3.ID_ATTRIBUTE_CATEGORY_ENVIRONMENT, 
-                                                                                XACML3.ID_ENVIRONMENT_CURRENT_DATE,
-                                                                                XACML3.ID_DATATYPE_DATE, null));
-                attributes.add(new StdPIPRequest(XACML3.ID_ATTRIBUTE_CATEGORY_ENVIRONMENT, 
-                                                                                XACML3.ID_ENVIRONMENT_CURRENT_TIME,
-                                                                                XACML3.ID_DATATYPE_TIME, null));
-                attributes.add(new StdPIPRequest(XACML3.ID_ATTRIBUTE_CATEGORY_ENVIRONMENT, 
-                                                                                XACML3.ID_ENVIRONMENT_CURRENT_DATETIME,
-                                                                                XACML3.ID_DATATYPE_DATETIME, null));		
-                return attributes;
-        }
-
-        @Override
-        public PIPResponse getAttributes(PIPRequest pipRequest, PIPFinder pipFinder) throws PIPException {
-                /*
-                 * Make sure this is a request for an environment attribute and no issuer has been set
-                 */
-                if (!XACML3.ID_ATTRIBUTE_CATEGORY_ENVIRONMENT.equals(pipRequest.getCategory()) || (pipRequest.getIssuer() != null && pipRequest.getIssuer().length() > 0)) {
-                        return StdPIPResponse.PIP_RESPONSE_EMPTY;
-                }
-                
-                /*
-                 * See which environment attribute is requested
-                 */
-                Identifier attributeIdRequest		= pipRequest.getAttributeId();
-                StdSinglePIPResponse pipResponse	= null;
-                try {
-                        if (XACML3.ID_ENVIRONMENT_CURRENT_DATE.equals(attributeIdRequest)) {
-                                pipResponse	= this.getResponseDate();
-                        } else if (XACML3.ID_ENVIRONMENT_CURRENT_TIME.equals(attributeIdRequest)) {
-                                pipResponse	= this.getResponseTime();
-                        } else if (XACML3.ID_ENVIRONMENT_CURRENT_DATETIME.equals(attributeIdRequest)) {
-                                pipResponse	= this.getResponseDateTime();
-                        }
-                } catch (DataTypeException ex) {
-                        throw new PIPException("DataTypeException getting \"" + attributeIdRequest.stringValue() + "\"", ex);
-                }
-                
-                if (pipResponse == null) {
-                        return StdPIPResponse.PIP_RESPONSE_EMPTY;
-                }
-                
-                /*
-                 * Ensure the data types match
-                 */
-                AttributeValue<?> attributeValuePipResponse	= pipResponse.getSingleAttribute().getValues().iterator().next();
-                if (attributeValuePipResponse.getDataTypeId().equals(pipRequest.getDataTypeId())) {
-                        return pipResponse;
-                } else {
-                        return StdPIPResponse.PIP_RESPONSE_EMPTY;
-                }
-        }
+    }
 
 }

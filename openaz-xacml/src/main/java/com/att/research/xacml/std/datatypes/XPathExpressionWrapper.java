@@ -6,16 +6,16 @@
  *  to you under the Apache License, Version 2.0 (the
  *  "License"); you may not use this file except in compliance
  *  with the License.  You may obtain a copy of the License at
- *  
+ *
  *    http://www.apache.org/licenses/LICENSE-2.0
- *  
+ *
  *  Unless required by applicable law or agreed to in writing,
  *  software distributed under the License is distributed on an
  *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  *  KIND, either express or implied.  See the License for the
  *  specific language governing permissions and limitations
- *  under the License. 
- *  
+ *  under the License.
+ *
  */
 
 /*
@@ -48,115 +48,115 @@ import com.att.research.xacml.std.StdStatusCode;
 /**
  * XPathExpressionWrapper implements the {@link javax.xml.xpath.XPathExpression} interface to wrap another <code>XPathExpression</code> and
  * keep the path expression that was used to create it.
- * 
+ *
  * @author car
  * @version $Revision$
  */
 public class XPathExpressionWrapper implements XPathExpression {
-        private XPathExpression	xpathExpressionWrapped;
-        private String path;
-        private ExtendedNamespaceContext namespaceContext;
-        private Status status;
-        
-        public XPathExpressionWrapper(ExtendedNamespaceContext namespaceContextIn, String pathIn) {
-                this.namespaceContext	= namespaceContextIn;
-                this.path				= pathIn;
+    private XPathExpression	xpathExpressionWrapped;
+    private String path;
+    private ExtendedNamespaceContext namespaceContext;
+    private Status status;
+
+    public XPathExpressionWrapper(ExtendedNamespaceContext namespaceContextIn, String pathIn) {
+        this.namespaceContext	= namespaceContextIn;
+        this.path				= pathIn;
+    }
+
+    public XPathExpressionWrapper(Document documentIn, String pathIn) {
+        this(new NodeNamespaceContext(documentIn), pathIn);
+        if (pathIn == null || pathIn.length() == 0) {
+            throw new IllegalArgumentException("XPathExpression must have XPath value");
         }
-        
-        public XPathExpressionWrapper(Document documentIn, String pathIn) {
-                this(new NodeNamespaceContext(documentIn), pathIn);
-                if (pathIn == null || pathIn.length() == 0) {
-                        throw new IllegalArgumentException("XPathExpression must have XPath value");
+    }
+
+    public XPathExpressionWrapper(String pathIn) {
+        this((ExtendedNamespaceContext)null, pathIn);
+    }
+
+    public XPathExpressionWrapper(Node node) {
+        this(node.getOwnerDocument(), node.getTextContent());
+    }
+
+    public XPathExpressionWrapper(XPathExpression xpathExpression) {
+        this.xpathExpressionWrapped	= xpathExpression;
+    }
+
+    public synchronized XPathExpression getXpathExpressionWrapped() {
+        if (this.xpathExpressionWrapped == null && (this.getStatus() == null || this.getStatus().isOk())) {
+            String thisPath	= this.getPath();
+            if (thisPath != null) {
+                XPath xPath	= XPathFactory.newInstance().newXPath();
+                NamespaceContext namespaceContextThis	= this.getNamespaceContext();
+                if (namespaceContextThis != null) {
+                    xPath.setNamespaceContext(namespaceContextThis);
                 }
-        }
-        
-        public XPathExpressionWrapper(String pathIn) {
-                this((ExtendedNamespaceContext)null, pathIn);
-        }
-        
-        public XPathExpressionWrapper(Node node) {
-                this(node.getOwnerDocument(), node.getTextContent());
-        }
-        
-        public XPathExpressionWrapper(XPathExpression xpathExpression) {
-                this.xpathExpressionWrapped	= xpathExpression;
-        }
-        
-        public synchronized XPathExpression getXpathExpressionWrapped() {
-                if (this.xpathExpressionWrapped == null && (this.getStatus() == null || this.getStatus().isOk())) {
-                        String thisPath	= this.getPath();
-                        if (thisPath != null) {
-                                XPath xPath	= XPathFactory.newInstance().newXPath();
-                                NamespaceContext namespaceContextThis	= this.getNamespaceContext();
-                                if (namespaceContextThis != null) {
-                                        xPath.setNamespaceContext(namespaceContextThis);
-                                }
-                                try {
-                                        this.xpathExpressionWrapped	= xPath.compile(thisPath);
-                                } catch (XPathExpressionException ex) {
-                                        this.status	= new StdStatus(StdStatusCode.STATUS_CODE_SYNTAX_ERROR, "Error compiling XPath " + thisPath + ": " + ex.getMessage());
-                                }
-                        }
+                try {
+                    this.xpathExpressionWrapped	= xPath.compile(thisPath);
+                } catch (XPathExpressionException ex) {
+                    this.status	= new StdStatus(StdStatusCode.STATUS_CODE_SYNTAX_ERROR, "Error compiling XPath " + thisPath + ": " + ex.getMessage());
                 }
-                return this.xpathExpressionWrapped;
+            }
         }
-        
-        public String getPath() {
-                return this.path;
-        }
-        
-        public ExtendedNamespaceContext getNamespaceContext() {
-                return this.namespaceContext;
-        }
-        
-        public Status getStatus() {
-                return this.status;
-        }
+        return this.xpathExpressionWrapped;
+    }
 
-        @Override
-        public Object evaluate(Object item, QName returnType) throws XPathExpressionException {
-                XPathExpression thisXPathExpression	= this.getXpathExpressionWrapped();
-                return (thisXPathExpression == null ? null : thisXPathExpression.evaluate(item, returnType));
-        }
+    public String getPath() {
+        return this.path;
+    }
 
-        @Override
-        public String evaluate(Object item) throws XPathExpressionException {
-                XPathExpression thisXPathExpression	= this.getXpathExpressionWrapped();
-                return (thisXPathExpression == null ? null : thisXPathExpression.evaluate(item));
-        }
+    public ExtendedNamespaceContext getNamespaceContext() {
+        return this.namespaceContext;
+    }
 
-        @Override
-        public Object evaluate(InputSource source, QName returnType) throws XPathExpressionException {
-                XPathExpression thisXPathExpression	= this.getXpathExpressionWrapped();
-                return (thisXPathExpression == null ? null : thisXPathExpression.evaluate(source, returnType));
-        }
+    public Status getStatus() {
+        return this.status;
+    }
 
-        @Override
-        public String evaluate(InputSource source) throws XPathExpressionException {
-                XPathExpression thisXPathExpression	= this.getXpathExpressionWrapped();
-                return (thisXPathExpression == null ? null : thisXPathExpression.evaluate(source));
-        }
+    @Override
+    public Object evaluate(Object item, QName returnType) throws XPathExpressionException {
+        XPathExpression thisXPathExpression	= this.getXpathExpressionWrapped();
+        return (thisXPathExpression == null ? null : thisXPathExpression.evaluate(item, returnType));
+    }
 
-        
-        @Override
-        public boolean equals(Object o) {
-                if (o == null ||  ! (o instanceof XPathExpressionWrapper)) {
-                        return false;
-                }
-                XPathExpressionWrapper other = (XPathExpressionWrapper) o;
-                return this.path.equals(other.path);
+    @Override
+    public String evaluate(Object item) throws XPathExpressionException {
+        XPathExpression thisXPathExpression	= this.getXpathExpressionWrapped();
+        return (thisXPathExpression == null ? null : thisXPathExpression.evaluate(item));
+    }
+
+    @Override
+    public Object evaluate(InputSource source, QName returnType) throws XPathExpressionException {
+        XPathExpression thisXPathExpression	= this.getXpathExpressionWrapped();
+        return (thisXPathExpression == null ? null : thisXPathExpression.evaluate(source, returnType));
+    }
+
+    @Override
+    public String evaluate(InputSource source) throws XPathExpressionException {
+        XPathExpression thisXPathExpression	= this.getXpathExpressionWrapped();
+        return (thisXPathExpression == null ? null : thisXPathExpression.evaluate(source));
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null ||  ! (o instanceof XPathExpressionWrapper)) {
+            return false;
         }
-        
-        
-        @Override
-        public String toString() {
-                StringBuilder sb = new StringBuilder("{");
-                sb.append("path="+this.path);
-                // the document is not printed by toString, but what we really want from it is the Namespace attributes
-                sb.append(",Namespace=" + this.namespaceContext);
-                sb.append(",status="+this.status);
-                sb.append(",xpathExpressionWrapped=" + ((this.xpathExpressionWrapped == null) ? "null" : "(XpathExpression object)"));
-                sb.append("}");
-                return sb.toString();
-        }
+        XPathExpressionWrapper other = (XPathExpressionWrapper) o;
+        return this.path.equals(other.path);
+    }
+
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder("{");
+        sb.append("path="+this.path);
+        // the document is not printed by toString, but what we really want from it is the Namespace attributes
+        sb.append(",Namespace=" + this.namespaceContext);
+        sb.append(",status="+this.status);
+        sb.append(",xpathExpressionWrapped=" + ((this.xpathExpressionWrapped == null) ? "null" : "(XpathExpression object)"));
+        sb.append("}");
+        return sb.toString();
+    }
 }

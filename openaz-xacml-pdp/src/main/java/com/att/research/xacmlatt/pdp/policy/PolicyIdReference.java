@@ -6,16 +6,16 @@
  *  to you under the Apache License, Version 2.0 (the
  *  "License"); you may not use this file except in compliance
  *  with the License.  You may obtain a copy of the License at
- *  
+ *
  *    http://www.apache.org/licenses/LICENSE-2.0
- *  
+ *
  *  Unless required by applicable law or agreed to in writing,
  *  software distributed under the License is distributed on an
  *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  *  KIND, either express or implied.  See the License for the
  *  specific language governing permissions and limitations
- *  under the License. 
- *  
+ *  under the License.
+ *
  */
 
 /*
@@ -38,40 +38,40 @@ import com.att.research.xacmlatt.pdp.eval.EvaluationException;
  * PolicyIdReference extends {@link com.att.research.xacmlatt.pdp.policy.PolicyIdReferenceBase} for
  * {@link Policy} objects with an implementation of the <code>ensureReferencee</code>
  * method to find a <code>Policy</code>.
- * 
+ *
  * @author car
  * @version $Revision: 1.2 $
  */
 public class PolicyIdReference extends PolicyIdReferenceBase<Policy> {
 
-        public PolicyIdReference(PolicySet policySetParent, StatusCode statusCodeIn, String statusMessageIn) {
-                super(policySetParent, statusCodeIn, statusMessageIn);
-        }
-        
-        public PolicyIdReference(StatusCode statusCodeIn, String statusMessageIn) {
-                super(statusCodeIn, statusMessageIn);
-        }
+    public PolicyIdReference(PolicySet policySetParent, StatusCode statusCodeIn, String statusMessageIn) {
+        super(policySetParent, statusCodeIn, statusMessageIn);
+    }
 
-        public PolicyIdReference(StatusCode statusCodeIn) {
-                super(statusCodeIn);
-        }
-        
-        public PolicyIdReference(PolicySet policySetParent) {
-                super(policySetParent);
-        }
+    public PolicyIdReference(StatusCode statusCodeIn, String statusMessageIn) {
+        super(statusCodeIn, statusMessageIn);
+    }
 
-        public PolicyIdReference() {
-        }
+    public PolicyIdReference(StatusCode statusCodeIn) {
+        super(statusCodeIn);
+    }
 
-        @Override
-        protected Policy ensureReferencee(EvaluationContext evaluationContext) throws EvaluationException {
-                if (this.getReferencee() == null) {
-                        PolicyFinderResult<Policy> policyFactoryResult	= evaluationContext.getPolicy(this.getIdReferenceMatch());
-                        if (policyFactoryResult.getStatus() == null || policyFactoryResult.getStatus().isOk()) {
-                                this.setReferencee(policyFactoryResult.getPolicyDef());
-                        }
-                }
-                return this.getReferencee();
+    public PolicyIdReference(PolicySet policySetParent) {
+        super(policySetParent);
+    }
+
+    public PolicyIdReference() {
+    }
+
+    @Override
+    protected Policy ensureReferencee(EvaluationContext evaluationContext) throws EvaluationException {
+        if (this.getReferencee() == null) {
+            PolicyFinderResult<Policy> policyFactoryResult	= evaluationContext.getPolicy(this.getIdReferenceMatch());
+            if (policyFactoryResult.getStatus() == null || policyFactoryResult.getStatus().isOk()) {
+                this.setReferencee(policyFactoryResult.getPolicyDef());
+            }
         }
+        return this.getReferencee();
+    }
 
 }

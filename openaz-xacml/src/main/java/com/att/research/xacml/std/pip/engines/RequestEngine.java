@@ -6,16 +6,16 @@
  *  to you under the Apache License, Version 2.0 (the
  *  "License"); you may not use this file except in compliance
  *  with the License.  You may obtain a copy of the License at
- *  
+ *
  *    http://www.apache.org/licenses/LICENSE-2.0
- *  
+ *
  *  Unless required by applicable law or agreed to in writing,
  *  software distributed under the License is distributed on an
  *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  *  KIND, either express or implied.  See the License for the
  *  specific language governing permissions and limitations
- *  under the License. 
- *  
+ *  under the License.
+ *
  */
 
 /*
@@ -56,125 +56,125 @@ import com.att.research.xacml.std.pip.StdPIPResponse;
 /**
  * StdRequestEngine implements the {@link com.att.research.xacml.api.pip.PIPEngine} interface to retrieve
  * matching {@link com.att.reserach.xacml.api.Attribute}s from a {@link com.att.research.xacml.pip.Request} object.
- * 
+ *
  * @author car
  * @version $Revision: 1.1 $
  */
 public class RequestEngine implements PIPEngine {
-        private Request request;
-        
-        protected Request getRequest() {
-                return this.request;
-        }
-        
-        /**
-         * Creates a <code>StdRequestEngine</code> for retrieving <code>Attribute</code>s from a <code>Request</code>.
-         * 
-         * @param requestIn the <code>Request</code> to search
-         */
-        public RequestEngine(Request requestIn) {
-                this.request	= requestIn;
+    private Request request;
+
+    protected Request getRequest() {
+        return this.request;
+    }
+
+    /**
+     * Creates a <code>StdRequestEngine</code> for retrieving <code>Attribute</code>s from a <code>Request</code>.
+     *
+     * @param requestIn the <code>Request</code> to search
+     */
+    public RequestEngine(Request requestIn) {
+        this.request	= requestIn;
+    }
+
+    @Override
+    public String getName() {
+        return this.getClass().getCanonicalName();
+    }
+
+    @Override
+    public String getDescription() {
+        return "PIPEngine for retrieving Attributes from the Request";
+    }
+
+    @Override
+    public PIPResponse getAttributes(PIPRequest pipRequest, PIPFinder pipFinder) throws PIPException {
+        Request thisRequest	= this.getRequest();
+        if (thisRequest == null) {
+            return StdPIPResponse.PIP_RESPONSE_EMPTY;
         }
 
-        @Override
-        public String getName() {
-                return this.getClass().getCanonicalName();
+        Iterator<RequestAttributes> iterRequestAttributes	= thisRequest.getRequestAttributes(pipRequest.getCategory());
+        if (iterRequestAttributes == null || !iterRequestAttributes.hasNext()) {
+            return StdPIPResponse.PIP_RESPONSE_EMPTY;
         }
 
-        @Override
-        public String getDescription() {
-                return "PIPEngine for retrieving Attributes from the Request";
-        }
+        StdMutablePIPResponse pipResponse	= null;
 
-        @Override
-        public PIPResponse getAttributes(PIPRequest pipRequest, PIPFinder pipFinder) throws PIPException {
-                Request thisRequest	= this.getRequest();
-                if (thisRequest == null) {
-                        return StdPIPResponse.PIP_RESPONSE_EMPTY;
-                }
-                
-                Iterator<RequestAttributes> iterRequestAttributes	= thisRequest.getRequestAttributes(pipRequest.getCategory());
-                if (iterRequestAttributes == null || !iterRequestAttributes.hasNext()) {
-                        return StdPIPResponse.PIP_RESPONSE_EMPTY;
-                }
-
-                StdMutablePIPResponse pipResponse	= null;
-                
-                while (iterRequestAttributes.hasNext()) {
-                        RequestAttributes requestAttributes	= iterRequestAttributes.next();
-                        Iterator<Attribute> iterAttributes	= requestAttributes.getAttributes(pipRequest.getAttributeId());
-                        while (iterAttributes.hasNext()) {
-                                Attribute attribute	= iterAttributes.next();
-                                if (attribute.getValues().size() > 0 && (pipRequest.getIssuer() == null || pipRequest.getIssuer().equals(attribute.getIssuer()))) {
-                                        /*
-                                         * If all of the attribute values in the given Attribute match the requested data type, we can just return
-                                         * the whole Attribute as part of the response.
-                                         */
-                                        boolean bAllMatch							= true;
-                                        for (AttributeValue<?> attributeValue: attribute.getValues()) {
-                                                if (!pipRequest.getDataTypeId().equals(attributeValue.getDataTypeId())) {
-                                                        bAllMatch	= false;
-                                                        break;
-                                                }
-                                        }
-                                        if (bAllMatch) {
-                                                if (pipResponse == null) {
-                                                        pipResponse	= new StdMutablePIPResponse(attribute);
-                                                } else {
-                                                        pipResponse.addAttribute(attribute);
-                                                }
-                                        } else {
-                                                /*
-                                                 * Only a subset of the values match, so we have to construct a new Attribute containing only the matching
-                                                 * values.
-                                                 */
-                                                List<AttributeValue<?>> listAttributeValues	= null;
-                                                for (AttributeValue<?> attributeValue: attribute.getValues()) {
-                                                        if (pipRequest.getDataTypeId().equals(attributeValue.getDataTypeId())) {
-                                                                if (listAttributeValues == null) {
-                                                                        listAttributeValues	= new ArrayList<AttributeValue<?>>();
-                                                                }
-                                                                listAttributeValues.add(attributeValue);
-                                                        }
-                                                }
-                                                if (listAttributeValues != null) {
-                                                        if (pipResponse == null) {
-                                                                pipResponse	= new StdMutablePIPResponse();
-                                                        }
-                                                        pipResponse.addAttribute(new StdMutableAttribute(attribute.getCategory(), attribute.getAttributeId(), listAttributeValues, attribute.getIssuer(), attribute.getIncludeInResults()));
-                                                }
-                                        }
-                                }
+        while (iterRequestAttributes.hasNext()) {
+            RequestAttributes requestAttributes	= iterRequestAttributes.next();
+            Iterator<Attribute> iterAttributes	= requestAttributes.getAttributes(pipRequest.getAttributeId());
+            while (iterAttributes.hasNext()) {
+                Attribute attribute	= iterAttributes.next();
+                if (attribute.getValues().size() > 0 && (pipRequest.getIssuer() == null || pipRequest.getIssuer().equals(attribute.getIssuer()))) {
+                    /*
+                     * If all of the attribute values in the given Attribute match the requested data type, we can just return
+                     * the whole Attribute as part of the response.
+                     */
+                    boolean bAllMatch							= true;
+                    for (AttributeValue<?> attributeValue: attribute.getValues()) {
+                        if (!pipRequest.getDataTypeId().equals(attributeValue.getDataTypeId())) {
+                            bAllMatch	= false;
+                            break;
                         }
-                }
-                
-                if (pipResponse == null) {
-                        return StdPIPResponse.PIP_RESPONSE_EMPTY;
-                } else {
-                        return pipResponse;
-                }
-        }
-
-        @Override
-        public Collection<PIPRequest> attributesRequired() {
-                return Collections.emptyList();
-        }
-
-        @Override
-        public Collection<PIPRequest> attributesProvided() {
-                Set<PIPRequest> providedAttributes = new HashSet<PIPRequest>();
-                for (RequestAttributes attributes : this.request.getRequestAttributes()) {
-                        for (Attribute attribute : attributes.getAttributes()) {
-                                Set<Identifier> datatypes = new HashSet<Identifier>();
-                                for (AttributeValue<?> value : attribute.getValues()) {
-                                        datatypes.add(value.getDataTypeId());
-                                }
-                                for (Identifier dt : datatypes) {
-                                        providedAttributes.add(new StdPIPRequest(attribute.getCategory(), attribute.getAttributeId(), dt, attribute.getIssuer()));
-                                }
+                    }
+                    if (bAllMatch) {
+                        if (pipResponse == null) {
+                            pipResponse	= new StdMutablePIPResponse(attribute);
+                        } else {
+                            pipResponse.addAttribute(attribute);
                         }
+                    } else {
+                        /*
+                         * Only a subset of the values match, so we have to construct a new Attribute containing only the matching
+                         * values.
+                         */
+                        List<AttributeValue<?>> listAttributeValues	= null;
+                        for (AttributeValue<?> attributeValue: attribute.getValues()) {
+                            if (pipRequest.getDataTypeId().equals(attributeValue.getDataTypeId())) {
+                                if (listAttributeValues == null) {
+                                    listAttributeValues	= new ArrayList<AttributeValue<?>>();
+                                }
+                                listAttributeValues.add(attributeValue);
+                            }
+                        }
+                        if (listAttributeValues != null) {
+                            if (pipResponse == null) {
+                                pipResponse	= new StdMutablePIPResponse();
+                            }
+                            pipResponse.addAttribute(new StdMutableAttribute(attribute.getCategory(), attribute.getAttributeId(), listAttributeValues, attribute.getIssuer(), attribute.getIncludeInResults()));
+                        }
+                    }
                 }
-                return providedAttributes;
+            }
         }
+
+        if (pipResponse == null) {
+            return StdPIPResponse.PIP_RESPONSE_EMPTY;
+        } else {
+            return pipResponse;
+        }
+    }
+
+    @Override
+    public Collection<PIPRequest> attributesRequired() {
+        return Collections.emptyList();
+    }
+
+    @Override
+    public Collection<PIPRequest> attributesProvided() {
+        Set<PIPRequest> providedAttributes = new HashSet<PIPRequest>();
+        for (RequestAttributes attributes : this.request.getRequestAttributes()) {
+            for (Attribute attribute : attributes.getAttributes()) {
+                Set<Identifier> datatypes = new HashSet<Identifier>();
+                for (AttributeValue<?> value : attribute.getValues()) {
+                    datatypes.add(value.getDataTypeId());
+                }
+                for (Identifier dt : datatypes) {
+                    providedAttributes.add(new StdPIPRequest(attribute.getCategory(), attribute.getAttributeId(), dt, attribute.getIssuer()));
+                }
+            }
+        }
+        return providedAttributes;
+    }
 
 }

@@ -6,16 +6,16 @@
  *  to you under the Apache License, Version 2.0 (the
  *  "License"); you may not use this file except in compliance
  *  with the License.  You may obtain a copy of the License at
- *  
+ *
  *    http://www.apache.org/licenses/LICENSE-2.0
- *  
+ *
  *  Unless required by applicable law or agreed to in writing,
  *  software distributed under the License is distributed on an
  *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  *  KIND, either express or implied.  See the License for the
  *  specific language governing permissions and limitations
- *  under the License. 
- *  
+ *  under the License.
+ *
  */
 
 /*
@@ -34,23 +34,23 @@ package com.att.research.xacml.api.trace;
 /**
  * Defines the API for objects that serve as handlers for {@link TraceEvent}s.  <code>TraceEngine</code>s
  * are instantiated with {@link com.att.research.xacml.api.trace.TraceEngineFactory} objects.
- * 
+ *
  * @author Christopher A. Rath
  * @version $Revision$
  */
 public interface TraceEngine {
-        /**
-         * Processes the given {@link TraceEvent}.
-         * 
-         * @param traceEvent the <code>TraceEvent</code> to process
-         */
-        public void trace(TraceEvent<?> traceEvent);
-        
-        /**
-         * Returns true if this <code>TraceEngine</code> would actually process a {@link TraceEvent}.  This
-         * is useful to avoid creating new <code>TraceEvent</code> objects that will just be ignored.
-         * 
-         * @return true if this <code>TraceEngine</code> would perform an action on a <code>TraceEvent</code>.
-         */
-        public boolean isTracing();
+    /**
+     * Processes the given {@link TraceEvent}.
+     *
+     * @param traceEvent the <code>TraceEvent</code> to process
+     */
+    public void trace(TraceEvent<?> traceEvent);
+
+    /**
+     * Returns true if this <code>TraceEngine</code> would actually process a {@link TraceEvent}.  This
+     * is useful to avoid creating new <code>TraceEvent</code> objects that will just be ignored.
+     *
+     * @return true if this <code>TraceEngine</code> would perform an action on a <code>TraceEvent</code>.
+     */
+    public boolean isTracing();
 }

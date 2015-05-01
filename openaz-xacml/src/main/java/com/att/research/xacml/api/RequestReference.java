@@ -6,16 +6,16 @@
  *  to you under the Apache License, Version 2.0 (the
  *  "License"); you may not use this file except in compliance
  *  with the License.  You may obtain a copy of the License at
- *  
+ *
  *    http://www.apache.org/licenses/LICENSE-2.0
- *  
+ *
  *  Unless required by applicable law or agreed to in writing,
  *  software distributed under the License is distributed on an
  *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  *  KIND, either express or implied.  See the License for the
  *  specific language governing permissions and limitations
- *  under the License. 
- *  
+ *  under the License.
+ *
  */
 
 /*
@@ -35,28 +35,28 @@ import java.util.Collection;
 /**
  * Defines the API for objects that represent XACML RequestReference elements.  RequestReference elements contain zero or more AttributesReference
  * elements and are used in multi-requests.
- *  
+ *
  * @author Christopher A. Rath
  * @version $Revision: 1.1 $
  */
 public interface RequestReference {
-        /**
-         * Gets the <code>Collection</code> of {@link com.att.research.xacml.api.RequestAttributesReference}s contained
-         * in this <code>RequestReference</code>.  If there are no <code>RequestAttributesReference}s this method must return an empty <code>Collection</code>.
-         * 
-         * @return the <code>Collection</code> of <code>RequestAttributesReference</code>s contained in this <code>RequestReference</code>.
-         */
-        public Collection<RequestAttributesReference> getAttributesReferences();
-        
-        /**
-         * {@inheritDoc}
-         * 
-         * Implementations of this interface must override the <code>equals</code> method with the following semantics:
-         * 
-         * 		Two <code>RequestReference</code>s (<code>r1</code> and <code>r2</code>) are equal if:
-         * 
-         * 			{@code r1.getAttributesReferences()} is pair-wise equal to {@code r2.getAttributesReferences()}
-         */
-        @Override
-        public boolean equals(Object obj);
+    /**
+     * Gets the <code>Collection</code> of {@link com.att.research.xacml.api.RequestAttributesReference}s contained
+     * in this <code>RequestReference</code>.  If there are no <code>RequestAttributesReference}s this method must return an empty <code>Collection</code>.
+     *
+     * @return the <code>Collection</code> of <code>RequestAttributesReference</code>s contained in this <code>RequestReference</code>.
+     */
+    public Collection<RequestAttributesReference> getAttributesReferences();
+
+    /**
+     * {@inheritDoc}
+     *
+     * Implementations of this interface must override the <code>equals</code> method with the following semantics:
+     *
+     * 		Two <code>RequestReference</code>s (<code>r1</code> and <code>r2</code>) are equal if:
+     *
+     * 			{@code r1.getAttributesReferences()} is pair-wise equal to {@code r2.getAttributesReferences()}
+     */
+    @Override
+    public boolean equals(Object obj);
 }

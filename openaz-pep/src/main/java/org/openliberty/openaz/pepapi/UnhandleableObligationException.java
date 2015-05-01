@@ -6,42 +6,42 @@
  *  to you under the Apache License, Version 2.0 (the
  *  "License"); you may not use this file except in compliance
  *  with the License.  You may obtain a copy of the License at
- *  
+ *
  *    http://www.apache.org/licenses/LICENSE-2.0
- *  
+ *
  *  Unless required by applicable law or agreed to in writing,
  *  software distributed under the License is distributed on an
  *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  *  KIND, either express or implied.  See the License for the
  *  specific language governing permissions and limitations
- *  under the License. 
- *  
+ *  under the License.
+ *
  */
 
 package org.openliberty.openaz.pepapi;
 
 /**
  * Runtime Exception thrown when the framework cannot find a registered handler to deal with the obligation.
- * 
+ *
  * @author Ajith Nair, David Laurance, Darshak Kothari
- * 
+ *
  */
 @SuppressWarnings("serial")
 public class UnhandleableObligationException extends RuntimeException {
-        
-        public UnhandleableObligationException() {
-                super();
-        }
 
-        public UnhandleableObligationException(String message, Throwable cause) {
-                super(message, cause);
-        }
+    public UnhandleableObligationException() {
+        super();
+    }
 
-        public UnhandleableObligationException(String message) {
-                super(message);
-        }
+    public UnhandleableObligationException(String message, Throwable cause) {
+        super(message, cause);
+    }
 
-        public UnhandleableObligationException(Throwable cause) {
-                super(cause);
-        }
+    public UnhandleableObligationException(String message) {
+        super(message);
+    }
+
+    public UnhandleableObligationException(Throwable cause) {
+        super(cause);
+    }
 }
