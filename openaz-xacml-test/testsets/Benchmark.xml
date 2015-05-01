@@ -15,8 +15,6 @@
   See the License for the specific language governing permissions and
   limitations under the License.
 -->
-
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Policy xmlns="urn:oasis:names:tc:xacml:3.0:core:schema:wd-17" PolicyId="urn:com:att:xacml:policy:id:9888fc62-f0a8-4b97-b2a3-9e55628d3468" Version="1" RuleCombiningAlgId="urn:oasis:names:tc:xacml:1.0:rule-combining-algorithm:first-applicable">
     <Description>Simple Policy for benchmarking.</Description>
     <Target>

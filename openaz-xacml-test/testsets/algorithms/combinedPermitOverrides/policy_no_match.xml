@@ -15,8 +15,6 @@
   See the License for the specific language governing permissions and
   limitations under the License.
 -->
-
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Policy xmlns="urn:oasis:names:tc:xacml:3.0:core:schema:wd-17" PolicyId="urn:com:xacml:policy:id:7df0ff38-76e6-4eb5-bf17-e1f54e94b0e7" Version="1" RuleCombiningAlgId="urn:oasis:names:tc:xacml:1.0:rule-combining-algorithm:first-applicable">
     <Description></Description>
     <Target>

@@ -15,8 +15,6 @@
   See the License for the specific language governing permissions and
   limitations under the License.
 -->
-
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Policy xmlns="urn:oasis:names:tc:xacml:3.0:core:schema:wd-17" PolicyId="urn:com:att:xacml:policy:id:5b82db34-1613-4108-8973-93074182dd94" Version="1" RuleCombiningAlgId="urn:oasis:names:tc:xacml:1.0:rule-combining-algorithm:first-applicable">
     <Description>A sample policy to demonstrate use of annotations in a Java class.</Description>
     <Target>

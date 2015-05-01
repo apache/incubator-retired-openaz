@@ -165,6 +165,9 @@ public class DOMRequest {
 			}
 			
 			Node rootNode	= document.getFirstChild();
+			while (rootNode != null && rootNode.getNodeType() != Node.ELEMENT_NODE) {
+                            rootNode = rootNode.getNextSibling();
+                        }
 			if (rootNode == null) {
 				throw new Exception("No child in document");
 			}

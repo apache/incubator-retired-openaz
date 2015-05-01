@@ -15,8 +15,6 @@
   See the License for the specific language governing permissions and
   limitations under the License.
 -->
-
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <PolicySet xmlns="urn:oasis:names:tc:xacml:3.0:core:schema:wd-17" PolicySetId="urn:com:att:xacml:policy:id:f3047eab-6f97-49b4-8127-a2737a184b35" Version="1" PolicyCombiningAlgId="urn:oasis:names:tc:xacml:3.0:policy-combining-algorithm:deny-overrides">
     <Description>This policy enforces the BBWAA rules for baseball Hall of Fame induction.
 

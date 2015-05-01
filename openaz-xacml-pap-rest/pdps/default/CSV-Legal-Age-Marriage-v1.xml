@@ -15,8 +15,6 @@
   See the License for the specific language governing permissions and
   limitations under the License.
 -->
-
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <PolicySet xmlns="urn:oasis:names:tc:xacml:3.0:core:schema:wd-17" PolicySetId="urn:com:att:xacml:policy:id:98779898-b880-44d7-bee5-ce54e42266eb" Version="1" PolicyCombiningAlgId="urn:oasis:names:tc:xacml:3.0:policy-combining-algorithm:deny-overrides">
     <Description>Sample policy for the XACML-TEST project that tests the configurable CSV PIP.</Description>
     <Target>
