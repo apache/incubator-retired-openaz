@@ -47,28 +47,28 @@ import com.att.research.xacml.std.StdRequestAttributesReference;
  * @version $Revision: 1.2 $
  */
 public class DOMRequestAttributesReference {
-	private static final Log logger	= LogFactory.getLog(DOMRequestAttributesReference.class);
-	
-	protected DOMRequestAttributesReference() {
-	}
-	
-	/**
-	 * Creates a new <code>DOMRequestAttributesReference</code> by parsing the given root <code>Node</code> of a XACML AttributesReference element.
-	 * 
-	 * @param nodeAttributesReference the <code>Node</code> to parse
-	 * @return a new <code>DOMRequestAttributesReference</code>
-	 * @throws com.att.research.xacml.std.dom.DOMStructureException if the conversion cannot be made
-	 */
-	public static RequestAttributesReference newInstance(Node nodeAttributesReference) throws DOMStructureException {
-		Element	elementAttributesReference	= DOMUtil.getElement(nodeAttributesReference);
-		boolean bLenient					= DOMProperties.isLenient();
-		
-		return new StdRequestAttributesReference(DOMUtil.getStringAttribute(elementAttributesReference, XACML3.ATTRIBUTE_REFERENCEID, !bLenient));
-	}
-	
-	public static boolean repair(Node nodeAttributesReference) throws DOMStructureException {
-		Element	elementAttributesReference	= DOMUtil.getElement(nodeAttributesReference);
-		return DOMUtil.repairStringAttribute(elementAttributesReference, XACML3.ATTRIBUTE_REFERENCEID, null, logger);
-	}
+        private static final Log logger	= LogFactory.getLog(DOMRequestAttributesReference.class);
+        
+        protected DOMRequestAttributesReference() {
+        }
+        
+        /**
+         * Creates a new <code>DOMRequestAttributesReference</code> by parsing the given root <code>Node</code> of a XACML AttributesReference element.
+         * 
+         * @param nodeAttributesReference the <code>Node</code> to parse
+         * @return a new <code>DOMRequestAttributesReference</code>
+         * @throws com.att.research.xacml.std.dom.DOMStructureException if the conversion cannot be made
+         */
+        public static RequestAttributesReference newInstance(Node nodeAttributesReference) throws DOMStructureException {
+                Element	elementAttributesReference	= DOMUtil.getElement(nodeAttributesReference);
+                boolean bLenient					= DOMProperties.isLenient();
+                
+                return new StdRequestAttributesReference(DOMUtil.getStringAttribute(elementAttributesReference, XACML3.ATTRIBUTE_REFERENCEID, !bLenient));
+        }
+        
+        public static boolean repair(Node nodeAttributesReference) throws DOMStructureException {
+                Element	elementAttributesReference	= DOMUtil.getElement(nodeAttributesReference);
+                return DOMUtil.repairStringAttribute(elementAttributesReference, XACML3.ATTRIBUTE_REFERENCEID, null, logger);
+        }
 
 }

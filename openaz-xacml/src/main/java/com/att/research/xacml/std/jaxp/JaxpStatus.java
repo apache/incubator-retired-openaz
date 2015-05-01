@@ -45,23 +45,23 @@ import com.att.research.xacml.std.StdMutableStatus;
  */
 public class JaxpStatus extends StdMutableStatus {
 
-	protected JaxpStatus(StatusCode statusCodeIn, String statusMessageIn, StatusDetail statusDetailIn) {
-		super(statusCodeIn, statusMessageIn, statusDetailIn);
-	}
-	
-	public static JaxpStatus newInstance(StatusType statusType) {
-		if (statusType == null) {
-			throw new NullPointerException("Null StatusType");
-		} else if (statusType.getStatusCode() == null) {
-			throw new IllegalArgumentException("Null StatusCode in StatusType");
-		}
-		StatusCode		statusCode		= JaxpStatusCode.newInstance(statusType.getStatusCode());
-		StatusDetail	statusDetail	= null;
-		if (statusType.getStatusDetail() != null) {
-			statusDetail	= JaxpStatusDetail.newInstance(statusType.getStatusDetail());
-		}
-		
-		return new JaxpStatus(statusCode, statusType.getStatusMessage(), statusDetail);
-		
-	}
+        protected JaxpStatus(StatusCode statusCodeIn, String statusMessageIn, StatusDetail statusDetailIn) {
+                super(statusCodeIn, statusMessageIn, statusDetailIn);
+        }
+        
+        public static JaxpStatus newInstance(StatusType statusType) {
+                if (statusType == null) {
+                        throw new NullPointerException("Null StatusType");
+                } else if (statusType.getStatusCode() == null) {
+                        throw new IllegalArgumentException("Null StatusCode in StatusType");
+                }
+                StatusCode		statusCode		= JaxpStatusCode.newInstance(statusType.getStatusCode());
+                StatusDetail	statusDetail	= null;
+                if (statusType.getStatusDetail() != null) {
+                        statusDetail	= JaxpStatusDetail.newInstance(statusType.getStatusDetail());
+                }
+                
+                return new JaxpStatus(statusCode, statusType.getStatusMessage(), statusDetail);
+                
+        }
 }

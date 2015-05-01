@@ -40,17 +40,17 @@ import com.att.research.xacml.api.Status;
  * @param <T> the class extending {@link PolicyDef} contained as a result in this <code>PolicyFinderResult</code>
  */
 public interface PolicyFinderResult<T extends PolicyDef> {
-	/**
-	 * Gets the {@link com.att.research.xacml.api.Status} of the method call.
-	 * 
-	 * @return the <code>Status</code> of the method call
-	 */
-	public Status getStatus();
-	
-	/**
-	 * Gets the {@link PolicyDef} returned by the method if the status is OK.
-	 * 
-	 * @return the <code>T</code> returned by the method if the status is OK.
-	 */
-	public T getPolicyDef();
+        /**
+         * Gets the {@link com.att.research.xacml.api.Status} of the method call.
+         * 
+         * @return the <code>Status</code> of the method call
+         */
+        public Status getStatus();
+        
+        /**
+         * Gets the {@link PolicyDef} returned by the method if the status is OK.
+         * 
+         * @return the <code>T</code> returned by the method if the status is OK.
+         */
+        public T getPolicyDef();
 }

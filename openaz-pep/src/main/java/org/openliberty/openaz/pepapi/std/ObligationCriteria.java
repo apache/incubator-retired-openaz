@@ -28,21 +28,21 @@ import java.util.HashSet;
 import java.util.Set;
 
 public final class ObligationCriteria implements Matchable<Obligation> {
-	
-	private Set<ObligationCriterion> criteria;
-	
-	ObligationCriteria(Collection<ObligationCriterion> criteria){
-		this.criteria = new HashSet<ObligationCriterion>();
-		this.criteria.addAll(criteria);
-	}
+        
+        private Set<ObligationCriterion> criteria;
+        
+        ObligationCriteria(Collection<ObligationCriterion> criteria){
+                this.criteria = new HashSet<ObligationCriterion>();
+                this.criteria.addAll(criteria);
+        }
 
-	@Override
-	public boolean match(Obligation obligation) {
-		for(ObligationCriterion criterion: criteria){
-			if(!criterion.match(obligation)){
-				return false;
-			}
-		}
-		return true;
-	}
+        @Override
+        public boolean match(Obligation obligation) {
+                for(ObligationCriterion criterion: criteria){
+                        if(!criterion.match(obligation)){
+                                return false;
+                        }
+                }
+                return true;
+        }
 }

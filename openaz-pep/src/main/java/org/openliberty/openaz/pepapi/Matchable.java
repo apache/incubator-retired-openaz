@@ -27,13 +27,13 @@ package org.openliberty.openaz.pepapi;
  * @param <T>
  */
 public interface Matchable<T> {
-	
-	/**
-	 * Returns a boolean result after matching the given Object 
-	 * 
-	 * @param t
-	 * @return a <code>boolean</code> value 
-	 */
-	public boolean match(T t);
-	
+        
+        /**
+         * Returns a boolean result after matching the given Object 
+         * 
+         * @param t
+         * @return a <code>boolean</code> value 
+         */
+        public boolean match(T t);
+        
 }

@@ -45,92 +45,92 @@ import com.att.research.xacml.util.StringUtils;
  * @version $Revision: 1.1 $
  */
 public class Base64Binary implements SemanticString {
-	private byte[]	data;
-	
-	/**
-	 * Creates a <code>Base64Binary</code> object from an array of <code>byte</code>s.
-	 * 
-	 * @param dataIn the array of <code>byte</code>s
-	 */
-	public Base64Binary(byte[] dataIn) {
-		this.data	= dataIn;
-	}
-	
-	/**
-	 * Creates a new <code>Base64Binary</code> by parsing the given <code>String</code> as hex binary data.
-	 * 
-	 * @param stringBase64Binary the <code>String</code> to convert
-	 * @return a new <code>Base64Binary</code> from the converted <code>String</code>.
-	 */
-	public static Base64Binary newInstance(String stringBase64Binary) throws DecoderException {
-		if (stringBase64Binary == null) {
-			return null;
-		}
-		byte[]	base64Bytes	= (byte[])new Base64().decode(stringBase64Binary);
-		return new Base64Binary(base64Bytes);
-	}
+        private byte[]	data;
+        
+        /**
+         * Creates a <code>Base64Binary</code> object from an array of <code>byte</code>s.
+         * 
+         * @param dataIn the array of <code>byte</code>s
+         */
+        public Base64Binary(byte[] dataIn) {
+                this.data	= dataIn;
+        }
+        
+        /**
+         * Creates a new <code>Base64Binary</code> by parsing the given <code>String</code> as hex binary data.
+         * 
+         * @param stringBase64Binary the <code>String</code> to convert
+         * @return a new <code>Base64Binary</code> from the converted <code>String</code>.
+         */
+        public static Base64Binary newInstance(String stringBase64Binary) throws DecoderException {
+                if (stringBase64Binary == null) {
+                        return null;
+                }
+                byte[]	base64Bytes	= (byte[])new Base64().decode(stringBase64Binary);
+                return new Base64Binary(base64Bytes);
+        }
 
-	/**
-	 * Gets the array of <code>byte</code>s for this <code>Base64Binary</code>.
-	 * 
-	 * @return the array of <code>byte</code>s for this <code>Base64Binary</code>.
-	 */
-	public byte[] getData() {
-		return this.data;
-	}
-	
-	@Override
-	public int hashCode() {
-		return (this.getData() == null ? 0 : this.getData().hashCode());
-	}
-	
-	@Override
-	public boolean equals(Object obj) {
-		if (obj == null || !(obj instanceof Base64Binary)) {
-			return false;
-		} else if (obj == this) {
-			return true;
-		} else {
-			Base64Binary	hexBinaryObj	= (Base64Binary)obj;
-			if (this.getData() == null) {
-				if (hexBinaryObj.getData() == null) {
-					return true;
-				} else {
-					return false;
-				}
-			} else {
-				if (hexBinaryObj.getData() == null) {
-					return false;
-				} else {
-					return Arrays.equals(this.getData(), hexBinaryObj.getData());
-				}
-			}
-		}
-	}
-	
-	/**
-	 * Gets the <code>String</code> Base 64 binary representation of this <code>Base64Binary</code> object.
-	 *  
-	 * @return the <code>String</code> Base 64 binary representation of this <code>Base64Binary</code> object.
-	 */
-	public String stringValue() {
-		if (this.getData() == null) {
-			return null;
-		} else {
-			return Base64.encodeBase64String(this.getData());
-		}		
-	}
-	
-	@Override
-	public String toString() {
-		StringBuilder stringBuilder	= new StringBuilder("{");
-		
-		byte[] thisData	= this.getData();
-		if (thisData != null) {
-			stringBuilder.append("data=");
-			stringBuilder.append(StringUtils.toString(thisData));
-		}
-		stringBuilder.append("}");
-		return stringBuilder.toString();
-	}
+        /**
+         * Gets the array of <code>byte</code>s for this <code>Base64Binary</code>.
+         * 
+         * @return the array of <code>byte</code>s for this <code>Base64Binary</code>.
+         */
+        public byte[] getData() {
+                return this.data;
+        }
+        
+        @Override
+        public int hashCode() {
+                return (this.getData() == null ? 0 : this.getData().hashCode());
+        }
+        
+        @Override
+        public boolean equals(Object obj) {
+                if (obj == null || !(obj instanceof Base64Binary)) {
+                        return false;
+                } else if (obj == this) {
+                        return true;
+                } else {
+                        Base64Binary	hexBinaryObj	= (Base64Binary)obj;
+                        if (this.getData() == null) {
+                                if (hexBinaryObj.getData() == null) {
+                                        return true;
+                                } else {
+                                        return false;
+                                }
+                        } else {
+                                if (hexBinaryObj.getData() == null) {
+                                        return false;
+                                } else {
+                                        return Arrays.equals(this.getData(), hexBinaryObj.getData());
+                                }
+                        }
+                }
+        }
+        
+        /**
+         * Gets the <code>String</code> Base 64 binary representation of this <code>Base64Binary</code> object.
+         *  
+         * @return the <code>String</code> Base 64 binary representation of this <code>Base64Binary</code> object.
+         */
+        public String stringValue() {
+                if (this.getData() == null) {
+                        return null;
+                } else {
+                        return Base64.encodeBase64String(this.getData());
+                }		
+        }
+        
+        @Override
+        public String toString() {
+                StringBuilder stringBuilder	= new StringBuilder("{");
+                
+                byte[] thisData	= this.getData();
+                if (thisData != null) {
+                        stringBuilder.append("data=");
+                        stringBuilder.append(StringUtils.toString(thisData));
+                }
+                stringBuilder.append("}");
+                return stringBuilder.toString();
+        }
 }

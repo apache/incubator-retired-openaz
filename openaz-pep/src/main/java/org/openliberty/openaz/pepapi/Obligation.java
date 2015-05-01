@@ -42,7 +42,7 @@ import java.util.Map;
  *
  */
 public interface Obligation {
-	
+        
     /**
      * Return the Id for this Obligation.
      *

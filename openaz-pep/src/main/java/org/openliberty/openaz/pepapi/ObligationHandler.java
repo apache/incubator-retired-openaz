@@ -27,5 +27,5 @@ package org.openliberty.openaz.pepapi;
  *
  */
 public interface ObligationHandler extends Matchable<Obligation>, ObligationStoreAware {
-	
+        
 }

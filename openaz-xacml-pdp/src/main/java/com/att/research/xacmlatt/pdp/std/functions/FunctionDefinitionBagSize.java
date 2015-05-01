@@ -80,51 +80,51 @@ import com.att.research.xacmlatt.pdp.policy.FunctionArgument;
 public class FunctionDefinitionBagSize<I> extends FunctionDefinitionBase<BigInteger, I> {
 
 
-	/**
-	 * Constructor - need dataType input because of java Generic type-erasure during compilation.
-	 * 
-	 * @param idIn
-	 * @param dataTypeArgsIn
-	 */
-	public FunctionDefinitionBagSize(Identifier idIn, DataType<I> dataTypeArgsIn) {
-		super(idIn, DataTypes.DT_INTEGER, dataTypeArgsIn, false);
-	}
+        /**
+         * Constructor - need dataType input because of java Generic type-erasure during compilation.
+         * 
+         * @param idIn
+         * @param dataTypeArgsIn
+         */
+        public FunctionDefinitionBagSize(Identifier idIn, DataType<I> dataTypeArgsIn) {
+                super(idIn, DataTypes.DT_INTEGER, dataTypeArgsIn, false);
+        }
 
-	/**
-	 * Evaluates this <code>FunctionDefinition</code> on the given <code>List</code> of{@link com.att.research.xacmlatt.pdp.policy.FunctionArgument}s.
-	 * 
-	 * @param evaluationContext the {@link com.att.research.xacmlatt.pdp.eval.EvaluationContext} to use in the evaluation
-	 * @param arguments the <code>List</code> of <code>FunctionArgument</code>s for the evaluation
-	 * @return an {@link com.att.research.xacmlatt.pdp.policy.ExpressionResult} with the results of the call
-	 */
-	@Override
-	public ExpressionResult evaluate(EvaluationContext evaluationContext, List<FunctionArgument> arguments) {
+        /**
+         * Evaluates this <code>FunctionDefinition</code> on the given <code>List</code> of{@link com.att.research.xacmlatt.pdp.policy.FunctionArgument}s.
+         * 
+         * @param evaluationContext the {@link com.att.research.xacmlatt.pdp.eval.EvaluationContext} to use in the evaluation
+         * @param arguments the <code>List</code> of <code>FunctionArgument</code>s for the evaluation
+         * @return an {@link com.att.research.xacmlatt.pdp.policy.ExpressionResult} with the results of the call
+         */
+        @Override
+        public ExpressionResult evaluate(EvaluationContext evaluationContext, List<FunctionArgument> arguments) {
 
-		if (arguments == null || arguments.size() != 1) {
-			return ExpressionResult.newError(new StdStatus(StdStatusCode.STATUS_CODE_PROCESSING_ERROR, this.getShortFunctionId() + " Expected 1 argument, got " + 
-					((arguments == null) ? "null" : arguments.size()) ));
-		}
-		
-		FunctionArgument argument = arguments.get(0);
-		ConvertedArgument<Bag> convertedArgument = new ConvertedArgument<Bag>(argument, null, true);
+                if (arguments == null || arguments.size() != 1) {
+                        return ExpressionResult.newError(new StdStatus(StdStatusCode.STATUS_CODE_PROCESSING_ERROR, this.getShortFunctionId() + " Expected 1 argument, got " + 
+                                        ((arguments == null) ? "null" : arguments.size()) ));
+                }
+                
+                FunctionArgument argument = arguments.get(0);
+                ConvertedArgument<Bag> convertedArgument = new ConvertedArgument<Bag>(argument, null, true);
 
-		if ( ! convertedArgument.isOk()) {
-			return ExpressionResult.newError(getFunctionStatus(convertedArgument.getStatus()));
-		}
-		
-		Bag bag = convertedArgument.getBag();
-		
-		if (bag == null) {
-			return ExpressionResult.newError(new StdStatus(StdStatusCode.STATUS_CODE_PROCESSING_ERROR, this.getShortFunctionId() + " Bag is null" ));
+                if ( ! convertedArgument.isOk()) {
+                        return ExpressionResult.newError(getFunctionStatus(convertedArgument.getStatus()));
+                }
+                
+                Bag bag = convertedArgument.getBag();
+                
+                if (bag == null) {
+                        return ExpressionResult.newError(new StdStatus(StdStatusCode.STATUS_CODE_PROCESSING_ERROR, this.getShortFunctionId() + " Bag is null" ));
 
-		}
+                }
 
 
-		// type is correct, so create a wrapper and return it
-		AttributeValue<BigInteger> resultAttributeValue = new StdAttributeValue<BigInteger>(XACML.ID_DATATYPE_INTEGER, BigInteger.valueOf(bag.size()));
-		return ExpressionResult.newSingle(resultAttributeValue);
-	}
+                // type is correct, so create a wrapper and return it
+                AttributeValue<BigInteger> resultAttributeValue = new StdAttributeValue<BigInteger>(XACML.ID_DATATYPE_INTEGER, BigInteger.valueOf(bag.size()));
+                return ExpressionResult.newSingle(resultAttributeValue);
+        }
 
-	
+        
 
 }

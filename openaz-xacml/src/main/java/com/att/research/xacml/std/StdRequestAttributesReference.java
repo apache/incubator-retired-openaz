@@ -40,44 +40,44 @@ import com.att.research.xacml.util.ObjUtil;
  * @version $Revision: 1.1 $
  */
 public class StdRequestAttributesReference implements RequestAttributesReference {
-	private String	referenceId;
+        private String	referenceId;
 
-	/**
-	 * Creates a new <code>StdRequestAttributesReference</code> with the given <code>String</code> representing the xml:Id.
-	 * 
-	 * @param referenceIdIn the <code>String</code> representing the xml:Id of the XACML AttributesReference represented by the new <code>StdRequestAttributesReference</code>.
-	 */
-	public StdRequestAttributesReference(String referenceIdIn) {
-		this.referenceId	= referenceIdIn;
-	}
+        /**
+         * Creates a new <code>StdRequestAttributesReference</code> with the given <code>String</code> representing the xml:Id.
+         * 
+         * @param referenceIdIn the <code>String</code> representing the xml:Id of the XACML AttributesReference represented by the new <code>StdRequestAttributesReference</code>.
+         */
+        public StdRequestAttributesReference(String referenceIdIn) {
+                this.referenceId	= referenceIdIn;
+        }
 
-	@Override
-	public String getReferenceId() {
-		return this.referenceId;
-	}
-	
-	@Override
-	public boolean equals(Object obj) {
-		if (obj == this) {
-			return true;
-		} else if (obj == null || !(obj instanceof RequestAttributesReference)) {
-			return false;
-		} else {
-			RequestAttributesReference objRequestAttributesReference	= (RequestAttributesReference)obj;
-			return ObjUtil.equalsAllowNull(this.getReferenceId(), objRequestAttributesReference.getReferenceId());
-		}
-	}
-	
-	@Override
-	public String toString() {
-		StringBuilder	stringBuilder	= new StringBuilder("{");
-		Object			objectToDump	= this.getReferenceId();
-		if (objectToDump != null) {
-			stringBuilder.append("referenceId=");
-			stringBuilder.append((String)objectToDump);
-		}
-		stringBuilder.append('}');
-		return stringBuilder.toString();
-	}
+        @Override
+        public String getReferenceId() {
+                return this.referenceId;
+        }
+        
+        @Override
+        public boolean equals(Object obj) {
+                if (obj == this) {
+                        return true;
+                } else if (obj == null || !(obj instanceof RequestAttributesReference)) {
+                        return false;
+                } else {
+                        RequestAttributesReference objRequestAttributesReference	= (RequestAttributesReference)obj;
+                        return ObjUtil.equalsAllowNull(this.getReferenceId(), objRequestAttributesReference.getReferenceId());
+                }
+        }
+        
+        @Override
+        public String toString() {
+                StringBuilder	stringBuilder	= new StringBuilder("{");
+                Object			objectToDump	= this.getReferenceId();
+                if (objectToDump != null) {
+                        stringBuilder.append("referenceId=");
+                        stringBuilder.append((String)objectToDump);
+                }
+                stringBuilder.append('}');
+                return stringBuilder.toString();
+        }
 
 }

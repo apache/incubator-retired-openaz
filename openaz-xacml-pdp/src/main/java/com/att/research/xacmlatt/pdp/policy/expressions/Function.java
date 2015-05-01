@@ -52,74 +52,74 @@ import com.att.research.xacmlatt.pdp.policy.PolicyDefaults;
  * @version $Revision: 1.1 $
  */
 public class Function extends Expression {
-	private Identifier functionId;
-	private AttributeValue<URI> attributeValue;
-	private ExpressionResult expressionResultOk;
-	
-	protected ExpressionResult getExpressionResultOk() {
-		if (this.expressionResultOk == null) {
-			this.expressionResultOk	= ExpressionResult.newSingle(this.getAttributeValue());
-		}
-		return this.expressionResultOk;
-	}
-	
-	public Function(StatusCode statusCodeIn, String statusMessageIn) {
-		super(statusCodeIn, statusMessageIn);
-	}
+        private Identifier functionId;
+        private AttributeValue<URI> attributeValue;
+        private ExpressionResult expressionResultOk;
+        
+        protected ExpressionResult getExpressionResultOk() {
+                if (this.expressionResultOk == null) {
+                        this.expressionResultOk	= ExpressionResult.newSingle(this.getAttributeValue());
+                }
+                return this.expressionResultOk;
+        }
+        
+        public Function(StatusCode statusCodeIn, String statusMessageIn) {
+                super(statusCodeIn, statusMessageIn);
+        }
 
-	public Function(StatusCode statusCodeIn) {
-		super(statusCodeIn);
-	}
+        public Function(StatusCode statusCodeIn) {
+                super(statusCodeIn);
+        }
 
-	public Function() {
-	}
-	
-	public Function(Identifier functionIdIn) {
-		this.functionId	= functionIdIn;
-	}
-	
-	public Identifier getFunctionId() {
-		return this.functionId;
-	}
-	
-	public void setFunctionId(Identifier identifier) {
-		this.functionId	= identifier;
-		this.attributeValue	= null;
-		this.expressionResultOk	= null;
-	}
-	
-	public AttributeValue<URI> getAttributeValue() {
-		if (this.attributeValue == null) {
-			Identifier thisFunctionId	= this.getFunctionId();
-			if (thisFunctionId != null) {
-				try {
-					this.attributeValue	= DataTypes.DT_ANYURI.createAttributeValue(thisFunctionId);
-				} catch (DataTypeException ex) {
-					this.attributeValue	= null;
-				}
-			}
-		}
-		return this.attributeValue;
-	}
+        public Function() {
+        }
+        
+        public Function(Identifier functionIdIn) {
+                this.functionId	= functionIdIn;
+        }
+        
+        public Identifier getFunctionId() {
+                return this.functionId;
+        }
+        
+        public void setFunctionId(Identifier identifier) {
+                this.functionId	= identifier;
+                this.attributeValue	= null;
+                this.expressionResultOk	= null;
+        }
+        
+        public AttributeValue<URI> getAttributeValue() {
+                if (this.attributeValue == null) {
+                        Identifier thisFunctionId	= this.getFunctionId();
+                        if (thisFunctionId != null) {
+                                try {
+                                        this.attributeValue	= DataTypes.DT_ANYURI.createAttributeValue(thisFunctionId);
+                                } catch (DataTypeException ex) {
+                                        this.attributeValue	= null;
+                                }
+                        }
+                }
+                return this.attributeValue;
+        }
 
-	@Override
-	public ExpressionResult evaluate(EvaluationContext evaluationContext, PolicyDefaults policyDefaults) throws EvaluationException {
-		if (!this.validate()) {
-			return ExpressionResult.newError(new StdStatus(this.getStatusCode(), this.getStatusMessage()));
-		} else {
-			return this.getExpressionResultOk();
-		}
-	}
+        @Override
+        public ExpressionResult evaluate(EvaluationContext evaluationContext, PolicyDefaults policyDefaults) throws EvaluationException {
+                if (!this.validate()) {
+                        return ExpressionResult.newError(new StdStatus(this.getStatusCode(), this.getStatusMessage()));
+                } else {
+                        return this.getExpressionResultOk();
+                }
+        }
 
-	@Override
-	protected boolean validateComponent() {
-		if (this.getFunctionId() == null) {
-			this.setStatus(StdStatusCode.STATUS_CODE_SYNTAX_ERROR, "Missing FunctionId");
-			return false;
-		} else {
-			this.setStatus(StdStatusCode.STATUS_CODE_OK, null);
-			return true;
-		}
-	}
+        @Override
+        protected boolean validateComponent() {
+                if (this.getFunctionId() == null) {
+                        this.setStatus(StdStatusCode.STATUS_CODE_SYNTAX_ERROR, "Missing FunctionId");
+                        return false;
+                } else {
+                        this.setStatus(StdStatusCode.STATUS_CODE_OK, null);
+                        return true;
+                }
+        }
 
 }

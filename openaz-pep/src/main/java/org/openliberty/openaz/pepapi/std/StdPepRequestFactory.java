@@ -31,30 +31,30 @@ import java.util.List;
 
 
 final class StdPepRequestFactory implements PepRequestFactory {
-	
-	private static final Log logger = LogFactory.getLog(StdPepRequestFactory.class);
+        
+        private static final Log logger = LogFactory.getLog(StdPepRequestFactory.class);
 
-	private final PepConfig pepConfig;
+        private final PepConfig pepConfig;
 
-	private final MapperRegistry mapperRegistry;
+        private final MapperRegistry mapperRegistry;
 
-	/**
-	 *
-	 * @param pepConfig
-	 */
-	StdPepRequestFactory(PepConfig pepConfig, MapperRegistry mapperRegistry) {
-		this.pepConfig = pepConfig;
-		this.mapperRegistry = mapperRegistry;
-	}
+        /**
+         *
+         * @param pepConfig
+         */
+        StdPepRequestFactory(PepConfig pepConfig, MapperRegistry mapperRegistry) {
+                this.pepConfig = pepConfig;
+                this.mapperRegistry = mapperRegistry;
+        }
 
-	@Override
-	public PepRequest newPepRequest(Object[] objects) {
-		return StdPepRequest.newInstance(pepConfig, mapperRegistry, objects);
-	}
+        @Override
+        public PepRequest newPepRequest(Object[] objects) {
+                return StdPepRequest.newInstance(pepConfig, mapperRegistry, objects);
+        }
 
-	@Override
-	public PepRequest newBulkPepRequest(List<?> associations, Object[] objects) {
-		return MultiRequest.newInstance(pepConfig, mapperRegistry, associations, objects);
-	}
+        @Override
+        public PepRequest newBulkPepRequest(List<?> associations, Object[] objects) {
+                return MultiRequest.newInstance(pepConfig, mapperRegistry, associations, objects);
+        }
 
 }

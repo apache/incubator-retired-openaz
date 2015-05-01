@@ -43,33 +43,33 @@ import com.att.research.xacml.api.XACML3;
  * @version $Revision: 1.1 $
  */
 public class DataTypeDayTimeDuration extends DataTypeSemanticStringBase<XPathDayTimeDuration> {
-	private static final DataTypeDayTimeDuration	singleInstance	= new DataTypeDayTimeDuration();
-	
-	private DataTypeDayTimeDuration() {
-		super(XACML3.ID_DATATYPE_DAYTIMEDURATION, XPathDayTimeDuration.class);
-	}
-	
-	public static DataTypeDayTimeDuration newInstance() {
-		return singleInstance;
-	}
+        private static final DataTypeDayTimeDuration	singleInstance	= new DataTypeDayTimeDuration();
+        
+        private DataTypeDayTimeDuration() {
+                super(XACML3.ID_DATATYPE_DAYTIMEDURATION, XPathDayTimeDuration.class);
+        }
+        
+        public static DataTypeDayTimeDuration newInstance() {
+                return singleInstance;
+        }
 
-	@Override
-	public XPathDayTimeDuration convert(Object source) throws DataTypeException {
-		if (source == null || (source instanceof XPathDayTimeDuration)) {
-			return (XPathDayTimeDuration)source;
-		} else {
-			String stringValue	= this.convertToString(source);
-			if (stringValue == null) {
-				return null;
-			}
-			XPathDayTimeDuration	xpathDayTimeDuration	= null;
-			try {
-				xpathDayTimeDuration	= XPathDayTimeDuration.newInstance(stringValue);
-			} catch (ParseException ex) {
-				throw new DataTypeException(this, "Failed to convert \"" + source.getClass().getCanonicalName() + "\" with value \"" + stringValue + "\" to DayTimeDuration", ex);
-			}
-			return xpathDayTimeDuration;
-		}
-	}
+        @Override
+        public XPathDayTimeDuration convert(Object source) throws DataTypeException {
+                if (source == null || (source instanceof XPathDayTimeDuration)) {
+                        return (XPathDayTimeDuration)source;
+                } else {
+                        String stringValue	= this.convertToString(source);
+                        if (stringValue == null) {
+                                return null;
+                        }
+                        XPathDayTimeDuration	xpathDayTimeDuration	= null;
+                        try {
+                                xpathDayTimeDuration	= XPathDayTimeDuration.newInstance(stringValue);
+                        } catch (ParseException ex) {
+                                throw new DataTypeException(this, "Failed to convert \"" + source.getClass().getCanonicalName() + "\" with value \"" + stringValue + "\" to DayTimeDuration", ex);
+                        }
+                        return xpathDayTimeDuration;
+                }
+        }
 
 }

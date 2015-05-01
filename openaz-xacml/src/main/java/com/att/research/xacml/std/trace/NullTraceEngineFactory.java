@@ -43,25 +43,25 @@ import com.att.research.xacml.api.trace.TraceEngineFactory;
  * @version $Revision$
  */
 public class NullTraceEngineFactory extends TraceEngineFactory {
-	/**
-	 * Creates a new <code>NullTraceEngineFactory</code>
-	 */
-	public NullTraceEngineFactory() {
-	}
+        /**
+         * Creates a new <code>NullTraceEngineFactory</code>
+         */
+        public NullTraceEngineFactory() {
+        }
 
-	/**
-	 * Creates a new <code>NullTraceEngineFactory</code>
-	 */
-	public NullTraceEngineFactory(Properties properties) {
-	}
+        /**
+         * Creates a new <code>NullTraceEngineFactory</code>
+         */
+        public NullTraceEngineFactory(Properties properties) {
+        }
 
-	@Override
-	public TraceEngine getTraceEngine() {
-		return NullTraceEngine.newInstance();
-	}
+        @Override
+        public TraceEngine getTraceEngine() {
+                return NullTraceEngine.newInstance();
+        }
 
-	@Override
-	public TraceEngine getTraceEngine(Properties properties) {
-		return NullTraceEngine.newInstance(properties);
-	}
+        @Override
+        public TraceEngine getTraceEngine(Properties properties) {
+                return NullTraceEngine.newInstance(properties);
+        }
 }

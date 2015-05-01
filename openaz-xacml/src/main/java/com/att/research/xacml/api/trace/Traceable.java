@@ -39,20 +39,20 @@ package com.att.research.xacml.api.trace;
  * @version $Revision$
  */
 public interface Traceable {
-	/**
-	 * Gets the <code>String</code> identifier for the object that caused the {@link com.att.research.xacml.api.trace.TraceEvent} as a result
-	 * of a policy evaluation method.
-	 * Implementations must not return <code>null</code>.
-	 * 
-	 * @return the <code>String</code> identifier for the object that caused the <code>TraceEvent</code>.
-	 */
-	public String getTraceId();
-	
-	/**
-	 * Gets the <code>Traceable</code> that caused the evaluation method on this <code>Traceable</code> to be called.  If
-	 * there is no known causing object, this method should return <code>null</code>.
-	 *  
-	 * @return the <code>Traceable</code> that caused the evaluation method on this <code>Traceable</code> to be called.
-	 */
-	public Traceable getCause();
+        /**
+         * Gets the <code>String</code> identifier for the object that caused the {@link com.att.research.xacml.api.trace.TraceEvent} as a result
+         * of a policy evaluation method.
+         * Implementations must not return <code>null</code>.
+         * 
+         * @return the <code>String</code> identifier for the object that caused the <code>TraceEvent</code>.
+         */
+        public String getTraceId();
+        
+        /**
+         * Gets the <code>Traceable</code> that caused the evaluation method on this <code>Traceable</code> to be called.  If
+         * there is no known causing object, this method should return <code>null</code>.
+         *  
+         * @return the <code>Traceable</code> that caused the evaluation method on this <code>Traceable</code> to be called.
+         */
+        public Traceable getCause();
 }

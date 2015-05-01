@@ -55,21 +55,21 @@ import com.att.research.xacml.std.datatypes.DataTypes;
  */
 public class FunctionDefinitionStringEqualIgnoreCase extends FunctionDefinitionEquality<String> {
 
-	/**
-	 * ASSUMES that equalsIgnoreCase provides the same result as calling string-normalize-to-lower-case on both strings and then comparing.
-	 */
-	@Override
-	protected boolean isEqual(String s1, String s2) {
-		return s1.equalsIgnoreCase(s2);
-	}
-	
-	/**
-	 * Creates a new <code>FunctionDefinitionStringEqualIgnoreCase</code> with the given <code>Identifier</code>.
-	 * 
-	 * @param idIn the <code>Identifier</code> for the new <code>FunctionDefinitionStringEqualIgnoreCase</code>
-	 */
-	public FunctionDefinitionStringEqualIgnoreCase(Identifier idIn) {
-		super(idIn, DataTypes.DT_STRING);
-	}
+        /**
+         * ASSUMES that equalsIgnoreCase provides the same result as calling string-normalize-to-lower-case on both strings and then comparing.
+         */
+        @Override
+        protected boolean isEqual(String s1, String s2) {
+                return s1.equalsIgnoreCase(s2);
+        }
+        
+        /**
+         * Creates a new <code>FunctionDefinitionStringEqualIgnoreCase</code> with the given <code>Identifier</code>.
+         * 
+         * @param idIn the <code>Identifier</code> for the new <code>FunctionDefinitionStringEqualIgnoreCase</code>
+         */
+        public FunctionDefinitionStringEqualIgnoreCase(Identifier idIn) {
+                super(idIn, DataTypes.DT_STRING);
+        }
 
 }

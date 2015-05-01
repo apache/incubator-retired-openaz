@@ -53,46 +53,46 @@ import com.att.research.xacmlatt.pdp.policy.PolicySetChild;
  */
 public class LegacyDenyOverridesPolicy extends CombiningAlgorithmBase<PolicySetChild> {
 
-	public LegacyDenyOverridesPolicy(Identifier identifierIn) {
-		super(identifierIn);
-	}
+        public LegacyDenyOverridesPolicy(Identifier identifierIn) {
+                super(identifierIn);
+        }
 
-	@Override
-	public EvaluationResult combine(EvaluationContext evaluationContext, List<CombiningElement<PolicySetChild>> elements, List<CombinerParameter> combinerParameters) throws EvaluationException {
-		boolean atLeastOnePermit				= false;
+        @Override
+        public EvaluationResult combine(EvaluationContext evaluationContext, List<CombiningElement<PolicySetChild>> elements, List<CombinerParameter> combinerParameters) throws EvaluationException {
+                boolean atLeastOnePermit				= false;
 
-		EvaluationResult combinedResult			= new EvaluationResult(Decision.PERMIT);
-		
-		Iterator<CombiningElement<PolicySetChild>> iterElements	= elements.iterator();
-		while (iterElements.hasNext()) {
-			CombiningElement<PolicySetChild> combiningElement		= iterElements.next();
-			EvaluationResult evaluationResultElement	= combiningElement.evaluate(evaluationContext);
-			
-			assert(evaluationResultElement != null);
-			switch(evaluationResultElement.getDecision()) {
-			case DENY:
-				return evaluationResultElement;
-			case INDETERMINATE:
-			case INDETERMINATE_DENYPERMIT:
-			case INDETERMINATE_DENY:
-			case INDETERMINATE_PERMIT:
-				return new EvaluationResult(Decision.DENY, StdStatus.STATUS_OK);
-			case NOTAPPLICABLE:
-				break;
-			case PERMIT:
-				atLeastOnePermit	= true;
-				combinedResult.merge(evaluationResultElement);
-				break;
-			default:
-				throw new EvaluationException("Illegal Decision: \"" + evaluationResultElement.getDecision().toString());
-			}
-		}
-		
-		if (atLeastOnePermit) {
-			return combinedResult;
-		} else {
-			return new EvaluationResult(Decision.NOTAPPLICABLE);
-		}
-	}
+                EvaluationResult combinedResult			= new EvaluationResult(Decision.PERMIT);
+                
+                Iterator<CombiningElement<PolicySetChild>> iterElements	= elements.iterator();
+                while (iterElements.hasNext()) {
+                        CombiningElement<PolicySetChild> combiningElement		= iterElements.next();
+                        EvaluationResult evaluationResultElement	= combiningElement.evaluate(evaluationContext);
+                        
+                        assert(evaluationResultElement != null);
+                        switch(evaluationResultElement.getDecision()) {
+                        case DENY:
+                                return evaluationResultElement;
+                        case INDETERMINATE:
+                        case INDETERMINATE_DENYPERMIT:
+                        case INDETERMINATE_DENY:
+                        case INDETERMINATE_PERMIT:
+                                return new EvaluationResult(Decision.DENY, StdStatus.STATUS_OK);
+                        case NOTAPPLICABLE:
+                                break;
+                        case PERMIT:
+                                atLeastOnePermit	= true;
+                                combinedResult.merge(evaluationResultElement);
+                                break;
+                        default:
+                                throw new EvaluationException("Illegal Decision: \"" + evaluationResultElement.getDecision().toString());
+                        }
+                }
+                
+                if (atLeastOnePermit) {
+                        return combinedResult;
+                } else {
+                        return new EvaluationResult(Decision.NOTAPPLICABLE);
+                }
+        }
 
 }

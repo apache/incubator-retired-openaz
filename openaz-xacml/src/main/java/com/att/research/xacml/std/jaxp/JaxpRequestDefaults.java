@@ -45,23 +45,23 @@ import com.att.research.xacml.std.StdRequestDefaults;
  */
 public class JaxpRequestDefaults extends StdRequestDefaults {
 
-	protected JaxpRequestDefaults(URI xpathVersionIn) {
-		super(xpathVersionIn);
-	}
-	
-	public static JaxpRequestDefaults newInstance(RequestDefaultsType requestDefaultsType) {
-		if (requestDefaultsType == null) {
-			throw new NullPointerException("Null RequestDefaultsType");
-		}
-		URI	uriXPathVersion	= null;
-		if (requestDefaultsType.getXPathVersion() != null) {
-			try {
-				uriXPathVersion	= new URI(requestDefaultsType.getXPathVersion());
-			} catch (Exception ex) {
-				throw new IllegalArgumentException("Invalid URI for XPathVersion \"" + requestDefaultsType.getXPathVersion() + "\"", ex);
-			}
-		}
-		return new JaxpRequestDefaults(uriXPathVersion);
-	}
+        protected JaxpRequestDefaults(URI xpathVersionIn) {
+                super(xpathVersionIn);
+        }
+        
+        public static JaxpRequestDefaults newInstance(RequestDefaultsType requestDefaultsType) {
+                if (requestDefaultsType == null) {
+                        throw new NullPointerException("Null RequestDefaultsType");
+                }
+                URI	uriXPathVersion	= null;
+                if (requestDefaultsType.getXPathVersion() != null) {
+                        try {
+                                uriXPathVersion	= new URI(requestDefaultsType.getXPathVersion());
+                        } catch (Exception ex) {
+                                throw new IllegalArgumentException("Invalid URI for XPathVersion \"" + requestDefaultsType.getXPathVersion() + "\"", ex);
+                        }
+                }
+                return new JaxpRequestDefaults(uriXPathVersion);
+        }
 
 }

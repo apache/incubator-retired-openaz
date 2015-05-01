@@ -41,26 +41,26 @@ import java.util.Set;
  * The following allows us to use Jackson to convert sub-types of this type into JSON and back to objects.
  */
 @JsonTypeInfo(  
-	    use = JsonTypeInfo.Id.NAME,  
-	    include = JsonTypeInfo.As.PROPERTY,  
-	    property = "PDPType")  
+            use = JsonTypeInfo.Id.NAME,  
+            include = JsonTypeInfo.As.PROPERTY,  
+            property = "PDPType")  
 @JsonSubTypes({  
-	    @Type(value = StdPDP.class, name = "StdPDP") })
+            @Type(value = StdPDP.class, name = "StdPDP") })
 public interface PDP {
-	
-	public String 						getId();
-	
-	public String						getName();
-	
-	public void							setName(String name);
-	
-	public String						getDescription();
-	
-	public void							setDescription(String description);
-	
-	public PDPStatus					getStatus();
+        
+        public String 						getId();
+        
+        public String						getName();
+        
+        public void							setName(String name);
+        
+        public String						getDescription();
+        
+        public void							setDescription(String description);
+        
+        public PDPStatus					getStatus();
 
-	public Set<PDPPolicy>	 			getPolicies();
+        public Set<PDPPolicy>	 			getPolicies();
 
-	public Set<PDPPIPConfig> 			getPipConfigs();
+        public Set<PDPPIPConfig> 			getPipConfigs();
 }

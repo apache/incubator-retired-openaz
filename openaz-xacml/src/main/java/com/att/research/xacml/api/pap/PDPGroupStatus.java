@@ -42,52 +42,52 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
  * The following allows us to use Jackson to convert sub-types of this type into JSON and back to objects.
  */
 @JsonTypeInfo(  
-	    use = JsonTypeInfo.Id.NAME,  
-	    include = JsonTypeInfo.As.PROPERTY,  
-	    property = "PDPGroupStatusType")  
+            use = JsonTypeInfo.Id.NAME,  
+            include = JsonTypeInfo.As.PROPERTY,  
+            property = "PDPGroupStatusType")  
 @JsonSubTypes({  
-	    @Type(value = StdPDPGroupStatus.class, name = "StdPDPGroupStatus") }) 
+            @Type(value = StdPDPGroupStatus.class, name = "StdPDPGroupStatus") }) 
 public interface PDPGroupStatus {
-	
-	public enum Status {
-		OK,
-		OUT_OF_SYNCH,
-		LOAD_ERRORS,
-		UPDATING_CONFIGURATION,
-		UNKNOWN
-	}
-	
-	Status						getStatus();
-	
-	public Set<String>			getLoadErrors();
-	
-	public Set<String>			getLoadWarnings();
-	
-	public Set<PDPPolicy>		getLoadedPolicies();
-	
-	public Set<PDPPolicy>		getFailedPolicies();
-	
-	public boolean				policiesOK();
-	
-	public Set<PDPPIPConfig>	getLoadedPipConfigs();
-	
-	public Set<PDPPIPConfig>	getFailedPipConfigs();
-	
-	public boolean				pipConfigOK();
-	
-	public Set<PDP>				getInSynchPDPs();
-	
-	public Set<PDP>				getOutOfSynchPDPs();
-	
-	public Set<PDP>				getFailedPDPs();
-	
-	public Set<PDP>				getUpdatingPDPs();
-	
-	public Set<PDP>				getLastUpdateFailedPDPs();
-	
-	public Set<PDP>				getUnknownStatusPDPs();
-	
-	public boolean				pdpsOK();
+        
+        public enum Status {
+                OK,
+                OUT_OF_SYNCH,
+                LOAD_ERRORS,
+                UPDATING_CONFIGURATION,
+                UNKNOWN
+        }
+        
+        Status						getStatus();
+        
+        public Set<String>			getLoadErrors();
+        
+        public Set<String>			getLoadWarnings();
+        
+        public Set<PDPPolicy>		getLoadedPolicies();
+        
+        public Set<PDPPolicy>		getFailedPolicies();
+        
+        public boolean				policiesOK();
+        
+        public Set<PDPPIPConfig>	getLoadedPipConfigs();
+        
+        public Set<PDPPIPConfig>	getFailedPipConfigs();
+        
+        public boolean				pipConfigOK();
+        
+        public Set<PDP>				getInSynchPDPs();
+        
+        public Set<PDP>				getOutOfSynchPDPs();
+        
+        public Set<PDP>				getFailedPDPs();
+        
+        public Set<PDP>				getUpdatingPDPs();
+        
+        public Set<PDP>				getLastUpdateFailedPDPs();
+        
+        public Set<PDP>				getUnknownStatusPDPs();
+        
+        public boolean				pdpsOK();
 
-	public boolean				isGroupOk();
+        public boolean				isGroupOk();
 }

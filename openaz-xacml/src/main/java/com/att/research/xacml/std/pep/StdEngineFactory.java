@@ -38,17 +38,17 @@ import com.att.research.xacml.api.pep.PEPException;
 
 public class StdEngineFactory extends PEPEngineFactory {
 
-	public StdEngineFactory() {
-	}
+        public StdEngineFactory() {
+        }
 
-	@Override
-	public PEPEngine newEngine() throws PEPException {
-		return new StdEngine();
-	}
+        @Override
+        public PEPEngine newEngine() throws PEPException {
+                return new StdEngine();
+        }
 
-	@Override
-	public PEPEngine newEngine(Properties properties) throws PEPException {
-		return new StdEngine(properties);
-	}
+        @Override
+        public PEPEngine newEngine(Properties properties) throws PEPException {
+                return new StdEngine(properties);
+        }
 
 }

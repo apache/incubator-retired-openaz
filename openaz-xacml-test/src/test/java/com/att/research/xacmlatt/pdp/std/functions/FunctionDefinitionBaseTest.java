@@ -56,86 +56,86 @@ import com.att.research.xacmlatt.pdp.std.StdFunctions;
  *
  */
 public class FunctionDefinitionBaseTest {
-	/**
-	 * getId() is pretty trivial, so verifying one should be enough to check that the mechanism is working ok
-	 */
-	@Test
-	public void testGetId() {
-		FunctionDefinition fd = StdFunctions.FD_STRING_EQUAL;
-		Identifier id = fd.getId();
-		assertTrue(XACML3.ID_FUNCTION_STRING_EQUAL.stringValue().equals(id.stringValue()) );
-	}
+        /**
+         * getId() is pretty trivial, so verifying one should be enough to check that the mechanism is working ok
+         */
+        @Test
+        public void testGetId() {
+                FunctionDefinition fd = StdFunctions.FD_STRING_EQUAL;
+                Identifier id = fd.getId();
+                assertTrue(XACML3.ID_FUNCTION_STRING_EQUAL.stringValue().equals(id.stringValue()) );
+        }
 
-	/**
-	 * check an instance of every result type that we can deal with
-	 */	
-	@Test
-	public void testGetDataType() {
-		
+        /**
+         * check an instance of every result type that we can deal with
+         */	
+        @Test
+        public void testGetDataType() {
+                
 //?? Need functions that return each of these data types except for Boolean which is returned by any of the EQUAL functions
-		FunctionDefinition fdstring = StdFunctions.FD_STRING_NORMALIZE_SPACE;
-		assertEquals(XACML3.ID_DATATYPE_STRING, fdstring.getDataTypeId());
+                FunctionDefinition fdstring = StdFunctions.FD_STRING_NORMALIZE_SPACE;
+                assertEquals(XACML3.ID_DATATYPE_STRING, fdstring.getDataTypeId());
 
-		FunctionDefinition fdboolean = StdFunctions.FD_STRING_EQUAL;
-		assertEquals(XACML3.ID_DATATYPE_BOOLEAN, fdboolean.getDataTypeId());
-		
-		FunctionDefinition fdinteger = StdFunctions.FD_INTEGER_ADD;
-		assertEquals(XACML3.ID_DATATYPE_INTEGER, fdinteger.getDataTypeId());
+                FunctionDefinition fdboolean = StdFunctions.FD_STRING_EQUAL;
+                assertEquals(XACML3.ID_DATATYPE_BOOLEAN, fdboolean.getDataTypeId());
+                
+                FunctionDefinition fdinteger = StdFunctions.FD_INTEGER_ADD;
+                assertEquals(XACML3.ID_DATATYPE_INTEGER, fdinteger.getDataTypeId());
 
-		FunctionDefinition fddouble = StdFunctions.FD_DOUBLE_ADD;
-		assertEquals(XACML3.ID_DATATYPE_DOUBLE, fddouble.getDataTypeId());
+                FunctionDefinition fddouble = StdFunctions.FD_DOUBLE_ADD;
+                assertEquals(XACML3.ID_DATATYPE_DOUBLE, fddouble.getDataTypeId());
 
-		FunctionDefinition fddate = StdFunctions.FD_DATE_BAG;
-		assertEquals(XACML3.ID_DATATYPE_DATE, fddate.getDataTypeId());
+                FunctionDefinition fddate = StdFunctions.FD_DATE_BAG;
+                assertEquals(XACML3.ID_DATATYPE_DATE, fddate.getDataTypeId());
 
-		FunctionDefinition fdtime = StdFunctions.FD_TIME_BAG;
-		assertEquals(XACML3.ID_DATATYPE_TIME, fdtime.getDataTypeId());
+                FunctionDefinition fdtime = StdFunctions.FD_TIME_BAG;
+                assertEquals(XACML3.ID_DATATYPE_TIME, fdtime.getDataTypeId());
 
-		FunctionDefinition fddateTime = StdFunctions.FD_DATETIME_BAG;
-		assertEquals(XACML3.ID_DATATYPE_DATETIME, fddateTime.getDataTypeId());
+                FunctionDefinition fddateTime = StdFunctions.FD_DATETIME_BAG;
+                assertEquals(XACML3.ID_DATATYPE_DATETIME, fddateTime.getDataTypeId());
 
-		FunctionDefinition fddayTimeDuration = StdFunctions.FD_DAYTIMEDURATION_FROM_STRING;
-		assertEquals(XACML3.ID_DATATYPE_DAYTIMEDURATION, fddayTimeDuration.getDataTypeId());
+                FunctionDefinition fddayTimeDuration = StdFunctions.FD_DAYTIMEDURATION_FROM_STRING;
+                assertEquals(XACML3.ID_DATATYPE_DAYTIMEDURATION, fddayTimeDuration.getDataTypeId());
 
-		FunctionDefinition fdyearMonthDuration = StdFunctions.FD_YEARMONTHDURATION_FROM_STRING;
-		assertEquals(XACML3.ID_DATATYPE_YEARMONTHDURATION, fdyearMonthDuration.getDataTypeId());
+                FunctionDefinition fdyearMonthDuration = StdFunctions.FD_YEARMONTHDURATION_FROM_STRING;
+                assertEquals(XACML3.ID_DATATYPE_YEARMONTHDURATION, fdyearMonthDuration.getDataTypeId());
 
-		FunctionDefinition fdanyURI = StdFunctions.FD_ANYURI_FROM_STRING;
-		assertEquals(XACML3.ID_DATATYPE_ANYURI, fdanyURI.getDataTypeId());
+                FunctionDefinition fdanyURI = StdFunctions.FD_ANYURI_FROM_STRING;
+                assertEquals(XACML3.ID_DATATYPE_ANYURI, fdanyURI.getDataTypeId());
 
-		FunctionDefinition fdhexBinary = StdFunctions.FD_HEXBINARY_UNION;
-		assertEquals(XACML3.ID_DATATYPE_HEXBINARY, fdhexBinary.getDataTypeId());
+                FunctionDefinition fdhexBinary = StdFunctions.FD_HEXBINARY_UNION;
+                assertEquals(XACML3.ID_DATATYPE_HEXBINARY, fdhexBinary.getDataTypeId());
 
-		FunctionDefinition fdbase64Binary = StdFunctions.FD_BASE64BINARY_UNION;
-		assertEquals(XACML3.ID_DATATYPE_BASE64BINARY, fdbase64Binary.getDataTypeId());
+                FunctionDefinition fdbase64Binary = StdFunctions.FD_BASE64BINARY_UNION;
+                assertEquals(XACML3.ID_DATATYPE_BASE64BINARY, fdbase64Binary.getDataTypeId());
 
-		FunctionDefinition fdrfc822Name = StdFunctions.FD_RFC822NAME_FROM_STRING;
-		assertEquals(XACML3.ID_DATATYPE_RFC822NAME, fdrfc822Name.getDataTypeId());
+                FunctionDefinition fdrfc822Name = StdFunctions.FD_RFC822NAME_FROM_STRING;
+                assertEquals(XACML3.ID_DATATYPE_RFC822NAME, fdrfc822Name.getDataTypeId());
 
-		FunctionDefinition fdx500Name = StdFunctions.FD_X500NAME_FROM_STRING;
-		assertEquals(XACML3.ID_DATATYPE_X500NAME, fdx500Name.getDataTypeId());
+                FunctionDefinition fdx500Name = StdFunctions.FD_X500NAME_FROM_STRING;
+                assertEquals(XACML3.ID_DATATYPE_X500NAME, fdx500Name.getDataTypeId());
 
 //TODO - There are currently no functions that return XPathExpression objects
 //		FunctionDefinition fdxpathExpression = StdFunctions.FD_XPATHEXPRESSION_FROM_STRING;
 //		assertEquals(XACML3.ID_DATATYPE_XPATHEXPRESSION, fdxpathExpression.getDataTypeId());
 
-		FunctionDefinition fdipAddress = StdFunctions.FD_IPADDRESS_FROM_STRING;
-		assertEquals(XACML3.ID_DATATYPE_IPADDRESS, fdipAddress.getDataTypeId());
+                FunctionDefinition fdipAddress = StdFunctions.FD_IPADDRESS_FROM_STRING;
+                assertEquals(XACML3.ID_DATATYPE_IPADDRESS, fdipAddress.getDataTypeId());
 
-		FunctionDefinition fddnsName = StdFunctions.FD_DNSNAME_FROM_STRING;
-		assertEquals(XACML3.ID_DATATYPE_DNSNAME, fddnsName.getDataTypeId());
-	}
-	
-	/**
-	 * check the type of return, single vs multiple values
-	 */
-	@Test
-	public void testReturnsBag() {
-		FunctionDefinition fdNotBag = StdFunctions.FD_BOOLEAN_EQUAL;
-		assertFalse(fdNotBag.returnsBag());
-		
-		FunctionDefinitionBag<?> fdBag = (FunctionDefinitionBag<?>) StdFunctions.FD_STRING_BAG;
-		assertTrue(fdBag.returnsBag());
-	}
-	
+                FunctionDefinition fddnsName = StdFunctions.FD_DNSNAME_FROM_STRING;
+                assertEquals(XACML3.ID_DATATYPE_DNSNAME, fddnsName.getDataTypeId());
+        }
+        
+        /**
+         * check the type of return, single vs multiple values
+         */
+        @Test
+        public void testReturnsBag() {
+                FunctionDefinition fdNotBag = StdFunctions.FD_BOOLEAN_EQUAL;
+                assertFalse(fdNotBag.returnsBag());
+                
+                FunctionDefinitionBag<?> fdBag = (FunctionDefinitionBag<?>) StdFunctions.FD_STRING_BAG;
+                assertTrue(fdBag.returnsBag());
+        }
+        
 }

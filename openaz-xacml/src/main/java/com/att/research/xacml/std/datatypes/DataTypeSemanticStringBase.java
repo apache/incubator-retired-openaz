@@ -35,13 +35,13 @@ import com.att.research.xacml.api.Identifier;
 
 public abstract class DataTypeSemanticStringBase<T extends com.att.research.xacml.api.SemanticString> extends DataTypeBase<T> {
 
-	public DataTypeSemanticStringBase(Identifier identifierIn, Class<T> classConvertIn) {
-		super(identifierIn, classConvertIn);
-	}
+        public DataTypeSemanticStringBase(Identifier identifierIn, Class<T> classConvertIn) {
+                super(identifierIn, classConvertIn);
+        }
 
-	@Override
-	public String toStringValue(T source) throws DataTypeException {
-		return (source == null ? null : source.stringValue());
-	}
+        @Override
+        public String toStringValue(T source) throws DataTypeException {
+                return (source == null ? null : source.stringValue());
+        }
 
 }

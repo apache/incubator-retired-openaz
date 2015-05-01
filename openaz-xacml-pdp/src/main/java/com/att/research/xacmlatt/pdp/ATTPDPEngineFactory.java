@@ -49,28 +49,28 @@ import com.att.research.xacmlatt.pdp.eval.EvaluationContextFactory;
  * @version $Revision: 1.4 $
  */
 public class ATTPDPEngineFactory extends PDPEngineFactory {
-	private Log logger	= LogFactory.getLog(this.getClass());
-	
-	public ATTPDPEngineFactory() {
-	}
+        private Log logger	= LogFactory.getLog(this.getClass());
+        
+        public ATTPDPEngineFactory() {
+        }
 
-	@Override
-	public PDPEngine newEngine() throws FactoryException {
-		EvaluationContextFactory evaluationContextFactory	= EvaluationContextFactory.newInstance();
-		if (evaluationContextFactory == null) {
-			this.logger.error("Null EvaluationContextFactory");
-			throw new FactoryException("Null EvaluationContextFactory");
-		}
-		return new ATTPDPEngine(evaluationContextFactory, this.getDefaultBehavior(), this.getScopeResolver());
-	}
+        @Override
+        public PDPEngine newEngine() throws FactoryException {
+                EvaluationContextFactory evaluationContextFactory	= EvaluationContextFactory.newInstance();
+                if (evaluationContextFactory == null) {
+                        this.logger.error("Null EvaluationContextFactory");
+                        throw new FactoryException("Null EvaluationContextFactory");
+                }
+                return new ATTPDPEngine(evaluationContextFactory, this.getDefaultBehavior(), this.getScopeResolver());
+        }
 
-	@Override
-	public PDPEngine newEngine(Properties properties) throws FactoryException {
-		EvaluationContextFactory evaluationContextFactory	= EvaluationContextFactory.newInstance(properties);
-		if (evaluationContextFactory == null) {
-			this.logger.error("Null EvaluationContextFactory");
-			throw new FactoryException("Null EvaluationContextFactory");
-		}
-		return new ATTPDPEngine(evaluationContextFactory, this.getDefaultBehavior(), this.getScopeResolver(), properties);
-	}	
+        @Override
+        public PDPEngine newEngine(Properties properties) throws FactoryException {
+                EvaluationContextFactory evaluationContextFactory	= EvaluationContextFactory.newInstance(properties);
+                if (evaluationContextFactory == null) {
+                        this.logger.error("Null EvaluationContextFactory");
+                        throw new FactoryException("Null EvaluationContextFactory");
+                }
+                return new ATTPDPEngine(evaluationContextFactory, this.getDefaultBehavior(), this.getScopeResolver(), properties);
+        }	
 }

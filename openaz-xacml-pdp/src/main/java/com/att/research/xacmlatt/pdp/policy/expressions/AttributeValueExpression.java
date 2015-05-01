@@ -48,62 +48,62 @@ import com.att.research.xacmlatt.pdp.policy.PolicyDefaults;
  * @version $Revision: 1.1 $
  */
 public class AttributeValueExpression extends Expression {
-	private AttributeValue<?> attributeValue;
-	
-	public AttributeValueExpression(StatusCode statusCodeIn, String statusMessageIn) {
-		super(statusCodeIn, statusMessageIn);
-	}
+        private AttributeValue<?> attributeValue;
+        
+        public AttributeValueExpression(StatusCode statusCodeIn, String statusMessageIn) {
+                super(statusCodeIn, statusMessageIn);
+        }
 
-	public AttributeValueExpression(StatusCode statusCodeIn) {
-		super(statusCodeIn);
-	}
+        public AttributeValueExpression(StatusCode statusCodeIn) {
+                super(statusCodeIn);
+        }
 
-	public AttributeValueExpression() {
-	}
-	
-	public AttributeValueExpression(AttributeValue<?> attributeValueIn) {
-		this.attributeValue	= attributeValueIn;
-	}
-	
-	public AttributeValue<?> getAttributeValue() {
-		return this.attributeValue;
-	}
-	
-	public void setAttributeValue(AttributeValue<?> attributeValueIn) {
-		this.attributeValue	= attributeValueIn;
-	}
-	
-	@Override
-	public ExpressionResult evaluate(EvaluationContext evaluationContext, PolicyDefaults policyDefaults) throws EvaluationException {
-		if (!this.validate()) {
-			return ExpressionResult.newError(new StdStatus(this.getStatusCode(), this.getStatusMessage()));
-		}
-		
-		return ExpressionResult.newSingle(this.getAttributeValue());
-	}
+        public AttributeValueExpression() {
+        }
+        
+        public AttributeValueExpression(AttributeValue<?> attributeValueIn) {
+                this.attributeValue	= attributeValueIn;
+        }
+        
+        public AttributeValue<?> getAttributeValue() {
+                return this.attributeValue;
+        }
+        
+        public void setAttributeValue(AttributeValue<?> attributeValueIn) {
+                this.attributeValue	= attributeValueIn;
+        }
+        
+        @Override
+        public ExpressionResult evaluate(EvaluationContext evaluationContext, PolicyDefaults policyDefaults) throws EvaluationException {
+                if (!this.validate()) {
+                        return ExpressionResult.newError(new StdStatus(this.getStatusCode(), this.getStatusMessage()));
+                }
+                
+                return ExpressionResult.newSingle(this.getAttributeValue());
+        }
 
-	@Override
-	protected boolean validateComponent() {
-		if (this.getAttributeValue() == null) {
-			this.setStatus(StdStatusCode.STATUS_CODE_SYNTAX_ERROR, "Missing AttributeValue");
-			return false;
-		} else {
-			this.setStatus(StdStatusCode.STATUS_CODE_OK, null);
-			return true;
-		}
-	}
-	
-	@Override
-	public String toString() {
-		StringBuilder stringBuilder	= new StringBuilder("{");
-		
-		Object objectToDump;
-		if ((objectToDump = this.getAttributeValue()) != null) {
-			stringBuilder.append("attributeValue=");
-			stringBuilder.append(objectToDump.toString());
-		}
-		stringBuilder.append('}');
-		return stringBuilder.toString();
-	}
+        @Override
+        protected boolean validateComponent() {
+                if (this.getAttributeValue() == null) {
+                        this.setStatus(StdStatusCode.STATUS_CODE_SYNTAX_ERROR, "Missing AttributeValue");
+                        return false;
+                } else {
+                        this.setStatus(StdStatusCode.STATUS_CODE_OK, null);
+                        return true;
+                }
+        }
+        
+        @Override
+        public String toString() {
+                StringBuilder stringBuilder	= new StringBuilder("{");
+                
+                Object objectToDump;
+                if ((objectToDump = this.getAttributeValue()) != null) {
+                        stringBuilder.append("attributeValue=");
+                        stringBuilder.append(objectToDump.toString());
+                }
+                stringBuilder.append('}');
+                return stringBuilder.toString();
+        }
 
 }

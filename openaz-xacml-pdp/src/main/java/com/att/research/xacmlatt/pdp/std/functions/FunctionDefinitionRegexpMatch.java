@@ -67,71 +67,71 @@ import com.att.research.xacmlatt.pdp.policy.FunctionArgument;
  */
 public class FunctionDefinitionRegexpMatch<I> extends FunctionDefinitionBase<Boolean, I> {
 
-	
-	/**
-	 * Constructor - need dataTypeArgs input because of java Generic type-erasure during compilation.
-	 * 
-	 * @param idIn
-	 * @param dataTypeArgsIn
-	 */
-	public FunctionDefinitionRegexpMatch(Identifier idIn, DataType<I> dataTypeArgsIn) {
-		super(idIn, DataTypes.DT_BOOLEAN, dataTypeArgsIn, false);
-	}
+        
+        /**
+         * Constructor - need dataTypeArgs input because of java Generic type-erasure during compilation.
+         * 
+         * @param idIn
+         * @param dataTypeArgsIn
+         */
+        public FunctionDefinitionRegexpMatch(Identifier idIn, DataType<I> dataTypeArgsIn) {
+                super(idIn, DataTypes.DT_BOOLEAN, dataTypeArgsIn, false);
+        }
 
 
-	@Override
-	public ExpressionResult evaluate(EvaluationContext evaluationContext, List<FunctionArgument> arguments) {
+        @Override
+        public ExpressionResult evaluate(EvaluationContext evaluationContext, List<FunctionArgument> arguments) {
 
-		if (arguments == null || arguments.size() != 2) {
-			return ExpressionResult.newError(new StdStatus(StdStatusCode.STATUS_CODE_PROCESSING_ERROR, this.getShortFunctionId() + " Expected 2 arguments, got " + 
-					((arguments == null) ? "null" : arguments.size()) ));
-		}
-		
-		// get the regular expression
-		FunctionArgument regexpArgument = arguments.get(0);
+                if (arguments == null || arguments.size() != 2) {
+                        return ExpressionResult.newError(new StdStatus(StdStatusCode.STATUS_CODE_PROCESSING_ERROR, this.getShortFunctionId() + " Expected 2 arguments, got " + 
+                                        ((arguments == null) ? "null" : arguments.size()) ));
+                }
+                
+                // get the regular expression
+                FunctionArgument regexpArgument = arguments.get(0);
 
-		ConvertedArgument<String> convertedArgument = new ConvertedArgument<String>(regexpArgument, DataTypes.DT_STRING, false);
-		if ( ! convertedArgument.isOk()) {
-			return ExpressionResult.newError(getFunctionStatus(convertedArgument.getStatus()));
-		}
-		
-		// String regexpValue = (String)regexpArgument.getValue().getValue();
-		String regexpValue	= convertedArgument.getValue();
+                ConvertedArgument<String> convertedArgument = new ConvertedArgument<String>(regexpArgument, DataTypes.DT_STRING, false);
+                if ( ! convertedArgument.isOk()) {
+                        return ExpressionResult.newError(getFunctionStatus(convertedArgument.getStatus()));
+                }
+                
+                // String regexpValue = (String)regexpArgument.getValue().getValue();
+                String regexpValue	= convertedArgument.getValue();
 
-		
-		// now get the element to match
-		FunctionArgument elementArgument = arguments.get(1);
-		
-		ConvertedArgument<I> convertedElement = new ConvertedArgument<I>(elementArgument, this.getDataTypeArgs(), false);
-		if ( ! convertedElement.isOk()) {
-			return ExpressionResult.newError(getFunctionStatus(convertedElement.getStatus()));
-		}
-		
-		I elementValueObject = convertedElement.getValue();
+                
+                // now get the element to match
+                FunctionArgument elementArgument = arguments.get(1);
+                
+                ConvertedArgument<I> convertedElement = new ConvertedArgument<I>(elementArgument, this.getDataTypeArgs(), false);
+                if ( ! convertedElement.isOk()) {
+                        return ExpressionResult.newError(getFunctionStatus(convertedElement.getStatus()));
+                }
+                
+                I elementValueObject = convertedElement.getValue();
 
-		String elementValueString;
-		try {
-			elementValueString = this.getDataTypeArgs().toStringValue(elementValueObject);
-		} catch (DataTypeException e) {
-			String message = e.getMessage();
-			if (e.getCause() != null) {
-				message = e.getCause().getMessage();
-			}
-			return ExpressionResult.newError(new StdStatus(StdStatusCode.STATUS_CODE_PROCESSING_ERROR, this.getShortFunctionId() + " " + message));
-		}
-		
-		// ConvertedArgument checks for null value, so do not need to do again here
+                String elementValueString;
+                try {
+                        elementValueString = this.getDataTypeArgs().toStringValue(elementValueObject);
+                } catch (DataTypeException e) {
+                        String message = e.getMessage();
+                        if (e.getCause() != null) {
+                                message = e.getCause().getMessage();
+                        }
+                        return ExpressionResult.newError(new StdStatus(StdStatusCode.STATUS_CODE_PROCESSING_ERROR, this.getShortFunctionId() + " " + message));
+                }
+                
+                // ConvertedArgument checks for null value, so do not need to do again here
 
-		if (elementValueString.matches(regexpValue)) {
-			return ER_TRUE;
-		} else {
-			return ER_FALSE;
-		}
+                if (elementValueString.matches(regexpValue)) {
+                        return ER_TRUE;
+                } else {
+                        return ER_FALSE;
+                }
 
-	}
+        }
 
 
-	
-	
+        
+        
 
 }

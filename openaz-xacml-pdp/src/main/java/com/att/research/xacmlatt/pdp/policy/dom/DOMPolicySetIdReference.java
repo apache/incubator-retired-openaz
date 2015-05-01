@@ -47,32 +47,32 @@ import com.att.research.xacmlatt.pdp.policy.PolicySetIdReference;
  * @version $Revision: 1.2 $
  */
 public class DOMPolicySetIdReference {
-	protected DOMPolicySetIdReference() {
-	}
+        protected DOMPolicySetIdReference() {
+        }
 
-	/**
-	 * Creates a new <code>PolicySetIdReference</code> parsed from the given <code>Node</code> representing a XACML PolicySetIdReference element.
-	 * 
-	 * @param nodePolicySetIdReference the <code>Node</code> representing the XACML PolicySetIdReference element
-	 * @return a new <code>PolicySetIdReference</code> parsed from the given <code>Node</code>
-	 * @throws DOMStructureException if there is an error parsing the <code>Node</code>
-	 */
-	public static PolicySetIdReference newInstance(Node nodePolicySetIdReference, PolicySet policySetParent) throws DOMStructureException {
-		PolicySetIdReference domPolicySetIdReference	= new PolicySetIdReference(policySetParent);
-		
-		try {
-			domPolicySetIdReference.setIdReferenceMatch(DOMIdReferenceMatch.newInstance(nodePolicySetIdReference));
-		} catch (DOMStructureException ex) {
-			domPolicySetIdReference.setStatus(StdStatusCode.STATUS_CODE_SYNTAX_ERROR, ex.getMessage());
-			if (DOMProperties.throwsExceptions()) {
-				throw ex;
-			}
-		}
-		
-		return domPolicySetIdReference;
-	}
-	
-	public static boolean repair(Node nodePolicySetIdReference) throws DOMStructureException {
-		return DOMIdReferenceMatch.repair(nodePolicySetIdReference);
-	}
+        /**
+         * Creates a new <code>PolicySetIdReference</code> parsed from the given <code>Node</code> representing a XACML PolicySetIdReference element.
+         * 
+         * @param nodePolicySetIdReference the <code>Node</code> representing the XACML PolicySetIdReference element
+         * @return a new <code>PolicySetIdReference</code> parsed from the given <code>Node</code>
+         * @throws DOMStructureException if there is an error parsing the <code>Node</code>
+         */
+        public static PolicySetIdReference newInstance(Node nodePolicySetIdReference, PolicySet policySetParent) throws DOMStructureException {
+                PolicySetIdReference domPolicySetIdReference	= new PolicySetIdReference(policySetParent);
+                
+                try {
+                        domPolicySetIdReference.setIdReferenceMatch(DOMIdReferenceMatch.newInstance(nodePolicySetIdReference));
+                } catch (DOMStructureException ex) {
+                        domPolicySetIdReference.setStatus(StdStatusCode.STATUS_CODE_SYNTAX_ERROR, ex.getMessage());
+                        if (DOMProperties.throwsExceptions()) {
+                                throw ex;
+                        }
+                }
+                
+                return domPolicySetIdReference;
+        }
+        
+        public static boolean repair(Node nodePolicySetIdReference) throws DOMStructureException {
+                return DOMIdReferenceMatch.repair(nodePolicySetIdReference);
+        }
 }

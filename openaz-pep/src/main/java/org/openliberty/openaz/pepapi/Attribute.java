@@ -35,16 +35,16 @@ import java.lang.annotation.Target;
 @Target({})
 @Retention(RetentionPolicy.CLASS)
 public @interface Attribute {
-	
-	/**
-	 * 
-	 * @return
-	 */
-	String id();
-	
-	/**
-	 * 
-	 * @return
-	 */
-	String[] anyValue() default {};
+        
+        /**
+         * 
+         * @return
+         */
+        String id();
+        
+        /**
+         * 
+         * @return
+         */
+        String[] anyValue() default {};
 }

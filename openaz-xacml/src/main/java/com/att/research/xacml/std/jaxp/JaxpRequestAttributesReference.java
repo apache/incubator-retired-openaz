@@ -43,17 +43,17 @@ import com.att.research.xacml.std.StdRequestAttributesReference;
  */
 public class JaxpRequestAttributesReference extends StdRequestAttributesReference {
 
-	protected JaxpRequestAttributesReference(String referenceIdIn) {
-		super(referenceIdIn);
-	}
-	
-	public static JaxpRequestAttributesReference newInstances(AttributesReferenceType attributesReferenceType) {
-		if (attributesReferenceType == null) {
-			throw new NullPointerException("Null AttributesReferenceType");
-		} else if (attributesReferenceType.getReferenceId() == null) {
-			throw new IllegalArgumentException("Null referenceId for AttributesReferenceType");
-		}
-		return new JaxpRequestAttributesReference(attributesReferenceType.getReferenceId().toString());
-	}
+        protected JaxpRequestAttributesReference(String referenceIdIn) {
+                super(referenceIdIn);
+        }
+        
+        public static JaxpRequestAttributesReference newInstances(AttributesReferenceType attributesReferenceType) {
+                if (attributesReferenceType == null) {
+                        throw new NullPointerException("Null AttributesReferenceType");
+                } else if (attributesReferenceType.getReferenceId() == null) {
+                        throw new IllegalArgumentException("Null referenceId for AttributesReferenceType");
+                }
+                return new JaxpRequestAttributesReference(attributesReferenceType.getReferenceId().toString());
+        }
 
 }

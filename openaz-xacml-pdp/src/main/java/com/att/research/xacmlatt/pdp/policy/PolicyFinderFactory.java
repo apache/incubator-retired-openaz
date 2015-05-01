@@ -44,42 +44,42 @@ import com.att.research.xacmlatt.pdp.util.ATTPDPProperties;
  * @version $Revision: 1.3 $
  */
 public abstract class PolicyFinderFactory {
-	private static final String	FACTORYID					= ATTPDPProperties.PROP_POLICYFINDERFACTORY;
-	private static final String DEFAULT_FACTORY_CLASSNAME	= "com.att.research.xacmlatt.pdp.std.StdPolicyFinderFactory";
-	
-	protected PolicyFinderFactory() {
-	}
-	
-	protected PolicyFinderFactory(Properties properties) {
-	}
-	
-	public static PolicyFinderFactory newInstance() throws FactoryException {
-		return FactoryFinder.find(FACTORYID, DEFAULT_FACTORY_CLASSNAME, PolicyFinderFactory.class);
-	}
-	
-	public static PolicyFinderFactory newInstance(Properties properties) throws FactoryException {
-		return FactoryFinder.find(FACTORYID, DEFAULT_FACTORY_CLASSNAME, PolicyFinderFactory.class, properties);
-	}
-	
-	public static PolicyFinderFactory newInstance(String className, ClassLoader classLoader) throws FactoryException {
-		return FactoryFinder.newInstance(className, PolicyFinderFactory.class, classLoader, false);
-	}
-	
-	public static PolicyFinderFactory newInstance(String className) throws FactoryException {
-		return FactoryFinder.newInstance(className, PolicyFinderFactory.class, null, true);
-	}
+        private static final String	FACTORYID					= ATTPDPProperties.PROP_POLICYFINDERFACTORY;
+        private static final String DEFAULT_FACTORY_CLASSNAME	= "com.att.research.xacmlatt.pdp.std.StdPolicyFinderFactory";
+        
+        protected PolicyFinderFactory() {
+        }
+        
+        protected PolicyFinderFactory(Properties properties) {
+        }
+        
+        public static PolicyFinderFactory newInstance() throws FactoryException {
+                return FactoryFinder.find(FACTORYID, DEFAULT_FACTORY_CLASSNAME, PolicyFinderFactory.class);
+        }
+        
+        public static PolicyFinderFactory newInstance(Properties properties) throws FactoryException {
+                return FactoryFinder.find(FACTORYID, DEFAULT_FACTORY_CLASSNAME, PolicyFinderFactory.class, properties);
+        }
+        
+        public static PolicyFinderFactory newInstance(String className, ClassLoader classLoader) throws FactoryException {
+                return FactoryFinder.newInstance(className, PolicyFinderFactory.class, classLoader, false);
+        }
+        
+        public static PolicyFinderFactory newInstance(String className) throws FactoryException {
+                return FactoryFinder.newInstance(className, PolicyFinderFactory.class, null, true);
+        }
 
-	/**
-	 * Gets the configured {@link PolicyFinder}.
-	 * 
-	 * @return the configured <code>PolicyFinder</code>
-	 */
-	abstract public PolicyFinder getPolicyFinder() throws FactoryException;
+        /**
+         * Gets the configured {@link PolicyFinder}.
+         * 
+         * @return the configured <code>PolicyFinder</code>
+         */
+        abstract public PolicyFinder getPolicyFinder() throws FactoryException;
 
-	/**
-	 * Gets the configured {@link PolicyFinder}.
-	 * 
-	 * @return the configured <code>PolicyFinder</code>
-	 */
-	abstract public PolicyFinder getPolicyFinder(Properties properties) throws FactoryException;
+        /**
+         * Gets the configured {@link PolicyFinder}.
+         * 
+         * @return the configured <code>PolicyFinder</code>
+         */
+        abstract public PolicyFinder getPolicyFinder(Properties properties) throws FactoryException;
 }

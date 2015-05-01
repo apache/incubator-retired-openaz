@@ -86,52 +86,52 @@ import com.att.research.xacmlatt.pdp.policy.FunctionArgument;
  */
 public class FunctionDefinitionStringConversion<O,I> extends FunctionDefinitionHomogeneousSimple<O, I> {
 
-	public FunctionDefinitionStringConversion(Identifier idIn, DataType<O> outputType, DataType<I> argType) {
-		super(idIn, outputType, argType, 1);
-	}
+        public FunctionDefinitionStringConversion(Identifier idIn, DataType<O> outputType, DataType<I> argType) {
+                super(idIn, outputType, argType, 1);
+        }
 
-	@Override
-	public ExpressionResult evaluate(EvaluationContext evaluationContext, List<FunctionArgument> arguments) {
-		List<I> convertedArguments	= new ArrayList<I>();
-		Status status				= this.validateArguments(arguments, convertedArguments);
+        @Override
+        public ExpressionResult evaluate(EvaluationContext evaluationContext, List<FunctionArgument> arguments) {
+                List<I> convertedArguments	= new ArrayList<I>();
+                Status status				= this.validateArguments(arguments, convertedArguments);
 
-		/*
-		 * If the function arguments are not correct, just return an error status immediately
-		 */
-		if (!status.getStatusCode().equals(StdStatusCode.STATUS_CODE_OK)) {
-			return ExpressionResult.newError(getFunctionStatus(status));
-		}
-		
-		/*
-		 * Do different conversion depending on which way we are going (to/from String)
-		 */
-		if (this.getDataTypeId().equals(DataTypes.DT_STRING.getId())) {
-			// converting TO String
-			try {
-				String output = this.getDataTypeArgs().toStringValue(convertedArguments.get(0));
-				return ExpressionResult.newSingle(new StdAttributeValue<String>(this.getDataTypeId(), output));
-			} catch (Exception e) {
-				String message = e.getMessage();
-				if (e.getCause() != null) {
-					message = e.getCause().getMessage();
-				}
-				// untested - not clear how this could happen
-				return ExpressionResult.newError(new StdStatus(StdStatusCode.STATUS_CODE_PROCESSING_ERROR, this.getShortFunctionId() +  " " + message));
-			}
-		} else {
-			// converting FROM String to object of DataType
-			try {
-				O output = this.getDataType().convert(convertedArguments.get(0));
-				return ExpressionResult.newSingle(new StdAttributeValue<O>(this.getDataTypeId(), output));
-			} catch (Exception e) {
-				String message = e.getMessage();
-				if (e.getCause() != null) {
-					message = e.getCause().getMessage();
-				}
-				return ExpressionResult.newError(new StdStatus(StdStatusCode.STATUS_CODE_SYNTAX_ERROR, this.getShortFunctionId() + " " + message ));
-			}
-		}
-		
-	}
+                /*
+                 * If the function arguments are not correct, just return an error status immediately
+                 */
+                if (!status.getStatusCode().equals(StdStatusCode.STATUS_CODE_OK)) {
+                        return ExpressionResult.newError(getFunctionStatus(status));
+                }
+                
+                /*
+                 * Do different conversion depending on which way we are going (to/from String)
+                 */
+                if (this.getDataTypeId().equals(DataTypes.DT_STRING.getId())) {
+                        // converting TO String
+                        try {
+                                String output = this.getDataTypeArgs().toStringValue(convertedArguments.get(0));
+                                return ExpressionResult.newSingle(new StdAttributeValue<String>(this.getDataTypeId(), output));
+                        } catch (Exception e) {
+                                String message = e.getMessage();
+                                if (e.getCause() != null) {
+                                        message = e.getCause().getMessage();
+                                }
+                                // untested - not clear how this could happen
+                                return ExpressionResult.newError(new StdStatus(StdStatusCode.STATUS_CODE_PROCESSING_ERROR, this.getShortFunctionId() +  " " + message));
+                        }
+                } else {
+                        // converting FROM String to object of DataType
+                        try {
+                                O output = this.getDataType().convert(convertedArguments.get(0));
+                                return ExpressionResult.newSingle(new StdAttributeValue<O>(this.getDataTypeId(), output));
+                        } catch (Exception e) {
+                                String message = e.getMessage();
+                                if (e.getCause() != null) {
+                                        message = e.getCause().getMessage();
+                                }
+                                return ExpressionResult.newError(new StdStatus(StdStatusCode.STATUS_CODE_SYNTAX_ERROR, this.getShortFunctionId() + " " + message ));
+                        }
+                }
+                
+        }
 
 }

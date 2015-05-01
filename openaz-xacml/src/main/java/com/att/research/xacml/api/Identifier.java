@@ -45,30 +45,30 @@ import java.net.URI;
  * @version $Revision: 1.2 $
  */
 public interface Identifier extends SemanticString {
-	/**
-	 * Gets this <code>Identifier</code> as a <code>URI</code>.
-	 * 
-	 * @return the <code>URI</code> representation of this <code>Identifier</code>.
-	 */
-	public URI getUri();
-	
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * The implementation of the <code>Identifier</code> interface must override the <code>hashCode</code> method .
-	 * 
-	 */
-	@Override
-	public int hashCode();
-	
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * The implementation of the <code>Identifier</code> interface must override the <code>equals</code> method with the following
-	 * semantics:
-	 * 		Two <code>Identifier</code> objects (<code>i1</code> and <code>i2</code>) are equal if:
-	 * 			{@code a1.getUri().equals(a2.getUri())}
-	 */
-	@Override
-	public boolean equals(Object obj);
+        /**
+         * Gets this <code>Identifier</code> as a <code>URI</code>.
+         * 
+         * @return the <code>URI</code> representation of this <code>Identifier</code>.
+         */
+        public URI getUri();
+        
+        /**
+         * {@inheritDoc}
+         * 
+         * The implementation of the <code>Identifier</code> interface must override the <code>hashCode</code> method .
+         * 
+         */
+        @Override
+        public int hashCode();
+        
+        /**
+         * {@inheritDoc}
+         * 
+         * The implementation of the <code>Identifier</code> interface must override the <code>equals</code> method with the following
+         * semantics:
+         * 		Two <code>Identifier</code> objects (<code>i1</code> and <code>i2</code>) are equal if:
+         * 			{@code a1.getUri().equals(a2.getUri())}
+         */
+        @Override
+        public boolean equals(Object obj);
 }

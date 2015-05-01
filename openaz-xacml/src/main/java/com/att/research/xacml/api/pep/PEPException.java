@@ -38,25 +38,25 @@ package com.att.research.xacml.api.pep;
  * @version $Revision: 1.1 $
  */
 public class PEPException extends Exception {
-	private static final long serialVersionUID = 5438207617158925229L;
+        private static final long serialVersionUID = 5438207617158925229L;
 
-	public PEPException() {
-	}
+        public PEPException() {
+        }
 
-	public PEPException(String message) {
-		super(message);
-	}
+        public PEPException(String message) {
+                super(message);
+        }
 
-	public PEPException(Throwable cause) {
-		super(cause);
-	}
+        public PEPException(Throwable cause) {
+                super(cause);
+        }
 
-	public PEPException(String message, Throwable cause) {
-		super(message, cause);
-	}
+        public PEPException(String message, Throwable cause) {
+                super(message, cause);
+        }
 
-	public PEPException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
-		super(message, cause, enableSuppression, writableStackTrace);
-	}
+        public PEPException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
+                super(message, cause, enableSuppression, writableStackTrace);
+        }
 
 }

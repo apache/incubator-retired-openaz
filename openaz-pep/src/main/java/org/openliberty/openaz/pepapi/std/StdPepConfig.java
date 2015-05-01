@@ -36,129 +36,129 @@ import java.util.Properties;
 
 public final class StdPepConfig implements PepConfig {
 
-	private static final Log logger = LogFactory.getLog(StdPepConfig.class);
+        private static final Log logger = LogFactory.getLog(StdPepConfig.class);
 
-	private static final String PEP_ISSUER = "pep.issuer";
+        private static final String PEP_ISSUER = "pep.issuer";
 
-	private static final String PEP_DEFAULT_SUBJECT_ID = "pep.subject.id";
+        private static final String PEP_DEFAULT_SUBJECT_ID = "pep.subject.id";
 
-	private static final String PEP_DEFAULT_ACTION_ID = "pep.action.id";
+        private static final String PEP_DEFAULT_ACTION_ID = "pep.action.id";
 
-	private static final String PEP_DEFAULT_RESOURCE_ID = "pep.resource.id";
+        private static final String PEP_DEFAULT_RESOURCE_ID = "pep.resource.id";
 
-	private static final String PEP_INDETERMINATE_BEHAVIOR = "pep.indeterminate.behavior";
+        private static final String PEP_INDETERMINATE_BEHAVIOR = "pep.indeterminate.behavior";
 
-	private static final String PEP_NOTAPPLICABLE_BEHAVIOR = "pep.notapplicable.behavior";
+        private static final String PEP_NOTAPPLICABLE_BEHAVIOR = "pep.notapplicable.behavior";
 
-	private static final String PEP_MAPPER_CLASSES = "pep.mapper.classes";
+        private static final String PEP_MAPPER_CLASSES = "pep.mapper.classes";
 
-	private String issuer;
+        private String issuer;
 
-	private String subjectIdURI;
+        private String subjectIdURI;
 
-	private String actionIdURI;
+        private String actionIdURI;
 
-	private String resourceIdURI;
+        private String resourceIdURI;
 
-	private PepResponseBehavior indeterminateBehavior;
+        private PepResponseBehavior indeterminateBehavior;
 
-	private PepResponseBehavior notApplicableBehavior;
+        private PepResponseBehavior notApplicableBehavior;
 
-	private List<String> mapperClassNames;
+        private List<String> mapperClassNames;
 
-	public StdPepConfig() {
-		//Defaults
-		subjectIdURI = XACML3.ID_SUBJECT_SUBJECT_ID.stringValue();
-		actionIdURI = XACML3.ID_ACTION_ACTION_ID.stringValue();
-		resourceIdURI = XACML3.ID_RESOURCE_RESOURCE_ID.stringValue();
-		indeterminateBehavior = PepResponseBehavior.THROW_EXCEPTION;
-		notApplicableBehavior = PepResponseBehavior.RETURN_NO;
-		mapperClassNames = Collections.EMPTY_LIST;
-	}
+        public StdPepConfig() {
+                //Defaults
+                subjectIdURI = XACML3.ID_SUBJECT_SUBJECT_ID.stringValue();
+                actionIdURI = XACML3.ID_ACTION_ACTION_ID.stringValue();
+                resourceIdURI = XACML3.ID_RESOURCE_RESOURCE_ID.stringValue();
+                indeterminateBehavior = PepResponseBehavior.THROW_EXCEPTION;
+                notApplicableBehavior = PepResponseBehavior.RETURN_NO;
+                mapperClassNames = Collections.EMPTY_LIST;
+        }
 
-	public StdPepConfig(Properties properties) {
-		this();
-		issuer = properties.getProperty(PEP_ISSUER);
+        public StdPepConfig(Properties properties) {
+                this();
+                issuer = properties.getProperty(PEP_ISSUER);
 
-		String subjectIdURI = properties.getProperty(PEP_DEFAULT_SUBJECT_ID);
-		if(!StringUtils.isEmpty(subjectIdURI)){
-			this.subjectIdURI = subjectIdURI;
-		}
+                String subjectIdURI = properties.getProperty(PEP_DEFAULT_SUBJECT_ID);
+                if(!StringUtils.isEmpty(subjectIdURI)){
+                        this.subjectIdURI = subjectIdURI;
+                }
 
-		String actionIdURI = properties.getProperty(PEP_DEFAULT_ACTION_ID);
-		if(!StringUtils.isEmpty(actionIdURI)) {
-			this.actionIdURI = actionIdURI;
-		}
+                String actionIdURI = properties.getProperty(PEP_DEFAULT_ACTION_ID);
+                if(!StringUtils.isEmpty(actionIdURI)) {
+                        this.actionIdURI = actionIdURI;
+                }
 
-		String resourceIdURI = properties.getProperty(PEP_DEFAULT_RESOURCE_ID);
-		if(!StringUtils.isEmpty(resourceIdURI)) {
-			this.resourceIdURI = resourceIdURI;
-		}
+                String resourceIdURI = properties.getProperty(PEP_DEFAULT_RESOURCE_ID);
+                if(!StringUtils.isEmpty(resourceIdURI)) {
+                        this.resourceIdURI = resourceIdURI;
+                }
 
-		String indeterminateString = properties.getProperty(PEP_INDETERMINATE_BEHAVIOR);
-		if(!StringUtils.isEmpty(indeterminateString)) {
-			PepResponseBehavior indeterminateBehavior = PepResponseBehavior.valueOf(indeterminateString);
-			if(indeterminateBehavior == null) {
-				logger.error("Invalid indeterminate behavior found in configuration.");
-				//TODO: Throw exception ?
-			}
-			this.indeterminateBehavior = indeterminateBehavior;
-		}
+                String indeterminateString = properties.getProperty(PEP_INDETERMINATE_BEHAVIOR);
+                if(!StringUtils.isEmpty(indeterminateString)) {
+                        PepResponseBehavior indeterminateBehavior = PepResponseBehavior.valueOf(indeterminateString);
+                        if(indeterminateBehavior == null) {
+                                logger.error("Invalid indeterminate behavior found in configuration.");
+                                //TODO: Throw exception ?
+                        }
+                        this.indeterminateBehavior = indeterminateBehavior;
+                }
 
-		String notapplicableString = properties.getProperty(PEP_NOTAPPLICABLE_BEHAVIOR);
-		if(!StringUtils.isEmpty(notapplicableString)) {
-			PepResponseBehavior notApplicableBehavior = PepResponseBehavior.valueOf(notapplicableString);
-			if(notApplicableBehavior == null) {
-				logger.error("Invalid notapplicable behavior found in configuration.");
-				//TODO: Throw exception ?
-			}
-			this.notApplicableBehavior = notApplicableBehavior;
-		}
+                String notapplicableString = properties.getProperty(PEP_NOTAPPLICABLE_BEHAVIOR);
+                if(!StringUtils.isEmpty(notapplicableString)) {
+                        PepResponseBehavior notApplicableBehavior = PepResponseBehavior.valueOf(notapplicableString);
+                        if(notApplicableBehavior == null) {
+                                logger.error("Invalid notapplicable behavior found in configuration.");
+                                //TODO: Throw exception ?
+                        }
+                        this.notApplicableBehavior = notApplicableBehavior;
+                }
 
 
-		String mapperClassNameString = properties.getProperty(PEP_MAPPER_CLASSES);
-		if(!StringUtils.isEmpty(mapperClassNameString)) {
-			List mapperClassNames = new ArrayList<String>();
-			for(String className: Splitter.on(",").omitEmptyStrings().trimResults().split(mapperClassNameString)) {
-				mapperClassNames.add(className);
-			}
-			this.mapperClassNames = Collections.unmodifiableList(mapperClassNames);
-		}
+                String mapperClassNameString = properties.getProperty(PEP_MAPPER_CLASSES);
+                if(!StringUtils.isEmpty(mapperClassNameString)) {
+                        List mapperClassNames = new ArrayList<String>();
+                        for(String className: Splitter.on(",").omitEmptyStrings().trimResults().split(mapperClassNameString)) {
+                                mapperClassNames.add(className);
+                        }
+                        this.mapperClassNames = Collections.unmodifiableList(mapperClassNames);
+                }
 
-	}
+        }
 
-	@Override
-	public String getIssuer() {
-		return issuer;
-	}
+        @Override
+        public String getIssuer() {
+                return issuer;
+        }
 
-	@Override
-	public String getDefaultSubjectId() {
-		return subjectIdURI;
-	}
+        @Override
+        public String getDefaultSubjectId() {
+                return subjectIdURI;
+        }
 
-	@Override
-	public String getDefaultResourceId() {
-		return resourceIdURI;
-	}
+        @Override
+        public String getDefaultResourceId() {
+                return resourceIdURI;
+        }
 
-	@Override
-	public String getDefaultActionId() {
-		return actionIdURI;
-	}
+        @Override
+        public String getDefaultActionId() {
+                return actionIdURI;
+        }
 
-	@Override
-	public PepResponseBehavior getIndeterminateBehavior() {
-		return indeterminateBehavior;
-	}
+        @Override
+        public PepResponseBehavior getIndeterminateBehavior() {
+                return indeterminateBehavior;
+        }
 
-	@Override
-	public PepResponseBehavior getNotApplicableBehavior() {
-		return notApplicableBehavior;
-	}
+        @Override
+        public PepResponseBehavior getNotApplicableBehavior() {
+                return notApplicableBehavior;
+        }
 
-	@Override
-	public List<String> getMapperClassNames() {
-		return mapperClassNames;
-	}
+        @Override
+        public List<String> getMapperClassNames() {
+                return mapperClassNames;
+        }
 }

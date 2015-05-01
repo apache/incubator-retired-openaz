@@ -42,29 +42,29 @@ import com.att.research.xacmlatt.pdp.eval.EvaluationContext;
  * @version $Revision: 1.1 $
  */
 public interface PolicyFinder {
-	/**
-	 * Gets the root {@link PolicyDef} from the policy store
-	 * configured by the particular implementation of the <code>PolicyFinderFactory</code> class that
-	 * is applicable to the {@link com.att.research.xacml.api.Request} in the given {@link com.att.research.xacmlatt.pdp.eval.EvaluationContext}.
-	 * 
-	 * @return a <code>PolicyFinderResult</code> with the root <code>PolicyDef</code>
-	 */
-	public PolicyFinderResult<PolicyDef> getRootPolicyDef(EvaluationContext evaluationContext);
-	
-	/**
-	 * Gets the {@link Policy} that matches the given {@link com.att.research.xacml.api.IdReferenceMatch}.
-	 * 
-	 * @param idReferenceMatch the <code>IdReferenceMatch</code> to search for
-	 * @return a <code>PolicyFinderResult</code> with the <code>Policy</code> matching the given <code>IdReferenceMatch</code>
-	 */
-	public PolicyFinderResult<Policy> getPolicy(IdReferenceMatch idReferenceMatch);
-	
-	/**
-	 * Gets the {@link PolicySet} that matches the given {@link com.att.research.xacml.api.IdReferenceMatch}.
-	 * 
-	 * @param idReferenceMatch the <code>IdReferenceMatch</code> to search for
-	 * @return a <code>PolicyFinderResult</code> with the <code>PolicySet</code> matching the given <code>IdReferenceMatch</code>.
-	 */
-	public PolicyFinderResult<PolicySet> getPolicySet(IdReferenceMatch idReferenceMatch);
+        /**
+         * Gets the root {@link PolicyDef} from the policy store
+         * configured by the particular implementation of the <code>PolicyFinderFactory</code> class that
+         * is applicable to the {@link com.att.research.xacml.api.Request} in the given {@link com.att.research.xacmlatt.pdp.eval.EvaluationContext}.
+         * 
+         * @return a <code>PolicyFinderResult</code> with the root <code>PolicyDef</code>
+         */
+        public PolicyFinderResult<PolicyDef> getRootPolicyDef(EvaluationContext evaluationContext);
+        
+        /**
+         * Gets the {@link Policy} that matches the given {@link com.att.research.xacml.api.IdReferenceMatch}.
+         * 
+         * @param idReferenceMatch the <code>IdReferenceMatch</code> to search for
+         * @return a <code>PolicyFinderResult</code> with the <code>Policy</code> matching the given <code>IdReferenceMatch</code>
+         */
+        public PolicyFinderResult<Policy> getPolicy(IdReferenceMatch idReferenceMatch);
+        
+        /**
+         * Gets the {@link PolicySet} that matches the given {@link com.att.research.xacml.api.IdReferenceMatch}.
+         * 
+         * @param idReferenceMatch the <code>IdReferenceMatch</code> to search for
+         * @return a <code>PolicyFinderResult</code> with the <code>PolicySet</code> matching the given <code>IdReferenceMatch</code>.
+         */
+        public PolicyFinderResult<PolicySet> getPolicySet(IdReferenceMatch idReferenceMatch);
 
 }

@@ -42,23 +42,23 @@ import com.att.research.xacmlatt.pdp.eval.EvaluationException;
  */
 public abstract class Expression extends PolicyComponent {
 
-	public Expression(StatusCode statusCodeIn, String statusMessageIn) {
-		super(statusCodeIn, statusMessageIn);
-	}
+        public Expression(StatusCode statusCodeIn, String statusMessageIn) {
+                super(statusCodeIn, statusMessageIn);
+        }
 
-	public Expression(StatusCode statusCodeIn) {
-		super(statusCodeIn);
-	}
+        public Expression(StatusCode statusCodeIn) {
+                super(statusCodeIn);
+        }
 
-	public Expression() {
-	}
-	
-	/**
-	 * Evaluates this <code>Expression</code> in the given {@link com.att.research.xacmlatt.pdp.eval.EvaluationContext}.
-	 * 
-	 * @param evaluationContext the <code>EvaluationContext</code> in which to evaluate this <code>Expression</code>
-	 * @param policyDefaults the {@link com.att.research.xacml.pdp.policy.PolicyDefaults} to use in evaluating this <code>Expression</code>
-	 * @return a {@link com.att.research.xacmlatt.pdp.policy.ExpressionResult}
-	 */
-	public abstract ExpressionResult evaluate(EvaluationContext evaluationContext, PolicyDefaults policyDefaults) throws EvaluationException;
+        public Expression() {
+        }
+        
+        /**
+         * Evaluates this <code>Expression</code> in the given {@link com.att.research.xacmlatt.pdp.eval.EvaluationContext}.
+         * 
+         * @param evaluationContext the <code>EvaluationContext</code> in which to evaluate this <code>Expression</code>
+         * @param policyDefaults the {@link com.att.research.xacml.pdp.policy.PolicyDefaults} to use in evaluating this <code>Expression</code>
+         * @return a {@link com.att.research.xacmlatt.pdp.policy.ExpressionResult}
+         */
+        public abstract ExpressionResult evaluate(EvaluationContext evaluationContext, PolicyDefaults policyDefaults) throws EvaluationException;
 }

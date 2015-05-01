@@ -41,12 +41,12 @@ import com.att.research.xacml.api.Response;
  * @version $Revision: 1.1 $
  */
 public interface PEPEngine {
-	/**
-	 * Instantiates a Policy Decision Point (PDP) to evaluate the given {@link com.att.research.xacml.api.Request} using its
-	 * Policy Sets to determine if the given <code>Request</code> is allowed.
-	 * 
-	 * @param pepRequest the <code>Request</code> to evaluate
-	 * @return a {@link com.att.research.xacml.api.Response} indicating the decision
-	 */
-	public Response decide(Request pepRequest) throws PEPException;
+        /**
+         * Instantiates a Policy Decision Point (PDP) to evaluate the given {@link com.att.research.xacml.api.Request} using its
+         * Policy Sets to determine if the given <code>Request</code> is allowed.
+         * 
+         * @param pepRequest the <code>Request</code> to evaluate
+         * @return a {@link com.att.research.xacml.api.Response} indicating the decision
+         */
+        public Response decide(Request pepRequest) throws PEPException;
 }

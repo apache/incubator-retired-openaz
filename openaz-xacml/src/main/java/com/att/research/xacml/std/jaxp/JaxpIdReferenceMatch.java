@@ -49,44 +49,44 @@ import com.att.research.xacml.std.StdVersionMatch;
  */
 public class JaxpIdReferenceMatch extends StdIdReferenceMatch {
 
-	protected JaxpIdReferenceMatch(Identifier idIn, VersionMatch versionIn, VersionMatch earliestVersionIn, VersionMatch latestVersionIn) {
-		super(idIn, versionIn, earliestVersionIn, latestVersionIn);
-	}
+        protected JaxpIdReferenceMatch(Identifier idIn, VersionMatch versionIn, VersionMatch earliestVersionIn, VersionMatch latestVersionIn) {
+                super(idIn, versionIn, earliestVersionIn, latestVersionIn);
+        }
 
-	public static JaxpIdReferenceMatch newInstance(IdReferenceType idReferenceType) {
-		if (idReferenceType == null) {
-			throw new NullPointerException("Null IdReferenceType");
-		} else if (idReferenceType.getValue() == null) {
-			throw new IllegalArgumentException("Null value for IdReferenceType");
-		}
-		
-		VersionMatch version			= null;
-		VersionMatch earliestVersion	= null;
-		VersionMatch latestVersion		= null;
-		
-		if (idReferenceType.getVersion() != null) {
-			try {
-				version	= StdVersionMatch.newInstance(idReferenceType.getVersion());
-			} catch (ParseException ex) {
-				throw new IllegalArgumentException("Invalid version");
-			}
-		}
-		if (idReferenceType.getEarliestVersion() != null) {
-			try {
-				earliestVersion	= StdVersionMatch.newInstance(idReferenceType.getEarliestVersion());
-			} catch (ParseException ex) {
-				throw new IllegalArgumentException("Invalid earliest version");
-			}
-		}
-		
-		if (idReferenceType.getLatestVersion() != null) {
-			try {
-				latestVersion	= StdVersionMatch.newInstance(idReferenceType.getLatestVersion());
-			} catch (ParseException ex) {
-				throw new IllegalArgumentException("Invalid latest version");
-			}
-		}
-		
-		return new JaxpIdReferenceMatch(new IdentifierImpl(idReferenceType.getValue()), version, earliestVersion, latestVersion);
-	}
+        public static JaxpIdReferenceMatch newInstance(IdReferenceType idReferenceType) {
+                if (idReferenceType == null) {
+                        throw new NullPointerException("Null IdReferenceType");
+                } else if (idReferenceType.getValue() == null) {
+                        throw new IllegalArgumentException("Null value for IdReferenceType");
+                }
+                
+                VersionMatch version			= null;
+                VersionMatch earliestVersion	= null;
+                VersionMatch latestVersion		= null;
+                
+                if (idReferenceType.getVersion() != null) {
+                        try {
+                                version	= StdVersionMatch.newInstance(idReferenceType.getVersion());
+                        } catch (ParseException ex) {
+                                throw new IllegalArgumentException("Invalid version");
+                        }
+                }
+                if (idReferenceType.getEarliestVersion() != null) {
+                        try {
+                                earliestVersion	= StdVersionMatch.newInstance(idReferenceType.getEarliestVersion());
+                        } catch (ParseException ex) {
+                                throw new IllegalArgumentException("Invalid earliest version");
+                        }
+                }
+                
+                if (idReferenceType.getLatestVersion() != null) {
+                        try {
+                                latestVersion	= StdVersionMatch.newInstance(idReferenceType.getLatestVersion());
+                        } catch (ParseException ex) {
+                                throw new IllegalArgumentException("Invalid latest version");
+                        }
+                }
+                
+                return new JaxpIdReferenceMatch(new IdentifierImpl(idReferenceType.getValue()), version, earliestVersion, latestVersion);
+        }
 }

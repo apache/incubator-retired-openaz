@@ -42,10 +42,10 @@ import java.lang.annotation.Target;
 @Inherited
 @Retention(RetentionPolicy.RUNTIME)
 public @interface XACMLRequest {
-	boolean	ReturnPolicyIdList() default false;
-	boolean CombinedDecision() default false;
-	String Defaults() default XACMLRequest.nullString;
-	XACMLMultiRequest multiRequest() default @XACMLMultiRequest();
-	
-	public static String nullString = "NULL";
+        boolean	ReturnPolicyIdList() default false;
+        boolean CombinedDecision() default false;
+        String Defaults() default XACMLRequest.nullString;
+        XACMLMultiRequest multiRequest() default @XACMLMultiRequest();
+        
+        public static String nullString = "NULL";
 }

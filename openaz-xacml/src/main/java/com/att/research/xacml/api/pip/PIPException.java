@@ -38,52 +38,52 @@ package com.att.research.xacml.api.pip;
  * @version $Revision: 1.1 $
  */
 public class PIPException extends Exception {
-	private static final long serialVersionUID = -6656926395983776184L;
-	private PIPRequest pipRequest;
-	private PIPEngine pipEngine;
-	
-	public PIPException() {
-	}
+        private static final long serialVersionUID = -6656926395983776184L;
+        private PIPRequest pipRequest;
+        private PIPEngine pipEngine;
+        
+        public PIPException() {
+        }
 
-	public PIPException(String message) {
-		super(message);
-	}
+        public PIPException(String message) {
+                super(message);
+        }
 
-	public PIPException(Throwable cause) {
-		super(cause);
-	}
+        public PIPException(Throwable cause) {
+                super(cause);
+        }
 
-	public PIPException(String message, Throwable cause) {
-		super(message, cause);
-	}
-	
-	public PIPException(PIPEngine pipEngineIn, PIPRequest pipRequestIn, String message, Throwable cause) {
-		this(message, cause);
-		this.pipEngine	= pipEngineIn;
-		this.pipRequest	= pipRequestIn;
-	}
-	
-	public PIPException(PIPEngine pipEngineIn, PIPRequest pipRequestIn, String message) {
-		this(message);
-		this.pipEngine	= pipEngineIn;
-		this.pipRequest	= pipRequestIn;
-	}
+        public PIPException(String message, Throwable cause) {
+                super(message, cause);
+        }
+        
+        public PIPException(PIPEngine pipEngineIn, PIPRequest pipRequestIn, String message, Throwable cause) {
+                this(message, cause);
+                this.pipEngine	= pipEngineIn;
+                this.pipRequest	= pipRequestIn;
+        }
+        
+        public PIPException(PIPEngine pipEngineIn, PIPRequest pipRequestIn, String message) {
+                this(message);
+                this.pipEngine	= pipEngineIn;
+                this.pipRequest	= pipRequestIn;
+        }
 
-	/**
-	 * Gets the <code>PIPRequest</code> that caused this <code>PIPException</code>
-	 * 
-	 * @return the <code>PIPRequest</code> that caused this <code>PIPException</code>
-	 */
-	public PIPRequest getPIPRequest() {
-		return this.pipRequest;
-	}
-	
-	/**
-	 * Gets the <code>PIPEngine</code> that caused this <code>PIPException</code>.
-	 * 
-	 * @return the <code>PIPEngine</code> that caused this <code>PIPException</code>
-	 */
-	public PIPEngine getPIPEngine() {
-		return this.pipEngine;
-	}
+        /**
+         * Gets the <code>PIPRequest</code> that caused this <code>PIPException</code>
+         * 
+         * @return the <code>PIPRequest</code> that caused this <code>PIPException</code>
+         */
+        public PIPRequest getPIPRequest() {
+                return this.pipRequest;
+        }
+        
+        /**
+         * Gets the <code>PIPEngine</code> that caused this <code>PIPException</code>.
+         * 
+         * @return the <code>PIPEngine</code> that caused this <code>PIPException</code>
+         */
+        public PIPEngine getPIPEngine() {
+                return this.pipEngine;
+        }
 }

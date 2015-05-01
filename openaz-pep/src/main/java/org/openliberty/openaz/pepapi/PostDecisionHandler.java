@@ -30,15 +30,15 @@ package org.openliberty.openaz.pepapi;
  */
 public interface PostDecisionHandler {
     
-	/** 
-	 * This method is used to apply post-decision custom
-	 * processing to the {@link org.openliberty.openaz.pepapi.PepResponse} after it has
-	 * been returned.
-	 *
-	 * @param request
-	 * @throws org.openliberty.openaz.pepapi.PepException
-	 */
+        /** 
+         * This method is used to apply post-decision custom
+         * processing to the {@link org.openliberty.openaz.pepapi.PepResponse} after it has
+         * been returned.
+         *
+         * @param request
+         * @throws org.openliberty.openaz.pepapi.PepException
+         */
     public void postDecide(PepRequest request, PepResponse response) 
-    	throws PepException;
+        throws PepException;
     
 }

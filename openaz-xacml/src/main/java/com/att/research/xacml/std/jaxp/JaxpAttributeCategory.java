@@ -52,25 +52,25 @@ import com.att.research.xacml.std.StdAttributeCategory;
  */
 public class JaxpAttributeCategory {
 
-	protected JaxpAttributeCategory() {
-	}
-	
-	public static AttributeCategory newInstance(AttributesType attributesType) {
-		if (attributesType == null) {
-			throw new NullPointerException("Null AttributesType");
-		} else if (attributesType.getCategory() == null) {
-			throw new IllegalArgumentException("Null categoryId for AttributesType");
-		}
-		Identifier identifierCategory	= new IdentifierImpl(attributesType.getCategory());
-		List<Attribute> listAttributes	= new ArrayList<Attribute>();
-		
-		if (attributesType.getAttribute() != null && attributesType.getAttribute().size() > 0) {
-			Iterator<AttributeType>	iterAttributeTypes	= attributesType.getAttribute().iterator();
-			while (iterAttributeTypes.hasNext()) {
-				listAttributes.add(JaxpAttribute.newInstance(identifierCategory, iterAttributeTypes.next()));
-			}
-		}
-		return new StdAttributeCategory(identifierCategory, listAttributes);
-	}
+        protected JaxpAttributeCategory() {
+        }
+        
+        public static AttributeCategory newInstance(AttributesType attributesType) {
+                if (attributesType == null) {
+                        throw new NullPointerException("Null AttributesType");
+                } else if (attributesType.getCategory() == null) {
+                        throw new IllegalArgumentException("Null categoryId for AttributesType");
+                }
+                Identifier identifierCategory	= new IdentifierImpl(attributesType.getCategory());
+                List<Attribute> listAttributes	= new ArrayList<Attribute>();
+                
+                if (attributesType.getAttribute() != null && attributesType.getAttribute().size() > 0) {
+                        Iterator<AttributeType>	iterAttributeTypes	= attributesType.getAttribute().iterator();
+                        while (iterAttributeTypes.hasNext()) {
+                                listAttributes.add(JaxpAttribute.newInstance(identifierCategory, iterAttributeTypes.next()));
+                        }
+                }
+                return new StdAttributeCategory(identifierCategory, listAttributes);
+        }
 
 }

@@ -53,35 +53,35 @@ import com.att.research.xacml.std.StdRequestAttributes;
  */
 public class JaxpRequestAttributes {
 
-	protected JaxpRequestAttributes() {
-	}
-	
-	public static RequestAttributes newInstance(AttributesType attributesType) {
-		if (attributesType == null) {
-			throw new NullPointerException("Null AttributesType");
-		} else if (attributesType.getCategory() == null) {
-			throw new IllegalArgumentException("Null categoryId for AttributesType");
-		}
-		Identifier identifierCategory	= new IdentifierImpl(attributesType.getCategory());
-		Node nodeContentRoot			= null;
-		List<Attribute> listAttributes	= new ArrayList<Attribute>();
-		
-		if (attributesType.getContent() != null && attributesType.getContent().getContent() != null && attributesType.getContent().getContent().size() > 0) {
-			// The XACML Spec says there is only one child node, so we only need the first element of the list, and it should be an Element
-			// unless someone happens to use XACML schema types in their Content node, which could be a problem.
-			//
-			Object	contentObject	= attributesType.getContent().getContent().get(0);
-			if (contentObject instanceof Node) {
-				nodeContentRoot	= (Node)contentObject;
-			}
-		}
-		if (attributesType.getAttribute() != null && attributesType.getAttribute().size() > 0) {
-			Iterator<AttributeType>	iterAttributeTypes	= attributesType.getAttribute().iterator();
-			while (iterAttributeTypes.hasNext()) {
-				listAttributes.add(JaxpAttribute.newInstance(identifierCategory, iterAttributeTypes.next()));
-			}
-		}
-		return new StdRequestAttributes(identifierCategory, listAttributes, nodeContentRoot, attributesType.getId());
-	}
+        protected JaxpRequestAttributes() {
+        }
+        
+        public static RequestAttributes newInstance(AttributesType attributesType) {
+                if (attributesType == null) {
+                        throw new NullPointerException("Null AttributesType");
+                } else if (attributesType.getCategory() == null) {
+                        throw new IllegalArgumentException("Null categoryId for AttributesType");
+                }
+                Identifier identifierCategory	= new IdentifierImpl(attributesType.getCategory());
+                Node nodeContentRoot			= null;
+                List<Attribute> listAttributes	= new ArrayList<Attribute>();
+                
+                if (attributesType.getContent() != null && attributesType.getContent().getContent() != null && attributesType.getContent().getContent().size() > 0) {
+                        // The XACML Spec says there is only one child node, so we only need the first element of the list, and it should be an Element
+                        // unless someone happens to use XACML schema types in their Content node, which could be a problem.
+                        //
+                        Object	contentObject	= attributesType.getContent().getContent().get(0);
+                        if (contentObject instanceof Node) {
+                                nodeContentRoot	= (Node)contentObject;
+                        }
+                }
+                if (attributesType.getAttribute() != null && attributesType.getAttribute().size() > 0) {
+                        Iterator<AttributeType>	iterAttributeTypes	= attributesType.getAttribute().iterator();
+                        while (iterAttributeTypes.hasNext()) {
+                                listAttributes.add(JaxpAttribute.newInstance(identifierCategory, iterAttributeTypes.next()));
+                        }
+                }
+                return new StdRequestAttributes(identifierCategory, listAttributes, nodeContentRoot, attributesType.getId());
+        }
 
 }

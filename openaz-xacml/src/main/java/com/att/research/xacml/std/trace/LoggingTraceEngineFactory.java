@@ -43,26 +43,26 @@ import com.att.research.xacml.api.trace.TraceEngineFactory;
  * @version $Revision$
  */
 public class LoggingTraceEngineFactory extends TraceEngineFactory {
-	/**
-	 * Creates a new <code>LoggingTraceEngineFactory</code>
-	 */
-	public LoggingTraceEngineFactory() {
-	}
+        /**
+         * Creates a new <code>LoggingTraceEngineFactory</code>
+         */
+        public LoggingTraceEngineFactory() {
+        }
 
-	/**
-	 * Creates a new <code>LoggingTraceEngineFactory</code>
-	 */
-	public LoggingTraceEngineFactory(Properties properties) {
-	}
+        /**
+         * Creates a new <code>LoggingTraceEngineFactory</code>
+         */
+        public LoggingTraceEngineFactory(Properties properties) {
+        }
 
-	@Override
-	public TraceEngine getTraceEngine() {
-		return LoggingTraceEngine.newInstance();
-	}
+        @Override
+        public TraceEngine getTraceEngine() {
+                return LoggingTraceEngine.newInstance();
+        }
 
-	@Override
-	public TraceEngine getTraceEngine(Properties properties) {
-		return LoggingTraceEngine.newInstance(properties);
-	}
+        @Override
+        public TraceEngine getTraceEngine(Properties properties) {
+                return LoggingTraceEngine.newInstance(properties);
+        }
 
 }

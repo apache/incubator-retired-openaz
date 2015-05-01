@@ -73,180 +73,180 @@ import com.att.research.xacmlatt.pdp.test.TestBase;
  *
  */
 public class TestAnnotation extends TestBase {
-	private static final Log logger	= LogFactory.getLog(TestAnnotation.class);
-	
-	private int	num;
-	
-	/**
-	 * This is a sample class that uses annotations. In addition to demonstrating how to use XACML annotations,
-	 * it also demonstrates the various Java objects that can be used and how the request parser will
-	 * resolve each object's datatype.
-	 * 
-	 * @author pameladragosh
-	 *
-	 */
-	@XACMLRequest(ReturnPolicyIdList=true)
-	public class MyRequestAttributes {
-		
-		public MyRequestAttributes(String user, String action, String resource) {
-			this.userID = user;
-			this.action = action;
-			this.resource = resource;
-			this.today = new Date();
-			this.yesterday = Calendar.getInstance();
-			this.yesterday.add(Calendar.DAY_OF_MONTH, -1);
-		}
+        private static final Log logger	= LogFactory.getLog(TestAnnotation.class);
+        
+        private int	num;
+        
+        /**
+         * This is a sample class that uses annotations. In addition to demonstrating how to use XACML annotations,
+         * it also demonstrates the various Java objects that can be used and how the request parser will
+         * resolve each object's datatype.
+         * 
+         * @author pameladragosh
+         *
+         */
+        @XACMLRequest(ReturnPolicyIdList=true)
+        public class MyRequestAttributes {
+                
+                public MyRequestAttributes(String user, String action, String resource) {
+                        this.userID = user;
+                        this.action = action;
+                        this.resource = resource;
+                        this.today = new Date();
+                        this.yesterday = Calendar.getInstance();
+                        this.yesterday.add(Calendar.DAY_OF_MONTH, -1);
+                }
 
-		@XACMLSubject(includeInResults=true)
-		String	userID;
-		
-		@XACMLSubject(attributeId="urn:oasis:names:tc:xacml:1.0:subject:subject-id-qualifier")
-		boolean admin = false;
-		
-		@XACMLSubject(attributeId="urn:oasis:names:tc:xacml:1.0:subject:key-info", issuer="com:foo:security")
-		HexBinary publicKey = new HexBinary(new byte[] {'1', '0'});
-		
-		@XACMLSubject(attributeId="urn:oasis:names:tc:xacml:1.0:subject:authentication-time")
-		ISO8601Time	authenticationTime = new ISO8601Time(8, 0, 0, 0);
-		
-		/**
-		 * Here our base object is "Object", but it is reflected as a Java "String". The parser
-		 * will then use the XACML http://www.w3.org/2001/XMLSchema#string as the datatype.
-		 */
-		@XACMLSubject(attributeId="urn:oasis:names:tc:xacml:1.0:subject:authentication-method")
-		Object authenticationMethod = new String("RSA Public Key");
-		
-		/**
-		 * Here our base object is "String", but we use the annotation for datatype to clarify
-		 * that the real XACML data type is http://www.w3.org/2001/XMLSchema#time. The parser will
-		 * use the data type factory to convert the "String" to a "ISO8601Time" Java object.
-		 */
-		@XACMLSubject(attributeId="urn:oasis:names:tc:xacml:1.0:subject:request-time", datatype="http://www.w3.org/2001/XMLSchema#time")
-		String requestTime = new String("13:20:00-05:00");
-		
-		@XACMLSubject(attributeId="urn:oasis:names:tc:xacml:1.0:subject:session-start-time")
-		ISO8601DateTime sessionStart = new ISO8601DateTime(TimeZone.getDefault().getID(), 2014, 1, 1, 10, 0, 0, 0);
-		
-		@XACMLSubject(attributeId="urn:oasis:names:tc:xacml:3.0:subject:authn-locality:ip-address")
-		IPAddress ip = new IPv4Address(new short[] {123, 134, 156, 255 }, null, null);
-		
-		@XACMLSubject(attributeId="urn:oasis:names:tc:xacml:3.0:subject:authn-locality:dns-name")
-		String dnsName = "localhost";
-		
-		@XACMLAction()
-		String	action;
-		
-		@XACMLAction(attributeId="urn:oasis:names:tc:xacml:1.0:action:implied-action")
-		long	impliedAction;
-		
-		@XACMLResource()
-		String	resource;
-		
-		@XACMLEnvironment()
-		Date		today;
-		
-		@XACMLEnvironment()
-		Calendar	yesterday;
-		
-		/**
-		 * This field demonstrates how the parser can detect collections and build a bag of values.
-		 */
-		@XACMLAttribute(attributeId="foo:bar:attribute")
-		Collection<Double>		fooBar = Arrays.asList(2.5, 3.5);
-		
-		/**
-		 * The XACMLAttribute annotation allows one to specify all the 
-		 */
-		@XACMLAttribute(category="foo:bar:category", attributeId="foo:bar:attribute2")
-		double		fooBar2 = 3.999;
-		
-		/**
-		 * This field demonstrates how the parser can detect arrays and build a bag of values.
-		 */
-		@XACMLAttribute(category="foo:bar:category", attributeId="foo:bar:attribute:many")
-		URI[]		fooBarMany = new URI[] {URI.create("file://opt/app/test"), URI.create("https://localhost:8443/")};
-		
-	};
+                @XACMLSubject(includeInResults=true)
+                String	userID;
+                
+                @XACMLSubject(attributeId="urn:oasis:names:tc:xacml:1.0:subject:subject-id-qualifier")
+                boolean admin = false;
+                
+                @XACMLSubject(attributeId="urn:oasis:names:tc:xacml:1.0:subject:key-info", issuer="com:foo:security")
+                HexBinary publicKey = new HexBinary(new byte[] {'1', '0'});
+                
+                @XACMLSubject(attributeId="urn:oasis:names:tc:xacml:1.0:subject:authentication-time")
+                ISO8601Time	authenticationTime = new ISO8601Time(8, 0, 0, 0);
+                
+                /**
+                 * Here our base object is "Object", but it is reflected as a Java "String". The parser
+                 * will then use the XACML http://www.w3.org/2001/XMLSchema#string as the datatype.
+                 */
+                @XACMLSubject(attributeId="urn:oasis:names:tc:xacml:1.0:subject:authentication-method")
+                Object authenticationMethod = new String("RSA Public Key");
+                
+                /**
+                 * Here our base object is "String", but we use the annotation for datatype to clarify
+                 * that the real XACML data type is http://www.w3.org/2001/XMLSchema#time. The parser will
+                 * use the data type factory to convert the "String" to a "ISO8601Time" Java object.
+                 */
+                @XACMLSubject(attributeId="urn:oasis:names:tc:xacml:1.0:subject:request-time", datatype="http://www.w3.org/2001/XMLSchema#time")
+                String requestTime = new String("13:20:00-05:00");
+                
+                @XACMLSubject(attributeId="urn:oasis:names:tc:xacml:1.0:subject:session-start-time")
+                ISO8601DateTime sessionStart = new ISO8601DateTime(TimeZone.getDefault().getID(), 2014, 1, 1, 10, 0, 0, 0);
+                
+                @XACMLSubject(attributeId="urn:oasis:names:tc:xacml:3.0:subject:authn-locality:ip-address")
+                IPAddress ip = new IPv4Address(new short[] {123, 134, 156, 255 }, null, null);
+                
+                @XACMLSubject(attributeId="urn:oasis:names:tc:xacml:3.0:subject:authn-locality:dns-name")
+                String dnsName = "localhost";
+                
+                @XACMLAction()
+                String	action;
+                
+                @XACMLAction(attributeId="urn:oasis:names:tc:xacml:1.0:action:implied-action")
+                long	impliedAction;
+                
+                @XACMLResource()
+                String	resource;
+                
+                @XACMLEnvironment()
+                Date		today;
+                
+                @XACMLEnvironment()
+                Calendar	yesterday;
+                
+                /**
+                 * This field demonstrates how the parser can detect collections and build a bag of values.
+                 */
+                @XACMLAttribute(attributeId="foo:bar:attribute")
+                Collection<Double>		fooBar = Arrays.asList(2.5, 3.5);
+                
+                /**
+                 * The XACMLAttribute annotation allows one to specify all the 
+                 */
+                @XACMLAttribute(category="foo:bar:category", attributeId="foo:bar:attribute2")
+                double		fooBar2 = 3.999;
+                
+                /**
+                 * This field demonstrates how the parser can detect arrays and build a bag of values.
+                 */
+                @XACMLAttribute(category="foo:bar:category", attributeId="foo:bar:attribute:many")
+                URI[]		fooBarMany = new URI[] {URI.create("file://opt/app/test"), URI.create("https://localhost:8443/")};
+                
+        };
 
-	@XACMLRequest(
-		Defaults="http://www.w3.org/TR/1999/Rec-xpath-19991116",
-		multiRequest=@XACMLMultiRequest(values={
-			@XACMLRequestReference(values={"subject1", "action", "resource"}),
-			@XACMLRequestReference(values={"subject2", "action", "resource"})})
-	)
-	public class MyMultiRequestAttributes {
-		
-		@XACMLSubject(id="subject1")
-		String	userID1 = "John";
-		
-		@XACMLSubject(id="subject2")
-		String	userID2 = "Ringo";
+        @XACMLRequest(
+                Defaults="http://www.w3.org/TR/1999/Rec-xpath-19991116",
+                multiRequest=@XACMLMultiRequest(values={
+                        @XACMLRequestReference(values={"subject1", "action", "resource"}),
+                        @XACMLRequestReference(values={"subject2", "action", "resource"})})
+        )
+        public class MyMultiRequestAttributes {
+                
+                @XACMLSubject(id="subject1")
+                String	userID1 = "John";
+                
+                @XACMLSubject(id="subject2")
+                String	userID2 = "Ringo";
 
-		@XACMLAction(id="action")
-		String	action = "access";
+                @XACMLAction(id="action")
+                String	action = "access";
 
-		@XACMLResource(id="resource")
-		String	resource = "www.mywebsite.com";
-	}
+                @XACMLResource(id="resource")
+                String	resource = "www.mywebsite.com";
+        }
 
-	public TestAnnotation(String[] args) throws MalformedURLException, ParseException, HelpException {
-		super(args);
-	}
+        public TestAnnotation(String[] args) throws MalformedURLException, ParseException, HelpException {
+                super(args);
+        }
 
-	@Override
-	public void run() throws IOException, FactoryException {
-		//
-		// We are not going to iterate any existing request files. So we will override
-		// any TestBase code that assumes there are request files present.
-		//
-		//
-		// Configure ourselves
-		//
-		this.configure();
-		//
-		// Cycle through creating a few objects
-		//
-		this.num = 0;
-		this.doRequest(new MyRequestAttributes("John", "access", "www.mywebsite.com"));
-		this.num++;
-		this.doRequest(new MyRequestAttributes("Ringo", "access", "www.mywebsite.com"));
-		this.num++;
-		this.doRequest(new MyMultiRequestAttributes());
-		this.num++;
-	}
+        @Override
+        public void run() throws IOException, FactoryException {
+                //
+                // We are not going to iterate any existing request files. So we will override
+                // any TestBase code that assumes there are request files present.
+                //
+                //
+                // Configure ourselves
+                //
+                this.configure();
+                //
+                // Cycle through creating a few objects
+                //
+                this.num = 0;
+                this.doRequest(new MyRequestAttributes("John", "access", "www.mywebsite.com"));
+                this.num++;
+                this.doRequest(new MyRequestAttributes("Ringo", "access", "www.mywebsite.com"));
+                this.num++;
+                this.doRequest(new MyMultiRequestAttributes());
+                this.num++;
+        }
 
-	private void doRequest(Object info) {
-		try {
-			Response response = this.callPDP(RequestParser.parseRequest(info));
-			Path resultFile;
-			if (this.output != null) {
-				resultFile = Paths.get(this.output.toString(), "Response." + String.format("%03d", this.num) + ".json");
-			} else {
-				resultFile = Paths.get(this.directory, "results", "Response." + String.format("%03d", this.num) + ".json");
-			}
-			//
-			// Write the response to the result file
-			//
-			logger.info("Response is: " + response.toString());
-			if (resultFile != null) {
-				Files.write(resultFile, response.toString().getBytes());
-			}
-		} catch (IllegalArgumentException | IllegalAccessException | DataTypeException | IOException e) {
-			logger.error(e);
-			e.printStackTrace();
-		}
-	}
-	
-	public static void main(String[] args) {
-		try {
-			new TestAnnotation(args).run();
-		} catch (ParseException | IOException | FactoryException e) {
-			logger.error(e);
-		} catch (HelpException e) {
-			//
-			// ignore this, its thrown just to exit the application
-			// after dumping help to stdout.
-			//
-		}		
-	}
+        private void doRequest(Object info) {
+                try {
+                        Response response = this.callPDP(RequestParser.parseRequest(info));
+                        Path resultFile;
+                        if (this.output != null) {
+                                resultFile = Paths.get(this.output.toString(), "Response." + String.format("%03d", this.num) + ".json");
+                        } else {
+                                resultFile = Paths.get(this.directory, "results", "Response." + String.format("%03d", this.num) + ".json");
+                        }
+                        //
+                        // Write the response to the result file
+                        //
+                        logger.info("Response is: " + response.toString());
+                        if (resultFile != null) {
+                                Files.write(resultFile, response.toString().getBytes());
+                        }
+                } catch (IllegalArgumentException | IllegalAccessException | DataTypeException | IOException e) {
+                        logger.error(e);
+                        e.printStackTrace();
+                }
+        }
+        
+        public static void main(String[] args) {
+                try {
+                        new TestAnnotation(args).run();
+                } catch (ParseException | IOException | FactoryException e) {
+                        logger.error(e);
+                } catch (HelpException e) {
+                        //
+                        // ignore this, its thrown just to exit the application
+                        // after dumping help to stdout.
+                        //
+                }		
+        }
 }

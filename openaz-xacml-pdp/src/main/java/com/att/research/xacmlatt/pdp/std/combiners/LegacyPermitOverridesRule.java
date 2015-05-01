@@ -52,60 +52,60 @@ import com.att.research.xacmlatt.pdp.policy.RuleEffect;
  */
 public class LegacyPermitOverridesRule extends CombiningAlgorithmBase<Rule> {
 
-	public LegacyPermitOverridesRule(Identifier identifierIn) {
-		super(identifierIn);
-	}
+        public LegacyPermitOverridesRule(Identifier identifierIn) {
+                super(identifierIn);
+        }
 
-	@Override
-	public EvaluationResult combine(EvaluationContext evaluationContext, List<CombiningElement<Rule>> elements, List<CombinerParameter> combinerParameters) throws EvaluationException {
-		boolean atLeastOneDeny							= false;
-		boolean potentialPermit							= false;
-		
-		EvaluationResult evaluationResultCombined		= new EvaluationResult(Decision.DENY);
-		EvaluationResult evaluationResultIndeterminate	= null;
-		
-		Iterator<CombiningElement<Rule>> iterElements	= elements.iterator();
-		while (iterElements.hasNext()) {
-			CombiningElement<Rule> combiningElement		= iterElements.next();
-			EvaluationResult evaluationResultElement	= combiningElement.evaluate(evaluationContext);
-			
-			assert(evaluationResultElement != null);
-			switch(evaluationResultElement.getDecision()) {
-			case DENY:
-				atLeastOneDeny	= true;
-				evaluationResultCombined.merge(evaluationResultElement);
-				break;
-			case INDETERMINATE:
-			case INDETERMINATE_DENYPERMIT:
-			case INDETERMINATE_DENY:
-			case INDETERMINATE_PERMIT:
-				if (evaluationResultIndeterminate == null) {
-					evaluationResultIndeterminate	= evaluationResultElement;
-				} else {
-					evaluationResultIndeterminate.merge(evaluationResultElement);
-				}
-				if (combiningElement.getEvaluatable().getRuleEffect() == RuleEffect.PERMIT) {
-					potentialPermit	= true;
-				}
-				break;
-			case NOTAPPLICABLE:
-				break;
-			case PERMIT:
-				return evaluationResultElement;
-			default:
-				throw new EvaluationException("Illegal Decision: \"" + evaluationResultElement.getDecision().toString());
-			}
-		}
-		
-		if (potentialPermit) {
-			return evaluationResultIndeterminate;
-		} else if (atLeastOneDeny) {
-			return evaluationResultCombined;
-		} else if (evaluationResultIndeterminate != null) {
-			return evaluationResultIndeterminate;
-		} else {
-			return new EvaluationResult(Decision.NOTAPPLICABLE);
-		}
-	}
+        @Override
+        public EvaluationResult combine(EvaluationContext evaluationContext, List<CombiningElement<Rule>> elements, List<CombinerParameter> combinerParameters) throws EvaluationException {
+                boolean atLeastOneDeny							= false;
+                boolean potentialPermit							= false;
+                
+                EvaluationResult evaluationResultCombined		= new EvaluationResult(Decision.DENY);
+                EvaluationResult evaluationResultIndeterminate	= null;
+                
+                Iterator<CombiningElement<Rule>> iterElements	= elements.iterator();
+                while (iterElements.hasNext()) {
+                        CombiningElement<Rule> combiningElement		= iterElements.next();
+                        EvaluationResult evaluationResultElement	= combiningElement.evaluate(evaluationContext);
+                        
+                        assert(evaluationResultElement != null);
+                        switch(evaluationResultElement.getDecision()) {
+                        case DENY:
+                                atLeastOneDeny	= true;
+                                evaluationResultCombined.merge(evaluationResultElement);
+                                break;
+                        case INDETERMINATE:
+                        case INDETERMINATE_DENYPERMIT:
+                        case INDETERMINATE_DENY:
+                        case INDETERMINATE_PERMIT:
+                                if (evaluationResultIndeterminate == null) {
+                                        evaluationResultIndeterminate	= evaluationResultElement;
+                                } else {
+                                        evaluationResultIndeterminate.merge(evaluationResultElement);
+                                }
+                                if (combiningElement.getEvaluatable().getRuleEffect() == RuleEffect.PERMIT) {
+                                        potentialPermit	= true;
+                                }
+                                break;
+                        case NOTAPPLICABLE:
+                                break;
+                        case PERMIT:
+                                return evaluationResultElement;
+                        default:
+                                throw new EvaluationException("Illegal Decision: \"" + evaluationResultElement.getDecision().toString());
+                        }
+                }
+                
+                if (potentialPermit) {
+                        return evaluationResultIndeterminate;
+                } else if (atLeastOneDeny) {
+                        return evaluationResultCombined;
+                } else if (evaluationResultIndeterminate != null) {
+                        return evaluationResultIndeterminate;
+                } else {
+                        return new EvaluationResult(Decision.NOTAPPLICABLE);
+                }
+        }
 
 }

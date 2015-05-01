@@ -31,24 +31,24 @@ package org.openliberty.openaz.pepapi;
  */
 public class PepException extends RuntimeException {
 
-	private static final long serialVersionUID = 1L;
+        private static final long serialVersionUID = 1L;
 
-	/** 
-	 * Create a PepException containing a Throwable that
-	 * specifies the cause of this PepException.
-	 * @param cause
-	 */
-	public PepException(Throwable cause) {
+        /** 
+         * Create a PepException containing a Throwable that
+         * specifies the cause of this PepException.
+         * @param cause
+         */
+        public PepException(Throwable cause) {
         super(cause);
     }
 
-	/**
-	 * Create a PepException containing the message provided
-	 * and a Throwable containing further information as to
-	 * the cause of the PepException.
-	 * @param message
-	 * @param cause
-	 */
+        /**
+         * Create a PepException containing the message provided
+         * and a Throwable containing further information as to
+         * the cause of the PepException.
+         * @param message
+         * @param cause
+         */
     public PepException(String message, Throwable cause) {
         super(message, cause);
     }
@@ -61,6 +61,6 @@ public class PepException extends RuntimeException {
         super(message);
     }
 
-	public PepException() {super();}
+        public PepException() {super();}
 }
 

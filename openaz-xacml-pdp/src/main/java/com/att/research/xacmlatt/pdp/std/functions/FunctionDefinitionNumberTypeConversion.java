@@ -65,46 +65,46 @@ import com.att.research.xacmlatt.pdp.policy.FunctionArgument;
 public class FunctionDefinitionNumberTypeConversion<O extends Number, I extends Number> extends FunctionDefinitionHomogeneousSimple<O, I> {
 
 
-	public FunctionDefinitionNumberTypeConversion(Identifier idIn, DataType<O> outputType, DataType<I> argType) {
-		super(idIn, outputType, argType, 1);
-		
-	}
+        public FunctionDefinitionNumberTypeConversion(Identifier idIn, DataType<O> outputType, DataType<I> argType) {
+                super(idIn, outputType, argType, 1);
+                
+        }
 
-	@Override
-	public ExpressionResult evaluate(EvaluationContext evaluationContext, List<FunctionArgument> arguments) {
-		List<I> convertedArguments	= new ArrayList<I>();
-		Status status				= this.validateArguments(arguments, convertedArguments);
+        @Override
+        public ExpressionResult evaluate(EvaluationContext evaluationContext, List<FunctionArgument> arguments) {
+                List<I> convertedArguments	= new ArrayList<I>();
+                Status status				= this.validateArguments(arguments, convertedArguments);
 
-		/*
-		 * If the function arguments are not correct, just return an error status immediately
-		 */
-		if (!status.getStatusCode().equals(StdStatusCode.STATUS_CODE_OK)) {
-			return ExpressionResult.newError(getFunctionStatus(status));
-		}
-		
-		/*
-		 * Numeric operations cannot be operated on generically in java, so we have to check the types and handle separately.
-		 * Whichever type the argument is, convert it to the other
-		 */
-		ExpressionResult expressionResult;
-		try {
-			if (convertedArguments.get(0).getClass() == BigInteger.class) {
-				AttributeValue<Double>	doubleResult	= new StdAttributeValue<Double>(XACML.ID_DATATYPE_DOUBLE,
-						new Double(  ((BigInteger)convertedArguments.get(0)).toString()  ) );
-				expressionResult = ExpressionResult.newSingle(doubleResult);
-			} else {
-				AttributeValue<BigInteger>	integerResult	= new StdAttributeValue<BigInteger>(XACML.ID_DATATYPE_INTEGER, BigInteger.valueOf(((Double)convertedArguments.get(0)).intValue()) );
-				expressionResult = ExpressionResult.newSingle(integerResult);
-			}
-		} catch (Exception e) {
-			String message = e.getMessage();
-			if (e.getCause() != null) {
-				message = e.getCause().getMessage();
-			}
-			return ExpressionResult.newError(new StdStatus(StdStatusCode.STATUS_CODE_PROCESSING_ERROR, this.getShortFunctionId() + " " + message));
-		}
-		
-		return expressionResult;
-	}
+                /*
+                 * If the function arguments are not correct, just return an error status immediately
+                 */
+                if (!status.getStatusCode().equals(StdStatusCode.STATUS_CODE_OK)) {
+                        return ExpressionResult.newError(getFunctionStatus(status));
+                }
+                
+                /*
+                 * Numeric operations cannot be operated on generically in java, so we have to check the types and handle separately.
+                 * Whichever type the argument is, convert it to the other
+                 */
+                ExpressionResult expressionResult;
+                try {
+                        if (convertedArguments.get(0).getClass() == BigInteger.class) {
+                                AttributeValue<Double>	doubleResult	= new StdAttributeValue<Double>(XACML.ID_DATATYPE_DOUBLE,
+                                                new Double(  ((BigInteger)convertedArguments.get(0)).toString()  ) );
+                                expressionResult = ExpressionResult.newSingle(doubleResult);
+                        } else {
+                                AttributeValue<BigInteger>	integerResult	= new StdAttributeValue<BigInteger>(XACML.ID_DATATYPE_INTEGER, BigInteger.valueOf(((Double)convertedArguments.get(0)).intValue()) );
+                                expressionResult = ExpressionResult.newSingle(integerResult);
+                        }
+                } catch (Exception e) {
+                        String message = e.getMessage();
+                        if (e.getCause() != null) {
+                                message = e.getCause().getMessage();
+                        }
+                        return ExpressionResult.newError(new StdStatus(StdStatusCode.STATUS_CODE_PROCESSING_ERROR, this.getShortFunctionId() + " " + message));
+                }
+                
+                return expressionResult;
+        }
 
 }

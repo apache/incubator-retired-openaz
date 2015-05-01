@@ -40,14 +40,14 @@ import com.att.research.xacml.api.Attribute;
  * @version $Revision: 1.1 $
  */
 public class StdSinglePIPResponse extends StdMutablePIPResponse {
-	private Attribute singleAttribute;
-	
-	public StdSinglePIPResponse(Attribute attribute) {
-		super(attribute);
-		this.singleAttribute	= attribute;
-	}
-	
-	public Attribute getSingleAttribute() {
-		return this.singleAttribute;
-	}
+        private Attribute singleAttribute;
+        
+        public StdSinglePIPResponse(Attribute attribute) {
+                super(attribute);
+                this.singleAttribute	= attribute;
+        }
+        
+        public Attribute getSingleAttribute() {
+                return this.singleAttribute;
+        }
 }

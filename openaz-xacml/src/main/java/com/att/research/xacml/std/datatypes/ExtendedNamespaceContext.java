@@ -48,35 +48,35 @@ import javax.xml.namespace.NamespaceContext;
  */
 public abstract class ExtendedNamespaceContext implements NamespaceContext {
 
-	/**
-	 * Get an Iterator that returns all prefixes in use in the Namespace, including the default if defined.
-	 * The caller should use the returned values to call <code>getNamespaceURI(valueFromIterator)</code> to get the Namespace URIs associated with the prefix.
-	 * 
-	 * @return
-	 */
-	public abstract Iterator<String> getAllPrefixes();
-	
-	
-	
-	
-	@Override
-	public String toString() {
-		Iterator<String> prefixIt = this.getAllPrefixes();
-		StringBuffer sb = new StringBuffer("{[");
-		while (prefixIt.hasNext()) {
-			String prefix = prefixIt.next();
-			String namespaceUri = this.getNamespaceURI(prefix);
-			
-			sb.append("{");
-			if (prefix == XMLConstants.DEFAULT_NS_PREFIX) {
-				sb.append(namespaceUri);
-			} else {
-				sb.append(prefix + "," + namespaceUri);
-			}
-			sb.append("}");
-		}
-		sb.append("]}");
-		return sb.toString();
-	}
+        /**
+         * Get an Iterator that returns all prefixes in use in the Namespace, including the default if defined.
+         * The caller should use the returned values to call <code>getNamespaceURI(valueFromIterator)</code> to get the Namespace URIs associated with the prefix.
+         * 
+         * @return
+         */
+        public abstract Iterator<String> getAllPrefixes();
+        
+        
+        
+        
+        @Override
+        public String toString() {
+                Iterator<String> prefixIt = this.getAllPrefixes();
+                StringBuffer sb = new StringBuffer("{[");
+                while (prefixIt.hasNext()) {
+                        String prefix = prefixIt.next();
+                        String namespaceUri = this.getNamespaceURI(prefix);
+                        
+                        sb.append("{");
+                        if (prefix == XMLConstants.DEFAULT_NS_PREFIX) {
+                                sb.append(namespaceUri);
+                        } else {
+                                sb.append(prefix + "," + namespaceUri);
+                        }
+                        sb.append("}");
+                }
+                sb.append("]}");
+                return sb.toString();
+        }
 
 }

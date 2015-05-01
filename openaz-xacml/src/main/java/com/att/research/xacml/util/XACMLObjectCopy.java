@@ -86,240 +86,240 @@ import oasis.names.tc.xacml._3_0.core.schema.wd_17.VariableDefinitionType;
 import oasis.names.tc.xacml._3_0.core.schema.wd_17.VariableReferenceType;
 
 public class XACMLObjectCopy {
-	
-	public static PolicySetType	copy(PolicySetType policySet) {
-		return deepCopy(policySet);
-	}
-	
-	public static PolicyIssuerType	copy(PolicyIssuerType issuer) {
-		return deepCopy(issuer);
-	}
-	
-	public static TargetType	copy(TargetType target) {
-		return deepCopy(target);
-	}
-	
-	public static AnyOfType		copy(AnyOfType anyOf) {
-		return deepCopy(anyOf);
-	}
-	
-	public static AllOfType		copy(AllOfType allOf) {
-		return deepCopy(allOf);
-	}
-	
-	public static MatchType		copy(MatchType match) {
-		return deepCopy(match);
-	}
-	
-	public static IdReferenceType	copy(IdReferenceType ref) {
-		return deepCopy(ref);
-	}
-	
-	public static PolicyType		copy(PolicyType policy) {
-		return deepCopy(policy);
-	}
-	
-	public static CombinerParametersType	copy(CombinerParametersType params) {
-		return deepCopy(params);
-	}
-	
-	public static CombinerParameterType	copy(CombinerParameterType param) {
-		return deepCopy(param);
-	}
-	
-	public static RuleCombinerParametersType	copy(RuleCombinerParametersType params) {
-		return deepCopy(params);
-	}
-	
-	public static PolicyCombinerParametersType	copy(PolicyCombinerParametersType params) {
-		return deepCopy(params);
-	}
-	
-	public static PolicySetCombinerParametersType	copy(PolicySetCombinerParametersType params) {
-		return deepCopy(params);
-	}
-	
-	public static RuleType copy(RuleType rule) {
-		return deepCopy(rule);
-	}
-	
-	public static VariableDefinitionType copy(VariableDefinitionType value) {
-		return deepCopy(value);
-	}
+        
+        public static PolicySetType	copy(PolicySetType policySet) {
+                return deepCopy(policySet);
+        }
+        
+        public static PolicyIssuerType	copy(PolicyIssuerType issuer) {
+                return deepCopy(issuer);
+        }
+        
+        public static TargetType	copy(TargetType target) {
+                return deepCopy(target);
+        }
+        
+        public static AnyOfType		copy(AnyOfType anyOf) {
+                return deepCopy(anyOf);
+        }
+        
+        public static AllOfType		copy(AllOfType allOf) {
+                return deepCopy(allOf);
+        }
+        
+        public static MatchType		copy(MatchType match) {
+                return deepCopy(match);
+        }
+        
+        public static IdReferenceType	copy(IdReferenceType ref) {
+                return deepCopy(ref);
+        }
+        
+        public static PolicyType		copy(PolicyType policy) {
+                return deepCopy(policy);
+        }
+        
+        public static CombinerParametersType	copy(CombinerParametersType params) {
+                return deepCopy(params);
+        }
+        
+        public static CombinerParameterType	copy(CombinerParameterType param) {
+                return deepCopy(param);
+        }
+        
+        public static RuleCombinerParametersType	copy(RuleCombinerParametersType params) {
+                return deepCopy(params);
+        }
+        
+        public static PolicyCombinerParametersType	copy(PolicyCombinerParametersType params) {
+                return deepCopy(params);
+        }
+        
+        public static PolicySetCombinerParametersType	copy(PolicySetCombinerParametersType params) {
+                return deepCopy(params);
+        }
+        
+        public static RuleType copy(RuleType rule) {
+                return deepCopy(rule);
+        }
+        
+        public static VariableDefinitionType copy(VariableDefinitionType value) {
+                return deepCopy(value);
+        }
 
-	public static VariableReferenceType copy(VariableReferenceType value) {
-		return deepCopy(value);
-	}
-	
-	public static JAXBElement<?>	copy(JAXBElement<?> element) {
-		return deepCopy(element);
-	}
+        public static VariableReferenceType copy(VariableReferenceType value) {
+                return deepCopy(value);
+        }
+        
+        public static JAXBElement<?>	copy(JAXBElement<?> element) {
+                return deepCopy(element);
+        }
 
-	public static ConditionType copy(ConditionType condition) {
-		return deepCopy(condition);
-	}
-	
-	public static ApplyType copy(ApplyType value) {
-		return deepCopy(value);
-	}
+        public static ConditionType copy(ConditionType condition) {
+                return deepCopy(condition);
+        }
+        
+        public static ApplyType copy(ApplyType value) {
+                return deepCopy(value);
+        }
 
-	public static FunctionType copy(FunctionType value) {
-		return deepCopy(value);
-	}
+        public static FunctionType copy(FunctionType value) {
+                return deepCopy(value);
+        }
 
-	public static AttributeDesignatorType copy(AttributeDesignatorType value) {
-		return deepCopy(value);
-	}
+        public static AttributeDesignatorType copy(AttributeDesignatorType value) {
+                return deepCopy(value);
+        }
 
-	public static AttributeSelectorType copy(AttributeSelectorType value) {
-		return deepCopy(value);
-	}
+        public static AttributeSelectorType copy(AttributeSelectorType value) {
+                return deepCopy(value);
+        }
 
-	public static AttributeValueType copy(AttributeValueType attributeValue) {
-		return deepCopy(attributeValue);
-	}
-	
-	public static ObligationsType	copy(ObligationsType ob) {
-		return deepCopy(ob);
-	}
-	
-	public static AssociatedAdviceType		copy(AssociatedAdviceType advice) {
-		return deepCopy(advice);
-	}
+        public static AttributeValueType copy(AttributeValueType attributeValue) {
+                return deepCopy(attributeValue);
+        }
+        
+        public static ObligationsType	copy(ObligationsType ob) {
+                return deepCopy(ob);
+        }
+        
+        public static AssociatedAdviceType		copy(AssociatedAdviceType advice) {
+                return deepCopy(advice);
+        }
 
-	public static ObligationType	copy(ObligationType ob) {
-		return deepCopy(ob);
-	}
-	
-	public static AdviceType		copy(AdviceType advice) {
-		return deepCopy(advice);
-	}
-	
-	public static AttributeAssignmentType	copy(AttributeAssignmentType assign) {
-		return deepCopy(assign);
-	}
-	
-	public static ObligationExpressionsType	copy(ObligationExpressionsType expressions) {
-		return deepCopy(expressions);
-	}
+        public static ObligationType	copy(ObligationType ob) {
+                return deepCopy(ob);
+        }
+        
+        public static AdviceType		copy(AdviceType advice) {
+                return deepCopy(advice);
+        }
+        
+        public static AttributeAssignmentType	copy(AttributeAssignmentType assign) {
+                return deepCopy(assign);
+        }
+        
+        public static ObligationExpressionsType	copy(ObligationExpressionsType expressions) {
+                return deepCopy(expressions);
+        }
 
-	public static AdviceExpressionsType	copy(AdviceExpressionsType expressions) {
-		return deepCopy(expressions);
-	}
+        public static AdviceExpressionsType	copy(AdviceExpressionsType expressions) {
+                return deepCopy(expressions);
+        }
 
-	public static ObligationExpressionType	copy(ObligationExpressionType expression) {
-		return deepCopy(expression);
-	}
+        public static ObligationExpressionType	copy(ObligationExpressionType expression) {
+                return deepCopy(expression);
+        }
 
-	public static AdviceExpressionType	copy(AdviceExpressionType expressions) {
-		return deepCopy(expressions);
-	}
-	
-	public static AttributeAssignmentExpressionType	copy(AttributeAssignmentExpressionType expression) {
-		return deepCopy(expression);
-	}
+        public static AdviceExpressionType	copy(AdviceExpressionType expressions) {
+                return deepCopy(expressions);
+        }
+        
+        public static AttributeAssignmentExpressionType	copy(AttributeAssignmentExpressionType expression) {
+                return deepCopy(expression);
+        }
 
-	public static RequestType copy(RequestType request) {
-		return deepCopy(request);
-	}
+        public static RequestType copy(RequestType request) {
+                return deepCopy(request);
+        }
 
-	public static RequestDefaultsType copy(RequestDefaultsType requestDefaults) {
-		return deepCopy(requestDefaults);
-	}
-	
-	public static AttributesType copy(AttributesType type) {
-		return deepCopy(type);
-	}
+        public static RequestDefaultsType copy(RequestDefaultsType requestDefaults) {
+                return deepCopy(requestDefaults);
+        }
+        
+        public static AttributesType copy(AttributesType type) {
+                return deepCopy(type);
+        }
 
-	public static List<AttributesType> copyAttributes(List<AttributesType> attributes) {
-		return deepCopy(attributes);
-	}
+        public static List<AttributesType> copyAttributes(List<AttributesType> attributes) {
+                return deepCopy(attributes);
+        }
 
-	public static List<AttributeType> copyAttribute(List<AttributeType> attributeList) {
-		return deepCopy(attributeList);
-	}
+        public static List<AttributeType> copyAttribute(List<AttributeType> attributeList) {
+                return deepCopy(attributeList);
+        }
 
-	public static ContentType copy(ContentType content) {
-		return deepCopy(content);
-	}
+        public static ContentType copy(ContentType content) {
+                return deepCopy(content);
+        }
 
-	public static List<Object> copyContent(List<Object> content) {
-		return deepCopy(content);
-	}
-	
-	public static String	getContent(List<Object> content) {
-		StringBuffer buffer = new StringBuffer();
-		for (Object obj : content) {
-			buffer.append(obj.toString());
-		}
-		return buffer.toString();
-	}
-	
-	public static AttributeType copy(AttributeType type) {
-		return deepCopy(type);
-	}
+        public static List<Object> copyContent(List<Object> content) {
+                return deepCopy(content);
+        }
+        
+        public static String	getContent(List<Object> content) {
+                StringBuffer buffer = new StringBuffer();
+                for (Object obj : content) {
+                        buffer.append(obj.toString());
+                }
+                return buffer.toString();
+        }
+        
+        public static AttributeType copy(AttributeType type) {
+                return deepCopy(type);
+        }
 
-	public static ResponseType	copy(ResponseType response) {
-		return deepCopy(response);
-	}
+        public static ResponseType	copy(ResponseType response) {
+                return deepCopy(response);
+        }
 
-	public static ResultType	copy(ResultType result) {
-		return deepCopy(result);
-	}
-	
-	public static PolicyIdentifierListType	copy(PolicyIdentifierListType list) {
-		return deepCopy(list);
-	}
+        public static ResultType	copy(ResultType result) {
+                return deepCopy(result);
+        }
+        
+        public static PolicyIdentifierListType	copy(PolicyIdentifierListType list) {
+                return deepCopy(list);
+        }
 
-	public static MultiRequestsType copy(MultiRequestsType multiRequests) {
-		return deepCopy(multiRequests);
-	}
+        public static MultiRequestsType copy(MultiRequestsType multiRequests) {
+                return deepCopy(multiRequests);
+        }
 
-	public static List<RequestReferenceType> copyMultiRequest(List<RequestReferenceType> requestReference) {
-		return deepCopy(requestReference);
-	}
+        public static List<RequestReferenceType> copyMultiRequest(List<RequestReferenceType> requestReference) {
+                return deepCopy(requestReference);
+        }
 
-	public static RequestReferenceType copy(RequestReferenceType type) {
-		return deepCopy(type);
-	}
+        public static RequestReferenceType copy(RequestReferenceType type) {
+                return deepCopy(type);
+        }
 
-	public static List<AttributesReferenceType> copyAttributeReferences(List<AttributesReferenceType> attributesReference) {
-		return deepCopy(attributesReference);
-	}
+        public static List<AttributesReferenceType> copyAttributeReferences(List<AttributesReferenceType> attributesReference) {
+                return deepCopy(attributesReference);
+        }
 
-	public static AttributesReferenceType copy(AttributesReferenceType type) {
-		return deepCopy(type);
-	}
-	
-	public static StatusType copy(StatusType status) {
-		return deepCopy(status);
-	}
-	
-	public static MissingAttributeDetailType	copy(MissingAttributeDetailType detail) {
-		return deepCopy(detail);
-	}
+        public static AttributesReferenceType copy(AttributesReferenceType type) {
+                return deepCopy(type);
+        }
+        
+        public static StatusType copy(StatusType status) {
+                return deepCopy(status);
+        }
+        
+        public static MissingAttributeDetailType	copy(MissingAttributeDetailType detail) {
+                return deepCopy(detail);
+        }
 
-	public static List<AttributeValueType> copy(List<AttributeValueType> attributeValue) {
-		return deepCopy(attributeValue);
-	}
-	
-	public static Map<? extends QName, ? extends String> copy(Map<QName, String> otherAttributes) {
-		return deepCopy(otherAttributes);
-	}
-	
-	static public <T> T deepCopy(T object) {
-		if (object == null) return null;
-		
-		try {
-			@SuppressWarnings("unchecked")
-			Class<T> clazz = (Class<T>)object.getClass();
-			JAXBContext context = JAXBContext.newInstance(clazz);
-			JAXBElement<T> contentObject = new JAXBElement<T>(new QName(clazz.getSimpleName()), clazz, object);
-			JAXBSource source = new JAXBSource(context, contentObject);
-			return context.createUnmarshaller().unmarshal(source, clazz).getValue();
-		} catch (JAXBException e) {
-			throw new RuntimeException(e);
-		}
-	}
+        public static List<AttributeValueType> copy(List<AttributeValueType> attributeValue) {
+                return deepCopy(attributeValue);
+        }
+        
+        public static Map<? extends QName, ? extends String> copy(Map<QName, String> otherAttributes) {
+                return deepCopy(otherAttributes);
+        }
+        
+        static public <T> T deepCopy(T object) {
+                if (object == null) return null;
+                
+                try {
+                        @SuppressWarnings("unchecked")
+                        Class<T> clazz = (Class<T>)object.getClass();
+                        JAXBContext context = JAXBContext.newInstance(clazz);
+                        JAXBElement<T> contentObject = new JAXBElement<T>(new QName(clazz.getSimpleName()), clazz, object);
+                        JAXBSource source = new JAXBSource(context, contentObject);
+                        return context.createUnmarshaller().unmarshal(source, clazz).getValue();
+                } catch (JAXBException e) {
+                        throw new RuntimeException(e);
+                }
+        }
 
 }

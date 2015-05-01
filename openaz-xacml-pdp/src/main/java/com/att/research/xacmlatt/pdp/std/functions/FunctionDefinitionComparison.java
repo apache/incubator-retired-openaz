@@ -68,88 +68,88 @@ import com.att.research.xacmlatt.pdp.policy.FunctionArgument;
  */
 public class FunctionDefinitionComparison<I extends Comparable<I>> extends FunctionDefinitionHomogeneousSimple<Boolean, I> {
 
-	/**
-	 * List of comparison operations.
-	 * 
-	 * @author glenngriffin
-	 *
-	 */
-	public enum OPERATION {GREATER_THAN, GREATER_THAN_EQUAL, LESS_THAN, LESS_THAN_EQUAL };
-	
-	// the operation for this instance of the class
-	private OPERATION operation;
-	
-	
-	/**
-	 * Constructor - need dataType input because of java Generic type-erasure during compilation.
-	 * 
-	 * @param idIn
-	 * @param dataTypeArgsIn
-	 */
-	public FunctionDefinitionComparison(Identifier idIn, DataType<I> dataTypeArgsIn, OPERATION opIn) {
-		super(idIn, DataTypes.DT_BOOLEAN, dataTypeArgsIn, 2);
-		operation = opIn;
-	}
+        /**
+         * List of comparison operations.
+         * 
+         * @author glenngriffin
+         *
+         */
+        public enum OPERATION {GREATER_THAN, GREATER_THAN_EQUAL, LESS_THAN, LESS_THAN_EQUAL };
+        
+        // the operation for this instance of the class
+        private OPERATION operation;
+        
+        
+        /**
+         * Constructor - need dataType input because of java Generic type-erasure during compilation.
+         * 
+         * @param idIn
+         * @param dataTypeArgsIn
+         */
+        public FunctionDefinitionComparison(Identifier idIn, DataType<I> dataTypeArgsIn, OPERATION opIn) {
+                super(idIn, DataTypes.DT_BOOLEAN, dataTypeArgsIn, 2);
+                operation = opIn;
+        }
 
 
-	@Override
-	public ExpressionResult evaluate(EvaluationContext evaluationContext, List<FunctionArgument> arguments) {
+        @Override
+        public ExpressionResult evaluate(EvaluationContext evaluationContext, List<FunctionArgument> arguments) {
 
-		List<I> convertedArguments	= new ArrayList<I>();
-		Status status				= this.validateArguments(arguments, convertedArguments);
-		
-		/*
-		 * If the function arguments are not correct, just return an error status immediately
-		 */
-		if (!status.getStatusCode().equals(StdStatusCode.STATUS_CODE_OK)) {
-			return ExpressionResult.newError(getFunctionStatus(status));
-		}
-		
-		int compareResult;
-		try {
-			compareResult = ((I)convertedArguments.get(0)).compareTo((I)convertedArguments.get(1));
-		} catch (Exception e) {
-			String message = e.getMessage();
-			if (e.getCause() != null) {
-				message = e.getCause().getMessage();
-			}
-			return ExpressionResult.newError(new StdStatus(StdStatusCode.STATUS_CODE_PROCESSING_ERROR, this.getShortFunctionId() + " " + message));
-		}
+                List<I> convertedArguments	= new ArrayList<I>();
+                Status status				= this.validateArguments(arguments, convertedArguments);
+                
+                /*
+                 * If the function arguments are not correct, just return an error status immediately
+                 */
+                if (!status.getStatusCode().equals(StdStatusCode.STATUS_CODE_OK)) {
+                        return ExpressionResult.newError(getFunctionStatus(status));
+                }
+                
+                int compareResult;
+                try {
+                        compareResult = ((I)convertedArguments.get(0)).compareTo((I)convertedArguments.get(1));
+                } catch (Exception e) {
+                        String message = e.getMessage();
+                        if (e.getCause() != null) {
+                                message = e.getCause().getMessage();
+                        }
+                        return ExpressionResult.newError(new StdStatus(StdStatusCode.STATUS_CODE_PROCESSING_ERROR, this.getShortFunctionId() + " " + message));
+                }
 
-		switch (operation) {
-		case GREATER_THAN:
-			if (compareResult > 0) {
-				return ER_TRUE;
-			} else {
-				return ER_FALSE;
-			}
-			
-		case GREATER_THAN_EQUAL:
-			if (compareResult > -1) {
-				return ER_TRUE;
-			} else {
-				return ER_FALSE;
-			}
-			
-		case LESS_THAN:
-			if (compareResult < 0) {
-				return ER_TRUE;
-			} else {
-				return ER_FALSE;
-			}
-			
-		case LESS_THAN_EQUAL:
-			if (compareResult < 1) {
-				return ER_TRUE;
-			} else {
-				return ER_FALSE;
-			}
-		}
-	
-		// switch on enum should handle everything - should never get here
-		return ExpressionResult.newError(new StdStatus(StdStatusCode.STATUS_CODE_PROCESSING_ERROR, this.getShortFunctionId() + " ENUM did not cover case of " + operation));
+                switch (operation) {
+                case GREATER_THAN:
+                        if (compareResult > 0) {
+                                return ER_TRUE;
+                        } else {
+                                return ER_FALSE;
+                        }
+                        
+                case GREATER_THAN_EQUAL:
+                        if (compareResult > -1) {
+                                return ER_TRUE;
+                        } else {
+                                return ER_FALSE;
+                        }
+                        
+                case LESS_THAN:
+                        if (compareResult < 0) {
+                                return ER_TRUE;
+                        } else {
+                                return ER_FALSE;
+                        }
+                        
+                case LESS_THAN_EQUAL:
+                        if (compareResult < 1) {
+                                return ER_TRUE;
+                        } else {
+                                return ER_FALSE;
+                        }
+                }
+        
+                // switch on enum should handle everything - should never get here
+                return ExpressionResult.newError(new StdStatus(StdStatusCode.STATUS_CODE_PROCESSING_ERROR, this.getShortFunctionId() + " ENUM did not cover case of " + operation));
 
-	}
+        }
 
 
 

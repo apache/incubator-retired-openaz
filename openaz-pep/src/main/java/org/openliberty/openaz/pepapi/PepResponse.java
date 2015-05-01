@@ -31,15 +31,15 @@ import java.util.Map;
  * @author Josh Bregman, Rich Levinson, Prateek Mishra
  */
 public interface PepResponse {
-	 
-	/**
-	 * Returns the decision associated with the current result.
-	 * @return true if the user was granted access to the resource, 
-	 * otherwise false
-	 * @throws PepException if the {@link PepResponseBehavior} 
-	 * configured in the {@link PepResponseFactory}
-	 * indicates that for the response should be thrown
-	 */
+         
+        /**
+         * Returns the decision associated with the current result.
+         * @return true if the user was granted access to the resource, 
+         * otherwise false
+         * @throws PepException if the {@link PepResponseBehavior} 
+         * configured in the {@link PepResponseFactory}
+         * indicates that for the response should be thrown
+         */
     public boolean allowed() throws PepException;
 
     /**
@@ -60,7 +60,7 @@ public interface PepResponse {
      */
     public Map<String, Advice> getAdvices() throws PepException;
 
-	 /**
+         /**
      * Return the object association that is tied to the current
      * result. The association is the same object that was
      * used to create the PepRequest and may be used to 

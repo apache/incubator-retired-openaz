@@ -50,141 +50,141 @@ import com.att.research.xacmlatt.pdp.policy.ExpressionResult;
  * @version $Revision: 1.1 $
  */
 public abstract class AttributeRetrievalBase extends Expression {
-	private Identifier	category;
-	private Identifier	dataTypeId;
-	private Boolean		mustBePresent;
-	
-	protected AttributeRetrievalBase(StatusCode statusCodeIn,
-			String statusMessageIn) {
-		super(statusCodeIn, statusMessageIn);
-	}
+        private Identifier	category;
+        private Identifier	dataTypeId;
+        private Boolean		mustBePresent;
+        
+        protected AttributeRetrievalBase(StatusCode statusCodeIn,
+                        String statusMessageIn) {
+                super(statusCodeIn, statusMessageIn);
+        }
 
-	protected AttributeRetrievalBase(StatusCode statusCodeIn) {
-		super(statusCodeIn);
-	}
+        protected AttributeRetrievalBase(StatusCode statusCodeIn) {
+                super(statusCodeIn);
+        }
 
-	protected AttributeRetrievalBase() {
-	}
-	
-	protected AttributeRetrievalBase(Identifier categoryIn, Identifier dataTypeIdIn, Boolean mustBePresentIn) {
-		this.category		= categoryIn;
-		this.dataTypeId		= dataTypeIdIn;
-		this.mustBePresent	= mustBePresentIn;
-	}
+        protected AttributeRetrievalBase() {
+        }
+        
+        protected AttributeRetrievalBase(Identifier categoryIn, Identifier dataTypeIdIn, Boolean mustBePresentIn) {
+                this.category		= categoryIn;
+                this.dataTypeId		= dataTypeIdIn;
+                this.mustBePresent	= mustBePresentIn;
+        }
 
-	/**
-	 * Gets the {@link com.att.research.xacml.api.Identifier} for the category associated with this
-	 * <code>AttributeRetrievalBase</code>.
-	 * 
-	 * @return the <code>Identifier</code> for the category of this <code>AttributeRetrievalBase</code>.
-	 */
-	public Identifier getCategory() {
-		return this.category;
-	}
-	
-	/**
-	 * Sets the <code>Identifier</code> for the category associated with this <code>AttributeRetrievalBase</code>.
-	 * 
-	 * @param categoryIn the <code>Identifier</code> for the category associated with this <code>AttributeRetrievalBase</code>
-	 */
-	public void setCategory(Identifier categoryIn) {
-		this.category	= categoryIn;
-	}
-	
-	/**
-	 * Gets the <code>Identifier</code> for the data type associated with this <code>AttributeRetrievalBase</code>.
-	 * 
-	 * @return the <code>Identifier</code> for the data type associated with this <code>AttributeRetrievalBase</code>
-	 */
-	public Identifier getDataTypeId() {
-		return this.dataTypeId;
-	}
-	
-	/**
-	 * Sets the <code>Identifier</code> for the data type associated with this <code>AttributeRetrievalBase</code>.
-	 * 
-	 * @param dataTypeIn the <code>Identifier</code> for the data type associated with this <code>AttributeRetrievalBase</code>
-	 */
-	public void setDataTypeId(Identifier dataTypeIn) {
-		// allow old-style Ids for Durations since there is no structural or semantic changes, just a different Id.
-		if (dataTypeIn.equals(XACML.ID_DATATYPE_WD_DAYTIMEDURATION)) {
-			dataTypeIn	= DataTypes.DT_DAYTIMEDURATION.getId();
-		} else if (dataTypeIn.equals(XACML.ID_DATATYPE_WD_YEARMONTHDURATION)) {
-			dataTypeIn	= DataTypes.DT_YEARMONTHDURATION.getId();
-		}
-		this.dataTypeId	= dataTypeIn;
-	}
-	
-	/**
-	 * Determines if a value must be found for this <code>AttributeRetrievalBase</code> when it is evaluated.  If true,
-	 * and no value is found, an indeterminate result is returned, otherwise an empty bag is returned.
-	 * 
-	 * @return true if the value of this <code>AttributeRetrievalBase</code> must be found, else false
-	 */
-	public Boolean getMustBePresent() {
-		return this.mustBePresent;
-	}
-	
-	/**
-	 * Sets the flag indicating whether a value must be found for this <code>AttributeRetrievalBase</code>.
-	 * 
-	 * @param b the boolean value for the flag
-	 */
-	public void setMustBePresent(boolean b) {
-		this.mustBePresent	= b;
-	}
+        /**
+         * Gets the {@link com.att.research.xacml.api.Identifier} for the category associated with this
+         * <code>AttributeRetrievalBase</code>.
+         * 
+         * @return the <code>Identifier</code> for the category of this <code>AttributeRetrievalBase</code>.
+         */
+        public Identifier getCategory() {
+                return this.category;
+        }
+        
+        /**
+         * Sets the <code>Identifier</code> for the category associated with this <code>AttributeRetrievalBase</code>.
+         * 
+         * @param categoryIn the <code>Identifier</code> for the category associated with this <code>AttributeRetrievalBase</code>
+         */
+        public void setCategory(Identifier categoryIn) {
+                this.category	= categoryIn;
+        }
+        
+        /**
+         * Gets the <code>Identifier</code> for the data type associated with this <code>AttributeRetrievalBase</code>.
+         * 
+         * @return the <code>Identifier</code> for the data type associated with this <code>AttributeRetrievalBase</code>
+         */
+        public Identifier getDataTypeId() {
+                return this.dataTypeId;
+        }
+        
+        /**
+         * Sets the <code>Identifier</code> for the data type associated with this <code>AttributeRetrievalBase</code>.
+         * 
+         * @param dataTypeIn the <code>Identifier</code> for the data type associated with this <code>AttributeRetrievalBase</code>
+         */
+        public void setDataTypeId(Identifier dataTypeIn) {
+                // allow old-style Ids for Durations since there is no structural or semantic changes, just a different Id.
+                if (dataTypeIn.equals(XACML.ID_DATATYPE_WD_DAYTIMEDURATION)) {
+                        dataTypeIn	= DataTypes.DT_DAYTIMEDURATION.getId();
+                } else if (dataTypeIn.equals(XACML.ID_DATATYPE_WD_YEARMONTHDURATION)) {
+                        dataTypeIn	= DataTypes.DT_YEARMONTHDURATION.getId();
+                }
+                this.dataTypeId	= dataTypeIn;
+        }
+        
+        /**
+         * Determines if a value must be found for this <code>AttributeRetrievalBase</code> when it is evaluated.  If true,
+         * and no value is found, an indeterminate result is returned, otherwise an empty bag is returned.
+         * 
+         * @return true if the value of this <code>AttributeRetrievalBase</code> must be found, else false
+         */
+        public Boolean getMustBePresent() {
+                return this.mustBePresent;
+        }
+        
+        /**
+         * Sets the flag indicating whether a value must be found for this <code>AttributeRetrievalBase</code>.
+         * 
+         * @param b the boolean value for the flag
+         */
+        public void setMustBePresent(boolean b) {
+                this.mustBePresent	= b;
+        }
 
-	@Override
-	protected boolean validateComponent() {
-		if (this.getCategory() == null) {
-			this.setStatus(StdStatusCode.STATUS_CODE_SYNTAX_ERROR, "Missing Category");
-			return false;
-		} else if (this.getDataTypeId() == null) {
-			this.setStatus(StdStatusCode.STATUS_CODE_SYNTAX_ERROR, "Missing DataType");
-			return false;
-		} else if (this.getMustBePresent() == null) {
-			this.setStatus(StdStatusCode.STATUS_CODE_SYNTAX_ERROR, "Missing MustBePresent");
-			return false;
-		} else {
-			this.setStatus(StdStatusCode.STATUS_CODE_OK, null);
-			return true;
-		}
-	}
-	
-	@Override public String toString() {
-		StringBuilder stringBuilder	= new StringBuilder("{");
-		stringBuilder.append("super=");
-		stringBuilder.append(super.toString());
-		
-		Object objectToDump;
-		if ((objectToDump = this.getCategory()) != null) {
-			stringBuilder.append(",category=");
-			stringBuilder.append(objectToDump.toString());
-		}
-		if ((objectToDump = this.getDataTypeId()) != null) {
-			stringBuilder.append(",dataType=");
-			stringBuilder.append(objectToDump.toString());
-		}
-		if ((objectToDump = this.getMustBePresent()) != null) {
-			stringBuilder.append(",mustBePresent=");
-			stringBuilder.append(objectToDump.toString());
-		}
-		stringBuilder.append('}');
-		return stringBuilder.toString();
-	}
+        @Override
+        protected boolean validateComponent() {
+                if (this.getCategory() == null) {
+                        this.setStatus(StdStatusCode.STATUS_CODE_SYNTAX_ERROR, "Missing Category");
+                        return false;
+                } else if (this.getDataTypeId() == null) {
+                        this.setStatus(StdStatusCode.STATUS_CODE_SYNTAX_ERROR, "Missing DataType");
+                        return false;
+                } else if (this.getMustBePresent() == null) {
+                        this.setStatus(StdStatusCode.STATUS_CODE_SYNTAX_ERROR, "Missing MustBePresent");
+                        return false;
+                } else {
+                        this.setStatus(StdStatusCode.STATUS_CODE_OK, null);
+                        return true;
+                }
+        }
+        
+        @Override public String toString() {
+                StringBuilder stringBuilder	= new StringBuilder("{");
+                stringBuilder.append("super=");
+                stringBuilder.append(super.toString());
+                
+                Object objectToDump;
+                if ((objectToDump = this.getCategory()) != null) {
+                        stringBuilder.append(",category=");
+                        stringBuilder.append(objectToDump.toString());
+                }
+                if ((objectToDump = this.getDataTypeId()) != null) {
+                        stringBuilder.append(",dataType=");
+                        stringBuilder.append(objectToDump.toString());
+                }
+                if ((objectToDump = this.getMustBePresent()) != null) {
+                        stringBuilder.append(",mustBePresent=");
+                        stringBuilder.append(objectToDump.toString());
+                }
+                stringBuilder.append('}');
+                return stringBuilder.toString();
+        }
 
-	/**
-	 * Creates the appropriate {@link com.att.research.xacmlatt.pdp.policy.ExpressionResult} for an empty list based
-	 * on the <code>getMustBePresent</code> value.
-	 * 
-	 * @return an appropriate <code>ExpressionResult</code>
-	 */
-	protected ExpressionResult getEmptyResult(String statusMessage, StatusDetail statusDetail) {
-		if (this.getMustBePresent() != null && this.getMustBePresent().booleanValue()) {
-			return ExpressionResult.newError(new StdStatus(StdStatusCode.STATUS_CODE_MISSING_ATTRIBUTE, statusMessage, statusDetail));
-		} else {
-			return ExpressionResult.newEmpty();
-		}
-	}
+        /**
+         * Creates the appropriate {@link com.att.research.xacmlatt.pdp.policy.ExpressionResult} for an empty list based
+         * on the <code>getMustBePresent</code> value.
+         * 
+         * @return an appropriate <code>ExpressionResult</code>
+         */
+        protected ExpressionResult getEmptyResult(String statusMessage, StatusDetail statusDetail) {
+                if (this.getMustBePresent() != null && this.getMustBePresent().booleanValue()) {
+                        return ExpressionResult.newError(new StdStatus(StdStatusCode.STATUS_CODE_MISSING_ATTRIBUTE, statusMessage, statusDetail));
+                } else {
+                        return ExpressionResult.newEmpty();
+                }
+        }
 
 }

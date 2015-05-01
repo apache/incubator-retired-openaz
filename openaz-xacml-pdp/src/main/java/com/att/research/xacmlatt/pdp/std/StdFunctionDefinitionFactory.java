@@ -48,43 +48,43 @@ import com.att.research.xacmlatt.pdp.policy.FunctionDefinitionFactory;
  * @version $Revision: 1.2 $
  */
 public class StdFunctionDefinitionFactory extends FunctionDefinitionFactory {
-	private static Map<Identifier,FunctionDefinition> 	mapFunctionDefinitions	= new HashMap<Identifier,FunctionDefinition>();
-	private static boolean								needMapInit				= true;
-	
-	private static void register(FunctionDefinition functionDefinition) {
-		mapFunctionDefinitions.put(functionDefinition.getId(), functionDefinition);
-	}
-		
-	private static void initMap() {
-		if (needMapInit) {
-			synchronized(mapFunctionDefinitions) {
-				if (needMapInit) {
-					needMapInit	= false;
-					Field[] declaredFields	= StdFunctions.class.getDeclaredFields();
-					for (Field field : declaredFields) {
-						if (Modifier.isStatic(field.getModifiers()) && 
-							field.getName().startsWith(StdFunctions.FD_PREFIX) &&
-							FunctionDefinition.class.isAssignableFrom(field.getType()) &&
-							Modifier.isPublic(field.getModifiers())
-						) {
-							try {
-								register((FunctionDefinition)(field.get(null)));
-							} catch (IllegalAccessException ex) {
-								
-							}
-						}
-					}
-				}
-			}
-		}
-	}
-	
-	public StdFunctionDefinitionFactory() {
-		initMap();
-	}
+        private static Map<Identifier,FunctionDefinition> 	mapFunctionDefinitions	= new HashMap<Identifier,FunctionDefinition>();
+        private static boolean								needMapInit				= true;
+        
+        private static void register(FunctionDefinition functionDefinition) {
+                mapFunctionDefinitions.put(functionDefinition.getId(), functionDefinition);
+        }
+                
+        private static void initMap() {
+                if (needMapInit) {
+                        synchronized(mapFunctionDefinitions) {
+                                if (needMapInit) {
+                                        needMapInit	= false;
+                                        Field[] declaredFields	= StdFunctions.class.getDeclaredFields();
+                                        for (Field field : declaredFields) {
+                                                if (Modifier.isStatic(field.getModifiers()) && 
+                                                        field.getName().startsWith(StdFunctions.FD_PREFIX) &&
+                                                        FunctionDefinition.class.isAssignableFrom(field.getType()) &&
+                                                        Modifier.isPublic(field.getModifiers())
+                                                ) {
+                                                        try {
+                                                                register((FunctionDefinition)(field.get(null)));
+                                                        } catch (IllegalAccessException ex) {
+                                                                
+                                                        }
+                                                }
+                                        }
+                                }
+                        }
+                }
+        }
+        
+        public StdFunctionDefinitionFactory() {
+                initMap();
+        }
 
-	@Override
-	public FunctionDefinition getFunctionDefinition(Identifier functionId) {
-		return mapFunctionDefinitions.get(functionId);
-	}
+        @Override
+        public FunctionDefinition getFunctionDefinition(Identifier functionId) {
+                return mapFunctionDefinitions.get(functionId);
+        }
 }

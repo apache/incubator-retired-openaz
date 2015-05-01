@@ -43,39 +43,39 @@ import com.att.research.xacml.api.trace.TraceEvent;
  * @version $Revision$
  */
 public class NullTraceEngine implements TraceEngine {
-	private static final NullTraceEngine nullTraceEngine	= new NullTraceEngine();
-	
-	protected NullTraceEngine() {
-	}
-	
-	protected NullTraceEngine(Properties properties) {
-	}
-	
-	/**
-	 * Gets the single instance of the <code>NullTraceEngine</code> class.
-	 * 
-	 * @return the single instance of the <code>NullTraceEngine</code> class.
-	 */
-	public static NullTraceEngine newInstance() {
-		return nullTraceEngine;
-	}
+        private static final NullTraceEngine nullTraceEngine	= new NullTraceEngine();
+        
+        protected NullTraceEngine() {
+        }
+        
+        protected NullTraceEngine(Properties properties) {
+        }
+        
+        /**
+         * Gets the single instance of the <code>NullTraceEngine</code> class.
+         * 
+         * @return the single instance of the <code>NullTraceEngine</code> class.
+         */
+        public static NullTraceEngine newInstance() {
+                return nullTraceEngine;
+        }
 
-	/**
-	 * Gets the single instance of the <code>NullTraceEngine</code> class.
-	 * 
-	 * @return the single instance of the <code>NullTraceEngine</code> class.
-	 */
-	public static NullTraceEngine newInstance(Properties properties) {
-		return nullTraceEngine;
-	}
+        /**
+         * Gets the single instance of the <code>NullTraceEngine</code> class.
+         * 
+         * @return the single instance of the <code>NullTraceEngine</code> class.
+         */
+        public static NullTraceEngine newInstance(Properties properties) {
+                return nullTraceEngine;
+        }
 
-	@Override
-	public void trace(TraceEvent<?> traceEvent) {
-	}
+        @Override
+        public void trace(TraceEvent<?> traceEvent) {
+        }
 
-	@Override
-	public boolean isTracing() {
-		return false;
-	}
+        @Override
+        public boolean isTracing() {
+                return false;
+        }
 
 }

@@ -37,27 +37,27 @@ package com.att.research.xacml.std.json;
  *
  */
 public class JSONStructureException extends Exception {
-	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 3375547841298623008L;
+        
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 3375547841298623008L;
 
-	
-	public JSONStructureException() {
-	}
+        
+        public JSONStructureException() {
+        }
 
-	public JSONStructureException(String message) {
-		super(message);
-	}
+        public JSONStructureException(String message) {
+                super(message);
+        }
 
-	public JSONStructureException(Throwable cause) {
-		super(cause);
-	}
+        public JSONStructureException(Throwable cause) {
+                super(cause);
+        }
 
-	public JSONStructureException(String message, Throwable cause) {
-		super(message, cause);
-	}
+        public JSONStructureException(String message, Throwable cause) {
+                super(message, cause);
+        }
 
 
 }

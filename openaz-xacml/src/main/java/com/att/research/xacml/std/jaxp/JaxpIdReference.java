@@ -49,26 +49,26 @@ import com.att.research.xacml.std.StdVersion;
  */
 public class JaxpIdReference extends StdIdReference {
 
-	protected JaxpIdReference(Identifier idIn, Version versionIn) {
-		super(idIn, versionIn);
-	}
-	
-	public static JaxpIdReference newInstance(IdReferenceType idReferenceType) {
-		if (idReferenceType == null) {
-			throw new NullPointerException("Null IdReferenceType");
-		} else if (idReferenceType.getValue() == null) {
-			throw new IllegalArgumentException("Null value in IdReferenceType");
-		}
-		
-		Version version	= null;
-		if (idReferenceType.getVersion() != null) {
-			try {
-				version	= StdVersion.newInstance(idReferenceType.getVersion());
-			} catch (ParseException ex) {
-				throw new IllegalArgumentException("Invalid version");
-			}
-		}
-		return new JaxpIdReference(new IdentifierImpl(idReferenceType.getValue()), version);
-	}
+        protected JaxpIdReference(Identifier idIn, Version versionIn) {
+                super(idIn, versionIn);
+        }
+        
+        public static JaxpIdReference newInstance(IdReferenceType idReferenceType) {
+                if (idReferenceType == null) {
+                        throw new NullPointerException("Null IdReferenceType");
+                } else if (idReferenceType.getValue() == null) {
+                        throw new IllegalArgumentException("Null value in IdReferenceType");
+                }
+                
+                Version version	= null;
+                if (idReferenceType.getVersion() != null) {
+                        try {
+                                version	= StdVersion.newInstance(idReferenceType.getVersion());
+                        } catch (ParseException ex) {
+                                throw new IllegalArgumentException("Invalid version");
+                        }
+                }
+                return new JaxpIdReference(new IdentifierImpl(idReferenceType.getValue()), version);
+        }
 
 }

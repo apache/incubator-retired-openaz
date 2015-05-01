@@ -38,30 +38,30 @@ package org.openliberty.openaz.pepapi;
  */
 public interface ObjectMapper {
 
-	/**
-	 * Returns a Class that represents the mapped domain type.
-	 * 
-	 * @return a Class object
-	 */
-	public Class<?> getMappedClass();
-	
-	/**
-	 * Maps Object properties to attributes
-	 * 
-	 * @param o - an instance of the domain object to be mapped
-	 * @param pepRequest - the current Request Context
-	 */
-	public void map(Object o, PepRequest pepRequest);
+        /**
+         * Returns a Class that represents the mapped domain type.
+         * 
+         * @return a Class object
+         */
+        public Class<?> getMappedClass();
+        
+        /**
+         * Maps Object properties to attributes
+         * 
+         * @param o - an instance of the domain object to be mapped
+         * @param pepRequest - the current Request Context
+         */
+        public void map(Object o, PepRequest pepRequest);
 
-	/**
-	 *
-	 * @param mapperRegistry
-	 */
-	public void setMapperRegistry(MapperRegistry mapperRegistry);
+        /**
+         *
+         * @param mapperRegistry
+         */
+        public void setMapperRegistry(MapperRegistry mapperRegistry);
 
-	/**
-	 *
-	 * @param pepConfig
-	 */
-	public void setPepConfig(PepConfig pepConfig);
+        /**
+         *
+         * @param pepConfig
+         */
+        public void setPepConfig(PepConfig pepConfig);
 }

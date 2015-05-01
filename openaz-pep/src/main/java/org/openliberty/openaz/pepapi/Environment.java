@@ -31,17 +31,17 @@ import com.att.research.xacml.api.XACML3;
  */
 public final class Environment extends CategoryContainer {
 
-	private Environment() {
-		super(XACML3.ID_ATTRIBUTE_CATEGORY_ENVIRONMENT);
-	}
-	
-	/**
-	 * Creates a new Environment instance
-	 * 
-	 * @return
-	 */
-	public static Environment newInstance() {
-		return new Environment();
-	}
+        private Environment() {
+                super(XACML3.ID_ATTRIBUTE_CATEGORY_ENVIRONMENT);
+        }
+        
+        /**
+         * Creates a new Environment instance
+         * 
+         * @return
+         */
+        public static Environment newInstance() {
+                return new Environment();
+        }
 
 }

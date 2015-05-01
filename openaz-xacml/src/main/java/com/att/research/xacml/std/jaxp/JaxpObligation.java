@@ -52,25 +52,25 @@ import com.att.research.xacml.std.StdMutableObligation;
  */
 public class JaxpObligation extends StdMutableObligation {
 
-	protected JaxpObligation(Identifier idIn, Collection<AttributeAssignment> attributeAssignmentsIn) {
-		super(idIn, attributeAssignmentsIn);
-	}
+        protected JaxpObligation(Identifier idIn, Collection<AttributeAssignment> attributeAssignmentsIn) {
+                super(idIn, attributeAssignmentsIn);
+        }
 
-	public static JaxpObligation newInstance(ObligationType obligationType) {
-		if (obligationType == null) {
-			throw new NullPointerException("Null ObligationType");
-		} else if (obligationType.getObligationId() == null) {
-			throw new IllegalArgumentException("Null obligationId for ObligationType");
-		}
-		Identifier						obligationId			= new IdentifierImpl(obligationType.getObligationId());
-		List<AttributeAssignment>	attributeAssignments	= null;
-		if (obligationType.getAttributeAssignment() != null && obligationType.getAttributeAssignment().size() > 0) {
-			attributeAssignments	= new ArrayList<AttributeAssignment>();
-			Iterator<AttributeAssignmentType>	iterAttributeAssignmentTypes	= obligationType.getAttributeAssignment().iterator();
-			while (iterAttributeAssignmentTypes.hasNext()) {
-				attributeAssignments.add(JaxpAttributeAssignment.newInstance(iterAttributeAssignmentTypes.next()));
-			}
-		}
-		return new JaxpObligation(obligationId, attributeAssignments);
-	}
+        public static JaxpObligation newInstance(ObligationType obligationType) {
+                if (obligationType == null) {
+                        throw new NullPointerException("Null ObligationType");
+                } else if (obligationType.getObligationId() == null) {
+                        throw new IllegalArgumentException("Null obligationId for ObligationType");
+                }
+                Identifier						obligationId			= new IdentifierImpl(obligationType.getObligationId());
+                List<AttributeAssignment>	attributeAssignments	= null;
+                if (obligationType.getAttributeAssignment() != null && obligationType.getAttributeAssignment().size() > 0) {
+                        attributeAssignments	= new ArrayList<AttributeAssignment>();
+                        Iterator<AttributeAssignmentType>	iterAttributeAssignmentTypes	= obligationType.getAttributeAssignment().iterator();
+                        while (iterAttributeAssignmentTypes.hasNext()) {
+                                attributeAssignments.add(JaxpAttributeAssignment.newInstance(iterAttributeAssignmentTypes.next()));
+                        }
+                }
+                return new JaxpObligation(obligationId, attributeAssignments);
+        }
 }

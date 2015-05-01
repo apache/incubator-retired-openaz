@@ -28,20 +28,20 @@ package org.openliberty.openaz.pepapi;
  */
 @SuppressWarnings("serial")
 public class UnhandleableObligationException extends RuntimeException {
-	
-	public UnhandleableObligationException() {
-		super();
-	}
+        
+        public UnhandleableObligationException() {
+                super();
+        }
 
-	public UnhandleableObligationException(String message, Throwable cause) {
-		super(message, cause);
-	}
+        public UnhandleableObligationException(String message, Throwable cause) {
+                super(message, cause);
+        }
 
-	public UnhandleableObligationException(String message) {
-		super(message);
-	}
+        public UnhandleableObligationException(String message) {
+                super(message);
+        }
 
-	public UnhandleableObligationException(Throwable cause) {
-		super(cause);
-	}
+        public UnhandleableObligationException(Throwable cause) {
+                super(cause);
+        }
 }

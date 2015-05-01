@@ -46,21 +46,21 @@ import com.att.research.xacml.std.StdMutableRequestReference;
  */
 public class JaxpRequestReference extends StdMutableRequestReference {
 
-	protected JaxpRequestReference() {
-	}
-	
-	public static JaxpRequestReference newInstance(RequestReferenceType requestReferenceType) {
-		if (requestReferenceType == null) {
-			throw new NullPointerException("Null RequestReferenceType");
-		} else if (requestReferenceType.getAttributesReference() == null || requestReferenceType.getAttributesReference().size() == 0) {
-			throw new IllegalArgumentException("No AttributesReferenceTypes in RequestReferenceType");
-		}
-		JaxpRequestReference	jaxpRequestReference	= new JaxpRequestReference();
-		Iterator<AttributesReferenceType>	iterAttributesReferenceTypes	= requestReferenceType.getAttributesReference().iterator();
-		while (iterAttributesReferenceTypes.hasNext()) {
-			jaxpRequestReference.add(JaxpRequestAttributesReference.newInstances(iterAttributesReferenceTypes.next()));
-		}
-		return jaxpRequestReference;
-	}
+        protected JaxpRequestReference() {
+        }
+        
+        public static JaxpRequestReference newInstance(RequestReferenceType requestReferenceType) {
+                if (requestReferenceType == null) {
+                        throw new NullPointerException("Null RequestReferenceType");
+                } else if (requestReferenceType.getAttributesReference() == null || requestReferenceType.getAttributesReference().size() == 0) {
+                        throw new IllegalArgumentException("No AttributesReferenceTypes in RequestReferenceType");
+                }
+                JaxpRequestReference	jaxpRequestReference	= new JaxpRequestReference();
+                Iterator<AttributesReferenceType>	iterAttributesReferenceTypes	= requestReferenceType.getAttributesReference().iterator();
+                while (iterAttributesReferenceTypes.hasNext()) {
+                        jaxpRequestReference.add(JaxpRequestAttributesReference.newInstances(iterAttributesReferenceTypes.next()));
+                }
+                return jaxpRequestReference;
+        }
 
 }

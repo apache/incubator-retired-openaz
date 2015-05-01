@@ -25,9 +25,9 @@ import org.openliberty.openaz.pepapi.Obligation;
 
 public final class MatchAnyCriterion implements ObligationCriterion {
 
-	@Override
-	public boolean match(Obligation obligation) {
-		return true;
-	}
+        @Override
+        public boolean match(Obligation obligation) {
+                return true;
+        }
 
 }

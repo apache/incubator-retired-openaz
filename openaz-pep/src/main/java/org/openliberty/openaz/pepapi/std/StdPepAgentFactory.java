@@ -29,51 +29,51 @@ import java.util.Properties;
 
 
 public class StdPepAgentFactory implements PepAgentFactory {
-	
-	private volatile PepAgent pepAgent;
+        
+        private volatile PepAgent pepAgent;
 
-	private PDPEngineFactory pdpEngineFactory;
+        private PDPEngineFactory pdpEngineFactory;
 
-	private Properties xacmlProperties;
+        private Properties xacmlProperties;
 
-	private PepConfig pepConfig;
+        private PepConfig pepConfig;
 
-	private List<ObligationStoreAware> obligationHandlers;
+        private List<ObligationStoreAware> obligationHandlers;
 
-	public StdPepAgentFactory(String propertyFile) {
-		this(PepUtils.loadProperties(propertyFile));
-	}
+        public StdPepAgentFactory(String propertyFile) {
+                this(PepUtils.loadProperties(propertyFile));
+        }
 
-	public StdPepAgentFactory(Properties properties) {
-		this.xacmlProperties = properties;
-		this.pepConfig = new StdPepConfig(properties);
-		try {
-			//FIXME: Error when invoking newInstance() with properties.
-			pdpEngineFactory = PDPEngineFactory.newInstance();
-		} catch (FactoryException e) {
-			throw new PepException(e);
-		}
-	}
+        public StdPepAgentFactory(Properties properties) {
+                this.xacmlProperties = properties;
+                this.pepConfig = new StdPepConfig(properties);
+                try {
+                        //FIXME: Error when invoking newInstance() with properties.
+                        pdpEngineFactory = PDPEngineFactory.newInstance();
+                } catch (FactoryException e) {
+                        throw new PepException(e);
+                }
+        }
 
-	@Override
-	public PepAgent getPepAgent() {
-		if(pepAgent == null) {
-			synchronized(this) {
-				if(this.pepAgent == null) {
-					StdPepAgent pa = new StdPepAgent();
-					pa.setPepConfig(pepConfig);
-					pa.setXacmlProperties(xacmlProperties);
-					pa.setPdpEngineFactory(pdpEngineFactory);
-					pa.setObligationHandlers(obligationHandlers);
-					pa.initialize();
-					pepAgent = pa;
-				}
-			}
-		}
-		return pepAgent;
-	}
+        @Override
+        public PepAgent getPepAgent() {
+                if(pepAgent == null) {
+                        synchronized(this) {
+                                if(this.pepAgent == null) {
+                                        StdPepAgent pa = new StdPepAgent();
+                                        pa.setPepConfig(pepConfig);
+                                        pa.setXacmlProperties(xacmlProperties);
+                                        pa.setPdpEngineFactory(pdpEngineFactory);
+                                        pa.setObligationHandlers(obligationHandlers);
+                                        pa.initialize();
+                                        pepAgent = pa;
+                                }
+                        }
+                }
+                return pepAgent;
+        }
 
-	public void setObligationHandlers(List<ObligationStoreAware> obligationHandlers) {
-		this.obligationHandlers = obligationHandlers;
-	}
+        public void setObligationHandlers(List<ObligationStoreAware> obligationHandlers) {
+                this.obligationHandlers = obligationHandlers;
+        }
 }

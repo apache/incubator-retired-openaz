@@ -31,19 +31,19 @@ import org.openliberty.openaz.pepapi.PepResponseFactory;
 
 final class StdPepResponseFactory implements PepResponseFactory {
     
-	private static final Log logger = LogFactory.getLog(StdPepResponseFactory.class);
+        private static final Log logger = LogFactory.getLog(StdPepResponseFactory.class);
 
-	private PepConfig pepConfig;
-	
-	private ObligationRouter obligationRouter;
+        private PepConfig pepConfig;
+        
+        private ObligationRouter obligationRouter;
 
-	StdPepResponseFactory(PepConfig pepConfig, ObligationRouter obligationRouter) {
-		this.pepConfig = pepConfig;
-		this.obligationRouter = obligationRouter;
-	}
-	
-	@Override
-	public PepResponse newPepResponse(Result result) {
-		return StdPepResponse.newInstance(pepConfig, obligationRouter, result);
-	}
+        StdPepResponseFactory(PepConfig pepConfig, ObligationRouter obligationRouter) {
+                this.pepConfig = pepConfig;
+                this.obligationRouter = obligationRouter;
+        }
+        
+        @Override
+        public PepResponse newPepResponse(Result result) {
+                return StdPepResponse.newInstance(pepConfig, obligationRouter, result);
+        }
 }

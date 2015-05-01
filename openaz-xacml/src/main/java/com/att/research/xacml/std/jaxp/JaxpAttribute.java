@@ -50,27 +50,27 @@ import com.att.research.xacml.std.StdMutableAttribute;
  */
 public class JaxpAttribute extends StdMutableAttribute {
 
-	protected JaxpAttribute(Identifier attributeIdIn, Identifier categoryIdIn, List<AttributeValue<?>> valuesIn, String issuerIn, boolean includeInResultsIn) {
-		super(attributeIdIn, categoryIdIn, valuesIn, issuerIn, includeInResultsIn);
-	}
+        protected JaxpAttribute(Identifier attributeIdIn, Identifier categoryIdIn, List<AttributeValue<?>> valuesIn, String issuerIn, boolean includeInResultsIn) {
+                super(attributeIdIn, categoryIdIn, valuesIn, issuerIn, includeInResultsIn);
+        }
 
-	public static JaxpAttribute newInstance(Identifier categoryId, AttributeType attributeType) {
-		if (categoryId == null) {
-			throw new NullPointerException("Null categoryId");
-		} else if (attributeType == null) {
-			throw new NullPointerException("Null AttributeType");
-		} else if (attributeType.getAttributeId() == null) {
-			throw new IllegalArgumentException("Null attributeId in AttributeType");
-		} else if (attributeType.getAttributeValue() == null) {
-			throw new IllegalArgumentException("Null attributeValue in AttributeType");
-		}
-		Identifier						attributeId				= new IdentifierImpl(attributeType.getAttributeId());
-		List<AttributeValue<?>>			values					= new ArrayList<AttributeValue<?>>();
-		Iterator<AttributeValueType>	iterAttributeValueTypes	= attributeType.getAttributeValue().iterator();
-		while (iterAttributeValueTypes.hasNext()) {
-			values.add(JaxpAttributeValue.newInstance(iterAttributeValueTypes.next()));
-		}
-		
-		return new JaxpAttribute(attributeId, categoryId, values, attributeType.getIssuer(), attributeType.isIncludeInResult());
-	}
+        public static JaxpAttribute newInstance(Identifier categoryId, AttributeType attributeType) {
+                if (categoryId == null) {
+                        throw new NullPointerException("Null categoryId");
+                } else if (attributeType == null) {
+                        throw new NullPointerException("Null AttributeType");
+                } else if (attributeType.getAttributeId() == null) {
+                        throw new IllegalArgumentException("Null attributeId in AttributeType");
+                } else if (attributeType.getAttributeValue() == null) {
+                        throw new IllegalArgumentException("Null attributeValue in AttributeType");
+                }
+                Identifier						attributeId				= new IdentifierImpl(attributeType.getAttributeId());
+                List<AttributeValue<?>>			values					= new ArrayList<AttributeValue<?>>();
+                Iterator<AttributeValueType>	iterAttributeValueTypes	= attributeType.getAttributeValue().iterator();
+                while (iterAttributeValueTypes.hasNext()) {
+                        values.add(JaxpAttributeValue.newInstance(iterAttributeValueTypes.next()));
+                }
+                
+                return new JaxpAttribute(attributeId, categoryId, values, attributeType.getIssuer(), attributeType.isIncludeInResult());
+        }
 }

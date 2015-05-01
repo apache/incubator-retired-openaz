@@ -49,67 +49,67 @@ import com.att.research.xacml.util.StringUtils;
  * @version $Revision$
  */
 public class AttributeAssignmentResult {
-	private Status status;
-	private List<AttributeAssignment> listAttributeAssignments;
-	
-	protected List<AttributeAssignment> getListAttributeAssignments() {
-		return this.listAttributeAssignments;
-	}
-	
-	public AttributeAssignmentResult(Status statusIn, Collection<AttributeAssignment> listAttributeAssignmentsIn) {
-		this.status	= statusIn;
-		if (listAttributeAssignmentsIn != null && listAttributeAssignmentsIn.size() > 0) {
-			this.listAttributeAssignments	= new ArrayList<AttributeAssignment>();
-			this.listAttributeAssignments.addAll(listAttributeAssignmentsIn);
-		}
-	}
-	
-	public AttributeAssignmentResult(Status statusIn) {
-		this(statusIn, null);
-	}
-	
-	public AttributeAssignmentResult(Collection<AttributeAssignment> listAttributeAssignmentsIn) {
-		this(StdStatus.STATUS_OK, listAttributeAssignmentsIn);
-	}
+        private Status status;
+        private List<AttributeAssignment> listAttributeAssignments;
+        
+        protected List<AttributeAssignment> getListAttributeAssignments() {
+                return this.listAttributeAssignments;
+        }
+        
+        public AttributeAssignmentResult(Status statusIn, Collection<AttributeAssignment> listAttributeAssignmentsIn) {
+                this.status	= statusIn;
+                if (listAttributeAssignmentsIn != null && listAttributeAssignmentsIn.size() > 0) {
+                        this.listAttributeAssignments	= new ArrayList<AttributeAssignment>();
+                        this.listAttributeAssignments.addAll(listAttributeAssignmentsIn);
+                }
+        }
+        
+        public AttributeAssignmentResult(Status statusIn) {
+                this(statusIn, null);
+        }
+        
+        public AttributeAssignmentResult(Collection<AttributeAssignment> listAttributeAssignmentsIn) {
+                this(StdStatus.STATUS_OK, listAttributeAssignmentsIn);
+        }
 
-	public Status getStatus() {
-		return this.status;
-	}
-	
-	public boolean isOk() {
-		return (this.getStatus() == null || this.getStatus().isOk());
-	}
-	
-	public Iterator<AttributeAssignment> getAttributeAssignments() {
-		List<AttributeAssignment> thisListAttributeAssignments	= this.getListAttributeAssignments();
-		return (thisListAttributeAssignments == null ? null : thisListAttributeAssignments.iterator());
-	}
-	
-	public int getNumAttributeAssignments() {
-		List<AttributeAssignment> thisListAttributeAssignments	= this.getListAttributeAssignments();
-		return (thisListAttributeAssignments == null ? 0 : thisListAttributeAssignments.size());
-	}
+        public Status getStatus() {
+                return this.status;
+        }
+        
+        public boolean isOk() {
+                return (this.getStatus() == null || this.getStatus().isOk());
+        }
+        
+        public Iterator<AttributeAssignment> getAttributeAssignments() {
+                List<AttributeAssignment> thisListAttributeAssignments	= this.getListAttributeAssignments();
+                return (thisListAttributeAssignments == null ? null : thisListAttributeAssignments.iterator());
+        }
+        
+        public int getNumAttributeAssignments() {
+                List<AttributeAssignment> thisListAttributeAssignments	= this.getListAttributeAssignments();
+                return (thisListAttributeAssignments == null ? 0 : thisListAttributeAssignments.size());
+        }
 
-	@Override
-	public String toString() {
-		StringBuilder stringBuilder	= new StringBuilder("{");
-		boolean needsComma	= false;
-		
-		Object objectToDump;
-		if ((objectToDump = this.getStatus()) != null) {
-			stringBuilder.append("status=");
-			stringBuilder.append(objectToDump.toString());
-			needsComma	= true;
-		}
-		
-		Iterator<?> iterToDump;
-		if ((iterToDump = this.getAttributeAssignments()) != null) {
-			if (needsComma) {
-				stringBuilder.append(',');
-			}
-			stringBuilder.append(StringUtils.toString(iterToDump));
-		}
-		stringBuilder.append('}');
-		return stringBuilder.toString();
-	}
+        @Override
+        public String toString() {
+                StringBuilder stringBuilder	= new StringBuilder("{");
+                boolean needsComma	= false;
+                
+                Object objectToDump;
+                if ((objectToDump = this.getStatus()) != null) {
+                        stringBuilder.append("status=");
+                        stringBuilder.append(objectToDump.toString());
+                        needsComma	= true;
+                }
+                
+                Iterator<?> iterToDump;
+                if ((iterToDump = this.getAttributeAssignments()) != null) {
+                        if (needsComma) {
+                                stringBuilder.append(',');
+                        }
+                        stringBuilder.append(StringUtils.toString(iterToDump));
+                }
+                stringBuilder.append('}');
+                return stringBuilder.toString();
+        }
 }

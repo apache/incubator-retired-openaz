@@ -35,11 +35,11 @@ import java.lang.annotation.Target;
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface MatchAllObligationAttributes {
-	
-	/**
-	 * 
-	 * @return
-	 */
-	Attribute[] value();
-	
+        
+        /**
+         * 
+         * @return
+         */
+        Attribute[] value();
+        
 }

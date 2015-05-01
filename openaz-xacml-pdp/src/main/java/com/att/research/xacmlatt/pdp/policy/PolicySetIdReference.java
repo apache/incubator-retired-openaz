@@ -44,34 +44,34 @@ import com.att.research.xacmlatt.pdp.eval.EvaluationException;
  */
 public class PolicySetIdReference extends PolicyIdReferenceBase<PolicySet> {
 
-	public PolicySetIdReference(PolicySet policySetParent, StatusCode statusCodeIn, String statusMessageIn) {
-		super(policySetParent, statusCodeIn, statusMessageIn);
-	}
-	
-	public PolicySetIdReference(StatusCode statusCodeIn, String statusMessageIn) {
-		super(statusCodeIn, statusMessageIn);
-	}
+        public PolicySetIdReference(PolicySet policySetParent, StatusCode statusCodeIn, String statusMessageIn) {
+                super(policySetParent, statusCodeIn, statusMessageIn);
+        }
+        
+        public PolicySetIdReference(StatusCode statusCodeIn, String statusMessageIn) {
+                super(statusCodeIn, statusMessageIn);
+        }
 
-	public PolicySetIdReference(StatusCode statusCodeIn) {
-		super(statusCodeIn);
-	}
-	
-	public PolicySetIdReference(PolicySet policySetParent) {
-		super(policySetParent);
-	}
+        public PolicySetIdReference(StatusCode statusCodeIn) {
+                super(statusCodeIn);
+        }
+        
+        public PolicySetIdReference(PolicySet policySetParent) {
+                super(policySetParent);
+        }
 
-	public PolicySetIdReference() {
-	}
+        public PolicySetIdReference() {
+        }
 
-	@Override
-	protected PolicySet ensureReferencee(EvaluationContext evaluationContext) throws EvaluationException {
-		if (this.getReferencee() == null) {
-			PolicyFinderResult<PolicySet> policyFactoryResult	= evaluationContext.getPolicySet(this.getIdReferenceMatch());
-			if (policyFactoryResult.getStatus() == null || policyFactoryResult.getStatus().isOk()) {
-				this.setReferencee(policyFactoryResult.getPolicyDef());
-			}
-		}
-		return this.getReferencee();
-	}
+        @Override
+        protected PolicySet ensureReferencee(EvaluationContext evaluationContext) throws EvaluationException {
+                if (this.getReferencee() == null) {
+                        PolicyFinderResult<PolicySet> policyFactoryResult	= evaluationContext.getPolicySet(this.getIdReferenceMatch());
+                        if (policyFactoryResult.getStatus() == null || policyFactoryResult.getStatus().isOk()) {
+                                this.setReferencee(policyFactoryResult.getPolicyDef());
+                        }
+                }
+                return this.getReferencee();
+        }
 
 }

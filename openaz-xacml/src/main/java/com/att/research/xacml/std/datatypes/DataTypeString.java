@@ -40,22 +40,22 @@ import com.att.research.xacml.api.XACML;
  * @version $Revision: 1.1 $
  */
 public class DataTypeString extends DataTypeBase<String> {
-	private static final DataTypeString	singleInstance	= new DataTypeString();
-	
-	private DataTypeString() {
-		super(XACML.ID_DATATYPE_STRING, String.class);
-	}
-	
-	public static DataTypeString newInstance() {
-		return singleInstance;
-	}
+        private static final DataTypeString	singleInstance	= new DataTypeString();
+        
+        private DataTypeString() {
+                super(XACML.ID_DATATYPE_STRING, String.class);
+        }
+        
+        public static DataTypeString newInstance() {
+                return singleInstance;
+        }
 
-	@Override
-	public String convert(Object source) throws DataTypeException {
-		if (source == null || (source instanceof String)) {
-			return (String)source;
-		} else {
-			return this.convertToString(source);
-		}
-	}
+        @Override
+        public String convert(Object source) throws DataTypeException {
+                if (source == null || (source instanceof String)) {
+                        return (String)source;
+                } else {
+                        return this.convertToString(source);
+                }
+        }
 }

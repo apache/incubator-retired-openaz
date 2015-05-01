@@ -52,27 +52,27 @@ import com.att.research.xacmlatt.pdp.policy.CombiningElement;
  */
 public class FirstApplicable<T extends com.att.research.xacmlatt.pdp.eval.Evaluatable> extends CombiningAlgorithmBase<T> {
 
-	public FirstApplicable(Identifier identifierIn) {
-		super(identifierIn);
-	}
+        public FirstApplicable(Identifier identifierIn) {
+                super(identifierIn);
+        }
 
-	@Override
-	public EvaluationResult combine(EvaluationContext evaluationContext,
-			List<CombiningElement<T>> elements,
-			List<CombinerParameter> combinerParameters)
-			throws EvaluationException {
-		Iterator<CombiningElement<T>> iterElements	= elements.iterator();
-		while (iterElements.hasNext()) {
-			CombiningElement<T> combiningElement		= iterElements.next();
-			EvaluationResult evaluationResultElement	= combiningElement.evaluate(evaluationContext);
-			
-			assert(evaluationResultElement != null);
-			if (evaluationResultElement.getDecision() != Decision.NOTAPPLICABLE) {
-				return evaluationResultElement;
-			}
-		}
-		
-		return new EvaluationResult(Decision.NOTAPPLICABLE);
-	}
+        @Override
+        public EvaluationResult combine(EvaluationContext evaluationContext,
+                        List<CombiningElement<T>> elements,
+                        List<CombinerParameter> combinerParameters)
+                        throws EvaluationException {
+                Iterator<CombiningElement<T>> iterElements	= elements.iterator();
+                while (iterElements.hasNext()) {
+                        CombiningElement<T> combiningElement		= iterElements.next();
+                        EvaluationResult evaluationResultElement	= combiningElement.evaluate(evaluationContext);
+                        
+                        assert(evaluationResultElement != null);
+                        if (evaluationResultElement.getDecision() != Decision.NOTAPPLICABLE) {
+                                return evaluationResultElement;
+                        }
+                }
+                
+                return new EvaluationResult(Decision.NOTAPPLICABLE);
+        }
 
 }

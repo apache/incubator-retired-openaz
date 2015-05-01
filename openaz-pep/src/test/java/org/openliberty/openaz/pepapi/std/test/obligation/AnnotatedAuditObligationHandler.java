@@ -32,25 +32,25 @@ import java.util.Set;
 
 @MatchAnyObligation("urn:oasis:names:tc:xacml:2.0:obligation:audit")
 public class AnnotatedAuditObligationHandler implements ObligationStoreAware {
-	
-	private static Log log = LogFactory.getLog(AnnotatedAuditObligationHandler.class);
-	
-	private ObligationStore obligationStore;
-	
-	public void enforce() {
-		Set<Obligation> obligationSet = obligationStore.getHandlerObligations(this.getClass());
-		if(obligationSet.size() == 1) {
-			for(Obligation obligation: obligationSet) {
-				Assert.assertEquals("urn:oasis:names:tc:xacml:2.0:obligation:audit", obligation.getId());
-				log.info(obligation.getId());
-			}
-		}else {
-			Assert.assertFalse(true);
-		}
-	}
+        
+        private static Log log = LogFactory.getLog(AnnotatedAuditObligationHandler.class);
+        
+        private ObligationStore obligationStore;
+        
+        public void enforce() {
+                Set<Obligation> obligationSet = obligationStore.getHandlerObligations(this.getClass());
+                if(obligationSet.size() == 1) {
+                        for(Obligation obligation: obligationSet) {
+                                Assert.assertEquals("urn:oasis:names:tc:xacml:2.0:obligation:audit", obligation.getId());
+                                log.info(obligation.getId());
+                        }
+                }else {
+                        Assert.assertFalse(true);
+                }
+        }
 
-	@Override
-	public void setObligationStore(ObligationStore obligationStore) {
-		this.obligationStore = obligationStore;
-	}
+        @Override
+        public void setObligationStore(ObligationStore obligationStore) {
+                this.obligationStore = obligationStore;
+        }
 }

@@ -50,60 +50,60 @@ import com.att.research.xacmlatt.pdp.policy.Rule;
  * @version $Revision: 1.2 $
  */
 public class StdCombiningAlgorithmFactory extends CombiningAlgorithmFactory {
-	private static Map<Identifier,CombiningAlgorithm<Rule>> 				mapRuleCombiningAlgorithms	
-		= new HashMap<Identifier,CombiningAlgorithm<Rule>>();
-	private static Map<Identifier,CombiningAlgorithm<PolicySetChild>> 		mapPolicyCombiningAlgorithms	
-		= new HashMap<Identifier,CombiningAlgorithm<PolicySetChild>>();
-	private static boolean needInit	= true;
-	
-	protected static void registerRuleCombiningAlgorithm(CombiningAlgorithm<Rule> ruleCombiningAlgorithm) {
-		mapRuleCombiningAlgorithms.put(ruleCombiningAlgorithm.getId(), ruleCombiningAlgorithm);
-	}
-	
-	protected static void registerPolicyCombiningAlgorithm(CombiningAlgorithm<PolicySetChild> policyCombiningAlgorithm) {
-		mapPolicyCombiningAlgorithms.put(policyCombiningAlgorithm.getId(), policyCombiningAlgorithm);
-	}
-	
-	@SuppressWarnings("unchecked")
-	private static void initMap() {
-		if (needInit) {
-			synchronized(mapRuleCombiningAlgorithms) {
-				if (needInit) {
-					needInit	= false;
-					Field[]	declaredFields	= StdCombiningAlgorithms.class.getFields();
-					for (Field field : declaredFields) {
-						if (Modifier.isStatic(field.getModifiers()) &&
-							Modifier.isPublic(field.getModifiers()) &&
-							field.getName().startsWith(StdCombiningAlgorithms.PREFIX_CA) &&
-							CombiningAlgorithm.class.isAssignableFrom(field.getType())
-								) {
-							try {
-								if (field.getName().startsWith(StdCombiningAlgorithms.PREFIX_RULE)) {
-									registerRuleCombiningAlgorithm((CombiningAlgorithm<Rule>)field.get(null));
-								} else if (field.getName().startsWith(StdCombiningAlgorithms.PREFIX_POLICY)) {
-									registerPolicyCombiningAlgorithm((CombiningAlgorithm<PolicySetChild>)field.get(null));
-								}
-							} catch (IllegalAccessException ex) {
-								
-							}
-						}
-					}
-				}
-			}
-		}
-	}
-	
-	public StdCombiningAlgorithmFactory() {
-		initMap();
-	}
+        private static Map<Identifier,CombiningAlgorithm<Rule>> 				mapRuleCombiningAlgorithms	
+                = new HashMap<Identifier,CombiningAlgorithm<Rule>>();
+        private static Map<Identifier,CombiningAlgorithm<PolicySetChild>> 		mapPolicyCombiningAlgorithms	
+                = new HashMap<Identifier,CombiningAlgorithm<PolicySetChild>>();
+        private static boolean needInit	= true;
+        
+        protected static void registerRuleCombiningAlgorithm(CombiningAlgorithm<Rule> ruleCombiningAlgorithm) {
+                mapRuleCombiningAlgorithms.put(ruleCombiningAlgorithm.getId(), ruleCombiningAlgorithm);
+        }
+        
+        protected static void registerPolicyCombiningAlgorithm(CombiningAlgorithm<PolicySetChild> policyCombiningAlgorithm) {
+                mapPolicyCombiningAlgorithms.put(policyCombiningAlgorithm.getId(), policyCombiningAlgorithm);
+        }
+        
+        @SuppressWarnings("unchecked")
+        private static void initMap() {
+                if (needInit) {
+                        synchronized(mapRuleCombiningAlgorithms) {
+                                if (needInit) {
+                                        needInit	= false;
+                                        Field[]	declaredFields	= StdCombiningAlgorithms.class.getFields();
+                                        for (Field field : declaredFields) {
+                                                if (Modifier.isStatic(field.getModifiers()) &&
+                                                        Modifier.isPublic(field.getModifiers()) &&
+                                                        field.getName().startsWith(StdCombiningAlgorithms.PREFIX_CA) &&
+                                                        CombiningAlgorithm.class.isAssignableFrom(field.getType())
+                                                                ) {
+                                                        try {
+                                                                if (field.getName().startsWith(StdCombiningAlgorithms.PREFIX_RULE)) {
+                                                                        registerRuleCombiningAlgorithm((CombiningAlgorithm<Rule>)field.get(null));
+                                                                } else if (field.getName().startsWith(StdCombiningAlgorithms.PREFIX_POLICY)) {
+                                                                        registerPolicyCombiningAlgorithm((CombiningAlgorithm<PolicySetChild>)field.get(null));
+                                                                }
+                                                        } catch (IllegalAccessException ex) {
+                                                                
+                                                        }
+                                                }
+                                        }
+                                }
+                        }
+                }
+        }
+        
+        public StdCombiningAlgorithmFactory() {
+                initMap();
+        }
 
-	@Override
-	public CombiningAlgorithm<Rule> getRuleCombiningAlgorithm(Identifier combiningAlgorithmId) {
-		return mapRuleCombiningAlgorithms.get(combiningAlgorithmId);
-	}
+        @Override
+        public CombiningAlgorithm<Rule> getRuleCombiningAlgorithm(Identifier combiningAlgorithmId) {
+                return mapRuleCombiningAlgorithms.get(combiningAlgorithmId);
+        }
 
-	@Override
-	public CombiningAlgorithm<PolicySetChild> getPolicyCombiningAlgorithm(Identifier combiningAlgorithmId) {
-		return mapPolicyCombiningAlgorithms.get(combiningAlgorithmId);
-	}	
+        @Override
+        public CombiningAlgorithm<PolicySetChild> getPolicyCombiningAlgorithm(Identifier combiningAlgorithmId) {
+                return mapPolicyCombiningAlgorithms.get(combiningAlgorithmId);
+        }	
 }

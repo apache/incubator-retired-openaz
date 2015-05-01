@@ -41,39 +41,39 @@ import com.att.research.xacml.std.StdStatus;
  *
  */
 public class FunctionArgumentAttributeValue implements FunctionArgument {
-	private AttributeValue<?> attributeValue;
-	
-	/**
-	 * Creates a new <code>FunctionArgumentAttributeValue</code> from the given <code>AttributeValue</code>.
-	 * 
-	 * @param attributeValueIn the <code>AttributeValue</code> for the new <code>FunctionArgumentAttributeValue</code>.
-	 */
-	public FunctionArgumentAttributeValue(AttributeValue<?> attributeValueIn) {
-		this.attributeValue	= attributeValueIn;
-	}
-	
-	@Override
-	public Status getStatus() {
-		return StdStatus.STATUS_OK;
-	}
-	
-	@Override
-	public boolean isOk() {
-		return true;
-	}
+        private AttributeValue<?> attributeValue;
+        
+        /**
+         * Creates a new <code>FunctionArgumentAttributeValue</code> from the given <code>AttributeValue</code>.
+         * 
+         * @param attributeValueIn the <code>AttributeValue</code> for the new <code>FunctionArgumentAttributeValue</code>.
+         */
+        public FunctionArgumentAttributeValue(AttributeValue<?> attributeValueIn) {
+                this.attributeValue	= attributeValueIn;
+        }
+        
+        @Override
+        public Status getStatus() {
+                return StdStatus.STATUS_OK;
+        }
+        
+        @Override
+        public boolean isOk() {
+                return true;
+        }
 
-	@Override
-	public boolean isBag() {
-		return false;
-	}
+        @Override
+        public boolean isBag() {
+                return false;
+        }
 
-	@Override
-	public AttributeValue<?> getValue() {
-		return this.attributeValue;
-	}
+        @Override
+        public AttributeValue<?> getValue() {
+                return this.attributeValue;
+        }
 
-	@Override
-	public Bag getBag() {
-		return null;
-	}
+        @Override
+        public Bag getBag() {
+                return null;
+        }
 }

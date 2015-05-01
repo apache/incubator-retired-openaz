@@ -42,54 +42,54 @@ import com.att.research.xacml.std.pip.finders.ConfigurableEngineFinder;
 import com.att.research.xacml.util.XACMLProperties;
 
 public class XACMLPdpPIPFinderFactory extends PIPFinderFactory {
-	private ConfigurableEngineFinder pipFinder;
-	
-	private static Log logger	= LogFactory.getLog(XACMLPdpPIPFinderFactory.class);
-	
-	public XACMLPdpPIPFinderFactory() {
-	}
+        private ConfigurableEngineFinder pipFinder;
+        
+        private static Log logger	= LogFactory.getLog(XACMLPdpPIPFinderFactory.class);
+        
+        public XACMLPdpPIPFinderFactory() {
+        }
 
-	public XACMLPdpPIPFinderFactory(Properties properties) {
-	}
+        public XACMLPdpPIPFinderFactory(Properties properties) {
+        }
 
-	@Override
-	public PIPFinder getFinder() throws PIPException {
-		if (pipFinder == null) {
-			synchronized(this) {
-				if (pipFinder == null) {
-					if (logger.isDebugEnabled()) {
-						logger.debug("Creating default configurable engine finder");
-					}
-					pipFinder					= new ConfigurableEngineFinder();
-					Properties xacmlProperties	= null;
-					try {
-						xacmlProperties	= XACMLProperties.getProperties();
-					} catch (Exception ex) {
-						logger.error("Exception getting XACML properties: " + ex.getMessage(), ex);
-						return null;
-					}
-					if (xacmlProperties != null) {
-						((ConfigurableEngineFinder)pipFinder).configure(xacmlProperties);
-					}
-				}
-			}
-		}
-		return pipFinder;
-	}
+        @Override
+        public PIPFinder getFinder() throws PIPException {
+                if (pipFinder == null) {
+                        synchronized(this) {
+                                if (pipFinder == null) {
+                                        if (logger.isDebugEnabled()) {
+                                                logger.debug("Creating default configurable engine finder");
+                                        }
+                                        pipFinder					= new ConfigurableEngineFinder();
+                                        Properties xacmlProperties	= null;
+                                        try {
+                                                xacmlProperties	= XACMLProperties.getProperties();
+                                        } catch (Exception ex) {
+                                                logger.error("Exception getting XACML properties: " + ex.getMessage(), ex);
+                                                return null;
+                                        }
+                                        if (xacmlProperties != null) {
+                                                ((ConfigurableEngineFinder)pipFinder).configure(xacmlProperties);
+                                        }
+                                }
+                        }
+                }
+                return pipFinder;
+        }
 
-	@Override
-	public PIPFinder getFinder(Properties properties) throws PIPException {
-		if (pipFinder == null) {
-			synchronized(this) {
-				if (pipFinder == null) {
-					if (logger.isDebugEnabled()) {
-						logger.debug("Creating configurable engine finder using: " + properties);
-					}
-					pipFinder					= new ConfigurableEngineFinder();
-					((ConfigurableEngineFinder)pipFinder).configure(properties);
-				}
-			}
-		}
-		return this.pipFinder;
-	}
+        @Override
+        public PIPFinder getFinder(Properties properties) throws PIPException {
+                if (pipFinder == null) {
+                        synchronized(this) {
+                                if (pipFinder == null) {
+                                        if (logger.isDebugEnabled()) {
+                                                logger.debug("Creating configurable engine finder using: " + properties);
+                                        }
+                                        pipFinder					= new ConfigurableEngineFinder();
+                                        ((ConfigurableEngineFinder)pipFinder).configure(properties);
+                                }
+                        }
+                }
+                return this.pipFinder;
+        }
 }

@@ -43,32 +43,32 @@ import com.att.research.xacml.api.XACML3;
  * @version $Revision: 1.1 $
  */
 public class DataTypeYearMonthDuration extends DataTypeSemanticStringBase<XPathYearMonthDuration> {
-	private static final DataTypeYearMonthDuration	singleInstance	= new DataTypeYearMonthDuration();
-	
-	private DataTypeYearMonthDuration() {
-		super(XACML3.ID_DATATYPE_YEARMONTHDURATION, XPathYearMonthDuration.class);
-	}
-	
-	public static DataTypeYearMonthDuration newInstance() {
-		return singleInstance;
-	}
+        private static final DataTypeYearMonthDuration	singleInstance	= new DataTypeYearMonthDuration();
+        
+        private DataTypeYearMonthDuration() {
+                super(XACML3.ID_DATATYPE_YEARMONTHDURATION, XPathYearMonthDuration.class);
+        }
+        
+        public static DataTypeYearMonthDuration newInstance() {
+                return singleInstance;
+        }
 
-	@Override
-	public XPathYearMonthDuration convert(Object source) throws DataTypeException {
-		if (source == null || (source instanceof XPathYearMonthDuration)) {
-			return (XPathYearMonthDuration)source;
-		} else {
-			String stringValue	= this.convertToString(source);
-			if (stringValue == null) {
-				return null;
-			}
-			XPathYearMonthDuration	xpathYearMonthDuration	= null;
-			try {
-				xpathYearMonthDuration	= XPathYearMonthDuration.newInstance(stringValue);
-			} catch (ParseException ex) {
-				throw new DataTypeException(this, "Failed to convert \"" + source.getClass().getCanonicalName() + "\" with value \"" + stringValue + "\" to YearMonthDuration", ex);				
-			}
-			return xpathYearMonthDuration;
-		}
-	}
+        @Override
+        public XPathYearMonthDuration convert(Object source) throws DataTypeException {
+                if (source == null || (source instanceof XPathYearMonthDuration)) {
+                        return (XPathYearMonthDuration)source;
+                } else {
+                        String stringValue	= this.convertToString(source);
+                        if (stringValue == null) {
+                                return null;
+                        }
+                        XPathYearMonthDuration	xpathYearMonthDuration	= null;
+                        try {
+                                xpathYearMonthDuration	= XPathYearMonthDuration.newInstance(stringValue);
+                        } catch (ParseException ex) {
+                                throw new DataTypeException(this, "Failed to convert \"" + source.getClass().getCanonicalName() + "\" with value \"" + stringValue + "\" to YearMonthDuration", ex);				
+                        }
+                        return xpathYearMonthDuration;
+                }
+        }
 }

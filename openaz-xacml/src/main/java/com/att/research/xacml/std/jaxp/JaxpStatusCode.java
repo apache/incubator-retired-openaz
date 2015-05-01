@@ -46,26 +46,26 @@ import com.att.research.xacml.std.StdStatusCode;
  */
 public class JaxpStatusCode extends StdStatusCode {
 
-	protected JaxpStatusCode(Identifier statusCodeValueIn, StatusCode childIn) {
-		super(statusCodeValueIn, childIn);
-	}
-	
-	public static JaxpStatusCode newInstance(StatusCodeType statusCodeType) {
-		if (statusCodeType == null) {
-			throw new NullPointerException("Null StatusCodeType");
-		} else if (statusCodeType.getValue() == null) {
-			throw new IllegalArgumentException("Null StatusCodeValue");
-		}
-		Identifier	statusCodeValue	= new IdentifierImpl(statusCodeType.getValue());
-		
-		StatusCode		statusCodeChild	= null;
-		if (statusCodeType.getStatusCode() != null) {
-			try {
-				statusCodeChild	= JaxpStatusCode.newInstance(statusCodeType.getStatusCode());
-			} catch (Exception ex) {
-				throw new IllegalArgumentException("Invalid child StatusCodeValue", ex);
-			}
-		}
-		return new JaxpStatusCode(statusCodeValue, statusCodeChild);
-	}
+        protected JaxpStatusCode(Identifier statusCodeValueIn, StatusCode childIn) {
+                super(statusCodeValueIn, childIn);
+        }
+        
+        public static JaxpStatusCode newInstance(StatusCodeType statusCodeType) {
+                if (statusCodeType == null) {
+                        throw new NullPointerException("Null StatusCodeType");
+                } else if (statusCodeType.getValue() == null) {
+                        throw new IllegalArgumentException("Null StatusCodeValue");
+                }
+                Identifier	statusCodeValue	= new IdentifierImpl(statusCodeType.getValue());
+                
+                StatusCode		statusCodeChild	= null;
+                if (statusCodeType.getStatusCode() != null) {
+                        try {
+                                statusCodeChild	= JaxpStatusCode.newInstance(statusCodeType.getStatusCode());
+                        } catch (Exception ex) {
+                                throw new IllegalArgumentException("Invalid child StatusCodeValue", ex);
+                        }
+                }
+                return new JaxpStatusCode(statusCodeValue, statusCodeChild);
+        }
 }

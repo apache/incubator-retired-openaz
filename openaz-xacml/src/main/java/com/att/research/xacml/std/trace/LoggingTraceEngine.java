@@ -47,52 +47,52 @@ import com.att.research.xacml.api.trace.Traceable;
  * @version $Revision$
  */
 public class LoggingTraceEngine implements TraceEngine {
-	private static final LoggingTraceEngine loggingTraceEngine	= new LoggingTraceEngine();
-	
-	private Log logger	= LogFactory.getLog(this.getClass());
-	
-	protected LoggingTraceEngine() {
-	}
-	
-	protected LoggingTraceEngine(Properties properties) {
-	}
-	
-	/**
-	 * Gets the single instance of the <code>LoggingTraceEngine</code>.
-	 * 
-	 * @return the single instance of the <code>LoggingTraceEngine</code>.
-	 */
-	public static LoggingTraceEngine newInstance() {
-		return loggingTraceEngine;
-	}
+        private static final LoggingTraceEngine loggingTraceEngine	= new LoggingTraceEngine();
+        
+        private Log logger	= LogFactory.getLog(this.getClass());
+        
+        protected LoggingTraceEngine() {
+        }
+        
+        protected LoggingTraceEngine(Properties properties) {
+        }
+        
+        /**
+         * Gets the single instance of the <code>LoggingTraceEngine</code>.
+         * 
+         * @return the single instance of the <code>LoggingTraceEngine</code>.
+         */
+        public static LoggingTraceEngine newInstance() {
+                return loggingTraceEngine;
+        }
 
-	/**
-	 * Gets the single instance of the <code>LoggingTraceEngine</code>.
-	 * 
-	 * @return the single instance of the <code>LoggingTraceEngine</code>.
-	 */
-	public static LoggingTraceEngine newInstance(Properties properties) {
-		return loggingTraceEngine;
-	}
+        /**
+         * Gets the single instance of the <code>LoggingTraceEngine</code>.
+         * 
+         * @return the single instance of the <code>LoggingTraceEngine</code>.
+         */
+        public static LoggingTraceEngine newInstance(Properties properties) {
+                return loggingTraceEngine;
+        }
 
-	@Override
-	public void trace(TraceEvent<?> traceEvent) {
-		String message	= traceEvent.getMessage();
-		Traceable cause	= traceEvent.getCause();
-		this.logger.debug(
-				traceEvent.getTimestamp().toString() + ": " +
-				"\"" + (message == null ? "" : message) + "\"" +
-				(cause == null ? "" : " from \"" + cause.getTraceId() + "\"")
-				);
-		Object traceObject	= traceEvent.getValue();
-		if (traceObject != null) {
-			this.logger.debug(traceObject);
-		}
-	}
+        @Override
+        public void trace(TraceEvent<?> traceEvent) {
+                String message	= traceEvent.getMessage();
+                Traceable cause	= traceEvent.getCause();
+                this.logger.debug(
+                                traceEvent.getTimestamp().toString() + ": " +
+                                "\"" + (message == null ? "" : message) + "\"" +
+                                (cause == null ? "" : " from \"" + cause.getTraceId() + "\"")
+                                );
+                Object traceObject	= traceEvent.getValue();
+                if (traceObject != null) {
+                        this.logger.debug(traceObject);
+                }
+        }
 
-	@Override
-	public boolean isTracing() {
-		return this.logger.isDebugEnabled();
-	}
+        @Override
+        public boolean isTracing() {
+                return this.logger.isDebugEnabled();
+        }
 
 }

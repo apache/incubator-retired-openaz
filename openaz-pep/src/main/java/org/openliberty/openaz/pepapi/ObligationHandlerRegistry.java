@@ -29,12 +29,12 @@ import java.util.Map;
  * @author Ajith Nair, David Laurance, Darshak Kothari
  */
 public interface ObligationHandlerRegistry {
-	
-	/**
-	 * Returns a Map of <code>Matchable</code> implementations keyed by handler Class. 
-	 * 
-	 * @return
-	 */
-	public Map<Class<?>, Matchable<Obligation>> getRegisteredHandlerMap();
-	
+        
+        /**
+         * Returns a Map of <code>Matchable</code> implementations keyed by handler Class. 
+         * 
+         * @return
+         */
+        public Map<Class<?>, Matchable<Obligation>> getRegisteredHandlerMap();
+        
 }

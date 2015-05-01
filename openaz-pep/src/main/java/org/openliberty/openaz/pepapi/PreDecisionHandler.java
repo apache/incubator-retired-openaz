@@ -30,14 +30,14 @@ package org.openliberty.openaz.pepapi;
  */
 public interface PreDecisionHandler {
     
-	/** 
-	 * This method is used to apply preliminary custom
-	 * processing to the {@link org.openliberty.openaz.pepapi.PepRequest} prior to its
-	 * being submitted.
-	 *
-	 * @param request
-	 * @throws org.openliberty.openaz.pepapi.PepException
-	 */
-	public void preDecide(PepRequest request) 
-    	throws PepException;
+        /** 
+         * This method is used to apply preliminary custom
+         * processing to the {@link org.openliberty.openaz.pepapi.PepRequest} prior to its
+         * being submitted.
+         *
+         * @param request
+         * @throws org.openliberty.openaz.pepapi.PepException
+         */
+        public void preDecide(PepRequest request) 
+        throws PepException;
 }

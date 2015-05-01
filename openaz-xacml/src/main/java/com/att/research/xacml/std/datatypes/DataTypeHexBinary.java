@@ -40,35 +40,35 @@ import com.att.research.xacml.api.XACML;
  * @version $Revision: 1.1 $
  */
 public class DataTypeHexBinary extends DataTypeSemanticStringBase<HexBinary> {
-	private static final DataTypeHexBinary	singleInstance	= new DataTypeHexBinary();
-	
-	private DataTypeHexBinary() {
-		super(XACML.ID_DATATYPE_HEXBINARY, HexBinary.class);
-	}
-	
-	public static DataTypeHexBinary newInstance() {
-		return singleInstance;
-	}
+        private static final DataTypeHexBinary	singleInstance	= new DataTypeHexBinary();
+        
+        private DataTypeHexBinary() {
+                super(XACML.ID_DATATYPE_HEXBINARY, HexBinary.class);
+        }
+        
+        public static DataTypeHexBinary newInstance() {
+                return singleInstance;
+        }
 
-	@Override
-	public HexBinary convert(Object source) throws DataTypeException {
-		if (source == null || (source instanceof HexBinary)) {
-			return (HexBinary)source;
-		} else if (source instanceof byte[]) {
-			return new HexBinary((byte[])source);
-		} else {
-			String	stringValue	= this.convertToString(source);
-			if (stringValue == null) {
-				return null;
-			}
-			HexBinary	hexBinary	= null;
-			try {
-				hexBinary	= HexBinary.newInstance(stringValue);
-			} catch (Exception ex) {
-				throw new DataTypeException(this, "Failed to convert \"" + source.getClass().getCanonicalName() + "\" with value \"" + stringValue + "\" to HexBinary", ex);				
-			}
-			return hexBinary;
-		}
-	}
+        @Override
+        public HexBinary convert(Object source) throws DataTypeException {
+                if (source == null || (source instanceof HexBinary)) {
+                        return (HexBinary)source;
+                } else if (source instanceof byte[]) {
+                        return new HexBinary((byte[])source);
+                } else {
+                        String	stringValue	= this.convertToString(source);
+                        if (stringValue == null) {
+                                return null;
+                        }
+                        HexBinary	hexBinary	= null;
+                        try {
+                                hexBinary	= HexBinary.newInstance(stringValue);
+                        } catch (Exception ex) {
+                                throw new DataTypeException(this, "Failed to convert \"" + source.getClass().getCanonicalName() + "\" with value \"" + stringValue + "\" to HexBinary", ex);				
+                        }
+                        return hexBinary;
+                }
+        }
 
 }

@@ -66,43 +66,43 @@ import com.att.research.xacmlatt.pdp.policy.FunctionArgument;
  * @param <I> the java class for the data type of the function Input arguments
  */
 public class FunctionDefinitionEquality<I> extends FunctionDefinitionHomogeneousSimple<Boolean, I> {
-	
-	/**
-	 * Determines if the two <code>T</code> values are equal using the java <code>equals</code> method.  Derived classes
-	 * may override this if the <code>equals</code> method is not sufficient.
-	 * 
-	 * @param v1 the first object to compare
-	 * @param v2 the second object to compare
-	 * @return true if the two objects are the same, else false
-	 */
-	protected boolean isEqual(I v1, I v2) {
-		return v1.equals(v2);
-	}
-	
-	public FunctionDefinitionEquality(Identifier idIn, DataType<I> dataTypeArgsIn) {
-		super(idIn, DataTypes.DT_BOOLEAN, dataTypeArgsIn, 2);
-	}
+        
+        /**
+         * Determines if the two <code>T</code> values are equal using the java <code>equals</code> method.  Derived classes
+         * may override this if the <code>equals</code> method is not sufficient.
+         * 
+         * @param v1 the first object to compare
+         * @param v2 the second object to compare
+         * @return true if the two objects are the same, else false
+         */
+        protected boolean isEqual(I v1, I v2) {
+                return v1.equals(v2);
+        }
+        
+        public FunctionDefinitionEquality(Identifier idIn, DataType<I> dataTypeArgsIn) {
+                super(idIn, DataTypes.DT_BOOLEAN, dataTypeArgsIn, 2);
+        }
 
-	@Override
-	public ExpressionResult evaluate(EvaluationContext evaluationContext, List<FunctionArgument> arguments) {
-		List<I> convertedArguments	= new ArrayList<I>();
-		Status status				= this.validateArguments(arguments, convertedArguments);
-		
-		/*
-		 * If the function arguments are not correct, just return an error status immediately
-		 */
-		if (!status.getStatusCode().equals(StdStatusCode.STATUS_CODE_OK)) {
-			return ExpressionResult.newError(getFunctionStatus(status));
-		}
-		
-		/*
-		 * Now just perform the equality operation.
-		 */
-		if (this.isEqual(convertedArguments.get(0), convertedArguments.get(1))) {
-			return ER_TRUE;
-		} else {
-			return ER_FALSE;
-		}
-	}
+        @Override
+        public ExpressionResult evaluate(EvaluationContext evaluationContext, List<FunctionArgument> arguments) {
+                List<I> convertedArguments	= new ArrayList<I>();
+                Status status				= this.validateArguments(arguments, convertedArguments);
+                
+                /*
+                 * If the function arguments are not correct, just return an error status immediately
+                 */
+                if (!status.getStatusCode().equals(StdStatusCode.STATUS_CODE_OK)) {
+                        return ExpressionResult.newError(getFunctionStatus(status));
+                }
+                
+                /*
+                 * Now just perform the equality operation.
+                 */
+                if (this.isEqual(convertedArguments.get(0), convertedArguments.get(1))) {
+                        return ER_TRUE;
+                } else {
+                        return ER_FALSE;
+                }
+        }
 
 }

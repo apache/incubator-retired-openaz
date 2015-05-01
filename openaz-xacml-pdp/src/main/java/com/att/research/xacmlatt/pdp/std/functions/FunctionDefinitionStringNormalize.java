@@ -60,69 +60,69 @@ import com.att.research.xacmlatt.pdp.policy.FunctionArgument;
  * 
  */
 public class FunctionDefinitionStringNormalize extends FunctionDefinitionHomogeneousSimple<String, String> {
-	
-	/**
-	 * List of string normalization operations.
-	 * 
-	 * @author glenngriffin
-	 *
-	 */
-	public enum OPERATION {SPACE, LOWER_CASE };
-	
-	// operation to be used in this instance of the Arightmetic class
-	private final OPERATION operation;
-	
-	
-	// result variables used by all functions
-	AttributeValue<String>	result;
+        
+        /**
+         * List of string normalization operations.
+         * 
+         * @author glenngriffin
+         *
+         */
+        public enum OPERATION {SPACE, LOWER_CASE };
+        
+        // operation to be used in this instance of the Arightmetic class
+        private final OPERATION operation;
+        
+        
+        // result variables used by all functions
+        AttributeValue<String>	result;
 
 
-	/**
-	 * Constructor
-	 * 
-	 * @param idIn
-	 * @param dataTypeArgsIn
-	 * @param op
-	 */
-	public FunctionDefinitionStringNormalize(Identifier idIn,  OPERATION op) {
-		// for Arithmetic functions, the output type is the same as the input type (no mixing of Ints and Doubles!)
-		super(idIn, DataTypes.DT_STRING, DataTypeString.newInstance(), 1);
-		
-		// save the operation and data type to be used in this instance
-		operation = op;
+        /**
+         * Constructor
+         * 
+         * @param idIn
+         * @param dataTypeArgsIn
+         * @param op
+         */
+        public FunctionDefinitionStringNormalize(Identifier idIn,  OPERATION op) {
+                // for Arithmetic functions, the output type is the same as the input type (no mixing of Ints and Doubles!)
+                super(idIn, DataTypes.DT_STRING, DataTypeString.newInstance(), 1);
+                
+                // save the operation and data type to be used in this instance
+                operation = op;
 
-	}
+        }
 
 
-	@Override
-	public ExpressionResult evaluate(EvaluationContext evaluationContext, List<FunctionArgument> arguments) {
-		List<String> convertedArguments	= new ArrayList<String>();
-		Status status				= this.validateArguments(arguments, convertedArguments);
-		
-		/*
-		 * If the function arguments are not correct, just return an error status immediately
-		 */
-		if (!status.getStatusCode().equals(StdStatusCode.STATUS_CODE_OK)) {
-			return ExpressionResult.newError(getFunctionStatus(status));
-		}
-		
-		/*
-		 * Now perform the requested operation.
-		 */
-		ExpressionResult expressionResult = null;
-		
-		switch (operation) {
-		case SPACE:
-			result	= new StdAttributeValue<String>(XACML.ID_DATATYPE_STRING, convertedArguments.get(0).trim() );
-			break;
-		case LOWER_CASE:
-			result	= new StdAttributeValue<String>(XACML.ID_DATATYPE_STRING, convertedArguments.get(0).toLowerCase() );
-			break;
-		}
-		
-		expressionResult = ExpressionResult.newSingle(result);
+        @Override
+        public ExpressionResult evaluate(EvaluationContext evaluationContext, List<FunctionArgument> arguments) {
+                List<String> convertedArguments	= new ArrayList<String>();
+                Status status				= this.validateArguments(arguments, convertedArguments);
+                
+                /*
+                 * If the function arguments are not correct, just return an error status immediately
+                 */
+                if (!status.getStatusCode().equals(StdStatusCode.STATUS_CODE_OK)) {
+                        return ExpressionResult.newError(getFunctionStatus(status));
+                }
+                
+                /*
+                 * Now perform the requested operation.
+                 */
+                ExpressionResult expressionResult = null;
+                
+                switch (operation) {
+                case SPACE:
+                        result	= new StdAttributeValue<String>(XACML.ID_DATATYPE_STRING, convertedArguments.get(0).trim() );
+                        break;
+                case LOWER_CASE:
+                        result	= new StdAttributeValue<String>(XACML.ID_DATATYPE_STRING, convertedArguments.get(0).toLowerCase() );
+                        break;
+                }
+                
+                expressionResult = ExpressionResult.newSingle(result);
 
-		return expressionResult;
-	}
+                return expressionResult;
+        }
 
 }

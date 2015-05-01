@@ -26,11 +26,11 @@ package org.openliberty.openaz.pepapi;
  *
  */
 public interface PepAgentFactory {
-	
-	/**
-	 * Returns a PepAgent instance
-	 * 
-	 * @return
-	 */
-	public PepAgent getPepAgent();
+        
+        /**
+         * Returns a PepAgent instance
+         * 
+         * @return
+         */
+        public PepAgent getPepAgent();
 }

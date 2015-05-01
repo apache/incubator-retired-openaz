@@ -63,53 +63,53 @@ import com.att.research.xacmlatt.pdp.policy.FunctionArgument;
 public class FunctionDefinitionTimeInRange<I> extends FunctionDefinitionHomogeneousSimple<Boolean, I> {
 
 
-	
-	
-	/**
-	 * Constructor - need dataType input because of java Generic type-erasure during compilation.
-	 * 
-	 * @param idIn
-	 * @param dataTypeArgsIn
-	 */
-	public FunctionDefinitionTimeInRange(Identifier idIn, DataType<I> dataTypeArgsIn) {
-		super(idIn, DataTypes.DT_BOOLEAN, dataTypeArgsIn, 3);
-	}
+        
+        
+        /**
+         * Constructor - need dataType input because of java Generic type-erasure during compilation.
+         * 
+         * @param idIn
+         * @param dataTypeArgsIn
+         */
+        public FunctionDefinitionTimeInRange(Identifier idIn, DataType<I> dataTypeArgsIn) {
+                super(idIn, DataTypes.DT_BOOLEAN, dataTypeArgsIn, 3);
+        }
 
 
-	@Override
-	public ExpressionResult evaluate(EvaluationContext evaluationContext, List<FunctionArgument> arguments) {
+        @Override
+        public ExpressionResult evaluate(EvaluationContext evaluationContext, List<FunctionArgument> arguments) {
 
-		List<I> convertedArguments	= new ArrayList<I>();
-		Status status				= this.validateArguments(arguments, convertedArguments);
-		
-		/*
-		 * If the function arguments are not correct, just return an error status immediately
-		 */
-		if (!status.getStatusCode().equals(StdStatusCode.STATUS_CODE_OK)) {
-			return ExpressionResult.newError(getFunctionStatus(status));
-		}
-		
-		int compareResultLow;
-		int compareResultHigh;
-		try {
+                List<I> convertedArguments	= new ArrayList<I>();
+                Status status				= this.validateArguments(arguments, convertedArguments);
+                
+                /*
+                 * If the function arguments are not correct, just return an error status immediately
+                 */
+                if (!status.getStatusCode().equals(StdStatusCode.STATUS_CODE_OK)) {
+                        return ExpressionResult.newError(getFunctionStatus(status));
+                }
+                
+                int compareResultLow;
+                int compareResultHigh;
+                try {
 
-			compareResultLow = ((ISO8601Time) convertedArguments.get(1)).compareTo((ISO8601Time)convertedArguments.get(0));
-			compareResultHigh = ((ISO8601Time)convertedArguments.get(2)).compareTo((ISO8601Time)convertedArguments.get(0));
-		} catch (Exception e) {
-			String message = e.getMessage();
-			if (e.getCause() != null) {
-				message = e.getCause().getMessage();
-			}
-			return ExpressionResult.newError(new StdStatus(StdStatusCode.STATUS_CODE_PROCESSING_ERROR, this.getShortFunctionId() + " " + message));
-		}
+                        compareResultLow = ((ISO8601Time) convertedArguments.get(1)).compareTo((ISO8601Time)convertedArguments.get(0));
+                        compareResultHigh = ((ISO8601Time)convertedArguments.get(2)).compareTo((ISO8601Time)convertedArguments.get(0));
+                } catch (Exception e) {
+                        String message = e.getMessage();
+                        if (e.getCause() != null) {
+                                message = e.getCause().getMessage();
+                        }
+                        return ExpressionResult.newError(new StdStatus(StdStatusCode.STATUS_CODE_PROCESSING_ERROR, this.getShortFunctionId() + " " + message));
+                }
 
-		// is arg 0 within the inclusive range of the other two?
-		if (compareResultLow <=0 && compareResultHigh >= 0) {
-			return ER_TRUE;
-		} else {
-			return ER_FALSE;
-		}
-	}
+                // is arg 0 within the inclusive range of the other two?
+                if (compareResultLow <=0 && compareResultHigh >= 0) {
+                        return ER_TRUE;
+                } else {
+                        return ER_FALSE;
+                }
+        }
 
 
 

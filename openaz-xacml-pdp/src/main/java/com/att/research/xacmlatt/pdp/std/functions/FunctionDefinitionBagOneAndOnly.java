@@ -76,62 +76,62 @@ import com.att.research.xacmlatt.pdp.policy.FunctionArgument;
  */
 public class FunctionDefinitionBagOneAndOnly<I> extends FunctionDefinitionBase<I,I> {
 
-	
-	/**
-	 * Constructor - need dataType input because of java Generic type-erasure during compilation.
-	 * 
-	 * @param idIn
-	 * @param dataTypeArgsIn
-	 */
-	public FunctionDefinitionBagOneAndOnly(Identifier idIn, DataType<I> dataTypeArgsIn) {
-		super(idIn, dataTypeArgsIn, dataTypeArgsIn, false);
-	}
+        
+        /**
+         * Constructor - need dataType input because of java Generic type-erasure during compilation.
+         * 
+         * @param idIn
+         * @param dataTypeArgsIn
+         */
+        public FunctionDefinitionBagOneAndOnly(Identifier idIn, DataType<I> dataTypeArgsIn) {
+                super(idIn, dataTypeArgsIn, dataTypeArgsIn, false);
+        }
 
-	/**
-	 * Evaluates this <code>FunctionDefinition</code> on the given <code>List</code> of{@link com.att.research.xacmlatt.pdp.policy.FunctionArgument}s.
-	 * 
-	 * @param evaluationContext the {@link com.att.research.xacmlatt.pdp.eval.EvaluationContext} to use in the evaluation
-	 * @param arguments the <code>List</code> of <code>FunctionArgument</code>s for the evaluation
-	 * @return an {@link com.att.research.xacmlatt.pdp.policy.ExpressionResult} with the results of the call
-	 */
-	@Override
-	public ExpressionResult evaluate(EvaluationContext evaluationContext, List<FunctionArgument> arguments) {
+        /**
+         * Evaluates this <code>FunctionDefinition</code> on the given <code>List</code> of{@link com.att.research.xacmlatt.pdp.policy.FunctionArgument}s.
+         * 
+         * @param evaluationContext the {@link com.att.research.xacmlatt.pdp.eval.EvaluationContext} to use in the evaluation
+         * @param arguments the <code>List</code> of <code>FunctionArgument</code>s for the evaluation
+         * @return an {@link com.att.research.xacmlatt.pdp.policy.ExpressionResult} with the results of the call
+         */
+        @Override
+        public ExpressionResult evaluate(EvaluationContext evaluationContext, List<FunctionArgument> arguments) {
 
-		if (arguments == null || arguments.size() != 1) {
-			return ExpressionResult.newError(new StdStatus(StdStatusCode.STATUS_CODE_PROCESSING_ERROR, getShortFunctionId() + " Expected 1 argument, got " + 
-					((arguments == null) ? "null" : arguments.size()) ));
-		}
-		
-		FunctionArgument argument = arguments.get(0);
-		ConvertedArgument<Bag> convertedArgument = new ConvertedArgument<Bag>(argument, null, true);
+                if (arguments == null || arguments.size() != 1) {
+                        return ExpressionResult.newError(new StdStatus(StdStatusCode.STATUS_CODE_PROCESSING_ERROR, getShortFunctionId() + " Expected 1 argument, got " + 
+                                        ((arguments == null) ? "null" : arguments.size()) ));
+                }
+                
+                FunctionArgument argument = arguments.get(0);
+                ConvertedArgument<Bag> convertedArgument = new ConvertedArgument<Bag>(argument, null, true);
 
-		if ( ! convertedArgument.isOk()) {
-			return ExpressionResult.newError(getFunctionStatus(convertedArgument.getStatus()));
-		}
-		
-		Bag bag = convertedArgument.getBag();
-		
-		if (bag.size() != 1) {
-			return ExpressionResult.newError(new StdStatus(StdStatusCode.STATUS_CODE_PROCESSING_ERROR, getShortFunctionId() + 
-					" Expected 1 but Bag has " + bag.size() + " elements"));
-		}
+                if ( ! convertedArgument.isOk()) {
+                        return ExpressionResult.newError(getFunctionStatus(convertedArgument.getStatus()));
+                }
+                
+                Bag bag = convertedArgument.getBag();
+                
+                if (bag.size() != 1) {
+                        return ExpressionResult.newError(new StdStatus(StdStatusCode.STATUS_CODE_PROCESSING_ERROR, getShortFunctionId() + 
+                                        " Expected 1 but Bag has " + bag.size() + " elements"));
+                }
 
-		// get the single value from the bag
-		AttributeValue<?> attributeValueOneAndOnly	= bag.getAttributeValues().next();
-		assert(attributeValueOneAndOnly != null);
-		
-		// make sure it has the right type
-		//
-		if (!this.getDataTypeId().equals(attributeValueOneAndOnly.getDataTypeId())) {
-			return ExpressionResult.newError(new StdStatus(StdStatusCode.STATUS_CODE_PROCESSING_ERROR, getShortFunctionId() + 
-					" Element in bag of wrong type. Expected " + 
-					this.getShortDataTypeId(this.getDataTypeId()) + " got " + this.getShortDataTypeId(attributeValueOneAndOnly.getDataTypeId())));			
-		}
-		return ExpressionResult.newSingle(attributeValueOneAndOnly);
-	}
+                // get the single value from the bag
+                AttributeValue<?> attributeValueOneAndOnly	= bag.getAttributeValues().next();
+                assert(attributeValueOneAndOnly != null);
+                
+                // make sure it has the right type
+                //
+                if (!this.getDataTypeId().equals(attributeValueOneAndOnly.getDataTypeId())) {
+                        return ExpressionResult.newError(new StdStatus(StdStatusCode.STATUS_CODE_PROCESSING_ERROR, getShortFunctionId() + 
+                                        " Element in bag of wrong type. Expected " + 
+                                        this.getShortDataTypeId(this.getDataTypeId()) + " got " + this.getShortDataTypeId(attributeValueOneAndOnly.getDataTypeId())));			
+                }
+                return ExpressionResult.newSingle(attributeValueOneAndOnly);
+        }
 
 
-	
-	
+        
+        
 
 }

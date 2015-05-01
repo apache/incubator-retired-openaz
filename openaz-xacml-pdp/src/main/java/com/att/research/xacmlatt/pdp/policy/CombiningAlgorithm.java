@@ -48,22 +48,22 @@ import com.att.research.xacmlatt.pdp.eval.EvaluationResult;
  * @param <U> the type of the identifier for <code>T</code>
  */
 public interface CombiningAlgorithm<T extends Evaluatable> {
-	/**
-	 * Gets the {@link com.att.research.xacml.api.Identifier} for this <code>CombiningAlgorithm</code>.
-	 * 
-	 * @return the <code>Identifier</code> for this <code>CombiningAlgorithm</code>
-	 */
-	public Identifier getId();
-	
-	/**
-	 * Evaluates as many of the <code>CombiningElement</code>s supplied with the given <code>CombinerParameter</code>s based on
-	 * the particular combining algorithm and combines their <code>EvaluationResult</code>s into a single <code>EvaluationResult</code>.
-	 * 
-	 * @param evaluationContext the <code>EvaluationContext</code> in which to evaluate each of the <code>CombiningElement</code>s
-	 * @param elements the <code>List</code> of <code>CombiningElement</code>s to evaluate
-	 * @param combinerParameters the <code>List</code> of <code>CombinerParameter</code>s to apply to the combining algorithm
-	 * @return the combined <code>EvaluationResult</code>
-	 * @throws com.att.research.xacmlatt.pdp.eval.EvaluationException if there is an error in the <code>evaluate</code> method of any of the <code>CombiningElement</code>s
-	 */
-	public EvaluationResult combine(EvaluationContext evaluationContext, List<CombiningElement<T>> elements, List<CombinerParameter> combinerParameters) throws EvaluationException;
+        /**
+         * Gets the {@link com.att.research.xacml.api.Identifier} for this <code>CombiningAlgorithm</code>.
+         * 
+         * @return the <code>Identifier</code> for this <code>CombiningAlgorithm</code>
+         */
+        public Identifier getId();
+        
+        /**
+         * Evaluates as many of the <code>CombiningElement</code>s supplied with the given <code>CombinerParameter</code>s based on
+         * the particular combining algorithm and combines their <code>EvaluationResult</code>s into a single <code>EvaluationResult</code>.
+         * 
+         * @param evaluationContext the <code>EvaluationContext</code> in which to evaluate each of the <code>CombiningElement</code>s
+         * @param elements the <code>List</code> of <code>CombiningElement</code>s to evaluate
+         * @param combinerParameters the <code>List</code> of <code>CombinerParameter</code>s to apply to the combining algorithm
+         * @return the combined <code>EvaluationResult</code>
+         * @throws com.att.research.xacmlatt.pdp.eval.EvaluationException if there is an error in the <code>evaluate</code> method of any of the <code>CombiningElement</code>s
+         */
+        public EvaluationResult combine(EvaluationContext evaluationContext, List<CombiningElement<T>> elements, List<CombinerParameter> combinerParameters) throws EvaluationException;
 }

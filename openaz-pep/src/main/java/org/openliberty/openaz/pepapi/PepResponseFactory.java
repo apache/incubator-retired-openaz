@@ -65,7 +65,7 @@ import com.att.research.xacml.api.Result;
  * @author Josh Bregman, Rich Levinson, Prateek Mishra
  */
 public interface PepResponseFactory {
-	
-	public PepResponse newPepResponse(Result result);
+        
+        public PepResponse newPepResponse(Result result);
     
 }

@@ -42,23 +42,23 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
  * The following allows us to use Jackson to convert sub-types of this type into JSON and back to objects.
  */
 @JsonTypeInfo(  
-	    use = JsonTypeInfo.Id.NAME,  
-	    include = JsonTypeInfo.As.PROPERTY,  
-	    property = "PDPPIPConfigType")  
+            use = JsonTypeInfo.Id.NAME,  
+            include = JsonTypeInfo.As.PROPERTY,  
+            property = "PDPPIPConfigType")  
 @JsonSubTypes({  
-	    @Type(value = StdPDPPIPConfig.class, name = "StdPDPPIPConfig") })  
+            @Type(value = StdPDPPIPConfig.class, name = "StdPDPPIPConfig") })  
 public interface PDPPIPConfig {
-	
-	public String				getId();
-	
-	public String 				getName();
-	
-	public String				getDescription();
+        
+        public String				getId();
+        
+        public String 				getName();
+        
+        public String				getDescription();
 
-	public String 				getClassname();
+        public String 				getClassname();
 
-	public Map<String,String>	getConfiguration();
-	
-	public boolean				isConfigured();
+        public Map<String,String>	getConfiguration();
+        
+        public boolean				isConfigured();
 
 }

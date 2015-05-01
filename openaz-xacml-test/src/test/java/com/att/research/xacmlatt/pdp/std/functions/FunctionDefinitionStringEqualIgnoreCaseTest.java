@@ -63,77 +63,77 @@ import com.att.research.xacmlatt.pdp.std.StdFunctions;
  */
 public class FunctionDefinitionStringEqualIgnoreCaseTest {
 
-	/*
-	 * variables useful in the following tests
-	 */
-	List<FunctionArgument> arguments = new ArrayList<FunctionArgument>();
-	
-	FunctionArgumentAttributeValue stringAttr1 = null;
-	FunctionArgumentAttributeValue stringAttr2 = null;
-	FunctionArgumentAttributeValue stringAttr3 = null;
-	FunctionArgumentAttributeValue stringAttr4 = null;
-	
-	FunctionArgumentAttributeValue intAttr1 = null;
+        /*
+         * variables useful in the following tests
+         */
+        List<FunctionArgument> arguments = new ArrayList<FunctionArgument>();
+        
+        FunctionArgumentAttributeValue stringAttr1 = null;
+        FunctionArgumentAttributeValue stringAttr2 = null;
+        FunctionArgumentAttributeValue stringAttr3 = null;
+        FunctionArgumentAttributeValue stringAttr4 = null;
+        
+        FunctionArgumentAttributeValue intAttr1 = null;
 
-	public FunctionDefinitionStringEqualIgnoreCaseTest() {
-		try {
-			stringAttr1 = new FunctionArgumentAttributeValue(DataTypes.DT_STRING.createAttributeValue("abc"));
-			stringAttr2 = new FunctionArgumentAttributeValue(DataTypes.DT_STRING.createAttributeValue("abc"));
-			stringAttr3 = new FunctionArgumentAttributeValue(DataTypes.DT_STRING.createAttributeValue("ABC"));
-			stringAttr4 = new FunctionArgumentAttributeValue(DataTypes.DT_STRING.createAttributeValue("def"));
-			intAttr1 = new FunctionArgumentAttributeValue(DataTypes.DT_INTEGER.createAttributeValue(1));
-		} catch (Exception e) {
-			fail("creating attribute e="+ e);
-		}
-	}
-	
-	
-	/**
-	 * String match even when Case is different
-	 */
-	@Test
-	public void testFunctionDefinitionStringEqualIgnoreCase() {
-		
-		FunctionDefinitionEquality<?> fd = (FunctionDefinitionEquality<?>) StdFunctions.FD_STRING_EQUAL_IGNORE_CASE;
-		
-		// check identity and type of the thing created
-		assertEquals(XACML3.ID_FUNCTION_STRING_EQUAL_IGNORE_CASE, fd.getId());
-		assertEquals(DataTypes.DT_STRING.getId(), fd.getDataTypeArgs().getId());
-		
-		// just to be safe...  If tests take too long these can probably be eliminated
-		assertEquals(DataTypes.DT_BOOLEAN.getId(), fd.getDataTypeId());
-		assertFalse(fd.returnsBag());
-		assertEquals(new Integer(2), fd.getNumArgs());
-		
+        public FunctionDefinitionStringEqualIgnoreCaseTest() {
+                try {
+                        stringAttr1 = new FunctionArgumentAttributeValue(DataTypes.DT_STRING.createAttributeValue("abc"));
+                        stringAttr2 = new FunctionArgumentAttributeValue(DataTypes.DT_STRING.createAttributeValue("abc"));
+                        stringAttr3 = new FunctionArgumentAttributeValue(DataTypes.DT_STRING.createAttributeValue("ABC"));
+                        stringAttr4 = new FunctionArgumentAttributeValue(DataTypes.DT_STRING.createAttributeValue("def"));
+                        intAttr1 = new FunctionArgumentAttributeValue(DataTypes.DT_INTEGER.createAttributeValue(1));
+                } catch (Exception e) {
+                        fail("creating attribute e="+ e);
+                }
+        }
+        
+        
+        /**
+         * String match even when Case is different
+         */
+        @Test
+        public void testFunctionDefinitionStringEqualIgnoreCase() {
+                
+                FunctionDefinitionEquality<?> fd = (FunctionDefinitionEquality<?>) StdFunctions.FD_STRING_EQUAL_IGNORE_CASE;
+                
+                // check identity and type of the thing created
+                assertEquals(XACML3.ID_FUNCTION_STRING_EQUAL_IGNORE_CASE, fd.getId());
+                assertEquals(DataTypes.DT_STRING.getId(), fd.getDataTypeArgs().getId());
+                
+                // just to be safe...  If tests take too long these can probably be eliminated
+                assertEquals(DataTypes.DT_BOOLEAN.getId(), fd.getDataTypeId());
+                assertFalse(fd.returnsBag());
+                assertEquals(new Integer(2), fd.getNumArgs());
+                
 
-		
-		// test normal equals and non-equals
-		// check "abc" with "abc"
-		arguments.add(stringAttr1);
-		arguments.add(stringAttr2);
-		ExpressionResult res = fd.evaluate(null, arguments);
-		assertTrue(res.isOk());
-		Boolean resValue = (Boolean)res.getValue().getValue();
-		assertTrue(resValue);
+                
+                // test normal equals and non-equals
+                // check "abc" with "abc"
+                arguments.add(stringAttr1);
+                arguments.add(stringAttr2);
+                ExpressionResult res = fd.evaluate(null, arguments);
+                assertTrue(res.isOk());
+                Boolean resValue = (Boolean)res.getValue().getValue();
+                assertTrue(resValue);
 
-		// check "abc" with "ABC" (should be same)
-		arguments.clear();
-		arguments.add(stringAttr1);
-		arguments.add(stringAttr3);
-		res = fd.evaluate(null, arguments);
-		assertTrue(res.isOk());
-		resValue = (Boolean)res.getValue().getValue();
-		assertTrue(resValue);
-		
-		// test bad args data types?  Not needed?
-		arguments.clear();
-		arguments.add(stringAttr1);
-		arguments.add(intAttr1);
-		res = fd.evaluate(null, arguments);
-		assertFalse(res.isOk());
+                // check "abc" with "ABC" (should be same)
+                arguments.clear();
+                arguments.add(stringAttr1);
+                arguments.add(stringAttr3);
+                res = fd.evaluate(null, arguments);
+                assertTrue(res.isOk());
+                resValue = (Boolean)res.getValue().getValue();
+                assertTrue(resValue);
+                
+                // test bad args data types?  Not needed?
+                arguments.clear();
+                arguments.add(stringAttr1);
+                arguments.add(intAttr1);
+                res = fd.evaluate(null, arguments);
+                assertFalse(res.isOk());
 
-		
+                
 //TODO - null in either first or 2nd arg => NullPointerException
-	}
+        }
 
 }

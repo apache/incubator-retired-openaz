@@ -36,108 +36,108 @@ import java.util.List;
 
 
 public class TestMapper {
-	
-	@SuppressWarnings("unused")
-	private static Log logger = LogFactory.getLog(TestMapper.class);
+        
+        @SuppressWarnings("unused")
+        private static Log logger = LogFactory.getLog(TestMapper.class);
 
-	private PepAgentFactory pepAgentFactory;
+        private PepAgentFactory pepAgentFactory;
 
-	@Before
-	public void setup() {
-		this.pepAgentFactory = new StdPepAgentFactory("/properties/testmapper.xacml.properties");
-	}
-	
-	/**
-	 * 
-	 */
-	@Test
-	public void testPepAgent() {
-		Assert.assertNotNull(getPepAgent());
-	}
-	
-	/**
-	 * 
-	 */
-	@Test
-	public void testPermit() {
-		Subject subject = Subject.newInstance("John Smith");
-		subject.addAttribute("urn:oasis:names:tc:xacml:1.0:subject:role-id", "ROLE_DOCUMENT_WRITER");
+        @Before
+        public void setup() {
+                this.pepAgentFactory = new StdPepAgentFactory("/properties/testmapper.xacml.properties");
+        }
+        
+        /**
+         * 
+         */
+        @Test
+        public void testPepAgent() {
+                Assert.assertNotNull(getPepAgent());
+        }
+        
+        /**
+         * 
+         */
+        @Test
+        public void testPermit() {
+                Subject subject = Subject.newInstance("John Smith");
+                subject.addAttribute("urn:oasis:names:tc:xacml:1.0:subject:role-id", "ROLE_DOCUMENT_WRITER");
 
-		Action action = Action.newInstance("write");
+                Action action = Action.newInstance("write");
 
-		Document doc = new Document(1, "OnBoarding Document", "ABC Corporation", "John Smith");
-		PepResponse response = getPepAgent().decide(subject, action, doc);
-		Assert.assertNotNull(response);
-		Assert.assertEquals(true, response.allowed());
-	}
-	
-	/**
-	 * 
-	 */
-	@Test
-	public void testNotApplicable(){
-		Subject subject = Subject.newInstance("John Smith");
-		subject.addAttribute("urn:oasis:names:tc:xacml:1.0:subject:role-id", "ROLE_DOCUMENT_WRITER");
+                Document doc = new Document(1, "OnBoarding Document", "ABC Corporation", "John Smith");
+                PepResponse response = getPepAgent().decide(subject, action, doc);
+                Assert.assertNotNull(response);
+                Assert.assertEquals(true, response.allowed());
+        }
+        
+        /**
+         * 
+         */
+        @Test
+        public void testNotApplicable(){
+                Subject subject = Subject.newInstance("John Smith");
+                subject.addAttribute("urn:oasis:names:tc:xacml:1.0:subject:role-id", "ROLE_DOCUMENT_WRITER");
 
-		Action action = Action.newInstance("write");
-		Document doc = new Document(2, "OnBoarding Document", "XYZ Corporation", "Jim Doe");
-		PepResponse response = getPepAgent().decide(subject,  action, doc);
-		Assert.assertNotNull(response);
-		Assert.assertEquals(false, response.allowed());
-	}
-	
-	@Test(expected=PepException.class)
-	public void testMix(){
-		Subject subject = Subject.newInstance("John Smith");
-		subject.addAttribute("urn:oasis:names:tc:xacml:1.0:subject:role-id", "ROLE_DOCUMENT_WRITER");
+                Action action = Action.newInstance("write");
+                Document doc = new Document(2, "OnBoarding Document", "XYZ Corporation", "Jim Doe");
+                PepResponse response = getPepAgent().decide(subject,  action, doc);
+                Assert.assertNotNull(response);
+                Assert.assertEquals(false, response.allowed());
+        }
+        
+        @Test(expected=PepException.class)
+        public void testMix(){
+                Subject subject = Subject.newInstance("John Smith");
+                subject.addAttribute("urn:oasis:names:tc:xacml:1.0:subject:role-id", "ROLE_DOCUMENT_WRITER");
 
-		Action action = Action.newInstance("write");
+                Action action = Action.newInstance("write");
 
-		Document doc1 = new Document(1, "OnBoarding Document", "ABC Corporation", "John Smith");
-		Document doc2 = new Document(2, "OnBoarding Document", "XYZ Corporation", "Jim Doe");
-		List<Object> resourceList = new ArrayList<Object>();
-		resourceList.add(doc1);
-		resourceList.add(doc2);
-		
-		PepResponse response = getPepAgent().decide(subject, action, resourceList);
-		Assert.assertNotNull(response);
-		response.allowed();
-	}
-	
-	@Test
-	public void testVarArgsPermit(){
-		Subject subject = Subject.newInstance("John Smith");
-		subject.addAttribute("urn:oasis:names:tc:xacml:1.0:subject:role-id", "ROLE_DOCUMENT_READER");
-		BusinessRequestContext bc = new BusinessRequestContext("USA", "05:00 EST");
+                Document doc1 = new Document(1, "OnBoarding Document", "ABC Corporation", "John Smith");
+                Document doc2 = new Document(2, "OnBoarding Document", "XYZ Corporation", "Jim Doe");
+                List<Object> resourceList = new ArrayList<Object>();
+                resourceList.add(doc1);
+                resourceList.add(doc2);
+                
+                PepResponse response = getPepAgent().decide(subject, action, resourceList);
+                Assert.assertNotNull(response);
+                response.allowed();
+        }
+        
+        @Test
+        public void testVarArgsPermit(){
+                Subject subject = Subject.newInstance("John Smith");
+                subject.addAttribute("urn:oasis:names:tc:xacml:1.0:subject:role-id", "ROLE_DOCUMENT_READER");
+                BusinessRequestContext bc = new BusinessRequestContext("USA", "05:00 EST");
 
-		Action action = Action.newInstance("read");
-		List<Object> resources = new ArrayList<Object>();
-		resources.add(new Document(1, "OnBoarding Document", "XYZ Corporation", "Jim Doe"));
-		resources.add(new Client("XYZ Corporation", "USA"));
-		
-		PepResponse response = getPepAgent().decide(subject, action, resources, bc);
-		Assert.assertNotNull(response);
-		Assert.assertEquals(true, response.allowed());
-	}
-	
-	@Test
-	public void testVarArgsDeny(){
-		Subject subject = Subject.newInstance("John Smith");
-		subject.addAttribute("urn:oasis:names:tc:xacml:1.0:subject:role-id", "ROLE_DOCUMENT_READER");
-		BusinessRequestContext bc = new BusinessRequestContext("INDIA", "05:00 IST");
-		
-		List<Object> resources = new ArrayList<Object>();
-		resources.add(new Document(2, "OnBoarding Document", "XYZ Corporation", "Jim Doe"));
-		resources.add(new Client("XYZ Corporation", "USA"));
+                Action action = Action.newInstance("read");
+                List<Object> resources = new ArrayList<Object>();
+                resources.add(new Document(1, "OnBoarding Document", "XYZ Corporation", "Jim Doe"));
+                resources.add(new Client("XYZ Corporation", "USA"));
+                
+                PepResponse response = getPepAgent().decide(subject, action, resources, bc);
+                Assert.assertNotNull(response);
+                Assert.assertEquals(true, response.allowed());
+        }
+        
+        @Test
+        public void testVarArgsDeny(){
+                Subject subject = Subject.newInstance("John Smith");
+                subject.addAttribute("urn:oasis:names:tc:xacml:1.0:subject:role-id", "ROLE_DOCUMENT_READER");
+                BusinessRequestContext bc = new BusinessRequestContext("INDIA", "05:00 IST");
+                
+                List<Object> resources = new ArrayList<Object>();
+                resources.add(new Document(2, "OnBoarding Document", "XYZ Corporation", "Jim Doe"));
+                resources.add(new Client("XYZ Corporation", "USA"));
 
-		Action action = Action.newInstance("write");
+                Action action = Action.newInstance("write");
 
-		PepResponse response = getPepAgent().decide(subject, action, resources, bc);
-		Assert.assertNotNull(response);
-		Assert.assertEquals(false, response.allowed());
-	}
+                PepResponse response = getPepAgent().decide(subject, action, resources, bc);
+                Assert.assertNotNull(response);
+                Assert.assertEquals(false, response.allowed());
+        }
 
-	public PepAgent getPepAgent() {
-		return pepAgentFactory.getPepAgent();
-	}
+        public PepAgent getPepAgent() {
+                return pepAgentFactory.getPepAgent();
+        }
 }

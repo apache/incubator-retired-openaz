@@ -48,72 +48,72 @@ import com.att.research.xacmlatt.pdp.std.StdFunctions;
  *
  */
 public class FunctionDefinitionNumberTypeConversionTest {
-	
-	/*
-	 * variables useful in the following tests
-	 */
-	List<FunctionArgument> arguments = new ArrayList<FunctionArgument>();
-	
-	@Test
-	public void testDouble_to_integer() {
-		FunctionArgumentAttributeValue attr1 = null;
-		try {
-			attr1 = new FunctionArgumentAttributeValue(DataTypes.DT_DOUBLE.createAttributeValue(5.432));
+        
+        /*
+         * variables useful in the following tests
+         */
+        List<FunctionArgument> arguments = new ArrayList<FunctionArgument>();
+        
+        @Test
+        public void testDouble_to_integer() {
+                FunctionArgumentAttributeValue attr1 = null;
+                try {
+                        attr1 = new FunctionArgumentAttributeValue(DataTypes.DT_DOUBLE.createAttributeValue(5.432));
 
-		} catch (Exception e) {
-			fail("creating attribute e="+ e);
-		}
-		
-		FunctionDefinitionNumberTypeConversion<?, ?> fd = (FunctionDefinitionNumberTypeConversion<?, ?>) StdFunctions.FD_DOUBLE_TO_INTEGER;
-		
-		// check identity and type of the thing created
-		assertEquals(XACML3.ID_FUNCTION_DOUBLE_TO_INTEGER, fd.getId());
-		assertEquals(DataTypes.DT_DOUBLE.getId(), fd.getDataTypeArgs().getId());
-		assertEquals(DataTypes.DT_INTEGER.getId(), fd.getDataTypeId());
-		
-		// just to be safe...  If tests take too long these can probably be eliminated
-		assertFalse(fd.returnsBag());
-		assertEquals(new Integer(1), fd.getNumArgs());
-		
-		
-		// test normal add
-		arguments.add(attr1);
-		ExpressionResult res = fd.evaluate(null, arguments);
-		assertTrue(res.isOk());
-		BigInteger resValue = (BigInteger)res.getValue().getValue();
-		assertEquals(BigInteger.valueOf(5), resValue);
-	}
+                } catch (Exception e) {
+                        fail("creating attribute e="+ e);
+                }
+                
+                FunctionDefinitionNumberTypeConversion<?, ?> fd = (FunctionDefinitionNumberTypeConversion<?, ?>) StdFunctions.FD_DOUBLE_TO_INTEGER;
+                
+                // check identity and type of the thing created
+                assertEquals(XACML3.ID_FUNCTION_DOUBLE_TO_INTEGER, fd.getId());
+                assertEquals(DataTypes.DT_DOUBLE.getId(), fd.getDataTypeArgs().getId());
+                assertEquals(DataTypes.DT_INTEGER.getId(), fd.getDataTypeId());
+                
+                // just to be safe...  If tests take too long these can probably be eliminated
+                assertFalse(fd.returnsBag());
+                assertEquals(new Integer(1), fd.getNumArgs());
+                
+                
+                // test normal add
+                arguments.add(attr1);
+                ExpressionResult res = fd.evaluate(null, arguments);
+                assertTrue(res.isOk());
+                BigInteger resValue = (BigInteger)res.getValue().getValue();
+                assertEquals(BigInteger.valueOf(5), resValue);
+        }
 
-	
-	@Test
-	public void testInteger_to_double() {
-		FunctionArgumentAttributeValue attr1 = null;
-		try {
-			attr1 = new FunctionArgumentAttributeValue(DataTypes.DT_INTEGER.createAttributeValue(5));
+        
+        @Test
+        public void testInteger_to_double() {
+                FunctionArgumentAttributeValue attr1 = null;
+                try {
+                        attr1 = new FunctionArgumentAttributeValue(DataTypes.DT_INTEGER.createAttributeValue(5));
 
-		} catch (Exception e) {
-			fail("creating attribute e="+ e);
-		}
-		
-		FunctionDefinitionNumberTypeConversion<?, ?> fd = (FunctionDefinitionNumberTypeConversion<?, ?>) StdFunctions.FD_INTEGER_TO_DOUBLE;
-		
-		// check identity and type of the thing created
-		assertEquals(XACML3.ID_FUNCTION_INTEGER_TO_DOUBLE, fd.getId());
-		assertEquals(DataTypes.DT_INTEGER.getId(), fd.getDataTypeArgs().getId());
-		assertEquals(DataTypes.DT_DOUBLE.getId(), fd.getDataTypeId());
-		
-		// just to be safe...  If tests take too long these can probably be eliminated
-		assertFalse(fd.returnsBag());
-		assertEquals(new Integer(1), fd.getNumArgs());
-		
-		
-		// test normal add
-		arguments.add(attr1);
-		ExpressionResult res = fd.evaluate(null, arguments);
-		assertTrue(res.isOk());
-		Double resValue = (Double)res.getValue().getValue();
-		assertEquals(new Double(5.0), resValue);
-	}
-	
-	
+                } catch (Exception e) {
+                        fail("creating attribute e="+ e);
+                }
+                
+                FunctionDefinitionNumberTypeConversion<?, ?> fd = (FunctionDefinitionNumberTypeConversion<?, ?>) StdFunctions.FD_INTEGER_TO_DOUBLE;
+                
+                // check identity and type of the thing created
+                assertEquals(XACML3.ID_FUNCTION_INTEGER_TO_DOUBLE, fd.getId());
+                assertEquals(DataTypes.DT_INTEGER.getId(), fd.getDataTypeArgs().getId());
+                assertEquals(DataTypes.DT_DOUBLE.getId(), fd.getDataTypeId());
+                
+                // just to be safe...  If tests take too long these can probably be eliminated
+                assertFalse(fd.returnsBag());
+                assertEquals(new Integer(1), fd.getNumArgs());
+                
+                
+                // test normal add
+                arguments.add(attr1);
+                ExpressionResult res = fd.evaluate(null, arguments);
+                assertTrue(res.isOk());
+                Double resValue = (Double)res.getValue().getValue();
+                assertEquals(new Double(5.0), resValue);
+        }
+        
+        
 }

@@ -30,20 +30,20 @@ package org.openliberty.openaz.pepapi;
 @SuppressWarnings("serial")
 public class InvalidAnnotationException extends RuntimeException {
 
-	public InvalidAnnotationException() {
-		super();
-	}
+        public InvalidAnnotationException() {
+                super();
+        }
 
-	public InvalidAnnotationException(String message, Throwable cause) {
-		super(message, cause);
-	}
+        public InvalidAnnotationException(String message, Throwable cause) {
+                super(message, cause);
+        }
 
-	public InvalidAnnotationException(String message) {
-		super(message);
-	}
+        public InvalidAnnotationException(String message) {
+                super(message);
+        }
 
-	public InvalidAnnotationException(Throwable cause) {
-		super(cause);
-	}
+        public InvalidAnnotationException(Throwable cause) {
+                super(cause);
+        }
 
 }

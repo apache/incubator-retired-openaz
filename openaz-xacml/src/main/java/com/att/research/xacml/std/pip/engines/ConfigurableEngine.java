@@ -43,12 +43,12 @@ import com.att.research.xacml.api.pip.PIPException;
  * @version $Revision: 1.1 $
  */
 public interface ConfigurableEngine extends PIPEngine {
-	/**
-	 * Configures this <code>ConfigurableEngine</code> from the given <code>Properties</code>.
-	 * 
-	 * @param id the <code>String</code> name for this <code>ConfigurableEngine</code> used also to locate properties
-	 * @param properties the <code>Properties</code> containing the configuration parameters for this <code>ConfigurableEngine</code>
-	 * @throws com.att.research.xacml.api.pip.PIPException if there is an error configuring the <code>ConfigurableEngine</code>
-	 */
-	public void configure(String id, Properties properties) throws PIPException;
+        /**
+         * Configures this <code>ConfigurableEngine</code> from the given <code>Properties</code>.
+         * 
+         * @param id the <code>String</code> name for this <code>ConfigurableEngine</code> used also to locate properties
+         * @param properties the <code>Properties</code> containing the configuration parameters for this <code>ConfigurableEngine</code>
+         * @throws com.att.research.xacml.api.pip.PIPException if there is an error configuring the <code>ConfigurableEngine</code>
+         */
+        public void configure(String id, Properties properties) throws PIPException;
 }

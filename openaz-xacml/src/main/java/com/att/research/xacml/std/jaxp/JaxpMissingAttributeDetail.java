@@ -52,32 +52,32 @@ import com.att.research.xacml.std.StdMutableMissingAttributeDetail;
  */
 public class JaxpMissingAttributeDetail extends StdMutableMissingAttributeDetail {
 
-	protected JaxpMissingAttributeDetail(Identifier categoryIdIn, Identifier attributeIdIn, Identifier dataTypeIdIn, String issuerIn, Collection<AttributeValue<?>> attributeValuesIn) {
-		super(categoryIdIn, attributeIdIn, dataTypeIdIn, issuerIn, attributeValuesIn);
-	}
+        protected JaxpMissingAttributeDetail(Identifier categoryIdIn, Identifier attributeIdIn, Identifier dataTypeIdIn, String issuerIn, Collection<AttributeValue<?>> attributeValuesIn) {
+                super(categoryIdIn, attributeIdIn, dataTypeIdIn, issuerIn, attributeValuesIn);
+        }
 
-	public static JaxpMissingAttributeDetail newInstance(MissingAttributeDetailType missingAttributeDetailType) {
-		if (missingAttributeDetailType == null) {
-			throw new NullPointerException("Null MissingAttributeDetailType");
-		} else if (missingAttributeDetailType.getCategory() == null) {
-			throw new IllegalArgumentException("Null categoryId for MissingAttributeDetailType");
-		} else if (missingAttributeDetailType.getAttributeId() == null) {
-			throw new IllegalArgumentException("Null attributeId for MissingAttributeDetailType");
-		} else if (missingAttributeDetailType.getDataType() == null) {
-			throw new IllegalArgumentException("Null dataTypeId for MissingAttributeDetailType");
-		}
-		Identifier	categoryId	= new IdentifierImpl(missingAttributeDetailType.getCategory());
-		Identifier	attributeId	= new IdentifierImpl(missingAttributeDetailType.getAttributeId());
-		Identifier	dataTypeId	= new IdentifierImpl(missingAttributeDetailType.getDataType());
-		
-		List<AttributeValue<?>>	attributeValues	= null;
-		if (missingAttributeDetailType.getAttributeValue() != null && missingAttributeDetailType.getAttributeValue().size() > 0) {
-			attributeValues	= new ArrayList<AttributeValue<?>>();
-			Iterator<AttributeValueType>	iterAttributeValueTypes	= missingAttributeDetailType.getAttributeValue().iterator();
-			while (iterAttributeValueTypes.hasNext()) {
-				attributeValues.add(JaxpAttributeValue.newInstance(iterAttributeValueTypes.next()));
-			}
-		}
-		return new JaxpMissingAttributeDetail(categoryId, attributeId, dataTypeId, missingAttributeDetailType.getIssuer(), attributeValues);
-	}
+        public static JaxpMissingAttributeDetail newInstance(MissingAttributeDetailType missingAttributeDetailType) {
+                if (missingAttributeDetailType == null) {
+                        throw new NullPointerException("Null MissingAttributeDetailType");
+                } else if (missingAttributeDetailType.getCategory() == null) {
+                        throw new IllegalArgumentException("Null categoryId for MissingAttributeDetailType");
+                } else if (missingAttributeDetailType.getAttributeId() == null) {
+                        throw new IllegalArgumentException("Null attributeId for MissingAttributeDetailType");
+                } else if (missingAttributeDetailType.getDataType() == null) {
+                        throw new IllegalArgumentException("Null dataTypeId for MissingAttributeDetailType");
+                }
+                Identifier	categoryId	= new IdentifierImpl(missingAttributeDetailType.getCategory());
+                Identifier	attributeId	= new IdentifierImpl(missingAttributeDetailType.getAttributeId());
+                Identifier	dataTypeId	= new IdentifierImpl(missingAttributeDetailType.getDataType());
+                
+                List<AttributeValue<?>>	attributeValues	= null;
+                if (missingAttributeDetailType.getAttributeValue() != null && missingAttributeDetailType.getAttributeValue().size() > 0) {
+                        attributeValues	= new ArrayList<AttributeValue<?>>();
+                        Iterator<AttributeValueType>	iterAttributeValueTypes	= missingAttributeDetailType.getAttributeValue().iterator();
+                        while (iterAttributeValueTypes.hasNext()) {
+                                attributeValues.add(JaxpAttributeValue.newInstance(iterAttributeValueTypes.next()));
+                        }
+                }
+                return new JaxpMissingAttributeDetail(categoryId, attributeId, dataTypeId, missingAttributeDetailType.getIssuer(), attributeValues);
+        }
 }

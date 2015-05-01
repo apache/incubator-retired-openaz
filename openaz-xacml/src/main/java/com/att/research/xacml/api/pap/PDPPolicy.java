@@ -44,29 +44,29 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
  * The following allows us to use Jackson to convert sub-types of this type into JSON and back to objects.
  */
 @JsonTypeInfo(  
-	    use = JsonTypeInfo.Id.NAME,  
-	    include = JsonTypeInfo.As.PROPERTY,  
-	    property = "PDPPolicyType")  
+            use = JsonTypeInfo.Id.NAME,  
+            include = JsonTypeInfo.As.PROPERTY,  
+            property = "PDPPolicyType")  
 @JsonSubTypes({  
-	    @Type(value = StdPDPPolicy.class, name = "StdPDPPolicy") })  
+            @Type(value = StdPDPPolicy.class, name = "StdPDPPolicy") })  
 public interface PDPPolicy {
-	
-	public String 		getId();
-	
-	public String		getName();
-	
-	public String		getPolicyId();
-	
-	public String		getDescription();
+        
+        public String 		getId();
+        
+        public String		getName();
+        
+        public String		getPolicyId();
+        
+        public String		getDescription();
 
-	public String 		getVersion();
-	public int[]		getVersionInts();
-	
-	public boolean		isRoot();
-	
-	public boolean		isValid();
+        public String 		getVersion();
+        public int[]		getVersionInts();
+        
+        public boolean		isRoot();
+        
+        public boolean		isValid();
 
-	public InputStream 	getStream() throws PAPException, IOException;
+        public InputStream 	getStream() throws PAPException, IOException;
 
-	public URI			getLocation() throws PAPException, IOException;
+        public URI			getLocation() throws PAPException, IOException;
 }

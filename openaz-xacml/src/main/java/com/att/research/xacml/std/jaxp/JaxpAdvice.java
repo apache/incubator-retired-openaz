@@ -52,25 +52,25 @@ import com.att.research.xacml.std.StdMutableAdvice;
  */
 public class JaxpAdvice extends StdMutableAdvice {
 
-	protected JaxpAdvice(Identifier idIn, Collection<AttributeAssignment> attributeAssignmentsIn) {
-		super(idIn, attributeAssignmentsIn);
-	}
+        protected JaxpAdvice(Identifier idIn, Collection<AttributeAssignment> attributeAssignmentsIn) {
+                super(idIn, attributeAssignmentsIn);
+        }
 
-	public static JaxpAdvice newInstance(AdviceType obligationType) {
-		if (obligationType == null) {
-			throw new NullPointerException("Null AdviceType");
-		} else if (obligationType.getAdviceId() == null) {
-			throw new IllegalArgumentException("Null obligationId for AdviceType");
-		}
-		Identifier						obligationId			= new IdentifierImpl(obligationType.getAdviceId());
-		List<AttributeAssignment>	attributeAssignments	= null;
-		if (obligationType.getAttributeAssignment() != null && obligationType.getAttributeAssignment().size() > 0) {
-			attributeAssignments	= new ArrayList<AttributeAssignment>();
-			Iterator<AttributeAssignmentType>	iterAttributeAssignmentTypes	= obligationType.getAttributeAssignment().iterator();
-			while (iterAttributeAssignmentTypes.hasNext()) {
-				attributeAssignments.add(JaxpAttributeAssignment.newInstance(iterAttributeAssignmentTypes.next()));
-			}
-		}
-		return new JaxpAdvice(obligationId, attributeAssignments);
-	}
+        public static JaxpAdvice newInstance(AdviceType obligationType) {
+                if (obligationType == null) {
+                        throw new NullPointerException("Null AdviceType");
+                } else if (obligationType.getAdviceId() == null) {
+                        throw new IllegalArgumentException("Null obligationId for AdviceType");
+                }
+                Identifier						obligationId			= new IdentifierImpl(obligationType.getAdviceId());
+                List<AttributeAssignment>	attributeAssignments	= null;
+                if (obligationType.getAttributeAssignment() != null && obligationType.getAttributeAssignment().size() > 0) {
+                        attributeAssignments	= new ArrayList<AttributeAssignment>();
+                        Iterator<AttributeAssignmentType>	iterAttributeAssignmentTypes	= obligationType.getAttributeAssignment().iterator();
+                        while (iterAttributeAssignmentTypes.hasNext()) {
+                                attributeAssignments.add(JaxpAttributeAssignment.newInstance(iterAttributeAssignmentTypes.next()));
+                        }
+                }
+                return new JaxpAdvice(obligationId, attributeAssignments);
+        }
 }

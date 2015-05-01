@@ -51,34 +51,34 @@ import com.att.research.xacml.std.pip.engines.ConfigurableResolver;
  */
 public interface CSVResolver extends ConfigurableResolver {
 
-	/**
-	 * Method to determine if resolver can support the PIPRequest
-	 * 
-	 * @param pipRequest
-	 * @return true if the resolver can provide the PIPRequest attribute
-	 */
-	boolean supportRequest(PIPRequest pipRequest);
+        /**
+         * Method to determine if resolver can support the PIPRequest
+         * 
+         * @param pipRequest
+         * @return true if the resolver can provide the PIPRequest attribute
+         */
+        boolean supportRequest(PIPRequest pipRequest);
 
-	/**
-	 * Returns a mapping of column's to a list of attribute values. The PIPEngine uses the map
-	 * to determine if a line from a CSV file matches the given values. For columns with multiple
-	 * possible values, only one value needs to match.
-	 * 
-	 * @param engine
-	 * @param request
-	 * @param finder
-	 * @return
-	 * @throws com.att.research.xacml.api.pip.PIPException
-	 */
-	Map<Integer, List<AttributeValue<?>>>	getColumnParameterValues(PIPEngine engine, PIPRequest request, PIPFinder finder) throws PIPException;
+        /**
+         * Returns a mapping of column's to a list of attribute values. The PIPEngine uses the map
+         * to determine if a line from a CSV file matches the given values. For columns with multiple
+         * possible values, only one value needs to match.
+         * 
+         * @param engine
+         * @param request
+         * @param finder
+         * @return
+         * @throws com.att.research.xacml.api.pip.PIPException
+         */
+        Map<Integer, List<AttributeValue<?>>>	getColumnParameterValues(PIPEngine engine, PIPRequest request, PIPFinder finder) throws PIPException;
 
-	/**
-	 * Parses the CSV line and returns array of attributes.
-	 * 
-	 * @param line - line read from CSV file broken into fields.
-	 * @return list of attributes 
-	 * @throws com.att.research.xacml.api.pip.PIPException
-	 */
-	List<Attribute>	decodeResult(String[] line)  throws PIPException;
+        /**
+         * Parses the CSV line and returns array of attributes.
+         * 
+         * @param line - line read from CSV file broken into fields.
+         * @return list of attributes 
+         * @throws com.att.research.xacml.api.pip.PIPException
+         */
+        List<Attribute>	decodeResult(String[] line)  throws PIPException;
 
 }

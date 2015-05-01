@@ -52,101 +52,101 @@ import com.att.research.xacmlatt.pdp.policy.PolicySet;
  * @version $Revision: 1.2 $
  */
 public abstract class DOMPolicyDef {
-	protected DOMPolicyDef() {
-	}
-	
-	protected static PolicyDef newInstance(Document document, PolicySet policySetParent) throws DOMStructureException {
-		PolicyDef policyDef	= null;
-		try {
-			Node rootNode	= document.getFirstChild();
-			while (rootNode != null && rootNode.getNodeType() != Node.ELEMENT_NODE) {
+        protected DOMPolicyDef() {
+        }
+        
+        protected static PolicyDef newInstance(Document document, PolicySet policySetParent) throws DOMStructureException {
+                PolicyDef policyDef	= null;
+                try {
+                        Node rootNode	= document.getFirstChild();
+                        while (rootNode != null && rootNode.getNodeType() != Node.ELEMENT_NODE) {
                             rootNode = rootNode.getNextSibling();
                         }
-			if (rootNode == null) {
-				throw new Exception("No child in document");
-			}
-			
-			if (DOMUtil.isInNamespace(rootNode, XACML3.XMLNS)) {
-				if (XACML3.ELEMENT_POLICY.equals(rootNode.getLocalName())) {
-					policyDef	= DOMPolicy.newInstance(rootNode, policySetParent, null);
-					if (policyDef == null) {
-						throw new DOMStructureException("Failed to parse Policy");
-					}
-				} else if (XACML3.ELEMENT_POLICYSET.equals(rootNode.getLocalName())) {
-					policyDef	= DOMPolicySet.newInstance(rootNode, policySetParent, null);
-					if (policyDef == null) {
-						throw new DOMStructureException("Failed to parse PolicySet");
-					}
-				} else {
-					throw DOMUtil.newUnexpectedElementException(rootNode);
-				}
-			} else {
-				throw DOMUtil.newUnexpectedElementException(rootNode);
-			}
-		} catch (Exception ex) {
-			throw new DOMStructureException("Exception parsing Policy: " + ex.getMessage(), ex);
-		}
-		return policyDef;		
-	}
-	
-	public static PolicyDef load(InputStream inputStream) throws DOMStructureException {
-		/*
-		 * Get the DocumentBuilderFactory
-		 */
-		DocumentBuilderFactory documentBuilderFactory	= DocumentBuilderFactory.newInstance();
-		if (documentBuilderFactory == null) {
-			throw new DOMStructureException("No XML DocumentBuilderFactory configured");
-		}
-		documentBuilderFactory.setNamespaceAware(true);
-		
-		/*
-		 * Get the DocumentBuilder
-		 */
-		DocumentBuilder documentBuilder	= null;
-		try {
-			documentBuilder	= documentBuilderFactory.newDocumentBuilder();
-		} catch (Exception ex) {
-			throw new DOMStructureException("Exception creating DocumentBuilder: " + ex.getMessage(), ex);
-		}
-		
-		/*
-		 * Parse the XML file
-		 */
-		PolicyDef policyDef	= null;
-		try {
-			Document document	= documentBuilder.parse(inputStream);
-			if (document == null) {
-				throw new Exception("Null document returned");
-			}			
-			policyDef	= newInstance(document, null);			
-		} catch (Exception ex) {
-			throw new DOMStructureException("Exception loading Policy from input stream: " + ex.getMessage(), ex);
-		}
-		return policyDef;
-	}
+                        if (rootNode == null) {
+                                throw new Exception("No child in document");
+                        }
+                        
+                        if (DOMUtil.isInNamespace(rootNode, XACML3.XMLNS)) {
+                                if (XACML3.ELEMENT_POLICY.equals(rootNode.getLocalName())) {
+                                        policyDef	= DOMPolicy.newInstance(rootNode, policySetParent, null);
+                                        if (policyDef == null) {
+                                                throw new DOMStructureException("Failed to parse Policy");
+                                        }
+                                } else if (XACML3.ELEMENT_POLICYSET.equals(rootNode.getLocalName())) {
+                                        policyDef	= DOMPolicySet.newInstance(rootNode, policySetParent, null);
+                                        if (policyDef == null) {
+                                                throw new DOMStructureException("Failed to parse PolicySet");
+                                        }
+                                } else {
+                                        throw DOMUtil.newUnexpectedElementException(rootNode);
+                                }
+                        } else {
+                                throw DOMUtil.newUnexpectedElementException(rootNode);
+                        }
+                } catch (Exception ex) {
+                        throw new DOMStructureException("Exception parsing Policy: " + ex.getMessage(), ex);
+                }
+                return policyDef;		
+        }
+        
+        public static PolicyDef load(InputStream inputStream) throws DOMStructureException {
+                /*
+                 * Get the DocumentBuilderFactory
+                 */
+                DocumentBuilderFactory documentBuilderFactory	= DocumentBuilderFactory.newInstance();
+                if (documentBuilderFactory == null) {
+                        throw new DOMStructureException("No XML DocumentBuilderFactory configured");
+                }
+                documentBuilderFactory.setNamespaceAware(true);
+                
+                /*
+                 * Get the DocumentBuilder
+                 */
+                DocumentBuilder documentBuilder	= null;
+                try {
+                        documentBuilder	= documentBuilderFactory.newDocumentBuilder();
+                } catch (Exception ex) {
+                        throw new DOMStructureException("Exception creating DocumentBuilder: " + ex.getMessage(), ex);
+                }
+                
+                /*
+                 * Parse the XML file
+                 */
+                PolicyDef policyDef	= null;
+                try {
+                        Document document	= documentBuilder.parse(inputStream);
+                        if (document == null) {
+                                throw new Exception("Null document returned");
+                        }			
+                        policyDef	= newInstance(document, null);			
+                } catch (Exception ex) {
+                        throw new DOMStructureException("Exception loading Policy from input stream: " + ex.getMessage(), ex);
+                }
+                return policyDef;
+        }
 
-	/**
-	 * Creates a new <code>PolicyDef</code> derived object by loading the given <code>File</code> containing a XACML 3.0
-	 * Policy or PolicySet.
-	 * 
-	 * @param filePolicy the <code>File</code> containing the XACML Policy or PolicySet
-	 * @return the newly created <code>PolicyDef</code>
-	 * @throws DOMStructureException if there is an error loading the <code>PolicyDef</code>
-	 */
-	public static PolicyDef load(File filePolicy) throws DOMStructureException {
-		/*
-		 * Parse the XML file
-		 */
-		PolicyDef policyDef	= null;
-		try {
-			Document document	= DOMUtil.loadDocument(filePolicy);
-			if (document == null) {
-				throw new Exception("Null document returned");
-			}			
-			policyDef	= newInstance(document, null);			
-		} catch (Exception ex) {
-			throw new DOMStructureException("Exception loading Policy file \"" + filePolicy.getAbsolutePath() + "\": " + ex.getMessage(), ex);
-		}
-		return policyDef;
-	}
+        /**
+         * Creates a new <code>PolicyDef</code> derived object by loading the given <code>File</code> containing a XACML 3.0
+         * Policy or PolicySet.
+         * 
+         * @param filePolicy the <code>File</code> containing the XACML Policy or PolicySet
+         * @return the newly created <code>PolicyDef</code>
+         * @throws DOMStructureException if there is an error loading the <code>PolicyDef</code>
+         */
+        public static PolicyDef load(File filePolicy) throws DOMStructureException {
+                /*
+                 * Parse the XML file
+                 */
+                PolicyDef policyDef	= null;
+                try {
+                        Document document	= DOMUtil.loadDocument(filePolicy);
+                        if (document == null) {
+                                throw new Exception("Null document returned");
+                        }			
+                        policyDef	= newInstance(document, null);			
+                } catch (Exception ex) {
+                        throw new DOMStructureException("Exception loading Policy file \"" + filePolicy.getAbsolutePath() + "\": " + ex.getMessage(), ex);
+                }
+                return policyDef;
+        }
 }

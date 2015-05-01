@@ -49,83 +49,83 @@ import com.att.research.xacml.std.StdStatusCode;
  * @version $Revision: 1.1 $
  */
 public class PolicyIssuer extends PolicyComponent {
-	private Node			content;
-	private List<Attribute>	attributes;
-	
-	public PolicyIssuer(StatusCode statusCodeIn, String statusMessageIn) {
-		super(statusCodeIn, statusMessageIn);
-	}
+        private Node			content;
+        private List<Attribute>	attributes;
+        
+        public PolicyIssuer(StatusCode statusCodeIn, String statusMessageIn) {
+                super(statusCodeIn, statusMessageIn);
+        }
 
-	public PolicyIssuer(StatusCode statusCodeIn) {
-		super(statusCodeIn);
-	}
+        public PolicyIssuer(StatusCode statusCodeIn) {
+                super(statusCodeIn);
+        }
 
-	public PolicyIssuer() {
-	}
-	
-	public Node getContent() {
-		return this.content;
-	}
-	
-	public void setContent(Node nodeContent) {
-		this.content	= nodeContent;
-	}
-	
-	public Iterator<Attribute> getAttributes() {
-		return (this.attributes == null ? null : this.attributes.iterator());
-	}
-	
-	public void setAttributes(Collection<Attribute> listAttributes) {
-		this.attributes	= null;
-		if (listAttributes != null) {
-			this.add(listAttributes);
-		}
-	}
-	
-	public void add(Attribute attribute) {
-		if (this.attributes == null) {
-			this.attributes	= new ArrayList<Attribute>();
-		}
-		this.attributes.add(attribute);
-	}
-	
-	public void add(Collection<Attribute> listAttributes) {
-		if (this.attributes == null) {
-			this.attributes = new ArrayList<Attribute>();
-		}
-		this.attributes.addAll(listAttributes);
-	}
-	
-	@Override
-	public String toString() {
-		StringBuilder stringBuilder	= new StringBuilder("{");
-		
-		stringBuilder.append("super=");
-		stringBuilder.append(super.toString());
-		
-		Object objectToDump;
-		if ((objectToDump = this.getContent()) != null) {
-			stringBuilder.append(",content=");
-			stringBuilder.append(objectToDump.toString());
-		}
-		Iterator<Attribute> iterAttributes	= this.getAttributes();
-		if (iterAttributes != null && iterAttributes.hasNext()) {
-			stringBuilder.append(",attributes=[");
-			stringBuilder.append(iterAttributes.next().toString());
-			while (iterAttributes.hasNext()) {
-				stringBuilder.append(',');
-				stringBuilder.append(iterAttributes.next().toString());
-			}
-			stringBuilder.append(']');
-		}
-		stringBuilder.append('}');
-		return stringBuilder.toString();
-	}
+        public PolicyIssuer() {
+        }
+        
+        public Node getContent() {
+                return this.content;
+        }
+        
+        public void setContent(Node nodeContent) {
+                this.content	= nodeContent;
+        }
+        
+        public Iterator<Attribute> getAttributes() {
+                return (this.attributes == null ? null : this.attributes.iterator());
+        }
+        
+        public void setAttributes(Collection<Attribute> listAttributes) {
+                this.attributes	= null;
+                if (listAttributes != null) {
+                        this.add(listAttributes);
+                }
+        }
+        
+        public void add(Attribute attribute) {
+                if (this.attributes == null) {
+                        this.attributes	= new ArrayList<Attribute>();
+                }
+                this.attributes.add(attribute);
+        }
+        
+        public void add(Collection<Attribute> listAttributes) {
+                if (this.attributes == null) {
+                        this.attributes = new ArrayList<Attribute>();
+                }
+                this.attributes.addAll(listAttributes);
+        }
+        
+        @Override
+        public String toString() {
+                StringBuilder stringBuilder	= new StringBuilder("{");
+                
+                stringBuilder.append("super=");
+                stringBuilder.append(super.toString());
+                
+                Object objectToDump;
+                if ((objectToDump = this.getContent()) != null) {
+                        stringBuilder.append(",content=");
+                        stringBuilder.append(objectToDump.toString());
+                }
+                Iterator<Attribute> iterAttributes	= this.getAttributes();
+                if (iterAttributes != null && iterAttributes.hasNext()) {
+                        stringBuilder.append(",attributes=[");
+                        stringBuilder.append(iterAttributes.next().toString());
+                        while (iterAttributes.hasNext()) {
+                                stringBuilder.append(',');
+                                stringBuilder.append(iterAttributes.next().toString());
+                        }
+                        stringBuilder.append(']');
+                }
+                stringBuilder.append('}');
+                return stringBuilder.toString();
+        }
 
-	@Override
-	protected boolean validateComponent() {
-		this.setStatus(StdStatusCode.STATUS_CODE_OK, null);
-		return true;
-	}
+        @Override
+        protected boolean validateComponent() {
+                this.setStatus(StdStatusCode.STATUS_CODE_OK, null);
+                return true;
+        }
 
 }

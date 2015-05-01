@@ -43,50 +43,50 @@ import com.att.research.xacml.util.ObjUtil;
  * @version $Revision: 1.1 $
  */
 public class StdRequestDefaults implements RequestDefaults {
-	private URI xpathVersion;
+        private URI xpathVersion;
 
-	public StdRequestDefaults(URI xpathVersionIn) {
-		this();
-		if (xpathVersionIn != null) {
-			this.xpathVersion	= xpathVersionIn;
-		}
-	}
-	
-	public StdRequestDefaults() {
-		try {
-			this.xpathVersion	= new URI(XACML.XPATHVERSION_2_0);
-		} catch (Exception ex) {
-			
-		}
-	}
+        public StdRequestDefaults(URI xpathVersionIn) {
+                this();
+                if (xpathVersionIn != null) {
+                        this.xpathVersion	= xpathVersionIn;
+                }
+        }
+        
+        public StdRequestDefaults() {
+                try {
+                        this.xpathVersion	= new URI(XACML.XPATHVERSION_2_0);
+                } catch (Exception ex) {
+                        
+                }
+        }
 
-	@Override
-	public URI getXPathVersion() {
-		return this.xpathVersion;
-	}
-	
-	@Override
-	public boolean equals(Object obj) {
-		if (obj == this) {
-			return true;
-		} else if (obj == null || !(obj instanceof RequestDefaults)) {
-			return false;
-		} else {
-			RequestDefaults objRequestDefaults	= (RequestDefaults)obj;
-			return ObjUtil.equalsAllowNull(this.getXPathVersion(), objRequestDefaults.getXPathVersion());
-		}
-	}
-	
-	@Override
-	public String toString() {
-		StringBuilder	stringBuilder	= new StringBuilder("{");
-		Object			objectToDump;
-		if ((objectToDump = this.getXPathVersion()) != null) {
-			stringBuilder.append("xpatherVersion=");
-			stringBuilder.append(objectToDump.toString());
-		}
-		stringBuilder.append('}');
-		return stringBuilder.toString();
-	}
+        @Override
+        public URI getXPathVersion() {
+                return this.xpathVersion;
+        }
+        
+        @Override
+        public boolean equals(Object obj) {
+                if (obj == this) {
+                        return true;
+                } else if (obj == null || !(obj instanceof RequestDefaults)) {
+                        return false;
+                } else {
+                        RequestDefaults objRequestDefaults	= (RequestDefaults)obj;
+                        return ObjUtil.equalsAllowNull(this.getXPathVersion(), objRequestDefaults.getXPathVersion());
+                }
+        }
+        
+        @Override
+        public String toString() {
+                StringBuilder	stringBuilder	= new StringBuilder("{");
+                Object			objectToDump;
+                if ((objectToDump = this.getXPathVersion()) != null) {
+                        stringBuilder.append("xpatherVersion=");
+                        stringBuilder.append(objectToDump.toString());
+                }
+                stringBuilder.append('}');
+                return stringBuilder.toString();
+        }
 
 }

@@ -38,10 +38,10 @@ package com.att.research.xacml.api;
  * @version $Revision$
  */
 public interface SemanticString {
-	/**
-	 * Gets the semantically significant <code>String</code> representation of the object implementing this interface.
-	 * 
-	 * @return the semantically significant <code>String</code> representation of the object implementing this interface.
-	 */
-	public String stringValue();
+        /**
+         * Gets the semantically significant <code>String</code> representation of the object implementing this interface.
+         * 
+         * @return the semantically significant <code>String</code> representation of the object implementing this interface.
+         */
+        public String stringValue();
 }

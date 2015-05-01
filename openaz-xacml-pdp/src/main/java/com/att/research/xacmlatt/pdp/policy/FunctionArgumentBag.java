@@ -44,44 +44,44 @@ import com.att.research.xacml.std.StdStatus;
  * @version $Revision: 1.3 $
  */
 public class FunctionArgumentBag implements FunctionArgument {
-	private Bag	bag;
-	
-	/**
-	 * Creates a new <code>FunctionArgumentBag</code> from the given <code>Bag</code>.
-	 * 
-	 * @param bagIn the <code>Bag</code> for the new <code>FunctionArgumentBag</code>.
-	 */
-	public FunctionArgumentBag(Bag bagIn) {
-		this.bag	= bagIn;
-	}
-	
-	@Override
-	public Status getStatus() {
-		return StdStatus.STATUS_OK;
-	}
-	
-	@Override
-	public boolean isOk() {
-		return true;
-	}
+        private Bag	bag;
+        
+        /**
+         * Creates a new <code>FunctionArgumentBag</code> from the given <code>Bag</code>.
+         * 
+         * @param bagIn the <code>Bag</code> for the new <code>FunctionArgumentBag</code>.
+         */
+        public FunctionArgumentBag(Bag bagIn) {
+                this.bag	= bagIn;
+        }
+        
+        @Override
+        public Status getStatus() {
+                return StdStatus.STATUS_OK;
+        }
+        
+        @Override
+        public boolean isOk() {
+                return true;
+        }
 
-	@Override
-	public boolean isBag() {
-		return true;
-	}
+        @Override
+        public boolean isBag() {
+                return true;
+        }
 
-	@Override
-	public AttributeValue<?> getValue() {
-		Iterator<AttributeValue<?>> iterAttributeValues	= this.bag.getAttributeValues();
-		if (iterAttributeValues == null || !iterAttributeValues.hasNext()) {
-			return null;
-		} else {
-			return iterAttributeValues.next();
-		}
-	}
+        @Override
+        public AttributeValue<?> getValue() {
+                Iterator<AttributeValue<?>> iterAttributeValues	= this.bag.getAttributeValues();
+                if (iterAttributeValues == null || !iterAttributeValues.hasNext()) {
+                        return null;
+                } else {
+                        return iterAttributeValues.next();
+                }
+        }
 
-	@Override
-	public Bag getBag() {
-		return this.bag;
-	}
+        @Override
+        public Bag getBag() {
+                return this.bag;
+        }
 }

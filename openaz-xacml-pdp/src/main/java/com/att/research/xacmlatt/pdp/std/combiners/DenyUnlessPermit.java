@@ -51,38 +51,38 @@ import com.att.research.xacmlatt.pdp.policy.CombiningElement;
  */
 public class DenyUnlessPermit<T extends com.att.research.xacmlatt.pdp.eval.Evaluatable> extends CombiningAlgorithmBase<T> {
 
-	public DenyUnlessPermit(Identifier identifierIn) {
-		super(identifierIn);
-	}
+        public DenyUnlessPermit(Identifier identifierIn) {
+                super(identifierIn);
+        }
 
-	@Override
-	public EvaluationResult combine(EvaluationContext evaluationContext, List<CombiningElement<T>> elements, List<CombinerParameter> combinerParameters) throws EvaluationException {
-		EvaluationResult combinedResult			= new EvaluationResult(Decision.DENY);
-		
-		Iterator<CombiningElement<T>> iterElements	= elements.iterator();
-		while (iterElements.hasNext()) {
-			CombiningElement<T> combiningElement		= iterElements.next();
-			EvaluationResult evaluationResultElement	= combiningElement.evaluate(evaluationContext);
-			
-			assert(evaluationResultElement != null);
-			switch(evaluationResultElement.getDecision()) {
-			case DENY:
-				combinedResult.merge(evaluationResultElement);
-				break;
-			case INDETERMINATE:
-			case INDETERMINATE_DENYPERMIT:
-			case INDETERMINATE_DENY:
-			case INDETERMINATE_PERMIT:
-			case NOTAPPLICABLE:
-				break;
-			case PERMIT:
-				return evaluationResultElement;
-			default:
-				throw new EvaluationException("Illegal Decision: \"" + evaluationResultElement.getDecision().toString());
-			}
-		}
-		
-		return combinedResult;
-	}
+        @Override
+        public EvaluationResult combine(EvaluationContext evaluationContext, List<CombiningElement<T>> elements, List<CombinerParameter> combinerParameters) throws EvaluationException {
+                EvaluationResult combinedResult			= new EvaluationResult(Decision.DENY);
+                
+                Iterator<CombiningElement<T>> iterElements	= elements.iterator();
+                while (iterElements.hasNext()) {
+                        CombiningElement<T> combiningElement		= iterElements.next();
+                        EvaluationResult evaluationResultElement	= combiningElement.evaluate(evaluationContext);
+                        
+                        assert(evaluationResultElement != null);
+                        switch(evaluationResultElement.getDecision()) {
+                        case DENY:
+                                combinedResult.merge(evaluationResultElement);
+                                break;
+                        case INDETERMINATE:
+                        case INDETERMINATE_DENYPERMIT:
+                        case INDETERMINATE_DENY:
+                        case INDETERMINATE_PERMIT:
+                        case NOTAPPLICABLE:
+                                break;
+                        case PERMIT:
+                                return evaluationResultElement;
+                        default:
+                                throw new EvaluationException("Illegal Decision: \"" + evaluationResultElement.getDecision().toString());
+                        }
+                }
+                
+                return combinedResult;
+        }
 
 }

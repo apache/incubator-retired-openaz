@@ -44,34 +44,34 @@ import com.att.research.xacmlatt.pdp.eval.EvaluationException;
  */
 public class PolicyIdReference extends PolicyIdReferenceBase<Policy> {
 
-	public PolicyIdReference(PolicySet policySetParent, StatusCode statusCodeIn, String statusMessageIn) {
-		super(policySetParent, statusCodeIn, statusMessageIn);
-	}
-	
-	public PolicyIdReference(StatusCode statusCodeIn, String statusMessageIn) {
-		super(statusCodeIn, statusMessageIn);
-	}
+        public PolicyIdReference(PolicySet policySetParent, StatusCode statusCodeIn, String statusMessageIn) {
+                super(policySetParent, statusCodeIn, statusMessageIn);
+        }
+        
+        public PolicyIdReference(StatusCode statusCodeIn, String statusMessageIn) {
+                super(statusCodeIn, statusMessageIn);
+        }
 
-	public PolicyIdReference(StatusCode statusCodeIn) {
-		super(statusCodeIn);
-	}
-	
-	public PolicyIdReference(PolicySet policySetParent) {
-		super(policySetParent);
-	}
+        public PolicyIdReference(StatusCode statusCodeIn) {
+                super(statusCodeIn);
+        }
+        
+        public PolicyIdReference(PolicySet policySetParent) {
+                super(policySetParent);
+        }
 
-	public PolicyIdReference() {
-	}
+        public PolicyIdReference() {
+        }
 
-	@Override
-	protected Policy ensureReferencee(EvaluationContext evaluationContext) throws EvaluationException {
-		if (this.getReferencee() == null) {
-			PolicyFinderResult<Policy> policyFactoryResult	= evaluationContext.getPolicy(this.getIdReferenceMatch());
-			if (policyFactoryResult.getStatus() == null || policyFactoryResult.getStatus().isOk()) {
-				this.setReferencee(policyFactoryResult.getPolicyDef());
-			}
-		}
-		return this.getReferencee();
-	}
+        @Override
+        protected Policy ensureReferencee(EvaluationContext evaluationContext) throws EvaluationException {
+                if (this.getReferencee() == null) {
+                        PolicyFinderResult<Policy> policyFactoryResult	= evaluationContext.getPolicy(this.getIdReferenceMatch());
+                        if (policyFactoryResult.getStatus() == null || policyFactoryResult.getStatus().isOk()) {
+                                this.setReferencee(policyFactoryResult.getPolicyDef());
+                        }
+                }
+                return this.getReferencee();
+        }
 
 }

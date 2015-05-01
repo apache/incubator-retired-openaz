@@ -33,7 +33,7 @@ package com.att.research.xacmlatt.pdp.std;
 import com.att.research.xacmlatt.pdp.util.ATTPDPProperties;
 
 public class StdProperties extends ATTPDPProperties {
-	protected StdProperties() {
-	}
+        protected StdProperties() {
+        }
 
 }

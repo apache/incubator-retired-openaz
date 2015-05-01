@@ -51,70 +51,70 @@ import com.att.research.xacml.util.FactoryFinder;
  * @version $Revision: 1.2 $
  */
 public abstract class DataTypeFactory {
-	private static final String	FACTORYID					= "xacml.dataTypeFactory";
-	private static final String	DEFAULT_FACTORY_CLASSNAME	= "com.att.research.xacml.std.StdDataTypeFactory";
-	
-	/**
-	 * Protected constructor so this class cannot be instantiated.
-	 */
-	protected DataTypeFactory() {
-		
-	}
-	
-	/**
-	 * Protected constructor so this class cannot be instantiated.
-	 */
-	protected DataTypeFactory(Properties properties) {
-	}
-	
-	/**
-	 * Maps the given {@link Identifier} representing a XACML data type id to a {@link DataType}
-	 * object implementing that data type.
-	 * 
-	 * @param dataTypeId the <code>Identifier</code> of the <code>DataType</code> to retrieve.
-	 * @return the <code>DataType</code> with the given <code>Identifier</code> or null if there is no match.
-	 */
-	public abstract DataType<?> getDataType(Identifier dataTypeId);
-	
-	/**
-	 * Creates an instance of the <code>DataTypeFactory</code> using default configuration information.
-	 * 
-	 * @return the default <code>DataTypeFactory</code>
-	 * @throws FactoryException
-	 */
-	public static DataTypeFactory newInstance() throws FactoryException {
-		return FactoryFinder.find(FACTORYID, DEFAULT_FACTORY_CLASSNAME, DataTypeFactory.class);
-	}
-	
-	/**
-	 * Creates an instance of the <code>DataTypeFactory</code> using default configuration information.
-	 * 
-	 * @param properties
-	 * @return the default <code>DataTypeFactory</code>
-	 * @throws FactoryException
-	 */
-	public static DataTypeFactory newInstance(Properties properties) throws FactoryException {
-		return FactoryFinder.find(FACTORYID, DEFAULT_FACTORY_CLASSNAME, DataTypeFactory.class, properties);
-	}
-	
-	/**
-	 * Creates an instance of the <code>DataTypeFactory</code> using the given class name.
-	 * 
-	 * @param className the <code>String</code> class name of the <code>DataTypeFactory</code> to create
-	 * @return the <code>DataTypeFactory</code> for the given class name.
-	 */
-	public static DataTypeFactory newInstance(String className) throws FactoryException {
-		return FactoryFinder.newInstance(className, DataTypeFactory.class, null, true);
-	}
-	
-	/**
-	 * Creates an instance of the <code>DataTypeFactory</code> using the given class name using the given <code>ClassLoader</code>.
-	 * 
-	 * @param className the <code>String</code> class name of the <code>DataTypeFactory</code> to create
-	 * @param classLoader the <code>ClassLoader</code> to use to load the class with the given class name
-	 * @return the <code>DataTypeFactory</code> for the given class name
-	 */
-	public static DataTypeFactory newInstance(String className, ClassLoader classLoader) throws FactoryException {
-		return FactoryFinder.newInstance(className, DataTypeFactory.class, classLoader, false);
-	}
+        private static final String	FACTORYID					= "xacml.dataTypeFactory";
+        private static final String	DEFAULT_FACTORY_CLASSNAME	= "com.att.research.xacml.std.StdDataTypeFactory";
+        
+        /**
+         * Protected constructor so this class cannot be instantiated.
+         */
+        protected DataTypeFactory() {
+                
+        }
+        
+        /**
+         * Protected constructor so this class cannot be instantiated.
+         */
+        protected DataTypeFactory(Properties properties) {
+        }
+        
+        /**
+         * Maps the given {@link Identifier} representing a XACML data type id to a {@link DataType}
+         * object implementing that data type.
+         * 
+         * @param dataTypeId the <code>Identifier</code> of the <code>DataType</code> to retrieve.
+         * @return the <code>DataType</code> with the given <code>Identifier</code> or null if there is no match.
+         */
+        public abstract DataType<?> getDataType(Identifier dataTypeId);
+        
+        /**
+         * Creates an instance of the <code>DataTypeFactory</code> using default configuration information.
+         * 
+         * @return the default <code>DataTypeFactory</code>
+         * @throws FactoryException
+         */
+        public static DataTypeFactory newInstance() throws FactoryException {
+                return FactoryFinder.find(FACTORYID, DEFAULT_FACTORY_CLASSNAME, DataTypeFactory.class);
+        }
+        
+        /**
+         * Creates an instance of the <code>DataTypeFactory</code> using default configuration information.
+         * 
+         * @param properties
+         * @return the default <code>DataTypeFactory</code>
+         * @throws FactoryException
+         */
+        public static DataTypeFactory newInstance(Properties properties) throws FactoryException {
+                return FactoryFinder.find(FACTORYID, DEFAULT_FACTORY_CLASSNAME, DataTypeFactory.class, properties);
+        }
+        
+        /**
+         * Creates an instance of the <code>DataTypeFactory</code> using the given class name.
+         * 
+         * @param className the <code>String</code> class name of the <code>DataTypeFactory</code> to create
+         * @return the <code>DataTypeFactory</code> for the given class name.
+         */
+        public static DataTypeFactory newInstance(String className) throws FactoryException {
+                return FactoryFinder.newInstance(className, DataTypeFactory.class, null, true);
+        }
+        
+        /**
+         * Creates an instance of the <code>DataTypeFactory</code> using the given class name using the given <code>ClassLoader</code>.
+         * 
+         * @param className the <code>String</code> class name of the <code>DataTypeFactory</code> to create
+         * @param classLoader the <code>ClassLoader</code> to use to load the class with the given class name
+         * @return the <code>DataTypeFactory</code> for the given class name
+         */
+        public static DataTypeFactory newInstance(String className, ClassLoader classLoader) throws FactoryException {
+                return FactoryFinder.newInstance(className, DataTypeFactory.class, classLoader, false);
+        }
 }
