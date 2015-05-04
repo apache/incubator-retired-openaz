@@ -55,8 +55,6 @@ import com.att.research.xacml.std.pip.StdSinglePIPResponse;
  * EnvironmentEngine implements the {@link com.att.research.xacml.api.pip.PipEngine} interface to provide values
  * for standard environment attributes.
  *
- * @author car
- * @version $Revision: 1.1 $
  */
 public class EnvironmentEngine implements PIPEngine {
     private Date contextTime;

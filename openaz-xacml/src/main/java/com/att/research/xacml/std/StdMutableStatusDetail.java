@@ -42,8 +42,6 @@ import com.att.research.xacml.util.ListUtil;
 /**
  * Mutable implementation of the {@link com.att.research.xacml.api.StatusDetail} interface to implement the XACML StatusDetail element.
  *
- * @author Christopher A. Rath
- * @version $Revision: 1.1 $
  */
 public class StdMutableStatusDetail implements StatusDetail {
     private static final List<MissingAttributeDetail> EMPTY_LIST	= Collections.unmodifiableList(new ArrayList<MissingAttributeDetail>());

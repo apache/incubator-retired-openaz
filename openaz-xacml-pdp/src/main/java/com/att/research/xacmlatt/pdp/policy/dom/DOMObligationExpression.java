@@ -52,8 +52,6 @@ import com.att.research.xacmlatt.pdp.policy.RuleEffect;
  * DOMObligationExpression extends {@link com.att.research.xacmlatt.pdp.policy.ObligationExpression} with methods
  * for creation from {@link org.w3c.dom.Node}s.
  *
- * @author car
- * @version $Revision: 1.3 $
  */
 public class DOMObligationExpression extends ObligationExpression {
     private static final Log logger	= LogFactory.getLog(DOMObligationExpression.class);

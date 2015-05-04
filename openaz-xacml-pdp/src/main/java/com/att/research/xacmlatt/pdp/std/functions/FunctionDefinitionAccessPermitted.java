@@ -70,8 +70,6 @@ import com.att.research.xacmlatt.pdp.policy.FunctionArgument;
  * 		access-permitted
  *
  *
- * @author glenngriffin
- * @version $Revision: 1.1 $
  *
  */
 public class FunctionDefinitionAccessPermitted extends FunctionDefinitionBase<Boolean, URI> {

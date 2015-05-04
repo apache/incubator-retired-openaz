@@ -38,8 +38,6 @@ import com.att.research.xacml.api.XACML1;
 /**
  * DataTypeRFC822Name extends {@link com.att.research.xacml.common.datatypes.DataTypeBase> for the XACML rfc822Name data type.
  *
- * @author car
- * @version $Revision: 1.1 $
  */
 public class DataTypeRFC822Name extends DataTypeSemanticStringBase<RFC822Name> {
     private static final DataTypeRFC822Name	singleInstance	= new DataTypeRFC822Name();

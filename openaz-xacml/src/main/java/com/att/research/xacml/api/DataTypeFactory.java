@@ -47,8 +47,6 @@ import com.att.research.xacml.util.FactoryFinder;
  * 			b) {@code java.home/xacml.properties}
  * 		3. If the class name is not found in one of these properties, the default is: {@code com.att.research.xacml.std.StdDataTypeFactory}
  *
- * @author Christopher A. Rath
- * @version $Revision: 1.2 $
  */
 public abstract class DataTypeFactory {
     private static final String	FACTORYID					= "xacml.dataTypeFactory";

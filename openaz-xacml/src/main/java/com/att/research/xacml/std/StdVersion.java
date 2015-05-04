@@ -38,8 +38,6 @@ import com.att.research.xacml.api.Version;
 /**
  * StdVersion implements the {@link com.att.research.xacml.api.Version} interface to represent XACML version identifiers.
  *
- * @author car
- * @version $Revision: 1.1 $
  */
 public class StdVersion implements Version {
     private int[]	versionDigits;

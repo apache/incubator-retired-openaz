@@ -44,8 +44,6 @@ import org.w3c.dom.Node;
  * NodeNamespaceContext extends {@link javax.xml.namespace.NamespaceContext} by delegating to the owning
  * {@link org.w3c.dom.Document}.
  *
- * @author car
- * @version $Revision$
  */
 public class NodeNamespaceContext extends ExtendedNamespaceContext {
     private Document document;

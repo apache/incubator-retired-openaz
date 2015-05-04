@@ -55,8 +55,6 @@ import com.att.research.xacmlatt.pdp.policy.FunctionArgument;
  * 		string-normalize-space
  * 		string-normalize-to-lower-case
  *
- * @author glenngriffin
- * @version $Revision: 1.1 $
  *
  */
 public class FunctionDefinitionStringNormalize extends FunctionDefinitionHomogeneousSimple<String, String> {
@@ -64,7 +62,6 @@ public class FunctionDefinitionStringNormalize extends FunctionDefinitionHomogen
     /**
      * List of string normalization operations.
      *
-     * @author glenngriffin
      *
      */
     public enum OPERATION {SPACE, LOWER_CASE };

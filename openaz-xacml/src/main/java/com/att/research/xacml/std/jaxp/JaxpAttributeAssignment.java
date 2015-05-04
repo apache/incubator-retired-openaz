@@ -47,8 +47,6 @@ import com.att.research.xacml.util.FactoryException;
  * JaxpAttributeAssignment extends {@link com.att.research.xacml.std.StdMutableAttributeAssignment} with methods for creation
  * from JAXP elements.
  *
- * @author car
- * @version $Revision: 1.2 $
  *
  * @param <T> the java class of the value type for the assignment
  */

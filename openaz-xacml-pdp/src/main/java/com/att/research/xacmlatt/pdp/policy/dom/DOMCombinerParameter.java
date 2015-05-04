@@ -51,8 +51,6 @@ import com.att.research.xacmlatt.pdp.policy.CombinerParameter;
  * DOMCombinerParameter extends {@link com.att.research.xacmlatt.pdp.policy.CombinerParameter} with methods for
  * creation from DOM {@link org.w3c.dom.Node}s.
  *
- * @author car
- * @version $Revision: 1.2 $
  */
 public class DOMCombinerParameter extends CombinerParameter {
     private static final Log logger	= LogFactory.getLog(DOMCombinerParameter.class);

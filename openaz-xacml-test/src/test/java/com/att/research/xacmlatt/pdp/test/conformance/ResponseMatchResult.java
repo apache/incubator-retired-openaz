@@ -42,8 +42,6 @@ import com.att.research.xacml.api.Result;
  * ResponseMatchResult provides information about how a {@link com.att.research.xacml.api.Response} object matches
  * another <code>Response</code> object.
  *
- * @author car
- * @version $Revision: 1.1 $
  */
 public class ResponseMatchResult {
     private List<ResultMatchResult>	resultMatchResults	= new ArrayList<ResultMatchResult>();

@@ -22,7 +22,6 @@ import java.util.List;
 
 /**
  *
- * @author Josh Bregman, Rich Levinson, Prateek Mishra
  *
  */
 public interface PepRequestFactory {

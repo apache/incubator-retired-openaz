@@ -36,8 +36,6 @@ import com.att.research.xacml.api.Attribute;
  * StdSinglePIPResponse extends {@link com.att.research.xacml.std.pip.StdMutablePIPResponse} with methods for
  * retrieving a single {@link com.att.research.xacml.api.Attribute}.
  *
- * @author car
- * @version $Revision: 1.1 $
  */
 public class StdSinglePIPResponse extends StdMutablePIPResponse {
     private Attribute singleAttribute;

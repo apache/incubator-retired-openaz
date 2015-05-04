@@ -36,8 +36,6 @@ import java.util.Collection;
  * Defines the API for objects that represent XACML Result elements.  Results communicate the Decision, Status, Attributes,
  * Obligations, and Advice for an individual decision request.
  *
- * @author Christopher A. Rath
- * @version $Revision: 1.1 $
  */
 public interface Result {
     /**

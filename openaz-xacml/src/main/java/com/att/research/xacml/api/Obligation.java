@@ -36,8 +36,6 @@ import java.util.Collection;
  * Defines the API for objects that represent XACML Obligation elements.  Obligations are returned in Result elements to indicate actions a PEP must
  * enforce as part of a decision.
  *
- * @author Christopher A. Rath
- * @version $Revision: 1.1 $
  */
 public interface Obligation {
     /**

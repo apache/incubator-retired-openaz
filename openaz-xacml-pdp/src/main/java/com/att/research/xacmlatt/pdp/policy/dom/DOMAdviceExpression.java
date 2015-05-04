@@ -52,8 +52,6 @@ import com.att.research.xacmlatt.pdp.policy.RuleEffect;
  * DOMAdviceExpression extends {@link com.att.research.xacmlatt.pdp.policy.AdviceExpression} with methods for creation
  * from {@link org.w3c.dom.Node}s.
  *
- * @author car
- * @version $Revision: 1.2 $
  */
 public class DOMAdviceExpression extends AdviceExpression {
     private static final Log logger	= LogFactory.getLog(DOMAdviceExpression.class);

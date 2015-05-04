@@ -38,8 +38,6 @@ import com.att.research.xacml.util.XACMLProperties;
 /**
  * DOMProperties contains utilities for determining the properties for parsing XACML documents with a DOM parser.
  *
- * @author car
- * @version $Revision: 1.1 $
  */
 public class DOMProperties {
     private static final String	PROP_LENIENT			= "xacml.dom.lenient";

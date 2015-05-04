@@ -36,8 +36,6 @@ import java.util.Collection;
  * PIPFinder is the interface objects implement that can query multiple sources of {@link com.att.research.xacml.api.Attribute}s based
  * on a {@link com.att.research.xacml.api.pip.PIPRequest}.
  *
- * @author car
- * @version $Revision: 1.3 $
  */
 public interface PIPFinder {
     /**

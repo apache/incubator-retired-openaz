@@ -47,8 +47,6 @@ import com.att.research.xacml.util.ObjUtil;
 /**
  * Mutable implementation of the {@link com.att.research.xacml.Attribute} interface.
  *
- * @author Christopher A. Rath
- * @version $Revision: 1.1 $
  */
 public class StdMutableAttribute implements Attribute {
     private static final List<AttributeValue<?>> EMPTY_ATTRIBUTE_VALUE_LIST	= Collections.unmodifiableList(new ArrayList<AttributeValue<?>>());

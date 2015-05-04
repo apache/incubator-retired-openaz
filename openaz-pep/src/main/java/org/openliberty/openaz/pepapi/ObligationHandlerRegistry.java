@@ -26,7 +26,6 @@ import java.util.Map;
 /**
  * Abstraction for a Obligation Handler registration mechanism. Subclasses provide specific implementations.
  *
- * @author Ajith Nair, David Laurance, Darshak Kothari
  */
 public interface ObligationHandlerRegistry {
 

@@ -44,8 +44,6 @@ import com.att.research.xacml.api.SemanticString;
  *
  * Note: This is a temporary implementation.  It appears Java 8 will have better classes for dealing with ISO8601 dates and times.
  *
- * @author car
- * @version $Revision: 1.1 $
  */
 public class ISO8601DateTime implements IDateTime<ISO8601DateTime>, Comparable<ISO8601DateTime>, SemanticString {
     private static final long		TZOFFSET_14_HOURS_MILLIS	= 14*60*60*1000;

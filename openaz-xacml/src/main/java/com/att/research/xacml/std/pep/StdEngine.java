@@ -49,8 +49,6 @@ import com.att.research.xacml.util.FactoryException;
  * an instance of the {@link com.att.research.xacml.api.pdp.PDPEngine} interface using the {@link com.att.research.xacml.api.pdp.PDPEngineFactory} and
  * passing requests through to that engine, forwarding the {@link com.att.research.xacml.api.Response} object back to the caller.
  *
- * @author car
- * @version $Revision: 1.2 $
  */
 public class StdEngine implements PEPEngine {
     private Log	logger	= LogFactory.getLog(this.getClass());

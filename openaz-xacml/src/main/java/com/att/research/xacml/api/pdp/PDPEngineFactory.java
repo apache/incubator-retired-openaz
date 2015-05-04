@@ -41,8 +41,6 @@ import com.att.research.xacml.util.XACMLProperties;
 /**
  * PDPEngineFactory provides the interface for creating {@link com.att.research.xacml.pep.PDPEngine} instances.
  *
- * @author car
- * @version ${Revision}
  */
 public abstract class PDPEngineFactory {
     private static final String	FACTORYID					= XACMLProperties.PROP_PDPENGINEFACTORY;

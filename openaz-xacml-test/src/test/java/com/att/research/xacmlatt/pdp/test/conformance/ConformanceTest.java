@@ -35,8 +35,6 @@ import java.io.File;
 /**
  * ConformanceTest represents a collection of XACML files with a root Policy document, optional referenced Policy documents, a Request, and a Response.
  *
- * @author car
- * @version $Revision: 1.2 $
  */
 public class ConformanceTest {
     private String testName;

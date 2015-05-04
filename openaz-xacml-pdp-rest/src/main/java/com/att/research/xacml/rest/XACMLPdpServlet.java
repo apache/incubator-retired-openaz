@@ -89,7 +89,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  *
  * -Dxacml.rest.pdp.register=false
  *
- * @author pameladragosh
  *
  */
 @WebServlet(

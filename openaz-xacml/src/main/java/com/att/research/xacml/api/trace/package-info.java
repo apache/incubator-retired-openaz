@@ -32,7 +32,5 @@
 /**
  * Interfaces for objects that implement policy evaluation tracing.
  *
- * @author Christopher A. Rath
- * @version $Revision$
  */
 package com.att.research.xacml.api.trace;

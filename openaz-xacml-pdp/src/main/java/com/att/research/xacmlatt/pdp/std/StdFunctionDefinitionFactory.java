@@ -44,8 +44,6 @@ import com.att.research.xacmlatt.pdp.policy.FunctionDefinitionFactory;
  * used if no other <code>FunctionDefinitionFactory</code> implementation is supplied.  It contains all of the standard XACML 3.0
  * functions.
  *
- * @author car
- * @version $Revision: 1.2 $
  */
 public class StdFunctionDefinitionFactory extends FunctionDefinitionFactory {
     private static Map<Identifier,FunctionDefinition> 	mapFunctionDefinitions	= new HashMap<Identifier,FunctionDefinition>();

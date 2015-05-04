@@ -49,7 +49,6 @@ import oasis.names.tc.xacml._3_0.core.schema.wd_17.PolicyType;
 /**
  * Helper static class for policy writing.
  *
- * @author pameladragosh
  *
  */
 public class XACMLPolicyWriter {
@@ -58,7 +57,6 @@ public class XACMLPolicyWriter {
     /**
      * Helper static class that does the work to write a policy set to a file on disk.
      *
-     * @author pameladragosh
      *
      */
     public static Path writePolicyFile(Path filename, PolicySetType policySet) {
@@ -85,7 +83,6 @@ public class XACMLPolicyWriter {
     /**
      * Helper static class that does the work to write a policy set to an output stream.
      *
-     * @author pameladragosh
      *
      */
     public static void writePolicyFile(OutputStream os, PolicySetType policySet) {
@@ -103,7 +100,6 @@ public class XACMLPolicyWriter {
     /**
      * Helper static class that does the work to write a policy to a file on disk.
      *
-     * @author pameladragosh
      *
      */
     public static Path writePolicyFile(Path filename, PolicyType policy) {
@@ -129,7 +125,6 @@ public class XACMLPolicyWriter {
     /**
      * Helper static class that does the work to write a policy set to an output stream.
      *
-     * @author pameladragosh
      *
      */
     public static void writePolicyFile(OutputStream os, PolicyType policy) {

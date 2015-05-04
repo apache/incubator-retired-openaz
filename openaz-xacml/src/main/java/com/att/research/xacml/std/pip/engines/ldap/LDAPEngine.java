@@ -64,8 +64,6 @@ import com.google.common.cache.Cache;
  * LDAPEngine extends {@link com.att.research.xacml.std.pip.engines.StdConfigurableEngine} to implement a generic PIP for accessing
  * data from and LDAP server, including a configurable cache to avoid repeat queries.
  *
- * @author car
- * @version $Revision$
  */
 public class LDAPEngine extends StdConfigurableEngine {
     public static final String PROP_RESOLVERS			= "resolvers";

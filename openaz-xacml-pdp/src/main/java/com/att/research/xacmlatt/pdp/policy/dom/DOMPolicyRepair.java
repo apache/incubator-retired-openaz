@@ -50,8 +50,6 @@ import com.att.research.xacml.std.dom.DOMUtil;
  * DOMPolicyRepair is an application for reading a XACML Policy or PolicySet document and ensuring it has the required attributes and then writing
  * the repaired Policy or PolicySet to an output file.
  *
- * @author car
- * @version $Revision: 1.1 $
  */
 public class DOMPolicyRepair {
     private static final String	DEFAULT_VERSION	= "1.0";

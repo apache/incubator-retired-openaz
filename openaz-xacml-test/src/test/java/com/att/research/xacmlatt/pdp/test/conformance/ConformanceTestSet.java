@@ -51,8 +51,6 @@ import org.apache.commons.logging.LogFactory;
  * ConformanceTestSet represents a collection of <code>ConformanceTest</code>s ordered by the test name.  It has methods for
  * scanning a directory to generate an ordered set.
  *
- * @author car
- * @version $Revision: 1.1 $
  */
 public class ConformanceTestSet {
     private static final Log logger						= LogFactory.getLog(ConformanceTestSet.class);

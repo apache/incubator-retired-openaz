@@ -47,8 +47,6 @@ import com.att.research.xacmlatt.pdp.policy.expressions.AttributeSelector;
  * DOMAttributeSelector extends {@link com.att.research.xacmlatt.pdp.policy.expressions.AttributeSelector} with methods
  * for creation from DOM {@link org.w3c.dom.Node}s.
  *
- * @author car
- * @version $Revision: 1.3 $
  */
 public class DOMAttributeSelector extends AttributeSelector {
     private static Log logger	= LogFactory.getLog(DOMAttributeSelector.class);

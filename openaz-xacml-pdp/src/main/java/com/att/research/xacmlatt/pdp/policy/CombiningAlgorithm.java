@@ -41,8 +41,6 @@ import com.att.research.xacmlatt.pdp.eval.EvaluationResult;
 /**
  * CombiningAlgorithm is the interface for objects that implement XACML combining algorithms for rules, policies, and policy sets.
  *
- * @author car
- * @version $Revision: 1.1 $
  *
  * @param <T> the type of object to be combined
  * @param <U> the type of the identifier for <code>T</code>

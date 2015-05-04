@@ -37,8 +37,6 @@ import com.att.research.xacml.api.SemanticString;
 /**
  * ISO8601Duration implements the ISO8601 duration data type with parsers from strings and to strings.
  *
- * @author car
- * @version $Revision: 1.2 $
  */
 public class ISO8601Duration implements SemanticString {
     private static int getChunkOrder(boolean sawT, char chunkName) {

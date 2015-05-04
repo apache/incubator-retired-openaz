@@ -45,8 +45,6 @@ import com.att.research.xacmlatt.pdp.policy.CombiningElement;
  * PermitOverrides extends {@link com.att.research.xacmlatt.pdp.std.combiners.CombiningAlgorithmBase} to implement the
  * XACML 1.0 "first-applicable" combining algorithm for policies and rules.
  *
- * @author car
- * @version $Revision: 1.1 $
  *
  * @param <T> the java class of the object to be combined
  */

@@ -28,8 +28,6 @@ import com.att.research.xacml.api.SemanticString;
  * PortRange represents the optional range of port values for an <code>IPAddress</code>.  A value of -1
  * for either port represents the limit for port numbers (min or max) in the given addressing scheme.
  *
- * @author car
- * @version $Revision: 1.1 $
  */
 public final class PortRange implements SemanticString {
     private int	portMin;

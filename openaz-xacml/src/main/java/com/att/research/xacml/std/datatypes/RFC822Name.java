@@ -37,8 +37,6 @@ import com.att.research.xacml.api.SemanticString;
 /**
  * RFC822Name represents an RFC 822 name consisting of a local part and a domain part.
  *
- * @author car
- * @version $Revision: 1.3 $
  */
 public class RFC822Name implements Comparable<RFC822Name>, SemanticString {
     private String	localName;

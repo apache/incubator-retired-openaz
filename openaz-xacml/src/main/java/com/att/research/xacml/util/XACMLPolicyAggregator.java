@@ -92,7 +92,6 @@ import com.att.research.xacml.util.XACMLPolicyScanner.SimpleCallback;
  * The map is useful for building policy simulation tools, policy editing, importing data into the
  * dictionaries, as well as for testing and exercising a policy.
  *
- * @author pameladragosh
  *
  */
 public class XACMLPolicyAggregator extends SimpleCallback  {

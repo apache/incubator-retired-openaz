@@ -57,8 +57,6 @@ import com.att.research.xacml.std.pip.StdPIPResponse;
  * StdRequestEngine implements the {@link com.att.research.xacml.api.pip.PIPEngine} interface to retrieve
  * matching {@link com.att.reserach.xacml.api.Attribute}s from a {@link com.att.research.xacml.pip.Request} object.
  *
- * @author car
- * @version $Revision: 1.1 $
  */
 public class RequestEngine implements PIPEngine {
     private Request request;

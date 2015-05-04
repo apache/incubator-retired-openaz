@@ -72,8 +72,6 @@ import com.att.research.xacmlatt.pdp.policy.FunctionArgument;
  * 		xpath-node-equals
  * 		xpath-node-match
  *
- * @author glenngriffin
- * @version $Revision: 1.1 $
  *
  * @param <O> the java class for the data type of the function Output
 
@@ -84,7 +82,6 @@ public class FunctionDefinitionXPath<O> extends FunctionDefinitionHomogeneousSim
     /**
      * List of string normalization operations.
      *
-     * @author glenngriffin
      *
      */
     public enum OPERATION {COUNT, EQUAL, MATCH };

@@ -38,8 +38,6 @@ import com.att.research.xacmlatt.pdp.policy.PolicyFinderResult;
 /**
  * StdPolicyFinderResult implements the {@link com.att.research.xacmlatt.pdp.policy.PolicyFinderResult} interface.
  *
- * @author car
- * @version $Revision: 1.1 $
  * @param <T> the java class extending {@link com.att.research.xacmlatt.pdp.policy.PolicyDef} held by the <code>StdPolicyFinderResult</code>
  */
 public class StdPolicyFinderResult<T extends PolicyDef> implements PolicyFinderResult<T> {

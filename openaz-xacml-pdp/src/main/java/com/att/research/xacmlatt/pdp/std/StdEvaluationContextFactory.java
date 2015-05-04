@@ -49,8 +49,6 @@ import com.att.research.xacmlatt.pdp.policy.PolicyFinderFactory;
  * StdEvaluationContextFactory extends {@link com.att.research.xacmlatt.pdp.eval.EvaluationContextFactory} to implement
  * the <code>getEvaluationContext</code> method with a standard {@link com.att.research.xacmlatt.pdp.eval.EvaluationContext}.
  *
- * @author car
- * @version $Revision: 1.1 $
  */
 public class StdEvaluationContextFactory extends EvaluationContextFactory {
     private Log logger					= LogFactory.getLog(this.getClass());

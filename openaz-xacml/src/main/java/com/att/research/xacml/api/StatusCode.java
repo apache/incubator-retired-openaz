@@ -33,8 +33,6 @@ package com.att.research.xacml.api;
 /**
  * Defines the API for objects that represent XACML StatusCode values.
  *
- * @author Christopher A. Rath
- * @version $Revision: 1.1 $
  */
 public interface StatusCode {
     /**

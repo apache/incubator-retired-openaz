@@ -44,8 +44,6 @@ import com.att.research.xacml.util.ObjUtil;
 /**
  * Mutable implementation of the {@link com.att.research.xacml.api.Obligation} interface for XACML Obligation elements.
  *
- * @author Christopher A. Rath
- * @version $Revision: 1.1 $
  */
 public class StdMutableObligation implements Obligation {
     private static final List<AttributeAssignment>	EMPTY_LIST	= Collections.unmodifiableList(new ArrayList<AttributeAssignment>());

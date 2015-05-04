@@ -39,8 +39,6 @@ import com.att.research.xacml.api.XACML2;
  * DataTypeRFC2396DomainName extends {@link DataTypeBase} to implement the XACML
  * RFC2396 domainName data type.
  *
- * @author car
- * @version $Revision: 1.1 $
  */
 public class DataTypeDNSName extends DataTypeSemanticStringBase<RFC2396DomainName> {
     private static final DataTypeDNSName	singleInstance	= new DataTypeDNSName();

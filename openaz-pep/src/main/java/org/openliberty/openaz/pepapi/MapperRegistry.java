@@ -24,7 +24,6 @@ package org.openliberty.openaz.pepapi;
 /**
  * Container that holds <code>ObjectMapper</code> instances registered with the framework.
  *
- * @author Ajith Nair, David Laurance, Darshak Kothari
  *
  */
 public interface MapperRegistry {

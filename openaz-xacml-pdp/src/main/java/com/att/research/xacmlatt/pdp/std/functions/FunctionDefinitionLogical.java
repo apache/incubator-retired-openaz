@@ -53,8 +53,6 @@ import com.att.research.xacmlatt.pdp.policy.FunctionArgument;
  * 		n-of
  * 		not
  *
- * @author glenngriffin
- * @version $Revision: 1.1 $
  *
  */
 public class FunctionDefinitionLogical extends FunctionDefinitionHomogeneousSimple<Boolean,Boolean> {
@@ -62,7 +60,6 @@ public class FunctionDefinitionLogical extends FunctionDefinitionHomogeneousSimp
     /**
      * List of Logical Operations types
      *
-     * @author glenngriffin
      *
      */
     public enum OPERATION {OR, AND, N_OF, NOT}

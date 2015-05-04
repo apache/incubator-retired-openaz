@@ -34,8 +34,6 @@ package com.att.research.xacmlatt.pdp.eval;
 /**
  * Matchable is the interface objects implement to indicate they are part of a XACML Target matching tree.
  *
- * @author car
- * @version $Revision: 1.1 $
  */
 public interface Matchable {
     /**

@@ -48,8 +48,6 @@ import com.att.research.xacml.std.StdVersion;
  * DOMIdReference extends {@link com.att.research.xacml.std.StdIdReference} with methods for creation from
  * DOM {@link org.w3c.dom.Node}s.
  *
- * @author car
- * @version $Revision: 1.2 $
  */
 public class DOMIdReference extends StdIdReference {
     private static Log logger	= LogFactory.getLog(DOMIdReference.class);

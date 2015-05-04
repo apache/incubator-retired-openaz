@@ -64,8 +64,6 @@ import com.att.research.xacml.std.StdVersionMatch;
 /**
  * DOMUtil contains a number of utility functions for DOM document elements.
  *
- * @author car
- * @version $Revision: 1.2 $
  */
 public class DOMUtil {
     private static String[]	NAMESPACES	= {

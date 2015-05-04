@@ -43,8 +43,6 @@ import javax.xml.namespace.NamespaceContext;
  * The Iterator returned by this contains the Prefixes used in the Namespace (including the Default if it is defined).
  * The caller can then use the Iterator values to call getNamespaceURI(prefix) defined in {@link javax.xml.namespace.NamespaceContext}.
  *
- * @author glenngriffin
- * @version $Revision$
  */
 public abstract class ExtendedNamespaceContext implements NamespaceContext {
 

@@ -39,8 +39,6 @@ import com.att.research.xacml.api.Status;
  * ScopeResolverResult is the interface for objects returned by the {@link ScopeResolver}'s
  * <code>resolveScope</code> method.
  *
- * @author car
- * @version $Revision$
  */
 public interface ScopeResolverResult {
     /*

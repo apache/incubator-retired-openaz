@@ -47,8 +47,6 @@ import com.att.research.xacmlatt.pdp.policy.AnyOf;
  * DOMAnyOf extends {@link com.att.research.xacmlatt.pdp.policy.AnyOf} with methods for creation
  * from DOM {@link org.w3c.dom.Node}s.
  *
- * @author car
- * @version $Revision: 1.2 $
  */
 public class DOMAnyOf extends AnyOf {
     private static final Log logger	= LogFactory.getLog(DOMAnyOf.class);

@@ -44,8 +44,6 @@ import com.att.research.xacmlatt.pdp.eval.EvaluationException;
  * Condition extends {@link com.att.research.xacmlatt.pdp.policy.PolicyComponent} to represent the XACML Condition element
  * in a XACML Rule.
  *
- * @author car
- * @version $Revision: 1.1 $
  */
 public class Condition extends PolicyComponent {
     private static final Status						STATUS_PE_RETURNED_BAG			= new StdStatus(StdStatusCode.STATUS_CODE_PROCESSING_ERROR, "Condition Expression returned a bag");

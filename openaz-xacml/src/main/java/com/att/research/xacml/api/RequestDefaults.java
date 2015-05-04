@@ -35,8 +35,6 @@ import java.net.URI;
 /**
  * Defines the API for objects that represent XACML RequestDefaults elements.
  *
- * @author Christopher A. Rath
- * @version $Revision: 1.1 $
  */
 public interface RequestDefaults {
     /**

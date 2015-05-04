@@ -81,7 +81,6 @@ import com.att.research.xacmlatt.pdp.std.StdFunctions;
  *
  * Each of these is put into a separate test method just to keep things organized.
  *
- * @author glenngriffin
  *
  */
 public class FunctionDefinitionEqualityTest {

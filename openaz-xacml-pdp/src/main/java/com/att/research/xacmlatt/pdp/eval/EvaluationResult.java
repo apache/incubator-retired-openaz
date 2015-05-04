@@ -44,8 +44,6 @@ import com.att.research.xacml.std.StdMutableResult;
 /**
  * EvaluationResult extends {@link com.att.research.xacml.std.StdMutableResult} with methods useful within a PDP implementation
  *
- * @author car
- * @version $Revision: 1.1 $
  */
 public class EvaluationResult extends StdMutableResult {
     public EvaluationResult() {

@@ -45,8 +45,6 @@ import com.att.research.xacml.std.StdStatus;
  * DOMStatus extends {@link com.att.research.xacml.std.StdMutableStatus} with methods for creation from
  * DOM {@link org.w3c.dom.Node}s.
  *
- * @author car
- * @version $Revision: 1.2 $
  */
 public class DOMStatus {
     private static final Log logger	= LogFactory.getLog(DOMStatus.class);

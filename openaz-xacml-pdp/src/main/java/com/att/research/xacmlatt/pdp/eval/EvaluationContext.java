@@ -46,8 +46,6 @@ import com.att.research.xacmlatt.pdp.policy.PolicySet;
  * EvaluationContext provides the interface that the PDP uses to evaluate its set of Policies and PolicySets against
  * a {@link com.att.research.xacml.api.Request}.
  *
- * @author car
- * @version $Revision: 1.2 $
  */
 public interface EvaluationContext extends PIPFinder, TraceEngine {
     /**

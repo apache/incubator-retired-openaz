@@ -45,8 +45,6 @@ import com.att.research.xacml.std.StdMutableAttribute;
 /**
  * JaxpAttribute extends {@link com.att.research.xacml.std.StdMutableAttribute} with methods for creation from JAXP elements.
  *
- * @author car
- * @version $Revision: 1.1 $
  */
 public class JaxpAttribute extends StdMutableAttribute {
 

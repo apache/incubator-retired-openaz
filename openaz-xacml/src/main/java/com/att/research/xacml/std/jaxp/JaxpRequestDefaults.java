@@ -40,8 +40,6 @@ import com.att.research.xacml.std.StdRequestDefaults;
  * JaxpRequestDefaults extends {@link com.att.research.xacml.std.StdRequestDefaults} with methods for creation
  * from JAXP elements.
  *
- * @author car
- * @version $Revision: 1.1 $
  */
 public class JaxpRequestDefaults extends StdRequestDefaults {
 

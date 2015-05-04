@@ -47,8 +47,6 @@ import com.att.research.xacmlatt.pdp.policy.Target;
  * DOMTarget extends {@link com.att.research.xacmlatt.pdp.policy.Target} with methods for creation from
  * DOM {@link org.w3c.dom.Node}s.
  *
- * @author car
- * @version $Revision: 1.3 $
  */
 public class DOMTarget extends Target {
     private static final Log logger	= LogFactory.getLog(DOMTarget.class);

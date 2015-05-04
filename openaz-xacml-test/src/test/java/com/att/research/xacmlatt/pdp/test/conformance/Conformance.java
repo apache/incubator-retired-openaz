@@ -67,8 +67,6 @@ import com.att.research.xacml.api.Result;
  * 			-Dxacml.properties=testsets/conformance/xacml.properties .
  * 			-Dlog4j.configuration=.\logging.properties
  *
- * @author car
- * @version $Revision: 1.2 $
  */
 public class Conformance {
     private ConformanceScopeResolver scopeResolver;

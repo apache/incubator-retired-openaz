@@ -51,8 +51,6 @@ import com.att.research.xacmlatt.pdp.eval.MatchResult;
 /**
  * Policy extends {@link com.att.research.xacmlatt.pdp.policy.PolicyDef} to represent a XACML 3.0 Policy element.
  *
- * @author car
- * @version $Revision: 1.2 $
  */
 public class Policy extends PolicyDef {
     private TargetedCombinerParameterMap<String,Rule>		ruleCombinerParameters	= new TargetedCombinerParameterMap<String,Rule>();

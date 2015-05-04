@@ -88,7 +88,6 @@ import com.att.research.xacmlatt.pdp.test.TestBase;
  * The attributes mostly come from the Target Match elements, since they have both an attribute designator/selector
  * matched with an attribute value.
  *
- * @author pameladragosh
  *
  */
 public class TestPolicy extends TestBase {

@@ -55,8 +55,6 @@ import com.att.research.xacmlatt.pdp.policy.FunctionArgument;
  * 		time-in-range
  *
  *
- * @author glenngriffin
- * @version $Revision: 1.1 $
  *
  * @param <I> the java class for the data type of the function Input arguments.
  */

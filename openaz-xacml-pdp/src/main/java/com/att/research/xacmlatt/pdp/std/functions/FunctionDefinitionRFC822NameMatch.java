@@ -52,8 +52,6 @@ import com.att.research.xacmlatt.pdp.policy.FunctionArgument;
  * This file supports the following XACML codes:
  * 		rfc822Name-match
  *
- * @author glenngriffin
- * @version $Revision: 1.1 $
  *
  */
 public class FunctionDefinitionRFC822NameMatch extends FunctionDefinitionBase<Boolean, RFC822Name> {

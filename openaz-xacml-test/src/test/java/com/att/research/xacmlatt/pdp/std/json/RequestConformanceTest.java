@@ -68,7 +68,6 @@ import com.att.research.xacml.std.json.JSONStructureException;
  * 	- toString might not include some sub-component, and
  * 	- the initial verification of the resulting string is done by hand and may have been incorrect.
  *
- * @author glenngriffin
  *
  */
 public class RequestConformanceTest {

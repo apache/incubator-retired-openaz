@@ -45,8 +45,6 @@ import com.att.research.xacml.std.StdMutableMissingAttributeDetail;
  * DOMMissingAttributeDetail extends {@link com.att.research.xacml.std.StdMutableMissingAttributeDetail} with methods for creation from
  * DOM {@link org.w3c.dom.Node}s.
  *
- * @author car
- * @version $Revision: 1.2 $
  */
 public class DOMMissingAttributeDetail {
     private static final Log logger	= LogFactory.getLog(DOMMissingAttributeDetail.class);

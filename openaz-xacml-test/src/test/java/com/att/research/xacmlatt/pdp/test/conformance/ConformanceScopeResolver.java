@@ -56,8 +56,6 @@ import com.att.research.xacml.std.datatypes.DataTypes;
  * ConformanceScopeResolver implements {@link com.att.research.xacml.pdp.ScopeResolver} for the conformance tests
  * using a fixed set of hierarchical resources defined in a map.
  *
- * @author car
- * @version $Revision$
  */
 public class ConformanceScopeResolver implements ScopeResolver {
     private Log logger									= LogFactory.getLog(ConformanceScopeResolver.class);

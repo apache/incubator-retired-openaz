@@ -61,8 +61,6 @@ import com.att.research.xacmlatt.pdp.policy.FunctionArgument;
  * 		double-less-than-or-equal
  *
  *
- * @author glenngriffin
- * @version $Revision: 1.1 $
  *
  * @param <I> the java class for the data type of the function Input arguments
  */
@@ -71,7 +69,6 @@ public class FunctionDefinitionComparison<I extends Comparable<I>> extends Funct
     /**
      * List of comparison operations.
      *
-     * @author glenngriffin
      *
      */
     public enum OPERATION {GREATER_THAN, GREATER_THAN_EQUAL, LESS_THAN, LESS_THAN_EQUAL };

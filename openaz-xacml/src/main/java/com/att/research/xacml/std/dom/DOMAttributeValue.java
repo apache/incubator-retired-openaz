@@ -49,8 +49,6 @@ import com.att.research.xacml.util.FactoryException;
 /**
  * DOMAttributeValue extends {@link com.att.research.xacml.std.StdAttributeValue} with methods for creation from DOM elements.
  *
- * @author car
- * @version $Revision: 1.3 $
  *
  * @param <T> the Java type implementing the value for the Attribute
  */

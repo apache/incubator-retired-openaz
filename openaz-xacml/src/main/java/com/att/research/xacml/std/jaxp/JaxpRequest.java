@@ -59,8 +59,6 @@ import com.att.research.xacml.std.StdMutableRequest;
 /**
  * JaxpRequest extends {@link com.att.research.xacml.std.StdMutableRequest} with methods for creation from JAXP elements.
  *
- * @author car
- * @version $Revision: 1.1 $
  */
 public class JaxpRequest extends StdMutableRequest {
     private static Log	logger	= LogFactory.getLog(JaxpRequest.class);

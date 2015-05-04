@@ -83,7 +83,6 @@ import com.att.research.xacmlatt.pdp.test.TestBase;
  * It creates a custom function definition factory that adds in custom decryption function for decrypting data. It
  * also derives and loads custom functions for the RSA public/private key datatypes for the bag function: one-and-only.
  *
- * @author pameladragosh
  *
  */
 public class TestCustom extends TestBase {

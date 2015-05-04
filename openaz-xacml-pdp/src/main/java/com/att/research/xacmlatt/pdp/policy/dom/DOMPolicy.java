@@ -62,8 +62,6 @@ import com.att.research.xacmlatt.pdp.policy.Rule;
  * DOMPolicy extends {@link com.att.research.xacmlatt.pdp.policy.Policy} with methods for creation from a
  * DOM {@link org.w3c.dom.Node}.
  *
- * @author car
- * @version $Revision: 1.4 $
  */
 public class DOMPolicy {
     private static final Log logger	= LogFactory.getLog(DOMPolicy.class);

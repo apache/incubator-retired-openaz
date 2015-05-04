@@ -38,8 +38,6 @@ import com.att.research.xacml.std.StdRequestAttributesReference;
  * JaxpRequestAttributesReference extends {@link com.att.research.xacml.std.StdRequestAttributesReference} with methods for
  * creation using JAXP elements.
  *
- * @author car
- * @version $Revision: 1.1 $
  */
 public class JaxpRequestAttributesReference extends StdRequestAttributesReference {
 

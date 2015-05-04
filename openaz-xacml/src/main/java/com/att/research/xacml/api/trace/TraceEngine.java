@@ -35,8 +35,6 @@ package com.att.research.xacml.api.trace;
  * Defines the API for objects that serve as handlers for {@link TraceEvent}s.  <code>TraceEngine</code>s
  * are instantiated with {@link com.att.research.xacml.api.trace.TraceEngineFactory} objects.
  *
- * @author Christopher A. Rath
- * @version $Revision$
  */
 public interface TraceEngine {
     /**

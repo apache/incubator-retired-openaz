@@ -34,8 +34,6 @@ package com.att.research.xacml.api;
  * Defines the API for objects that represent XACML 3.0 AttributeAssignment elements.  AttributeAssignments are used
  * in XACML 3.0 ObligationExpressions and AdviceExpressions.
  *
- * @author Christopher A. Rath
- * @version $Revision: 1.1 $
  */
 public interface AttributeAssignment {
     /**

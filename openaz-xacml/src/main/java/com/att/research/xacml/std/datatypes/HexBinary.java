@@ -41,8 +41,6 @@ import com.att.research.xacml.util.StringUtils;
 /**
  * HexBinary provides utilities for converting the XACML hexBinary data type to and from <code>String</code> values.
  *
- * @author car
- * @version $Revision: 1.1 $
  */
 public class HexBinary implements SemanticString {
     private byte[]	data;

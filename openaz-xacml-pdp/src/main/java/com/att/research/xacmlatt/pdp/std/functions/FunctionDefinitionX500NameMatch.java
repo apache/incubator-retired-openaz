@@ -52,8 +52,6 @@ import com.att.research.xacmlatt.pdp.policy.FunctionArgument;
  * This file supports the following XACML codes:
  * 		x500Name-match
  *
- * @author glenngriffin
- * @version $Revision: 1.1 $
  *
  */
 public class FunctionDefinitionX500NameMatch extends FunctionDefinitionHomogeneousSimple<Boolean, X500Principal> {

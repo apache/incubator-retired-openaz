@@ -37,8 +37,6 @@ import com.att.research.xacml.api.Response;
 /**
  * PEPEngine is the interface that applications use to make policy queries against a XACML 3.0 policy engine.
  *
- * @author car
- * @version $Revision: 1.1 $
  */
 public interface PEPEngine {
     /**

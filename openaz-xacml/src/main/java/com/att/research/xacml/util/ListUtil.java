@@ -36,8 +36,6 @@ import java.util.Iterator;
 /**
  * ListUtil contains a number of useful utilities on java <code>Collection</code> objects.
  *
- * @author car
- * @version $Revision: 1.1 $
  */
 public class ListUtil {
 

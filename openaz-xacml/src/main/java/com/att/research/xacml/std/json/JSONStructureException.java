@@ -33,7 +33,6 @@ package com.att.research.xacml.std.json;
 /**
  * Exception indicating that a JSON structure is incorrect.
  *
- * @author glenngriffin
  *
  */
 public class JSONStructureException extends Exception {

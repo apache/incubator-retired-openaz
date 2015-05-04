@@ -33,8 +33,6 @@ package com.att.research.xacml.api.pdp;
 /**
  * ScopeQualifier enumerates the values of the "scope" attribute in requests.
  *
- * @author car
- * @version $Revision$
  */
 public enum ScopeQualifier {
     CHILDREN("Children"),

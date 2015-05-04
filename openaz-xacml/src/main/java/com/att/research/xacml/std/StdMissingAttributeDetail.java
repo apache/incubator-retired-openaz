@@ -40,8 +40,6 @@ import com.att.research.xacml.util.Wrapper;
 /**
  * Immutable implementation of the {@link com.att.research.xacml.api.MissingAttributeDetail} interface.
  *
- * @author Christopher A. Rath
- * @version $Revision$
  */
 public class StdMissingAttributeDetail extends Wrapper<MissingAttributeDetail> implements MissingAttributeDetail {
     /**

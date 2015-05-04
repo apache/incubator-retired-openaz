@@ -37,8 +37,6 @@ import com.att.research.xacml.api.SemanticString;
 /**
  * IPAddress represents either an IPv4 or IPv6 network address with optional (IPv4)masks or (IPv6)prefixes and port range components.
  *
- * @author car
- * @version $Revision: 1.1 $
  */
 public abstract class IPAddress implements SemanticString {
 

@@ -48,8 +48,6 @@ import com.att.research.xacmlatt.pdp.eval.EvaluationException;
  * AttributeAssignmentExpression extends {@link PolicyComponent} to represent a
  * XACML AttributeAssignmentExpression element.
  *
- * @author car
- * @version $Revision: 1.1 $
  */
 public class AttributeAssignmentExpression extends PolicyComponent {
     private static final AttributeAssignmentResult AAR_NULL_EXPRESSION			= new AttributeAssignmentResult(new StdStatus(StdStatusCode.STATUS_CODE_SYNTAX_ERROR, "Null expression"));

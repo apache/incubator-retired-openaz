@@ -45,8 +45,6 @@ import com.att.research.xacmlatt.pdp.eval.EvaluationResult;
  * {@link com.att.research.xacmlatt.pdp.policy.TargetedCombinerParameter}s for use with a
  * {@link com.att.research.xacmlatt.pdp.policy.CombiningAlgorithm} to get a combined {@link com.att.research.xacmlatt.pdp.eval.EvaluationResult}
  *
- * @author car
- * @version $Revision: 1.1 $
  *
  * @param <T> the java class extending <code>Evaluatable</code> of the objects to be combined
  */

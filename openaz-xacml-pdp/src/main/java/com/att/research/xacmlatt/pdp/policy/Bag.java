@@ -39,8 +39,6 @@ import com.att.research.xacml.api.AttributeValue;
 /**
  * Bag represents a collection of XACML attribute values for the same attribute.
  *
- * @author car
- * @version $Revision: 1.1 $
  */
 public class Bag {
     public static final Bag	EMPTY	= new Bag();

@@ -33,8 +33,6 @@ package com.att.research.xacml.api.pdp;
 /**
  * ScopeResolverException is thrown by the {@link ScopeResolver} interface methods.
  *
- * @author car
- * @version $Revision$
  */
 public class ScopeResolverException extends Exception {
     private static final long serialVersionUID = -5818416719823811113L;

@@ -62,7 +62,6 @@ import com.att.research.xacml.api.Result;
  * default if the statusCode default has not been configured is
  * {@link PepResponseBehavior#THROW_EXCEPTION}.
  * <p>
- * @author Josh Bregman, Rich Levinson, Prateek Mishra
  */
 public interface PepResponseFactory {
 

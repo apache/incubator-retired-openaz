@@ -37,8 +37,6 @@ import java.util.Iterator;
 /**
  * Provides the API for objects that represent XACML Request elements.  Requests are used to specify the contents of a XACML decision request.
  *
- * @author Christopher A. Rath
- * @version $Revision: 1.2 $
  */
 public interface Request {
 

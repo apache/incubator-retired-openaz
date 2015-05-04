@@ -22,7 +22,6 @@ package org.openliberty.openaz.pepapi;
 
 /**
  *
- * @author Josh Bregman, Rich Levinson, Prateek Mishra
  */
 public enum PepResponseType {
     /** The PepResponse returned for this query type will contain

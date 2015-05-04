@@ -58,7 +58,6 @@ import com.att.research.xacmlatt.pdp.policy.FunctionArgumentBag;
  * TO RUN - use jUnit
  * In Eclipse select this file or the enclosing directory, right-click and select Run As/JUnit Test
  *
- * @author glenngriffin
  *
  */
 public class FunctionDefinitionHomogeneousSimpleTest {

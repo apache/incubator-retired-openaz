@@ -50,8 +50,6 @@ import com.att.research.xacmlatt.pdp.policy.PolicyIssuer;
  * DOMPolicyIssuer extends {@link com.att.research.xacmlatt.pdp.policy.PolicyIsser} with methods for creation from
  * DOM {@link org.w3c.dom.Node}s.
  *
- * @author car
- * @version $Revision: 1.2 $
  */
 public class DOMPolicyIssuer extends PolicyIssuer {
     private static Log 			logger							= LogFactory.getLog(DOMPolicyIssuer.class);

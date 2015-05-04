@@ -33,8 +33,6 @@ package com.att.research.xacml.api;
 /**
  * Version is the interface that objects that represent XACML VersionType attributes and elements implement.
  *
- * @author car
- * @version $Revision: 1.1 $
  */
 public interface Version extends Comparable<Version>, SemanticString {
     /**

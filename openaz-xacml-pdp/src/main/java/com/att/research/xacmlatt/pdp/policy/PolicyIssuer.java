@@ -45,8 +45,6 @@ import com.att.research.xacml.std.StdStatusCode;
  * PolicyIssuer extends {@link com.att.research.xacmlatt.pdp.policy.PolicyComponent} to represent the XACML 3.0
  * PolicyIssuer element in Policies and PolicySets.
  *
- * @author car
- * @version $Revision: 1.1 $
  */
 public class PolicyIssuer extends PolicyComponent {
     private Node			content;

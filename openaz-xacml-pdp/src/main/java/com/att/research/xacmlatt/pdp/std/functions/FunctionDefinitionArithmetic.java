@@ -70,8 +70,6 @@ import com.att.research.xacmlatt.pdp.policy.FunctionArgument;
  * 		round
  * 		floor
  *
- * @author glenngriffin
- * @version $Revision: 1.1 $
  *
  * @param <T> the java class for the data type of the function arguments
  */
@@ -80,7 +78,6 @@ public class FunctionDefinitionArithmetic<T extends Number> extends FunctionDefi
     /**
      * List of arithmetic operations.
      *
-     * @author glenngriffin
      *
      */
     public enum OPERATION {ADD, SUBTRACT, MULTIPLY, DIVIDE, MOD, ABS, ROUND, FLOOR };

@@ -34,6 +34,4 @@ package com.att.research.xacml.std.pip.engines;
 /**
  * com.att.research.xacml.std.pip.engines contains the standard implementation of the PIPEngine interface
  *
- * @author Christopher A. Rath
- * @version $Revision: 1.1 $
  */

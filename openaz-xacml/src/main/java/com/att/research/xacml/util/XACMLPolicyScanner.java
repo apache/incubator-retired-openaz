@@ -86,7 +86,6 @@ import com.att.research.xacml.std.StdMutableObligation;
  * This class traverses the hierarchy of a XACML 3.0 policy. You can optionally pass a Callback class
  * and override any desired methods to retrieve information from a policy.
  *
- * @author pameladragosh
  *
  */
 public class XACMLPolicyScanner {
@@ -95,7 +94,6 @@ public class XACMLPolicyScanner {
      * Very simple enumeration used in the callback class. Return CONTINUE to instruct the XACMLPolicyScanner
      * to continue scanning the policy. Otherwise, call STOP to terminate scanning the policy.
      *
-     * @author pameladragosh
      *
      */
     public enum CallbackResult {
@@ -114,7 +112,6 @@ public class XACMLPolicyScanner {
      * When the XACMLPolicyScanner encounters a relevant element in the policy, it calls the appropriate
      * method.
      *
-     * @author pameladragosh
      *
      */
     public interface Callback {
@@ -269,7 +266,6 @@ public class XACMLPolicyScanner {
      * to implement all the callback functions available. Each method simply returns
      * CallbackResult.CONTINUE.
      *
-     * @author pameladragosh
      *
      */
     public static class SimpleCallback implements Callback {

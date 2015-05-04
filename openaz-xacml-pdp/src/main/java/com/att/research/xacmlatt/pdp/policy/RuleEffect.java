@@ -36,8 +36,6 @@ import com.att.research.xacml.api.Decision;
  * RuleEffect is an enumeration of the XACML decision effects that a {@link Rule} may apply
  * to.
  *
- * @author car
- * @version $Revision: 1.1 $
  */
 public enum RuleEffect {
     DENY("Deny", Decision.DENY),

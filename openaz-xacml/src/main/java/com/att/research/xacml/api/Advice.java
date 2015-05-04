@@ -35,8 +35,6 @@ import java.util.Collection;
 /**
  * Defines the API for objects that implement XACML 3.0 AssociatedAdvice elements.
  *
- * @author Christopher A. Rath
- * @version $Revision: 1.1 $
  */
 public interface Advice {
     /**

@@ -48,8 +48,6 @@ import com.google.common.base.Splitter;
 /**
  * XACMLProperties is a wrapper around a <code>Properties</code> object loaded from a standard location for XACML properties.
  *
- * @author car
- * @version $Revision: 1.2 $
  */
 public class XACMLProperties {
     private static final Log logger	= LogFactory.getLog(XACMLProperties.class);

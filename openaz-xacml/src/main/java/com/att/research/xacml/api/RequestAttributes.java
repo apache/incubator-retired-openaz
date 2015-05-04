@@ -40,8 +40,6 @@ import org.w3c.dom.NodeList;
  * {@link AttributeCategory} interface with methods for accessing DOM {@link org.w3c.dom.Node}s
  * representing XACML 3.0 Content elements.
  *
- * @author Christopher A. Rath
- * @version $Revision: 1.1 $
  */
 public interface RequestAttributes extends AttributeCategory {
     /**

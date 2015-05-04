@@ -70,8 +70,6 @@ import com.google.common.base.Splitter;
  * Implements the {@link JDBCResolver} for SQL queries with parameters in
  * their prepared statements specified as XACML Attribute values.
  *
- * @author Christopher A. Rath
- * @version $Revision$
  */
 public class ConfigurableJDBCResolver implements JDBCResolver {
     public static final String PROP_SELECT			= "select";

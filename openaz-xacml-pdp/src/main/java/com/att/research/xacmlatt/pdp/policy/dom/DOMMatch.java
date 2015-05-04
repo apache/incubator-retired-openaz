@@ -48,8 +48,6 @@ import com.att.research.xacmlatt.pdp.policy.Match;
  * DOMMatch extends {@link com.att.research.xacmlatt.pdp.policy.Match} with methods for creation from
  * DOM {@link org.w3c.dom.Node}s.
  *
- * @author car
- * @version $Revision: 1.3 $
  */
 public class DOMMatch extends Match {
     private static Log logger	= LogFactory.getLog(DOMMatch.class);

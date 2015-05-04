@@ -46,8 +46,6 @@ import javax.xml.XMLConstants;
  * This NamespaceContext applies to only a single scope and therefore can have at most one default unbound (i.e. with no Prefix) Namespace.
  * All other Namespaces in this context must have a prefix.
  *
- * @author glenngriffin
- * @version $Revision$
  */
 public class StringNamespaceContext extends ExtendedNamespaceContext {
 

@@ -48,8 +48,6 @@ import com.att.research.xacmlatt.pdp.policy.Policy;
  * DOMAttributeAssignmentExpression extends {@link com.att.research.xacmlatt.pdp.policy.AttributeAssignmentExpression} with
  * methods for creation from {@link org.w3c.dom.Node}s.
  *
- * @author car
- * @version $Revision: 1.3 $
  */
 public class DOMAttributeAssignmentExpression extends AttributeAssignmentExpression {
     private static final Log logger	= LogFactory.getLog(DOMAttributeAssignmentExpression.class);

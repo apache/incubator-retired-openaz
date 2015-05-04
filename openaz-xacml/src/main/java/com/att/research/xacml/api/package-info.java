@@ -36,6 +36,4 @@ package com.att.research.xacml.api;
  *
  * Provides the interface for implementing a Policy Administration Point (PAP) API.
  *
- * @author Christopher A. Rath
- * @version $Revision: 1.1 $
  */

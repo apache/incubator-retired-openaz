@@ -33,7 +33,6 @@ import java.util.Set;
 /**
  * Acts as a store for Obligation instances in the current thread of execution.
  *
- * @author Ajith Nair, David Laurance, Darshak Kothari
  *
  */
 public final class ThreadLocalObligationStore implements ObligationStore {

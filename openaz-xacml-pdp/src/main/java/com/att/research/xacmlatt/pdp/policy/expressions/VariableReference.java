@@ -47,8 +47,6 @@ import com.att.research.xacmlatt.pdp.policy.VariableDefinition;
  * VariableReference extends {@link com.att.research.xacmlatt.pdp.policy.Expression} to implement the XACML VariableReference
  * element.
  *
- * @author car
- * @version $Revision: 1.1 $
  */
 public class VariableReference extends Expression implements Traceable {
     private static final ExpressionResult ER_SE_NO_EXPRESSION	= ExpressionResult.newError(new StdStatus(StdStatusCode.STATUS_CODE_SYNTAX_ERROR, "Missing Expression for VariableDefinition"));

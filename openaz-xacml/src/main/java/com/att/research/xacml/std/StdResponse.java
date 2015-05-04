@@ -39,8 +39,6 @@ import com.att.research.xacml.util.Wrapper;
 /**
  * Immutable implementation of the {@link com.att.research.xacml.api.Response} interface.
  *
- * @author Christopher A. Rath
- * @version $Revision$
  */
 public class StdResponse extends Wrapper<Response> implements Response {
     /**

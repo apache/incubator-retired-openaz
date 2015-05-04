@@ -44,8 +44,6 @@ import com.att.research.xacml.std.StdVersionMatch;
  * JaxpIdReferenceMatch extends {@link com.att.research.xacml.std.StdIdReferenceMatch} with methods for creation
  * from JAXP elements.
  *
- * @author car
- * @version $Revision: 1.1 $
  */
 public class JaxpIdReferenceMatch extends StdIdReferenceMatch {
 

@@ -37,8 +37,6 @@ import com.att.research.xacml.api.SemanticString;
 /**
  * RFC2396DomainName represents a host name from the RFC2396 specification.
  *
- * @author car
- * @version $Revision: 1.1 $
  */
 public class RFC2396DomainName implements SemanticString {
     private String		domainName;

@@ -52,7 +52,6 @@ import java.util.List;
  * Specific AzService implementations(PDP Providers) may implement bulkDecide() as a XACML MultiRequest (Note: XACML Multi Decision Profile is optional)
  * or as individual requests executed iteratively.
  *
- * @author Ajith Nair, David Laurance, Darshak Kothari
  *
  */
 public interface PepAgent {

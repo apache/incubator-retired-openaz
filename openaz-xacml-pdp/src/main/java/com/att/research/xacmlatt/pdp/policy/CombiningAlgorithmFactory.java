@@ -41,8 +41,6 @@ import com.att.research.xacmlatt.pdp.util.ATTPDPProperties;
  * CombiningAlgorithmFactory is an abstract class for mapping function {@link com.att.research.xacml.api.Identifier} ids to
  * {@link CombiningAlgorithm} objects.
  *
- * @author car
- * @version $Revision: 1.3 $
  */
 public abstract class CombiningAlgorithmFactory {
     private static final String	FACTORYID					= ATTPDPProperties.PROP_COMBININGALGORITHMFACTORY;

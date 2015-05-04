@@ -70,8 +70,6 @@ import com.att.research.xacmlatt.pdp.policy.PolicyDefaults;
  * AttributeSelector extends {@link com.att.research.xacmlatt.pdp.policy.expressions.AttributeRetrievalBase} to implement
  * the XACML AttributeSelector element.
  *
- * @author car
- * @version $Revision: 1.2 $
  */
 public class AttributeSelector extends AttributeRetrievalBase {
     private Identifier 		contextSelectorId;

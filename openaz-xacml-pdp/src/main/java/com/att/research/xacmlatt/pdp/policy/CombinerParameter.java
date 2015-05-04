@@ -37,8 +37,6 @@ import com.att.research.xacml.std.StdStatusCode;
 /**
  * CombinerParameter extends {@link PolicyComponent} to represent a XACML CombinerParameter element.
  *
- * @author car
- * @version $Revision: 1.1 $
  */
 public class CombinerParameter extends PolicyComponent {
     private String 				name;

@@ -50,8 +50,6 @@ import com.att.research.xacmlatt.pdp.policy.TargetedCombinerParameter;
  * DOMPolicyCombinerParameter extends {@link com.att.research.xacmlatt.pdp.policy.TargetedCombinerParameter} for
  * {@link com.att.research.xacmlatt.pdp.policy.Policy}s with methods for creation from DOM {@link org.w3c.dom.Node}s.
  *
- * @author car
- * @version $Revision: 1.2 $
  */
 public class DOMPolicyCombinerParameter extends TargetedCombinerParameter<Identifier, PolicySetChild> {
     private static final Log logger	= LogFactory.getLog(DOMPolicyCombinerParameter.class);

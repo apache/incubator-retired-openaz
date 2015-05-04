@@ -39,6 +39,4 @@ package com.att.research.xacml;
  *
  * The packages in com.att.research.std define standard implementations of the com.att.research.api interfaces.
  *
- * @author Christopher A. Rath
- * @version $Revision: 1.1 $
  */

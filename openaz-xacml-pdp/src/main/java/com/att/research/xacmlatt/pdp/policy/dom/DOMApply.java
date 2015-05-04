@@ -48,8 +48,6 @@ import com.att.research.xacmlatt.pdp.policy.expressions.Apply;
  * DOMApply extends {@link com.att.research.xacmlatt.pdp.policy.expressions.Apply} with methods for creation from
  * DOM {@link org.w3c.dom.Node}s.
  *
- * @author car
- * @version $Revision: 1.2 $
  */
 public class DOMApply extends Apply {
     private static final Log logger	= LogFactory.getLog(DOMApply.class);

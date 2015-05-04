@@ -51,8 +51,6 @@ import java.util.Properties;
  * StdEvaluationContext implements the {@link com.att.research.xacmlatt.pdp.eval.EvaluationContext} interface using
  * default factories to load the XACML policies, and get the PIP engines.
  *
- * @author car
- * @version $Revision: 1.1 $
  */
 public class StdEvaluationContext implements EvaluationContext {
     private Log logger	= LogFactory.getLog(this.getClass());

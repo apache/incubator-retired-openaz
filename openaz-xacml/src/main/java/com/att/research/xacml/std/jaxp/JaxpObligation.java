@@ -47,8 +47,6 @@ import com.att.research.xacml.std.StdMutableObligation;
  * JaxpObligation extends {@link com.att.research.xacml.std.StdMutableObligation} with methods for creation from
  * JAXP elements.
  *
- * @author car
- * @version $Revision: 1.1 $
  */
 public class JaxpObligation extends StdMutableObligation {
 

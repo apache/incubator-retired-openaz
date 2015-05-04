@@ -44,8 +44,6 @@ import com.att.research.xacmlatt.pdp.policy.PolicyDefaults;
  * AttributeValueExpression extends {@link com.att.research.xacmlatt.pdp.policy.Expression} to represent XACML
  * AttributeValue elements in an Expression context.
  *
- * @author car
- * @version $Revision: 1.1 $
  */
 public class AttributeValueExpression extends Expression {
     private AttributeValue<?> attributeValue;

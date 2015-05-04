@@ -67,8 +67,6 @@ import com.google.common.cache.Cache;
  * retrieves XACML attributes from a database using JDBC.  This is a minimal implementation that does not do any caching of
  * results.  It does not perform JDBC connection pooling either.
  *
- * @author Christopher A. Rath
- * @version $Revision$
  */
 public class JDBCEngine extends StdConfigurableEngine {
     public static final String PROP_TYPE			= "type";

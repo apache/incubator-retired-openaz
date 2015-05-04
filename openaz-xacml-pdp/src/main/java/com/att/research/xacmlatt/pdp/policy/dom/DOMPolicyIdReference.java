@@ -43,8 +43,6 @@ import com.att.research.xacmlatt.pdp.policy.PolicySet;
  * DOMPolicyIdReference extends {@link com.att.research.xacmlatt.pdp.policy.PolicyIdReference} with methods for creation
  * from DOM {@link org.w3c.dom.Node}s.
  *
- * @author car
- * @version $Revision: 1.2 $
  */
 public class DOMPolicyIdReference {
 

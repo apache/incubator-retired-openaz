@@ -63,7 +63,6 @@ import java.util.concurrent.CopyOnWriteArrayList;
  * Servlet implementation class XacmlPapServlet
  *
  *
- * @author pameladragosh
  */
 @WebServlet(
     description = "Implements the XACML PAP RESTful API.",
@@ -1115,7 +1114,6 @@ public class XACMLPapServlet extends HttpServlet implements StdItemSetChangeList
      * it could take a long time to cycle through all of the PDPs.
      * That means that this may not notice a PDP being down in a predictable time.
      *
-     * @author glenngriffin
      *
      */
     private class Heartbeat implements Runnable {

@@ -59,8 +59,6 @@ import com.att.research.xacmlatt.pdp.policy.FunctionArgument;
  * 		date-subtract-yearMonthDuration
  *
  *
- * @author glenngriffin
- * @version $Revision: 1.1 $
  *
  * @param <I> the java class for the data type of the function Input arguments;
  * 		SPECIAL CASE: this applies ONLY to the 2nd argument.
@@ -72,7 +70,6 @@ public class FunctionDefinitionDateTimeArithmetic<O extends IDateTime<O>, I exte
     /**
      * List of Date and Time Arithmetic operations.
      *
-     * @author glenngriffin
      *
      */
     public enum OPERATION {ADD, SUBTRACT};

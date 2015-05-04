@@ -34,8 +34,6 @@ package com.att.research.xacml.api;
  * Defines the API for objects that represent XACML PolicyIdReference or PolicySetIdReference elements with exact, earliest, and latest version
  * matching.
  *
- * @author Christopher A. Rath
- * @version $Revision: 1.1 $
  */
 public interface IdReferenceMatch {
     /**

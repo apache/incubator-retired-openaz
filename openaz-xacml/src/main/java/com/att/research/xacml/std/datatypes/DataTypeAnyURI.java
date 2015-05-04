@@ -40,8 +40,6 @@ import com.att.research.xacml.api.XACML;
 /**
  * DataTypeAnyURI extends {@link DataTypeBase} for the XACML anyURI data type.
  *
- * @author car
- * @version $Revision: 1.2 $
  */
 public class DataTypeAnyURI extends DataTypeBase<URI> {
     private static final DataTypeAnyURI	singleInstance	= new DataTypeAnyURI();

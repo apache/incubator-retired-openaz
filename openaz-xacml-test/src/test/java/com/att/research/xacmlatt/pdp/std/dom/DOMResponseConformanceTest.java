@@ -54,7 +54,6 @@ import com.att.research.xacml.std.dom.DOMResponse;
  *
  *
  *
- * @author glenngriffin
  *
  */
 public class DOMResponseConformanceTest {

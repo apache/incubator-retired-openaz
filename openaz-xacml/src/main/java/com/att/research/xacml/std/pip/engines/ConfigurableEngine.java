@@ -39,8 +39,6 @@ import com.att.research.xacml.api.pip.PIPException;
  * ConfigurableEngine extends the {@link com.att.research.xacml.api.pip.PIPEngine} interface with methods
  * for configuring the engine from a <code>Properties</code> object.
  *
- * @author car
- * @version $Revision: 1.1 $
  */
 public interface ConfigurableEngine extends PIPEngine {
     /**

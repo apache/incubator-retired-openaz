@@ -38,8 +38,6 @@ import com.att.research.xacml.util.ObjUtil;
 /**
  * Immutable implementation of the {@link com.att.research.xacml.api.IdReference} interface.
  *
- * @author Christopher A. Rath
- * @version $Revision: 1.1 $
  */
 public class StdIdReference implements IdReference {
     private Identifier	id;

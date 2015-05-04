@@ -47,8 +47,6 @@ import com.att.research.xacmlatt.pdp.policy.RuleEffect;
  * LegacyPermitOverridesRule extends {@link com.att.research.xacmlatt.pdp.policy.combiners.CombiningAlgorithmBase} for
  * {@link com.att.research.xacmlatt.pdp.policy.Rule}s to implement the XACML 1.0 permit-overrides rule combining algorithm.
  *
- * @author car
- * @version $Revision: 1.1 $
  */
 public class LegacyPermitOverridesRule extends CombiningAlgorithmBase<Rule> {
 

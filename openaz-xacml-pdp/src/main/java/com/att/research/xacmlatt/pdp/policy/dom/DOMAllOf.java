@@ -47,8 +47,6 @@ import com.att.research.xacmlatt.pdp.policy.AllOf;
  * DOMAllOf extends {@link com.att.research.xacmlatt.pdp.policy.AllOf} with methods for creation from
  * DOM {@link org.w3c.dom.Node}s.
  *
- * @author car
- * @version $Revision: 1.2 $
  */
 public class DOMAllOf extends AllOf {
     private static final Log logger	= LogFactory.getLog(DOMAllOf.class);

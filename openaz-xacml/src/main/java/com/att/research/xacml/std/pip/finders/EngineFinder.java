@@ -53,8 +53,6 @@ import com.att.research.xacml.std.pip.StdPIPResponse;
  * EngineFinder implements the {@link com.att.research.xacml.api.pip.PIPFinder} interface by maintaining a simple list of
  * registered {@link com.att.research.xacml.api.pip.PIPEngine} objects.
  *
- * @author car
- * @version $Revision: 1.1 $
  */
 public class EngineFinder implements PIPFinder {
     private Map<String,List<PIPEngine>> pipEngines	= new HashMap<String,List<PIPEngine>>();

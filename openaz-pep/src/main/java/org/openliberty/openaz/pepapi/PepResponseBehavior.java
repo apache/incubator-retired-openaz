@@ -26,7 +26,6 @@ package org.openliberty.openaz.pepapi;
  * {@link org.openliberty.openaz.pepapi.PepResponse#allowed()} is called AND the
  * decision is either Indeterminate or NotApplicable.
  *
- * @author Josh Bregman, Rich Levinson, Prateek Mishra
  *
  */
 public enum PepResponseBehavior {

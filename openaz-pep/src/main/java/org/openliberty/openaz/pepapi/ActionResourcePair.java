@@ -24,7 +24,6 @@ package org.openliberty.openaz.pepapi;
 /**
  * A convenient abstraction for an action - resource pair.
  *
- * @author Ajith Nair, David Laurance, Darshak Kothari
  *
  */
 public final class ActionResourcePair {

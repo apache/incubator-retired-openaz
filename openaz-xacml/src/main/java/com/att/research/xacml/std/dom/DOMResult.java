@@ -46,8 +46,6 @@ import com.att.research.xacml.std.StdResult;
  * DOMResult extends {@link com.att.research.xacml.std.StdMutableResult} with methods for creation from
  * DOM {@link org.w3c.dom.Node}s.
  *
- * @author car
- * @version $Revision: 1.2 $
  */
 public class DOMResult {
     private static final Log logger	= LogFactory.getLog(DOMResult.class);

@@ -39,8 +39,6 @@ import com.att.research.xacml.util.ObjUtil;
 /**
  * StdVersionMatch implements {@link com.att.research.xacml.api.VersionMatch} as an array of integers.
  *
- * @author car
- * @version $Revision: 1.1 $
  */
 public class StdVersionMatch implements VersionMatch {
     private int[]	matchComponents;

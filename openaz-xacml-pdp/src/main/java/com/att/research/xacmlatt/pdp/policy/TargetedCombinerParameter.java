@@ -38,7 +38,6 @@ import com.att.research.xacml.api.StatusCode;
  * reference to a particular sub-element within the evaluatable children that should be used when combining evaluation
  * results from that sub-element.
  *
- * @author car
  *
  * @param <T> the type of the identifier used to reference the targeted object
  * @param <U> the type of the targeted object

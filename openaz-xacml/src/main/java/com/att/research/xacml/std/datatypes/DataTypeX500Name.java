@@ -38,8 +38,6 @@ import com.att.research.xacml.api.XACML1;
 /**
  * DataTypeX500Name extends {@link DataTypeBase} to implement the XACML x500Name data type.
  *
- * @author car
- * @version $Revision: 1.1 $
  */
 public class DataTypeX500Name extends DataTypeBase<X500Principal> {
     private static final DataTypeX500Name	singleInstance	= new DataTypeX500Name();

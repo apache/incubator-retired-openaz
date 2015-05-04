@@ -35,8 +35,6 @@ package com.att.research.xacmlatt.pdp.eval;
  * EvaluationException extends <code>Exception</code> to represent errors returned by methods of the
  * {@link Evaluatable} interface and the {@link Matchable} interface.
  *
- * @author car
- * @version $Revision: 1.1 $
  */
 public class EvaluationException extends Exception {
     private static final long serialVersionUID = 302250127793947492L;

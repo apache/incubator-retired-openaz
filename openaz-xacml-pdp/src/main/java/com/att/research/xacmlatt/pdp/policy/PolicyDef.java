@@ -56,8 +56,6 @@ import com.att.research.xacmlatt.pdp.eval.MatchResult;
  * PolicyDef extends {@link com.att.research.xacmlatt.pdp.policy.PolicySetChild} with members and methods common
  * to XACML 3.0 Policies and PolicySets.
  *
- * @author car
- * @version $Revision: 1.2 $
  */
 public abstract class PolicyDef extends PolicySetChild {
     private String 						description;

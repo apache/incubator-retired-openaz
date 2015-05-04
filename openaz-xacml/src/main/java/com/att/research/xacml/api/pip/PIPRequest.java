@@ -36,8 +36,6 @@ import com.att.research.xacml.api.Identifier;
  * PIPRequest is the interface that objects implement to represent a request to a {@link PIPEngine} to retrieve
  * attributes with values that meet a given request.
  *
- * @author car
- * @version $Revision: 1.1 $
  */
 public interface PIPRequest {
     /**

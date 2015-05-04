@@ -58,8 +58,6 @@ import com.att.research.xacmlatt.pdp.policy.FunctionArgument;
  * This file supports the following XACML codes:
  * 		uri-string-concatenate
  *
- * @author glenngriffin
- * @version $Revision: 1.1 $
  *
  */
 @Deprecated

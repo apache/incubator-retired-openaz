@@ -36,8 +36,6 @@ import com.att.research.xacml.std.IdentifierImpl;
  * XACML1 contains the constants (<code>String</code>s, <code>URI</code>s {@link com.att.research.xacml.api.Identifier}s that are
  * defined in the XACML 1.0 Specification: "OASIS Standard 1.0, 18 February 2003 OASIS Standard as of 6 Feb. 2003".
  *
- * @author car
- * @version $Revision$
  */
 public class XACML1 {
 

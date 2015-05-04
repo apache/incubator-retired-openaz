@@ -48,8 +48,6 @@ import com.att.research.xacmlatt.pdp.policy.PolicyDefaults;
 /**
  * Function extends {@link com.att.research.xacmlatt.pdp.policy.Expression} to implement the XACML Function element.
  *
- * @author car
- * @version $Revision: 1.1 $
  */
 public class Function extends Expression {
     private Identifier functionId;

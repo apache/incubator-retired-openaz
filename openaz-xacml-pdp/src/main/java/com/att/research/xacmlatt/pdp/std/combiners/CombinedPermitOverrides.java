@@ -42,7 +42,6 @@ import com.att.research.xacmlatt.pdp.policy.CombinerParameter;
 import com.att.research.xacmlatt.pdp.policy.CombiningElement;
 
 /**
- * @author pameladragosh
  *
  * This algorithm was created to support combining a collection of policies in which the permit's are combined into one decision. PermitOverrides
  * itself will stop once a Permit is found. However, some policy makers want every policy in a policy set to be visited by the PDP engine.

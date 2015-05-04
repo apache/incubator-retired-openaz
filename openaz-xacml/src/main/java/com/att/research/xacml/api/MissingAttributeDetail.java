@@ -36,8 +36,6 @@ import java.util.Collection;
  * Defines the API for objects that represent XACML MissingAtributeDetail elements as part of a Status element.  MissingAttributeDetails relay
  * information back about the reason a policy decision may have failed due to the absence of required AttributeValues.
  *
- * @author Christopher A. Rath
- * @version $Revision: 1.1 $
  */
 public interface MissingAttributeDetail {
     /**

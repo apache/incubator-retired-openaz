@@ -53,8 +53,6 @@ import com.att.research.xacmlatt.pdp.policy.expressions.AttributeRetrievalBase;
  * Match extends {@link com.att.research.xacmlatt.pdp.policy.PolicyComponent} and implements the
  * {@link com.att.research.xacmlatt.pdp.eval.Matchable} interface to represent a XACML Match element.
  *
- * @author car
- * @version $Revision: 1.2 $
  */
 public class Match extends PolicyComponent implements Matchable {
     private Identifier				matchId;

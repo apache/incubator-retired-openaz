@@ -24,7 +24,6 @@ package org.openliberty.openaz.pepapi;
  * RuntimeException thrown when a registered handler class does not contain one of the
  * required annotations - <code>@MatchAnyObligation</code>, <code>@MatchAllObligationAttributes</code>.
  *
- * @author Ajith Nair, David Laurance, Darshak Kothari
  *
  */
 @SuppressWarnings("serial")

@@ -38,8 +38,6 @@ import com.att.research.xacmlatt.pdp.eval.EvaluationContext;
  * Policy or Policy set.  The interface is designed to allow for finders that can retrieve a root policy from a repository based on
  * matching a {@link com.att.research.xacml.api.Request}.
  *
- * @author car
- * @version $Revision: 1.1 $
  */
 public interface PolicyFinder {
     /**

@@ -32,7 +32,6 @@ import java.util.Map.Entry;
 /**
  * Abstraction for an attribute container of a specific XACML category.
  *
- * @author Ajith Nair, David Laurance, Darshak Kothari
  *
  */
 public class CategoryContainer {

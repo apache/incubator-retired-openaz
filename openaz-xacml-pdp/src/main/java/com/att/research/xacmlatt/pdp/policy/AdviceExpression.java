@@ -49,8 +49,6 @@ import com.att.research.xacmlatt.pdp.eval.EvaluationException;
 /**
  * AdviceExpression extends {@link PolicyComponent} to implement the XACML AdviceExpression element.
  *
- * @author car
- * @version $Revision: 1.1 $
  */
 public class AdviceExpression extends PolicyComponent {
     private List<AttributeAssignmentExpression>	listAttributeAssignmentExpressions	= new ArrayList<AttributeAssignmentExpression>();

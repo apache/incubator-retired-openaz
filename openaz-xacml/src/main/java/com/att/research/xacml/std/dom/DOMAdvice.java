@@ -49,8 +49,6 @@ import com.att.research.xacml.std.StdMutableAdvice;
  * a {@link org.w3c.dom.Node} representing a XACML 3.0 Advice element, and for creating a <code>List</code> of <code>Advice</code>
  * objects from a <code>Node</code> representing a XACML 3.0 AssociatedAdvice element.
  *
- * @author Christopher A. Rath
- * @version $Revision: 1.2 $
  */
 public class DOMAdvice {
     private static Log logger	= LogFactory.getLog(StdMutableAdvice.class);

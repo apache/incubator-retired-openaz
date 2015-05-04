@@ -42,8 +42,6 @@ import com.att.research.xacml.api.SemanticString;
  * ISO8601Date is a representation of an ISO8601 format date without a time component.
  * NOTE: This is actually the extended specification for XACML3.0, not a strict ISO8601 date
  *
- * @author car
- * @version $Revision: 1.2 $
  */
 public class ISO8601Date implements IDateTime<ISO8601Date>, Comparable<ISO8601Date>, SemanticString {
     private ISO8601DateTime	dateTime;

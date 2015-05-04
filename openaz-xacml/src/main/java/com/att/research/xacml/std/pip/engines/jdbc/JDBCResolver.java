@@ -47,8 +47,6 @@ import com.att.research.xacml.std.pip.engines.ConfigurableResolver;
  * create <code>PreparedStatement</code>s for XACML attribute requests and convert the <code>ResultSet</code>
  * into XACML attributes.
  *
- * @author car
- * @version $Revision$
  */
 public interface JDBCResolver extends ConfigurableResolver {
 

@@ -69,7 +69,6 @@ import com.att.research.xacmlatt.pdp.test.TestBase;
  * This example application shows how to use annotations for Java classes to create requests to send to the
  * engine.
  *
- * @author pameladragosh
  *
  */
 public class TestAnnotation extends TestBase {
@@ -82,7 +81,6 @@ public class TestAnnotation extends TestBase {
      * it also demonstrates the various Java objects that can be used and how the request parser will
      * resolve each object's datatype.
      *
-     * @author pameladragosh
      *
      */
     @XACMLRequest(ReturnPolicyIdList=true)

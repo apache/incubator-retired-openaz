@@ -36,8 +36,6 @@ import com.att.research.xacml.std.IdentifierImpl;
 /**
  * XACML defines a number of constants useful in processing XACML documents.
  *
- * @author car
- * @version $Revision: 1.3 $
  */
 public class XACML {
 

@@ -39,8 +39,6 @@ import com.att.research.xacml.util.ObjUtil;
 /**
  * Immutable implementation of the {@link com.att.research.xacml.api.RequestDefaults} interface for the XACML RequestDefaults element.
  *
- * @author Christopher A. Rath
- * @version $Revision: 1.1 $
  */
 public class StdRequestDefaults implements RequestDefaults {
     private URI xpathVersion;

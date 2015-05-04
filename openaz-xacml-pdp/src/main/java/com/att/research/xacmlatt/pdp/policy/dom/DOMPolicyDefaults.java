@@ -50,8 +50,6 @@ import com.att.research.xacmlatt.pdp.policy.PolicyDefaults;
  * DOMPolicyDefaults extends {@link com.att.research.xacmlatt.pdp.policy.PolicyDefaults} with methods for creation from
  * DOM {@org.w3c.dom.Node}s.
  *
- * @author car
- * @version $Revision: 1.2 $
  */
 public class DOMPolicyDefaults extends PolicyDefaults {
     private static final Log logger	= LogFactory.getLog(DOMPolicyDefaults.class);

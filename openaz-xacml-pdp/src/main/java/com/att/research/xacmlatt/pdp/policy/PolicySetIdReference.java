@@ -39,8 +39,6 @@ import com.att.research.xacmlatt.pdp.eval.EvaluationException;
  * {@link com.att.research.xacmlatt.pdp.PolicySet} objects to implement the <code>ensureReferencee</code>
  * method to find <code>PolicySet</code>s.
  *
- * @author car
- * @version $Revision: 1.2 $
  */
 public class PolicySetIdReference extends PolicyIdReferenceBase<PolicySet> {
 

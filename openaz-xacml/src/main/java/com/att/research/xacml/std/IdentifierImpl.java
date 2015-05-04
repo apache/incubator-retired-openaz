@@ -40,8 +40,6 @@ import com.att.research.xacml.util.ObjUtil;
 /**
  * IdentifierImpl provides a common implementation of the {@link com.att.research.xacml.api.Identifier} interface with a stored, fixed <code>URI</code>.
  *
- * @author car
- * @version $Revision: 1.3 $
  */
 public class IdentifierImpl implements Identifier {
     private URI	uri;

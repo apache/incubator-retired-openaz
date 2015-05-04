@@ -51,8 +51,6 @@ import com.att.research.xacml.util.Wrapper;
 /**
  * Immutable implementation of the {@link com.att.research.xacml.api.pip.PIPResponse} interface.
  *
- * @author Christopher A. Rath
- * @version $Revision$
  */
 public class StdPIPResponse extends Wrapper<PIPResponse> implements PIPResponse {
     public static final PIPResponse	PIP_RESPONSE_EMPTY	= new StdPIPResponse(StdStatus.STATUS_OK);

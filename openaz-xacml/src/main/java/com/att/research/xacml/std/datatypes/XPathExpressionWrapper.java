@@ -49,8 +49,6 @@ import com.att.research.xacml.std.StdStatusCode;
  * XPathExpressionWrapper implements the {@link javax.xml.xpath.XPathExpression} interface to wrap another <code>XPathExpression</code> and
  * keep the path expression that was used to create it.
  *
- * @author car
- * @version $Revision$
  */
 public class XPathExpressionWrapper implements XPathExpression {
     private XPathExpression	xpathExpressionWrapped;

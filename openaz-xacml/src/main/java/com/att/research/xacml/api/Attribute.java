@@ -36,8 +36,6 @@ import java.util.Iterator;
 /**
  * Defines the API for objects that represent XACML 3.0 Attribute elements.
  *
- * @author Christopher A. Rath
- * @version $Revision: 1.1 $
  */
 public interface Attribute {
     /**

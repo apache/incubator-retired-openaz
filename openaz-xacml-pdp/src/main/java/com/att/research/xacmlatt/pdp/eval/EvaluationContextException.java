@@ -34,8 +34,6 @@ package com.att.research.xacmlatt.pdp.eval;
  * EvaluationContextException extends <code>Exception</code> to represent errors thrown by
  * methods in the {@link EvaluationContext} and {@link EvaluationContextFactory}.
  *
- * @author car
- * @version $Revision: 1.1 $
  */
 public class EvaluationContextException extends Exception {
     private static final long serialVersionUID = -8270506903118536839L;

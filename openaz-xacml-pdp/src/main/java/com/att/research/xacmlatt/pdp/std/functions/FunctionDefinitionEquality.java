@@ -60,8 +60,6 @@ import com.att.research.xacmlatt.pdp.policy.FunctionArgument;
  * 		yearMonthDuration-equal
  * 		anyURI-equal
  *
- * @author car
- * @version $Revision: 1.2 $
  *
  * @param <I> the java class for the data type of the function Input arguments
  */

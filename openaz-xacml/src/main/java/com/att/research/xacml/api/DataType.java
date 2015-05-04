@@ -34,7 +34,6 @@ package com.att.research.xacml.api;
 /**
  * Defines the API for objects that represent XACML 3.0 data types.
  *
- * @author Christopher A. Rath
  *
  * @param <T> the class of the java objects that represent the XACML values
  */

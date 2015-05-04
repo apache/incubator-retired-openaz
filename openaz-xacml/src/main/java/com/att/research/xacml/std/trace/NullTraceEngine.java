@@ -39,8 +39,6 @@ import com.att.research.xacml.api.trace.TraceEvent;
  * Implements the {@link com.att.research.xacml.api.trace.TraceEngine} interface to just ignore {@link com.att.research.xacml.api.trace.TraceEvent}s.
  * This is the default implementation, returned by the default {@link com.att.research.xacml.api.trace.TraceEngineFactory}.
  *
- * @author Christopher A. Rath
- * @version $Revision$
  */
 public class NullTraceEngine implements TraceEngine {
     private static final NullTraceEngine nullTraceEngine	= new NullTraceEngine();

@@ -34,8 +34,6 @@ package com.att.research.xacml.api;
  * VersionMatch is the interface that objects implementing references to {@link Version} objects
  * must implement.
  *
- * @author car
- * @version $Revision: 1.1 $
  */
 public interface VersionMatch {
     /**

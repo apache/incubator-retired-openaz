@@ -38,8 +38,6 @@ import com.att.research.xacml.api.XACML;
  * PolicyDefaults represents the default values associated with a XACML 3.0 Policy or PolicySet that may
  * be overridden or inherited by child Policies or PolicySets.
  *
- * @author car
- * @version $Revision: 1.1 $
  */
 public class PolicyDefaults {
     private static URI		xpathVersionDefault;

@@ -33,8 +33,6 @@ package com.att.research.xacml.api;
 /**
  * Defines the API for objects representing XACML AttributeValue elements.
  *
- * @author Christopher A. Rath
- * @version $Revision: 1.2 $
  *
  * @param <T> the java type of the object representing the value of the XACML AttributeValue element.
  */

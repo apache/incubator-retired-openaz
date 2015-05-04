@@ -35,8 +35,6 @@ package com.att.research.xacml.api.trace;
  * Defines the API for objects that can be set as the "cause" in a {@link com.att.research.xacml.api.trace.TraceEvent}.  Objects
  * cause a <code>TraceEvent</code> through methods called during the evaluation of a XACML Policy or PolicySet.
  *
- * @author Christopher A. Rath
- * @version $Revision$
  */
 public interface Traceable {
     /**

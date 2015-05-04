@@ -40,8 +40,6 @@ import com.att.research.xacml.util.Wrapper;
 /**
  * Immutable implementation of the {@link com.att.research.xacml.api.Obligation} interface.
  *
- * @author Christopher A. Rath
- * @version $Revision$
  */
 public class StdObligation extends Wrapper<Obligation> implements Obligation {
     /**

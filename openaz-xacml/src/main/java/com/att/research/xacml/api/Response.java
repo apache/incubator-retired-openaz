@@ -37,8 +37,6 @@ import java.util.Collection;
  * Defines the API for objects that represent XACML Response documents.  Response documents wrap the Result elements for individual XACML
  * decision requests.
  *
- * @author Christopher A. Rath
- * @version $Revision: 1.2 $
  */
 public interface Response {
     /**

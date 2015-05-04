@@ -38,8 +38,6 @@ import com.att.research.xacml.util.ObjUtil;
 /**
  * Mutable implementation of the {@link com.att.research.xacml.api.Status} interface to represent a XACML Status element.
  *
- * @author Christopher A. Rath
- * @version $Revision: 1.1 $
  */
 public class StdMutableStatus implements Status {
     private StatusCode		statusCode;

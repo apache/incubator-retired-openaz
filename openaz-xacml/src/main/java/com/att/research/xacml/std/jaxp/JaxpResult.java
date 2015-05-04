@@ -48,8 +48,6 @@ import com.att.research.xacml.std.StdMutableResult;
  * JaxpResult extends {@link com.att.research.xacml.std.StdMutableResult} with methods for creation
  * from JAXP elements.
  *
- * @author car
- * @version $Revision: 1.1 $
  */
 public class JaxpResult extends StdMutableResult {
 

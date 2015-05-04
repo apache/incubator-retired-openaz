@@ -39,8 +39,6 @@ import com.att.research.xacml.util.Wrapper;
 /**
  * Immutable implementation of the {@link com.att.research.xacml.api.RequestReference} interface.
  *
- * @author Christopher A. Rath
- * @version $Revision$
  */
 public class StdRequestReference extends Wrapper<RequestReference> implements RequestReference {
     /**

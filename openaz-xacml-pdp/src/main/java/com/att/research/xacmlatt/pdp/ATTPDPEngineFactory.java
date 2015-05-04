@@ -45,8 +45,6 @@ import com.att.research.xacmlatt.pdp.eval.EvaluationContextFactory;
  * <code>newEngine</code> method to create a {@link ATTPDPEngine} instance and initialize it
  * with policies and PIP instances based on configuration information provided to the factory.
  *
- * @author car
- * @version $Revision: 1.4 $
  */
 public class ATTPDPEngineFactory extends PDPEngineFactory {
     private Log logger	= LogFactory.getLog(this.getClass());

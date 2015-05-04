@@ -41,8 +41,6 @@ import com.att.research.xacml.api.XACML;
  * DataTypeDate extends {@link DataTypeBase} to implement the XACML Date type with
  * a java <code>Date</code> representation.
  *
- * @author car
- * @version $Revision: 1.1 $
  */
 public class DataTypeDate extends DataTypeSemanticStringBase<ISO8601Date> {
     private static final DataTypeDate	singleInstance	= new DataTypeDate();

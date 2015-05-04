@@ -40,8 +40,6 @@ import com.att.research.xacml.std.StdStatus;
  * FunctionArgumentBag implements the {@link FunctionArgument} interface for
  * a {@link Bag} objects.
  *
- * @author car
- * @version $Revision: 1.3 $
  */
 public class FunctionArgumentBag implements FunctionArgument {
     private Bag	bag;

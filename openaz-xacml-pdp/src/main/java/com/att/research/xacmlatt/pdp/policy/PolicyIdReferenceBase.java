@@ -43,8 +43,6 @@ import com.att.research.xacmlatt.pdp.eval.MatchResult;
 /**
  * PolicyIdReferenceBase extends {@link PolicySetChild} to implement a XACML PolicyIdReference element.
  *
- * @author car
- * @version $Revision: 1.1 $
  */
 public abstract class PolicyIdReferenceBase<T extends PolicyDef> extends PolicySetChild {
     private IdReferenceMatch	idReferenceMatch;

@@ -40,8 +40,6 @@ import com.att.research.xacml.util.Wrapper;
 /**
  * Immutable implementation of the {@link com.att.research.xacml.api.Advice} interface.
  *
- * @author Christopher A. Rath
- * @version $Revision$
  */
 public class StdAdvice extends Wrapper<Advice> implements Advice {
     /**

@@ -37,7 +37,6 @@ import com.att.research.xacml.util.XACMLProperties;
  * the PDP, PAP and AC interfaces.
  *
  *
- * @author pameladragosh
  *
  */
 public class XACMLRestProperties extends XACMLProperties {

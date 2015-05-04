@@ -36,8 +36,6 @@ import java.text.ParseException;
  * XPathDayTimeDuration extends {@link ISO8601Duration} to restrict values
  * to day and time components only, and then provides for ordering based on canonical duration in fractional seconds.
  *
- * @author car
- * @version $Revision: 1.1 $
  */
 public class XPathDayTimeDuration extends ISO8601Duration implements Comparable<XPathDayTimeDuration> {
     private double	fractionalSeconds;

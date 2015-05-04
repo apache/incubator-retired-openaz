@@ -48,8 +48,6 @@ import com.att.research.xacml.std.dom.DOMUtil;
  * DataTypeBase provides common implementation components of the {@link com.att.research.xacml.api.DataType} interface
  * that is used by the specific instance implementations.
  *
- * @author car
- * @version $Revision: 1.1 $
  *
  * @param <T> the value type for conversion
  */

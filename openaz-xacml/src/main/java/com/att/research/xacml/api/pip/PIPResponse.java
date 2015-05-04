@@ -38,8 +38,6 @@ import com.att.research.xacml.api.Status;
 /**
  * PIPResponse is the interface that objects implement that represent a response from a {@link PIPEngine}.
  *
- * @author car
- * @version $Revision: 1.1 $
  */
 public interface PIPResponse {
     /**

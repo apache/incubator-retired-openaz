@@ -34,8 +34,6 @@ package com.att.research.xacml.api.pdp;
  * PEPException extends <code>Exception</code> to implement exceptions thrown by {@link PDPEngine} and {@link com.att.research.xacml.api.pdp.PDPEngineFactory}
  * classes.
  *
- * @author car
- * @version $Revision: 1.1 $
  */
 public class PDPException extends Exception {
     private static final long serialVersionUID = -4287919889460770831L;

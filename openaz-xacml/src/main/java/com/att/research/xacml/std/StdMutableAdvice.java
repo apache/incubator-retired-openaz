@@ -44,8 +44,6 @@ import com.att.research.xacml.util.ObjUtil;
 /**
  * Mutable implementation of the {@link com.att.research.xacml.api.Advice} interface.
  *
- * @author Christopher A. Rath
- * @version $Revision: 1.1 $
  */
 public class StdMutableAdvice implements Advice {
     private static final List<AttributeAssignment> EMPTY_ATTRIBUTE_ASSIGNMENTS	= Collections.unmodifiableList(new ArrayList<AttributeAssignment>());

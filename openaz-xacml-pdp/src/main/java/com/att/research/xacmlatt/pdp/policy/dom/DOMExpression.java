@@ -52,8 +52,6 @@ import com.att.research.xacmlatt.pdp.policy.expressions.VariableReference;
  * DOMExpression extends {@link com.att.research.xacmlatt.pdp.policy.Expression} with methods for creation
  * from DOM {@link org.w3c.dom.Node}s.
  *
- * @author car
- * @version $Revision: 1.2 $
  */
 public abstract class DOMExpression extends Expression {
     private static final Log logger	= LogFactory.getLog(DOMExpression.class);

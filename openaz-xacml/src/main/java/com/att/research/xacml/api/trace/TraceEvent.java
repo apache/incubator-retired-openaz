@@ -36,8 +36,6 @@ import java.util.Date;
 /**
  * Defines the API for objects that represent traceable events during evaluation of a XACML Policy or PolicySet.
  *
- * @author Christopher A. Rath
- * @version $Revision$
  *
  * @param T the java <code>Class</code> of the traced object wrapped by the <code>TraceEvent</code>
  */

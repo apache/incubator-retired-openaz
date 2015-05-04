@@ -27,7 +27,6 @@ package org.openliberty.openaz.pepapi;
  *  that users do not require try/catch blocks
  *  when using PepApi 1.1.
  * <p>
- * @author Josh Bregman, Rich Levinson, Prateek Mishra
  */
 public class PepException extends RuntimeException {
 

@@ -35,8 +35,6 @@ import com.att.research.xacml.api.Status;
 /**
  * PolicyFinderResult is the interface for return values of the methods in the {@link com.att.research.xacmlatt.pdp.policy.PolicyFinderFactory} interface.
  *
- * @author car
- * @version $Revision: 1.1 $
  * @param <T> the class extending {@link PolicyDef} contained as a result in this <code>PolicyFinderResult</code>
  */
 public interface PolicyFinderResult<T extends PolicyDef> {

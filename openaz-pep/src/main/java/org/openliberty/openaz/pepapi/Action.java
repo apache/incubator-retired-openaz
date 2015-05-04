@@ -27,7 +27,6 @@ import com.att.research.xacml.api.XACML3;
 /**
  * Container class that maps attributes to predefined XACML Action category.
  *
- * @author Ajith Nair, David Laurance, Darshak Kothari
  *
  */
 public class Action extends CategoryContainer {

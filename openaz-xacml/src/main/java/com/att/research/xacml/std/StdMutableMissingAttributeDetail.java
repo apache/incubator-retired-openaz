@@ -44,8 +44,6 @@ import com.att.research.xacml.util.ObjUtil;
 /**
  * Mutable implementation of the {@link com.att.research.xacml.api.MissingAttributeDetail} interface.
  *
- * @author Christopher A. Rath
- * @version $Revision: 1.1 $
  */
 public class StdMutableMissingAttributeDetail implements MissingAttributeDetail {
     private static final List<AttributeValue<?>> EMPTY_LIST	= Collections.unmodifiableList(new ArrayList<AttributeValue<?>>());

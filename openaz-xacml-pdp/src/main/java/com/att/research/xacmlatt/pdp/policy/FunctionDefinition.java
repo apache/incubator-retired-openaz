@@ -39,8 +39,6 @@ import com.att.research.xacmlatt.pdp.eval.EvaluationContext;
  * FunctionDefinition is the interface that objects representing XACML functions found in Match and Apply elements in Policies, PolicySets
  * and Rules.
  *
- * @author car
- * @version $Revision: 1.1 $
  */
 public interface FunctionDefinition {
     /**

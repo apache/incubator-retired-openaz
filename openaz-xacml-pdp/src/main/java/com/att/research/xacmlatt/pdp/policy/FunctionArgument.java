@@ -37,8 +37,6 @@ import com.att.research.xacml.api.Status;
  * FunctionArgument is the interface implemented by objects that can serve as arguments to a {@link com.att.research.xacmlatt.pdp.policy.FunctionDefinition}
  * <code>evaluate</code> call.
  *
- * @author car
- * @version $Revision: 1.3 $
  */
 public interface FunctionArgument {
     /**

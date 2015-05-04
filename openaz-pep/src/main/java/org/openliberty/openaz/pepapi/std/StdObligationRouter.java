@@ -38,7 +38,6 @@ import java.util.Set;
  * Entity that routes obligations at runtime.
  *
  * @see org.openliberty.openaz.pepapi.Obligation
- * @author Ajith Nair
  */
 public final class StdObligationRouter implements ObligationRouter {
 

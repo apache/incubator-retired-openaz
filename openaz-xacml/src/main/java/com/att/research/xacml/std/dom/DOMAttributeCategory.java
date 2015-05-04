@@ -49,8 +49,6 @@ import com.att.research.xacml.std.StdAttributeCategory;
  * DOMAttributeCategory extends {@link com.att.research.xacml.std.StdAttributeCategory} with methods for creation
  * from DOM {@link org.w3c.dom.Node}s.
  *
- * @author car
- * @version $Revision: 1.2 $
  */
 public class DOMAttributeCategory {
     private static final Log logger	= LogFactory.getLog(DOMAttributeCategory.class);

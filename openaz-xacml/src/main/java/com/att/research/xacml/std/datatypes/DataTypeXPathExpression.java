@@ -41,8 +41,6 @@ import com.att.research.xacml.api.XACML3;
  * DataTypeXPathExpression extends {@link DataTypeBase} to implement the XACML
  * xpathExpression data type.
  *
- * @author car
- * @version $Revision: 1.1 $
  */
 public class DataTypeXPathExpression extends DataTypeBase<XPathExpressionWrapper> {
     private static final DataTypeXPathExpression	singleInstance	= new DataTypeXPathExpression();

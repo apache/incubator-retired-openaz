@@ -38,7 +38,6 @@ import java.util.Map;
  * an array of Objects.
  * <p>
  *
- * @author Josh Bregman, Rich Levinson, Prateek Mishra
  *
  */
 public interface Obligation {

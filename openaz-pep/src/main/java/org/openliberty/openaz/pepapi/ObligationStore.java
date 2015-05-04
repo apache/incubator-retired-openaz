@@ -24,7 +24,6 @@ import java.util.Set;
 
 /**
  *
- * @author Ajith Nair, David Laurance, Darshak Kothari
  *
  */
 public interface ObligationStore {

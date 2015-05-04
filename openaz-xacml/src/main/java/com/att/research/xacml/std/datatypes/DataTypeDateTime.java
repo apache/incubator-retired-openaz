@@ -40,8 +40,6 @@ import com.att.research.xacml.api.XACML;
 /**
  * DataTypeDateTime extends {@link DataTypeBase} for the XACML DateTime type.
  *
- * @author car
- * @version $Revision: 1.1 $
  */
 public class DataTypeDateTime extends DataTypeSemanticStringBase<ISO8601DateTime> {
     private static final DataTypeDateTime	singleInstance	= new DataTypeDateTime();

@@ -38,8 +38,6 @@ import com.att.research.xacml.util.Wrapper;
 /**
  * Immutable implementation of the {@link com.att.research.xacml.api.AttributeAssignment} interface.
  *
- * @author Christopher A. Rath
- * @version $Revision$
  */
 public class StdAttributeAssignment extends Wrapper<AttributeAssignment> implements AttributeAssignment {
     /**

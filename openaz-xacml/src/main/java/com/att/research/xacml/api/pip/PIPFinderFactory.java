@@ -39,8 +39,6 @@ import com.att.research.xacml.util.XACMLProperties;
 /**
  * PIPFinderFactory is the factory class for getting the configured {@link PIPFinder}.
  *
- * @author car
- * @version $Revision: 1.4 $
  */
 public abstract class PIPFinderFactory {
     private static final String	FACTORYID					= XACMLProperties.PROP_PIPFINDERFACTORY;

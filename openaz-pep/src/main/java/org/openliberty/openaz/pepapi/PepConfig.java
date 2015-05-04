@@ -23,7 +23,6 @@ package org.openliberty.openaz.pepapi;
 import java.util.List;
 
 /**
- * @authors Ajith Nair, David Laurance, Darshak Kothari
  */
 public interface PepConfig {
 

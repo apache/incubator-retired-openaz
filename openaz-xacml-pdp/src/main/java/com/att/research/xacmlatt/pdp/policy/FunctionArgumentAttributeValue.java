@@ -37,7 +37,6 @@ import com.att.research.xacml.std.StdStatus;
 /**
  * FunctionArgumentAttributeValue implements {@link FunctionArgument} for a single
  * {@link com.att.research.xacml.api.AttributeValue}
- * @author car
  *
  */
 public class FunctionArgumentAttributeValue implements FunctionArgument {

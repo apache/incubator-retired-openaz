@@ -36,8 +36,6 @@ import java.util.Arrays;
 /**
  * IPV4Address extends {@link IPAddress} for IPv4 addresses.
  *
- * @author car
- * @version $Revision: 1.1 $
  */
 public class IPv6Address extends IPAddress {
 

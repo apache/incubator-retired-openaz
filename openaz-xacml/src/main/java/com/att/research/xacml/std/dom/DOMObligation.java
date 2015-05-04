@@ -47,8 +47,6 @@ import com.att.research.xacml.std.StdObligation;
 /**
  * Provides static methods for creating {@link com.att.research.xacml.api.Obligation} objects from a {@link org.w3c.dom.Node}.
  *
- * @author Christopher A. Rath
- * @version $Revision: 1.2 $
  */
 public class DOMObligation {
     private static final Log logger	= LogFactory.getLog(DOMObligation.class);

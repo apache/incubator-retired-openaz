@@ -39,8 +39,6 @@ import com.att.research.xacml.std.StdAttributeValue;
  * DataTypeBoolean extends {@link DataTypeBase} with conversions to the
  * java <code>Boolean</code> type.
  *
- * @author car
- * @version $Revision: 1.1 $
  */
 public class DataTypeBoolean extends DataTypeBase<Boolean> {
     private static final DataTypeBoolean	singleInstance	= new DataTypeBoolean();

@@ -60,7 +60,6 @@ import com.att.research.xacml.util.ListUtil;
  *		When this class was first created that was sufficient to pass all Conformance tests.
  *		However if this sees a failure in a Conformance test, those validations may need to be upgraded to look at the individual data elements to see what is wrong.
  *
- * @author glenngriffin
  *
  */
 public class ResponseConformanceTest {

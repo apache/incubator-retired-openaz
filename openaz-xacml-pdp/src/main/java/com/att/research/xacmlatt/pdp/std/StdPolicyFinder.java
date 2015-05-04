@@ -65,8 +65,6 @@ import com.att.research.xacmlatt.pdp.policy.dom.DOMPolicyDef;
  * StdPolicyFinder implements the {@link com.att.research.xacmlatt.pdp.policy.PolicyFinder} interface to look up policies
  * by their internal ID or an externally visible ID.
  *
- * @author car
- * @version $Revision: 1.4 $
  */
 public class StdPolicyFinder implements PolicyFinder {
     private static final PolicyFinderResult<PolicyDef> PFR_MULTIPLE				= new StdPolicyFinderResult<PolicyDef>(new StdStatus(StdStatusCode.STATUS_CODE_PROCESSING_ERROR, "Multiple applicable root policies"));

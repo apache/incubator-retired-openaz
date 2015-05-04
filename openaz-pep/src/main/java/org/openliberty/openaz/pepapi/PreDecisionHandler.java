@@ -25,7 +25,6 @@ package org.openliberty.openaz.pepapi;
  * of a PepRequest before it is actually submitted to the
  * main decide() method.
  *
- * @author Josh Bregman, Rich Levinson, Prateek Mishra
  *
  */
 public interface PreDecisionHandler {

@@ -39,8 +39,6 @@ import com.att.research.xacml.api.XACML3;
  * DataTypeDayTimeDuration extends {@link DataTypeBase} to implement the XACML dayTimeDuration
  * data type.
  *
- * @author car
- * @version $Revision: 1.1 $
  */
 public class DataTypeDayTimeDuration extends DataTypeSemanticStringBase<XPathDayTimeDuration> {
     private static final DataTypeDayTimeDuration	singleInstance	= new DataTypeDayTimeDuration();

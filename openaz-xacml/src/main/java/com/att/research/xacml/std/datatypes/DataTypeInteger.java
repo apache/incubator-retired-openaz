@@ -38,8 +38,6 @@ import com.att.research.xacml.api.XACML;
 /**
  * DataTypeInteger extends {@link DataTypeBase} to implement the XACML integer type.
  *
- * @author car
- * @version $Revision: 1.1 $
  */
 public class DataTypeInteger extends DataTypeBase<BigInteger> {
     private static final DataTypeInteger	singleInstance	= new DataTypeInteger();

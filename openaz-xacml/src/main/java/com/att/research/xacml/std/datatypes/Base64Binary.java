@@ -41,8 +41,6 @@ import com.att.research.xacml.util.StringUtils;
 /**
  * Base64Binary provides utilities for converting the XACML base64Binary data type to and from <code>String</code> values.
  *
- * @author car
- * @version $Revision: 1.1 $
  */
 public class Base64Binary implements SemanticString {
     private byte[]	data;

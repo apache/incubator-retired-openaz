@@ -52,8 +52,6 @@ import com.att.research.xacml.util.ObjUtil;
 /**
  * Mutable implementation of the {@link com.att.research.xacml.api.Request} interface.
  *
- * @author Christopher A. Rath
- * @version $Revision: 1.2 $
  */
 public class StdMutableRequest implements Request {
     private static final List<RequestReference>	EMPTY_REQUEST_REFERENCE_LIST	= Collections.unmodifiableList(new ArrayList<RequestReference>());

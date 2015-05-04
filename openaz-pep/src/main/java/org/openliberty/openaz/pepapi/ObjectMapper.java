@@ -33,7 +33,6 @@ package org.openliberty.openaz.pepapi;
  * request context and then mapping Object properties as name-value pairs using one of the overloaded <code>setAttribute</code>
  * methods.
  *
- * @author Ajith Nair, David Laurance, Darshak Kothari
  *
  */
 public interface ObjectMapper {

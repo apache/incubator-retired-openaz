@@ -34,8 +34,6 @@ package com.att.research.xacml.std.datatypes;
 /**
  * DataTypes provides constant instances of the built-in {@link com.att.research.xacml.api.DataType} implementation classes.
  *
- * @author car
- * @version $Revision: 1.1 $
  */
 public class DataTypes {
     private DataTypes() {

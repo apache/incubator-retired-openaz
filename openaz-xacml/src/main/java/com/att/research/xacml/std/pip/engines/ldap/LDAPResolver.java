@@ -46,8 +46,6 @@ import com.att.research.xacml.std.pip.engines.ConfigurableResolver;
  * a request for a XACML attribute into an LDAP query string, including retrieving any required attributes needed to construct
  * the query string, and convert the response into a collection of {@link com.att.research.xacml.api.Attribute}s.
  *
- * @author car
- * @version $Revision$
  */
 public interface LDAPResolver extends ConfigurableResolver {
     /**

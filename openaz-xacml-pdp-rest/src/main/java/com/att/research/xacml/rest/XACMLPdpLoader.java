@@ -71,7 +71,6 @@ import com.google.common.base.Splitter;
  * Does the work for loading policy and PIP configurations sent from the PAP servlet.
  *
  *
- * @author pameladragosh
  *
  */
 public class XACMLPdpLoader {

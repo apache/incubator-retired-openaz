@@ -33,8 +33,6 @@ package com.att.research.xacml.api;
 /**
  * Defines the API for objects that implement XACML reference elements PolicyIdReference and PolicySetIdReference.
  *
- * @author Christopher A. Rath
- * @version $Revision: 1.1 $
  */
 public interface IdReference {
     /**

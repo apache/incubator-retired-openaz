@@ -57,7 +57,6 @@ import com.att.research.xacmlatt.pdp.policy.FunctionDefinition;
  * <LI> Commonly-used values.
  * </UL>
  *
- * @author glenngriffin
  *
  * @param <O> the java class for the Output data type returned by the <code>FunctionDefinition</code>
  * @param <I> the java class for the Input data type expected in the arguments to the <code>FunctionDefinition</code>.

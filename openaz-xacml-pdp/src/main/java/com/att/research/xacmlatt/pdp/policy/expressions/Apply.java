@@ -53,8 +53,6 @@ import com.att.research.xacmlatt.pdp.policy.PolicyDefaults;
 /**
  * Apply extends {@link com.att.research.xacmlatt.pdp.policy.Expression} to implement the XACML Apply Expression element.
  *
- * @author car
- * @version $Revision: 1.3 $
  */
 public class Apply extends Expression {
     private Identifier functionId;

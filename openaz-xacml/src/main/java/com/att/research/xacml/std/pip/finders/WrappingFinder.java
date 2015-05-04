@@ -42,8 +42,6 @@ import com.att.research.xacml.std.pip.StdPIPResponse;
  * <code>PIPFinder</code> to intercept calls to <code>getAttributes</code> and do some other processing
  * before calling it on the wrapped <code>PIPFinder</code>.
  *
- * @author car
- * @version $Revision$
  */
 public abstract class WrappingFinder implements PIPFinder {
     private PIPFinder wrappedFinder;

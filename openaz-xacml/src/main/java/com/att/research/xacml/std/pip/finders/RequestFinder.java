@@ -55,8 +55,6 @@ import com.att.research.xacml.std.pip.engines.RequestEngine;
  * When attributes are requested, the
  * <code>RequestEngine</code> is searched first, followed by the <code>EnvironmentEngine</code> and if no results are found, the wrapped <code>PIPFinder</code> is searched.
  *
- * @author car
- * @version $Revision: 1.3 $
  */
 public class RequestFinder extends WrappingFinder {
     private RequestEngine requestEngine;

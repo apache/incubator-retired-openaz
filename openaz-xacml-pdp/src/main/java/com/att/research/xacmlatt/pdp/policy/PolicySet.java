@@ -52,8 +52,6 @@ import com.att.research.xacmlatt.pdp.eval.MatchResult;
 /**
  * PolicySet extends {@link PolicyDef} to represent a XACML PolicySet element.
  *
- * @author car
- * @version $Revision: 1.2 $
  */
 public class PolicySet extends PolicyDef {
     private TargetedCombinerParameterMap<Identifier,PolicySetChild>		policyCombinerParameters	= new TargetedCombinerParameterMap<Identifier,PolicySetChild>();

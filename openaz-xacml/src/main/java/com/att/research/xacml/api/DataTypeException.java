@@ -33,8 +33,6 @@ package com.att.research.xacml.api;
 /**
  * Extends <code>Exception</code> to represent errors thrown by methods in the {@link DataType} interface.
  *
- * @author Christopher A. Rath
- * @version $Revision$
  */
 public class DataTypeException extends Exception {
     private static final long serialVersionUID = -6308818179904447096L;

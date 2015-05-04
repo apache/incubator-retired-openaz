@@ -44,7 +44,6 @@ import com.att.research.xacmlatt.pdp.policy.CombiningElement;
 /**
  * PermitUnlessDeny implements the XACML 3.0 "permit-unless-deny" combining algorithm for both policies and rules.
  *
- * @author car
  *
  * @param <T> the java class for the {@link com.att.research.xacmlatt.pdp.eval.Evaluatable}
  * @param <U> the java class for the identifier

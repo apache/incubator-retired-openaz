@@ -41,8 +41,6 @@ import com.att.research.xacml.std.StdMutableRequestReference;
  * JaxpRequestReference extends {@link com.att.research.xacml.std.StdMutableRequestReference} with methods for
  * creation form JAXP elements.
  *
- * @author car
- * @version $Revision: 1.1 $
  */
 public class JaxpRequestReference extends StdMutableRequestReference {
 

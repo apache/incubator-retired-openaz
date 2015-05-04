@@ -40,7 +40,6 @@ import java.util.Map;
  * or contain any of the following annotations - <code> @MatchAnyObligation, @MatchAllObligationAttributes</code>
  * that represents Obligation criteria for registration.
  *
- * @author Ajith Nair
  *
  */
 public class StdObligationHandlerRegistry implements ObligationHandlerRegistry {

@@ -43,8 +43,6 @@ import com.att.research.xacml.api.trace.Traceable;
  * Implements the {@link com.att.research.xacml.api.trace.TraceEngine} interface to log {@link com.att.research.xacml.api.trace.TraceEvent}s
  * using the Apache Commons logging system with debug messages.
  *
- * @author Christopher A. Rath
- * @version $Revision$
  */
 public class LoggingTraceEngine implements TraceEngine {
     private static final LoggingTraceEngine loggingTraceEngine	= new LoggingTraceEngine();

@@ -37,8 +37,6 @@ import com.att.research.xacmlatt.pdp.eval.EvaluationException;
 /**
  * Expression extends {@link com.att.research.xacmlatt.pdp.policy.PolicyComponent} to represent a XACML ExpressionType element.
  *
- * @author car
- * @version $Revision: 1.1 $
  */
 public abstract class Expression extends PolicyComponent {
 

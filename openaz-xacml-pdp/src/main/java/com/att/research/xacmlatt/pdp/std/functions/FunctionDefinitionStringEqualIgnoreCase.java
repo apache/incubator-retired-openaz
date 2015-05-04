@@ -50,8 +50,6 @@ import com.att.research.xacml.std.datatypes.DataTypes;
  * 		string-equal-ignore-case
  *
  *
- * @author car
- * @version $Revision: 1.2 $
  */
 public class FunctionDefinitionStringEqualIgnoreCase extends FunctionDefinitionEquality<String> {
 

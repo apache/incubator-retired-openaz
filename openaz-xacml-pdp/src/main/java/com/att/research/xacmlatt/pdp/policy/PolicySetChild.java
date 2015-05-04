@@ -41,8 +41,6 @@ import com.att.research.xacmlatt.pdp.eval.Matchable;
  * PolicySetChild extends {@link com.att.research.xacmlatt.pdp.PolicyComponent} to represent XACML 3.0 Policies, PolicySets, PolicyReferences,
  * and PolicySetReferences.
  *
- * @author car
- * @version $Revision: 1.1 $
  */
 public abstract class PolicySetChild extends PolicyComponent implements Evaluatable, Matchable, Traceable {
     private Identifier		identifier;

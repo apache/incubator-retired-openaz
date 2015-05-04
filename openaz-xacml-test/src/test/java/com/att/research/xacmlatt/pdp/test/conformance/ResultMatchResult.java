@@ -38,8 +38,6 @@ import com.att.research.xacml.util.ListUtil;
  * ResultMatchResult provides information about how well a {@link com.att.research.xacml.api.Result} object matches
  * another <code>Result</code> object.
  *
- * @author car
- * @version $Revision: 1.1 $
  */
 public class ResultMatchResult {
     private boolean bAssociatedAdviceMatches	= true;

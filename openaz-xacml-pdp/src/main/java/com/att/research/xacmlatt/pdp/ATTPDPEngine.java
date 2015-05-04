@@ -71,8 +71,6 @@ import com.att.research.xacmlatt.pdp.policy.PolicyFinderResult;
 /**
  * ATTPDPEngine implements the {@link com.att.research.xacml.api.pdp.PDPEngine} interface using the XACML 3.0 specification.
  *
- * @author car
- * @version $Revision: 1.3 $
  */
 public class ATTPDPEngine implements PDPEngine, Traceable {
     private static final Status		STATUS_ADVICE_NA		= new StdStatus(StdStatusCode.STATUS_CODE_PROCESSING_ERROR, "Advice not allowed in combined decision");

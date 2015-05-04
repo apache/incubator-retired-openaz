@@ -40,8 +40,6 @@ import com.att.research.xacml.util.XACMLProperties;
 /**
  * PEPEngineFactory provides the interface for creating {@link PEPEngine} instances.
  *
- * @author car
- * @version ${Revision}
  */
 public abstract class PEPEngineFactory {
     private static final String	FACTORYID	= XACMLProperties.PROP_PEPENGINEFACTORY;

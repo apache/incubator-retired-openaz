@@ -36,8 +36,6 @@ import com.att.research.xacml.std.IdentifierImpl;
  * XACML3 contains the constants (<code>String</code>s, <code>URI</code>s {@link com.att.research.xacml.api.Identifier}s that are
  * defined in the XACML 2.0 Specification: "eXtensible Access Control Markup Language (XACML) Version 3.0".
  *
- * @author car
- * @version $Revision$
  */
 public class XACML3 {
 

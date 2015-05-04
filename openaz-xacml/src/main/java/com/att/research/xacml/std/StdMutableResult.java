@@ -48,8 +48,6 @@ import com.att.research.xacml.util.ObjUtil;
 /**
  * Mutable implementation of the {@link com.att.research.xacml.api.Result}
  *
- * @author Christopher A. Rath
- * @version $Revision: 1.2 $
  */
 public class StdMutableResult implements Result {
     private static final List<Obligation> EMPTY_OBLIGATION_LIST		= Collections.unmodifiableList(new ArrayList<Obligation>());

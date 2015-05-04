@@ -43,8 +43,6 @@ import com.att.research.xacml.util.StringUtils;
 /**
  * StdScopeResolverResult implements the {@link com.att.research.xacml.api.pdp.ScopeResolverResult} interface.
  *
- * @author car
- * @version $Revision$
  */
 public class StdScopeResolverResult implements ScopeResolverResult {
     private Status status;

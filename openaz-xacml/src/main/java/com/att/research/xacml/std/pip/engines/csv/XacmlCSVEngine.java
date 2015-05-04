@@ -70,8 +70,6 @@ import com.att.research.xacml.util.FactoryException;
  * loaded from a text file containing the following fields:
  * 	category-id,attribute-id,datatype-id,issuer,value
  *
- * @author car
- * @version $Revision: 1.1 $
  */
 public class XacmlCSVEngine implements ConfigurableEngine {
     public static final String PROP_DESCRIPTION	= ".description";

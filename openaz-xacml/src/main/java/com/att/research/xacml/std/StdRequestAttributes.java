@@ -49,8 +49,6 @@ import com.att.research.xacml.util.ObjUtil;
 /**
  * Immutable implementation of the {@link com.att.research.xacml.api.RequestAttributes} interface.
  *
- * @author Christopher A. Rath
- * @version $Revision: 1.1 $
  */
 public class StdRequestAttributes extends StdAttributeCategory implements RequestAttributes {
     private Log logger	= LogFactory.getLog(this.getClass());

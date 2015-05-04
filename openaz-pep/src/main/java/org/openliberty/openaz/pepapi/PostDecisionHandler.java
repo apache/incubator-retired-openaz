@@ -25,7 +25,6 @@ package org.openliberty.openaz.pepapi;
  * PepResponse that is returned from the main decide()
  * call before the final results are returned to the user.
  *
- * @author Josh Bregman, Rich Levinson, Prateek Mishra
  *
  */
 public interface PostDecisionHandler {

@@ -43,8 +43,6 @@ import com.att.research.xacmlatt.pdp.util.ATTPDPProperties;
  * EvaluationContextFactory provides methods for creating {@link EvaluationContext} objects
  * based on configuration information found in standard places.  (TODO: Detail what these are)
  *
- * @author car
- * @version $Revision: 1.3 $
  */
 public abstract class EvaluationContextFactory {
     private static final String	FACTORYID					= ATTPDPProperties.PROP_EVALUATIONCONTEXTFACTORY;

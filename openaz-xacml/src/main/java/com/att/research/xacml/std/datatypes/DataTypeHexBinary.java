@@ -36,8 +36,6 @@ import com.att.research.xacml.api.XACML;
 /**
  * DataTypeHexBinary extends {@link DataTypeBase} to implement the XACML hexBinary data type.
  *
- * @author car
- * @version $Revision: 1.1 $
  */
 public class DataTypeHexBinary extends DataTypeSemanticStringBase<HexBinary> {
     private static final DataTypeHexBinary	singleInstance	= new DataTypeHexBinary();

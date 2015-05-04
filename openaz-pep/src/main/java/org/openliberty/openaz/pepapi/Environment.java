@@ -26,7 +26,6 @@ import com.att.research.xacml.api.XACML3;
  *
  * Container class that maps attributes to predefined XACML Environment category.
  *
- * @author Ajith Nair, David Laurance, Darshak Kothari
  *
  */
 public final class Environment extends CategoryContainer {

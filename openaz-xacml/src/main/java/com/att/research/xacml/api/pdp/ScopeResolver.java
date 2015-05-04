@@ -36,8 +36,6 @@ import com.att.research.xacml.api.Attribute;
  * ScopeResolver is the interface that objects implement that can be used to resolve attribute scopes to individual
  * identifiers.
  *
- * @author car
- * @version $Revision$
  */
 public interface ScopeResolver {
     /**

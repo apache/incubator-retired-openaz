@@ -57,8 +57,6 @@ import com.att.research.xacmlatt.pdp.eval.Matchable;
  * {@link com.att.research.xacmlatt.pdp.eval.Matchable} and {@link com.att.research.xacmlatt.pdp.eval.Evaluatable} for matching and evaluation
  * a request.
  *
- * @author car
- * @version $Revision: 1.1 $
  */
 public class Rule extends PolicyComponent implements Matchable, Evaluatable, Traceable {
     private Policy						policy;

@@ -62,7 +62,6 @@ import static org.junit.Assert.fail;
  * 	- there would be little examination of the (long) XML strings, so their validity would be questionable
  * so the benefit for the cost of doing that work is not clear.
  *
- * @author glenngriffin
  *
  */
 public class DOMResponseTest {

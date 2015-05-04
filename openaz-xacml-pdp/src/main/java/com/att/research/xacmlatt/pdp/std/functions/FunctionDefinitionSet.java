@@ -69,8 +69,6 @@ import com.att.research.xacmlatt.pdp.policy.FunctionArgument;
  * 		rfc822Name-bag
  *
  *
- * @author glenngriffin
- * @version $Revision: 1.1 $
  *
  * @param <I> the java class for the data type of the function Input arguments
  * @param <O> the java class for the data type of the function Output
@@ -80,7 +78,6 @@ public class FunctionDefinitionSet<O,I> extends FunctionDefinitionBase<O, I> {
     /**
      * List of comparison operations.
      *
-     * @author glenngriffin
      *
      */
     public enum OPERATION {INTERSECTION, AT_LEAST_ONE_MEMBER_OF, UNION, SUBSET, SET_EQUALS };

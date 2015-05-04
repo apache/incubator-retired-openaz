@@ -67,8 +67,6 @@ import com.att.research.xacmlatt.pdp.policy.FunctionArgument;
  * 		dnsName-one-and-only
  *
  *
- * @author glenngriffin
- * @version $Revision: 1.1 $
  *
  * @param <I> the java class for the data type of the elements in the bag handed to this as the Input argument,
  * 	which is also the type of the return value

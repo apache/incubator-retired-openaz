@@ -38,8 +38,6 @@ import com.att.research.xacml.util.ObjUtil;
 /**
  * Mutable implementation of the {@link com.att.research.xacml.api.AttributeAssignment} interface.
  *
- * @author Christopher A. Rath
- * @version $Revision: 1.1 $
  */
 public class StdMutableAttributeAssignment implements AttributeAssignment {
     private Identifier			attributeId;

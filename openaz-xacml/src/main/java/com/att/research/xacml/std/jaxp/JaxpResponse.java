@@ -59,8 +59,6 @@ import com.att.research.xacml.std.StdMutableResponse;
  * JaxpResponse extends {@link com.att.research.xacml.std.StdMutableResponse} with methods for creation from
  * JAXP elements.
  *
- * @author car
- * @version $Revision: 1.1 $
  */
 public class JaxpResponse extends StdMutableResponse {
     private static Log	logger	= LogFactory.getLog(JaxpResponse.class);

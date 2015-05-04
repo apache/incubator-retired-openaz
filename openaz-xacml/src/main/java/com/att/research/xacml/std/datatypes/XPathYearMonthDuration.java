@@ -36,8 +36,6 @@ import java.text.ParseException;
  * XPathYearMonthDuration extends {@link ISO8601Duration} to implement the XPath yearMonthDuration
  * data type.
  *
- * @author car
- * @version $Revision: 1.1 $
  */
 public class XPathYearMonthDuration extends ISO8601Duration implements Comparable<XPathYearMonthDuration> {
     private int monthsDuration;

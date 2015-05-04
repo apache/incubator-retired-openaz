@@ -57,8 +57,6 @@ import com.att.research.xacmlatt.pdp.policy.FunctionArgument;
  * To support those needs this class includes methods for checking the list size and evaluating a single argument as well as
  * combining those operations in a single method to make it simpler for the calling function.
  *
- * @author car
- * @version $Revision: 1.3 $
  *
  * @param <O> the java class for the value of the Output return result from the <code>FunctionDefinition</code>
  * @param <I> the java class for the value of the Input {@link com.att.research.xacmlatt.pdp.policy.FunctionArgument}s in the <code>evaluate</code> method

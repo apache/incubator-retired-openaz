@@ -94,8 +94,6 @@ import com.att.research.xacml.std.json.JSONStructureException;
  * Those objects are converted to XML strings for transmission through the RESTful Web Service
  * using the <code>convert</code> method in this class.
  *
- * @author car
- * @version $Revision: 1.2 $
  */
 public class DOMResponse {
     private static final Log logger	= LogFactory.getLog(DOMResponse.class);

@@ -24,7 +24,6 @@ import java.util.Map;
 
 /**
  *
- * @author Ajith Nair, David Laurance, Darshak Kothari
  *
  */
 public interface ObligationRouter {

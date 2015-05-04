@@ -35,8 +35,6 @@ import java.util.Iterator;
 /**
  * StringUtils provides utilities for converting various general classes of objects to strings.
  *
- * @author car
- * @version $Revision: 1.1 $
  */
 public class StringUtils {
 

@@ -41,8 +41,6 @@ import com.att.research.xacml.api.SemanticString;
  * ISO8601Time represents a time of day with an optional timezone indication using ISO8601 standard representations
  * for time, ordering, and operations.
  *
- * @author car
- * @version $Revision: 1.1 $
  */
 public class ISO8601Time implements IDateTime<ISO8601Time>, Comparable<ISO8601Time>, SemanticString {
     private static final int ARBITRARY_YEAR		= 1970;

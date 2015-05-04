@@ -37,8 +37,6 @@ import com.att.research.xacml.util.ObjUtil;
 /**
  * Immutable implementation of the {@link com.att.research.xacml.api.AttributeValue} interface.
  *
- * @author Christopher A. Rath
- * @version $Revision: 1.2 $
  *
  * @param <T> the java type of the object representing the value of the XACML AttributeValue element represented by the <code>StdAttributeValue</code>
  */

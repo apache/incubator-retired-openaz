@@ -37,8 +37,6 @@ import java.util.Iterator;
  * Defines the API for objects representing XACML Attributes elements.  Attributes elements represent collections of
  * XACML Attribute elements with the same Category.
  *
- * @author Christopher A. Rath
- * @version $Revision: 1.1 $
  */
 public interface AttributeCategory {
     /**

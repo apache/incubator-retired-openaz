@@ -24,7 +24,6 @@ import com.att.research.xacml.api.Request;
 
 /**
  *
- * @author Josh Bregman, Rich Levinson, Prateek Mishra
  *
  */
 public interface PepRequest {

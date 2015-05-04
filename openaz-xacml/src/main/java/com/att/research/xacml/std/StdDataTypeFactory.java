@@ -42,8 +42,6 @@ import com.att.research.xacml.std.datatypes.DataTypes;
  * Implements the {@link com.att.research.xacml.api.DataTypeFactory} interface to support all of the data types in the XACML 3.0
  * specification.
  *
- * @author Christopher A. Rath
- * @version $Revision: 1.2 $
  */
 public class StdDataTypeFactory extends DataTypeFactory {
     private static final Map<Identifier,DataType<?>> mapIdentifiersToDataTypes	= new HashMap<Identifier,DataType<?>>();

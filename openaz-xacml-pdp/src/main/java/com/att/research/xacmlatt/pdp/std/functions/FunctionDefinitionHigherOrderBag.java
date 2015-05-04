@@ -76,8 +76,6 @@ import com.att.research.xacmlatt.pdp.std.StdFunctionDefinitionFactory;
  * 		rfc822Name-bag
  *
  *
- * @author glenngriffin
- * @version $Revision: 1.1 $
  *
  * @param <I> the java class for the data type of the function Input arguments
  * @param <O> the java class for the data type of the function Output
@@ -87,7 +85,6 @@ public class FunctionDefinitionHigherOrderBag<O,I> extends FunctionDefinitionBas
     /**
      * List of comparison operations.
      *
-     * @author glenngriffin
      *
      */
     public enum OPERATION {ANY_OF, ALL_OF, ANY_OF_ANY, ALL_OF_ANY, ANY_OF_ALL, ALL_OF_ALL, MAP  };

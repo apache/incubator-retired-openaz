@@ -33,8 +33,6 @@ package com.att.research.xacml.std.datatypes;
 /**
  * IDateTime is the minimal interface an object needs to support in order to be used in XACML functions that expect a Date, DateTime, or Time.
  *
- * @author car
- * @version $Revision$
  *
  * @param T the data type of the object implementing the interface
  */

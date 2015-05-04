@@ -36,8 +36,6 @@ import com.att.research.xacml.api.XACML;
 /**
  * DataTypeBase64Binary extends {@link DataTypeBase} for the XACML base64Binary data type.
  *
- * @author car
- * @version $Revision: 1.1 $
  */
 public class DataTypeBase64Binary extends DataTypeBase<Base64Binary> {
     private static final DataTypeBase64Binary	singleInstance	= new DataTypeBase64Binary();

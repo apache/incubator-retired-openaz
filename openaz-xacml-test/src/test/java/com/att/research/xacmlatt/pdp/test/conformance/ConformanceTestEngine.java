@@ -46,8 +46,6 @@ import com.att.research.xacml.util.FactoryException;
 /**
  * ConformanceTestEngine handles the creation of the PDPEngine for a ConformanceTest instance.
  *
- * @author car
- * @version $Revision: 1.2 $
  */
 public class ConformanceTestEngine {
     private Log logger	= LogFactory.getLog(ConformanceTestEngine.class);

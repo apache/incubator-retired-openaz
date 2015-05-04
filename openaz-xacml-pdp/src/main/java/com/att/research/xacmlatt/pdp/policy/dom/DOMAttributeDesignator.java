@@ -46,8 +46,6 @@ import com.att.research.xacmlatt.pdp.policy.expressions.AttributeDesignator;
  * DOMAttributeDesignator extends {@link com.att.research.xacmlatt.pdp.policy.expressions.AttributeDesignator} with methods
  * for creation from DOM {@link org.w3c.dom.Node}s.
  *
- * @author car
- * @version $Revision: 1.3 $
  */
 public class DOMAttributeDesignator extends AttributeDesignator {
     private static final Log logger	= LogFactory.getLog(DOMAttributeDesignator.class);

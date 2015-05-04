@@ -70,8 +70,6 @@ import com.google.common.base.Splitter;
  * root {@link com.att.research.xacmlatt.pdp.policy.PolicyDef} is loaded from a file whose name is specified as a system property or
  * in the $java.home/lib/xacml.properties property set.
  *
- * @author car
- * @version $Revision: 1.3 $
  */
 public class StdPolicyFinderFactory extends PolicyFinderFactory {
     public static final String	PROP_FILE		= ".file";

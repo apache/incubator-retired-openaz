@@ -41,8 +41,6 @@ import java.net.URI;
  * Classes that implement the <code>Identifier</code> interface should override the <code>equals</code> method to meet the following semantics:
  * 		Two <code>Identifier</code>s are <code>equal</code> if the values returned by the <code>getUri</code> method are <code>equal</code>.
  *
- * @author Christopher A. Rath
- * @version $Revision: 1.2 $
  */
 public interface Identifier extends SemanticString {
     /**

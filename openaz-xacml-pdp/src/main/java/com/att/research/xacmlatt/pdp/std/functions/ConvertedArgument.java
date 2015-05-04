@@ -56,7 +56,6 @@ import com.att.research.xacmlatt.pdp.policy.FunctionArgument;
  * </UL>
  *
  *
- * @author glenngriffin
  *
  */
 public class ConvertedArgument<I> {

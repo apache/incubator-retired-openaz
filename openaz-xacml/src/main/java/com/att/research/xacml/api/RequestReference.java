@@ -36,8 +36,6 @@ import java.util.Collection;
  * Defines the API for objects that represent XACML RequestReference elements.  RequestReference elements contain zero or more AttributesReference
  * elements and are used in multi-requests.
  *
- * @author Christopher A. Rath
- * @version $Revision: 1.1 $
  */
 public interface RequestReference {
     /**

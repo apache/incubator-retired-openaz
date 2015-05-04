@@ -36,8 +36,6 @@ import com.att.research.xacml.std.StdStatusCode;
 /**
  * VariableDefinition extends {@link PolicyComponent} to represent a XACML VariableDefinition element.
  *
- * @author car
- * @version $Revision: 1.1 $
  */
 public class VariableDefinition extends PolicyComponent {
     private String id;

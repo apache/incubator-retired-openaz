@@ -45,8 +45,6 @@ import com.att.research.xacml.std.StdMutableStatusDetail;
  * JaxpStatusDetail extends {@link com.att.research.xacml.std.StdMutableStatusDetail} with methods for creation from
  * JAXP elements.
  *
- * @author car
- * @version $Revision: 1.1 $
  */
 public class JaxpStatusDetail extends StdMutableStatusDetail {
 

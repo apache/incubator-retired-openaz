@@ -37,8 +37,6 @@ import com.att.research.xacml.std.StdStatusCode;
  * PolicyComponent is the base class for all pieces of a XACML Policy or PolicySet that could potentially have errors associated
  * with them by the policy loader.
  *
- * @author car
- * @version $Revision: 1.1 $
  */
 abstract class PolicyComponent {
     private StatusCode	statusCode;

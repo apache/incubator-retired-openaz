@@ -34,8 +34,6 @@ package com.att.research.xacml.api.pip;
  * PIPException extends <code>Exception</code> to represent errors that can occur as a result of querying a
  * {@link PIPEngine} for {@link com.att.research.xacml.api.Attribute}s.
  *
- * @author car
- * @version $Revision: 1.1 $
  */
 public class PIPException extends Exception {
     private static final long serialVersionUID = -6656926395983776184L;

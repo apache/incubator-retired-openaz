@@ -29,7 +29,6 @@ import java.lang.annotation.Target;
  * Represents a union of Obligation Attribute match criterion.
  * All attribute criterion supplied will be conjunctively matched by the framework.
  *
- * @author Ajith Nair, David Laurance, Darshak Kothari
  *
  */
 @Target(ElementType.TYPE)

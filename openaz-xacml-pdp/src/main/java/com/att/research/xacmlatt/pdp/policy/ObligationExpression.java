@@ -49,8 +49,6 @@ import com.att.research.xacmlatt.pdp.eval.EvaluationException;
  * ObligationExpression extends {@link PolicyComponent} to implement the XACML
  * ObligationExpression element.
  *
- * @author car
- * @version $Revision: 1.1 $
  */
 public class ObligationExpression extends PolicyComponent {
     private Identifier							obligationId;

@@ -37,8 +37,6 @@ import com.att.research.xacml.api.SemanticString;
 /**
  * ISO8601TimeZone represents an ISO8601 TimeZone specification.
  *
- * @author car
- * @version $Revision: 1.1 $
  */
 public class ISO8601TimeZone implements Comparable<ISO8601TimeZone>, SemanticString {
     private static int MAX_TZOFFSET_MINUTES				= 60*24;

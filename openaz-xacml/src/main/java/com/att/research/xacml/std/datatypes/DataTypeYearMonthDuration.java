@@ -39,8 +39,6 @@ import com.att.research.xacml.api.XACML3;
  * DataTypeYearMonthDuration extends {@link DataTypeBase} to implement
  * the XACML yearMonthDuration data type.
  *
- * @author car
- * @version $Revision: 1.1 $
  */
 public class DataTypeYearMonthDuration extends DataTypeSemanticStringBase<XPathYearMonthDuration> {
     private static final DataTypeYearMonthDuration	singleInstance	= new DataTypeYearMonthDuration();

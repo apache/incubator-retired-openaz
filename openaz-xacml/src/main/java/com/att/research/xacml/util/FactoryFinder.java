@@ -45,7 +45,6 @@ import org.apache.commons.logging.LogFactory;
  * FactoryFinder is a utility for finding various XACML Factory objects using a common search procedure:
  * 	1.  Look in the jav.home/lib/xacml.properties file for the name of a Class to serve as the Factory instance
  *  2.
- * @author car
  *
  */
 public class FactoryFinder {

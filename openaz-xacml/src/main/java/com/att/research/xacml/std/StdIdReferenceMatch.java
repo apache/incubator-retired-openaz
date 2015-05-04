@@ -38,8 +38,6 @@ import com.att.research.xacml.util.ObjUtil;
 /**
  * Immutable implementation of the {@link com.att.research.xacml.api.IdReferenceMatch} interface.
  *
- * @author Christopher A. Rath
- * @version $Revision$
  */
 public class StdIdReferenceMatch implements IdReferenceMatch {
     private Identifier		id;

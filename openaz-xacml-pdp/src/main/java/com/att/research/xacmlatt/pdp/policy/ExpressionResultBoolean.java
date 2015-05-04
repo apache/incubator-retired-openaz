@@ -38,8 +38,6 @@ import com.att.research.xacml.std.datatypes.DataTypeBoolean;
 /**
  * ExpressionResultBoolean extends {@link ExpressionResult} to represent predicates.
  *
- * @author car
- * @version $Revision: 1.1 $
  */
 public class ExpressionResultBoolean extends ExpressionResult {
     private AttributeValue<Boolean>	value;

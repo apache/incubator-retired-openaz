@@ -41,8 +41,6 @@ import com.att.research.xacml.std.dom.DOMUtil;
  * DOMDocumentRepair extends {@link com.att.research.xacml.std.dom.DOMDocumentRepair} to repair Policy documents as well as
  * Request and Response documents.
  *
- * @author car
- * @version $Revision: 1.1 $
  */
 public class DOMDocumentRepair extends com.att.research.xacml.std.dom.DOMDocumentRepair {
     protected boolean repairPolicy(Node nodePolicy) throws DOMStructureException {

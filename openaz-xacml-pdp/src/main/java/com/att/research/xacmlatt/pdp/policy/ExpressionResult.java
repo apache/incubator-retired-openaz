@@ -40,8 +40,6 @@ import com.att.research.xacml.std.StdStatus;
  * ExpressionResult is the object returned by the <code>evaluate</code> method of {@link Expression}
  * objects.
  *
- * @author car
- * @version $Revision: 1.1 $
  */
 public abstract class ExpressionResult implements FunctionArgument {
     private Status	status;
@@ -49,8 +47,6 @@ public abstract class ExpressionResult implements FunctionArgument {
     /**
      * ExpressionResultError extends <code>ExpressionResult</code> to represent error results.
      *
-     * @author car
-     * @version $Revision: 1.1 $
      */
     private static class ExpressionResultError extends ExpressionResult {
         public ExpressionResultError(Status statusIn) {
@@ -76,8 +72,6 @@ public abstract class ExpressionResult implements FunctionArgument {
     /**
      * ExpressionResultSingle extends <code>ExpressionResult</code> to represent results with a single value.
      *
-     * @author car
-     * @version $Revision: 1.1 $
      */
     private static class ExpressionResultSingle extends ExpressionResult {
         AttributeValue<?>	attributeValue;

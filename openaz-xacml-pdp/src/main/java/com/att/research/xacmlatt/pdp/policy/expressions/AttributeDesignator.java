@@ -57,8 +57,6 @@ import com.att.research.xacmlatt.pdp.policy.PolicyDefaults;
  * AttributeDesignator extends {@link com.att.research.xacmlatt.pdp.policy.expression.AttributeRetrievalBase} to represent the
  * XACML AttributeDesignator element.
  *
- * @author car
- * @version $Revision: 1.2 $
  */
 public class AttributeDesignator extends AttributeRetrievalBase {
     private Identifier attributeId;

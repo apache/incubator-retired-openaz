@@ -48,7 +48,6 @@ import com.att.research.xacml.util.XACMLProperties;
  * This static class is used by both the PDP and PAP servlet's. It contains some common
  * static functions and objects used by both the servlet's.
  *
- * @author pameladragosh
  *
  */
 public class XACMLRest {

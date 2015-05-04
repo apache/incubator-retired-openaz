@@ -38,8 +38,6 @@ import com.att.research.xacml.api.XACML1;
  * Immutable implementation of the {@link com.att.research.xacml.api.StatusCode} interface to store the major
  * and minor {@link com.att.research.xacml.common.StatusCodeValues} objects associated with a XACML StatusCode element.
  *
- * @author car
- * @version $Revision: 1.1 $
  */
 public class StdStatusCode implements StatusCode {
     private Identifier			statusCodeValue;

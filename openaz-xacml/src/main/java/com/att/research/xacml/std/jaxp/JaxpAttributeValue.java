@@ -78,8 +78,6 @@ import com.att.research.xacml.std.datatypes.XPathYearMonthDuration;
  * JaxpAttributeValue<T> extends {@link com.att.research.xacml.std.StdAttributeValue} to instantiate itself
  * from a JAXP {@link oasis.names.tc.xacml._3_0.core.schema.wd_17.AttributeValueType}.
  *
- * @author car
- * @version $Revision: 1.1 $
  * @param <T> the data type of the value in the <code>AttributeValue</code>.
  */
 public class JaxpAttributeValue<T> extends StdAttributeValue<T> {

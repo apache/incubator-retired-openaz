@@ -39,8 +39,6 @@ import org.w3c.dom.NodeList;
 /**
  * ObjUtil provides utilities for comparing objects in various circumstances.
  *
- * @author car
- * @version $Revision$
  */
 public class ObjUtil {
 

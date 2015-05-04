@@ -34,8 +34,6 @@ package com.att.research.xacml.util;
  * Defines an object that delegates its <code>equals</code>, <code>hashCode</code> and <code>toString</code> methods to
  * a wrapped object.
  *
- * @author Christopher A. Rath
- * @version $Revision$
  *
  * @param <T> the Class of the wrapped object
  */

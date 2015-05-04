@@ -47,8 +47,6 @@ import com.att.research.xacml.std.StdAttributeCategory;
  * JaxpAttributeCategory extends {@link com.att.research.xacml.std.StdAttributeCategory} with methods for creation from
  * JAXP elements.
  *
- * @author car
- * @version $Revision: 1.1 $
  */
 public class JaxpAttributeCategory {
 

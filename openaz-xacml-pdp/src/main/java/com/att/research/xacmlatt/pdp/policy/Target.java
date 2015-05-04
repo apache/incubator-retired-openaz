@@ -47,8 +47,6 @@ import com.att.research.xacmlatt.pdp.eval.Matchable;
  * Target extends {@link com.att.research.xacmlatt.pdp.policy.PolicyComponent} to implement XACML 3.0 Target elements for
  * Policies, PolicySets, and Rules.
  *
- * @author car
- * @version $Revision: 1.1 $
  */
 public class Target extends PolicyComponent implements Matchable {
     private List<AnyOf>	anyOfs;

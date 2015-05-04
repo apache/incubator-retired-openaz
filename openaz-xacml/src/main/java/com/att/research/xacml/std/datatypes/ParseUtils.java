@@ -34,8 +34,6 @@ package com.att.research.xacml.std.datatypes;
  * ParseUtils provides a number of static methods that are useful in parsing <code>String</code> objects into
  * other java data types.
  *
- * @author car
- * @version $Revision: 1.1 $
  */
 public class ParseUtils {
     protected ParseUtils() {

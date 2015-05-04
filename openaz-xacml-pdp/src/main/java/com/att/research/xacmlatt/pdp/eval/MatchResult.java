@@ -37,8 +37,6 @@ import com.att.research.xacml.std.StdStatus;
 /**
  * MatchResult is the value returned by the {@link Matchable} interface.
  *
- * @author car
- * @version $Revision: 1.1 $
  */
 public class MatchResult {
     public static enum MatchCode {

@@ -42,8 +42,6 @@ import com.att.research.xacml.util.Wrapper;
 /**
  * Immutable implementation of the {@link com.att.research.xacml.api.Attribute} interface.
  *
- * @author Christopher A. Rath
- * @version $Revision$
  */
 public class StdAttribute extends Wrapper<Attribute> implements Attribute {
     /**

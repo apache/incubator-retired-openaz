@@ -52,8 +52,6 @@ import com.att.research.xacmlatt.pdp.util.ATTPDPProperties;
  * StdCombiningAlgorithms contains single instances of each of the {@link com.att.research.xacmlatt.pdp.policy.CombiningAlgorithm}
  * implementations in the {@link com.att.research.xacmlatt.pdp.std.combiners} package.
  *
- * @author car
- * @version $Revision: 1.2 $
  */
 public class StdCombiningAlgorithms {
 

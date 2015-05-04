@@ -68,8 +68,6 @@ import com.att.research.xacmlatt.pdp.policy.FunctionArgument;
  * 		anyURI-substring
  *
  *
- * @author glenngriffin
- * @version $Revision: 1.1 $
  *
  * @param <I> the java class for the data type of the function Input arguments
  * @param <O> the java class for the data type of the function Output -
@@ -80,7 +78,6 @@ public class FunctionDefinitionStringFunctions<O, I> extends FunctionDefinitionB
     /**
      * List of String operations.
      *
-     * @author glenngriffin
      *
      */
     public enum OPERATION {CONCATENATE, STARTS_WITH, ENDS_WITH, CONTAINS, SUBSTRING };

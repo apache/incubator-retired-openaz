@@ -41,8 +41,6 @@ import com.att.research.xacml.api.XACML;
  * DataTypeTime extends {@link DataTypeBase} to implement the XACML Time
  * data time mapping to a {@link ISO8601Time} java object.
  *
- * @author car
- * @version $Revision: 1.1 $
  */
 public class DataTypeTime extends DataTypeSemanticStringBase<ISO8601Time> {
     private static final DataTypeTime	singleInstance	= new DataTypeTime();

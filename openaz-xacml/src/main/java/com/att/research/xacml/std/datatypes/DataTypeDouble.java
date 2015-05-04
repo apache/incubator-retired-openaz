@@ -36,8 +36,6 @@ import com.att.research.xacml.api.XACML;
 /**
  * DataTypeDouble implements conversion to the XACML Double data type.
  *
- * @author car
- * @version $Revision: 1.1 $
  */
 public class DataTypeDouble extends DataTypeBase<Double> {
     private static final DataTypeDouble	singleInstance	= new DataTypeDouble();

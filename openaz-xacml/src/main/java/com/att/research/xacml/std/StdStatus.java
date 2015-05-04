@@ -38,8 +38,6 @@ import com.att.research.xacml.util.Wrapper;
 /**
  * Immutable implementation of the {@link com.att.research.xacml.api.Status} interface.
  *
- * @author Christopher A. Rath
- * @version $Revision$
  */
 public class StdStatus extends Wrapper<Status> implements Status {
     public static final Status	STATUS_OK	= new StdStatus(StdStatusCode.STATUS_CODE_OK);

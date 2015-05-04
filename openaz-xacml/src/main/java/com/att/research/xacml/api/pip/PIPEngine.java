@@ -35,8 +35,6 @@ import java.util.Collection;
 /**
  * PIPEngine is the interface that objects implement that do look-up of {@link com.att.research.xacml.api.Attribute}s.
  *
- * @author car
- * @version $Revision: 1.2 $
  */
 public interface PIPEngine {
     /**

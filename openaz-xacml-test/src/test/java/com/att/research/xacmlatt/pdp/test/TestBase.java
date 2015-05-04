@@ -98,7 +98,6 @@ import com.google.common.collect.Lists;
  * 2. defining and instantiating the PDP engine
  * 3. creating PEP requests and calling the PDP engine
  *
- * @author pameladragosh
  *
  */
 public class TestBase extends SimpleFileVisitor<Path> {
@@ -114,7 +113,6 @@ public class TestBase extends SimpleFileVisitor<Path> {
      * generation. The user can configure the properties file such that attributes
      * can be automatically generated and added into each request.
      *
-     * @author pameladragosh
      *
      */
     class Generator {

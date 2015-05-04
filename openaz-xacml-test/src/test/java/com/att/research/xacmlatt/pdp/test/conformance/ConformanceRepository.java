@@ -47,8 +47,6 @@ import com.att.research.xacmlatt.pdp.std.StdPolicyFinderFactory;
  * ConformanceRepository represents one or more policies for a single policy test, which will include one or more root policies, and
  * zero or more referenced policies.
  *
- * @author car
- * @version $Revision$
  */
 public class ConformanceRepository {
     private List<File> rootPolicies			= new ArrayList<File>();

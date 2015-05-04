@@ -38,8 +38,6 @@ import com.att.research.xacml.api.trace.Traceable;
 /**
  * Immutable implementation of the {@link com.att.research.xacml.api.trace.TraceEvent} interface.
  *
- * @author Christopher A. Rath
- * @version $Revision$
  *
  * @param <T>
  */

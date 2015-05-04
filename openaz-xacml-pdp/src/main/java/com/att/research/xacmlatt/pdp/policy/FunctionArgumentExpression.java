@@ -41,8 +41,6 @@ import com.att.research.xacmlatt.pdp.eval.EvaluationException;
  * FunctionArgumentExpression implements the {@link FunctionArgument} interface for
  * unevaluated {@link Expression}s.
  *
- * @author car
- * @version $Revision: 1.3 $
  */
 public class FunctionArgumentExpression implements FunctionArgument {
     private static final Status STATUS_NULL_EXPRESSION_RESULT	= new StdStatus(StdStatusCode.STATUS_CODE_PROCESSING_ERROR, "Null expression result");

@@ -49,8 +49,6 @@ import com.att.research.xacml.std.StdRequestAttributes;
  * DOMRequestAttributes extends {@link com.att.research.xacml.std.StdRequestAttributes} with methods for creation from DOM
  * {@link org.w3c.dom.Node}s.
  *
- * @author car
- * @version $Revision: 1.2 $
  */
 public class DOMRequestAttributes {
     private static final Log logger	= LogFactory.getLog(DOMRequestAttributes.class);

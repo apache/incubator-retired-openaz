@@ -39,8 +39,6 @@ import com.att.research.xacml.api.XACML3;
  * DOMDocumentRepair provides methods for examining a DOM {@link org.w3c.dom.Document} for XACML document types and doing repair on them.
  * This class supports XACML Request and Response documents.
  *
- * @author car
- * @version $Revision: 1.1 $
  */
 public class DOMDocumentRepair {
     public static class UnsupportedDocumentTypeException extends Exception {

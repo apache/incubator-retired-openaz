@@ -43,8 +43,6 @@ import com.att.research.xacml.util.ListUtil;
 /**
  * Mutable implementation of the {@link com.att.research.xacml.api.Response} interface.
  *
- * @author Christopher A. Rath
- * @version $Revision: 1.3 $
  */
 public class StdMutableResponse implements Response {
     private static final List<Result>	EMPTY_LIST	= Collections.unmodifiableList(new ArrayList<Result>());

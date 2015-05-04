@@ -48,8 +48,6 @@ import com.att.research.xacmlatt.pdp.eval.Matchable;
  * AnyOf extends {@link com.att.research.xacmlatt.pdp.policy.PolicyComponent} and implements the {@link com.att.research.xacmlatt.pdp.policy.Matchable}
  * interface to represent XACML AllOf elements in a XACML Target.
  *
- * @author car
- * @version $Revision
  */
 public class AllOf extends PolicyComponent implements Matchable {
     private List<Match>	matches;

@@ -46,7 +46,6 @@ import com.att.research.xacml.std.pip.engines.ConfigurableResolver;
  * create list of column parameters to check for XACML attribute requests and convert the results
  * into XACML attributes.
  *
- * @author pameladragosh
  *
  */
 public interface CSVResolver extends ConfigurableResolver {

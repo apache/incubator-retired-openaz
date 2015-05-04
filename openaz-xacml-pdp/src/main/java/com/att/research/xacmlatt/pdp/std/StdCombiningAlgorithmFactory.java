@@ -46,8 +46,6 @@ import com.att.research.xacmlatt.pdp.policy.Rule;
  * a mapping from {@link com.att.research.xacml.api.Identifier}s to
  * the standard {@link com.att.research.xacmlatt.pdp.policy.CombiningAlgorithm} implementations.
  *
- * @author car
- * @version $Revision: 1.2 $
  */
 public class StdCombiningAlgorithmFactory extends CombiningAlgorithmFactory {
     private static Map<Identifier,CombiningAlgorithm<Rule>> 				mapRuleCombiningAlgorithms

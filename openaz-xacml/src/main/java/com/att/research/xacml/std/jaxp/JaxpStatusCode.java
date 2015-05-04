@@ -41,8 +41,6 @@ import com.att.research.xacml.std.StdStatusCode;
  * JaxpStatusCode extends {@link com.att.research.xacml.std.StdStatusCode} with static methods
  * for creating a <code>StatusCode</code> object by parsing JAXP elements based on the XACML 3.0 schema.
  *
- * @author car
- * @version $Revision: 1.1 $
  */
 public class JaxpStatusCode extends StdStatusCode {
 

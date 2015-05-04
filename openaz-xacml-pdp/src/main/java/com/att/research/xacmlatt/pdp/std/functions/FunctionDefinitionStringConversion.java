@@ -78,8 +78,6 @@ import com.att.research.xacmlatt.pdp.policy.FunctionArgument;
  * 		dnsName-from-string
  * 		string-from-dnsName
  *
- * @author glenngriffin
- * @version $Revision: 1.1 $
  *
  * @param <O> the java class for the data type of the function Output
  * @param <I> the java class for the data type of the function Input argument

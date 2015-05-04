@@ -45,8 +45,6 @@ import com.att.research.xacml.util.Wrapper;
 /**
  * Immutable implementation of the {@link com.att.research.xacml.api.Request} interface.
  *
- * @author car
- * @version $Revison$
  */
 public class StdRequest extends Wrapper<Request> implements Request {
     /**

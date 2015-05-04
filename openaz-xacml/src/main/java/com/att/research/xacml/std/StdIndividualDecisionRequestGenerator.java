@@ -64,8 +64,6 @@ import com.att.research.xacml.std.datatypes.XPathExpressionWrapper;
  * {@link com.att.research.xacml.api.Request} and turn it into a sequence of individual decision <code>Request</code>s.
  * This class implements all of the multiple-decision profiles specified in "XACML v3.0 Multiple Decision Profile Version 1.0"
  *
- * @author car
- * @version $Revision$
  */
 public class StdIndividualDecisionRequestGenerator {
     private static final Identifier[] idArray			= new Identifier[0];

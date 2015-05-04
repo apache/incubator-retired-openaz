@@ -48,8 +48,6 @@ import com.att.research.xacmlatt.pdp.policy.PolicySet;
 /**
  * DOMPolicyDef extends {@link com.att.research.xacmlatt.pdp.policy.PolicyDef} with methods for loading them from a <code>File</code>.
  *
- * @author car
- * @version $Revision: 1.2 $
  */
 public abstract class DOMPolicyDef {
     protected DOMPolicyDef() {

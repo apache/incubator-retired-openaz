@@ -75,7 +75,6 @@ import com.att.research.xacml.std.json.JSONStructureException;
  * TO RUN - use jUnit
  * In Eclipse select this file or the enclosing directory, right-click and select Run As/JUnit Test
  *
- * @author glenngriffin
  *
  */
 public class ResponseTest {

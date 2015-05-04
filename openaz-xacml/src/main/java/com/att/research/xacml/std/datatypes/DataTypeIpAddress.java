@@ -38,8 +38,6 @@ import com.att.research.xacml.api.XACML2;
 /**
  * DataTypeIpAddress extends {@link com.att.research.xacml.common.datatypes.DatatypeBase} to implement the XACML ipAddress data type.
  *
- * @author car
- * @version $Revision: 1.1 $
  */
 public class DataTypeIpAddress extends DataTypeSemanticStringBase<IPAddress> {
     private static final DataTypeIpAddress	singleInstance	= new DataTypeIpAddress();

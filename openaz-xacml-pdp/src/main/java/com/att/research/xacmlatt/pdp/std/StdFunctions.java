@@ -77,8 +77,6 @@ import com.att.research.xacmlatt.pdp.std.functions.FunctionDefinitionXPath;
 /**
  * StdFunctions contains the {@link com.att.research.xacml.api.Identifier} values for the standard XACML functions.
  *
- * @author car
- * @version $Revision: 1.2 $
  */
 @SuppressWarnings("deprecation")
 public class StdFunctions {

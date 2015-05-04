@@ -69,7 +69,6 @@ import com.google.common.collect.Sets;
  * This is a simple PAP engine that uses some property files and a simple directory
  * structure in the file system to manage a policy repository and set of PDP nodes.
  *
- * @author pameladragosh
  *
  */
 public class StdEngine extends StdPDPItemSetChangeNotifier implements PAPEngine {

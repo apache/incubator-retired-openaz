@@ -28,7 +28,6 @@ import java.util.Collection;
 import java.util.Map;
 
 /**
- * @author Josh Bregman, Rich Levinson, Prateek Mishra
  */
 public interface PepResponse {
 

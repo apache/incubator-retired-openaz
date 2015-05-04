@@ -45,8 +45,6 @@ import com.att.research.xacml.util.StringUtils;
  * It contains a {@link com.att.research.xacml.api.Status} and an optional collection of {@link com.att.research.xacml.api.AttributeAssignment}
  * elements.
  *
- * @author car
- * @version $Revision$
  */
 public class AttributeAssignmentResult {
     private Status status;

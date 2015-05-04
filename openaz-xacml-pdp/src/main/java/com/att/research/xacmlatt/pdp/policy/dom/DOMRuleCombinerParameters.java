@@ -49,8 +49,6 @@ import com.att.research.xacmlatt.pdp.policy.TargetedCombinerParameter;
  * DOMRuleCombinerParameters extends {@link com.att.research.xacmlatt.pdp.policy.TargetedCombinerParameter} with methods
  * for creation from DOM {@link org.w3c.dom.Node}s.
  *
- * @author car
- * @version $Revision: 1.2 $
  */
 public class DOMRuleCombinerParameters extends TargetedCombinerParameter<String,Rule> {
     private static final Log logger	= LogFactory.getLog(DOMRuleCombinerParameters.class);

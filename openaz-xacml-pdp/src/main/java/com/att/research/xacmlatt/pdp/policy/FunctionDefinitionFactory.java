@@ -41,8 +41,6 @@ import com.att.research.xacmlatt.pdp.util.ATTPDPProperties;
  * FunctionDefinitionFactory is an abstract class for mapping function {@link com.att.research.xacml.api.Identifier} ids to
  * {@link FunctionDefinition} objects.
  *
- * @author car
- * @version $Revision: 1.3 $
  */
 public abstract class FunctionDefinitionFactory {
     private static final String	FACTORYID					= ATTPDPProperties.PROP_FUNCTIONDEFINITIONFACTORY;

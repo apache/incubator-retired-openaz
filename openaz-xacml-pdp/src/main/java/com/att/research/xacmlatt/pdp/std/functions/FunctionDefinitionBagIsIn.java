@@ -70,8 +70,6 @@ import com.att.research.xacmlatt.pdp.policy.FunctionArgument;
  * 		dnsName-is-in
  *
  *
- * @author glenngriffin
- * @version $Revision: 1.1 $
  *
  * @param <I> the java class for the data type of the elements in the Input argument Bag
  *

@@ -47,8 +47,6 @@ import com.att.research.xacmlatt.pdp.policy.VariableDefinition;
  * DOMVariableDefinition extends {@link com.att.research.xacmlatt.pdp.policy.VariableDefinition} with methods
  * for creation from DOM {@link org.w3c.dom.Node}s.
  *
- * @author car
- * @version $Revision: 1.2 $
  */
 public class DOMVariableDefinition extends VariableDefinition {
     private static final Log logger	= LogFactory.getLog(DOMVariableDefinition.class);

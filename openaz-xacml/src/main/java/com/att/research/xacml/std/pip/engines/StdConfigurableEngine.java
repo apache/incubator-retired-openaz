@@ -41,8 +41,6 @@ import com.google.common.cache.CacheBuilder;
  * StdConfigurableEngine implements the {@link ConfigurableEngine} interface to automatically
  * process the standard name, description, and issuer properties.
  *
- * @author car
- * @version $Revision$
  */
 public abstract class StdConfigurableEngine implements ConfigurableEngine {
     public static final String PROP_NAME			= "name";

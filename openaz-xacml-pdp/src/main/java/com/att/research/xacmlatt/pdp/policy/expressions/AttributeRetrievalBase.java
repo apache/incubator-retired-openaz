@@ -46,8 +46,6 @@ import com.att.research.xacmlatt.pdp.policy.ExpressionResult;
  * for the {@link com.att.research.xacmlatt.pdp.policy.AttributeSelector} and {@link com.att.research.xacmlatt.pdp.policy.AttributeDesignator}
  * classes.
  *
- * @author car
- * @version $Revision: 1.1 $
  */
 public abstract class AttributeRetrievalBase extends Expression {
     private Identifier	category;

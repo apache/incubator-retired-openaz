@@ -45,8 +45,6 @@ import com.att.research.xacml.util.AttributeUtils;
  * ConfigurableEngineFinder extends {@link EngineFinder} with a method for configuring
  * it from a <code>Properties</code> object.
  *
- * @author car
- * @version $Revision: 1.1 $
  */
 public class ConfigurableEngineFinder extends EngineFinder {
     private static final String	PROP_PIP_ENGINES	= "xacml.pip.engines";

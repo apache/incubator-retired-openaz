@@ -58,7 +58,6 @@ import com.att.research.xacmlatt.pdp.std.StdFunctions;
  * This file supports the following XACML codes:
  * 		string-equal-ignore-case
  *
- * @author glenngriffin
  *
  */
 public class FunctionDefinitionStringEqualIgnoreCaseTest {

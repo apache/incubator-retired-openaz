@@ -47,8 +47,6 @@ import com.att.research.xacml.std.IdentifierImpl;
 import com.att.research.xacml.std.pip.StdPIPRequest;
 
 /**
- * @author Christopher A. Rath
- * @version $Revision$
  */
 public class Configurables {
 

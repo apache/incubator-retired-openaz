@@ -52,7 +52,6 @@ import static org.junit.Assert.*;
  * NOT IMPLEMENTED!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
  * This function is not yet implemented so these tests intentionally fail.
  *
- * @author glenngriffin
  *
  */
 public class FunctionDefinitionAccessPermittedTest {

@@ -43,8 +43,6 @@ import com.att.research.xacml.util.StringUtils;
  * VariableMap is a collection of {@link com.att.research.xacmlatt.pdp.policy.VariableDefinition}s that are accessible by
  * the variable identifier.
  *
- * @author car
- * @version $Revision: 1.1 $
  */
 public class VariableMap {
     private List<VariableDefinition>		variableDefinitions;

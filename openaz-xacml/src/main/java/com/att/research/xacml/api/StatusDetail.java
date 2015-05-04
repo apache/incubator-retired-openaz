@@ -35,8 +35,6 @@ import java.util.Collection;
 /**
  * Defines the API for objects that represent XACML StatusDetail elements.
  *
- * @author Christopher A. Rath
- * @version $Revision: 1.1 $
  */
 public interface StatusDetail {
     /**

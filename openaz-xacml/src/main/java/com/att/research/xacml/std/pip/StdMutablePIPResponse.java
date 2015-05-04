@@ -44,8 +44,6 @@ import com.att.research.xacml.std.StdStatus;
  * Mutable implementation of the {@link com.att.research.xacml.api.pip.PIPResponse} interface with methods for
  * keeping a collection of {@link com.att.research.xacml.api.Attribute}s with a {@link com.att.research.xacml.api.Status}.
  *
- * @author Christopher A. Rath
- * @version $Revision: 1.2 $
  */
 public class StdMutablePIPResponse implements PIPResponse {
     private static final List<Attribute> EMPTY_LIST			= Collections.unmodifiableList(new ArrayList<Attribute>());

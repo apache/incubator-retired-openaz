@@ -45,8 +45,6 @@ import com.att.research.xacml.std.StdMutableAttribute;
 /**
  * DOMAttribute extends {@link com.att.research.xacml.std.StdMutableAttribute} with methods for creation from DOM <code>Node</code>s.
  *
- * @author car
- * @version $Revision: 1.3 $
  */
 public class DOMAttribute {
     private static Log logger	= LogFactory.getLog(DOMAttribute.class);

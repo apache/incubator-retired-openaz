@@ -34,8 +34,6 @@ package com.att.research.xacml.api;
  * Enumeration of the XACML 3.0 decisions and extended decisions that can be returned as part of
  * a {@link Result}.
  *
- * @author Christopher A. Rath
- * @version $Revision: 1.2 $
  */
 public enum Decision {
     /**

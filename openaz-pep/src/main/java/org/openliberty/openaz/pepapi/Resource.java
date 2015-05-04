@@ -28,7 +28,6 @@ import java.util.Date;
 /**
  * Container class that maps attributes to predefined XACML Resource category.
  *
- * @author Ajith Nair, David Laurance, Darshak Kothari
  *
  */
 public final class Resource extends CategoryContainer {

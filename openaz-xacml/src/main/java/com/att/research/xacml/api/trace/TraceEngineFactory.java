@@ -41,8 +41,6 @@ import com.att.research.xacml.util.XACMLProperties;
  * Provides methods for creating instances of the {@link TraceEngine} interface.  This may be used by PDP, PEP, or PIP
  * implementations to provide tracing facilities that are useful for validating that XACML Policies and PolicySets operate as expected.
  *
- * @author Christopher A. Rath
- * @version $Revision$
  */
 public abstract class TraceEngineFactory {
     private static final String	FACTORYID					= XACMLProperties.PROP_TRACEENGINEFACTORY;
