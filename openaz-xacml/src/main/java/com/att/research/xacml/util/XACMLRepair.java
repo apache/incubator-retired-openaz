@@ -51,8 +51,6 @@ import com.att.research.xacml.std.dom.DOMUtil;
  * XACMLRepair is an application class that can load individual XACML documents or directories of XACML documents, make any needed
  * repairs on them, and write them back out to an output file or directory.
  *
- * @author car
- * @version $Revision: 1.1 $
  */
 public class XACMLRepair {
     private static final Log logger	= LogFactory.getLog(XACMLRepair.class);
