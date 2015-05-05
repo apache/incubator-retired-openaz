@@ -68,22 +68,18 @@ import com.att.research.xacmlatt.pdp.test.TestBase;
 /**
  * This example application shows how to use annotations for Java classes to create requests to send to the
  * engine.
- *
- *
  */
 public class TestAnnotation extends TestBase {
-    private static final Log logger     = LogFactory.getLog(TestAnnotation.class);
+    private static final Log logger = LogFactory.getLog(TestAnnotation.class);
 
     private int num;
 
     /**
-     * This is a sample class that uses annotations. In addition to demonstrating how to use XACML annotations,
-     * it also demonstrates the various Java objects that can be used and how the request parser will
-     * resolve each object's datatype.
-     *
-     *
+     * This is a sample class that uses annotations. In addition to demonstrating how to use XACML
+     * annotations, it also demonstrates the various Java objects that can be used and how the request parser
+     * will resolve each object's datatype.
      */
-    @XACMLRequest(ReturnPolicyIdList=true)
+    @XACMLRequest(ReturnPolicyIdList = true)
     public class MyRequestAttributes {
 
         public MyRequestAttributes(String user, String action, String resource) {
@@ -95,97 +91,104 @@ public class TestAnnotation extends TestBase {
             this.yesterday.add(Calendar.DAY_OF_MONTH, -1);
         }
 
-        @XACMLSubject(includeInResults=true)
-        String  userID;
+        @XACMLSubject(includeInResults = true)
+        String userID;
 
-        @XACMLSubject(attributeId="urn:oasis:names:tc:xacml:1.0:subject:subject-id-qualifier")
+        @XACMLSubject(attributeId = "urn:oasis:names:tc:xacml:1.0:subject:subject-id-qualifier")
         boolean admin = false;
 
-        @XACMLSubject(attributeId="urn:oasis:names:tc:xacml:1.0:subject:key-info", issuer="com:foo:security")
-        HexBinary publicKey = new HexBinary(new byte[] {'1', '0'});
+        @XACMLSubject(attributeId = "urn:oasis:names:tc:xacml:1.0:subject:key-info", issuer = "com:foo:security")
+        HexBinary publicKey = new HexBinary(new byte[] {
+            '1', '0'
+        });
 
-        @XACMLSubject(attributeId="urn:oasis:names:tc:xacml:1.0:subject:authentication-time")
-        ISO8601Time     authenticationTime = new ISO8601Time(8, 0, 0, 0);
+        @XACMLSubject(attributeId = "urn:oasis:names:tc:xacml:1.0:subject:authentication-time")
+        ISO8601Time authenticationTime = new ISO8601Time(8, 0, 0, 0);
 
         /**
-         * Here our base object is "Object", but it is reflected as a Java "String". The parser
-         * will then use the XACML http://www.w3.org/2001/XMLSchema#string as the datatype.
+         * Here our base object is "Object", but it is reflected as a Java "String". The parser will then use
+         * the XACML http://www.w3.org/2001/XMLSchema#string as the datatype.
          */
-        @XACMLSubject(attributeId="urn:oasis:names:tc:xacml:1.0:subject:authentication-method")
+        @XACMLSubject(attributeId = "urn:oasis:names:tc:xacml:1.0:subject:authentication-method")
         Object authenticationMethod = new String("RSA Public Key");
 
         /**
-         * Here our base object is "String", but we use the annotation for datatype to clarify
-         * that the real XACML data type is http://www.w3.org/2001/XMLSchema#time. The parser will
-         * use the data type factory to convert the "String" to a "ISO8601Time" Java object.
+         * Here our base object is "String", but we use the annotation for datatype to clarify that the real
+         * XACML data type is http://www.w3.org/2001/XMLSchema#time. The parser will use the data type factory
+         * to convert the "String" to a "ISO8601Time" Java object.
          */
-        @XACMLSubject(attributeId="urn:oasis:names:tc:xacml:1.0:subject:request-time", datatype="http://www.w3.org/2001/XMLSchema#time")
+        @XACMLSubject(attributeId = "urn:oasis:names:tc:xacml:1.0:subject:request-time", datatype = "http://www.w3.org/2001/XMLSchema#time")
         String requestTime = new String("13:20:00-05:00");
 
-        @XACMLSubject(attributeId="urn:oasis:names:tc:xacml:1.0:subject:session-start-time")
-        ISO8601DateTime sessionStart = new ISO8601DateTime(TimeZone.getDefault().getID(), 2014, 1, 1, 10, 0, 0, 0);
+        @XACMLSubject(attributeId = "urn:oasis:names:tc:xacml:1.0:subject:session-start-time")
+        ISO8601DateTime sessionStart = new ISO8601DateTime(TimeZone.getDefault().getID(), 2014, 1, 1, 10, 0,
+                                                           0, 0);
 
-        @XACMLSubject(attributeId="urn:oasis:names:tc:xacml:3.0:subject:authn-locality:ip-address")
-        IPAddress ip = new IPv4Address(new short[] {123, 134, 156, 255 }, null, null);
+        @XACMLSubject(attributeId = "urn:oasis:names:tc:xacml:3.0:subject:authn-locality:ip-address")
+        IPAddress ip = new IPv4Address(new short[] {
+            123, 134, 156, 255
+        }, null, null);
 
-        @XACMLSubject(attributeId="urn:oasis:names:tc:xacml:3.0:subject:authn-locality:dns-name")
+        @XACMLSubject(attributeId = "urn:oasis:names:tc:xacml:3.0:subject:authn-locality:dns-name")
         String dnsName = "localhost";
 
         @XACMLAction()
-        String  action;
+        String action;
 
-        @XACMLAction(attributeId="urn:oasis:names:tc:xacml:1.0:action:implied-action")
-        long    impliedAction;
+        @XACMLAction(attributeId = "urn:oasis:names:tc:xacml:1.0:action:implied-action")
+        long impliedAction;
 
         @XACMLResource()
-        String  resource;
+        String resource;
 
         @XACMLEnvironment()
-        Date            today;
+        Date today;
 
         @XACMLEnvironment()
-        Calendar        yesterday;
+        Calendar yesterday;
 
         /**
          * This field demonstrates how the parser can detect collections and build a bag of values.
          */
-        @XACMLAttribute(attributeId="foo:bar:attribute")
-        Collection<Double>              fooBar = Arrays.asList(2.5, 3.5);
+        @XACMLAttribute(attributeId = "foo:bar:attribute")
+        Collection<Double> fooBar = Arrays.asList(2.5, 3.5);
 
         /**
          * The XACMLAttribute annotation allows one to specify all the
          */
-        @XACMLAttribute(category="foo:bar:category", attributeId="foo:bar:attribute2")
-        double          fooBar2 = 3.999;
+        @XACMLAttribute(category = "foo:bar:category", attributeId = "foo:bar:attribute2")
+        double fooBar2 = 3.999;
 
         /**
          * This field demonstrates how the parser can detect arrays and build a bag of values.
          */
-        @XACMLAttribute(category="foo:bar:category", attributeId="foo:bar:attribute:many")
-        URI[]           fooBarMany = new URI[] {URI.create("file://opt/app/test"), URI.create("https://localhost:8443/")};
+        @XACMLAttribute(category = "foo:bar:category", attributeId = "foo:bar:attribute:many")
+        URI[] fooBarMany = new URI[] {
+            URI.create("file://opt/app/test"), URI.create("https://localhost:8443/")
+        };
 
     };
 
-    @XACMLRequest(
-        Defaults="http://www.w3.org/TR/1999/Rec-xpath-19991116",
-    multiRequest=@XACMLMultiRequest(values= {
-        @XACMLRequestReference(values={"subject1", "action", "resource"}),
-        @XACMLRequestReference(values={"subject2", "action", "resource"})
-    })
-    )
+    @XACMLRequest(Defaults = "http://www.w3.org/TR/1999/Rec-xpath-19991116", multiRequest = @XACMLMultiRequest(values = {
+                                                           @XACMLRequestReference(values = {
+            "subject1", "action", "resource"
+        }), @XACMLRequestReference(values = {
+            "subject2", "action", "resource"
+        })
+                  }))
     public class MyMultiRequestAttributes {
 
-        @XACMLSubject(id="subject1")
-        String  userID1 = "John";
+        @XACMLSubject(id = "subject1")
+        String userID1 = "John";
 
-        @XACMLSubject(id="subject2")
-        String  userID2 = "Ringo";
+        @XACMLSubject(id = "subject2")
+        String userID2 = "Ringo";
 
-        @XACMLAction(id="action")
-        String  action = "access";
+        @XACMLAction(id = "action")
+        String action = "access";
 
-        @XACMLResource(id="resource")
-        String  resource = "www.mywebsite.com";
+        @XACMLResource(id = "resource")
+        String resource = "www.mywebsite.com";
     }
 
     public TestAnnotation(String[] args) throws MalformedURLException, ParseException, HelpException {
@@ -219,9 +222,11 @@ public class TestAnnotation extends TestBase {
             Response response = this.callPDP(RequestParser.parseRequest(info));
             Path resultFile;
             if (this.output != null) {
-                resultFile = Paths.get(this.output.toString(), "Response." + String.format("%03d", this.num) + ".json");
+                resultFile = Paths.get(this.output.toString(), "Response." + String.format("%03d", this.num)
+                                                               + ".json");
             } else {
-                resultFile = Paths.get(this.directory, "results", "Response." + String.format("%03d", this.num) + ".json");
+                resultFile = Paths.get(this.directory, "results",
+                                       "Response." + String.format("%03d", this.num) + ".json");
             }
             //
             // Write the response to the result file

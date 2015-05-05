@@ -32,23 +32,22 @@ package com.att.research.xacml.api;
 
 /**
  * Defines the API for objects that implement XACML AttributesReference elements.
- *
  */
 public interface RequestAttributesReference {
     /**
-     * Gets the <String> representing the xml:Id of the XACML AttributesReference element represented by this <code>RequestAttributesReference</code>
+     * Gets the <String> representing the xml:Id of the XACML AttributesReference element represented by this
+     * <code>RequestAttributesReference</code>
      *
-     * @return the <code>String</code> representing the xml:Id of the XACML AttributesReference element represented by this <code>RequestAttributesReference</code>
+     * @return the <code>String</code> representing the xml:Id of the XACML AttributesReference element
+     *         represented by this <code>RequestAttributesReference</code>
      */
     String getReferenceId();
 
     /**
-     * {@inheritDoc}
-     *
-     * Implementations of this interface must override the <code>equals</code> method with the following semantics:
-     *
-     *          Two <code>RequestAttributesReference</code>s (<code>r1</code> and <code>r2</code>) are equal if:
-     *                  {@code r1.getReferenceId() == null && r2.getReferenceId() == null} OR {@code r1.getReferenceId().equals(r2.getReferenceId())}
+     * {@inheritDoc} Implementations of this interface must override the <code>equals</code> method with the
+     * following semantics: Two <code>RequestAttributesReference</code>s (<code>r1</code> and <code>r2</code>)
+     * are equal if: {@code r1.getReferenceId() == null && r2.getReferenceId() == null} OR
+     * {@code r1.getReferenceId().equals(r2.getReferenceId())}
      */
     @Override
     boolean equals(Object obj);

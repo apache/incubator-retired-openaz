@@ -47,38 +47,41 @@ import com.att.research.xacml.std.dom.DOMUtil;
 import com.att.research.xacmlatt.pdp.policy.PolicyDefaults;
 
 /**
- * DOMPolicyDefaults extends {@link com.att.research.xacmlatt.pdp.policy.PolicyDefaults} with methods for creation from
- * DOM {@org.w3c.dom.Node}s.
- *
+ * DOMPolicyDefaults extends {@link com.att.research.xacmlatt.pdp.policy.PolicyDefaults} with methods for
+ * creation from DOM {@org.w3c.dom.Node}s.
  */
 public class DOMPolicyDefaults extends PolicyDefaults {
-    private static final Log logger     = LogFactory.getLog(DOMPolicyDefaults.class);
+    private static final Log logger = LogFactory.getLog(DOMPolicyDefaults.class);
 
     protected DOMPolicyDefaults(URI xpathVersionIn, PolicyDefaults policyDefaultsParentIn) {
         super(xpathVersionIn, policyDefaultsParentIn);
     }
 
     /**
-     * Creates a new <code>DOMPolicyDefaults</code> by parsing the given <code>Node</code> representing a XACML PolicyDefaults element.
+     * Creates a new <code>DOMPolicyDefaults</code> by parsing the given <code>Node</code> representing a
+     * XACML PolicyDefaults element.
      *
      * @param nodePolicyDefaults the <code>Node</code> representing the PolicyDefaults element.
-     * @param policyDefaultsParent the <code>PolicyDefaults</code> parent for the new <code>DOMPolicyDefaults</code>
+     * @param policyDefaultsParent the <code>PolicyDefaults</code> parent for the new
+     *            <code>DOMPolicyDefaults</code>
      * @return a new <code>DOMPolicyDefaults</code> parsed from the given <code>Node</code>
      * @throws DOMStructureException if the conversion is not possible
      */
-    public static PolicyDefaults newInstance(Node nodePolicyDefaults, PolicyDefaults policyDefaultsParent) throws DOMStructureException {
-        Element elementPolicyDefaults   = DOMUtil.getElement(nodePolicyDefaults);
-        boolean bLenient                                = DOMProperties.isLenient();
+    public static PolicyDefaults newInstance(Node nodePolicyDefaults, PolicyDefaults policyDefaultsParent)
+        throws DOMStructureException {
+        Element elementPolicyDefaults = DOMUtil.getElement(nodePolicyDefaults);
+        boolean bLenient = DOMProperties.isLenient();
 
-        URI uriXPathVersion             = null;
+        URI uriXPathVersion = null;
 
-        NodeList children       = elementPolicyDefaults.getChildNodes();
+        NodeList children = elementPolicyDefaults.getChildNodes();
         int numChildren;
         if (children != null && (numChildren = children.getLength()) > 0) {
-            for (int i = 0 ; i < numChildren ; i++) {
-                Node child      = children.item(i);
+            for (int i = 0; i < numChildren; i++) {
+                Node child = children.item(i);
                 if (DOMUtil.isElement(child)) {
-                    if (DOMUtil.isInNamespace(child, XACML3.XMLNS) && XACML3.ELEMENT_XPATHVERSION.equals(child.getLocalName())) {
+                    if (DOMUtil.isInNamespace(child, XACML3.XMLNS)
+                        && XACML3.ELEMENT_XPATHVERSION.equals(child.getLocalName())) {
                         uriXPathVersion = DOMUtil.getURIContent(child);
                     } else if (!bLenient) {
                         throw DOMUtil.newUnexpectedElementException(child, nodePolicyDefaults);
@@ -90,27 +93,29 @@ public class DOMPolicyDefaults extends PolicyDefaults {
     }
 
     public static boolean repair(Node nodePolicyDefaults) throws DOMStructureException {
-        Element elementPolicyDefaults   = DOMUtil.getElement(nodePolicyDefaults);
-        boolean result                                  = false;
+        Element elementPolicyDefaults = DOMUtil.getElement(nodePolicyDefaults);
+        boolean result = false;
 
-        NodeList children       = elementPolicyDefaults.getChildNodes();
+        NodeList children = elementPolicyDefaults.getChildNodes();
         int numChildren;
         if (children != null && (numChildren = children.getLength()) > 0) {
-            for (int i = 0 ; i < numChildren ; i++) {
-                Node child      = children.item(i);
+            for (int i = 0; i < numChildren; i++) {
+                Node child = children.item(i);
                 if (DOMUtil.isElement(child)) {
-                    if (DOMUtil.isInNamespace(child, XACML3.XMLNS) && XACML3.ELEMENT_XPATHVERSION.equals(child.getLocalName())) {
+                    if (DOMUtil.isInNamespace(child, XACML3.XMLNS)
+                        && XACML3.ELEMENT_XPATHVERSION.equals(child.getLocalName())) {
                         try {
                             DOMUtil.getURIContent(child);
                         } catch (DOMStructureException ex) {
-                            logger.warn("Setting invalid " + XACML3.ELEMENT_XPATHVERSION + " attribute " + child.getTextContent() + " to " + XACML.XPATHVERSION_2_0);
+                            logger.warn("Setting invalid " + XACML3.ELEMENT_XPATHVERSION + " attribute "
+                                        + child.getTextContent() + " to " + XACML.XPATHVERSION_2_0);
                             child.setTextContent(XACML.XPATHVERSION_2_0);
-                            result      = true;
+                            result = true;
                         }
                     } else {
                         logger.warn("Unexpected element " + child.getNodeName());
                         elementPolicyDefaults.removeChild(child);
-                        result  = true;
+                        result = true;
                     }
                 }
             }

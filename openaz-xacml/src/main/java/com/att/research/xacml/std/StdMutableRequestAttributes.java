@@ -46,11 +46,10 @@ import com.att.research.xacml.util.ObjUtil;
 
 /**
  * Mutable implementation of the {@link com.att.research.xacml.api.RequestAttributes} interface.
- *
  */
 public class StdMutableRequestAttributes extends StdMutableAttributeCategory implements RequestAttributes {
-    private Node                                contentRoot;
-    private String                              xmlId;
+    private Node contentRoot;
+    private String xmlId;
 
     /**
      * Creates a new <code>StdMutableRequestAttributes</code> with default values.
@@ -60,30 +59,38 @@ public class StdMutableRequestAttributes extends StdMutableAttributeCategory imp
     }
 
     /**
-     * Creates a new <code>StdMutableRequestAttributes</code> with the given {@link com.att.research.xacml.api.Identifier} representing its XACML Category,
-     * the given <code>Collection</code> of {@link com.att.research.xacml.api.Attribute}s, the given {@link org.w3c.dom.Node} representing the XACML Content element
-     * and the given <code>String</code> as the optional xml:Id.
+     * Creates a new <code>StdMutableRequestAttributes</code> with the given
+     * {@link com.att.research.xacml.api.Identifier} representing its XACML Category, the given
+     * <code>Collection</code> of {@link com.att.research.xacml.api.Attribute}s, the given
+     * {@link org.w3c.dom.Node} representing the XACML Content element and the given <code>String</code> as
+     * the optional xml:Id.
      *
-     * @param identifierCategory the <code>Identifier</code> representing the XACML Category for the new <code>StdMutableRequestAttributes</code>
-     * @param listAttributes the <code>Collection</code> of <code>Attribute</code>s included in the new <code>StdMutableRequestAttributes</code>
-     * @param nodeContentRoot the <code>Node</code> representing the XACML Content element for the new <code>StdMutableRequestAttributes</code>
-     * @param xmlIdIn the <code>String</code> representing the xml:Id of the XACML Attributes element represented by this <code>StdMutableRequestAttributes</code>
+     * @param identifierCategory the <code>Identifier</code> representing the XACML Category for the new
+     *            <code>StdMutableRequestAttributes</code>
+     * @param listAttributes the <code>Collection</code> of <code>Attribute</code>s included in the new
+     *            <code>StdMutableRequestAttributes</code>
+     * @param nodeContentRoot the <code>Node</code> representing the XACML Content element for the new
+     *            <code>StdMutableRequestAttributes</code>
+     * @param xmlIdIn the <code>String</code> representing the xml:Id of the XACML Attributes element
+     *            represented by this <code>StdMutableRequestAttributes</code>
      */
-    public StdMutableRequestAttributes(Identifier identifierCategory, Collection<Attribute> listAttributes, Node nodeContentRoot, String xmlIdIn) {
+    public StdMutableRequestAttributes(Identifier identifierCategory, Collection<Attribute> listAttributes,
+                                       Node nodeContentRoot, String xmlIdIn) {
         super(identifierCategory, listAttributes);
-        this.contentRoot        = nodeContentRoot;
-        this.xmlId                      = xmlIdIn;
+        this.contentRoot = nodeContentRoot;
+        this.xmlId = xmlIdIn;
     }
 
     /**
-     * Creates a new <code>StdMutableRequestAttributes</code> by copying the given {@link com.att.research.xacml.api.RequestAttributes}.
+     * Creates a new <code>StdMutableRequestAttributes</code> by copying the given
+     * {@link com.att.research.xacml.api.RequestAttributes}.
      *
      * @param requestAttributes the <code>RequestAttributes</code> to copy
      */
     public StdMutableRequestAttributes(RequestAttributes requestAttributes) {
         super(requestAttributes);
-        this.contentRoot        = requestAttributes.getContentRoot();
-        this.xmlId                      = requestAttributes.getXmlId();
+        this.contentRoot = requestAttributes.getContentRoot();
+        this.xmlId = requestAttributes.getXmlId();
     }
 
     @Override
@@ -92,12 +99,14 @@ public class StdMutableRequestAttributes extends StdMutableAttributeCategory imp
     }
 
     /**
-     * Sets the <code>String</code> xml:Id from the XACML Attributes element represented by this <code>StdMutableRequestAttributes</code>.
+     * Sets the <code>String</code> xml:Id from the XACML Attributes element represented by this
+     * <code>StdMutableRequestAttributes</code>.
      *
-     * @param xmlIdIn the <code>String</code> representing the xml:Id from the XACML Attributes element represented by this <code>StdMutableRequestAttributes</code>
+     * @param xmlIdIn the <code>String</code> representing the xml:Id from the XACML Attributes element
+     *            represented by this <code>StdMutableRequestAttributes</code>
      */
     public void setXmlId(String xmlIdIn) {
-        this.xmlId      = xmlIdIn;
+        this.xmlId = xmlIdIn;
     }
 
     @Override
@@ -106,12 +115,14 @@ public class StdMutableRequestAttributes extends StdMutableAttributeCategory imp
     }
 
     /**
-     * Sets the {@link org.w3c.dom.Node} representing the XACML Content element for this <code>StdMutableRequestAttributes</code>.
+     * Sets the {@link org.w3c.dom.Node} representing the XACML Content element for this
+     * <code>StdMutableRequestAttributes</code>.
      *
-     * @param nodeContentRoot the <code>Node</code> representing the XACML Content element for this <code>StdMutableRequestAttributes</code>.
+     * @param nodeContentRoot the <code>Node</code> representing the XACML Content element for this
+     *            <code>StdMutableRequestAttributes</code>.
      */
     public void setContentRoot(Node nodeContentRoot) {
-        this.contentRoot        = nodeContentRoot;
+        this.contentRoot = nodeContentRoot;
     }
 
     @Override
@@ -119,13 +130,13 @@ public class StdMutableRequestAttributes extends StdMutableAttributeCategory imp
         if (xpathExpression == null) {
             throw new NullPointerException("Null XPathExpression");
         }
-        Node    nodeRootThis    = this.getContentRoot();
+        Node nodeRootThis = this.getContentRoot();
         if (nodeRootThis == null) {
             return null;
         }
-        Node    matchingNode    = null;
+        Node matchingNode = null;
         try {
-            matchingNode        = (Node)xpathExpression.evaluate(nodeRootThis, XPathConstants.NODE);
+            matchingNode = (Node)xpathExpression.evaluate(nodeRootThis, XPathConstants.NODE);
         } catch (XPathExpressionException ex) {
             this.logger.warn("Failed to retrieve node for \"" + xpathExpression.toString() + "\"", ex);
         }
@@ -137,13 +148,13 @@ public class StdMutableRequestAttributes extends StdMutableAttributeCategory imp
         if (xpathExpression == null) {
             throw new NullPointerException("Null XPathExpression");
         }
-        Node    nodeRootThis    = this.getContentRoot();
+        Node nodeRootThis = this.getContentRoot();
         if (nodeRootThis == null) {
             return null;
         }
-        NodeList        matchingNodeList        = null;
+        NodeList matchingNodeList = null;
         try {
-            matchingNodeList    = (NodeList)xpathExpression.evaluate(nodeRootThis, XPathConstants.NODESET);
+            matchingNodeList = (NodeList)xpathExpression.evaluate(nodeRootThis, XPathConstants.NODESET);
         } catch (XPathExpressionException ex) {
             this.logger.warn("Failed to retrieve nodelist for \"" + xpathExpression.toString() + "\"", ex);
         }
@@ -157,16 +168,16 @@ public class StdMutableRequestAttributes extends StdMutableAttributeCategory imp
         } else if (obj == null || !(obj instanceof RequestAttributes)) {
             return false;
         } else {
-            RequestAttributes objRequestAttributes      = (RequestAttributes)obj;
-            return super.equals(objRequestAttributes) &&
-                   ObjUtil.equalsAllowNull(this.getContentRoot(), objRequestAttributes.getContentRoot()) &&
-                   ObjUtil.equalsAllowNull(this.getXmlId(), objRequestAttributes.getXmlId());
+            RequestAttributes objRequestAttributes = (RequestAttributes)obj;
+            return super.equals(objRequestAttributes)
+                   && ObjUtil.equalsAllowNull(this.getContentRoot(), objRequestAttributes.getContentRoot())
+                   && ObjUtil.equalsAllowNull(this.getXmlId(), objRequestAttributes.getXmlId());
         }
     }
 
     @Override
     public String toString() {
-        StringBuilder   stringBuilder   = new StringBuilder("{");
+        StringBuilder stringBuilder = new StringBuilder("{");
         stringBuilder.append("super=");
         stringBuilder.append(super.toString());
 

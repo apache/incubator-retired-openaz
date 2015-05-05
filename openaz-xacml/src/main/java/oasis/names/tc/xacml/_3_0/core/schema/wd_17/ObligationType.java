@@ -25,7 +25,6 @@
 // Generated on: 2013.05.23 at 02:47:00 PM EDT
 //
 
-
 package oasis.names.tc.xacml._3_0.core.schema.wd_17;
 
 import java.util.ArrayList;
@@ -38,11 +37,11 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 
-
 /**
- * <p>Java class for ObligationType complex type.
- *
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>
+ * Java class for ObligationType complex type.
+ * <p>
+ * The following schema fragment specifies the expected content contained within this class.
  *
  * <pre>
  * &lt;complexType name="ObligationType">
@@ -56,12 +55,10 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- *
- *
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "ObligationType", propOrder = {
-    "attributeAssignment"
+                                               "attributeAssignment"
 })
 public class ObligationType {
 
@@ -73,25 +70,18 @@ public class ObligationType {
 
     /**
      * Gets the value of the attributeAssignment property.
-     *
      * <p>
-     * This accessor method returns a reference to the live list,
-     * not a snapshot. Therefore any modification you make to the
-     * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the attributeAssignment property.
-     *
+     * This accessor method returns a reference to the live list, not a snapshot. Therefore any modification
+     * you make to the returned list will be present inside the JAXB object. This is why there is not a
+     * <CODE>set</CODE> method for the attributeAssignment property.
      * <p>
      * For example, to add a new item, do as follows:
+     * 
      * <pre>
-     *    getAttributeAssignment().add(newItem);
+     * getAttributeAssignment().add(newItem);
      * </pre>
-     *
-     *
      * <p>
-     * Objects of the following type(s) are allowed in the list
-     * {@link AttributeAssignmentType }
-     *
-     *
+     * Objects of the following type(s) are allowed in the list {@link AttributeAssignmentType }
      */
     public List<AttributeAssignmentType> getAttributeAssignment() {
         if (attributeAssignment == null) {
@@ -103,10 +93,7 @@ public class ObligationType {
     /**
      * Gets the value of the obligationId property.
      *
-     * @return
-     *     possible object is
-     *     {@link String }
-     *
+     * @return possible object is {@link String }
      */
     public String getObligationId() {
         return obligationId;
@@ -115,10 +102,7 @@ public class ObligationType {
     /**
      * Sets the value of the obligationId property.
      *
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *
+     * @param value allowed object is {@link String }
      */
     public void setObligationId(String value) {
         this.obligationId = value;

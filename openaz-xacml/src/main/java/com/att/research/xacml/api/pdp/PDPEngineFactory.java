@@ -39,14 +39,14 @@ import com.att.research.xacml.util.FactoryFinder;
 import com.att.research.xacml.util.XACMLProperties;
 
 /**
- * PDPEngineFactory provides the interface for creating {@link com.att.research.xacml.pep.PDPEngine} instances.
- *
+ * PDPEngineFactory provides the interface for creating {@link com.att.research.xacml.pep.PDPEngine}
+ * instances.
  */
 public abstract class PDPEngineFactory {
-    private static final String FACTORYID                                       = XACMLProperties.PROP_PDPENGINEFACTORY;
-    private static final String DEFAULT_FACTORY_CLASSNAME       = "com.att.research.xacmlatt.pdp.ATTPDPEngineFactory";
+    private static final String FACTORYID = XACMLProperties.PROP_PDPENGINEFACTORY;
+    private static final String DEFAULT_FACTORY_CLASSNAME = "com.att.research.xacmlatt.pdp.ATTPDPEngineFactory";
 
-    private Decision defaultBehavior    = Decision.INDETERMINATE;
+    private Decision defaultBehavior = Decision.INDETERMINATE;
     private ScopeResolver scopeResolver;
 
     protected static Decision getConfiguredDefaultBehavior() {
@@ -80,14 +80,16 @@ public abstract class PDPEngineFactory {
     }
 
     /**
-     * Creates a new <code>PDPEngineFactory</code> instance by examining initialization resources from
-     * various places to determine the class to instantiate and return.
+     * Creates a new <code>PDPEngineFactory</code> instance by examining initialization resources from various
+     * places to determine the class to instantiate and return.
      *
-     * @return an instance of an object that extends <code>PDPEngineFactory</code> to use in creating <code>PDPEngine</code> objects.
+     * @return an instance of an object that extends <code>PDPEngineFactory</code> to use in creating
+     *         <code>PDPEngine</code> objects.
      */
     public static PDPEngineFactory newInstance() throws FactoryException {
-        PDPEngineFactory pdpEngineFactory       = FactoryFinder.find(FACTORYID, DEFAULT_FACTORY_CLASSNAME, PDPEngineFactory.class);
-        Decision defaultDecisionBehavior        = getConfiguredDefaultBehavior();
+        PDPEngineFactory pdpEngineFactory = FactoryFinder.find(FACTORYID, DEFAULT_FACTORY_CLASSNAME,
+                                                               PDPEngineFactory.class);
+        Decision defaultDecisionBehavior = getConfiguredDefaultBehavior();
         if (defaultDecisionBehavior != null) {
             pdpEngineFactory.setDefaultBehavior(defaultDecisionBehavior);
         }
@@ -95,14 +97,16 @@ public abstract class PDPEngineFactory {
     }
 
     /**
-     * Creates a new <code>PDPEngineFactory</code> instance by examining initialization resources from
-     * various places to determine the class to instantiate and return.
+     * Creates a new <code>PDPEngineFactory</code> instance by examining initialization resources from various
+     * places to determine the class to instantiate and return.
      *
-     * @return an instance of an object that extends <code>PDPEngineFactory</code> to use in creating <code>PDPEngine</code> objects.
+     * @return an instance of an object that extends <code>PDPEngineFactory</code> to use in creating
+     *         <code>PDPEngine</code> objects.
      */
     public static PDPEngineFactory newInstance(Properties properties) throws FactoryException {
-        PDPEngineFactory pdpEngineFactory       = FactoryFinder.find(FACTORYID, DEFAULT_FACTORY_CLASSNAME, PDPEngineFactory.class, properties);
-        Decision defaultDecisionBehavior        = getConfiguredDefaultBehavior(properties);
+        PDPEngineFactory pdpEngineFactory = FactoryFinder.find(FACTORYID, DEFAULT_FACTORY_CLASSNAME,
+                                                               PDPEngineFactory.class, properties);
+        Decision defaultDecisionBehavior = getConfiguredDefaultBehavior(properties);
         if (defaultDecisionBehavior != null) {
             pdpEngineFactory.setDefaultBehavior(defaultDecisionBehavior);
         }
@@ -110,16 +114,20 @@ public abstract class PDPEngineFactory {
     }
 
     /**
-     * Creates a new <code>PDPEngineFactory</code> instance using the given class name and <code>ClassLoader</code>.  If the
-     * <code>ClassLoader</code> is null, use the default thread class loader.
+     * Creates a new <code>PDPEngineFactory</code> instance using the given class name and
+     * <code>ClassLoader</code>. If the <code>ClassLoader</code> is null, use the default thread class loader.
      *
      * @param factoryClassName the <code>String</code> name of the factory class to instantiate
      * @param classLoader the <code>ClassLoader</code> to use to load the factory class
-     * @return an instance of an object that extends <code>PDPEngineFactory</code> to use in creating <code>PDPEngine</code> objects.
+     * @return an instance of an object that extends <code>PDPEngineFactory</code> to use in creating
+     *         <code>PDPEngine</code> objects.
      */
-    public static PDPEngineFactory newInstance(String factoryClassName, ClassLoader classLoader) throws FactoryException {
-        PDPEngineFactory pdpEngineFactory       =  FactoryFinder.newInstance(factoryClassName, PDPEngineFactory.class, classLoader, false);
-        Decision defaultDecisionBehavior        = getConfiguredDefaultBehavior();
+    public static PDPEngineFactory newInstance(String factoryClassName, ClassLoader classLoader)
+        throws FactoryException {
+        PDPEngineFactory pdpEngineFactory = FactoryFinder.newInstance(factoryClassName,
+                                                                      PDPEngineFactory.class, classLoader,
+                                                                      false);
+        Decision defaultDecisionBehavior = getConfiguredDefaultBehavior();
         if (defaultDecisionBehavior != null) {
             pdpEngineFactory.setDefaultBehavior(defaultDecisionBehavior);
         }
@@ -127,14 +135,17 @@ public abstract class PDPEngineFactory {
     }
 
     /**
-     * Creates a new <code>PDPEngineFactory</code> instance using the given class name and the default thread class loader.
+     * Creates a new <code>PDPEngineFactory</code> instance using the given class name and the default thread
+     * class loader.
      *
      * @param factoryClassName the <code>String</code> name of the factory class to instantiate
-     * @return an instance of an object that extends <code>PDPEngineFactory</code> to use in creating <code>PDPEngine</code> objects.
+     * @return an instance of an object that extends <code>PDPEngineFactory</code> to use in creating
+     *         <code>PDPEngine</code> objects.
      */
     public static PDPEngineFactory newInstance(String factoryClassName) throws FactoryException {
-        PDPEngineFactory pdpEngineFactory       = FactoryFinder.newInstance(factoryClassName, PDPEngineFactory.class, null, true);
-        Decision defaultDecisionBehavior        = getConfiguredDefaultBehavior();
+        PDPEngineFactory pdpEngineFactory = FactoryFinder.newInstance(factoryClassName,
+                                                                      PDPEngineFactory.class, null, true);
+        Decision defaultDecisionBehavior = getConfiguredDefaultBehavior();
         if (defaultDecisionBehavior != null) {
             pdpEngineFactory.setDefaultBehavior(defaultDecisionBehavior);
         }
@@ -142,43 +153,45 @@ public abstract class PDPEngineFactory {
     }
 
     /**
-     * Creates a new <code>PDPEngine</code> using the default policy set and {@link com.att.research.xacml.api.pip.PIPFinder}.
+     * Creates a new <code>PDPEngine</code> using the default policy set and
+     * {@link com.att.research.xacml.api.pip.PIPFinder}.
      *
      * @return a new <code>PDPEngine</code>
      */
     public abstract PDPEngine newEngine() throws FactoryException;
 
     /**
-     * Creates a new <code>PDPEngine</code> using the default policy set and {@link com.att.research.xacml.api.pip.PIPFinder}.
+     * Creates a new <code>PDPEngine</code> using the default policy set and
+     * {@link com.att.research.xacml.api.pip.PIPFinder}.
      *
      * @return a new <code>PDPEngine</code>
      */
     public abstract PDPEngine newEngine(Properties properties) throws FactoryException;
 
     /*
-     * TODO: There needs to be an interface where you can request a PDPEngine based on a set of profiles.  This could be quite complex,
-     * with required and optional profile values specified.
+     * TODO: There needs to be an interface where you can request a PDPEngine based on a set of profiles. This
+     * could be quite complex, with required and optional profile values specified.
      */
 
     /**
-     * Gets the default <code>Decision</code> that a <code>PDPEngine</code> created from this <code>PDPEngineFactory</code>
-     * will return when there is no applicable root policy.
+     * Gets the default <code>Decision</code> that a <code>PDPEngine</code> created from this
+     * <code>PDPEngineFactory</code> will return when there is no applicable root policy.
      *
-     * @return the <code>Decision</code> that a <code>PDPEngine</code> created from this <code>PDPEngineFactory</code.
-     * will return when there is no applicable root policy.
+     * @return the <code>Decision</code> that a <code>PDPEngine</code> created from this
+     *         <code>PDPEngineFactory</code. will return when there is no applicable root policy.
      */
     public Decision getDefaultBehavior() {
         return this.defaultBehavior;
     }
 
     /**
-     * Sets the default <code>Decision</code> that a <code>PDPEngine</code> created from this <code>PDPEngineFactory</code>
-     * will return when there is no applicable root policy.
+     * Sets the default <code>Decision</code> that a <code>PDPEngine</code> created from this
+     * <code>PDPEngineFactory</code> will return when there is no applicable root policy.
      *
      * @param decision the <code>Decision</code> to return
      */
     public void setDefaultBehavior(Decision decision) {
-        this.defaultBehavior    = decision;
+        this.defaultBehavior = decision;
     }
 
     /**
@@ -198,7 +211,7 @@ public abstract class PDPEngineFactory {
      * @param scopeResolverIn
      */
     public void setScopeResolver(ScopeResolver scopeResolverIn) {
-        this.scopeResolver      = scopeResolverIn;
+        this.scopeResolver = scopeResolverIn;
     }
 
 }

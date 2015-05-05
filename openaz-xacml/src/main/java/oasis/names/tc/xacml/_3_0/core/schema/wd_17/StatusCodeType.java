@@ -25,7 +25,6 @@
 // Generated on: 2013.05.23 at 02:47:00 PM EDT
 //
 
-
 package oasis.names.tc.xacml._3_0.core.schema.wd_17;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -35,11 +34,11 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 
-
 /**
- * <p>Java class for StatusCodeType complex type.
- *
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>
+ * Java class for StatusCodeType complex type.
+ * <p>
+ * The following schema fragment specifies the expected content contained within this class.
  *
  * <pre>
  * &lt;complexType name="StatusCodeType">
@@ -53,12 +52,10 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- *
- *
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "StatusCodeType", propOrder = {
-    "statusCode"
+                                               "statusCode"
 })
 public class StatusCodeType {
 
@@ -71,10 +68,7 @@ public class StatusCodeType {
     /**
      * Gets the value of the statusCode property.
      *
-     * @return
-     *     possible object is
-     *     {@link oasis.names.tc.xacml._3_0.core.schema.wd_17.StatusCodeType }
-     *
+     * @return possible object is {@link oasis.names.tc.xacml._3_0.core.schema.wd_17.StatusCodeType }
      */
     public StatusCodeType getStatusCode() {
         return statusCode;
@@ -83,10 +77,7 @@ public class StatusCodeType {
     /**
      * Sets the value of the statusCode property.
      *
-     * @param value
-     *     allowed object is
-     *     {@link oasis.names.tc.xacml._3_0.core.schema.wd_17.StatusCodeType }
-     *
+     * @param value allowed object is {@link oasis.names.tc.xacml._3_0.core.schema.wd_17.StatusCodeType }
      */
     public void setStatusCode(StatusCodeType value) {
         this.statusCode = value;
@@ -95,10 +86,7 @@ public class StatusCodeType {
     /**
      * Gets the value of the value property.
      *
-     * @return
-     *     possible object is
-     *     {@link String }
-     *
+     * @return possible object is {@link String }
      */
     public String getValue() {
         return value;
@@ -107,10 +95,7 @@ public class StatusCodeType {
     /**
      * Sets the value of the value property.
      *
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *
+     * @param value allowed object is {@link String }
      */
     public void setValue(String value) {
         this.value = value;

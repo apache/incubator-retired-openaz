@@ -32,9 +32,8 @@
 package com.att.research.xacml.api.trace;
 
 /**
- * Defines the API for objects that serve as handlers for {@link TraceEvent}s.  <code>TraceEngine</code>s
- * are instantiated with {@link com.att.research.xacml.api.trace.TraceEngineFactory} objects.
- *
+ * Defines the API for objects that serve as handlers for {@link TraceEvent}s. <code>TraceEngine</code>s are
+ * instantiated with {@link com.att.research.xacml.api.trace.TraceEngineFactory} objects.
  */
 public interface TraceEngine {
     /**
@@ -45,8 +44,8 @@ public interface TraceEngine {
     public void trace(TraceEvent<?> traceEvent);
 
     /**
-     * Returns true if this <code>TraceEngine</code> would actually process a {@link TraceEvent}.  This
-     * is useful to avoid creating new <code>TraceEvent</code> objects that will just be ignored.
+     * Returns true if this <code>TraceEngine</code> would actually process a {@link TraceEvent}. This is
+     * useful to avoid creating new <code>TraceEvent</code> objects that will just be ignored.
      *
      * @return true if this <code>TraceEngine</code> would perform an action on a <code>TraceEvent</code>.
      */

@@ -75,18 +75,14 @@ import com.att.research.xacml.util.FactoryException;
 import com.att.research.xacmlatt.pdp.test.TestBase;
 
 /**
- * TestCustom is an application that tests the extensibility and configurability of the AT&T XACML API.
- *
- * It creates a custom datatype definition factory that adds in custom data types for RSA
- * PublicKey and PrivateKey.
- *
- * It creates a custom function definition factory that adds in custom decryption function for decrypting data. It
- * also derives and loads custom functions for the RSA public/private key datatypes for the bag function: one-and-only.
- *
- *
+ * TestCustom is an application that tests the extensibility and configurability of the AT&T XACML API. It
+ * creates a custom datatype definition factory that adds in custom data types for RSA PublicKey and
+ * PrivateKey. It creates a custom function definition factory that adds in custom decryption function for
+ * decrypting data. It also derives and loads custom functions for the RSA public/private key datatypes for
+ * the bag function: one-and-only.
  */
 public class TestCustom extends TestBase {
-    private static final Log logger     = LogFactory.getLog(TestCustom.class);
+    private static final Log logger = LogFactory.getLog(TestCustom.class);
 
     //
     // Our public's
@@ -114,7 +110,8 @@ public class TestCustom extends TestBase {
 
     /**
      * This function generates the public/private key pair. Should never have to call this again, this was
-     * called once to generate the keys. They were saved into the testsets/custom/datatype-function sub-directory.
+     * called once to generate the keys. They were saved into the testsets/custom/datatype-function
+     * sub-directory.
      */
     public void generateKeyPair() {
         //
@@ -150,12 +147,9 @@ public class TestCustom extends TestBase {
         super(args);
     }
 
-    /* (non-Javadoc)
-     *
-     * Simply look for command line option: -generate
-     * This generates the public/private key. Shouldn't need to call it again, the keys have
-     * already been generated and saved.
-     *
+    /*
+     * (non-Javadoc) Simply look for command line option: -generate This generates the public/private key.
+     * Shouldn't need to call it again, the keys have already been generated and saved.
      * @see com.att.research.xacmlatt.pdp.test.TestBase#parseCommands(java.lang.String[])
      */
     @Override
@@ -177,11 +171,9 @@ public class TestCustom extends TestBase {
         }
     }
 
-    /* (non-Javadoc)
-     *
-     * After our parent class configure's itself, all this needs to do is read in
-     * the public/private key's into objects.
-     *
+    /*
+     * (non-Javadoc) After our parent class configure's itself, all this needs to do is read in the
+     * public/private key's into objects.
      * @see com.att.research.xacmlatt.pdp.test.TestBase#configure()
      */
     @Override
@@ -194,7 +186,9 @@ public class TestCustom extends TestBase {
         // Read in the public key
         //
         try {
-            this.publicKey = (PublicKey) new ObjectInputStream(Files.newInputStream(Paths.get(this.directory, PUBLICKEY_FILE))).readObject();
+            this.publicKey = (PublicKey)new ObjectInputStream(Files.newInputStream(Paths.get(this.directory,
+                                                                                             PUBLICKEY_FILE)))
+                .readObject();
         } catch (ClassNotFoundException | IOException e) {
             logger.error(e);
         }
@@ -202,22 +196,22 @@ public class TestCustom extends TestBase {
         // Read in the private key
         //
         try {
-            this.privateKey = (PrivateKey) new ObjectInputStream(Files.newInputStream(Paths.get(this.directory, PRIVATEKEY_FILE))).readObject();
+            this.privateKey = (PrivateKey)new ObjectInputStream(Files.newInputStream(Paths
+                .get(this.directory, PRIVATEKEY_FILE))).readObject();
         } catch (ClassNotFoundException | IOException e) {
             logger.error(e);
         }
     }
 
-    /* (non-Javadoc)
-     *
-     * Here we add 2 attributes into the request: 1) the private key, and 2) a String that was encrypted using the public key.
-     *
-     * The goal is to have the custom decrypt function use the private key to decrypt that string.
-     *
+    /*
+     * (non-Javadoc) Here we add 2 attributes into the request: 1) the private key, and 2) a String that was
+     * encrypted using the public key. The goal is to have the custom decrypt function use the private key to
+     * decrypt that string.
      * @see com.att.research.xacmlatt.pdp.test.TestBase#generateRequest(java.nio.file.Path, java.lang.String)
      */
     @Override
-    protected Request generateRequest(Path file, String group) throws JSONStructureException, DOMStructureException, PEPException {
+    protected Request generateRequest(Path file, String group) throws JSONStructureException,
+        DOMStructureException, PEPException {
         //
         // Have our super class do its work
         //
@@ -252,11 +246,13 @@ public class TestCustom extends TestBase {
             //
             // Create the attribute
             //
-            StdMutableAttribute newAttribute = new StdMutableAttribute(XACML3.ID_SUBJECT_CATEGORY_ACCESS_SUBJECT,
-                    new IdentifierImpl("com:att:research:xacml:test:custom:privatekey"),
-                    attributeValue,
-                    "com:att:research:xacml:test:custom",
-                    false);
+            StdMutableAttribute newAttribute = new StdMutableAttribute(
+                                                                       XACML3.ID_SUBJECT_CATEGORY_ACCESS_SUBJECT,
+                                                                       new IdentifierImpl(
+                                                                                          "com:att:research:xacml:test:custom:privatekey"),
+                                                                       attributeValue,
+                                                                       "com:att:research:xacml:test:custom",
+                                                                       false);
             boolean added = false;
             for (StdMutableRequestAttributes a : attributes) {
                 //
@@ -307,7 +303,8 @@ public class TestCustom extends TestBase {
             } else {
                 encryptedData = cipher.doFinal("This is NOT the secret".getBytes());
             }
-        } catch (NoSuchAlgorithmException | NoSuchPaddingException | InvalidKeyException | IllegalBlockSizeException | BadPaddingException e) {
+        } catch (NoSuchAlgorithmException | NoSuchPaddingException | InvalidKeyException
+            | IllegalBlockSizeException | BadPaddingException e) {
             logger.error(e);
             return null;
         }
@@ -326,7 +323,8 @@ public class TestCustom extends TestBase {
                     return null;
                 }
             }
-        } catch (NoSuchAlgorithmException | NoSuchPaddingException | InvalidKeyException | IllegalBlockSizeException | BadPaddingException e) {
+        } catch (NoSuchAlgorithmException | NoSuchPaddingException | InvalidKeyException
+            | IllegalBlockSizeException | BadPaddingException e) {
             logger.error(e);
         }
         //
@@ -345,11 +343,11 @@ public class TestCustom extends TestBase {
             //
             // Create the attribute
             //
-            StdMutableAttribute newAttribute = new StdMutableAttribute(XACML3.ID_SUBJECT_CATEGORY_ACCESS_SUBJECT,
-                    new IdentifierImpl("com:att:research:xacml:test:custom:encrypted-data"),
-                    attributeValue,
-                    null,
-                    false);
+            StdMutableAttribute newAttribute = new StdMutableAttribute(
+                                                                       XACML3.ID_SUBJECT_CATEGORY_ACCESS_SUBJECT,
+                                                                       new IdentifierImpl(
+                                                                                          "com:att:research:xacml:test:custom:encrypted-data"),
+                                                                       attributeValue, null, false);
             boolean added = false;
             for (StdMutableRequestAttributes a : attributes) {
                 //

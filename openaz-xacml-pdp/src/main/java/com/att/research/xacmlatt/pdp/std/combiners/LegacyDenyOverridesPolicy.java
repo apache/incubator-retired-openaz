@@ -46,7 +46,6 @@ import com.att.research.xacmlatt.pdp.policy.PolicySetChild;
 /**
  * DenyOverrides implements the XACML 1.0 "deny-overrides" combining algorithm for policies and policy sets.
  *
- *
  * @param <T> the java class for the {@link com.att.research.xacmlatt.pdp.eval.Evaluatable}
  * @param <U> the java class for the identifier
  */
@@ -57,18 +56,20 @@ public class LegacyDenyOverridesPolicy extends CombiningAlgorithmBase<PolicySetC
     }
 
     @Override
-    public EvaluationResult combine(EvaluationContext evaluationContext, List<CombiningElement<PolicySetChild>> elements, List<CombinerParameter> combinerParameters) throws EvaluationException {
-        boolean atLeastOnePermit                                = false;
+    public EvaluationResult combine(EvaluationContext evaluationContext,
+                                    List<CombiningElement<PolicySetChild>> elements,
+                                    List<CombinerParameter> combinerParameters) throws EvaluationException {
+        boolean atLeastOnePermit = false;
 
-        EvaluationResult combinedResult                 = new EvaluationResult(Decision.PERMIT);
+        EvaluationResult combinedResult = new EvaluationResult(Decision.PERMIT);
 
         Iterator<CombiningElement<PolicySetChild>> iterElements = elements.iterator();
         while (iterElements.hasNext()) {
-            CombiningElement<PolicySetChild> combiningElement           = iterElements.next();
-            EvaluationResult evaluationResultElement    = combiningElement.evaluate(evaluationContext);
+            CombiningElement<PolicySetChild> combiningElement = iterElements.next();
+            EvaluationResult evaluationResultElement = combiningElement.evaluate(evaluationContext);
 
-            assert(evaluationResultElement != null);
-            switch(evaluationResultElement.getDecision()) {
+            assert (evaluationResultElement != null);
+            switch (evaluationResultElement.getDecision()) {
             case DENY:
                 return evaluationResultElement;
             case INDETERMINATE:
@@ -79,11 +80,12 @@ public class LegacyDenyOverridesPolicy extends CombiningAlgorithmBase<PolicySetC
             case NOTAPPLICABLE:
                 break;
             case PERMIT:
-                atLeastOnePermit        = true;
+                atLeastOnePermit = true;
                 combinedResult.merge(evaluationResultElement);
                 break;
             default:
-                throw new EvaluationException("Illegal Decision: \"" + evaluationResultElement.getDecision().toString());
+                throw new EvaluationException("Illegal Decision: \""
+                                              + evaluationResultElement.getDecision().toString());
             }
         }
 

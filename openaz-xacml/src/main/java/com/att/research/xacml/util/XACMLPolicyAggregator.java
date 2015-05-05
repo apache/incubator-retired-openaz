@@ -70,32 +70,18 @@ import com.att.research.xacml.util.XACMLPolicyScanner.CallbackResult;
 import com.att.research.xacml.util.XACMLPolicyScanner.SimpleCallback;
 
 /**
- * This class extends the SimpleCallback class and aggregates specific data items in a policy.
- *
- * It will map all the Attribute Designator and Attribute Selector elements found within the policy.
- * If there are associated Attribute Values for the designator/selector elements, then those values are also aggregated.
- *
- * The attribute data is stored in a hierarchical map:
- *
- * Map<CATEGORY, MAP<DATATYPE, MAP<ATTRIBUTEID, SET<VALUES>>>
- *
- * It also aggregates obligations and advice identifiers into a map. Each key has a list of Obligation
- * or Advice objects.
- *
- * Map<OBLIGATION or ADVICE ID, List<Obligation>>
- *
- * It also aggregates variable definitions into a map. Each entry is the Policy mapping to its list
- * of Variable Definitions. Useful for policy editing.
- *
- * Map<PolicyType, List<VariableDefinitionType>>
- *
- * The map is useful for building policy simulation tools, policy editing, importing data into the
- * dictionaries, as well as for testing and exercising a policy.
- *
- *
+ * This class extends the SimpleCallback class and aggregates specific data items in a policy. It will map all
+ * the Attribute Designator and Attribute Selector elements found within the policy. If there are associated
+ * Attribute Values for the designator/selector elements, then those values are also aggregated. The attribute
+ * data is stored in a hierarchical map: Map<CATEGORY, MAP<DATATYPE, MAP<ATTRIBUTEID, SET<VALUES>>> It also
+ * aggregates obligations and advice identifiers into a map. Each key has a list of Obligation or Advice
+ * objects. Map<OBLIGATION or ADVICE ID, List<Obligation>> It also aggregates variable definitions into a map.
+ * Each entry is the Policy mapping to its list of Variable Definitions. Useful for policy editing.
+ * Map<PolicyType, List<VariableDefinitionType>> The map is useful for building policy simulation tools,
+ * policy editing, importing data into the dictionaries, as well as for testing and exercising a policy.
  */
-public class XACMLPolicyAggregator extends SimpleCallback  {
-    private static Log logger   = LogFactory.getLog(XACMLPolicyAggregator.class);
+public class XACMLPolicyAggregator extends SimpleCallback {
+    private static Log logger = LogFactory.getLog(XACMLPolicyAggregator.class);
     //
     // This holds all the attributes found within the policy
     // Map<CATEGORY, MAP<DATATYPE, MAP<ATTRIBUTEID, SET<VALUES>>>
@@ -106,7 +92,7 @@ public class XACMLPolicyAggregator extends SimpleCallback  {
     protected Map<PolicyType, List<VariableDefinitionType>> variableDefinitionMap;
     protected List<VariableReferenceType> variableReferences;
 
-//      @SuppressWarnings("unchecked")
+    // @SuppressWarnings("unchecked")
     @Override
     public CallbackResult onAttribute(Object parent, Object container, Attribute attribute) {
         //
@@ -125,9 +111,11 @@ public class XACMLPolicyAggregator extends SimpleCallback  {
             //
             // No, create it
             //
-            this.attributeMap.put(attribute.getCategory(), new HashMap<Identifier, Map<Identifier, Set<AttributeValue<?>>>>());
+            this.attributeMap.put(attribute.getCategory(),
+                                  new HashMap<Identifier, Map<Identifier, Set<AttributeValue<?>>>>());
         }
-        Map<Identifier, Map<Identifier, Set<AttributeValue<?>>>> map = this.attributeMap.get(attribute.getCategory());
+        Map<Identifier, Map<Identifier, Set<AttributeValue<?>>>> map = this.attributeMap.get(attribute
+            .getCategory());
         //
         // Iterate the attributes values
         //
@@ -154,7 +142,8 @@ public class XACMLPolicyAggregator extends SimpleCallback  {
                 //
                 // Not yet
                 //
-                map.get(value.getDataTypeId()).put(attribute.getAttributeId(), new HashSet<AttributeValue<?>>());
+                map.get(value.getDataTypeId()).put(attribute.getAttributeId(),
+                                                   new HashSet<AttributeValue<?>>());
             }
             //
             // Are there any actual values in it?
@@ -162,7 +151,8 @@ public class XACMLPolicyAggregator extends SimpleCallback  {
             Object val = value.getValue();
             if (val == null || (val instanceof Collection && ((Collection<?>)val).isEmpty())) {
                 if (logger.isDebugEnabled()) {
-                    logger.debug("No actual attribute values: " + attribute.getAttributeId() + " " + value.getDataTypeId());
+                    logger.debug("No actual attribute values: " + attribute.getAttributeId() + " "
+                                 + value.getDataTypeId());
                 }
                 continue;
             }
@@ -186,7 +176,8 @@ public class XACMLPolicyAggregator extends SimpleCallback  {
     }
 
     @Override
-    public CallbackResult onObligation(Object parent, ObligationExpressionType expression, Obligation obligation) {
+    public CallbackResult onObligation(Object parent, ObligationExpressionType expression,
+                                       Obligation obligation) {
         //
         // Has the map been created yet?
         //
@@ -212,7 +203,8 @@ public class XACMLPolicyAggregator extends SimpleCallback  {
             //
             // Nope, add the new fullfill on list
             //
-            this.obligationMap.get(obligation.getId()).put(expression.getFulfillOn(), new ArrayList<Obligation>());
+            this.obligationMap.get(obligation.getId()).put(expression.getFulfillOn(),
+                                                           new ArrayList<Obligation>());
         }
         //
         // Does the obligation exist?
@@ -264,28 +256,31 @@ public class XACMLPolicyAggregator extends SimpleCallback  {
 
     protected void evaluteExpression(Object obj, Object parent, Object container) {
         if (obj instanceof AttributeDesignatorType) {
-            AttributeDesignatorType designator = (AttributeDesignatorType) obj;
-            StdAttribute attribute = new StdAttribute(new IdentifierImpl(designator.getCategory()),
-                    new IdentifierImpl(designator.getAttributeId()),
-                    new StdAttributeValue<List<?>>(new IdentifierImpl(designator.getDataType()), Collections.emptyList()),
-                    designator.getIssuer(),
-                    false);
+            AttributeDesignatorType designator = (AttributeDesignatorType)obj;
+            StdAttribute attribute = new StdAttribute(
+                                                      new IdentifierImpl(designator.getCategory()),
+                                                      new IdentifierImpl(designator.getAttributeId()),
+                                                      new StdAttributeValue<List<?>>(
+                                                                                     new IdentifierImpl(
+                                                                                                        designator
+                                                                                                            .getDataType()),
+                                                                                     Collections.emptyList()),
+                                                      designator.getIssuer(), false);
             this.onAttribute(parent, container, attribute);
         } else if (obj instanceof AttributeValueType) {
             /*
              * Highly unlikely that we would get this at the top level of a condition or variable
-             *
-            AttributeValueType value = (AttributeValueType) obj;
-            System.out.println("AttributeValueType datatype=" + value.getDataType());
-            System.out.println("AttributeValueType content=" + value.getContent());
-            */
+             * AttributeValueType value = (AttributeValueType) obj;
+             * System.out.println("AttributeValueType datatype=" + value.getDataType());
+             * System.out.println("AttributeValueType content=" + value.getContent());
+             */
         } else if (obj instanceof VariableReferenceType) {
             if (this.variableReferences == null) {
                 this.variableReferences = new ArrayList<VariableReferenceType>();
             }
-            this.variableReferences.add((VariableReferenceType) obj);
+            this.variableReferences.add((VariableReferenceType)obj);
         } else if (obj instanceof ApplyType) {
-            ApplyType apply = (ApplyType) obj;
+            ApplyType apply = (ApplyType)obj;
             for (JAXBElement<?> element : apply.getExpression()) {
                 if (element.getValue() != null) {
                     this.evaluteExpression(element.getValue(), parent, container);
@@ -293,25 +288,28 @@ public class XACMLPolicyAggregator extends SimpleCallback  {
             }
         } else if (obj instanceof FunctionType) {
             /*
-             * Highly unlikely that we would get this at the top level of a condition or variable
-             *
-            FunctionType function = (FunctionType) obj;
-            System.out.println("FunctionType=" + function.getFunctionId());
-            */
+             * Highly unlikely that we would get this at the top level of a condition or variable FunctionType
+             * function = (FunctionType) obj; System.out.println("FunctionType=" + function.getFunctionId());
+             */
         } else if (obj instanceof AttributeSelectorType) {
             AttributeSelectorType selector = (AttributeSelectorType)obj;
-            StdAttribute attribute = new StdAttribute(new IdentifierImpl(selector.getCategory()),
-                    new IdentifierImpl(selector.getContextSelectorId()),
-                    new StdAttributeValue<List<?>>(new IdentifierImpl(selector.getDataType()), Collections.emptyList()),
-                    null,
-                    false);
+            StdAttribute attribute = new StdAttribute(
+                                                      new IdentifierImpl(selector.getCategory()),
+                                                      new IdentifierImpl(selector.getContextSelectorId()),
+                                                      new StdAttributeValue<List<?>>(
+                                                                                     new IdentifierImpl(
+                                                                                                        selector
+                                                                                                            .getDataType()),
+                                                                                     Collections.emptyList()),
+                                                      null, false);
             this.onAttribute(parent, container, attribute);
         }
 
     }
 
     /**
-     * @return - The attribute map. This is an unmodified map of the attributes found during scanning a policy.
+     * @return - The attribute map. This is an unmodified map of the attributes found during scanning a
+     *         policy.
      */
     public Map<Identifier, Map<Identifier, Map<Identifier, Set<AttributeValue<?>>>>> getAttributeMap() {
         if (this.attributeMap == null) {
@@ -321,7 +319,8 @@ public class XACMLPolicyAggregator extends SimpleCallback  {
     }
 
     /**
-     * @return - The obligation map. This is an unmodified map of the obligations found during scanning a policy.
+     * @return - The obligation map. This is an unmodified map of the obligations found during scanning a
+     *         policy.
      */
     public Map<Identifier, Map<EffectType, List<Obligation>>> getObligationMap() {
         if (this.obligationMap == null) {
@@ -341,14 +340,16 @@ public class XACMLPolicyAggregator extends SimpleCallback  {
     }
 
     /**
-     * @return - The variable definition map. This is an unmodified map of the variable definitions found during scanning a policy.
+     * @return - The variable definition map. This is an unmodified map of the variable definitions found
+     *         during scanning a policy.
      */
     public Map<PolicyType, List<VariableDefinitionType>> getVariableDefinitionMap() {
         return Collections.unmodifiableMap(this.variableDefinitionMap);
     }
 
     /**
-     * @return - The variable references list. This is an unmodified list of the variable references found during scanning a policy.
+     * @return - The variable references list. This is an unmodified list of the variable references found
+     *         during scanning a policy.
      */
     public List<VariableReferenceType> getVariableReferences() {
         return Collections.unmodifiableList(this.variableReferences);

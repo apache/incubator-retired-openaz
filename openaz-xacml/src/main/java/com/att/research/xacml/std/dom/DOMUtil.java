@@ -63,25 +63,23 @@ import com.att.research.xacml.std.StdVersionMatch;
 
 /**
  * DOMUtil contains a number of utility functions for DOM document elements.
- *
  */
 public class DOMUtil {
-    private static String[]     NAMESPACES      = {
-        XACML3.XMLNS,
-        XACML2.XMLNS
+    private static String[] NAMESPACES = {
+                                                   XACML3.XMLNS, XACML2.XMLNS
     };
 
     /*
      * The namespace string for the "xml" prefix
      */
-    private static final String XML_NAMESPACE   = "http://www.w3.org/XML/1998/namespace";
+    private static final String XML_NAMESPACE = "http://www.w3.org/XML/1998/namespace";
 
     protected DOMUtil() {
     }
 
     /**
-     * Creates a copy of the given <code>Node</code> such that it appears to be the direct child
-     * of a <code>Document</code>>
+     * Creates a copy of the given <code>Node</code> such that it appears to be the direct child of a
+     * <code>Document</code>>
      *
      * @param node the <code>Node</code> to convert
      * @return the new <code>Node</code>
@@ -89,15 +87,16 @@ public class DOMUtil {
     public static Node getDirectDocumentChild(Node node) throws DOMStructureException {
         Node nodeResult = null;
         try {
-            DocumentBuilderFactory documentBuilderFactory       = DocumentBuilderFactory.newInstance();
+            DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
             documentBuilderFactory.setNamespaceAware(true);
-            DocumentBuilder documentBuilder                                     = documentBuilderFactory.newDocumentBuilder();
-            Document documentRoot                                                       = documentBuilder.newDocument();
-            Node nodeTopRoot                                                            = documentRoot.importNode(node, true);
+            DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
+            Document documentRoot = documentBuilder.newDocument();
+            Node nodeTopRoot = documentRoot.importNode(node, true);
             documentRoot.appendChild(nodeTopRoot);
-            nodeResult                                                                          = documentRoot.getDocumentElement();
+            nodeResult = documentRoot.getDocumentElement();
         } catch (Exception ex) {
-            throw new DOMStructureException("Exception generating Document root Node from Node: " + ex.getMessage(), ex);
+            throw new DOMStructureException("Exception generating Document root Node from Node: "
+                                            + ex.getMessage(), ex);
         }
         return nodeResult;
     }
@@ -129,7 +128,8 @@ public class DOMUtil {
     }
 
     /**
-     * Determines if the given <code>Node</code> belongs to the namespace with the given <code>String</code> name.
+     * Determines if the given <code>Node</code> belongs to the namespace with the given <code>String</code>
+     * name.
      *
      * @param node the <code>Node</code> to check
      * @param namespace the <code>String</code> namespace
@@ -140,13 +140,13 @@ public class DOMUtil {
     }
 
     /**
-     * Determines if the given <code>Node</code> is an <code>Element</code> and is in the
-     * given <code>String</code> namespace.
+     * Determines if the given <code>Node</code> is an <code>Element</code> and is in the given
+     * <code>String</code> namespace.
      *
      * @param node the <code>Node</code> to check
      * @param namespace the <code>String</code> namespace to check or null if no namespace check is required
-     * @return true if the given <code>Node</code> is an <code>Element</code> and the <code>namespace</code> is null or matches the
-     * <code>Node</code> namespace.
+     * @return true if the given <code>Node</code> is an <code>Element</code> and the <code>namespace</code>
+     *         is null or matches the <code>Node</code> namespace.
      */
     public static boolean isNamespaceElement(Node node, String namespace) {
         if (node == null) {
@@ -161,7 +161,7 @@ public class DOMUtil {
     }
 
     public static String getNodeLabel(Node node) {
-        String namespaceURI     = node.getNamespaceURI();
+        String namespaceURI = node.getNamespaceURI();
         return (namespaceURI == null ? node.getLocalName() : namespaceURI + ":" + node.getLocalName());
     }
 
@@ -170,7 +170,8 @@ public class DOMUtil {
     }
 
     public static DOMStructureException newUnexpectedElementException(Node node, Node parent) {
-        return new DOMStructureException(node, "Unexpected element \"" + getNodeLabel(node) + "\" in \"" + getNodeLabel(parent) + "\"");
+        return new DOMStructureException(node, "Unexpected element \"" + getNodeLabel(node) + "\" in \""
+                                               + getNodeLabel(parent) + "\"");
     }
 
     /**
@@ -180,40 +181,47 @@ public class DOMUtil {
      * @return the first child <code>Element</code> of the given <code>Node</code>
      */
     public static Element getFirstChildElement(Node node) {
-        NodeList        children        = null;
-        int                     numChildren     = 0;
-        if (node == null || (children = node.getChildNodes()) == null || (numChildren = node.getChildNodes().getLength()) == 0) {
+        NodeList children = null;
+        int numChildren = 0;
+        if (node == null || (children = node.getChildNodes()) == null
+            || (numChildren = node.getChildNodes().getLength()) == 0) {
             return null;
         }
-        Element result   = null;
-        for (int i = 0 ; i < numChildren && result == null ; i++) {
-            Node        child   = children.item(i);
+        Element result = null;
+        for (int i = 0; i < numChildren && result == null; i++) {
+            Node child = children.item(i);
             if (child.getNodeType() == Node.ELEMENT_NODE) {
-                result  = (Element)child;
+                result = (Element)child;
             }
         }
         return result;
     }
 
     protected static DOMStructureException newMissingAttributeException(Node node, String attributeName) {
-        return new DOMStructureException("Missing attribute \"" + attributeName + "\" in \"" + getNodeLabel(node) + "\"");
+        return new DOMStructureException("Missing attribute \"" + attributeName + "\" in \""
+                                         + getNodeLabel(node) + "\"");
     }
 
-    protected static DOMStructureException newMissingAttributeException(Node node, String namespace, String attributeName) {
-        return new DOMStructureException("Missing attribute \"" + (namespace == null ? "" : namespace + ":") + attributeName + "\" in \"" + getNodeLabel(node) + "\"");
+    protected static DOMStructureException newMissingAttributeException(Node node, String namespace,
+                                                                        String attributeName) {
+        return new DOMStructureException("Missing attribute \"" + (namespace == null ? "" : namespace + ":")
+                                         + attributeName + "\" in \"" + getNodeLabel(node) + "\"");
     }
 
     protected static DOMStructureException newMissingContentException(Node node) {
         return new DOMStructureException("Missing content for \"" + getNodeLabel(node) + "\"");
     }
 
-    public static DOMStructureException newMissingElementException(Node node, String namespace, String elementName) {
-        return new DOMStructureException("Missing element \"" + (namespace == null ? "" : namespace + ":") + elementName + "\" in \"" + getNodeLabel(node));
+    public static DOMStructureException newMissingElementException(Node node, String namespace,
+                                                                   String elementName) {
+        return new DOMStructureException("Missing element \"" + (namespace == null ? "" : namespace + ":")
+                                         + elementName + "\" in \"" + getNodeLabel(node));
     }
 
-    public static Node getAttribute(Node node, String[] nameSpace, String localName, boolean bRequired) throws DOMStructureException {
-        Node    nodeResult      = null;
-        for (String namespace: nameSpace) {
+    public static Node getAttribute(Node node, String[] nameSpace, String localName, boolean bRequired)
+        throws DOMStructureException {
+        Node nodeResult = null;
+        for (String namespace : nameSpace) {
             if ((nodeResult = node.getAttributes().getNamedItemNS(namespace, localName)) != null) {
                 return nodeResult;
             }
@@ -225,8 +233,8 @@ public class DOMUtil {
     }
 
     public static Node getAttribute(Node node, String[] nameSpace, String localName) {
-        Node    nodeResult      = null;
-        for (String namespace: nameSpace) {
+        Node nodeResult = null;
+        for (String namespace : nameSpace) {
             if ((nodeResult = node.getAttributes().getNamedItemNS(namespace, localName)) != null) {
                 return nodeResult;
             }
@@ -235,16 +243,17 @@ public class DOMUtil {
     }
 
     /**
-     * Retrieves an attribute value from the given <code>Node</code> with the given <code>String</code> namespace and
-     * <code>String</code> local name.
+     * Retrieves an attribute value from the given <code>Node</code> with the given <code>String</code>
+     * namespace and <code>String</code> local name.
      *
      * @param node
      * @param nameSpace
      * @param localName
      * @return
      */
-    public static Node getAttribute(Node node, String nameSpace, String localName, boolean bRequired) throws DOMStructureException {
-        Node nodeAttribute      = node.getAttributes().getNamedItemNS(nameSpace, localName);
+    public static Node getAttribute(Node node, String nameSpace, String localName, boolean bRequired)
+        throws DOMStructureException {
+        Node nodeAttribute = node.getAttributes().getNamedItemNS(nameSpace, localName);
         if (bRequired && nodeAttribute == null) {
             throw newMissingAttributeException(node, nameSpace, localName);
         }
@@ -256,15 +265,16 @@ public class DOMUtil {
     }
 
     /**
-     * Retrieves an attribute value from the given <code>Node</code> by the given local <code>String</code> name by searching
-     * all known namespaces.
+     * Retrieves an attribute value from the given <code>Node</code> by the given local <code>String</code>
+     * name by searching all known namespaces.
      *
      * @param node
      * @param localName
      * @return
      */
-    public static Node getAttribute(Node node, String localName, boolean bRequired) throws DOMStructureException {
-        Node nodeAttribute      = node.getAttributes().getNamedItem(localName);
+    public static Node getAttribute(Node node, String localName, boolean bRequired)
+        throws DOMStructureException {
+        Node nodeAttribute = node.getAttributes().getNamedItem(localName);
         if (bRequired && nodeAttribute == null) {
             throw newMissingAttributeException(node, localName);
         }
@@ -275,33 +285,36 @@ public class DOMUtil {
         return node.getAttributes().getNamedItem(localName);
     }
 
-    public static String getStringAttribute(Node node, String[] nameSpaces, String localName, boolean bRequired) throws DOMStructureException {
-        Node    nodeAttribute   = getAttribute(node, nameSpaces, localName, bRequired);
+    public static String getStringAttribute(Node node, String[] nameSpaces, String localName,
+                                            boolean bRequired) throws DOMStructureException {
+        Node nodeAttribute = getAttribute(node, nameSpaces, localName, bRequired);
         return (nodeAttribute == null ? null : nodeAttribute.getNodeValue());
     }
 
     public static String getStringAttribute(Node node, String[] nameSpaces, String localName) {
-        Node    nodeAttribute   = getAttribute(node, nameSpaces, localName);
+        Node nodeAttribute = getAttribute(node, nameSpaces, localName);
         return (nodeAttribute == null ? null : nodeAttribute.getNodeValue());
     }
 
-    public static String getStringAttribute(Node node, String nameSpace, String localName, boolean bRequired) throws DOMStructureException {
-        Node    nodeAttribute   = getAttribute(node, nameSpace, localName, bRequired);
+    public static String getStringAttribute(Node node, String nameSpace, String localName, boolean bRequired)
+        throws DOMStructureException {
+        Node nodeAttribute = getAttribute(node, nameSpace, localName, bRequired);
         return (nodeAttribute == null ? null : nodeAttribute.getNodeValue());
     }
 
     public static String getStringAttribute(Node node, String nameSpace, String localName) {
-        Node    nodeAttribute   = getAttribute(node, nameSpace, localName);
+        Node nodeAttribute = getAttribute(node, nameSpace, localName);
         return (nodeAttribute == null ? null : nodeAttribute.getNodeValue());
     }
 
-    public static String getStringAttribute(Node node, String localName, boolean bRequired) throws DOMStructureException {
-        Node    nodeAttribute   = getAttribute(node, localName, bRequired);
+    public static String getStringAttribute(Node node, String localName, boolean bRequired)
+        throws DOMStructureException {
+        Node nodeAttribute = getAttribute(node, localName, bRequired);
         return (nodeAttribute == null ? null : nodeAttribute.getNodeValue());
     }
 
     public static String getStringAttribute(Node node, String localName) {
-        Node    nodeAttribute   = getAttribute(node, localName);
+        Node nodeAttribute = getAttribute(node, localName);
         return (nodeAttribute == null ? null : nodeAttribute.getNodeValue());
     }
 
@@ -313,37 +326,44 @@ public class DOMUtil {
         return getStringAttribute(node, XML_NAMESPACE, "id", bRequired);
     }
 
-    private static Identifier getIdentifierFromString(Node node, String stringAttribute) throws DOMStructureException {
+    private static Identifier getIdentifierFromString(Node node, String stringAttribute)
+        throws DOMStructureException {
         if (stringAttribute == null) {
             return null;
         } else {
-            Identifier  identifierResult        = null;
+            Identifier identifierResult = null;
             try {
-                identifierResult        = new IdentifierImpl(stringAttribute);
+                identifierResult = new IdentifierImpl(stringAttribute);
             } catch (IllegalArgumentException ex) {
-                throw new DOMStructureException(node, "Invalid Identifier \"" + stringAttribute + "\" in \"" + getNodeLabel(node) + "\"", ex);
+                throw new DOMStructureException(node, "Invalid Identifier \"" + stringAttribute + "\" in \""
+                                                      + getNodeLabel(node) + "\"", ex);
             }
             return identifierResult;
         }
     }
 
-    public static Identifier getIdentifierAttribute(Node node, String[] nameSpaces, String localName, boolean bRequired) throws DOMStructureException {
+    public static Identifier getIdentifierAttribute(Node node, String[] nameSpaces, String localName,
+                                                    boolean bRequired) throws DOMStructureException {
         return getIdentifierFromString(node, getStringAttribute(node, nameSpaces, localName, bRequired));
     }
 
-    public static Identifier getIdentifierAttribute(Node node, String[] nameSpaces, String localName) throws DOMStructureException {
+    public static Identifier getIdentifierAttribute(Node node, String[] nameSpaces, String localName)
+        throws DOMStructureException {
         return getIdentifierFromString(node, getStringAttribute(node, nameSpaces, localName));
     }
 
-    public static Identifier getIdentifierAttribute(Node node, String nameSpace, String localName, boolean bRequired) throws DOMStructureException {
+    public static Identifier getIdentifierAttribute(Node node, String nameSpace, String localName,
+                                                    boolean bRequired) throws DOMStructureException {
         return getIdentifierFromString(node, getStringAttribute(node, nameSpace, localName, bRequired));
     }
 
-    public static Identifier getIdentifierAttribute(Node node, String nameSpace, String localName) throws DOMStructureException {
+    public static Identifier getIdentifierAttribute(Node node, String nameSpace, String localName)
+        throws DOMStructureException {
         return getIdentifierFromString(node, getStringAttribute(node, nameSpace, localName));
     }
 
-    public static Identifier getIdentifierAttribute(Node node, String localName, boolean bRequired) throws DOMStructureException {
+    public static Identifier getIdentifierAttribute(Node node, String localName, boolean bRequired)
+        throws DOMStructureException {
         return getIdentifierFromString(node, getStringAttribute(node, localName, bRequired));
     }
 
@@ -352,7 +372,7 @@ public class DOMUtil {
     }
 
     public static Identifier getIdentifierContent(Node node, boolean bRequired) throws DOMStructureException {
-        Identifier identifier   = getIdentifierFromString(node, node.getTextContent());
+        Identifier identifier = getIdentifierFromString(node, node.getTextContent());
         if (bRequired && identifier == null) {
             throw newMissingContentException(node);
         }
@@ -367,33 +387,39 @@ public class DOMUtil {
         if (stringValue == null) {
             return null;
         } else {
-            Integer iresult     = null;
+            Integer iresult = null;
             try {
                 iresult = Integer.parseInt(stringValue);
             } catch (NumberFormatException ex) {
-                throw new DOMStructureException(node, "Invalid Integer \"" + stringValue + "\" in \"" + getNodeLabel(node) + "\"", ex);
+                throw new DOMStructureException(node, "Invalid Integer \"" + stringValue + "\" in \""
+                                                      + getNodeLabel(node) + "\"", ex);
             }
             return iresult;
         }
     }
 
-    public static Integer getIntegerAttribute(Node node, String[] nameSpaces, String localName, boolean bRequired) throws DOMStructureException {
+    public static Integer getIntegerAttribute(Node node, String[] nameSpaces, String localName,
+                                              boolean bRequired) throws DOMStructureException {
         return getIntegerFromString(node, getStringAttribute(node, nameSpaces, localName, bRequired));
     }
 
-    public static Integer getIntegerAttribute(Node node, String[] nameSpaces, String localName) throws DOMStructureException {
+    public static Integer getIntegerAttribute(Node node, String[] nameSpaces, String localName)
+        throws DOMStructureException {
         return getIntegerFromString(node, getStringAttribute(node, nameSpaces, localName));
     }
 
-    public static Integer getIntegerAttribute(Node node, String nameSpace, String localName, boolean bRequired) throws DOMStructureException {
+    public static Integer getIntegerAttribute(Node node, String nameSpace, String localName, boolean bRequired)
+        throws DOMStructureException {
         return getIntegerFromString(node, getStringAttribute(node, nameSpace, localName, bRequired));
     }
 
-    public static Integer getIntegerAttribute(Node node, String nameSpace, String localName) throws DOMStructureException {
+    public static Integer getIntegerAttribute(Node node, String nameSpace, String localName)
+        throws DOMStructureException {
         return getIntegerFromString(node, getStringAttribute(node, nameSpace, localName));
     }
 
-    public static Integer getIntegerAttribute(Node node, String localName, boolean bRequired) throws DOMStructureException {
+    public static Integer getIntegerAttribute(Node node, String localName, boolean bRequired)
+        throws DOMStructureException {
         return getIntegerFromString(node, getStringAttribute(node, localName, bRequired));
     }
 
@@ -404,30 +430,36 @@ public class DOMUtil {
     private static Version getVersionFromString(Node node, String stringValue) throws DOMStructureException {
         Version version = null;
         try {
-            version     = StdVersion.newInstance(stringValue);
+            version = StdVersion.newInstance(stringValue);
         } catch (ParseException ex) {
-            throw new DOMStructureException(node, "Invalid Version \"" + stringValue + "\" in \"" + getNodeLabel(node) + "\"", ex);
+            throw new DOMStructureException(node, "Invalid Version \"" + stringValue + "\" in \""
+                                                  + getNodeLabel(node) + "\"", ex);
         }
         return version;
     }
 
-    public static Version getVersionAttribute(Node node, String[] nameSpaces, String localName, boolean bRequired) throws DOMStructureException {
+    public static Version getVersionAttribute(Node node, String[] nameSpaces, String localName,
+                                              boolean bRequired) throws DOMStructureException {
         return getVersionFromString(node, getStringAttribute(node, nameSpaces, localName, bRequired));
     }
 
-    public static Version getVersionAttribute(Node node, String[] nameSpaces, String localName) throws DOMStructureException {
+    public static Version getVersionAttribute(Node node, String[] nameSpaces, String localName)
+        throws DOMStructureException {
         return getVersionFromString(node, getStringAttribute(node, nameSpaces, localName));
     }
 
-    public static Version getVersionAttribute(Node node, String nameSpace, String localName, boolean bRequired) throws DOMStructureException {
+    public static Version getVersionAttribute(Node node, String nameSpace, String localName, boolean bRequired)
+        throws DOMStructureException {
         return getVersionFromString(node, getStringAttribute(node, nameSpace, localName, bRequired));
     }
 
-    public static Version getVersionAttribute(Node node, String nameSpace, String localName) throws DOMStructureException {
+    public static Version getVersionAttribute(Node node, String nameSpace, String localName)
+        throws DOMStructureException {
         return getVersionFromString(node, getStringAttribute(node, nameSpace, localName));
     }
 
-    public static Version getVersionAttribute(Node node, String localName, boolean bRequired) throws DOMStructureException {
+    public static Version getVersionAttribute(Node node, String localName, boolean bRequired)
+        throws DOMStructureException {
         return getVersionFromString(node, getStringAttribute(node, localName, bRequired));
     }
 
@@ -439,11 +471,12 @@ public class DOMUtil {
         if (stringAttribute == null) {
             return null;
         } else {
-            URI uriResult       = null;
+            URI uriResult = null;
             try {
-                uriResult       = new URI(stringAttribute);
+                uriResult = new URI(stringAttribute);
             } catch (URISyntaxException ex) {
-                throw new DOMStructureException(node, "Illegal URI value \"" + stringAttribute + "\" in \"" + getNodeLabel(node) + "\"", ex);
+                throw new DOMStructureException(node, "Illegal URI value \"" + stringAttribute + "\" in \""
+                                                      + getNodeLabel(node) + "\"", ex);
             }
             return uriResult;
         }
@@ -469,27 +502,33 @@ public class DOMUtil {
         } else if (stringAttribute.equals("1") || stringAttribute.equalsIgnoreCase("true")) {
             return Boolean.TRUE;
         } else {
-            throw new DOMStructureException("Illegal Boolean value \"" + stringAttribute + "\" in \"" + getNodeLabel(node) + "\"");
+            throw new DOMStructureException("Illegal Boolean value \"" + stringAttribute + "\" in \""
+                                            + getNodeLabel(node) + "\"");
         }
     }
 
-    public static Boolean getBooleanAttribute(Node node, String[] nameSpaces, String localName, boolean bRequired) throws DOMStructureException {
+    public static Boolean getBooleanAttribute(Node node, String[] nameSpaces, String localName,
+                                              boolean bRequired) throws DOMStructureException {
         return toBoolean(node, getStringAttribute(node, nameSpaces, localName, bRequired));
     }
 
-    public static Boolean getBooleanAttribute(Node node, String[] nameSpaces, String localName) throws DOMStructureException {
+    public static Boolean getBooleanAttribute(Node node, String[] nameSpaces, String localName)
+        throws DOMStructureException {
         return toBoolean(node, getStringAttribute(node, nameSpaces, localName));
     }
 
-    public static Boolean getBooleanAttribute(Node node, String nameSpace, String localName, boolean bRequired) throws DOMStructureException {
+    public static Boolean getBooleanAttribute(Node node, String nameSpace, String localName, boolean bRequired)
+        throws DOMStructureException {
         return toBoolean(node, getStringAttribute(node, nameSpace, localName, bRequired));
     }
 
-    public static Boolean getBooleanAttribute(Node node, String nameSpace, String localName) throws DOMStructureException {
+    public static Boolean getBooleanAttribute(Node node, String nameSpace, String localName)
+        throws DOMStructureException {
         return toBoolean(node, getStringAttribute(node, nameSpace, localName));
     }
 
-    public static Boolean getBooleanAttribute(Node node, String localName, boolean bRequired) throws DOMStructureException {
+    public static Boolean getBooleanAttribute(Node node, String localName, boolean bRequired)
+        throws DOMStructureException {
         return toBoolean(node, getStringAttribute(node, localName, bRequired));
     }
 
@@ -498,17 +537,19 @@ public class DOMUtil {
     }
 
     public static NodeList getNodes(Element element, String[] nameSpaces, String localName) {
-        NodeList        nodeListResult  = null;
-        for (String namespace: nameSpaces) {
-            if ((nodeListResult = element.getElementsByTagNameNS(namespace, localName)) != null && nodeListResult.getLength() > 0) {
+        NodeList nodeListResult = null;
+        for (String namespace : nameSpaces) {
+            if ((nodeListResult = element.getElementsByTagNameNS(namespace, localName)) != null
+                && nodeListResult.getLength() > 0) {
                 return nodeListResult;
             }
         }
         return null;
     }
 
-    public static Node getNode(Element element, String[] nameSpaces, String localName) throws DOMStructureException {
-        NodeList        nodeList        = getNodes(element, nameSpaces, localName);
+    public static Node getNode(Element element, String[] nameSpaces, String localName)
+        throws DOMStructureException {
+        NodeList nodeList = getNodes(element, nameSpaces, localName);
         if (nodeList == null || nodeList.getLength() == 0) {
             return null;
         } else if (nodeList.getLength() > 1) {
@@ -522,8 +563,9 @@ public class DOMUtil {
         return element.getElementsByTagNameNS(nameSpace, localName);
     }
 
-    public static Node getNode(Element element, String nameSpace, String localName) throws DOMStructureException {
-        NodeList        nodeList        = getNodes(element, nameSpace, localName);
+    public static Node getNode(Element element, String nameSpace, String localName)
+        throws DOMStructureException {
+        NodeList nodeList = getNodes(element, nameSpace, localName);
         if (nodeList == null || nodeList.getLength() == 0) {
             return null;
         } else if (nodeList.getLength() > 1) {
@@ -534,8 +576,9 @@ public class DOMUtil {
     }
 
     /**
-     * Gets a {@link org.w3c.dom.NodeList} of all <code>Node</code>s that are children of the given {@link org.w3c.dom.Element} with the
-     * given <code>String</code> local name by searching all available namespaces.
+     * Gets a {@link org.w3c.dom.NodeList} of all <code>Node</code>s that are children of the given
+     * {@link org.w3c.dom.Element} with the given <code>String</code> local name by searching all available
+     * namespaces.
      *
      * @param element
      * @param localName
@@ -546,7 +589,7 @@ public class DOMUtil {
     }
 
     public static Node getNode(Element element, String localName) throws DOMStructureException {
-        NodeList        nodeList        = getNodes(element, localName);
+        NodeList nodeList = getNodes(element, localName);
         if (nodeList == null || nodeList.getLength() == 0) {
             return null;
         } else if (nodeList.getLength() > 1) {
@@ -558,13 +601,13 @@ public class DOMUtil {
 
     public static String toString(Document document) throws DOMStructureException {
         try {
-            TransformerFactory  transformerFactory      = TransformerFactory.newInstance();
+            TransformerFactory transformerFactory = TransformerFactory.newInstance();
             transformerFactory.setAttribute("indent-number", new Integer(4));
-            Transformer                 transformer                     = transformerFactory.newTransformer();
+            Transformer transformer = transformerFactory.newTransformer();
             transformer.setOutputProperty(OutputKeys.INDENT, "yes");
-            Source                              source                          = new DOMSource(document);
-            StringWriter                stringOut                       = new StringWriter();
-            Result                              result                          = new StreamResult(stringOut);
+            Source source = new DOMSource(document);
+            StringWriter stringOut = new StringWriter();
+            Result result = new StreamResult(stringOut);
 
             transformer.transform(source, result);
             return stringOut.toString();
@@ -573,13 +616,15 @@ public class DOMUtil {
         }
     }
 
-    public static boolean repairIdentifierAttribute(Element element, String attributeName, Identifier identifierDefault, Log logger) throws DOMStructureException {
-        Identifier identifier   = getIdentifierAttribute(element, attributeName);
+    public static boolean repairIdentifierAttribute(Element element, String attributeName,
+                                                    Identifier identifierDefault, Log logger)
+        throws DOMStructureException {
+        Identifier identifier = getIdentifierAttribute(element, attributeName);
         if (identifier == null) {
             if (identifierDefault != null) {
-                identifier      = identifierDefault;
+                identifier = identifierDefault;
             } else {
-                identifier      = IdentifierImpl.gensym("urn:" + attributeName.toLowerCase());
+                identifier = IdentifierImpl.gensym("urn:" + attributeName.toLowerCase());
             }
             logger.warn("Setting missing " + attributeName + " attribute to " + identifier.stringValue());
             element.setAttribute(attributeName, identifier.stringValue());
@@ -588,14 +633,15 @@ public class DOMUtil {
         return false;
     }
 
-    public static boolean repairIdentifierAttribute(Element element, String attributeName, Log logger) throws DOMStructureException {
+    public static boolean repairIdentifierAttribute(Element element, String attributeName, Log logger)
+        throws DOMStructureException {
         return repairIdentifierAttribute(element, attributeName, null, logger);
     }
 
     public static boolean repairIdentifierContent(Element element, Log logger) throws DOMStructureException {
-        Identifier identifier   = getIdentifierContent(element);
+        Identifier identifier = getIdentifierContent(element);
         if (identifier == null) {
-            identifier  = IdentifierImpl.gensym();
+            identifier = IdentifierImpl.gensym();
             logger.warn("Setting missing content to " + identifier.stringValue());
             element.setTextContent(identifier.stringValue());
             return true;
@@ -603,10 +649,11 @@ public class DOMUtil {
         return false;
     }
 
-    public static boolean repairBooleanAttribute(Element element, String attributeName, boolean bvalue, Log logger) throws DOMStructureException {
-        Boolean booleanValue    = null;
+    public static boolean repairBooleanAttribute(Element element, String attributeName, boolean bvalue,
+                                                 Log logger) throws DOMStructureException {
+        Boolean booleanValue = null;
         try {
-            booleanValue        = getBooleanAttribute(element, attributeName);
+            booleanValue = getBooleanAttribute(element, attributeName);
         } catch (DOMStructureException ex) {
             logger.warn("Setting invalid " + attributeName + " attribute to " + bvalue);
             element.setAttribute(attributeName, Boolean.toString(bvalue));
@@ -621,7 +668,7 @@ public class DOMUtil {
     }
 
     public static boolean repairVersionMatchAttribute(Element element, String attributeName, Log logger) {
-        String versionString    = getStringAttribute(element, attributeName);
+        String versionString = getStringAttribute(element, attributeName);
         if (versionString == null) {
             return false;
         }
@@ -638,7 +685,7 @@ public class DOMUtil {
     }
 
     public static boolean repairVersionAttribute(Element element, String attributeName, Log logger) {
-        String versionString    = getStringAttribute(element, attributeName);
+        String versionString = getStringAttribute(element, attributeName);
         if (versionString == null) {
             logger.warn("Adding default " + attributeName + " string 1.0");
             element.setAttribute(attributeName, "1.0");
@@ -656,11 +703,12 @@ public class DOMUtil {
         return false;
     }
 
-    public static boolean repairStringAttribute(Element element, String attributeName, String defaultValue, Log logger) {
-        String attributeValue   = getStringAttribute(element, attributeName);
+    public static boolean repairStringAttribute(Element element, String attributeName, String defaultValue,
+                                                Log logger) {
+        String attributeValue = getStringAttribute(element, attributeName);
         if (attributeValue == null) {
             if (defaultValue == null) {
-                defaultValue    = IdentifierImpl.gensym().stringValue();
+                defaultValue = IdentifierImpl.gensym().stringValue();
             }
             logger.warn("Setting missing " + attributeName + " attribute to " + defaultValue);
             element.setAttribute(attributeName, defaultValue);
@@ -673,7 +721,7 @@ public class DOMUtil {
         /*
          * Get the DocumentBuilderFactory
          */
-        DocumentBuilderFactory documentBuilderFactory   = DocumentBuilderFactory.newInstance();
+        DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
         if (documentBuilderFactory == null) {
             throw new DOMStructureException("No XML DocumentBuilderFactory configured");
         }
@@ -684,7 +732,7 @@ public class DOMUtil {
          */
         DocumentBuilder documentBuilder = null;
         try {
-            documentBuilder     = documentBuilderFactory.newDocumentBuilder();
+            documentBuilder = documentBuilderFactory.newDocumentBuilder();
         } catch (Exception ex) {
             throw new DOMStructureException("Exception creating DocumentBuilder: " + ex.getMessage(), ex);
         }
@@ -692,14 +740,15 @@ public class DOMUtil {
         /*
          * Parse the XML file
          */
-        Document document       = null;
+        Document document = null;
         try {
-            document    = documentBuilder.parse(fileDocument);
+            document = documentBuilder.parse(fileDocument);
             if (document == null) {
                 throw new Exception("Null document returned");
             }
         } catch (Exception ex) {
-            throw new DOMStructureException("Exception loading file \"" + fileDocument.getAbsolutePath() + "\": " + ex.getMessage(), ex);
+            throw new DOMStructureException("Exception loading file \"" + fileDocument.getAbsolutePath()
+                                            + "\": " + ex.getMessage(), ex);
         }
         return document;
 
@@ -709,7 +758,7 @@ public class DOMUtil {
         /*
          * Get the DocumentBuilderFactory
          */
-        DocumentBuilderFactory documentBuilderFactory   = DocumentBuilderFactory.newInstance();
+        DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
         if (documentBuilderFactory == null) {
             throw new DOMStructureException("No XML DocumentBuilderFactory configured");
         }
@@ -720,7 +769,7 @@ public class DOMUtil {
          */
         DocumentBuilder documentBuilder = null;
         try {
-            documentBuilder     = documentBuilderFactory.newDocumentBuilder();
+            documentBuilder = documentBuilderFactory.newDocumentBuilder();
         } catch (Exception ex) {
             throw new DOMStructureException("Exception creating DocumentBuilder: " + ex.getMessage(), ex);
         }
@@ -728,9 +777,9 @@ public class DOMUtil {
         /*
          * Parse the XML file
          */
-        Document document       = null;
+        Document document = null;
         try {
-            document    = documentBuilder.parse(inputStreamDocument);
+            document = documentBuilder.parse(inputStreamDocument);
             if (document == null) {
                 throw new Exception("Null document returned");
             }

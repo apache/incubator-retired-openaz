@@ -30,8 +30,6 @@
  */
 package com.att.research.xacml.std.pap;
 
-
-
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -66,18 +64,16 @@ import com.google.common.base.Splitter;
 import com.google.common.collect.Sets;
 
 /**
- * This is a simple PAP engine that uses some property files and a simple directory
- * structure in the file system to manage a policy repository and set of PDP nodes.
- *
- *
+ * This is a simple PAP engine that uses some property files and a simple directory structure in the file
+ * system to manage a policy repository and set of PDP nodes.
  */
 public class StdEngine extends StdPDPItemSetChangeNotifier implements PAPEngine {
-    private static Log  logger  = LogFactory.getLog(StdEngine.class);
+    private static Log logger = LogFactory.getLog(StdEngine.class);
 
-    public static String        PROP_PAP_REPO = "xacml.pap.pdps";
-    public static String        PROP_PAP_GROUPS = "xacml.pap.groups";
-    public static String        PROP_PAP_GROUPS_DEFAULT = "xacml.pap.groups.default";
-    public static String        PROP_PAP_GROUPS_DEFAULT_NAME = "default";
+    public static String PROP_PAP_REPO = "xacml.pap.pdps";
+    public static String PROP_PAP_GROUPS = "xacml.pap.groups";
+    public static String PROP_PAP_GROUPS_DEFAULT = "xacml.pap.groups.default";
+    public static String PROP_PAP_GROUPS_DEFAULT_NAME = "default";
 
     protected final Path repository;
     protected Set<StdPDPGroup> groups;
@@ -120,16 +116,16 @@ public class StdEngine extends StdPDPItemSetChangeNotifier implements PAPEngine 
         // Sanity check the repository path
         //
         if (this.repository == null) {
-            throw new PAPException ("No repository specified.");
+            throw new PAPException("No repository specified.");
         }
         if (Files.notExists(this.repository)) {
             Files.createDirectory(repository);
         }
         if (Files.isDirectory(this.repository) == false) {
-            throw new PAPException ("Repository is NOT a directory: " + this.repository.toAbsolutePath());
+            throw new PAPException("Repository is NOT a directory: " + this.repository.toAbsolutePath());
         }
         if (Files.isWritable(this.repository) == false) {
-            throw new PAPException ("Repository is NOT writable: " + this.repository.toAbsolutePath());
+            throw new PAPException("Repository is NOT writable: " + this.repository.toAbsolutePath());
         }
         //
         // Load our groups
@@ -196,7 +192,8 @@ public class StdEngine extends StdPDPItemSetChangeNotifier implements PAPEngine 
                     Properties props = new Properties();
                     props.setProperty(XACMLProperties.PROP_REFERENCEDPOLICIES, "");
                     props.setProperty(XACMLProperties.PROP_ROOTPOLICIES, "");
-                    Path policyPath = Paths.get(defaultPath.toAbsolutePath().toString(), "xacml.policy.properties");
+                    Path policyPath = Paths.get(defaultPath.toAbsolutePath().toString(),
+                                                "xacml.policy.properties");
                     Files.createFile(policyPath);
                     try (OutputStream os = Files.newOutputStream(policyPath)) {
                         props.store(os, "");
@@ -219,7 +216,9 @@ public class StdEngine extends StdPDPItemSetChangeNotifier implements PAPEngine 
             //
             // Create the default group
             //
-            StdPDPGroup newDefault = new StdPDPGroup(defaultId, true, "default", "The default group where new PDP's are put.", defaultPath);
+            StdPDPGroup newDefault = new StdPDPGroup(defaultId, true, "default",
+                                                     "The default group where new PDP's are put.",
+                                                     defaultPath);
             //
             // Add it to our list
             //
@@ -249,9 +248,6 @@ public class StdEngine extends StdPDPItemSetChangeNotifier implements PAPEngine 
         }
     }
 
-
-
-
     @Override
     public PDPGroup getDefaultGroup() throws PAPException {
         for (PDPGroup group : this.groups) {
@@ -271,24 +267,26 @@ public class StdEngine extends StdPDPItemSetChangeNotifier implements PAPEngine 
         boolean changesMade = false;
         for (PDPGroup aGroup : groups) {
             if (aGroup.getId().equals(group.getId())) {
-                if ( ! aGroup.isDefaultGroup()) {
-//TODO - since the original code checked for type we do also.
+                if (!aGroup.isDefaultGroup()) {
+                    // TODO - since the original code checked for type we do also.
                     if (aGroup instanceof StdPDPGroup) {
-                        ((StdPDPGroup) aGroup).setDefault(true);
+                        ((StdPDPGroup)aGroup).setDefault(true);
                         changesMade = true;
                     } else {
-                        throw new IllegalArgumentException("Group in groups of unknown type '" + aGroup.getClass().getName() + "'");
+                        throw new IllegalArgumentException("Group in groups of unknown type '"
+                                                           + aGroup.getClass().getName() + "'");
                     }
                 }
             } else {
                 // not the new default group
                 if (aGroup.isDefaultGroup()) {
-//TODO - since the original code checked for type we do also.
+                    // TODO - since the original code checked for type we do also.
                     if (aGroup instanceof StdPDPGroup) {
-                        ((StdPDPGroup) aGroup).setDefault(false);
+                        ((StdPDPGroup)aGroup).setDefault(false);
                         changesMade = true;
                     } else {
-                        throw new IllegalArgumentException("Group in groups of unknown type '" + aGroup.getClass().getName() + "'");
+                        throw new IllegalArgumentException("Group in groups of unknown type '"
+                                                           + aGroup.getClass().getName() + "'");
                     }
                 }
             }
@@ -310,8 +308,8 @@ public class StdEngine extends StdPDPItemSetChangeNotifier implements PAPEngine 
     }
 
     @Override
-    public PDPGroup     getGroup(String id) throws PAPException {
-        for (PDPGroup g: this.groups) {
+    public PDPGroup getGroup(String id) throws PAPException {
+        for (PDPGroup g : this.groups) {
             if (g.getId().equals(id)) {
                 return g;
             }
@@ -336,12 +334,10 @@ public class StdEngine extends StdPDPItemSetChangeNotifier implements PAPEngine 
             }
         }
 
-
         // create an Id that can be used as a file name and a properties file key.
         // Ids must not contain \/:*?"<>|=,;
         // The ID must also be unique within the current set of PDPGroups.
         String id = createNewPDPGroupId(name);
-
 
         //
         // Construct the directory path
@@ -415,15 +411,10 @@ public class StdEngine extends StdPDPItemSetChangeNotifier implements PAPEngine 
 
     }
 
-
-
-
     /**
-     * Helper to create a new Group ID.
-     * Use the Name field to create the Id.
-     * The Name is expected to not be null; if it is then this method throws an exception.
-     * The name is supposed to be unique within the current set of groups,
-     * so creating the ID based on the name will create a unique string.
+     * Helper to create a new Group ID. Use the Name field to create the Id. The Name is expected to not be
+     * null; if it is then this method throws an exception. The name is supposed to be unique within the
+     * current set of groups, so creating the ID based on the name will create a unique string.
      *
      * @param name
      * @return
@@ -449,10 +440,6 @@ public class StdEngine extends StdPDPItemSetChangeNotifier implements PAPEngine 
         return id;
     }
 
-
-
-
-
     @Override
     public void updateGroup(PDPGroup group) throws PAPException {
         if (group == null || group.getId() == null) {
@@ -466,16 +453,17 @@ public class StdEngine extends StdPDPItemSetChangeNotifier implements PAPEngine 
             throw new PAPException("Update found no existing group with id '" + group.getId() + "'");
         }
 
-
         // We do dramatically different things when the Name changes
-        // because the Name is essentially the identity of the group (as the User knows it) so when the Identity changes we have to change the group ID.
+        // because the Name is essentially the identity of the group (as the User knows it) so when the
+        // Identity changes we have to change the group ID.
         if (group.getName().equals(existingGroup.getName())) {
 
             // update the disk
             try {
                 ((StdPDPGroup)group).saveGroupConfiguration();
             } catch (IOException e) {
-                throw new PAPException("Unable to save new configuration for '" + group.getName() + "': " + e.getMessage());
+                throw new PAPException("Unable to save new configuration for '" + group.getName() + "': "
+                                       + e.getMessage());
             }
             // update the group in the set by simply replacing the old instance with the new one
             this.groups.remove(existingGroup);
@@ -489,7 +477,8 @@ public class StdEngine extends StdPDPItemSetChangeNotifier implements PAPEngine 
             // make sure no other group uses the new id
             for (PDPGroup g : groups) {
                 if (g.getId().equals(newId)) {
-                    throw new PAPException("Replacement name maps to ID '" + newId + "' which is already in use");
+                    throw new PAPException("Replacement name maps to ID '" + newId
+                                           + "' which is already in use");
                 }
             }
             ((StdPDPGroup)group).setId(newId);
@@ -501,18 +490,20 @@ public class StdEngine extends StdPDPItemSetChangeNotifier implements PAPEngine 
 
             try {
                 boolean success = oldPath.toFile().renameTo(newPath.toFile());
-                if ( ! success) {
+                if (!success) {
                     throw new PAPException("Unable to rename directory; reason unknown");
                 }
             } catch (Exception e) {
                 logger.error("Move '" + oldPath + "' to '" + newPath + "': " + e.getMessage(), e);
-                throw new PAPException("Unable to move directory from '" + oldPath + "' to '" + newPath + "': " + e.getMessage());
+                throw new PAPException("Unable to move directory from '" + oldPath + "' to '" + newPath
+                                       + "': " + e.getMessage());
             }
             // update the disk
             try {
                 ((StdPDPGroup)group).saveGroupConfiguration();
             } catch (IOException e) {
-                throw new PAPException("Unable to save new configuration for '" + group.getName() + "': " + e.getMessage());
+                throw new PAPException("Unable to save new configuration for '" + group.getName() + "': "
+                                       + e.getMessage());
             }
 
             // save the new group into the Set
@@ -521,7 +512,8 @@ public class StdEngine extends StdPDPItemSetChangeNotifier implements PAPEngine 
 
         }
 
-        // perhaps only the group changed, but if the name/id changed it may look to a listener like more than one group
+        // perhaps only the group changed, but if the name/id changed it may look to a listener like more than
+        // one group
         changed();
 
     }
@@ -549,17 +541,20 @@ public class StdEngine extends StdPDPItemSetChangeNotifier implements PAPEngine 
         // Are there PDPs? If so, then we need a target group
         //
         if (pdps.isEmpty() == false && newGroup == null) {
-            throw new NullPointerException("Group targeted for deletion has PDPs, you must provide a new group for them.");
+            throw new NullPointerException(
+                                           "Group targeted for deletion has PDPs, you must provide a new group for them.");
         }
         //
         // Move the PDPs
         //
         if (pdps.isEmpty() == false) {
-            if (! (newGroup instanceof StdPDPGroup)) {
-                throw new PAPException("Unexpected class for newGroup: " + newGroup.getClass().getCanonicalName());
+            if (!(newGroup instanceof StdPDPGroup)) {
+                throw new PAPException("Unexpected class for newGroup: "
+                                       + newGroup.getClass().getCanonicalName());
             }
             // The movePDP function will modify the set of PDPs in the group.
-            // To avoid concurrent modification exceptions we need to duplicate the list before calling that function.
+            // To avoid concurrent modification exceptions we need to duplicate the list before calling that
+            // function.
             List<PDP> pdpList = new ArrayList<PDP>();
             for (PDP pdp : pdps) {
                 pdpList.add(pdp);
@@ -577,15 +572,14 @@ public class StdEngine extends StdPDPItemSetChangeNotifier implements PAPEngine 
         //
         // If it exists already
         //
-        if ( ! Files.exists(groupPath)) {
+        if (!Files.exists(groupPath)) {
             logger.warn("removeGroup " + id + " directory does not exist" + groupPath.toString());
         } else {
             try {
                 Files.walkFileTree(groupPath, new SimpleFileVisitor<Path>() {
 
                     @Override
-                    public FileVisitResult visitFile(Path file,
-                                                     BasicFileAttributes attrs) throws IOException {
+                    public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
                         Files.delete(file);
                         return super.visitFile(file, attrs);
                     }
@@ -596,7 +590,7 @@ public class StdEngine extends StdPDPItemSetChangeNotifier implements PAPEngine 
                 //
                 Files.delete(groupPath);
             } catch (IOException e) {
-                logger.error("Failed to delete " + groupPath + ": " +e);
+                logger.error("Failed to delete " + groupPath + ": " + e);
                 throw new PAPException("Failed to delete " + id);
             }
         }
@@ -635,7 +629,7 @@ public class StdEngine extends StdPDPItemSetChangeNotifier implements PAPEngine 
     }
 
     @Override
-    public PDP  getPDP(String pdpId) throws PAPException {
+    public PDP getPDP(String pdpId) throws PAPException {
         for (PDPGroup group : this.groups) {
             for (PDP pdp : group.getPdps()) {
                 if (pdp.getId().equals(pdpId)) {
@@ -647,7 +641,8 @@ public class StdEngine extends StdPDPItemSetChangeNotifier implements PAPEngine 
     }
 
     @Override
-    public void newPDP(String id, PDPGroup group, String name, String description) throws PAPException, NullPointerException {
+    public void newPDP(String id, PDPGroup group, String name, String description) throws PAPException,
+        NullPointerException {
         if (group == null) {
             throw new PAPException("You must specify which group the PDP will belong to.");
         }
@@ -661,7 +656,7 @@ public class StdEngine extends StdPDPItemSetChangeNotifier implements PAPEngine 
         }
         if (group instanceof StdPDPGroup) {
             StdPDP pdp = new StdPDP(id, name, description);
-            if (((StdPDPGroup) group).addPDP(pdp)) {
+            if (((StdPDPGroup)group).addPDP(pdp)) {
                 //
                 // Save the properties and notify any listeners
                 //
@@ -671,7 +666,6 @@ public class StdEngine extends StdPDPItemSetChangeNotifier implements PAPEngine 
         }
         return;
     }
-
 
     @Override
     public void movePDP(PDP pdp, PDPGroup newGroup) throws PAPException {
@@ -687,8 +681,8 @@ public class StdEngine extends StdPDPItemSetChangeNotifier implements PAPEngine 
             return;
         }
         if (currentGroup instanceof StdPDPGroup && newGroup instanceof StdPDPGroup) {
-            if (((StdPDPGroup) currentGroup).removePDP(pdp)) {
-                boolean result = ((StdPDPGroup) newGroup).addPDP(pdp);
+            if (((StdPDPGroup)currentGroup).removePDP(pdp)) {
+                boolean result = ((StdPDPGroup)newGroup).addPDP(pdp);
                 if (result) {
                     //
                     // Save the configuration
@@ -696,18 +690,18 @@ public class StdEngine extends StdPDPItemSetChangeNotifier implements PAPEngine 
                     this.doSave();
                 } else {
                     logger.error("Failed to add to new group, putting back into original group.");
-                    if (((StdPDPGroup) currentGroup).removePDP(pdp) == false) {
+                    if (((StdPDPGroup)currentGroup).removePDP(pdp) == false) {
                         logger.error("Failed to put PDP back into original group.");
                     }
                 }
             }
         } else {
-            String message = "Unknown PDP group class: " + newGroup.getClass().getCanonicalName() + " and " + currentGroup.getClass().getCanonicalName();
+            String message = "Unknown PDP group class: " + newGroup.getClass().getCanonicalName() + " and "
+                             + currentGroup.getClass().getCanonicalName();
             logger.warn(message);
             throw new PAPException(message);
         }
     }
-
 
     @Override
     public void updatePDP(PDP pdp) throws PAPException {
@@ -732,7 +726,7 @@ public class StdEngine extends StdPDPItemSetChangeNotifier implements PAPEngine 
             throw new NullPointerException();
         }
         if (group instanceof StdPDPGroup) {
-            boolean result = ((StdPDPGroup) group).removePDP(pdp);
+            boolean result = ((StdPDPGroup)group).removePDP(pdp);
             if (result) {
                 this.doSave();
             }
@@ -743,7 +737,6 @@ public class StdEngine extends StdPDPItemSetChangeNotifier implements PAPEngine 
         throw new PAPException(message);
     }
 
-
     @Override
     /**
      * Should never be called - Detailed status is held on the PDP, not the PAP
@@ -753,24 +746,23 @@ public class StdEngine extends StdPDPItemSetChangeNotifier implements PAPEngine 
     }
 
     @Override
-    public void publishPolicy(String id, String name, boolean isRoot, InputStream policy, PDPGroup group) throws PAPException {
+    public void publishPolicy(String id, String name, boolean isRoot, InputStream policy, PDPGroup group)
+        throws PAPException {
         if (group == null) {
             throw new NullPointerException();
         }
         if (group instanceof StdPDPGroup && this.groups.contains(group)) {
-            ((StdPDPGroup) group).publishPolicy(id, name, isRoot, policy);
+            ((StdPDPGroup)group).publishPolicy(id, name, isRoot, policy);
             return;
         }
         logger.warn("unknown PDP Group: " + group);
         throw new PAPException("Unknown PDP Group: " + group.getId());
     }
 
-    // Currently not used on the PAP side.  This is done by ((StdPDPGroup) group).copyPolicyToFile
+    // Currently not used on the PAP side. This is done by ((StdPDPGroup) group).copyPolicyToFile
     @Override
-    public void copyPolicy(PDPPolicy policy, PDPGroup group)
-    throws PAPException {
+    public void copyPolicy(PDPPolicy policy, PDPGroup group) throws PAPException {
     }
-
 
     @Override
     public void removePolicy(PDPPolicy policy, PDPGroup group) throws PAPException {
@@ -778,19 +770,18 @@ public class StdEngine extends StdPDPItemSetChangeNotifier implements PAPEngine 
             throw new NullPointerException();
         }
         if (group instanceof StdPDPGroup && this.groups.contains(group)) {
-            ((StdPDPGroup) group).removePolicy(policy);
+            ((StdPDPGroup)group).removePolicy(policy);
             return;
         }
         logger.warn("unknown PDP Group: " + group);
         throw new PAPException("Unknown PDP Group: " + group.getId());
     }
 
-
     //
     // HELPER methods
     //
 
-    private Set<StdPDPGroup>    readProperties(Path repository, Properties properties) throws PAPException {
+    private Set<StdPDPGroup> readProperties(Path repository, Properties properties) throws PAPException {
         Set<StdPDPGroup> groups = new HashSet<StdPDPGroup>();
         //
         // See if there is a groups property
@@ -810,9 +801,8 @@ public class StdEngine extends StdPDPItemSetChangeNotifier implements PAPEngine 
             //
             // Add our Group Object
             //
-            StdPDPGroup g = new StdPDPGroup(id.trim(),
-                                            id.equals(properties.getProperty(PROP_PAP_GROUPS_DEFAULT, PROP_PAP_GROUPS_DEFAULT_NAME)),
-                                            properties,
+            StdPDPGroup g = new StdPDPGroup(id.trim(), id.equals(properties
+                .getProperty(PROP_PAP_GROUPS_DEFAULT, PROP_PAP_GROUPS_DEFAULT_NAME)), properties,
                                             Paths.get(repository.toString(), id));
 
             //
@@ -835,6 +825,7 @@ public class StdEngine extends StdPDPItemSetChangeNotifier implements PAPEngine 
         //
         Properties properties = new Properties() {
             private static final long serialVersionUID = 1L;
+
             // For Debugging it is helpful for the file to be in a sorted order,
             // any by returning the keys in the natural Alpha order for strings we get close enough.
             // TreeSet is sorted, and this just overrides the normal Properties method to get the keys.
@@ -850,7 +841,8 @@ public class StdEngine extends StdPDPItemSetChangeNotifier implements PAPEngine 
         for (PDPGroup group : this.groups) {
             ids.add(group.getId());
             properties.setProperty(group.getId() + ".name", (group.getName() == null ? "" : group.getName()));
-            properties.setProperty(group.getId() + ".description", (group.getDescription() == null ? "" : group.getDescription()));
+            properties.setProperty(group.getId() + ".description", (group.getDescription() == null
+                ? "" : group.getDescription()));
             //
             // Iterate its PDPs
             //
@@ -858,7 +850,8 @@ public class StdEngine extends StdPDPItemSetChangeNotifier implements PAPEngine 
             for (PDP pdp : group.getPdps()) {
                 pdps.add(pdp.getId());
                 properties.setProperty(pdp.getId() + ".name", (pdp.getName() == null ? "" : pdp.getName()));
-                properties.setProperty(pdp.getId() + ".description", (pdp.getDescription() == null ? "" : pdp.getDescription()));
+                properties.setProperty(pdp.getId() + ".description",
+                                       (pdp.getDescription() == null ? "" : pdp.getDescription()));
             }
             String pdpList = "";
             if (pdps.size() == 1) {
@@ -900,7 +893,7 @@ public class StdEngine extends StdPDPItemSetChangeNotifier implements PAPEngine 
         }
     }
 
-    public static void  removeGroupProperties(String id, Properties properties) {
+    public static void removeGroupProperties(String id, Properties properties) {
         for (Object key : properties.keySet()) {
             if (key.toString().startsWith(id + ".")) {
                 properties.remove(key);
@@ -912,7 +905,8 @@ public class StdEngine extends StdPDPItemSetChangeNotifier implements PAPEngine 
         //
         // make sure its in the list of groups
         //
-        Iterable<String> groups = Splitter.on(',').trimResults().omitEmptyStrings().split( properties.getProperty(PROP_PAP_GROUPS, ""));
+        Iterable<String> groups = Splitter.on(',').trimResults().omitEmptyStrings()
+            .split(properties.getProperty(PROP_PAP_GROUPS, ""));
         boolean inList = false;
         for (String g : groups) {
             if (g.equals(group.getId())) {
@@ -922,7 +916,8 @@ public class StdEngine extends StdPDPItemSetChangeNotifier implements PAPEngine 
         if (inList == false) {
             Set<String> grps = Sets.newHashSet(groups);
             grps.add(group.getId());
-            String newGroupList = "";;
+            String newGroupList = "";
+            ;
             if (grps.size() == 1) {
                 newGroupList = grps.iterator().next();
             } else if (grps.size() > 1) {
@@ -956,7 +951,6 @@ public class StdEngine extends StdPDPItemSetChangeNotifier implements PAPEngine 
         }
     }
 
-
     public void changed() {
         if (logger.isDebugEnabled()) {
             logger.debug("changed");
@@ -972,7 +966,6 @@ public class StdEngine extends StdPDPItemSetChangeNotifier implements PAPEngine 
         this.doSave();
         this.firePDPGroupChanged(group);
     }
-
 
     public void pdpChanged(PDP pdp) {
         if (logger.isDebugEnabled()) {
@@ -994,6 +987,5 @@ public class StdEngine extends StdPDPItemSetChangeNotifier implements PAPEngine 
             logger.error("Failed to save configuration", e);
         }
     }
-
 
 }

@@ -36,9 +36,8 @@ import com.att.research.xacmlatt.pdp.eval.EvaluationException;
 
 /**
  * PolicyIdReference extends {@link com.att.research.xacmlatt.pdp.policy.PolicyIdReferenceBase} for
- * {@link Policy} objects with an implementation of the <code>ensureReferencee</code>
- * method to find a <code>Policy</code>.
- *
+ * {@link Policy} objects with an implementation of the <code>ensureReferencee</code> method to find a
+ * <code>Policy</code>.
  */
 public class PolicyIdReference extends PolicyIdReferenceBase<Policy> {
 
@@ -64,7 +63,8 @@ public class PolicyIdReference extends PolicyIdReferenceBase<Policy> {
     @Override
     protected Policy ensureReferencee(EvaluationContext evaluationContext) throws EvaluationException {
         if (this.getReferencee() == null) {
-            PolicyFinderResult<Policy> policyFactoryResult      = evaluationContext.getPolicy(this.getIdReferenceMatch());
+            PolicyFinderResult<Policy> policyFactoryResult = evaluationContext.getPolicy(this
+                .getIdReferenceMatch());
             if (policyFactoryResult.getStatus() == null || policyFactoryResult.getStatus().isOk()) {
                 this.setReferencee(policyFactoryResult.getPolicyDef());
             }

@@ -37,9 +37,7 @@ import com.att.research.xacml.api.Status;
 import com.att.research.xacml.std.StdStatus;
 
 /**
- * FunctionArgumentBag implements the {@link FunctionArgument} interface for
- * a {@link Bag} objects.
- *
+ * FunctionArgumentBag implements the {@link FunctionArgument} interface for a {@link Bag} objects.
  */
 public class FunctionArgumentBag implements FunctionArgument {
     private Bag bag;
@@ -50,7 +48,7 @@ public class FunctionArgumentBag implements FunctionArgument {
      * @param bagIn the <code>Bag</code> for the new <code>FunctionArgumentBag</code>.
      */
     public FunctionArgumentBag(Bag bagIn) {
-        this.bag        = bagIn;
+        this.bag = bagIn;
     }
 
     @Override

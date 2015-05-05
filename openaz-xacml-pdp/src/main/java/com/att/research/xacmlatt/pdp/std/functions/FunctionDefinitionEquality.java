@@ -43,31 +43,21 @@ import com.att.research.xacmlatt.pdp.policy.ExpressionResult;
 import com.att.research.xacmlatt.pdp.policy.FunctionArgument;
 
 /**
- * FunctionDefinitionEquality extends {@link com.att.research.xacmlatt.pdp.std.functions.FunctionDefinitionHomogeneousSimple} to
- * implement the XACML Equality predicates as functions taking two arguments of the same data type and returning a <code>Boolean</code>.
- *
- * In the first implementation of XACML we had separate files for each XACML Function.
- * This release combines multiple Functions in fewer files to minimize code duplication.
- * This file supports the following XACML codes:
- *              string-equal
- *              boolean-equal
- *              integer-equal
- *              double-equal
- *              date-equal
- *              time-equal
- *              dateTime-equal
- *              dayTimeDuration-equal
- *              yearMonthDuration-equal
- *              anyURI-equal
- *
+ * FunctionDefinitionEquality extends
+ * {@link com.att.research.xacmlatt.pdp.std.functions.FunctionDefinitionHomogeneousSimple} to implement the
+ * XACML Equality predicates as functions taking two arguments of the same data type and returning a
+ * <code>Boolean</code>. In the first implementation of XACML we had separate files for each XACML Function.
+ * This release combines multiple Functions in fewer files to minimize code duplication. This file supports
+ * the following XACML codes: string-equal boolean-equal integer-equal double-equal date-equal time-equal
+ * dateTime-equal dayTimeDuration-equal yearMonthDuration-equal anyURI-equal
  *
  * @param <I> the java class for the data type of the function Input arguments
  */
 public class FunctionDefinitionEquality<I> extends FunctionDefinitionHomogeneousSimple<Boolean, I> {
 
     /**
-     * Determines if the two <code>T</code> values are equal using the java <code>equals</code> method.  Derived classes
-     * may override this if the <code>equals</code> method is not sufficient.
+     * Determines if the two <code>T</code> values are equal using the java <code>equals</code> method.
+     * Derived classes may override this if the <code>equals</code> method is not sufficient.
      *
      * @param v1 the first object to compare
      * @param v2 the second object to compare
@@ -83,8 +73,8 @@ public class FunctionDefinitionEquality<I> extends FunctionDefinitionHomogeneous
 
     @Override
     public ExpressionResult evaluate(EvaluationContext evaluationContext, List<FunctionArgument> arguments) {
-        List<I> convertedArguments      = new ArrayList<I>();
-        Status status                           = this.validateArguments(arguments, convertedArguments);
+        List<I> convertedArguments = new ArrayList<I>();
+        Status status = this.validateArguments(arguments, convertedArguments);
 
         /*
          * If the function arguments are not correct, just return an error status immediately

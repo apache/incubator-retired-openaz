@@ -37,7 +37,6 @@ import com.att.research.xacml.std.StdStatus;
 /**
  * FunctionArgumentAttributeValue implements {@link FunctionArgument} for a single
  * {@link com.att.research.xacml.api.AttributeValue}
- *
  */
 public class FunctionArgumentAttributeValue implements FunctionArgument {
     private AttributeValue<?> attributeValue;
@@ -45,10 +44,11 @@ public class FunctionArgumentAttributeValue implements FunctionArgument {
     /**
      * Creates a new <code>FunctionArgumentAttributeValue</code> from the given <code>AttributeValue</code>.
      *
-     * @param attributeValueIn the <code>AttributeValue</code> for the new <code>FunctionArgumentAttributeValue</code>.
+     * @param attributeValueIn the <code>AttributeValue</code> for the new
+     *            <code>FunctionArgumentAttributeValue</code>.
      */
     public FunctionArgumentAttributeValue(AttributeValue<?> attributeValueIn) {
-        this.attributeValue     = attributeValueIn;
+        this.attributeValue = attributeValueIn;
     }
 
     @Override

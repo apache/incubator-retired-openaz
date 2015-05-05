@@ -33,8 +33,8 @@ package com.att.research.xacmlatt.pdp.test.conformance;
 import java.io.File;
 
 /**
- * ConformanceTest represents a collection of XACML files with a root Policy document, optional referenced Policy documents, a Request, and a Response.
- *
+ * ConformanceTest represents a collection of XACML files with a root Policy document, optional referenced
+ * Policy documents, a Request, and a Response.
  */
 public class ConformanceTest {
     private String testName;
@@ -42,53 +42,62 @@ public class ConformanceTest {
     private File response;
     private ConformanceRepository repository;
 
-    public ConformanceTest(String name, ConformanceRepository conformanceRepository, File fileRequest, File fileResponse) {
-        this.testName   = name;
-        this.request    = fileRequest;
-        this.response   = fileResponse;
+    public ConformanceTest(String name, ConformanceRepository conformanceRepository, File fileRequest,
+                           File fileResponse) {
+        this.testName = name;
+        this.request = fileRequest;
+        this.response = fileResponse;
         this.repository = conformanceRepository;
     }
 
     public ConformanceTest(String name) {
-        this.testName   = name;
+        this.testName = name;
     }
 
     public String getTestName() {
         return this.testName;
     }
+
     public void setTestName(String s) {
-        this.testName   = s;
+        this.testName = s;
     }
+
     public ConformanceRepository getRepository() {
         if (this.repository == null) {
-            this.repository     = new ConformanceRepository();
+            this.repository = new ConformanceRepository();
         }
         return this.repository;
     }
+
     public File getRequest() {
         return this.request;
     }
+
     public void setRequest(File f) {
-        this.request    = f;
+        this.request = f;
     }
+
     public File getResponse() {
         return this.response;
     }
+
     public void setResponse(File f) {
-        this.response   = f;
+        this.response = f;
     }
 
     public boolean isComplete() {
-        return this.getTestName() != null && this.getRepository() != null && this.getRepository().hasRootPolicy() && this.getRequest() != null && this.getResponse() != null;
+        return this.getTestName() != null && this.getRepository() != null
+               && this.getRepository().hasRootPolicy() && this.getRequest() != null
+               && this.getResponse() != null;
     }
 
     @Override
     public String toString() {
-        StringBuilder stringBuilder     = new StringBuilder();
-        boolean needColon                       = false;
+        StringBuilder stringBuilder = new StringBuilder();
+        boolean needColon = false;
         if (this.getTestName() != null) {
             stringBuilder.append(this.getTestName());
-            needColon   = true;
+            needColon = true;
         }
         if (this.getRepository() != null) {
 
@@ -98,14 +107,14 @@ public class ConformanceTest {
                 stringBuilder.append(':');
             }
             stringBuilder.append(this.getRequest().getName());
-            needColon   = true;
+            needColon = true;
         }
         if (this.getResponse() != null) {
             if (needColon) {
                 stringBuilder.append(':');
             }
             stringBuilder.append(this.getResponse().getName());
-            needColon   = true;
+            needColon = true;
         }
         return stringBuilder.toString();
     }

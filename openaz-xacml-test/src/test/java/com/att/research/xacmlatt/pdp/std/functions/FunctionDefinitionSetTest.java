@@ -36,35 +36,21 @@ import org.junit.Test;
 import com.att.research.xacml.api.AttributeValue;
 import com.att.research.xacml.api.XACML3;
 import com.att.research.xacml.std.datatypes.DataTypes;
-import com.att.research.xacmlatt.pdp.policy.Bag;
-import com.att.research.xacmlatt.pdp.policy.ExpressionResult;
-import com.att.research.xacmlatt.pdp.policy.FunctionArgument;
-import com.att.research.xacmlatt.pdp.policy.FunctionArgumentAttributeValue;
-import com.att.research.xacmlatt.pdp.policy.FunctionArgumentBag;
-import com.att.research.xacmlatt.pdp.std.StdFunctions;
 
 /**
- * Test of PDP Functions (See XACML core spec section A.3)
- *
- * TO RUN - use jUnit
- * In Eclipse select this file or the enclosing directory, right-click and select Run As/JUnit Test
- *
- *
+ * Test of PDP Functions (See XACML core spec section A.3) TO RUN - use jUnit In Eclipse select this file or
+ * the enclosing directory, right-click and select Run As/JUnit Test
  */
 public class FunctionDefinitionSetTest {
-
 
     /*
      * variables useful in the following tests
      */
     List<FunctionArgument> arguments = new ArrayList<FunctionArgument>();
 
-
-
     //
     // INTERSECTION tests
     //
-
 
     @Test
     public void testString_intersection() {
@@ -77,7 +63,6 @@ public class FunctionDefinitionSetTest {
         String g = "g";
         String h = "h";
         String j = "j";
-
 
         Bag bagabcdefg = null;
         Bag bagbdfhj = null;
@@ -129,7 +114,7 @@ public class FunctionDefinitionSetTest {
 
             attrBadType = new FunctionArgumentAttributeValue(DataTypes.DT_DOUBLE.createAttributeValue(1.1));
         } catch (Exception ex) {
-            fail("creating attribute e="+ ex);
+            fail("creating attribute e=" + ex);
         }
 
         // make into attributes
@@ -142,13 +127,13 @@ public class FunctionDefinitionSetTest {
         FunctionArgumentBag attrBagStringInt = new FunctionArgumentBag(bagStringInt);
         FunctionArgumentBag attrBagEmpty = new FunctionArgumentBag(bagEmpty);
 
-        FunctionDefinitionSet<?,?> fd = (FunctionDefinitionSet<?,?>) StdFunctions.FD_STRING_INTERSECTION;
+        FunctionDefinitionSet<?, ?> fd = (FunctionDefinitionSet<?, ?>)StdFunctions.FD_STRING_INTERSECTION;
 
         // check identity and type of the thing created
         assertEquals(XACML3.ID_FUNCTION_STRING_INTERSECTION, fd.getId());
         assertEquals(DataTypes.DT_STRING.getId(), fd.getDataTypeId());
 
-        // just to be safe...  If tests take too long these can probably be eliminated
+        // just to be safe... If tests take too long these can probably be eliminated
         assertTrue(fd.returnsBag());
 
         // normal intersection (everything in both bags, no duplicates)
@@ -163,7 +148,7 @@ public class FunctionDefinitionSetTest {
         assertEquals(7, bag.size());
         AttributeValue<?> attrValueObject = it.next();
         assertEquals(DataTypes.DT_STRING.getId(), attrValueObject.getDataTypeId());
-        assertEquals(a, attrValueObject.getValue() );
+        assertEquals(a, attrValueObject.getValue());
 
         // several but not all intersection
         arguments.clear();
@@ -177,7 +162,7 @@ public class FunctionDefinitionSetTest {
         assertEquals(3, bag.size());
         attrValueObject = it.next();
         assertEquals(DataTypes.DT_STRING.getId(), attrValueObject.getDataTypeId());
-        assertEquals(b, attrValueObject.getValue() );
+        assertEquals(b, attrValueObject.getValue());
 
         // no intersection
         arguments.clear();
@@ -202,7 +187,7 @@ public class FunctionDefinitionSetTest {
         assertEquals(1, bag.size());
         attrValueObject = it.next();
         assertEquals(DataTypes.DT_STRING.getId(), attrValueObject.getDataTypeId());
-        assertEquals(b, attrValueObject.getValue() );
+        assertEquals(b, attrValueObject.getValue());
 
         // bag one has duplicates that do not intersect
         arguments.clear();
@@ -216,7 +201,7 @@ public class FunctionDefinitionSetTest {
         assertEquals(1, bag.size());
         attrValueObject = it.next();
         assertEquals(DataTypes.DT_STRING.getId(), attrValueObject.getDataTypeId());
-        assertEquals(f, attrValueObject.getValue() );
+        assertEquals(f, attrValueObject.getValue());
 
         // bag one has duplicates that do intersect
         arguments.clear();
@@ -230,11 +215,11 @@ public class FunctionDefinitionSetTest {
         assertEquals(3, bag.size());
         attrValueObject = it.next();
         assertEquals(DataTypes.DT_STRING.getId(), attrValueObject.getDataTypeId());
-        assertEquals(a, attrValueObject.getValue() );
+        assertEquals(a, attrValueObject.getValue());
         attrValueObject = it.next();
-        assertEquals(c, attrValueObject.getValue() );
+        assertEquals(c, attrValueObject.getValue());
         attrValueObject = it.next();
-        assertEquals(e, attrValueObject.getValue() );
+        assertEquals(e, attrValueObject.getValue());
 
         // bag 2 has duplicates that do not intersect
         arguments.clear();
@@ -248,7 +233,7 @@ public class FunctionDefinitionSetTest {
         assertEquals(1, bag.size());
         attrValueObject = it.next();
         assertEquals(DataTypes.DT_STRING.getId(), attrValueObject.getDataTypeId());
-        assertEquals(f, attrValueObject.getValue() );
+        assertEquals(f, attrValueObject.getValue());
 
         // bag 2 has duplicates that intersect
         arguments.clear();
@@ -262,11 +247,11 @@ public class FunctionDefinitionSetTest {
         assertEquals(3, bag.size());
         attrValueObject = it.next();
         assertEquals(DataTypes.DT_STRING.getId(), attrValueObject.getDataTypeId());
-        assertEquals(a, attrValueObject.getValue() );
+        assertEquals(a, attrValueObject.getValue());
         attrValueObject = it.next();
-        assertEquals(c, attrValueObject.getValue() );
+        assertEquals(c, attrValueObject.getValue());
         attrValueObject = it.next();
-        assertEquals(e, attrValueObject.getValue() );
+        assertEquals(e, attrValueObject.getValue());
 
         // first bag is empty
         arguments.clear();
@@ -302,7 +287,7 @@ public class FunctionDefinitionSetTest {
         assertEquals(1, bag.size());
         attrValueObject = it.next();
         assertEquals(DataTypes.DT_STRING.getId(), attrValueObject.getDataTypeId());
-        assertEquals(a, attrValueObject.getValue() );
+        assertEquals(a, attrValueObject.getValue());
 
         arguments.clear();
         arguments.add(attrBagace);
@@ -320,8 +305,10 @@ public class FunctionDefinitionSetTest {
         arguments.add(attrBagabcdefg);
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
-        assertEquals("function:string-intersection Expected a bag, saw a simple value", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("function:string-intersection Expected a bag, saw a simple value", res.getStatus()
+            .getStatusMessage());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
         // second not a bag
         arguments.clear();
@@ -329,9 +316,10 @@ public class FunctionDefinitionSetTest {
         arguments.add(attrBadType);
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
-        assertEquals("function:string-intersection Expected a bag, saw a simple value", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
-
+        assertEquals("function:string-intersection Expected a bag, saw a simple value", res.getStatus()
+            .getStatusMessage());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
         // first null
         arguments.clear();
@@ -340,7 +328,8 @@ public class FunctionDefinitionSetTest {
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
         assertEquals("function:string-intersection Got null argument", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
         // second null
         arguments.clear();
@@ -349,21 +338,26 @@ public class FunctionDefinitionSetTest {
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
         assertEquals("function:string-intersection Got null argument", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
         // too few args
         arguments.clear();
         arguments.add(attrBagabcdefg);
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
-        assertEquals("function:string-intersection Expected 2 arguments, got 1", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("function:string-intersection Expected 2 arguments, got 1", res.getStatus()
+            .getStatusMessage());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
         arguments.clear();
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
-        assertEquals("function:string-intersection Expected 2 arguments, got 0", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("function:string-intersection Expected 2 arguments, got 0", res.getStatus()
+            .getStatusMessage());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
         // too many args
         arguments.clear();
@@ -372,12 +366,12 @@ public class FunctionDefinitionSetTest {
         arguments.add(attrBagabcdefg);
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
-        assertEquals("function:string-intersection Expected 2 arguments, got 3", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("function:string-intersection Expected 2 arguments, got 3", res.getStatus()
+            .getStatusMessage());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
     }
-
-
 
     @Test
     public void testInteger_intersection() {
@@ -390,7 +384,6 @@ public class FunctionDefinitionSetTest {
         BigInteger g = new BigInteger("7");
         BigInteger h = new BigInteger("8");
         BigInteger j = new BigInteger("9");
-
 
         Bag bagabcdefg = null;
         Bag bagbdfhj = null;
@@ -442,7 +435,7 @@ public class FunctionDefinitionSetTest {
 
             attrBadType = new FunctionArgumentAttributeValue(DataTypes.DT_DOUBLE.createAttributeValue(1.1));
         } catch (Exception ex) {
-            fail("creating attribute e="+ ex);
+            fail("creating attribute e=" + ex);
         }
 
         // make into attributes
@@ -455,13 +448,13 @@ public class FunctionDefinitionSetTest {
         FunctionArgumentBag attrBagStringInt = new FunctionArgumentBag(bagStringInt);
         FunctionArgumentBag attrBagEmpty = new FunctionArgumentBag(bagEmpty);
 
-        FunctionDefinitionSet<?,?> fd = (FunctionDefinitionSet<?,?>) StdFunctions.FD_INTEGER_INTERSECTION;
+        FunctionDefinitionSet<?, ?> fd = (FunctionDefinitionSet<?, ?>)StdFunctions.FD_INTEGER_INTERSECTION;
 
         // check identity and type of the thing created
         assertEquals(XACML3.ID_FUNCTION_INTEGER_INTERSECTION, fd.getId());
         assertEquals(DataTypes.DT_INTEGER.getId(), fd.getDataTypeId());
 
-        // just to be safe...  If tests take too long these can probably be eliminated
+        // just to be safe... If tests take too long these can probably be eliminated
         assertTrue(fd.returnsBag());
 
         // normal intersection (everything in both bags, no duplicates)
@@ -476,7 +469,7 @@ public class FunctionDefinitionSetTest {
         assertEquals(7, bag.size());
         AttributeValue<?> attrValueObject = it.next();
         assertEquals(DataTypes.DT_INTEGER.getId(), attrValueObject.getDataTypeId());
-        assertEquals(a, attrValueObject.getValue() );
+        assertEquals(a, attrValueObject.getValue());
 
         // several but not all intersection
         arguments.clear();
@@ -490,7 +483,7 @@ public class FunctionDefinitionSetTest {
         assertEquals(3, bag.size());
         attrValueObject = it.next();
         assertEquals(DataTypes.DT_INTEGER.getId(), attrValueObject.getDataTypeId());
-        assertEquals(b, attrValueObject.getValue() );
+        assertEquals(b, attrValueObject.getValue());
 
         // no intersection
         arguments.clear();
@@ -515,7 +508,7 @@ public class FunctionDefinitionSetTest {
         assertEquals(1, bag.size());
         attrValueObject = it.next();
         assertEquals(DataTypes.DT_INTEGER.getId(), attrValueObject.getDataTypeId());
-        assertEquals(b, attrValueObject.getValue() );
+        assertEquals(b, attrValueObject.getValue());
 
         // bag one has duplicates that do not intersect
         arguments.clear();
@@ -529,7 +522,7 @@ public class FunctionDefinitionSetTest {
         assertEquals(1, bag.size());
         attrValueObject = it.next();
         assertEquals(DataTypes.DT_INTEGER.getId(), attrValueObject.getDataTypeId());
-        assertEquals(f, attrValueObject.getValue() );
+        assertEquals(f, attrValueObject.getValue());
 
         // bag one has duplicates that do intersect
         arguments.clear();
@@ -543,11 +536,11 @@ public class FunctionDefinitionSetTest {
         assertEquals(3, bag.size());
         attrValueObject = it.next();
         assertEquals(DataTypes.DT_INTEGER.getId(), attrValueObject.getDataTypeId());
-        assertEquals(a, attrValueObject.getValue() );
+        assertEquals(a, attrValueObject.getValue());
         attrValueObject = it.next();
-        assertEquals(c, attrValueObject.getValue() );
+        assertEquals(c, attrValueObject.getValue());
         attrValueObject = it.next();
-        assertEquals(e, attrValueObject.getValue() );
+        assertEquals(e, attrValueObject.getValue());
 
         // bag 2 has duplicates that do not intersect
         arguments.clear();
@@ -561,7 +554,7 @@ public class FunctionDefinitionSetTest {
         assertEquals(1, bag.size());
         attrValueObject = it.next();
         assertEquals(DataTypes.DT_INTEGER.getId(), attrValueObject.getDataTypeId());
-        assertEquals(f, attrValueObject.getValue() );
+        assertEquals(f, attrValueObject.getValue());
 
         // bag 2 has duplicates that intersect
         arguments.clear();
@@ -575,11 +568,11 @@ public class FunctionDefinitionSetTest {
         assertEquals(3, bag.size());
         attrValueObject = it.next();
         assertEquals(DataTypes.DT_INTEGER.getId(), attrValueObject.getDataTypeId());
-        assertEquals(a, attrValueObject.getValue() );
+        assertEquals(a, attrValueObject.getValue());
         attrValueObject = it.next();
-        assertEquals(c, attrValueObject.getValue() );
+        assertEquals(c, attrValueObject.getValue());
         attrValueObject = it.next();
-        assertEquals(e, attrValueObject.getValue() );
+        assertEquals(e, attrValueObject.getValue());
 
         // first bag is empty
         arguments.clear();
@@ -615,7 +608,7 @@ public class FunctionDefinitionSetTest {
         assertEquals(1, bag.size());
         attrValueObject = it.next();
         assertEquals(DataTypes.DT_INTEGER.getId(), attrValueObject.getDataTypeId());
-        assertEquals(a, attrValueObject.getValue() );
+        assertEquals(a, attrValueObject.getValue());
 
         arguments.clear();
         arguments.add(attrBagace);
@@ -627,8 +620,7 @@ public class FunctionDefinitionSetTest {
         assertEquals(1, bag.size());
         attrValueObject = it.next();
         assertEquals(DataTypes.DT_INTEGER.getId(), attrValueObject.getDataTypeId());
-        assertEquals(a, attrValueObject.getValue() );
-
+        assertEquals(a, attrValueObject.getValue());
 
         // first not a bag
         arguments.clear();
@@ -636,8 +628,10 @@ public class FunctionDefinitionSetTest {
         arguments.add(attrBagabcdefg);
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
-        assertEquals("function:integer-intersection Expected a bag, saw a simple value", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("function:integer-intersection Expected a bag, saw a simple value", res.getStatus()
+            .getStatusMessage());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
         // second not a bag
         arguments.clear();
@@ -645,9 +639,10 @@ public class FunctionDefinitionSetTest {
         arguments.add(attrBadType);
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
-        assertEquals("function:integer-intersection Expected a bag, saw a simple value", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
-
+        assertEquals("function:integer-intersection Expected a bag, saw a simple value", res.getStatus()
+            .getStatusMessage());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
         // first null
         arguments.clear();
@@ -656,7 +651,8 @@ public class FunctionDefinitionSetTest {
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
         assertEquals("function:integer-intersection Got null argument", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
         // second null
         arguments.clear();
@@ -665,21 +661,26 @@ public class FunctionDefinitionSetTest {
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
         assertEquals("function:integer-intersection Got null argument", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
         // too few args
         arguments.clear();
         arguments.add(attrBagabcdefg);
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
-        assertEquals("function:integer-intersection Expected 2 arguments, got 1", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("function:integer-intersection Expected 2 arguments, got 1", res.getStatus()
+            .getStatusMessage());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
         arguments.clear();
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
-        assertEquals("function:integer-intersection Expected 2 arguments, got 0", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("function:integer-intersection Expected 2 arguments, got 0", res.getStatus()
+            .getStatusMessage());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
         // too many args
         arguments.clear();
@@ -688,22 +689,12 @@ public class FunctionDefinitionSetTest {
         arguments.add(attrBagabcdefg);
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
-        assertEquals("function:integer-intersection Expected 2 arguments, got 3", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("function:integer-intersection Expected 2 arguments, got 3", res.getStatus()
+            .getStatusMessage());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
     }
-
-
-
-
-
-
-
-
-
-
-
-
 
     //
     // AT_LEAST_ONE_MEMBER_OF tests
@@ -720,7 +711,6 @@ public class FunctionDefinitionSetTest {
         String g = "g";
         String h = "h";
         String j = "j";
-
 
         Bag bagabcdefg = null;
         Bag bagbdfhj = null;
@@ -771,7 +761,7 @@ public class FunctionDefinitionSetTest {
 
             attrBadType = new FunctionArgumentAttributeValue(DataTypes.DT_DOUBLE.createAttributeValue(1.1));
         } catch (Exception ex) {
-            fail("creating attribute e="+ ex);
+            fail("creating attribute e=" + ex);
         }
 
         // make into attributes
@@ -784,13 +774,13 @@ public class FunctionDefinitionSetTest {
         FunctionArgumentBag attrBagStringInt = new FunctionArgumentBag(bagStringInt);
         FunctionArgumentBag attrBagEmpty = new FunctionArgumentBag(bagEmpty);
 
-        FunctionDefinitionSet<?,?> fd = (FunctionDefinitionSet<?,?>) StdFunctions.FD_STRING_AT_LEAST_ONE_MEMBER_OF;
+        FunctionDefinitionSet<?, ?> fd = (FunctionDefinitionSet<?, ?>)StdFunctions.FD_STRING_AT_LEAST_ONE_MEMBER_OF;
 
         // check identity and type of the thing created
         assertEquals(XACML3.ID_FUNCTION_STRING_AT_LEAST_ONE_MEMBER_OF, fd.getId());
         assertEquals(DataTypes.DT_BOOLEAN.getId(), fd.getDataTypeId());
 
-        // just to be safe...  If tests take too long these can probably be eliminated
+        // just to be safe... If tests take too long these can probably be eliminated
         assertFalse(fd.returnsBag());
 
         // normal intersection (everything in both bags, no duplicates)
@@ -801,7 +791,6 @@ public class FunctionDefinitionSetTest {
         assertTrue(res.isOk());
         Boolean resValue = (Boolean)res.getValue().getValue();
         assertTrue(resValue);
-
 
         // several but not all intersection
         arguments.clear();
@@ -924,8 +913,10 @@ public class FunctionDefinitionSetTest {
         arguments.add(attrBagabcdefg);
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
-        assertEquals("function:string-at-least-one-member-of Expected a bag, saw a simple value", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("function:string-at-least-one-member-of Expected a bag, saw a simple value", res
+            .getStatus().getStatusMessage());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
         // second not a bag
         arguments.clear();
@@ -933,9 +924,10 @@ public class FunctionDefinitionSetTest {
         arguments.add(attrBadType);
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
-        assertEquals("function:string-at-least-one-member-of Expected a bag, saw a simple value", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
-
+        assertEquals("function:string-at-least-one-member-of Expected a bag, saw a simple value", res
+            .getStatus().getStatusMessage());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
         // first null
         arguments.clear();
@@ -943,8 +935,10 @@ public class FunctionDefinitionSetTest {
         arguments.add(attrBagabcdefg);
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
-        assertEquals("function:string-at-least-one-member-of Got null argument", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("function:string-at-least-one-member-of Got null argument", res.getStatus()
+            .getStatusMessage());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
         // second null
         arguments.clear();
@@ -952,22 +946,28 @@ public class FunctionDefinitionSetTest {
         arguments.add(null);
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
-        assertEquals("function:string-at-least-one-member-of Got null argument", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("function:string-at-least-one-member-of Got null argument", res.getStatus()
+            .getStatusMessage());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
         // too few args
         arguments.clear();
         arguments.add(attrBagabcdefg);
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
-        assertEquals("function:string-at-least-one-member-of Expected 2 arguments, got 1", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("function:string-at-least-one-member-of Expected 2 arguments, got 1", res.getStatus()
+            .getStatusMessage());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
         arguments.clear();
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
-        assertEquals("function:string-at-least-one-member-of Expected 2 arguments, got 0", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("function:string-at-least-one-member-of Expected 2 arguments, got 0", res.getStatus()
+            .getStatusMessage());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
         // too many args
         arguments.clear();
@@ -976,30 +976,16 @@ public class FunctionDefinitionSetTest {
         arguments.add(attrBagabcdefg);
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
-        assertEquals("function:string-at-least-one-member-of Expected 2 arguments, got 3", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("function:string-at-least-one-member-of Expected 2 arguments, got 3", res.getStatus()
+            .getStatusMessage());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
     }
-
-
-
-
-
-
-
-
-
-
-
-
 
     //
     // UNION tests
     //
-
-
-
-
 
     @Test
     public void testString_union() {
@@ -1012,7 +998,6 @@ public class FunctionDefinitionSetTest {
         String g = "g";
         String h = "h";
         String j = "j";
-
 
         Bag bagabcdefg = null;
         Bag bagbdfhj = null;
@@ -1061,7 +1046,7 @@ public class FunctionDefinitionSetTest {
 
             attrBadType = new FunctionArgumentAttributeValue(DataTypes.DT_DOUBLE.createAttributeValue(1.1));
         } catch (Exception ex) {
-            fail("creating attribute e="+ ex);
+            fail("creating attribute e=" + ex);
         }
 
         // make into attributes
@@ -1073,13 +1058,13 @@ public class FunctionDefinitionSetTest {
         FunctionArgumentBag attrBagStringInt = new FunctionArgumentBag(bagStringInt);
         FunctionArgumentBag attrBagEmpty = new FunctionArgumentBag(bagEmpty);
 
-        FunctionDefinitionSet<?,?> fd = (FunctionDefinitionSet<?,?>) StdFunctions.FD_STRING_UNION;
+        FunctionDefinitionSet<?, ?> fd = (FunctionDefinitionSet<?, ?>)StdFunctions.FD_STRING_UNION;
 
         // check identity and type of the thing created
         assertEquals(XACML3.ID_FUNCTION_STRING_UNION, fd.getId());
         assertEquals(DataTypes.DT_STRING.getId(), fd.getDataTypeId());
 
-        // just to be safe...  If tests take too long these can probably be eliminated
+        // just to be safe... If tests take too long these can probably be eliminated
         assertTrue(fd.returnsBag());
 
         // normal intersection (everything in both bags, no duplicates)
@@ -1094,7 +1079,7 @@ public class FunctionDefinitionSetTest {
         assertEquals(7, bag.size());
         AttributeValue<?> attrValueObject = it.next();
         assertEquals(DataTypes.DT_STRING.getId(), attrValueObject.getDataTypeId());
-        assertEquals(a, attrValueObject.getValue() );
+        assertEquals(a, attrValueObject.getValue());
 
         // several but not all union
         arguments.clear();
@@ -1108,7 +1093,7 @@ public class FunctionDefinitionSetTest {
         assertEquals(8, bag.size());
         attrValueObject = it.next();
         assertEquals(DataTypes.DT_STRING.getId(), attrValueObject.getDataTypeId());
-        assertEquals(a, attrValueObject.getValue() );
+        assertEquals(a, attrValueObject.getValue());
 
         // bag one has duplicates that do not match first bag
         arguments.clear();
@@ -1122,7 +1107,7 @@ public class FunctionDefinitionSetTest {
         assertEquals(8, bag.size());
         attrValueObject = it.next();
         assertEquals(DataTypes.DT_STRING.getId(), attrValueObject.getDataTypeId());
-        assertEquals(a, attrValueObject.getValue() );
+        assertEquals(a, attrValueObject.getValue());
 
         // bag one has duplicates that do match first bag
         arguments.clear();
@@ -1136,11 +1121,11 @@ public class FunctionDefinitionSetTest {
         assertEquals(4, bag.size());
         attrValueObject = it.next();
         assertEquals(DataTypes.DT_STRING.getId(), attrValueObject.getDataTypeId());
-        assertEquals(a, attrValueObject.getValue() );
+        assertEquals(a, attrValueObject.getValue());
         attrValueObject = it.next();
-        assertEquals(c, attrValueObject.getValue() );
+        assertEquals(c, attrValueObject.getValue());
         attrValueObject = it.next();
-        assertEquals(e, attrValueObject.getValue() );
+        assertEquals(e, attrValueObject.getValue());
 
         // bag 2 has duplicates that do not match first bag
         arguments.clear();
@@ -1154,7 +1139,7 @@ public class FunctionDefinitionSetTest {
         assertEquals(8, bag.size());
         attrValueObject = it.next();
         assertEquals(DataTypes.DT_STRING.getId(), attrValueObject.getDataTypeId());
-        assertEquals(b, attrValueObject.getValue() );
+        assertEquals(b, attrValueObject.getValue());
 
         // bag 2 has duplicates that do match first bag
         arguments.clear();
@@ -1168,11 +1153,11 @@ public class FunctionDefinitionSetTest {
         assertEquals(4, bag.size());
         attrValueObject = it.next();
         assertEquals(DataTypes.DT_STRING.getId(), attrValueObject.getDataTypeId());
-        assertEquals(a, attrValueObject.getValue() );
+        assertEquals(a, attrValueObject.getValue());
         attrValueObject = it.next();
-        assertEquals(c, attrValueObject.getValue() );
+        assertEquals(c, attrValueObject.getValue());
         attrValueObject = it.next();
-        assertEquals(e, attrValueObject.getValue() );
+        assertEquals(e, attrValueObject.getValue());
 
         // two empty bags
         arguments.clear();
@@ -1219,7 +1204,7 @@ public class FunctionDefinitionSetTest {
         assertEquals(4, bag.size());
         attrValueObject = it.next();
         assertEquals(DataTypes.DT_STRING.getId(), attrValueObject.getDataTypeId());
-        assertEquals(a, attrValueObject.getValue() );
+        assertEquals(a, attrValueObject.getValue());
 
         arguments.clear();
         arguments.add(attrBagace);
@@ -1232,7 +1217,7 @@ public class FunctionDefinitionSetTest {
         assertEquals(4, bag.size());
         attrValueObject = it.next();
         assertEquals(DataTypes.DT_STRING.getId(), attrValueObject.getDataTypeId());
-        assertEquals(a, attrValueObject.getValue() );
+        assertEquals(a, attrValueObject.getValue());
 
         // first not a bag
         arguments.clear();
@@ -1240,8 +1225,10 @@ public class FunctionDefinitionSetTest {
         arguments.add(attrBagabcdefg);
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
-        assertEquals("function:string-union Expected a bag, saw a simple value", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("function:string-union Expected a bag, saw a simple value", res.getStatus()
+            .getStatusMessage());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
         // second not a bag
         arguments.clear();
@@ -1249,9 +1236,10 @@ public class FunctionDefinitionSetTest {
         arguments.add(attrBadType);
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
-        assertEquals("function:string-union Expected a bag, saw a simple value", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
-
+        assertEquals("function:string-union Expected a bag, saw a simple value", res.getStatus()
+            .getStatusMessage());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
         // first null
         arguments.clear();
@@ -1260,7 +1248,8 @@ public class FunctionDefinitionSetTest {
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
         assertEquals("function:string-union Got null argument", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
         // second null
         arguments.clear();
@@ -1269,7 +1258,8 @@ public class FunctionDefinitionSetTest {
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
         assertEquals("function:string-union Got null argument", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
         // too few args
         arguments.clear();
@@ -1277,13 +1267,15 @@ public class FunctionDefinitionSetTest {
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
         assertEquals("function:string-union Expected 2 arguments, got 1", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
         arguments.clear();
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
         assertEquals("function:string-union Expected 2 arguments, got 0", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
         // too many args
         arguments.clear();
@@ -1293,18 +1285,10 @@ public class FunctionDefinitionSetTest {
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
         assertEquals("function:string-union Expected 2 arguments, got 3", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
     }
-
-
-
-
-
-
-
-
-
 
     //
     // SUBSET tests
@@ -1321,7 +1305,6 @@ public class FunctionDefinitionSetTest {
         String g = "g";
         String h = "h";
         String j = "j";
-
 
         Bag bagabcdefg = null;
         Bag bagbdfhj = null;
@@ -1373,7 +1356,7 @@ public class FunctionDefinitionSetTest {
 
             attrBadType = new FunctionArgumentAttributeValue(DataTypes.DT_DOUBLE.createAttributeValue(1.1));
         } catch (Exception ex) {
-            fail("creating attribute e="+ ex);
+            fail("creating attribute e=" + ex);
         }
 
         // make into attributes
@@ -1386,13 +1369,13 @@ public class FunctionDefinitionSetTest {
         FunctionArgumentBag attrBagStringInt = new FunctionArgumentBag(bagStringInt);
         FunctionArgumentBag attrBagEmpty = new FunctionArgumentBag(bagEmpty);
 
-        FunctionDefinitionSet<?,?> fd = (FunctionDefinitionSet<?,?>) StdFunctions.FD_STRING_SUBSET;
+        FunctionDefinitionSet<?, ?> fd = (FunctionDefinitionSet<?, ?>)StdFunctions.FD_STRING_SUBSET;
 
         // check identity and type of the thing created
         assertEquals(XACML3.ID_FUNCTION_STRING_SUBSET, fd.getId());
         assertEquals(DataTypes.DT_BOOLEAN.getId(), fd.getDataTypeId());
 
-        // just to be safe...  If tests take too long these can probably be eliminated
+        // just to be safe... If tests take too long these can probably be eliminated
         assertFalse(fd.returnsBag());
 
         // normal intersection (everything in both bags, no duplicates)
@@ -1403,7 +1386,6 @@ public class FunctionDefinitionSetTest {
         assertTrue(res.isOk());
         Boolean resValue = (Boolean)res.getValue().getValue();
         assertTrue(resValue);
-
 
         // not subset
         arguments.clear();
@@ -1422,7 +1404,6 @@ public class FunctionDefinitionSetTest {
         assertTrue(res.isOk());
         resValue = (Boolean)res.getValue().getValue();
         assertTrue(resValue);
-
 
         // no intersection
         arguments.clear();
@@ -1545,8 +1526,10 @@ public class FunctionDefinitionSetTest {
         arguments.add(attrBagabcdefg);
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
-        assertEquals("function:string-subset Expected a bag, saw a simple value", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("function:string-subset Expected a bag, saw a simple value", res.getStatus()
+            .getStatusMessage());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
         // second not a bag
         arguments.clear();
@@ -1554,9 +1537,10 @@ public class FunctionDefinitionSetTest {
         arguments.add(attrBadType);
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
-        assertEquals("function:string-subset Expected a bag, saw a simple value", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
-
+        assertEquals("function:string-subset Expected a bag, saw a simple value", res.getStatus()
+            .getStatusMessage());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
         // first null
         arguments.clear();
@@ -1565,7 +1549,8 @@ public class FunctionDefinitionSetTest {
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
         assertEquals("function:string-subset Got null argument", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
         // second null
         arguments.clear();
@@ -1574,7 +1559,8 @@ public class FunctionDefinitionSetTest {
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
         assertEquals("function:string-subset Got null argument", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
         // too few args
         arguments.clear();
@@ -1582,13 +1568,15 @@ public class FunctionDefinitionSetTest {
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
         assertEquals("function:string-subset Expected 2 arguments, got 1", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
         arguments.clear();
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
         assertEquals("function:string-subset Expected 2 arguments, got 0", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
         // too many args
         arguments.clear();
@@ -1598,19 +1586,10 @@ public class FunctionDefinitionSetTest {
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
         assertEquals("function:string-subset Expected 2 arguments, got 3", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
     }
-
-
-
-
-
-
-
-
-
-
 
     //
     // SET_EQUALS tests
@@ -1627,7 +1606,6 @@ public class FunctionDefinitionSetTest {
         String g = "g";
         String h = "h";
         String j = "j";
-
 
         Bag bagabcdefg = null;
         Bag bagbdfhj = null;
@@ -1678,7 +1656,7 @@ public class FunctionDefinitionSetTest {
 
             attrBadType = new FunctionArgumentAttributeValue(DataTypes.DT_DOUBLE.createAttributeValue(1.1));
         } catch (Exception ex) {
-            fail("creating attribute e="+ ex);
+            fail("creating attribute e=" + ex);
         }
 
         // make into attributes
@@ -1691,13 +1669,13 @@ public class FunctionDefinitionSetTest {
         FunctionArgumentBag attrBagStringInt = new FunctionArgumentBag(bagStringInt);
         FunctionArgumentBag attrBagEmpty = new FunctionArgumentBag(bagEmpty);
 
-        FunctionDefinitionSet<?,?> fd = (FunctionDefinitionSet<?,?>) StdFunctions.FD_STRING_SET_EQUALS;
+        FunctionDefinitionSet<?, ?> fd = (FunctionDefinitionSet<?, ?>)StdFunctions.FD_STRING_SET_EQUALS;
 
         // check identity and type of the thing created
         assertEquals(XACML3.ID_FUNCTION_STRING_SET_EQUALS, fd.getId());
         assertEquals(DataTypes.DT_BOOLEAN.getId(), fd.getDataTypeId());
 
-        // just to be safe...  If tests take too long these can probably be eliminated
+        // just to be safe... If tests take too long these can probably be eliminated
         assertFalse(fd.returnsBag());
 
         // normal intersection (everything in both bags, no duplicates)
@@ -1708,7 +1686,6 @@ public class FunctionDefinitionSetTest {
         assertTrue(res.isOk());
         Boolean resValue = (Boolean)res.getValue().getValue();
         assertTrue(resValue);
-
 
         // several but not all intersection
         arguments.clear();
@@ -1823,8 +1800,10 @@ public class FunctionDefinitionSetTest {
         arguments.add(attrBagabcdefg);
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
-        assertEquals("function:string-set-equals Expected a bag, saw a simple value", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("function:string-set-equals Expected a bag, saw a simple value", res.getStatus()
+            .getStatusMessage());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
         // second not a bag
         arguments.clear();
@@ -1832,9 +1811,10 @@ public class FunctionDefinitionSetTest {
         arguments.add(attrBadType);
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
-        assertEquals("function:string-set-equals Expected a bag, saw a simple value", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
-
+        assertEquals("function:string-set-equals Expected a bag, saw a simple value", res.getStatus()
+            .getStatusMessage());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
         // first null
         arguments.clear();
@@ -1843,7 +1823,8 @@ public class FunctionDefinitionSetTest {
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
         assertEquals("function:string-set-equals Got null argument", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
         // second null
         arguments.clear();
@@ -1852,21 +1833,26 @@ public class FunctionDefinitionSetTest {
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
         assertEquals("function:string-set-equals Got null argument", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
         // too few args
         arguments.clear();
         arguments.add(attrBagabcdefg);
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
-        assertEquals("function:string-set-equals Expected 2 arguments, got 1", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("function:string-set-equals Expected 2 arguments, got 1", res.getStatus()
+            .getStatusMessage());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
         arguments.clear();
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
-        assertEquals("function:string-set-equals Expected 2 arguments, got 0", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("function:string-set-equals Expected 2 arguments, got 0", res.getStatus()
+            .getStatusMessage());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
         // too many args
         arguments.clear();
@@ -1875,28 +1861,18 @@ public class FunctionDefinitionSetTest {
         arguments.add(attrBagabcdefg);
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
-        assertEquals("function:string-set-equals Expected 2 arguments, got 3", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("function:string-set-equals Expected 2 arguments, got 3", res.getStatus()
+            .getStatusMessage());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
     }
 
-
-
-
-
-
-
-
-
-
     //
     //
-    //  REST OF DATA TYPES OMITTED
-    //  because they "should" all work the same
+    // REST OF DATA TYPES OMITTED
+    // because they "should" all work the same
     //
     //
-
-
-
 
 }

@@ -37,8 +37,8 @@ import com.att.research.xacml.util.FactoryFinder;
 import com.att.research.xacml.util.XACMLProperties;
 
 public abstract class PAPEngineFactory {
-    private static final String FACTORYID       = XACMLProperties.PROP_PAP_PAPENGINEFACTORY;
-    private static final String DEFAULT_FACTORY_CLASSNAME       = "com.att.research.xacml.std.pap.StdEngineFactory";
+    private static final String FACTORYID = XACMLProperties.PROP_PAP_PAPENGINEFACTORY;
+    private static final String DEFAULT_FACTORY_CLASSNAME = "com.att.research.xacml.std.pap.StdEngineFactory";
 
     /**
      * The constructor is protected to prevent instantiation of the class.
@@ -53,10 +53,11 @@ public abstract class PAPEngineFactory {
     }
 
     /**
-     * Creates a new <code>PAPEngineFactory</code> instance by examining initialization resources from
-     * various places to determine the class to instantiate and return.
+     * Creates a new <code>PAPEngineFactory</code> instance by examining initialization resources from various
+     * places to determine the class to instantiate and return.
      *
-     * @return an instance of an object that extends <code>PAPEngineFactory</code> to use in creating <code>PAPEngine</code> objects.
+     * @return an instance of an object that extends <code>PAPEngineFactory</code> to use in creating
+     *         <code>PAPEngine</code> objects.
      * @throws FactoryException
      */
     public static PAPEngineFactory newInstance() throws FactoryException {
@@ -64,10 +65,11 @@ public abstract class PAPEngineFactory {
     }
 
     /**
-     * Creates a new <code>PAPEngineFactory</code> instance by examining initialization resources from
-     * various places to determine the class to instantiate and return.
+     * Creates a new <code>PAPEngineFactory</code> instance by examining initialization resources from various
+     * places to determine the class to instantiate and return.
      *
-     * @return an instance of an object that extends <code>PAPEngineFactory</code> to use in creating <code>PAPEngine</code> objects.
+     * @return an instance of an object that extends <code>PAPEngineFactory</code> to use in creating
+     *         <code>PAPEngine</code> objects.
      * @throws FactoryException
      */
     public static PAPEngineFactory newInstance(Properties properties) throws FactoryException {
@@ -75,22 +77,26 @@ public abstract class PAPEngineFactory {
     }
 
     /**
-     * Creates a new <code>PAPEngineFactory</code> instance using the given class name and <code>ClassLoader</code>.  If the
-     * <code>ClassLoader</code> is null, use the default thread class loader.
+     * Creates a new <code>PAPEngineFactory</code> instance using the given class name and
+     * <code>ClassLoader</code>. If the <code>ClassLoader</code> is null, use the default thread class loader.
      *
      * @param factoryClassName the <code>String</code> name of the factory class to instantiate
      * @param classLoader the <code>ClassLoader</code> to use to load the factory class
-     * @return an instance of an object that extends <code>PAPEngineFactory</code> to use in creating <code>PAPEngine</code> objects.
+     * @return an instance of an object that extends <code>PAPEngineFactory</code> to use in creating
+     *         <code>PAPEngine</code> objects.
      */
-    public static PAPEngineFactory newInstance(String factoryClassName, ClassLoader classLoader) throws FactoryException {
+    public static PAPEngineFactory newInstance(String factoryClassName, ClassLoader classLoader)
+        throws FactoryException {
         return FactoryFinder.newInstance(factoryClassName, PAPEngineFactory.class, classLoader, false);
     }
 
     /**
-     * Creates a new <code>PAPEngineFactory</code> instance using the given class name and the default thread class loader.
+     * Creates a new <code>PAPEngineFactory</code> instance using the given class name and the default thread
+     * class loader.
      *
      * @param factoryClassName the <code>String</code> name of the factory class to instantiate
-     * @return an instance of an object that extends <code>PAPEngineFactory</code> to use in creating <code>PAPEngine</code> objects.
+     * @return an instance of an object that extends <code>PAPEngineFactory</code> to use in creating
+     *         <code>PAPEngine</code> objects.
      */
     public static PAPEngineFactory newInstance(String factoryClassName) throws FactoryException {
         return FactoryFinder.newInstance(factoryClassName, PAPEngineFactory.class, null, true);

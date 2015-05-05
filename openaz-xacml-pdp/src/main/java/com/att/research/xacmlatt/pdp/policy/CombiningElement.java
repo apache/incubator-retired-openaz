@@ -43,26 +43,26 @@ import com.att.research.xacmlatt.pdp.eval.EvaluationResult;
 /**
  * CombiningElement wraps an {@link com.att.research.xacmlatt.pdp.evl.Evaluatable} with a set of
  * {@link com.att.research.xacmlatt.pdp.policy.TargetedCombinerParameter}s for use with a
- * {@link com.att.research.xacmlatt.pdp.policy.CombiningAlgorithm} to get a combined {@link com.att.research.xacmlatt.pdp.eval.EvaluationResult}
- *
+ * {@link com.att.research.xacmlatt.pdp.policy.CombiningAlgorithm} to get a combined
+ * {@link com.att.research.xacmlatt.pdp.eval.EvaluationResult}
  *
  * @param <T> the java class extending <code>Evaluatable</code> of the objects to be combined
  */
 public class CombiningElement<T extends Evaluatable> {
-    private T                                                                           evaluatable;
-    private List<CombinerParameter>     targetedCombinerParameters;
+    private T evaluatable;
+    private List<CombinerParameter> targetedCombinerParameters;
 
     /**
-     * Creates a new <code>CombiningElement</code> with the given <code>Evaluatable</code> and <code>List</code> of
-     * <code>TargetedCombinerParameter</code>.
+     * Creates a new <code>CombiningElement</code> with the given <code>Evaluatable</code> and
+     * <code>List</code> of <code>TargetedCombinerParameter</code>.
      *
      * @param evaluatableIn the <code>Evaluatable</code>
      * @param targetedCombinerParametersIn the <code>List</code> of <code>TargetedCombinerParameter</code>s.
      */
     public CombiningElement(T evaluatableIn, Collection<CombinerParameter> targetedCombinerParametersIn) {
-        this.evaluatable        = evaluatableIn;
+        this.evaluatable = evaluatableIn;
         if (targetedCombinerParametersIn != null) {
-            this.targetedCombinerParameters     = new ArrayList<CombinerParameter>();
+            this.targetedCombinerParameters = new ArrayList<CombinerParameter>();
             this.targetedCombinerParameters.addAll(targetedCombinerParametersIn);
         }
     }
@@ -80,18 +80,22 @@ public class CombiningElement<T extends Evaluatable> {
      * Gets an <code>Iterator</code> over the <code>TargetedCombinerParameters</code> for this
      * <code>CombiningElement</code>.
      *
-     * @return an <code>Iterator</code> over the <code>TargetedCombinerParameters</code> for this <code>CombiningElement</code>
+     * @return an <code>Iterator</code> over the <code>TargetedCombinerParameters</code> for this
+     *         <code>CombiningElement</code>
      */
     public Iterator<CombinerParameter> getTargetedCombinerParameters() {
         return (this.targetedCombinerParameters == null ? null : this.targetedCombinerParameters.iterator());
     }
 
     /**
-     * Evaluates this <code>CombiningElement</code> in the given {@link com.att.research.xacmlatt.pdp.eval.EvaluationContext}.
+     * Evaluates this <code>CombiningElement</code> in the given
+     * {@link com.att.research.xacmlatt.pdp.eval.EvaluationContext}.
      *
      * @param evaluationContext the <code>EvaluationContext</code>
-     * @return the {@link com.att.research.xacmlatt.pdp.eval.EvaluationResult} from the <code>Evaluatable</code>
-     * @throws com.att.research.xacmlatt.pdp.eval.EvaluationException if there is an error in the <code>evaluate</code> method of the <code>Evaluatable</code>
+     * @return the {@link com.att.research.xacmlatt.pdp.eval.EvaluationResult} from the
+     *         <code>Evaluatable</code>
+     * @throws com.att.research.xacmlatt.pdp.eval.EvaluationException if there is an error in the
+     *             <code>evaluate</code> method of the <code>Evaluatable</code>
      */
     public EvaluationResult evaluate(EvaluationContext evaluationContext) throws EvaluationException {
         return this.getEvaluatable().evaluate(evaluationContext);

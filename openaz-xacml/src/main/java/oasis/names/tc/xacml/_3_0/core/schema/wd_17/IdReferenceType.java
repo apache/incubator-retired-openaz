@@ -25,7 +25,6 @@
 // Generated on: 2013.05.23 at 02:47:00 PM EDT
 //
 
-
 package oasis.names.tc.xacml._3_0.core.schema.wd_17;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -35,11 +34,11 @@ import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.XmlValue;
 
-
 /**
- * <p>Java class for IdReferenceType complex type.
- *
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>
+ * Java class for IdReferenceType complex type.
+ * <p>
+ * The following schema fragment specifies the expected content contained within this class.
  *
  * <pre>
  * &lt;complexType name="IdReferenceType">
@@ -52,12 +51,10 @@ import javax.xml.bind.annotation.XmlValue;
  *   &lt;/simpleContent>
  * &lt;/complexType>
  * </pre>
- *
- *
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "IdReferenceType", propOrder = {
-    "value"
+                                                "value"
 })
 public class IdReferenceType {
 
@@ -74,10 +71,7 @@ public class IdReferenceType {
     /**
      * Gets the value of the value property.
      *
-     * @return
-     *     possible object is
-     *     {@link String }
-     *
+     * @return possible object is {@link String }
      */
     public String getValue() {
         return value;
@@ -86,10 +80,7 @@ public class IdReferenceType {
     /**
      * Sets the value of the value property.
      *
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *
+     * @param value allowed object is {@link String }
      */
     public void setValue(String value) {
         this.value = value;
@@ -98,10 +89,7 @@ public class IdReferenceType {
     /**
      * Gets the value of the version property.
      *
-     * @return
-     *     possible object is
-     *     {@link String }
-     *
+     * @return possible object is {@link String }
      */
     public String getVersion() {
         return version;
@@ -110,10 +98,7 @@ public class IdReferenceType {
     /**
      * Sets the value of the version property.
      *
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *
+     * @param value allowed object is {@link String }
      */
     public void setVersion(String value) {
         this.version = value;
@@ -122,10 +107,7 @@ public class IdReferenceType {
     /**
      * Gets the value of the earliestVersion property.
      *
-     * @return
-     *     possible object is
-     *     {@link String }
-     *
+     * @return possible object is {@link String }
      */
     public String getEarliestVersion() {
         return earliestVersion;
@@ -134,10 +116,7 @@ public class IdReferenceType {
     /**
      * Sets the value of the earliestVersion property.
      *
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *
+     * @param value allowed object is {@link String }
      */
     public void setEarliestVersion(String value) {
         this.earliestVersion = value;
@@ -146,10 +125,7 @@ public class IdReferenceType {
     /**
      * Gets the value of the latestVersion property.
      *
-     * @return
-     *     possible object is
-     *     {@link String }
-     *
+     * @return possible object is {@link String }
      */
     public String getLatestVersion() {
         return latestVersion;
@@ -158,10 +134,7 @@ public class IdReferenceType {
     /**
      * Sets the value of the latestVersion property.
      *
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *
+     * @param value allowed object is {@link String }
      */
     public void setLatestVersion(String value) {
         this.latestVersion = value;

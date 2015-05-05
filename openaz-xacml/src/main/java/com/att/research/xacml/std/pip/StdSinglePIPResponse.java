@@ -35,14 +35,13 @@ import com.att.research.xacml.api.Attribute;
 /**
  * StdSinglePIPResponse extends {@link com.att.research.xacml.std.pip.StdMutablePIPResponse} with methods for
  * retrieving a single {@link com.att.research.xacml.api.Attribute}.
- *
  */
 public class StdSinglePIPResponse extends StdMutablePIPResponse {
     private Attribute singleAttribute;
 
     public StdSinglePIPResponse(Attribute attribute) {
         super(attribute);
-        this.singleAttribute    = attribute;
+        this.singleAttribute = attribute;
     }
 
     public Attribute getSingleAttribute() {

@@ -35,7 +35,7 @@ import org.w3c.dom.Node;
 public class DOMStructureException extends Exception {
     private static final long serialVersionUID = -3752478535859021127L;
 
-    private Node        nodeError;
+    private Node nodeError;
 
     public DOMStructureException() {
     }
@@ -54,17 +54,17 @@ public class DOMStructureException extends Exception {
 
     public DOMStructureException(Node nodeErrorIn, String message, Throwable cause) {
         super(message, cause);
-        this.nodeError  = nodeErrorIn;
+        this.nodeError = nodeErrorIn;
     }
 
     public DOMStructureException(Node nodeErrorIn, String message) {
         super(message);
-        this.nodeError  = nodeErrorIn;
+        this.nodeError = nodeErrorIn;
     }
 
     public DOMStructureException(Node nodeErrorIn, Throwable cause) {
         super(cause);
-        this.nodeError  = nodeErrorIn;
+        this.nodeError = nodeErrorIn;
     }
 
     public Node getNodeError() {

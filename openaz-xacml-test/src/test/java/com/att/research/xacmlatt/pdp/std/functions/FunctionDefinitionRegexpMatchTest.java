@@ -38,33 +38,22 @@ import com.att.research.xacml.std.datatypes.DataTypes;
 import com.att.research.xacml.std.datatypes.IPAddress;
 import com.att.research.xacml.std.datatypes.RFC2396DomainName;
 import com.att.research.xacml.std.datatypes.RFC822Name;
-import com.att.research.xacmlatt.pdp.policy.ExpressionResult;
-import com.att.research.xacmlatt.pdp.policy.FunctionArgument;
-import com.att.research.xacmlatt.pdp.policy.FunctionArgumentAttributeValue;
-import com.att.research.xacmlatt.pdp.std.StdFunctions;
 
 /**
- * Test of PDP Functions (See XACML core spec section A.3)
- *
- * TO RUN - use jUnit
- * In Eclipse select this file or the enclosing directory, right-click and select Run As/JUnit Test
- *
- *
+ * Test of PDP Functions (See XACML core spec section A.3) TO RUN - use jUnit In Eclipse select this file or
+ * the enclosing directory, right-click and select Run As/JUnit Test
  */
 public class FunctionDefinitionRegexpMatchTest {
-
 
     /*
      * variables useful in the following tests
      */
     List<FunctionArgument> arguments = new ArrayList<FunctionArgument>();
 
-
     @Test
     public void testString() {
         String v1 = new String("abc");
         String v2 = new String("def");
-
 
         FunctionArgumentAttributeValue attrV1 = null;
         FunctionArgumentAttributeValue attrV2 = null;
@@ -76,18 +65,17 @@ public class FunctionDefinitionRegexpMatchTest {
             attrNull = new FunctionArgumentAttributeValue(DataTypes.DT_STRING.createAttributeValue(null));
             attrInteger = new FunctionArgumentAttributeValue(DataTypes.DT_INTEGER.createAttributeValue(1234));
         } catch (Exception e) {
-            fail("creating attributes e="+ e);
+            fail("creating attributes e=" + e);
         }
 
-        FunctionDefinitionRegexpMatch<?> fd = (FunctionDefinitionRegexpMatch<?>) StdFunctions.FD_STRING_REGEXP_MATCH;
+        FunctionDefinitionRegexpMatch<?> fd = (FunctionDefinitionRegexpMatch<?>)StdFunctions.FD_STRING_REGEXP_MATCH;
 
         // check identity and type of the thing created
         assertEquals(XACML3.ID_FUNCTION_STRING_REGEXP_MATCH, fd.getId());
         assertEquals(DataTypes.DT_BOOLEAN.getId(), fd.getDataTypeId());
 
-        // just to be safe...  If tests take too long these can probably be eliminated
+        // just to be safe... If tests take too long these can probably be eliminated
         assertFalse(fd.returnsBag());
-
 
         // match
         arguments.clear();
@@ -116,8 +104,8 @@ public class FunctionDefinitionRegexpMatchTest {
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
         assertEquals("function:string-regexp-match Got null argument", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
-
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
         arguments.clear();
         arguments.add(attrNull);
@@ -125,7 +113,8 @@ public class FunctionDefinitionRegexpMatchTest {
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
         assertEquals("function:string-regexp-match Got null attribute", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
         // null object to match
         arguments.clear();
@@ -134,7 +123,8 @@ public class FunctionDefinitionRegexpMatchTest {
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
         assertEquals("function:string-regexp-match Got null argument", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
         arguments.clear();
         arguments.add(attrV1);
@@ -142,8 +132,8 @@ public class FunctionDefinitionRegexpMatchTest {
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
         assertEquals("function:string-regexp-match Got null attribute", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
-
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
         // regex not string
         arguments.clear();
@@ -151,8 +141,10 @@ public class FunctionDefinitionRegexpMatchTest {
         arguments.add(attrV2);
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
-        assertEquals("function:string-regexp-match Expected data type 'string' saw 'integer'", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("function:string-regexp-match Expected data type 'string' saw 'integer'", res
+            .getStatus().getStatusMessage());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
         // object to match not correct type
         arguments.clear();
@@ -160,8 +152,10 @@ public class FunctionDefinitionRegexpMatchTest {
         arguments.add(attrInteger);
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
-        assertEquals("function:string-regexp-match Expected data type 'string' saw 'integer'", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("function:string-regexp-match Expected data type 'string' saw 'integer'", res
+            .getStatus().getStatusMessage());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
     }
 
@@ -174,9 +168,8 @@ public class FunctionDefinitionRegexpMatchTest {
             uri1 = new URI("abc");
             uri2 = new URI("def");
         } catch (Exception e) {
-            fail("Unable to create URIs, e="+e);
+            fail("Unable to create URIs, e=" + e);
         }
-
 
         FunctionArgumentAttributeValue attrRegexp = null;
         FunctionArgumentAttributeValue attrUri1 = null;
@@ -188,18 +181,17 @@ public class FunctionDefinitionRegexpMatchTest {
             attrUri2 = new FunctionArgumentAttributeValue(DataTypes.DT_ANYURI.createAttributeValue(uri2));
             attrInteger = new FunctionArgumentAttributeValue(DataTypes.DT_INTEGER.createAttributeValue(1234));
         } catch (Exception e) {
-            fail("creating attributes e="+ e);
+            fail("creating attributes e=" + e);
         }
 
-        FunctionDefinitionRegexpMatch<?> fd = (FunctionDefinitionRegexpMatch<?>) StdFunctions.FD_ANYURI_REGEXP_MATCH;
+        FunctionDefinitionRegexpMatch<?> fd = (FunctionDefinitionRegexpMatch<?>)StdFunctions.FD_ANYURI_REGEXP_MATCH;
 
         // check identity and type of the thing created
         assertEquals(XACML3.ID_FUNCTION_ANYURI_REGEXP_MATCH, fd.getId());
         assertEquals(DataTypes.DT_BOOLEAN.getId(), fd.getDataTypeId());
 
-        // just to be safe...  If tests take too long these can probably be eliminated
+        // just to be safe... If tests take too long these can probably be eliminated
         assertFalse(fd.returnsBag());
-
 
         // match
         arguments.clear();
@@ -227,11 +219,12 @@ public class FunctionDefinitionRegexpMatchTest {
         arguments.add(attrInteger);
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
-        assertEquals("function:anyURI-regexp-match Expected data type 'anyURI' saw 'integer'", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("function:anyURI-regexp-match Expected data type 'anyURI' saw 'integer'", res
+            .getStatus().getStatusMessage());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
     }
-
 
     @Test
     public void testIpAddress() {
@@ -242,9 +235,8 @@ public class FunctionDefinitionRegexpMatchTest {
             addr1 = IPAddress.newInstance("199.123.45.67");
             addr2 = IPAddress.newInstance("12.34.67.87");
         } catch (Exception e) {
-            fail("Unable to create IPAddresses, e="+e);
+            fail("Unable to create IPAddresses, e=" + e);
         }
-
 
         FunctionArgumentAttributeValue attrRegexp = null;
         FunctionArgumentAttributeValue attrAddr1 = null;
@@ -256,18 +248,17 @@ public class FunctionDefinitionRegexpMatchTest {
             attrAddr2 = new FunctionArgumentAttributeValue(DataTypes.DT_IPADDRESS.createAttributeValue(addr2));
             attrInteger = new FunctionArgumentAttributeValue(DataTypes.DT_INTEGER.createAttributeValue(1234));
         } catch (Exception e) {
-            fail("creating attributes e="+ e);
+            fail("creating attributes e=" + e);
         }
 
-        FunctionDefinitionRegexpMatch<?> fd = (FunctionDefinitionRegexpMatch<?>) StdFunctions.FD_IPADDRESS_REGEXP_MATCH;
+        FunctionDefinitionRegexpMatch<?> fd = (FunctionDefinitionRegexpMatch<?>)StdFunctions.FD_IPADDRESS_REGEXP_MATCH;
 
         // check identity and type of the thing created
         assertEquals(XACML3.ID_FUNCTION_IPADDRESS_REGEXP_MATCH, fd.getId());
         assertEquals(DataTypes.DT_BOOLEAN.getId(), fd.getDataTypeId());
 
-        // just to be safe...  If tests take too long these can probably be eliminated
+        // just to be safe... If tests take too long these can probably be eliminated
         assertFalse(fd.returnsBag());
-
 
         // match
         arguments.clear();
@@ -295,11 +286,12 @@ public class FunctionDefinitionRegexpMatchTest {
         arguments.add(attrInteger);
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
-        assertEquals("function:ipAddress-regexp-match Expected data type 'ipAddress' saw 'integer'", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("function:ipAddress-regexp-match Expected data type 'ipAddress' saw 'integer'", res
+            .getStatus().getStatusMessage());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
     }
-
 
     @Test
     public void testDnsName() {
@@ -310,9 +302,8 @@ public class FunctionDefinitionRegexpMatchTest {
             addr1 = RFC2396DomainName.newInstance("abc");
             addr2 = RFC2396DomainName.newInstance("def");
         } catch (Exception e) {
-            fail("Unable to create DNSNames, e="+e);
+            fail("Unable to create DNSNames, e=" + e);
         }
-
 
         FunctionArgumentAttributeValue attrRegexp = null;
         FunctionArgumentAttributeValue attrAddr1 = null;
@@ -324,18 +315,17 @@ public class FunctionDefinitionRegexpMatchTest {
             attrAddr2 = new FunctionArgumentAttributeValue(DataTypes.DT_DNSNAME.createAttributeValue(addr2));
             attrInteger = new FunctionArgumentAttributeValue(DataTypes.DT_INTEGER.createAttributeValue(1234));
         } catch (Exception e) {
-            fail("creating attributes e="+ e);
+            fail("creating attributes e=" + e);
         }
 
-        FunctionDefinitionRegexpMatch<?> fd = (FunctionDefinitionRegexpMatch<?>) StdFunctions.FD_DNSNAME_REGEXP_MATCH;
+        FunctionDefinitionRegexpMatch<?> fd = (FunctionDefinitionRegexpMatch<?>)StdFunctions.FD_DNSNAME_REGEXP_MATCH;
 
         // check identity and type of the thing created
         assertEquals(XACML3.ID_FUNCTION_DNSNAME_REGEXP_MATCH, fd.getId());
         assertEquals(DataTypes.DT_BOOLEAN.getId(), fd.getDataTypeId());
 
-        // just to be safe...  If tests take too long these can probably be eliminated
+        // just to be safe... If tests take too long these can probably be eliminated
         assertFalse(fd.returnsBag());
-
 
         // match
         arguments.clear();
@@ -363,11 +353,12 @@ public class FunctionDefinitionRegexpMatchTest {
         arguments.add(attrInteger);
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
-        assertEquals("function:dnsName-regexp-match Expected data type 'dnsName' saw 'integer'", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("function:dnsName-regexp-match Expected data type 'dnsName' saw 'integer'", res
+            .getStatus().getStatusMessage());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
     }
-
 
     @Test
     public void testRfc822Name() {
@@ -378,9 +369,8 @@ public class FunctionDefinitionRegexpMatchTest {
             addr1 = RFC822Name.newInstance("abc@somewhere");
             addr2 = RFC822Name.newInstance("def@somewhere");
         } catch (Exception e) {
-            fail("Unable to create RFC822Names, e="+e);
+            fail("Unable to create RFC822Names, e=" + e);
         }
-
 
         FunctionArgumentAttributeValue attrRegexp = null;
         FunctionArgumentAttributeValue attrAddr1 = null;
@@ -388,22 +378,25 @@ public class FunctionDefinitionRegexpMatchTest {
         FunctionArgumentAttributeValue attrInteger = null;
         try {
             attrRegexp = new FunctionArgumentAttributeValue(DataTypes.DT_STRING.createAttributeValue(regexp));
-            attrAddr1 = new FunctionArgumentAttributeValue(DataTypes.DT_RFC822NAME.createAttributeValue(addr1));
-            attrAddr2 = new FunctionArgumentAttributeValue(DataTypes.DT_RFC822NAME.createAttributeValue(addr2));
+            attrAddr1 = new FunctionArgumentAttributeValue(
+                                                           DataTypes.DT_RFC822NAME
+                                                               .createAttributeValue(addr1));
+            attrAddr2 = new FunctionArgumentAttributeValue(
+                                                           DataTypes.DT_RFC822NAME
+                                                               .createAttributeValue(addr2));
             attrInteger = new FunctionArgumentAttributeValue(DataTypes.DT_INTEGER.createAttributeValue(1234));
         } catch (Exception e) {
-            fail("creating attributes e="+ e);
+            fail("creating attributes e=" + e);
         }
 
-        FunctionDefinitionRegexpMatch<?> fd = (FunctionDefinitionRegexpMatch<?>) StdFunctions.FD_RFC822NAME_REGEXP_MATCH;
+        FunctionDefinitionRegexpMatch<?> fd = (FunctionDefinitionRegexpMatch<?>)StdFunctions.FD_RFC822NAME_REGEXP_MATCH;
 
         // check identity and type of the thing created
         assertEquals(XACML3.ID_FUNCTION_RFC822NAME_REGEXP_MATCH, fd.getId());
         assertEquals(DataTypes.DT_BOOLEAN.getId(), fd.getDataTypeId());
 
-        // just to be safe...  If tests take too long these can probably be eliminated
+        // just to be safe... If tests take too long these can probably be eliminated
         assertFalse(fd.returnsBag());
-
 
         // match
         arguments.clear();
@@ -431,11 +424,12 @@ public class FunctionDefinitionRegexpMatchTest {
         arguments.add(attrInteger);
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
-        assertEquals("function:rfc822Name-regexp-match Expected data type 'rfc822Name' saw 'integer'", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("function:rfc822Name-regexp-match Expected data type 'rfc822Name' saw 'integer'", res
+            .getStatus().getStatusMessage());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
     }
-
 
     @Test
     public void testX500Name() {
@@ -446,9 +440,8 @@ public class FunctionDefinitionRegexpMatchTest {
             addr1 = new X500Principal("CN=Duke, OU=JavaSoft, O=Sun Microsystems, C=US");
             addr2 = new X500Principal("CN=Policy Engine, OU=Research, O=ATT, C=US");
         } catch (Exception e) {
-            fail("Unable to create X500Name, e="+e);
+            fail("Unable to create X500Name, e=" + e);
         }
-
 
         FunctionArgumentAttributeValue attrRegexp = null;
         FunctionArgumentAttributeValue attrAddr1 = null;
@@ -460,18 +453,17 @@ public class FunctionDefinitionRegexpMatchTest {
             attrAddr2 = new FunctionArgumentAttributeValue(DataTypes.DT_X500NAME.createAttributeValue(addr2));
             attrInteger = new FunctionArgumentAttributeValue(DataTypes.DT_INTEGER.createAttributeValue(1234));
         } catch (Exception e) {
-            fail("creating attributes e="+ e);
+            fail("creating attributes e=" + e);
         }
 
-        FunctionDefinitionRegexpMatch<?> fd = (FunctionDefinitionRegexpMatch<?>) StdFunctions.FD_X500NAME_REGEXP_MATCH;
+        FunctionDefinitionRegexpMatch<?> fd = (FunctionDefinitionRegexpMatch<?>)StdFunctions.FD_X500NAME_REGEXP_MATCH;
 
         // check identity and type of the thing created
         assertEquals(XACML3.ID_FUNCTION_X500NAME_REGEXP_MATCH, fd.getId());
         assertEquals(DataTypes.DT_BOOLEAN.getId(), fd.getDataTypeId());
 
-        // just to be safe...  If tests take too long these can probably be eliminated
+        // just to be safe... If tests take too long these can probably be eliminated
         assertFalse(fd.returnsBag());
-
 
         // match
         arguments.clear();
@@ -499,12 +491,11 @@ public class FunctionDefinitionRegexpMatchTest {
         arguments.add(attrInteger);
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
-        assertEquals("function:x500Name-regexp-match Expected data type 'x500Name' saw 'integer'", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("function:x500Name-regexp-match Expected data type 'x500Name' saw 'integer'", res
+            .getStatus().getStatusMessage());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
     }
-
-
-
 
 }

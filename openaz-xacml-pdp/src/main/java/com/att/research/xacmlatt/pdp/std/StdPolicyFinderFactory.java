@@ -66,32 +66,31 @@ import com.google.common.base.Splitter;
 
 /**
  * StdPolicyFinderFactory extends {@link com.att.research.xacmlatt.pdp.policy.PolicyFinderFactory} with the
- * <code>getPolicyFinder</code> method to get a single instance of the {@link StdPolicyFinder}.  The
- * root {@link com.att.research.xacmlatt.pdp.policy.PolicyDef} is loaded from a file whose name is specified as a system property or
- * in the $java.home/lib/xacml.properties property set.
- *
+ * <code>getPolicyFinder</code> method to get a single instance of the {@link StdPolicyFinder}. The root
+ * {@link com.att.research.xacmlatt.pdp.policy.PolicyDef} is loaded from a file whose name is specified as a
+ * system property or in the $java.home/lib/xacml.properties property set.
  */
 public class StdPolicyFinderFactory extends PolicyFinderFactory {
-    public static final String  PROP_FILE               = ".file";
-    public static final String  PROP_URL                = ".url";
+    public static final String PROP_FILE = ".file";
+    public static final String PROP_URL = ".url";
 
-    private Log logger                                                  = LogFactory.getLog(this.getClass());
+    private Log logger = LogFactory.getLog(this.getClass());
     private List<PolicyDef> rootPolicies;
     private List<PolicyDef> referencedPolicies;
-    private boolean needsInit                                   = true;
+    private boolean needsInit = true;
 
     /**
-     * Loads the <code>PolicyDef</code> for the given <code>String</code> identifier by looking first
-     * for a ".file" property associated with the ID and using that to load from a <code>File</code> and
-     * looking for a ".url" property associated with the ID and using that to load from a <code>URL</code>.
+     * Loads the <code>PolicyDef</code> for the given <code>String</code> identifier by looking first for a
+     * ".file" property associated with the ID and using that to load from a <code>File</code> and looking for
+     * a ".url" property associated with the ID and using that to load from a <code>URL</code>.
      *
      * @param policyId the <code>String</code> identifier for the policy
      * @return a <code>PolicyDef</code> loaded from the given identifier
      */
     protected PolicyDef loadPolicyDef(String policyId, Properties properties) {
-        String propLocation     = properties.getProperty(policyId + PROP_FILE);
+        String propLocation = properties.getProperty(policyId + PROP_FILE);
         if (propLocation != null) {
-            File fileLocation   = new File(propLocation);
+            File fileLocation = new File(propLocation);
             if (!fileLocation.exists()) {
                 this.logger.error("Policy file " + fileLocation.getAbsolutePath() + " does not exist.");
             } else if (!fileLocation.canRead()) {
@@ -104,7 +103,8 @@ public class StdPolicyFinderFactory extends PolicyFinderFactory {
                         return policyDef;
                     }
                 } catch (DOMStructureException ex) {
-                    this.logger.error("Error loading policy file " + fileLocation.getAbsolutePath() + ": " + ex.getMessage(), ex);
+                    this.logger.error("Error loading policy file " + fileLocation.getAbsolutePath() + ": "
+                                      + ex.getMessage(), ex);
                     return new Policy(StdStatusCode.STATUS_CODE_SYNTAX_ERROR, ex.getMessage());
                 }
             }
@@ -113,11 +113,11 @@ public class StdPolicyFinderFactory extends PolicyFinderFactory {
         if ((propLocation = properties.getProperty(policyId + PROP_URL)) != null) {
             InputStream is = null;
             try {
-                URL url                                         = new URL(propLocation);
-                URLConnection urlConnection     = url.openConnection();
+                URL url = new URL(propLocation);
+                URLConnection urlConnection = url.openConnection();
                 this.logger.info("Loading policy file " + url.toString());
                 is = urlConnection.getInputStream();
-                PolicyDef policyDef                     = DOMPolicyDef.load(is);
+                PolicyDef policyDef = DOMPolicyDef.load(is);
                 if (policyDef != null) {
                     return policyDef;
                 }
@@ -133,7 +133,8 @@ public class StdPolicyFinderFactory extends PolicyFinderFactory {
                     try {
                         is.close();
                     } catch (IOException e) {
-                        this.logger.error("Exception closing InputStream for GET of url " + propLocation + " : " + e.getMessage() + "  (May be memory leak)", e);
+                        this.logger.error("Exception closing InputStream for GET of url " + propLocation
+                                          + " : " + e.getMessage() + "  (May be memory leak)", e);
                     }
                 }
             }
@@ -147,21 +148,22 @@ public class StdPolicyFinderFactory extends PolicyFinderFactory {
      * Finds the identifiers for all of the policies referenced by the given property name in the
      * <code>XACMLProperties</code> and loads them using the requested loading method.
      *
-     * @param propertyName the <code>String</code> name of the property containing the list of policy identifiers
+     * @param propertyName the <code>String</code> name of the property containing the list of policy
+     *            identifiers
      * @return a <code>List</code> of <code>PolicyDef</code>s loaded from the given property name
      */
     protected List<PolicyDef> getPolicyDefs(String propertyName, Properties properties) {
-        String policyIds        = properties.getProperty(propertyName);
+        String policyIds = properties.getProperty(propertyName);
         if (policyIds == null || policyIds.length() == 0) {
             return null;
         }
 
-        Iterable<String> policyIdArray  = Splitter.on(',').trimResults().omitEmptyStrings().split(policyIds);
+        Iterable<String> policyIdArray = Splitter.on(',').trimResults().omitEmptyStrings().split(policyIds);
         if (policyIdArray == null) {
             return null;
         }
 
-        List<PolicyDef> listPolicyDefs  = new ArrayList<PolicyDef>();
+        List<PolicyDef> listPolicyDefs = new ArrayList<PolicyDef>();
         for (String policyId : policyIdArray) {
             PolicyDef policyDef = this.loadPolicyDef(policyId, properties);
             if (policyDef != null) {
@@ -176,14 +178,16 @@ public class StdPolicyFinderFactory extends PolicyFinderFactory {
             //
             // Check for property that combines root policies into one policyset
             //
-            String combiningAlgorithm = properties.getProperty(ATTPDPProperties.PROP_POLICYFINDERFACTORY_COMBINEROOTPOLICIES);
+            String combiningAlgorithm = properties
+                .getProperty(ATTPDPProperties.PROP_POLICYFINDERFACTORY_COMBINEROOTPOLICIES);
             if (combiningAlgorithm != null) {
                 try {
                     logger.info("Combining root policies with " + combiningAlgorithm);
                     //
                     // Find the combining algorithm
                     //
-                    CombiningAlgorithm<PolicySetChild> algorithm = CombiningAlgorithmFactory.newInstance().getPolicyCombiningAlgorithm(new IdentifierImpl(combiningAlgorithm));
+                    CombiningAlgorithm<PolicySetChild> algorithm = CombiningAlgorithmFactory.newInstance()
+                        .getPolicyCombiningAlgorithm(new IdentifierImpl(combiningAlgorithm));
                     //
                     // Create our root policy
                     //
@@ -210,11 +214,11 @@ public class StdPolicyFinderFactory extends PolicyFinderFactory {
                     logger.error("Failed to load Combining Algorithm Factory: " + e.getLocalizedMessage());
                 }
             } else {
-                this.rootPolicies               = this.getPolicyDefs(XACMLProperties.PROP_ROOTPOLICIES, properties);
+                this.rootPolicies = this.getPolicyDefs(XACMLProperties.PROP_ROOTPOLICIES, properties);
             }
 
-            this.referencedPolicies     = this.getPolicyDefs(XACMLProperties.PROP_REFERENCEDPOLICIES, properties);
-            this.needsInit      = false;
+            this.referencedPolicies = this.getPolicyDefs(XACMLProperties.PROP_REFERENCEDPOLICIES, properties);
+            this.needsInit = false;
         }
     }
 

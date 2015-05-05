@@ -38,9 +38,8 @@ import com.att.research.xacml.std.dom.DOMStructureException;
 import com.att.research.xacml.std.dom.DOMUtil;
 
 /**
- * DOMDocumentRepair extends {@link com.att.research.xacml.std.dom.DOMDocumentRepair} to repair Policy documents as well as
- * Request and Response documents.
- *
+ * DOMDocumentRepair extends {@link com.att.research.xacml.std.dom.DOMDocumentRepair} to repair Policy
+ * documents as well as Request and Response documents.
  */
 public class DOMDocumentRepair extends com.att.research.xacml.std.dom.DOMDocumentRepair {
     protected boolean repairPolicy(Node nodePolicy) throws DOMStructureException {
@@ -55,14 +54,15 @@ public class DOMDocumentRepair extends com.att.research.xacml.std.dom.DOMDocumen
     }
 
     /**
-     * Determines what kind of XACML document is represented by the given <code>Document</code> and
-     * attempts to repair it.
+     * Determines what kind of XACML document is represented by the given <code>Document</code> and attempts
+     * to repair it.
      *
      * @param document the <code>Document</code> to check
      * @return true if any repairs were made in the <code>Document</code>, else false
      * @throws DOMStructureException if there were unrecoverable errors found
      * @throws UnsupportedDocumentTypeException if the root element is not a XACML Request or Response.
      */
+    @Override
     public boolean repair(Document document) throws DOMStructureException, UnsupportedDocumentTypeException {
         Node firstChild = DOMUtil.getFirstChildElement(document);
         if (firstChild == null || !DOMUtil.isElement(firstChild)) {
@@ -70,7 +70,8 @@ public class DOMDocumentRepair extends com.att.research.xacml.std.dom.DOMDocumen
         }
 
         if (!DOMUtil.isInNamespace(firstChild, XACML3.XMLNS)) {
-            throw new UnsupportedDocumentTypeException("Not a XACML document: " + DOMUtil.getNodeLabel(firstChild));
+            throw new UnsupportedDocumentTypeException("Not a XACML document: "
+                                                       + DOMUtil.getNodeLabel(firstChild));
         }
         if (XACML3.ELEMENT_REQUEST.equals(firstChild.getLocalName())) {
             return this.repairRequest(firstChild);
@@ -81,7 +82,8 @@ public class DOMDocumentRepair extends com.att.research.xacml.std.dom.DOMDocumen
         } else if (XACML3.ELEMENT_POLICYSET.equals(firstChild.getLocalName())) {
             return this.repairPolicySet(firstChild);
         } else {
-            throw new UnsupportedDocumentTypeException("Not a XACML Request or Response: " + DOMUtil.getNodeLabel(firstChild));
+            throw new UnsupportedDocumentTypeException("Not a XACML Request or Response: "
+                                                       + DOMUtil.getNodeLabel(firstChild));
         }
     }
 

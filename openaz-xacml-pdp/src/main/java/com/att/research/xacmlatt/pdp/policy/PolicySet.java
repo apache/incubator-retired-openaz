@@ -51,17 +51,16 @@ import com.att.research.xacmlatt.pdp.eval.MatchResult;
 
 /**
  * PolicySet extends {@link PolicyDef} to represent a XACML PolicySet element.
- *
  */
 public class PolicySet extends PolicyDef {
-    private TargetedCombinerParameterMap<Identifier,PolicySetChild>             policyCombinerParameters        = new TargetedCombinerParameterMap<Identifier,PolicySetChild>();
-    private List<PolicySetChild>                                                                                children;
-    private List<CombiningElement<PolicySetChild>>                                              combiningPolicies;
-    private CombiningAlgorithm<PolicySetChild>                                                  combiningAlgorithm;
+    private TargetedCombinerParameterMap<Identifier, PolicySetChild> policyCombinerParameters = new TargetedCombinerParameterMap<Identifier, PolicySetChild>();
+    private List<PolicySetChild> children;
+    private List<CombiningElement<PolicySetChild>> combiningPolicies;
+    private CombiningAlgorithm<PolicySetChild> combiningAlgorithm;
 
     private void ensureChildren() {
         if (this.children == null) {
-            this.children       = new ArrayList<PolicySetChild>();
+            this.children = new ArrayList<PolicySetChild>();
         }
     }
 
@@ -72,12 +71,15 @@ public class PolicySet extends PolicyDef {
      */
     protected List<CombiningElement<PolicySetChild>> getCombiningPolicies() {
         if (this.combiningPolicies == null) {
-            this.combiningPolicies                      = new ArrayList<CombiningElement<PolicySetChild>>();
-            Iterator<PolicySetChild> iterPolicies       = this.getChildren();
+            this.combiningPolicies = new ArrayList<CombiningElement<PolicySetChild>>();
+            Iterator<PolicySetChild> iterPolicies = this.getChildren();
             if (iterPolicies != null) {
                 while (iterPolicies.hasNext()) {
-                    PolicySetChild policySetChild       = iterPolicies.next();
-                    this.combiningPolicies.add(new CombiningElement<PolicySetChild>(policySetChild, this.policyCombinerParameters.getCombinerParameters(policySetChild)));
+                    PolicySetChild policySetChild = iterPolicies.next();
+                    this.combiningPolicies
+                        .add(new CombiningElement<PolicySetChild>(policySetChild,
+                                                                  this.policyCombinerParameters
+                                                                      .getCombinerParameters(policySetChild)));
                 }
             }
         }
@@ -114,46 +116,49 @@ public class PolicySet extends PolicyDef {
     }
 
     /**
-     * Gets an <code>Iterator</code> over the {@link com.att.research.xacmlatt.pdp.policy.TargetedCombinerParameter}s
-     * for {@link Policy} elements in this
-     * <code>PolicySet</code>.
+     * Gets an <code>Iterator</code> over the
+     * {@link com.att.research.xacmlatt.pdp.policy.TargetedCombinerParameter}s for {@link Policy} elements in
+     * this <code>PolicySet</code>.
      *
-     * @return an <code>Iterator</code> over the <code>TargetedCombinerParameter</code>s for <code>Policy</code> elements in this
-     * <code>PolicySet</code>.
+     * @return an <code>Iterator</code> over the <code>TargetedCombinerParameter</code>s for
+     *         <code>Policy</code> elements in this <code>PolicySet</code>.
      */
-    public Iterator<TargetedCombinerParameter<Identifier,PolicySetChild>> getPolicyCombinerParameters() {
+    public Iterator<TargetedCombinerParameter<Identifier, PolicySetChild>> getPolicyCombinerParameters() {
         return this.policyCombinerParameters.getTargetedCombinerParameters();
     }
 
     /**
-     * Sets the Policy combiner parameters for this <code>PolicySet</code> from the contents of the given <code>Collection</code>
-     * of <code>TargetedCombinerParameter</code>s.
+     * Sets the Policy combiner parameters for this <code>PolicySet</code> from the contents of the given
+     * <code>Collection</code> of <code>TargetedCombinerParameter</code>s.
      *
-     * @param policyCombinerParametersIn the <code>Collection</code> of <code>TargetedCombinerParameter</code>s.
+     * @param policyCombinerParametersIn the <code>Collection</code> of <code>TargetedCombinerParameter</code>
+     *            s.
      */
-    public void setPolicyCombinerParameters(Collection<TargetedCombinerParameter<Identifier,PolicySetChild>> policyCombinerParametersIn) {
+    public void setPolicyCombinerParameters(Collection<TargetedCombinerParameter<Identifier, PolicySetChild>> policyCombinerParametersIn) {
         this.policyCombinerParameters.setCombinerParameters(policyCombinerParametersIn);
     }
 
-    public void addPolicyCombinerParameter(TargetedCombinerParameter<Identifier,PolicySetChild> policyCombinerParameter) {
+    public void addPolicyCombinerParameter(TargetedCombinerParameter<Identifier, PolicySetChild> policyCombinerParameter) {
         this.policyCombinerParameters.addCombinerParameter(policyCombinerParameter);
     }
 
-    public void addPolicyCombinerParameters(Collection<TargetedCombinerParameter<Identifier,PolicySetChild>> policyCombinerParametersIn) {
+    public void addPolicyCombinerParameters(Collection<TargetedCombinerParameter<Identifier, PolicySetChild>> policyCombinerParametersIn) {
         this.policyCombinerParameters.addCombinerParameters(policyCombinerParametersIn);
     }
 
     /**
-     * Gets an <code>Iterator</code> over the <code>PolicySetChild</code> children of this <code>PolicySet</code>.
+     * Gets an <code>Iterator</code> over the <code>PolicySetChild</code> children of this
+     * <code>PolicySet</code>.
      *
-     * @return an <code>Iterator</code> over the <code>PolicySetChild</code> children of this <code>PolicySet</code> or null if there are none.
+     * @return an <code>Iterator</code> over the <code>PolicySetChild</code> children of this
+     *         <code>PolicySet</code> or null if there are none.
      */
     public Iterator<PolicySetChild> getChildren() {
         return (this.children == null ? null : this.children.iterator());
     }
 
     public void setChildren(Collection<PolicySetChild> policySetChildren) {
-        this.children   = null;
+        this.children = null;
         if (policySetChildren != null) {
             this.addChildren(policySetChildren);
         }
@@ -170,9 +175,11 @@ public class PolicySet extends PolicyDef {
     }
 
     /**
-     * Gets the {@link com.att.research.xacmlatt.pdp.policy.CombiningAlgorithm} for <code>PolicySetChild</code> children for this <code>PolicySet</code>.
+     * Gets the {@link com.att.research.xacmlatt.pdp.policy.CombiningAlgorithm} for
+     * <code>PolicySetChild</code> children for this <code>PolicySet</code>.
      *
-     * @return the <code>CombiningAlgorithm</code> for <code>PolicySetChild</code> children for this <code>PolicySet</code>.
+     * @return the <code>CombiningAlgorithm</code> for <code>PolicySetChild</code> children for this
+     *         <code>PolicySet</code>.
      */
     public CombiningAlgorithm<PolicySetChild> getPolicyCombiningAlgorithm() {
         return this.combiningAlgorithm;
@@ -185,7 +192,7 @@ public class PolicySet extends PolicyDef {
     @Override
     public EvaluationResult evaluate(EvaluationContext evaluationContext) throws EvaluationException {
         /*
-         * First check to see if we are valid.  If not, return an error status immediately
+         * First check to see if we are valid. If not, return an error status immediately
          */
         if (evaluationContext.isTracing()) {
             evaluationContext.trace(new StdTraceEvent<Object>("PolicySet", this, null));
@@ -197,12 +204,12 @@ public class PolicySet extends PolicyDef {
         /*
          * See if we match
          */
-        MatchResult thisMatchResult     = this.match(evaluationContext);
-        assert(thisMatchResult != null);
+        MatchResult thisMatchResult = this.match(evaluationContext);
+        assert (thisMatchResult != null);
         if (evaluationContext.isTracing()) {
             evaluationContext.trace(new StdTraceEvent<MatchResult>("Match", this, thisMatchResult));
         }
-        switch(thisMatchResult.getMatchCode()) {
+        switch (thisMatchResult.getMatchCode()) {
         case INDETERMINATE:
             return new EvaluationResult(Decision.INDETERMINATE, thisMatchResult.getStatus());
         case MATCH:
@@ -214,17 +221,19 @@ public class PolicySet extends PolicyDef {
         /*
          * Get the combining elements
          */
-        List<CombiningElement<PolicySetChild>> listCombiningElements    = this.getCombiningPolicies();
-        assert(listCombiningElements != null);
+        List<CombiningElement<PolicySetChild>> listCombiningElements = this.getCombiningPolicies();
+        assert (listCombiningElements != null);
 
         /*
          * Run the PolicyCombiningAlgorithm
          */
-        assert(this.getPolicyCombiningAlgorithm() != null);
-        EvaluationResult evaluationResultCombined       = this.getPolicyCombiningAlgorithm().combine(evaluationContext, listCombiningElements, getCombinerParameterList());
-        assert(evaluationResultCombined != null);
+        assert (this.getPolicyCombiningAlgorithm() != null);
+        EvaluationResult evaluationResultCombined = this.getPolicyCombiningAlgorithm()
+            .combine(evaluationContext, listCombiningElements, getCombinerParameterList());
+        assert (evaluationResultCombined != null);
 
-        if (evaluationResultCombined.getDecision() == Decision.DENY || evaluationResultCombined.getDecision() == Decision.PERMIT) {
+        if (evaluationResultCombined.getDecision() == Decision.DENY
+            || evaluationResultCombined.getDecision() == Decision.PERMIT) {
             this.updateResult(evaluationResultCombined, evaluationContext);
 
             /*
@@ -242,7 +251,7 @@ public class PolicySet extends PolicyDef {
 
     @Override
     public String toString() {
-        StringBuilder stringBuilder     = new StringBuilder("{");
+        StringBuilder stringBuilder = new StringBuilder("{");
         stringBuilder.append("super=");
         stringBuilder.append(super.toString());
 

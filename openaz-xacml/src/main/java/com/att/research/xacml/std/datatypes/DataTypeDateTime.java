@@ -39,10 +39,9 @@ import com.att.research.xacml.api.XACML;
 
 /**
  * DataTypeDateTime extends {@link DataTypeBase} for the XACML DateTime type.
- *
  */
 public class DataTypeDateTime extends DataTypeSemanticStringBase<ISO8601DateTime> {
-    private static final DataTypeDateTime       singleInstance  = new DataTypeDateTime();
+    private static final DataTypeDateTime singleInstance = new DataTypeDateTime();
 
     private DataTypeDateTime() {
         super(XACML.ID_DATATYPE_DATETIME, ISO8601DateTime.class);
@@ -61,12 +60,14 @@ public class DataTypeDateTime extends DataTypeSemanticStringBase<ISO8601DateTime
         } else if (source instanceof Date) {
             return ISO8601DateTime.fromDate((Date)source);
         } else {
-            String stringValue  = this.convertToString(source);
-            ISO8601DateTime     dateTime        = null;
+            String stringValue = this.convertToString(source);
+            ISO8601DateTime dateTime = null;
             try {
-                dateTime        = ISO8601DateTime.fromISO8601DateTimeString(stringValue);
+                dateTime = ISO8601DateTime.fromISO8601DateTimeString(stringValue);
             } catch (ParseException ex) {
-                throw new DataTypeException(this, "Failed to convert \"" + source.getClass().getCanonicalName() + "\" with value \"" + stringValue + "\" to DateTime", ex);
+                throw new DataTypeException(this, "Failed to convert \""
+                                                  + source.getClass().getCanonicalName() + "\" with value \""
+                                                  + stringValue + "\" to DateTime", ex);
             }
             return dateTime;
         }

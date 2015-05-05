@@ -36,9 +36,8 @@ import com.att.research.xacml.api.Identifier;
 import com.att.research.xacmlatt.pdp.eval.EvaluationContext;
 
 /**
- * FunctionDefinition is the interface that objects representing XACML functions found in Match and Apply elements in Policies, PolicySets
- * and Rules.
- *
+ * FunctionDefinition is the interface that objects representing XACML functions found in Match and Apply
+ * elements in Policies, PolicySets and Rules.
  */
 public interface FunctionDefinition {
     /**
@@ -49,10 +48,12 @@ public interface FunctionDefinition {
     public Identifier getId();
 
     /**
-     * Returns the <code>Identifier</code> for the data type returned by this function if <code>returnsBag()</code> is false or
-     * if this <code>FunctionDefinition</code> returns a bag containing a single data type.  Otherwise it returns null.
+     * Returns the <code>Identifier</code> for the data type returned by this function if
+     * <code>returnsBag()</code> is false or if this <code>FunctionDefinition</code> returns a bag containing
+     * a single data type. Otherwise it returns null.
      *
-     * @return the <code>Identifier</code> for the XACML data type this <code>FunctionDefinition</code> returns
+     * @return the <code>Identifier</code> for the XACML data type this <code>FunctionDefinition</code>
+     *         returns
      */
     public Identifier getDataTypeId();
 
@@ -64,9 +65,11 @@ public interface FunctionDefinition {
     public boolean returnsBag();
 
     /**
-     * Evaluates this <code>FunctionDefinition</code> on the given <code>List</code> of{@link FunctionArgument}s.
+     * Evaluates this <code>FunctionDefinition</code> on the given <code>List</code> of
+     * {@link FunctionArgument}s.
      *
-     * @param evaluationContext the {@link com.att.research.xacmlatt.pdp.eval.EvaluationContext} to use in the evaluation
+     * @param evaluationContext the {@link com.att.research.xacmlatt.pdp.eval.EvaluationContext} to use in the
+     *            evaluation
      * @param arguments the <code>List</code> of <code>FunctionArgument</code>s for the evaluation
      * @return an {@link ExpressionResult} with the results of the call
      */

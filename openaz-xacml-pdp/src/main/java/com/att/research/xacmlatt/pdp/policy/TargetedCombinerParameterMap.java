@@ -38,33 +38,33 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * TargetedCombinerParameterMap is a utility for maintaining a collection of {@link com.att.research.xacmlatt.policy.TargetedCombinerParameter}
- * objects with the mappings to their targets.
- *
+ * TargetedCombinerParameterMap is a utility for maintaining a collection of
+ * {@link com.att.research.xacmlatt.policy.TargetedCombinerParameter} objects with the mappings to their
+ * targets.
  *
  * @param <T> the type of the identifier for the <code>TargetedCombinerParameter</code>s in the map
  * @param <U> the type of the object referenced by the identifier
  */
 public class TargetedCombinerParameterMap<T, U> {
-    List<TargetedCombinerParameter<T,U>>        targetedCombinerParameters              = null;
-    Map<T,U>                                                            mapTargetIdToTarget                             = new HashMap<T,U>();
-    Map<U,List<CombinerParameter>>                      mapTargetToCombinerParameters   = null;
+    List<TargetedCombinerParameter<T, U>> targetedCombinerParameters = null;
+    Map<T, U> mapTargetIdToTarget = new HashMap<T, U>();
+    Map<U, List<CombinerParameter>> mapTargetToCombinerParameters = null;
 
     private void ensureTargetedCombinerParameters() {
         if (this.targetedCombinerParameters == null) {
-            this.targetedCombinerParameters     = new ArrayList<TargetedCombinerParameter<T,U>>();
+            this.targetedCombinerParameters = new ArrayList<TargetedCombinerParameter<T, U>>();
         }
     }
 
     /**
-     * Gets the target from the given <code>TargetedCombinerParameter</code> if present.  If not, find the
+     * Gets the target from the given <code>TargetedCombinerParameter</code> if present. If not, find the
      * target in the target id to target mapping, update the <code>TargetedCombinerParameter</code> and then
      * return the target.
      *
      * @param targetedCombinerParameter the <code>TargetedCombinerParameter</code> to resolve
      * @return the target for the given <code>TargetedCombinerParameter</code>
      */
-    protected U resolve(TargetedCombinerParameter<T,U> targetedCombinerParameter) {
+    protected U resolve(TargetedCombinerParameter<T, U> targetedCombinerParameter) {
         U result;
         if ((result = targetedCombinerParameter.getTarget()) != null) {
             return result;
@@ -77,23 +77,26 @@ public class TargetedCombinerParameterMap<T, U> {
     }
 
     /**
-     * Ensures the <code>Map</code> from targets to <code>List</code> of <code>CombinerParameter</code>s has been
-     * created if needed.
+     * Ensures the <code>Map</code> from targets to <code>List</code> of <code>CombinerParameter</code>s has
+     * been created if needed.
      *
-     * @throws IllegalStateException if there are <code>TargetedCombinerParameter</code>s that cannot be resolved
+     * @throws IllegalStateException if there are <code>TargetedCombinerParameter</code>s that cannot be
+     *             resolved
      */
     protected void ensureMap() throws IllegalStateException {
         if (this.mapTargetToCombinerParameters == null) {
             if (this.targetedCombinerParameters != null && this.targetedCombinerParameters.size() > 0) {
-                this.mapTargetToCombinerParameters      = new HashMap<U,List<CombinerParameter>>();
-                for (TargetedCombinerParameter<T,U> targetedCombinerParameter: this.targetedCombinerParameters) {
-                    U   target  = this.resolve(targetedCombinerParameter);
+                this.mapTargetToCombinerParameters = new HashMap<U, List<CombinerParameter>>();
+                for (TargetedCombinerParameter<T, U> targetedCombinerParameter : this.targetedCombinerParameters) {
+                    U target = this.resolve(targetedCombinerParameter);
                     if (target == null) {
-                        throw new IllegalStateException("Unresolved TargetCombinerParameter \"" + targetedCombinerParameter.toString() + "\"");
+                        throw new IllegalStateException("Unresolved TargetCombinerParameter \""
+                                                        + targetedCombinerParameter.toString() + "\"");
                     }
-                    List<CombinerParameter>     listCombinerParameters  = this.mapTargetToCombinerParameters.get(target);
+                    List<CombinerParameter> listCombinerParameters = this.mapTargetToCombinerParameters
+                        .get(target);
                     if (listCombinerParameters == null) {
-                        listCombinerParameters  = new ArrayList<CombinerParameter>();
+                        listCombinerParameters = new ArrayList<CombinerParameter>();
                         this.mapTargetToCombinerParameters.put(target, listCombinerParameters);
                     }
                     listCombinerParameters.add(targetedCombinerParameter);
@@ -123,30 +126,33 @@ public class TargetedCombinerParameterMap<T, U> {
      *
      * @param targetdCombinerParameter the <code>TargetedCombinerParameter</code> to add
      */
-    public void addCombinerParameter(TargetedCombinerParameter<T,U> targetdCombinerParameter) {
+    public void addCombinerParameter(TargetedCombinerParameter<T, U> targetdCombinerParameter) {
         this.ensureTargetedCombinerParameters();
         this.targetedCombinerParameters.add(targetdCombinerParameter);
-        this.mapTargetToCombinerParameters      = null;
+        this.mapTargetToCombinerParameters = null;
     }
 
     /**
-     * Adds the contents of the given <code>Collection</code> of <code>TargetedCombinerParameter</code>s to this <code>TargetedCombinerParameterMap</code>.
+     * Adds the contents of the given <code>Collection</code> of <code>TargetedCombinerParameter</code>s to
+     * this <code>TargetedCombinerParameterMap</code>.
      *
-     * @param listTargetedCombinerParameters the <code>Collection</code> of <code>TargetedCombinerParameter</code>s to add
+     * @param listTargetedCombinerParameters the <code>Collection</code> of
+     *            <code>TargetedCombinerParameter</code>s to add
      */
-    public void addCombinerParameters(Collection<TargetedCombinerParameter<T,U>> listTargetedCombinerParameters) {
+    public void addCombinerParameters(Collection<TargetedCombinerParameter<T, U>> listTargetedCombinerParameters) {
         this.ensureTargetedCombinerParameters();
         this.targetedCombinerParameters.addAll(listTargetedCombinerParameters);
-        this.mapTargetToCombinerParameters      = null;
+        this.mapTargetToCombinerParameters = null;
     }
 
     /**
-     * Sets the set of <code>TargetedCombinerParameter</code>s for this <code>TargetedCombinerParameterMap</code> to the contents of the
-     * given <code>Collection</code>>
+     * Sets the set of <code>TargetedCombinerParameter</code>s for this
+     * <code>TargetedCombinerParameterMap</code> to the contents of the given <code>Collection</code>>
      *
-     * @param listTargetedCombinerParameters the <code>Collection</code> of <code>TargetedCombinerParameter</code>s to set
+     * @param listTargetedCombinerParameters the <code>Collection</code> of
+     *            <code>TargetedCombinerParameter</code>s to set
      */
-    public void setCombinerParameters(Collection<TargetedCombinerParameter<T,U>> listTargetedCombinerParameters) {
+    public void setCombinerParameters(Collection<TargetedCombinerParameter<T, U>> listTargetedCombinerParameters) {
         this.targetedCombinerParameters = null;
         if (listTargetedCombinerParameters != null) {
             this.addCombinerParameters(targetedCombinerParameters);
@@ -154,19 +160,20 @@ public class TargetedCombinerParameterMap<T, U> {
     }
 
     /**
-     * Looks up the given target in the map for any {@link CombinerParameter}s for the
-     * given target.
+     * Looks up the given target in the map for any {@link CombinerParameter}s for the given target.
      *
      * @param target the target
      * @return a <code>List</code> of <code>CombinerParameter</code>s for the target or null if none
-     * @throws IllegalStateException if there are <code>TargetedCombinerParameter</code>s that cannot be resolved
+     * @throws IllegalStateException if there are <code>TargetedCombinerParameter</code>s that cannot be
+     *             resolved
      */
     public List<CombinerParameter> getCombinerParameters(U target) throws IllegalStateException {
         this.ensureMap();
-        return (this.mapTargetToCombinerParameters == null ? null : this.mapTargetToCombinerParameters.get(target));
+        return (this.mapTargetToCombinerParameters == null ? null : this.mapTargetToCombinerParameters
+            .get(target));
     }
 
-    public Iterator<TargetedCombinerParameter<T,U>> getTargetedCombinerParameters() {
+    public Iterator<TargetedCombinerParameter<T, U>> getTargetedCombinerParameters() {
         return (this.targetedCombinerParameters == null ? null : this.targetedCombinerParameters.iterator());
     }
 

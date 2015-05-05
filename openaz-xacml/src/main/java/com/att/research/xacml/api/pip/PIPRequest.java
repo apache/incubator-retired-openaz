@@ -33,9 +33,8 @@ package com.att.research.xacml.api.pip;
 import com.att.research.xacml.api.Identifier;
 
 /**
- * PIPRequest is the interface that objects implement to represent a request to a {@link PIPEngine} to retrieve
- * attributes with values that meet a given request.
- *
+ * PIPRequest is the interface that objects implement to represent a request to a {@link PIPEngine} to
+ * retrieve attributes with values that meet a given request.
  */
 public interface PIPRequest {
     /**
@@ -62,7 +61,8 @@ public interface PIPRequest {
     /**
      * Gets the <code>String</code> issuer identifier for the attributes to retrieve.
      *
-     * @return the <code>String</code> issuer identifier for the attributes to retrieve or null if there is no requirement to match the issuer.
+     * @return the <code>String</code> issuer identifier for the attributes to retrieve or null if there is no
+     *         requirement to match the issuer.
      */
     public String getIssuer();
 

@@ -33,20 +33,18 @@ package com.att.research.xacmlatt.pdp.policy;
 import com.att.research.xacml.api.Decision;
 
 /**
- * RuleEffect is an enumeration of the XACML decision effects that a {@link Rule} may apply
- * to.
- *
+ * RuleEffect is an enumeration of the XACML decision effects that a {@link Rule} may apply to.
  */
 public enum RuleEffect {
     DENY("Deny", Decision.DENY),
-    PERMIT("Permit", Decision.PERMIT)
-    ;
+    PERMIT("Permit", Decision.PERMIT);
 
     private String name;
     private Decision decision;
+
     private RuleEffect(String nameIn, Decision decisionIn) {
-        this.name               = nameIn;
-        this.decision   = decisionIn;
+        this.name = nameIn;
+        this.decision = decisionIn;
     }
 
     public String getName() {
@@ -69,7 +67,7 @@ public enum RuleEffect {
      * @return the matching <code>RuleEffect</code> or null if there is no match
      */
     public static RuleEffect getRuleEffect(String effectName) {
-        for (RuleEffect ruleEffect: RuleEffect.values()) {
+        for (RuleEffect ruleEffect : RuleEffect.values()) {
             if (ruleEffect.getName().equalsIgnoreCase(effectName)) {
                 return ruleEffect;
             }

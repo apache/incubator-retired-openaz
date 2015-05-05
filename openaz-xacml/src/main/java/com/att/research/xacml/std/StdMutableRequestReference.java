@@ -41,38 +41,42 @@ import com.att.research.xacml.util.ListUtil;
 
 /**
  * Mutable implementation of the {@link com.att.research.xacml.api.RequestReference} interface.
- *
  */
 public class StdMutableRequestReference implements RequestReference {
-    private static final List<RequestAttributesReference> EMPTY_LIST            = Collections.unmodifiableList(new ArrayList<RequestAttributesReference>());
-    private List<RequestAttributesReference> requestAttributesReferences        = EMPTY_LIST;
+    private static final List<RequestAttributesReference> EMPTY_LIST = Collections
+        .unmodifiableList(new ArrayList<RequestAttributesReference>());
+    private List<RequestAttributesReference> requestAttributesReferences = EMPTY_LIST;
 
     /**
-     * Creates a new <code>StdMutableRequestReference</code> with no {@link com.att.research.xacml.api.RequestAttributesReference}s.
+     * Creates a new <code>StdMutableRequestReference</code> with no
+     * {@link com.att.research.xacml.api.RequestAttributesReference}s.
      */
     public StdMutableRequestReference() {
     }
 
     public StdMutableRequestReference(Collection<RequestAttributesReference> listRequestAttributesReferencesIn) {
         if (listRequestAttributesReferencesIn != null) {
-            this.requestAttributesReferences    = new ArrayList<RequestAttributesReference>();
+            this.requestAttributesReferences = new ArrayList<RequestAttributesReference>();
             this.requestAttributesReferences.addAll(listRequestAttributesReferencesIn);
         }
     }
 
     @Override
     public Collection<RequestAttributesReference> getAttributesReferences() {
-        return (this.requestAttributesReferences == EMPTY_LIST ? this.requestAttributesReferences : Collections.unmodifiableCollection(this.requestAttributesReferences));
+        return (this.requestAttributesReferences == EMPTY_LIST
+            ? this.requestAttributesReferences : Collections
+                .unmodifiableCollection(this.requestAttributesReferences));
     }
 
     /**
-     * Adds a {@link com.att.research.xacml.api.RequestAttributesReference} to this <code>StdMutableRequestReference</code>>
+     * Adds a {@link com.att.research.xacml.api.RequestAttributesReference} to this
+     * <code>StdMutableRequestReference</code>>
      *
      * @param requestAttributesReference the <code>RequestAttributesReference</code> to add
      */
     public void add(RequestAttributesReference requestAttributesReference) {
         if (this.requestAttributesReferences == EMPTY_LIST) {
-            this.requestAttributesReferences    = new ArrayList<RequestAttributesReference>();
+            this.requestAttributesReferences = new ArrayList<RequestAttributesReference>();
         }
         this.requestAttributesReferences.add(requestAttributesReference);
     }
@@ -84,14 +88,15 @@ public class StdMutableRequestReference implements RequestReference {
         } else if (obj == null || !(obj instanceof RequestReference)) {
             return false;
         } else {
-            RequestReference objRequestReference        = (RequestReference)obj;
-            return ListUtil.equalsAllowNulls(this.getAttributesReferences(), objRequestReference.getAttributesReferences());
+            RequestReference objRequestReference = (RequestReference)obj;
+            return ListUtil.equalsAllowNulls(this.getAttributesReferences(),
+                                             objRequestReference.getAttributesReferences());
         }
     }
 
     @Override
     public String toString() {
-        StringBuilder   stringBuilder   = new StringBuilder("{");
+        StringBuilder stringBuilder = new StringBuilder("{");
 
         if (this.requestAttributesReferences.size() > 0) {
             stringBuilder.append("requestAttributesReferences=");

@@ -33,21 +33,12 @@ import org.junit.Test;
 
 import com.att.research.xacml.api.XACML3;
 import com.att.research.xacml.std.datatypes.DataTypes;
-import com.att.research.xacmlatt.pdp.policy.ExpressionResult;
-import com.att.research.xacmlatt.pdp.policy.FunctionArgument;
-import com.att.research.xacmlatt.pdp.policy.FunctionArgumentAttributeValue;
-import com.att.research.xacmlatt.pdp.std.StdFunctions;
 
 /**
- * Test of PDP Functions (See XACML core spec section A.3)
- *
- * TO RUN - use jUnit
- * In Eclipse select this file or the enclosing directory, right-click and select Run As/JUnit Test
- *
- *
+ * Test of PDP Functions (See XACML core spec section A.3) TO RUN - use jUnit In Eclipse select this file or
+ * the enclosing directory, right-click and select Run As/JUnit Test
  */
 public class FunctionDefinitionStringFunctionsTest {
-
 
     /*
      * variables useful in the following tests
@@ -55,7 +46,6 @@ public class FunctionDefinitionStringFunctionsTest {
     List<FunctionArgument> arguments = new ArrayList<FunctionArgument>();
 
     ExpressionResult res;
-
 
     @Test
     public void testConcatenate() {
@@ -74,18 +64,17 @@ public class FunctionDefinitionStringFunctionsTest {
             attrNull = new FunctionArgumentAttributeValue(DataTypes.DT_STRING.createAttributeValue(null));
             attrInteger = new FunctionArgumentAttributeValue(DataTypes.DT_INTEGER.createAttributeValue(1234));
         } catch (Exception e) {
-            fail("creating attributes e="+ e);
+            fail("creating attributes e=" + e);
         }
 
-        FunctionDefinitionStringFunctions<?,?> fd = (FunctionDefinitionStringFunctions<?,?>) StdFunctions.FD_STRING_CONCATENATE;
+        FunctionDefinitionStringFunctions<?, ?> fd = (FunctionDefinitionStringFunctions<?, ?>)StdFunctions.FD_STRING_CONCATENATE;
 
         // check identity and type of the thing created
         assertEquals(XACML3.ID_FUNCTION_STRING_CONCATENATE, fd.getId());
         assertEquals(DataTypes.DT_STRING.getId(), fd.getDataTypeId());
 
-        // just to be safe...  If tests take too long these can probably be eliminated
+        // just to be safe... If tests take too long these can probably be eliminated
         assertFalse(fd.returnsBag());
-
 
         // match
         arguments.clear();
@@ -134,8 +123,8 @@ public class FunctionDefinitionStringFunctionsTest {
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
         assertEquals("function:string-concatenate Got null attribute", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
-
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
         // null second arg
         arguments.clear();
@@ -144,7 +133,8 @@ public class FunctionDefinitionStringFunctionsTest {
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
         assertEquals("function:string-concatenate Got null attribute", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
         // bad arg type
         arguments.clear();
@@ -152,8 +142,10 @@ public class FunctionDefinitionStringFunctionsTest {
         arguments.add(attrV2);
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
-        assertEquals("function:string-concatenate Expected data type 'string' saw 'integer'", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("function:string-concatenate Expected data type 'string' saw 'integer'", res.getStatus()
+            .getStatusMessage());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
         // null second arg
         arguments.clear();
@@ -162,11 +154,10 @@ public class FunctionDefinitionStringFunctionsTest {
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
         assertEquals("function:string-concatenate Got null attribute", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
     }
-
-
 
     @Test
     public void testStringStartsWith() {
@@ -185,24 +176,25 @@ public class FunctionDefinitionStringFunctionsTest {
         try {
             attrV1 = new FunctionArgumentAttributeValue(DataTypes.DT_STRING.createAttributeValue(v1));
             attrBigger = new FunctionArgumentAttributeValue(DataTypes.DT_STRING.createAttributeValue(bigger));
-            attrBiggerNoMatch = new FunctionArgumentAttributeValue(DataTypes.DT_STRING.createAttributeValue(biggerNoMatch));
+            attrBiggerNoMatch = new FunctionArgumentAttributeValue(
+                                                                   DataTypes.DT_STRING
+                                                                       .createAttributeValue(biggerNoMatch));
             attrCaps = new FunctionArgumentAttributeValue(DataTypes.DT_STRING.createAttributeValue(caps));
             attrBlank = new FunctionArgumentAttributeValue(DataTypes.DT_STRING.createAttributeValue(""));
             attrNull = new FunctionArgumentAttributeValue(DataTypes.DT_STRING.createAttributeValue(null));
             attrInteger = new FunctionArgumentAttributeValue(DataTypes.DT_INTEGER.createAttributeValue(1234));
         } catch (Exception e) {
-            fail("creating attributes e="+ e);
+            fail("creating attributes e=" + e);
         }
 
-        FunctionDefinitionStringFunctions<?,?> fd = (FunctionDefinitionStringFunctions<?,?>) StdFunctions.FD_STRING_STARTS_WITH;
+        FunctionDefinitionStringFunctions<?, ?> fd = (FunctionDefinitionStringFunctions<?, ?>)StdFunctions.FD_STRING_STARTS_WITH;
 
         // check identity and type of the thing created
         assertEquals(XACML3.ID_FUNCTION_STRING_STARTS_WITH, fd.getId());
         assertEquals(DataTypes.DT_BOOLEAN.getId(), fd.getDataTypeId());
 
-        // just to be safe...  If tests take too long these can probably be eliminated
+        // just to be safe... If tests take too long these can probably be eliminated
         assertFalse(fd.returnsBag());
-
 
         // match
         arguments.clear();
@@ -281,7 +273,8 @@ public class FunctionDefinitionStringFunctionsTest {
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
         assertEquals("function:string-starts-with Got null attribute", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
         // null second arg
         arguments.clear();
@@ -290,7 +283,8 @@ public class FunctionDefinitionStringFunctionsTest {
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
         assertEquals("function:string-starts-with Got null attribute", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
         // illegal arg type
         arguments.clear();
@@ -298,15 +292,15 @@ public class FunctionDefinitionStringFunctionsTest {
         arguments.add(attrBigger);
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
-        assertEquals("function:string-starts-with Expected data type 'string' saw 'integer'", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("function:string-starts-with Expected data type 'string' saw 'integer'", res.getStatus()
+            .getStatusMessage());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
     }
 
-
     @Test
     public void testAnyuriStartsWith() {
-
 
         FunctionArgumentAttributeValue attrV1 = null;
         FunctionArgumentAttributeValue attrBigger = null;
@@ -326,26 +320,29 @@ public class FunctionDefinitionStringFunctionsTest {
 
             attrV1 = new FunctionArgumentAttributeValue(DataTypes.DT_STRING.createAttributeValue(v1));
             attrBigger = new FunctionArgumentAttributeValue(DataTypes.DT_ANYURI.createAttributeValue(bigger));
-            attrBiggerNoMatch = new FunctionArgumentAttributeValue(DataTypes.DT_ANYURI.createAttributeValue(biggerNoMatch));
+            attrBiggerNoMatch = new FunctionArgumentAttributeValue(
+                                                                   DataTypes.DT_ANYURI
+                                                                       .createAttributeValue(biggerNoMatch));
             attrCaps = new FunctionArgumentAttributeValue(DataTypes.DT_STRING.createAttributeValue(caps));
-            attrBigString = new FunctionArgumentAttributeValue(DataTypes.DT_STRING.createAttributeValue(bigString));
+            attrBigString = new FunctionArgumentAttributeValue(
+                                                               DataTypes.DT_STRING
+                                                                   .createAttributeValue(bigString));
             attrBlankString = new FunctionArgumentAttributeValue(DataTypes.DT_STRING.createAttributeValue(""));
             attrBlankURI = new FunctionArgumentAttributeValue(DataTypes.DT_ANYURI.createAttributeValue(""));
             attrNull = new FunctionArgumentAttributeValue(DataTypes.DT_STRING.createAttributeValue(null));
             attrInteger = new FunctionArgumentAttributeValue(DataTypes.DT_INTEGER.createAttributeValue(1234));
         } catch (Exception e) {
-            fail("creating attributes e="+ e);
+            fail("creating attributes e=" + e);
         }
 
-        FunctionDefinitionStringFunctions<?,?> fd = (FunctionDefinitionStringFunctions<?,?>) StdFunctions.FD_ANYURI_STARTS_WITH;
+        FunctionDefinitionStringFunctions<?, ?> fd = (FunctionDefinitionStringFunctions<?, ?>)StdFunctions.FD_ANYURI_STARTS_WITH;
 
         // check identity and type of the thing created
         assertEquals(XACML3.ID_FUNCTION_ANYURI_STARTS_WITH, fd.getId());
         assertEquals(DataTypes.DT_BOOLEAN.getId(), fd.getDataTypeId());
 
-        // just to be safe...  If tests take too long these can probably be eliminated
+        // just to be safe... If tests take too long these can probably be eliminated
         assertFalse(fd.returnsBag());
-
 
         // match
         arguments.clear();
@@ -407,7 +404,6 @@ public class FunctionDefinitionStringFunctionsTest {
         resValue = (Boolean)res.getValue().getValue();
         assertEquals(false, resValue);
 
-
         // two blanks
         arguments.clear();
         arguments.add(attrBlankString);
@@ -424,9 +420,10 @@ public class FunctionDefinitionStringFunctionsTest {
         arguments.add(attrV1);
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
-        assertEquals("function:anyURI-starts-with Expected data type 'string' saw 'anyURI'", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
-
+        assertEquals("function:anyURI-starts-with Expected data type 'string' saw 'anyURI'", res.getStatus()
+            .getStatusMessage());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
         // null firat arg
         arguments.clear();
@@ -435,7 +432,8 @@ public class FunctionDefinitionStringFunctionsTest {
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
         assertEquals("function:anyURI-starts-with Got null attribute", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
         // null second arg
         arguments.clear();
@@ -444,7 +442,8 @@ public class FunctionDefinitionStringFunctionsTest {
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
         assertEquals("function:anyURI-starts-with Got null attribute", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
         // illegal arg type
         arguments.clear();
@@ -452,13 +451,12 @@ public class FunctionDefinitionStringFunctionsTest {
         arguments.add(attrBigger);
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
-        assertEquals("function:anyURI-starts-with Expected data type 'string' saw 'integer'", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("function:anyURI-starts-with Expected data type 'string' saw 'integer'", res.getStatus()
+            .getStatusMessage());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
     }
-
-
-
 
     @Test
     public void testStringEndsWith() {
@@ -477,24 +475,25 @@ public class FunctionDefinitionStringFunctionsTest {
         try {
             attrV1 = new FunctionArgumentAttributeValue(DataTypes.DT_STRING.createAttributeValue(v1));
             attrBigger = new FunctionArgumentAttributeValue(DataTypes.DT_STRING.createAttributeValue(bigger));
-            attrBiggerNoMatch = new FunctionArgumentAttributeValue(DataTypes.DT_STRING.createAttributeValue(biggerNoMatch));
+            attrBiggerNoMatch = new FunctionArgumentAttributeValue(
+                                                                   DataTypes.DT_STRING
+                                                                       .createAttributeValue(biggerNoMatch));
             attrCaps = new FunctionArgumentAttributeValue(DataTypes.DT_STRING.createAttributeValue(caps));
             attrBlank = new FunctionArgumentAttributeValue(DataTypes.DT_STRING.createAttributeValue(""));
             attrNull = new FunctionArgumentAttributeValue(DataTypes.DT_STRING.createAttributeValue(null));
             attrInteger = new FunctionArgumentAttributeValue(DataTypes.DT_INTEGER.createAttributeValue(1234));
         } catch (Exception e) {
-            fail("creating attributes e="+ e);
+            fail("creating attributes e=" + e);
         }
 
-        FunctionDefinitionStringFunctions<?,?> fd = (FunctionDefinitionStringFunctions<?,?>) StdFunctions.FD_STRING_ENDS_WITH;
+        FunctionDefinitionStringFunctions<?, ?> fd = (FunctionDefinitionStringFunctions<?, ?>)StdFunctions.FD_STRING_ENDS_WITH;
 
         // check identity and type of the thing created
         assertEquals(XACML3.ID_FUNCTION_STRING_ENDS_WITH, fd.getId());
         assertEquals(DataTypes.DT_BOOLEAN.getId(), fd.getDataTypeId());
 
-        // just to be safe...  If tests take too long these can probably be eliminated
+        // just to be safe... If tests take too long these can probably be eliminated
         assertFalse(fd.returnsBag());
-
 
         // match
         arguments.clear();
@@ -573,7 +572,8 @@ public class FunctionDefinitionStringFunctionsTest {
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
         assertEquals("function:string-ends-with Got null attribute", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
         // null second arg
         arguments.clear();
@@ -582,7 +582,8 @@ public class FunctionDefinitionStringFunctionsTest {
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
         assertEquals("function:string-ends-with Got null attribute", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
         // illegal arg type
         arguments.clear();
@@ -590,15 +591,15 @@ public class FunctionDefinitionStringFunctionsTest {
         arguments.add(attrBigger);
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
-        assertEquals("function:string-ends-with Expected data type 'string' saw 'integer'", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("function:string-ends-with Expected data type 'string' saw 'integer'", res.getStatus()
+            .getStatusMessage());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
     }
 
-
     @Test
     public void testAnyuriEndsWith() {
-
 
         FunctionArgumentAttributeValue attrV1 = null;
         FunctionArgumentAttributeValue attrBigger = null;
@@ -618,26 +619,29 @@ public class FunctionDefinitionStringFunctionsTest {
 
             attrV1 = new FunctionArgumentAttributeValue(DataTypes.DT_STRING.createAttributeValue(v1));
             attrBigger = new FunctionArgumentAttributeValue(DataTypes.DT_ANYURI.createAttributeValue(bigger));
-            attrBiggerNoMatch = new FunctionArgumentAttributeValue(DataTypes.DT_ANYURI.createAttributeValue(biggerNoMatch));
+            attrBiggerNoMatch = new FunctionArgumentAttributeValue(
+                                                                   DataTypes.DT_ANYURI
+                                                                       .createAttributeValue(biggerNoMatch));
             attrCaps = new FunctionArgumentAttributeValue(DataTypes.DT_STRING.createAttributeValue(caps));
-            attrBigString = new FunctionArgumentAttributeValue(DataTypes.DT_STRING.createAttributeValue(bigString));
+            attrBigString = new FunctionArgumentAttributeValue(
+                                                               DataTypes.DT_STRING
+                                                                   .createAttributeValue(bigString));
             attrBlankString = new FunctionArgumentAttributeValue(DataTypes.DT_STRING.createAttributeValue(""));
             attrBlankURI = new FunctionArgumentAttributeValue(DataTypes.DT_ANYURI.createAttributeValue(""));
             attrNull = new FunctionArgumentAttributeValue(DataTypes.DT_STRING.createAttributeValue(null));
             attrInteger = new FunctionArgumentAttributeValue(DataTypes.DT_INTEGER.createAttributeValue(1234));
         } catch (Exception e) {
-            fail("creating attributes e="+ e);
+            fail("creating attributes e=" + e);
         }
 
-        FunctionDefinitionStringFunctions<?,?> fd = (FunctionDefinitionStringFunctions<?,?>) StdFunctions.FD_ANYURI_ENDS_WITH;
+        FunctionDefinitionStringFunctions<?, ?> fd = (FunctionDefinitionStringFunctions<?, ?>)StdFunctions.FD_ANYURI_ENDS_WITH;
 
         // check identity and type of the thing created
         assertEquals(XACML3.ID_FUNCTION_ANYURI_ENDS_WITH, fd.getId());
         assertEquals(DataTypes.DT_BOOLEAN.getId(), fd.getDataTypeId());
 
-        // just to be safe...  If tests take too long these can probably be eliminated
+        // just to be safe... If tests take too long these can probably be eliminated
         assertFalse(fd.returnsBag());
-
 
         // match
         arguments.clear();
@@ -699,7 +703,6 @@ public class FunctionDefinitionStringFunctionsTest {
         resValue = (Boolean)res.getValue().getValue();
         assertEquals(false, resValue);
 
-
         // two blanks
         arguments.clear();
         arguments.add(attrBlankString);
@@ -716,9 +719,10 @@ public class FunctionDefinitionStringFunctionsTest {
         arguments.add(attrV1);
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
-        assertEquals("function:anyURI-ends-with Expected data type 'string' saw 'anyURI'", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
-
+        assertEquals("function:anyURI-ends-with Expected data type 'string' saw 'anyURI'", res.getStatus()
+            .getStatusMessage());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
         // null firat arg
         arguments.clear();
@@ -727,7 +731,8 @@ public class FunctionDefinitionStringFunctionsTest {
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
         assertEquals("function:anyURI-ends-with Got null attribute", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
         // null second arg
         arguments.clear();
@@ -736,7 +741,8 @@ public class FunctionDefinitionStringFunctionsTest {
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
         assertEquals("function:anyURI-ends-with Got null attribute", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
         // illegal arg type
         arguments.clear();
@@ -744,13 +750,12 @@ public class FunctionDefinitionStringFunctionsTest {
         arguments.add(attrBigger);
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
-        assertEquals("function:anyURI-ends-with Expected data type 'string' saw 'integer'", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("function:anyURI-ends-with Expected data type 'string' saw 'integer'", res.getStatus()
+            .getStatusMessage());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
     }
-
-
-
 
     @Test
     public void testStringSubstring() {
@@ -768,10 +773,10 @@ public class FunctionDefinitionStringFunctionsTest {
         FunctionArgumentAttributeValue attrInteger19 = null;
         FunctionArgumentAttributeValue attrInteger20 = null;
 
-
-
         try {
-            attrBigString = new FunctionArgumentAttributeValue(DataTypes.DT_STRING.createAttributeValue(bigString));
+            attrBigString = new FunctionArgumentAttributeValue(
+                                                               DataTypes.DT_STRING
+                                                                   .createAttributeValue(bigString));
             attrBlank = new FunctionArgumentAttributeValue(DataTypes.DT_STRING.createAttributeValue(""));
             attrNull = new FunctionArgumentAttributeValue(DataTypes.DT_STRING.createAttributeValue(null));
             attrInteger0 = new FunctionArgumentAttributeValue(DataTypes.DT_INTEGER.createAttributeValue(0));
@@ -782,18 +787,17 @@ public class FunctionDefinitionStringFunctionsTest {
             attrInteger20 = new FunctionArgumentAttributeValue(DataTypes.DT_INTEGER.createAttributeValue(20));
             attrDouble = new FunctionArgumentAttributeValue(DataTypes.DT_DOUBLE.createAttributeValue(123.4));
         } catch (Exception e) {
-            fail("creating attributes e="+ e);
+            fail("creating attributes e=" + e);
         }
 
-        FunctionDefinitionStringFunctions<?,?> fd = (FunctionDefinitionStringFunctions<?,?>) StdFunctions.FD_STRING_SUBSTRING;
+        FunctionDefinitionStringFunctions<?, ?> fd = (FunctionDefinitionStringFunctions<?, ?>)StdFunctions.FD_STRING_SUBSTRING;
 
         // check identity and type of the thing created
         assertEquals(XACML3.ID_FUNCTION_STRING_SUBSTRING, fd.getId());
         assertEquals(DataTypes.DT_STRING.getId(), fd.getDataTypeId());
 
-        // just to be safe...  If tests take too long these can probably be eliminated
+        // just to be safe... If tests take too long these can probably be eliminated
         assertFalse(fd.returnsBag());
-
 
         // match
         arguments.clear();
@@ -846,9 +850,10 @@ public class FunctionDefinitionStringFunctionsTest {
         arguments.add(attrInteger8);
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
-        assertEquals("function:string-substring Start point '-1' out of range 0-19 for string='abc some string abc'", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
-
+        assertEquals("function:string-substring Start point '-1' out of range 0-19 for string='abc some string abc'",
+                     res.getStatus().getStatusMessage());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
         // second index too big
         arguments.clear();
@@ -857,8 +862,10 @@ public class FunctionDefinitionStringFunctionsTest {
         arguments.add(attrInteger20);
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
-        assertEquals("function:string-substring End point '20' out of range 0-19 for string='abc some string abc'", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("function:string-substring End point '20' out of range 0-19 for string='abc some string abc'",
+                     res.getStatus().getStatusMessage());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
         // indexes reversed
         arguments.clear();
@@ -867,8 +874,10 @@ public class FunctionDefinitionStringFunctionsTest {
         arguments.add(attrInteger1);
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
-        assertEquals("function:string-substring End point '1' less than start point 'null' for string='abc some string abc'", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("function:string-substring End point '1' less than start point 'null' for string='abc some string abc'",
+                     res.getStatus().getStatusMessage());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
         // indexes the same
         arguments.clear();
@@ -899,8 +908,10 @@ public class FunctionDefinitionStringFunctionsTest {
         arguments.add(attrInteger1);
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
-        assertEquals("function:string-substring Expected data type 'string' saw 'double'", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("function:string-substring Expected data type 'string' saw 'double'", res.getStatus()
+            .getStatusMessage());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
         // non-integer 2nd attr
         arguments.clear();
@@ -909,8 +920,10 @@ public class FunctionDefinitionStringFunctionsTest {
         arguments.add(attrInteger1);
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
-        assertEquals("function:string-substring Expected data type 'integer' saw 'double'", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("function:string-substring Expected data type 'integer' saw 'double'", res.getStatus()
+            .getStatusMessage());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
         // non-integer 3rd attr
         arguments.clear();
@@ -919,8 +932,10 @@ public class FunctionDefinitionStringFunctionsTest {
         arguments.add(attrDouble);
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
-        assertEquals("function:string-substring Expected data type 'integer' saw 'double'", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("function:string-substring Expected data type 'integer' saw 'double'", res.getStatus()
+            .getStatusMessage());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
         // 4 args
         arguments.clear();
@@ -930,8 +945,10 @@ public class FunctionDefinitionStringFunctionsTest {
         arguments.add(attrInteger1);
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
-        assertEquals("function:string-substring Expected 3 arguments, got 4", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("function:string-substring Expected 3 arguments, got 4", res.getStatus()
+            .getStatusMessage());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
         // 2 args
         arguments.clear();
@@ -939,8 +956,10 @@ public class FunctionDefinitionStringFunctionsTest {
         arguments.add(attrInteger8);
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
-        assertEquals("function:string-substring Expected 3 arguments, got 2", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("function:string-substring Expected 3 arguments, got 2", res.getStatus()
+            .getStatusMessage());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
         // null 1st arg
         arguments.clear();
@@ -950,8 +969,8 @@ public class FunctionDefinitionStringFunctionsTest {
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
         assertEquals("function:string-substring Got null attribute", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
-
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
         // null 2nd arg
         arguments.clear();
@@ -961,13 +980,10 @@ public class FunctionDefinitionStringFunctionsTest {
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
         assertEquals("function:string-substring Got null attribute", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
-
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
     }
-
-
-
 
     @Test
     public void testAnyURISubstring() {
@@ -985,8 +1001,6 @@ public class FunctionDefinitionStringFunctionsTest {
         FunctionArgumentAttributeValue attrInteger45 = null;
         FunctionArgumentAttributeValue attrInteger46 = null;
 
-
-
         try {
             attrURI = new FunctionArgumentAttributeValue(DataTypes.DT_ANYURI.createAttributeValue(bigString));
             attrBlank = new FunctionArgumentAttributeValue(DataTypes.DT_ANYURI.createAttributeValue(""));
@@ -999,18 +1013,17 @@ public class FunctionDefinitionStringFunctionsTest {
             attrInteger46 = new FunctionArgumentAttributeValue(DataTypes.DT_INTEGER.createAttributeValue(46));
             attrDouble = new FunctionArgumentAttributeValue(DataTypes.DT_DOUBLE.createAttributeValue(123.4));
         } catch (Exception e) {
-            fail("creating attributes e="+ e);
+            fail("creating attributes e=" + e);
         }
 
-        FunctionDefinitionStringFunctions<?,?> fd = (FunctionDefinitionStringFunctions<?,?>) StdFunctions.FD_ANYURI_SUBSTRING;
+        FunctionDefinitionStringFunctions<?, ?> fd = (FunctionDefinitionStringFunctions<?, ?>)StdFunctions.FD_ANYURI_SUBSTRING;
 
         // check identity and type of the thing created
         assertEquals(XACML3.ID_FUNCTION_ANYURI_SUBSTRING, fd.getId());
         assertEquals(DataTypes.DT_STRING.getId(), fd.getDataTypeId());
 
-        // just to be safe...  If tests take too long these can probably be eliminated
+        // just to be safe... If tests take too long these can probably be eliminated
         assertFalse(fd.returnsBag());
-
 
         // match
         arguments.clear();
@@ -1063,9 +1076,10 @@ public class FunctionDefinitionStringFunctionsTest {
         arguments.add(attrInteger8);
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
-        assertEquals("function:anyURI-substring Start point '-1' out of range 0-45 for string='http://company.com:8080/this/is/some/long/uri'", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
-
+        assertEquals("function:anyURI-substring Start point '-1' out of range 0-45 for string='http://company.com:8080/this/is/some/long/uri'",
+                     res.getStatus().getStatusMessage());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
         // second index too big
         arguments.clear();
@@ -1074,8 +1088,10 @@ public class FunctionDefinitionStringFunctionsTest {
         arguments.add(attrInteger46);
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
-        assertEquals("function:anyURI-substring End point '46' out of range 0-45 for string='http://company.com:8080/this/is/some/long/uri'", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("function:anyURI-substring End point '46' out of range 0-45 for string='http://company.com:8080/this/is/some/long/uri'",
+                     res.getStatus().getStatusMessage());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
         // indexes reversed
         arguments.clear();
@@ -1084,8 +1100,10 @@ public class FunctionDefinitionStringFunctionsTest {
         arguments.add(attrInteger1);
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
-        assertEquals("function:anyURI-substring End point '1' less than start point 'null' for string='http://company.com:8080/this/is/some/long/uri'", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("function:anyURI-substring End point '1' less than start point 'null' for string='http://company.com:8080/this/is/some/long/uri'",
+                     res.getStatus().getStatusMessage());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
         // indexes the same
         arguments.clear();
@@ -1116,8 +1134,10 @@ public class FunctionDefinitionStringFunctionsTest {
         arguments.add(attrInteger1);
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
-        assertEquals("function:anyURI-substring Expected data type 'anyURI' saw 'double'", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("function:anyURI-substring Expected data type 'anyURI' saw 'double'", res.getStatus()
+            .getStatusMessage());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
         // non-integer 2nd attr
         arguments.clear();
@@ -1126,8 +1146,10 @@ public class FunctionDefinitionStringFunctionsTest {
         arguments.add(attrInteger1);
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
-        assertEquals("function:anyURI-substring Expected data type 'integer' saw 'double'", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("function:anyURI-substring Expected data type 'integer' saw 'double'", res.getStatus()
+            .getStatusMessage());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
         // non-integer 3rd attr
         arguments.clear();
@@ -1136,8 +1158,10 @@ public class FunctionDefinitionStringFunctionsTest {
         arguments.add(attrDouble);
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
-        assertEquals("function:anyURI-substring Expected data type 'integer' saw 'double'", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("function:anyURI-substring Expected data type 'integer' saw 'double'", res.getStatus()
+            .getStatusMessage());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
         // 4 args
         arguments.clear();
@@ -1147,8 +1171,10 @@ public class FunctionDefinitionStringFunctionsTest {
         arguments.add(attrInteger1);
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
-        assertEquals("function:anyURI-substring Expected 3 arguments, got 4", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("function:anyURI-substring Expected 3 arguments, got 4", res.getStatus()
+            .getStatusMessage());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
         // 2 args
         arguments.clear();
@@ -1156,8 +1182,10 @@ public class FunctionDefinitionStringFunctionsTest {
         arguments.add(attrInteger8);
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
-        assertEquals("function:anyURI-substring Expected 3 arguments, got 2", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("function:anyURI-substring Expected 3 arguments, got 2", res.getStatus()
+            .getStatusMessage());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
         // null 1st arg
         arguments.clear();
@@ -1167,8 +1195,8 @@ public class FunctionDefinitionStringFunctionsTest {
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
         assertEquals("function:anyURI-substring Got null attribute", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
-
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
         // null 2nd arg
         arguments.clear();
@@ -1178,29 +1206,10 @@ public class FunctionDefinitionStringFunctionsTest {
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
         assertEquals("function:anyURI-substring Got null attribute", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     @Test
     public void testStringContains() {
@@ -1219,24 +1228,25 @@ public class FunctionDefinitionStringFunctionsTest {
         try {
             attrV1 = new FunctionArgumentAttributeValue(DataTypes.DT_STRING.createAttributeValue(v1));
             attrBigger = new FunctionArgumentAttributeValue(DataTypes.DT_STRING.createAttributeValue(bigger));
-            attrBiggerNoMatch = new FunctionArgumentAttributeValue(DataTypes.DT_STRING.createAttributeValue(biggerNoMatch));
+            attrBiggerNoMatch = new FunctionArgumentAttributeValue(
+                                                                   DataTypes.DT_STRING
+                                                                       .createAttributeValue(biggerNoMatch));
             attrCaps = new FunctionArgumentAttributeValue(DataTypes.DT_STRING.createAttributeValue(caps));
             attrBlank = new FunctionArgumentAttributeValue(DataTypes.DT_STRING.createAttributeValue(""));
             attrNull = new FunctionArgumentAttributeValue(DataTypes.DT_STRING.createAttributeValue(null));
             attrInteger = new FunctionArgumentAttributeValue(DataTypes.DT_INTEGER.createAttributeValue(1234));
         } catch (Exception e) {
-            fail("creating attributes e="+ e);
+            fail("creating attributes e=" + e);
         }
 
-        FunctionDefinitionStringFunctions<?,?> fd = (FunctionDefinitionStringFunctions<?,?>) StdFunctions.FD_STRING_CONTAINS;
+        FunctionDefinitionStringFunctions<?, ?> fd = (FunctionDefinitionStringFunctions<?, ?>)StdFunctions.FD_STRING_CONTAINS;
 
         // check identity and type of the thing created
         assertEquals(XACML3.ID_FUNCTION_STRING_CONTAINS, fd.getId());
         assertEquals(DataTypes.DT_BOOLEAN.getId(), fd.getDataTypeId());
 
-        // just to be safe...  If tests take too long these can probably be eliminated
+        // just to be safe... If tests take too long these can probably be eliminated
         assertFalse(fd.returnsBag());
-
 
         // match
         arguments.clear();
@@ -1315,7 +1325,8 @@ public class FunctionDefinitionStringFunctionsTest {
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
         assertEquals("function:string-contains Got null attribute", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
         // null second arg
         arguments.clear();
@@ -1324,7 +1335,8 @@ public class FunctionDefinitionStringFunctionsTest {
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
         assertEquals("function:string-contains Got null attribute", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
         // illegal arg type
         arguments.clear();
@@ -1332,15 +1344,15 @@ public class FunctionDefinitionStringFunctionsTest {
         arguments.add(attrBigger);
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
-        assertEquals("function:string-contains Expected data type 'string' saw 'integer'", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("function:string-contains Expected data type 'string' saw 'integer'", res.getStatus()
+            .getStatusMessage());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
     }
 
-
     @Test
     public void testAnyuriContains() {
-
 
         FunctionArgumentAttributeValue attrV1 = null;
         FunctionArgumentAttributeValue attrBigger = null;
@@ -1360,26 +1372,29 @@ public class FunctionDefinitionStringFunctionsTest {
 
             attrV1 = new FunctionArgumentAttributeValue(DataTypes.DT_STRING.createAttributeValue(v1));
             attrBigger = new FunctionArgumentAttributeValue(DataTypes.DT_ANYURI.createAttributeValue(bigger));
-            attrBiggerNoMatch = new FunctionArgumentAttributeValue(DataTypes.DT_ANYURI.createAttributeValue(biggerNoMatch));
+            attrBiggerNoMatch = new FunctionArgumentAttributeValue(
+                                                                   DataTypes.DT_ANYURI
+                                                                       .createAttributeValue(biggerNoMatch));
             attrCaps = new FunctionArgumentAttributeValue(DataTypes.DT_STRING.createAttributeValue(caps));
-            attrBigString = new FunctionArgumentAttributeValue(DataTypes.DT_STRING.createAttributeValue(bigString));
+            attrBigString = new FunctionArgumentAttributeValue(
+                                                               DataTypes.DT_STRING
+                                                                   .createAttributeValue(bigString));
             attrBlankString = new FunctionArgumentAttributeValue(DataTypes.DT_STRING.createAttributeValue(""));
             attrBlankURI = new FunctionArgumentAttributeValue(DataTypes.DT_ANYURI.createAttributeValue(""));
             attrNull = new FunctionArgumentAttributeValue(DataTypes.DT_STRING.createAttributeValue(null));
             attrInteger = new FunctionArgumentAttributeValue(DataTypes.DT_INTEGER.createAttributeValue(1234));
         } catch (Exception e) {
-            fail("creating attributes e="+ e);
+            fail("creating attributes e=" + e);
         }
 
-        FunctionDefinitionStringFunctions<?,?> fd = (FunctionDefinitionStringFunctions<?,?>) StdFunctions.FD_ANYURI_CONTAINS;
+        FunctionDefinitionStringFunctions<?, ?> fd = (FunctionDefinitionStringFunctions<?, ?>)StdFunctions.FD_ANYURI_CONTAINS;
 
         // check identity and type of the thing created
         assertEquals(XACML3.ID_FUNCTION_ANYURI_CONTAINS, fd.getId());
         assertEquals(DataTypes.DT_BOOLEAN.getId(), fd.getDataTypeId());
 
-        // just to be safe...  If tests take too long these can probably be eliminated
+        // just to be safe... If tests take too long these can probably be eliminated
         assertFalse(fd.returnsBag());
-
 
         // match
         arguments.clear();
@@ -1441,7 +1456,6 @@ public class FunctionDefinitionStringFunctionsTest {
         resValue = (Boolean)res.getValue().getValue();
         assertEquals(false, resValue);
 
-
         // two blanks
         arguments.clear();
         arguments.add(attrBlankString);
@@ -1458,9 +1472,10 @@ public class FunctionDefinitionStringFunctionsTest {
         arguments.add(attrV1);
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
-        assertEquals("function:anyURI-contains Expected data type 'string' saw 'anyURI'", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
-
+        assertEquals("function:anyURI-contains Expected data type 'string' saw 'anyURI'", res.getStatus()
+            .getStatusMessage());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
         // null firat arg
         arguments.clear();
@@ -1469,7 +1484,8 @@ public class FunctionDefinitionStringFunctionsTest {
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
         assertEquals("function:anyURI-contains Got null attribute", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
         // null second arg
         arguments.clear();
@@ -1478,7 +1494,8 @@ public class FunctionDefinitionStringFunctionsTest {
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
         assertEquals("function:anyURI-contains Got null attribute", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
         // illegal arg type
         arguments.clear();
@@ -1486,11 +1503,11 @@ public class FunctionDefinitionStringFunctionsTest {
         arguments.add(attrBigger);
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
-        assertEquals("function:anyURI-contains Expected data type 'string' saw 'integer'", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("function:anyURI-contains Expected data type 'string' saw 'integer'", res.getStatus()
+            .getStatusMessage());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
     }
-
-
 
 }

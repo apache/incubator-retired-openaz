@@ -45,19 +45,18 @@ import com.att.research.xacml.std.StdAttributeValue;
 import com.att.research.xacml.std.dom.DOMUtil;
 
 /**
- * DataTypeBase provides common implementation components of the {@link com.att.research.xacml.api.DataType} interface
- * that is used by the specific instance implementations.
- *
+ * DataTypeBase provides common implementation components of the {@link com.att.research.xacml.api.DataType}
+ * interface that is used by the specific instance implementations.
  *
  * @param <T> the value type for conversion
  */
 public abstract class DataTypeBase<T> implements DataType<T> {
-    private Identifier  id;
-    private Class<T>    classConvert;
+    private Identifier id;
+    private Class<T> classConvert;
 
     protected DataTypeBase(Identifier identifierIn, Class<T> classConvertIn) {
-        this.id                         = identifierIn;
-        this.classConvert       = classConvertIn;
+        this.id = identifierIn;
+        this.classConvert = classConvertIn;
     }
 
     protected Class<T> getClassConvert() {
@@ -70,8 +69,8 @@ public abstract class DataTypeBase<T> implements DataType<T> {
         } else if (objects.size() == 1) {
             return objects.iterator().next();
         } else {
-            Iterator<?>                 iterObjects     = objects.iterator();
-            StringBuilder               stringBuilder   = new StringBuilder();
+            Iterator<?> iterObjects = objects.iterator();
+            StringBuilder stringBuilder = new StringBuilder();
             while (iterObjects.hasNext()) {
                 stringBuilder.append(this.convertToString(iterObjects.next()));
             }
@@ -81,8 +80,8 @@ public abstract class DataTypeBase<T> implements DataType<T> {
     }
 
     /**
-     * This is a common utility method to handle <code>String</code> conversion that can be
-     * used by all derived <code>DataTypeBase</code> classes.
+     * This is a common utility method to handle <code>String</code> conversion that can be used by all
+     * derived <code>DataTypeBase</code> classes.
      *
      * @param obj the <code>Object</code> to convert to a <code>String</code>
      * @return the <code>String</code> representation of the <code>Object</code>
@@ -109,13 +108,14 @@ public abstract class DataTypeBase<T> implements DataType<T> {
     @Override
     public AttributeValue<T> createAttributeValue(Object source) throws DataTypeException {
         /*
-         * If the given Object is a DOM Node, get the XPathCategory from it and use it to
-         * create the StdAttributeValue.
+         * If the given Object is a DOM Node, get the XPathCategory from it and use it to create the
+         * StdAttributeValue.
          */
         if (source != null && (source instanceof Node)) {
-            Identifier xpathCategory    = null;
+            Identifier xpathCategory = null;
             try {
-                xpathCategory   = DOMUtil.getIdentifierAttribute((Node)source, XACML3.ATTRIBUTE_XPATHCATEGORY, false);
+                xpathCategory = DOMUtil.getIdentifierAttribute((Node)source, XACML3.ATTRIBUTE_XPATHCATEGORY,
+                                                               false);
             } catch (Exception ex) {
                 // TODO:
             }
@@ -126,7 +126,8 @@ public abstract class DataTypeBase<T> implements DataType<T> {
     }
 
     @Override
-    public AttributeValue<T> createAttributeValue(Object source, Identifier xpathCategory) throws DataTypeException {
+    public AttributeValue<T> createAttributeValue(Object source, Identifier xpathCategory)
+        throws DataTypeException {
         return new StdAttributeValue<T>(this.getId(), this.convert(source), xpathCategory);
     }
 
@@ -135,7 +136,8 @@ public abstract class DataTypeBase<T> implements DataType<T> {
         if (attributeValue == null) {
             return null;
         } else {
-            return new StdAttributeValue<T>(this.getId(), this.convert(attributeValue.getValue()), attributeValue.getXPathCategory());
+            return new StdAttributeValue<T>(this.getId(), this.convert(attributeValue.getValue()),
+                                            attributeValue.getXPathCategory());
         }
     }
 

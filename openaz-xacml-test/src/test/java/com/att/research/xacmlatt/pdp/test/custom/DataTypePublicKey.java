@@ -38,7 +38,8 @@ import com.att.research.xacml.std.IdentifierImpl;
 import com.att.research.xacml.std.datatypes.DataTypeBase;
 
 public class DataTypePublicKey extends DataTypeBase<PublicKey> {
-    public static final Identifier DT_PUBLICKEY = new IdentifierImpl("urn:com:att:research:xacml:custom:3.0:rsa:public");
+    public static final Identifier DT_PUBLICKEY = new IdentifierImpl(
+                                                                     "urn:com:att:research:xacml:custom:3.0:rsa:public");
     private static final DataTypePublicKey singleInstance = new DataTypePublicKey();
 
     public DataTypePublicKey() {
@@ -51,12 +52,12 @@ public class DataTypePublicKey extends DataTypeBase<PublicKey> {
 
     @Override
     public PublicKey convert(Object source) throws DataTypeException {
-        if (source == null || (source instanceof PublicKey) ) {
-            return (PublicKey) source;
+        if (source == null || (source instanceof PublicKey)) {
+            return (PublicKey)source;
         } else if (source instanceof byte[]) {
-            return (PublicKey) source;
+            return (PublicKey)source;
         } else if (source instanceof String) {
-            return (PublicKey) (Object) ((String) source).getBytes();
+            return (PublicKey)(Object)((String)source).getBytes();
         }
         throw new DataTypeException(this, "Failed to convert \"" + source.getClass().getCanonicalName());
     }

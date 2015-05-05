@@ -39,37 +39,39 @@ import com.att.research.xacml.api.Response;
 import com.att.research.xacml.api.Result;
 
 /**
- * ResponseMatchResult provides information about how a {@link com.att.research.xacml.api.Response} object matches
- * another <code>Response</code> object.
- *
+ * ResponseMatchResult provides information about how a {@link com.att.research.xacml.api.Response} object
+ * matches another <code>Response</code> object.
  */
 public class ResponseMatchResult {
-    private List<ResultMatchResult>     resultMatchResults      = new ArrayList<ResultMatchResult>();
+    private List<ResultMatchResult> resultMatchResults = new ArrayList<ResultMatchResult>();
 
-    private boolean bAssociatedAdviceMatches                    = true;
-    private boolean bAttributesMatch                                    = true;
-    private boolean bDecisionsMatch                                             = true;
-    private boolean bStatusCodesMatch                                   = true;
-    private boolean bObligationsMatch                                   = true;
-    private boolean bPolicyIdentifiersMatch                             = true;
-    private boolean bPolicySetIdentifiersMatch                  = true;
-    private boolean bNumResultsMatch                                    = true;
+    private boolean bAssociatedAdviceMatches = true;
+    private boolean bAttributesMatch = true;
+    private boolean bDecisionsMatch = true;
+    private boolean bStatusCodesMatch = true;
+    private boolean bObligationsMatch = true;
+    private boolean bPolicyIdentifiersMatch = true;
+    private boolean bPolicySetIdentifiersMatch = true;
+    private boolean bNumResultsMatch = true;
     private boolean bUnknownFunction;
 
     protected void addResultMatchResult(ResultMatchResult resultMatchResult) {
         this.resultMatchResults.add(resultMatchResult);
-        this.bAssociatedAdviceMatches   = resultMatchResult.associatedAdviceMatches() && this.bAssociatedAdviceMatches;
-        this.bAttributesMatch                   = resultMatchResult.attributesMatch() && this.bAttributesMatch;
-        this.bDecisionsMatch                    = resultMatchResult.decisionsMatch() && this.bDecisionsMatch;
-        this.bStatusCodesMatch                  = resultMatchResult.statusCodesMatch() && this.bStatusCodesMatch;
-        this.bObligationsMatch                  = resultMatchResult.obligationsMatch() && this.bObligationsMatch;
-        this.bPolicyIdentifiersMatch    = resultMatchResult.policyIdentifiersMatch() && this.bPolicyIdentifiersMatch;
-        this.bPolicySetIdentifiersMatch = resultMatchResult.policySetIdentifiersMatch() && this.bPolicySetIdentifiersMatch;
-        this.bUnknownFunction                   = resultMatchResult.unknownFunction() || this.bUnknownFunction;
+        this.bAssociatedAdviceMatches = resultMatchResult.associatedAdviceMatches()
+                                        && this.bAssociatedAdviceMatches;
+        this.bAttributesMatch = resultMatchResult.attributesMatch() && this.bAttributesMatch;
+        this.bDecisionsMatch = resultMatchResult.decisionsMatch() && this.bDecisionsMatch;
+        this.bStatusCodesMatch = resultMatchResult.statusCodesMatch() && this.bStatusCodesMatch;
+        this.bObligationsMatch = resultMatchResult.obligationsMatch() && this.bObligationsMatch;
+        this.bPolicyIdentifiersMatch = resultMatchResult.policyIdentifiersMatch()
+                                       && this.bPolicyIdentifiersMatch;
+        this.bPolicySetIdentifiersMatch = resultMatchResult.policySetIdentifiersMatch()
+                                          && this.bPolicySetIdentifiersMatch;
+        this.bUnknownFunction = resultMatchResult.unknownFunction() || this.bUnknownFunction;
     }
 
     protected void setNumResultsMatch(boolean b) {
-        this.bNumResultsMatch   = b;
+        this.bNumResultsMatch = b;
     }
 
     public ResponseMatchResult() {
@@ -84,16 +86,20 @@ public class ResponseMatchResult {
             /*
              * Just add a single ResultMatchResult comparing the results in the two responses
              */
-            responseMatchResult.addResultMatchResult(ResultMatchResult.newInstance(listResultsResponse1.iterator().next(), listResultsResponse2.iterator().next()));
+            responseMatchResult.addResultMatchResult(ResultMatchResult.newInstance(listResultsResponse1
+                .iterator().next(), listResultsResponse2.iterator().next()));
         } else {
             /*
              * Iterate over all of the results in the two responses and match them
              */
-            Iterator<Result> iterResponse1Results       = listResultsResponse1.iterator();
-            Iterator<Result> iterResponse2Results       = listResultsResponse2.iterator();
-            while ((iterResponse1Results != null && iterResponse1Results.hasNext()) || (iterResponse2Results != null && iterResponse2Results.hasNext())) {
-                Result result1  = (iterResponse1Results != null && iterResponse1Results.hasNext() ? iterResponse1Results.next() : null);
-                Result result2  = (iterResponse2Results != null && iterResponse2Results.hasNext() ? iterResponse2Results.next() : null);
+            Iterator<Result> iterResponse1Results = listResultsResponse1.iterator();
+            Iterator<Result> iterResponse2Results = listResultsResponse2.iterator();
+            while ((iterResponse1Results != null && iterResponse1Results.hasNext())
+                   || (iterResponse2Results != null && iterResponse2Results.hasNext())) {
+                Result result1 = (iterResponse1Results != null && iterResponse1Results.hasNext()
+                    ? iterResponse1Results.next() : null);
+                Result result2 = (iterResponse2Results != null && iterResponse2Results.hasNext()
+                    ? iterResponse2Results.next() : null);
                 if ((result1 == null || result2 == null) && responseMatchResult.numResultsMatch()) {
                     responseMatchResult.setNumResultsMatch(false);
                 }

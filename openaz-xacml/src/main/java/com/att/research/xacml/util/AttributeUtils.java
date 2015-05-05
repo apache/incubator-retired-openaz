@@ -40,7 +40,7 @@ import com.att.research.xacml.api.pip.PIPRequest;
 
 public class AttributeUtils {
 
-    public static String        prettyPrint(Attribute attribute) {
+    public static String prettyPrint(Attribute attribute) {
         String tab = "\t";
         StringBuilder builder = new StringBuilder();
         builder.append(attribute.getAttributeId());
@@ -57,7 +57,7 @@ public class AttributeUtils {
         return builder.toString();
     }
 
-    public static String        prettyPrint(PIPRequest request) {
+    public static String prettyPrint(PIPRequest request) {
         StringBuilder builder = new StringBuilder();
         builder.append(request.getCategory());
         builder.append(System.lineSeparator());
@@ -69,10 +69,11 @@ public class AttributeUtils {
         return builder.toString();
     }
 
-    public static String        prettyPrint(Request request) {
+    public static String prettyPrint(Request request) {
         StringBuilder builder = new StringBuilder();
         String tab = "\t";
-        builder.append("Combined Decision=" + request.getCombinedDecision() + " returnPolicyIdList=" + request.getReturnPolicyIdList());
+        builder.append("Combined Decision=" + request.getCombinedDecision() + " returnPolicyIdList="
+                       + request.getReturnPolicyIdList());
         builder.append(System.lineSeparator());
         for (RequestAttributes attribute : request.getRequestAttributes()) {
             builder.append(attribute.getCategory());

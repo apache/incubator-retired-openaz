@@ -25,7 +25,6 @@
 // Generated on: 2013.05.23 at 02:47:00 PM EDT
 //
 
-
 package oasis.names.tc.xacml._3_0.core.schema.wd_17;
 
 import java.util.ArrayList;
@@ -36,11 +35,11 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
-
 /**
- * <p>Java class for ResultType complex type.
- *
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>
+ * Java class for ResultType complex type.
+ * <p>
+ * The following schema fragment specifies the expected content contained within this class.
  *
  * <pre>
  * &lt;complexType name="ResultType">
@@ -58,17 +57,10 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- *
- *
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "ResultType", propOrder = {
-    "decision",
-    "status",
-    "obligations",
-    "associatedAdvice",
-    "attributes",
-    "policyIdentifierList"
+                                           "decision", "status", "obligations", "associatedAdvice", "attributes", "policyIdentifierList"
 })
 public class ResultType {
 
@@ -88,10 +80,7 @@ public class ResultType {
     /**
      * Gets the value of the decision property.
      *
-     * @return
-     *     possible object is
-     *     {@link DecisionType }
-     *
+     * @return possible object is {@link DecisionType }
      */
     public DecisionType getDecision() {
         return decision;
@@ -100,10 +89,7 @@ public class ResultType {
     /**
      * Sets the value of the decision property.
      *
-     * @param value
-     *     allowed object is
-     *     {@link DecisionType }
-     *
+     * @param value allowed object is {@link DecisionType }
      */
     public void setDecision(DecisionType value) {
         this.decision = value;
@@ -112,10 +98,7 @@ public class ResultType {
     /**
      * Gets the value of the status property.
      *
-     * @return
-     *     possible object is
-     *     {@link StatusType }
-     *
+     * @return possible object is {@link StatusType }
      */
     public StatusType getStatus() {
         return status;
@@ -124,10 +107,7 @@ public class ResultType {
     /**
      * Sets the value of the status property.
      *
-     * @param value
-     *     allowed object is
-     *     {@link StatusType }
-     *
+     * @param value allowed object is {@link StatusType }
      */
     public void setStatus(StatusType value) {
         this.status = value;
@@ -136,10 +116,7 @@ public class ResultType {
     /**
      * Gets the value of the obligations property.
      *
-     * @return
-     *     possible object is
-     *     {@link ObligationsType }
-     *
+     * @return possible object is {@link ObligationsType }
      */
     public ObligationsType getObligations() {
         return obligations;
@@ -148,10 +125,7 @@ public class ResultType {
     /**
      * Sets the value of the obligations property.
      *
-     * @param value
-     *     allowed object is
-     *     {@link ObligationsType }
-     *
+     * @param value allowed object is {@link ObligationsType }
      */
     public void setObligations(ObligationsType value) {
         this.obligations = value;
@@ -160,10 +134,7 @@ public class ResultType {
     /**
      * Gets the value of the associatedAdvice property.
      *
-     * @return
-     *     possible object is
-     *     {@link AssociatedAdviceType }
-     *
+     * @return possible object is {@link AssociatedAdviceType }
      */
     public AssociatedAdviceType getAssociatedAdvice() {
         return associatedAdvice;
@@ -172,10 +143,7 @@ public class ResultType {
     /**
      * Sets the value of the associatedAdvice property.
      *
-     * @param value
-     *     allowed object is
-     *     {@link AssociatedAdviceType }
-     *
+     * @param value allowed object is {@link AssociatedAdviceType }
      */
     public void setAssociatedAdvice(AssociatedAdviceType value) {
         this.associatedAdvice = value;
@@ -183,25 +151,18 @@ public class ResultType {
 
     /**
      * Gets the value of the attributes property.
-     *
      * <p>
-     * This accessor method returns a reference to the live list,
-     * not a snapshot. Therefore any modification you make to the
-     * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the attributes property.
-     *
+     * This accessor method returns a reference to the live list, not a snapshot. Therefore any modification
+     * you make to the returned list will be present inside the JAXB object. This is why there is not a
+     * <CODE>set</CODE> method for the attributes property.
      * <p>
      * For example, to add a new item, do as follows:
+     * 
      * <pre>
-     *    getAttributes().add(newItem);
+     * getAttributes().add(newItem);
      * </pre>
-     *
-     *
      * <p>
-     * Objects of the following type(s) are allowed in the list
-     * {@link AttributesType }
-     *
-     *
+     * Objects of the following type(s) are allowed in the list {@link AttributesType }
      */
     public List<AttributesType> getAttributes() {
         if (attributes == null) {
@@ -213,10 +174,7 @@ public class ResultType {
     /**
      * Gets the value of the policyIdentifierList property.
      *
-     * @return
-     *     possible object is
-     *     {@link PolicyIdentifierListType }
-     *
+     * @return possible object is {@link PolicyIdentifierListType }
      */
     public PolicyIdentifierListType getPolicyIdentifierList() {
         return policyIdentifierList;
@@ -225,10 +183,7 @@ public class ResultType {
     /**
      * Sets the value of the policyIdentifierList property.
      *
-     * @param value
-     *     allowed object is
-     *     {@link PolicyIdentifierListType }
-     *
+     * @param value allowed object is {@link PolicyIdentifierListType }
      */
     public void setPolicyIdentifierList(PolicyIdentifierListType value) {
         this.policyIdentifierList = value;

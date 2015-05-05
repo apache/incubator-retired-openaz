@@ -31,15 +31,17 @@
 package com.att.research.xacml.api;
 
 /**
- * SemanticString is an interface for objects that have semantically significant <code>String</code> representations.  It differentiates
- * objects whose <code>toString</code> method represents debugging information rather than something that is meaningful at runtime.
- *
+ * SemanticString is an interface for objects that have semantically significant <code>String</code>
+ * representations. It differentiates objects whose <code>toString</code> method represents debugging
+ * information rather than something that is meaningful at runtime.
  */
 public interface SemanticString {
     /**
-     * Gets the semantically significant <code>String</code> representation of the object implementing this interface.
+     * Gets the semantically significant <code>String</code> representation of the object implementing this
+     * interface.
      *
-     * @return the semantically significant <code>String</code> representation of the object implementing this interface.
+     * @return the semantically significant <code>String</code> representation of the object implementing this
+     *         interface.
      */
     String stringValue();
 }

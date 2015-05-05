@@ -63,9 +63,10 @@ import com.google.common.base.Joiner;
 import com.google.common.base.Splitter;
 import com.google.common.io.ByteStreams;
 
-public class StdPDPGroup extends StdPDPItemSetChangeNotifier implements PDPGroup, StdItemSetChangeListener, Comparable<Object>, Serializable {
+public class StdPDPGroup extends StdPDPItemSetChangeNotifier implements PDPGroup, StdItemSetChangeListener,
+    Comparable<Object>, Serializable {
     private static final long serialVersionUID = 1L;
-    private static Log  logger  = LogFactory.getLog(StdPDPGroup.class);
+    private static Log logger = LogFactory.getLog(StdPDPGroup.class);
 
     private String id;
 
@@ -77,16 +78,14 @@ public class StdPDPGroup extends StdPDPItemSetChangeNotifier implements PDPGroup
 
     private StdPDPGroupStatus status = new StdPDPGroupStatus(Status.UNKNOWN);
 
-    private Set<PDP>    pdps = new HashSet<PDP>();
+    private Set<PDP> pdps = new HashSet<PDP>();
 
     private Set<PDPPolicy> policies = new HashSet<PDPPolicy>();
 
     private Set<PDPPIPConfig> pipConfigs = new HashSet<PDPPIPConfig>();
 
     @JsonIgnore
-    private  Path directory;
-
-
+    private Path directory;
 
     public StdPDPGroup(String id, Path directory) {
         this.id = id;
@@ -113,7 +112,8 @@ public class StdPDPGroup extends StdPDPItemSetChangeNotifier implements PDPGroup
         this.resetStatus();
     }
 
-    public StdPDPGroup(String id, boolean isDefault, Properties properties, Path directory) throws PAPException {
+    public StdPDPGroup(String id, boolean isDefault, Properties properties, Path directory)
+        throws PAPException {
         this(id, isDefault, directory);
         this.initialize(properties, directory);
         this.resetStatus();
@@ -178,7 +178,7 @@ public class StdPDPGroup extends StdPDPItemSetChangeNotifier implements PDPGroup
         // Read the Groups Policies
         //
         Properties policyProperties = new Properties();
-        if ( ! file.toFile().exists()) {
+        if (!file.toFile().exists()) {
             // need to create the properties file with default values
             policyProperties.setProperty(XACMLProperties.PROP_ROOTPOLICIES, "");
             policyProperties.setProperty(XACMLProperties.PROP_REFERENCEDPOLICIES, "");
@@ -186,7 +186,7 @@ public class StdPDPGroup extends StdPDPItemSetChangeNotifier implements PDPGroup
             try (OutputStream os = Files.newOutputStream(file)) {
                 policyProperties.store(os, "");
             } catch (Exception e) {
-                throw new PAPException("Failed to create new default policy properties file '" + file +"'");
+                throw new PAPException("Failed to create new default policy properties file '" + file + "'");
             }
         } else {
             // load previously existing file
@@ -215,7 +215,7 @@ public class StdPDPGroup extends StdPDPItemSetChangeNotifier implements PDPGroup
         // Read the Groups' PIP configuration
         //
         Properties pipProperties = new Properties();
-        if ( ! file.toFile().exists()) {
+        if (!file.toFile().exists()) {
             // need to create the properties file with no values
             pipProperties.setProperty(XACMLProperties.PROP_PIP_ENGINES, "");
             // save properties to file
@@ -224,7 +224,7 @@ public class StdPDPGroup extends StdPDPItemSetChangeNotifier implements PDPGroup
                     pipProperties.store(os, "");
                 }
             } catch (Exception e) {
-                throw new PAPException("Failed to create new default pip properties file '" + file +"'");
+                throw new PAPException("Failed to create new default pip properties file '" + file + "'");
             }
         } else {
             try {
@@ -249,20 +249,20 @@ public class StdPDPGroup extends StdPDPItemSetChangeNotifier implements PDPGroup
     }
 
     public void resetStatus() {
-//              //
-//              // If we are updating, don't allow reset
-//              //
-//              if (this.status.getStatus() == Status.UPDATING_CONFIGURATION) {
-//                      logger.warn("We are updating, chill.");
-//                      return;
-//              }
-//              //
-//              // Load errors take precedence
-//              //
-//              if (this.status.getStatus() == Status.LOAD_ERRORS) {
-//                      logger.warn("We had load errors.");
-//                      return;
-//              }
+        // //
+        // // If we are updating, don't allow reset
+        // //
+        // if (this.status.getStatus() == Status.UPDATING_CONFIGURATION) {
+        // logger.warn("We are updating, chill.");
+        // return;
+        // }
+        // //
+        // // Load errors take precedence
+        // //
+        // if (this.status.getStatus() == Status.LOAD_ERRORS) {
+        // logger.warn("We had load errors.");
+        // return;
+        // }
         //
         // Reset our status object
         //
@@ -331,7 +331,7 @@ public class StdPDPGroup extends StdPDPItemSetChangeNotifier implements PDPGroup
         // to occur: 1) old default=false (don't want to fire) and
         // then 2) new default=true (yes fire - but we'll have to do that
         // elsewhere.
-        //this.firePDPGroupChanged(this);
+        // this.firePDPGroupChanged(this);
     }
 
     @Override
@@ -402,9 +402,11 @@ public class StdPDPGroup extends StdPDPItemSetChangeNotifier implements PDPGroup
         return null;
     }
 
+    @Override
     public Properties getPolicyProperties() {
         Properties properties = new Properties() {
             private static final long serialVersionUID = 1L;
+
             // For Debugging it is helpful for the file to be in a sorted order,
             // any by returning the keys in the natural Alpha order for strings we get close enough.
             // TreeSet is sorted, and this just overrides the normal Properties method to get the keys.
@@ -412,7 +414,8 @@ public class StdPDPGroup extends StdPDPItemSetChangeNotifier implements PDPGroup
             public synchronized Enumeration<Object> keys() {
                 return Collections.enumeration(new TreeSet<Object>(super.keySet()));
             }
-        };;
+        };
+        ;
         List<String> roots = new ArrayList<String>();
         List<String> refs = new ArrayList<String>();
 
@@ -435,7 +438,8 @@ public class StdPDPGroup extends StdPDPItemSetChangeNotifier implements PDPGroup
         return properties;
     }
 
-    public PDPPolicy publishPolicy(String id, String name, boolean isRoot, InputStream policy) throws PAPException {
+    public PDPPolicy publishPolicy(String id, String name, boolean isRoot, InputStream policy)
+        throws PAPException {
         //
         // Does it exist already?
         //
@@ -458,7 +462,7 @@ public class StdPDPGroup extends StdPDPItemSetChangeNotifier implements PDPGroup
             if (tempRootPolicy.isValid() == false) {
                 try {
                     Files.delete(tempFile);
-                } catch(Exception ee) {
+                } catch (Exception ee) {
                     logger.error("Policy was invalid, could NOT delete it.", ee);
                 }
                 throw new PAPException("Policy is invalid");
@@ -482,10 +486,10 @@ public class StdPDPGroup extends StdPDPItemSetChangeNotifier implements PDPGroup
     }
 
     /**
-     * Copy one policy file into the Group's directory but do not change the configuration.
-     * This is one part of a multi-step process of publishing policies.
-     * There may be multiple changes in the group (adding multiple policies, deleting policies, changine root<->referenced)
-     * that must be done all at once, so we just copy the file in preparation for a later "update whole group" operation.
+     * Copy one policy file into the Group's directory but do not change the configuration. This is one part
+     * of a multi-step process of publishing policies. There may be multiple changes in the group (adding
+     * multiple policies, deleting policies, changine root<->referenced) that must be done all at once, so we
+     * just copy the file in preparation for a later "update whole group" operation.
      *
      * @param id
      * @param name
@@ -494,7 +498,7 @@ public class StdPDPGroup extends StdPDPItemSetChangeNotifier implements PDPGroup
      * @return
      * @throws com.att.research.xacml.api.pap.PAPException
      */
-    public void copyPolicyToFile(String id,  InputStream policy) throws PAPException {
+    public void copyPolicyToFile(String id, InputStream policy) throws PAPException {
         try {
             //
             // Copy the policy over
@@ -512,30 +516,28 @@ public class StdPDPGroup extends StdPDPItemSetChangeNotifier implements PDPGroup
             // and generate an exception if they are not.
             //
 
-
-
-//                      if (Files.exists(policyFilePath)) {
-//                              // compare the
-//                              String incomingPolicyString = null;
-//                              try (ByteArrayOutputStream os = new ByteArrayOutputStream()) {
-//                                      num = ByteStreams.copy(policy, os);
-//                                      incomingPolicyString = new String(os.toByteArray(), "UTF-8");
-//                              }
-//                              String existingPolicyString = null;
-//                              try {
-//                                      byte[] bytes =  Files.readAllBytes(policyFilePath);
-//                                      existingPolicyString = new String(bytes, "UTF-8");
-//                              } catch (Exception e) {
-//                                      logger.error("Unable to read existing file '" + policyFilePath + "': " + e, e);
-//                                      throw new PAPException("Unable to read policy file for comparison: " + e);
-//                              }
-//                              if (incomingPolicyString.equals(existingPolicyString)) {
-//                                      throw new PAPException("Policy '" + policyFilePath + "' does not match existing policy on server");
-//                              }
-//                              // input is same as existing file
-//                              return;
-//                      }
-
+            // if (Files.exists(policyFilePath)) {
+            // // compare the
+            // String incomingPolicyString = null;
+            // try (ByteArrayOutputStream os = new ByteArrayOutputStream()) {
+            // num = ByteStreams.copy(policy, os);
+            // incomingPolicyString = new String(os.toByteArray(), "UTF-8");
+            // }
+            // String existingPolicyString = null;
+            // try {
+            // byte[] bytes = Files.readAllBytes(policyFilePath);
+            // existingPolicyString = new String(bytes, "UTF-8");
+            // } catch (Exception e) {
+            // logger.error("Unable to read existing file '" + policyFilePath + "': " + e, e);
+            // throw new PAPException("Unable to read policy file for comparison: " + e);
+            // }
+            // if (incomingPolicyString.equals(existingPolicyString)) {
+            // throw new PAPException("Policy '" + policyFilePath +
+            // "' does not match existing policy on server");
+            // }
+            // // input is same as existing file
+            // return;
+            // }
 
             Path policyFile;
             if (Files.exists(policyFilePath)) {
@@ -552,7 +554,8 @@ public class StdPDPGroup extends StdPDPItemSetChangeNotifier implements PDPGroup
 
             for (PDPPolicy p : policies) {
                 if (p.getId().equals(id)) {
-                    // we just re-copied/refreshed/updated the policy file for a policy that already exists in this group
+                    // we just re-copied/refreshed/updated the policy file for a policy that already exists in
+                    // this group
                     logger.info("Policy '" + id + "' already exists in group '" + getId() + "'");
                     return;
                 }
@@ -563,7 +566,7 @@ public class StdPDPGroup extends StdPDPItemSetChangeNotifier implements PDPGroup
             if (tempRootPolicy.isValid() == false) {
                 try {
                     Files.delete(policyFile);
-                } catch(Exception ee) {
+                } catch (Exception ee) {
                     logger.error("Policy was invalid, could NOT delete it.", ee);
                 }
                 throw new PAPException("Policy is invalid");
@@ -577,9 +580,6 @@ public class StdPDPGroup extends StdPDPItemSetChangeNotifier implements PDPGroup
             //
             this.firePDPGroupChanged(this);
 
-
-
-
         } catch (IOException e) {
             logger.error("Failed to copyPolicyToFile: ", e);
             throw new PAPException("Failed to copy policy to file: " + e);
@@ -587,9 +587,8 @@ public class StdPDPGroup extends StdPDPItemSetChangeNotifier implements PDPGroup
         return;
     }
 
-
     public boolean removePolicy(PDPPolicy policy) {
-        StdPDPPolicy currentPolicy = (StdPDPPolicy) this.getPolicy(policy.getId());
+        StdPDPPolicy currentPolicy = (StdPDPPolicy)this.getPolicy(policy.getId());
         if (currentPolicy == null) {
             logger.error("Policy " + policy.getId() + " does not exist.");
             return false;
@@ -639,6 +638,7 @@ public class StdPDPGroup extends StdPDPItemSetChangeNotifier implements PDPGroup
         this.firePDPGroupChanged(this);
     }
 
+    @Override
     public Properties getPipConfigProperties() {
         Properties properties = new Properties();
         List<String> configs = new ArrayList<String>();
@@ -711,7 +711,7 @@ public class StdPDPGroup extends StdPDPItemSetChangeNotifier implements PDPGroup
         }
     }
 
-    private void        readPolicyProperties(Path directory, Properties properties) {
+    private void readPolicyProperties(Path directory, Properties properties) {
         //
         // There are 2 property values that hold policies, root and referenced
         //
@@ -745,7 +745,7 @@ public class StdPDPGroup extends StdPDPItemSetChangeNotifier implements PDPGroup
                 //
                 // Construct the policy filename
                 //
-                Path policyPath = Paths.get(directory.toString(), id );
+                Path policyPath = Paths.get(directory.toString(), id);
                 //
                 // Create the Policy Object
                 //
@@ -775,7 +775,7 @@ public class StdPDPGroup extends StdPDPItemSetChangeNotifier implements PDPGroup
         }
     }
 
-    private void        readPIPProperties(Path directory, Properties properties) {
+    private void readPIPProperties(Path directory, Properties properties) {
         String list = properties.getProperty(XACMLProperties.PROP_PIP_ENGINES);
         if (list == null || list.length() == 0) {
             return;
@@ -808,7 +808,7 @@ public class StdPDPGroup extends StdPDPItemSetChangeNotifier implements PDPGroup
             return false;
         if (getClass() != obj.getClass())
             return false;
-        StdPDPGroup other = (StdPDPGroup) obj;
+        StdPDPGroup other = (StdPDPGroup)obj;
         if (id == null) {
             if (other.id != null)
                 return false;
@@ -819,10 +819,9 @@ public class StdPDPGroup extends StdPDPItemSetChangeNotifier implements PDPGroup
 
     @Override
     public String toString() {
-        return "StdPDPGroup [id=" + id + ", isDefault=" + isDefault + ", name="
-               + name + ", description=" + description + ", status=" + status
-               + ", pdps=" + pdps + ", policies=" + policies + ", pipConfigs="
-               + pipConfigs + ", directory=" + directory + "]";
+        return "StdPDPGroup [id=" + id + ", isDefault=" + isDefault + ", name=" + name + ", description="
+               + description + ", status=" + status + ", pdps=" + pdps + ", policies=" + policies
+               + ", pipConfigs=" + pipConfigs + ", directory=" + directory + "]";
     }
 
     @Override
@@ -856,7 +855,6 @@ public class StdPDPGroup extends StdPDPItemSetChangeNotifier implements PDPGroup
         this.changed();
     }
 
-
     //
     // Methods needed for JSON deserialization
     //
@@ -877,17 +875,18 @@ public class StdPDPGroup extends StdPDPItemSetChangeNotifier implements PDPGroup
     public boolean isDefault() {
         return isDefault;
     }
+
     public void setDefault(boolean isDefault) {
         this.isDefault = isDefault;
     }
+
     public void setStatus(PDPGroupStatus status) {
         this.status = new StdPDPGroupStatus(status);
     }
+
     public void setPolicies(Set<PDPPolicy> policies) {
         this.policies = policies;
     }
-
-
 
     public void saveGroupConfiguration() throws PAPException, IOException {
 
@@ -909,9 +908,8 @@ public class StdPDPGroup extends StdPDPItemSetChangeNotifier implements PDPGroup
             policyProperties.store(os, "");
         } catch (Exception e) {
             logger.error("Group Policies Config save failed: " + e, e);
-            throw new PAPException("Failed to save policy properties file '" + file +"'");
+            throw new PAPException("Failed to save policy properties file '" + file + "'");
         }
-
 
         // Now save the PIP Config properties
         Properties pipProperties = this.getPipConfigProperties();
@@ -924,7 +922,7 @@ public class StdPDPGroup extends StdPDPItemSetChangeNotifier implements PDPGroup
             pipProperties.store(os, "");
         } catch (Exception e) {
             logger.error("Group PIP Config save failed: " + e, e);
-            throw new PAPException("Failed to save pip properties file '" + file +"'");
+            throw new PAPException("Failed to save pip properties file '" + file + "'");
         }
     }
 
@@ -936,7 +934,7 @@ public class StdPDPGroup extends StdPDPItemSetChangeNotifier implements PDPGroup
         if (arg0 == null) {
             return -1;
         }
-        if ( ! (arg0 instanceof StdPDPGroup)) {
+        if (!(arg0 instanceof StdPDPGroup)) {
             return -1;
         }
         if (((StdPDPGroup)arg0).name == null) {
@@ -948,6 +946,5 @@ public class StdPDPGroup extends StdPDPItemSetChangeNotifier implements PDPGroup
 
         return name.compareTo(((StdPDPGroup)arg0).name);
     }
-
 
 }

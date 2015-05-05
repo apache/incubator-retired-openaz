@@ -55,15 +55,15 @@ public class StdPDPStatus implements Serializable, PDPStatus {
 
     private Set<PDPPolicy> failedPolicies = new HashSet<PDPPolicy>();
 
-    private Set<PDPPIPConfig>   loadedPIPConfigs = new HashSet<PDPPIPConfig>();
+    private Set<PDPPIPConfig> loadedPIPConfigs = new HashSet<PDPPIPConfig>();
 
-    private Set<PDPPIPConfig>   failedPIPConfigs = new HashSet<PDPPIPConfig>();
+    private Set<PDPPIPConfig> failedPIPConfigs = new HashSet<PDPPIPConfig>();
 
     public StdPDPStatus() {
     }
 
     public void set(StdPDPStatus newStatus) {
-        this.status                             =       newStatus.status;
+        this.status = newStatus.status;
         this.loadErrors.clear();
         this.loadErrors.addAll(newStatus.getLoadErrors());
         this.loadWarnings.clear();
@@ -79,8 +79,6 @@ public class StdPDPStatus implements Serializable, PDPStatus {
         this.failedPIPConfigs.clear();
         this.failedPIPConfigs.addAll(newStatus.getFailedPipConfigs());
     }
-
-
 
     @Override
     public Status getStatus() {
@@ -218,20 +216,12 @@ public class StdPDPStatus implements Serializable, PDPStatus {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime
-                 * result
-                 + (failedPIPConfigs.hashCode());
-        result = prime * result
-                 + (failedPolicies.hashCode());
-        result = prime * result
-                 + (loadErrors.hashCode());
-        result = prime * result
-                 + (loadWarnings.hashCode());
-        result = prime
-                 * result
-                 + (loadedPIPConfigs.hashCode());
-        result = prime * result
-                 + (loadedPolicies.hashCode());
+        result = prime * result + (failedPIPConfigs.hashCode());
+        result = prime * result + (failedPolicies.hashCode());
+        result = prime * result + (loadErrors.hashCode());
+        result = prime * result + (loadWarnings.hashCode());
+        result = prime * result + (loadedPIPConfigs.hashCode());
+        result = prime * result + (loadedPolicies.hashCode());
         result = prime * result + (status.hashCode());
         return result;
     }
@@ -244,7 +234,7 @@ public class StdPDPStatus implements Serializable, PDPStatus {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        StdPDPStatus other = (StdPDPStatus) obj;
+        StdPDPStatus other = (StdPDPStatus)obj;
         if (!failedPIPConfigs.equals(other.failedPIPConfigs))
             return false;
         if (!failedPolicies.equals(other.failedPolicies))
@@ -264,13 +254,10 @@ public class StdPDPStatus implements Serializable, PDPStatus {
 
     @Override
     public String toString() {
-        return "StdPDPStatus [status=" + status + ", loadErrors=" + loadErrors
-               + ", loadWarnings=" + loadWarnings + ", loadedPolicies="
-               + loadedPolicies + ", loadedRootPolicies=" + loadedRootPolicies
-               + ", failedPolicies=" + failedPolicies
-               + ", loadedPIPConfigs=" + loadedPIPConfigs
-               + ", failedPIPConfigs=" + failedPIPConfigs + "]";
+        return "StdPDPStatus [status=" + status + ", loadErrors=" + loadErrors + ", loadWarnings="
+               + loadWarnings + ", loadedPolicies=" + loadedPolicies + ", loadedRootPolicies="
+               + loadedRootPolicies + ", failedPolicies=" + failedPolicies + ", loadedPIPConfigs="
+               + loadedPIPConfigs + ", failedPIPConfigs=" + failedPIPConfigs + "]";
     }
-
 
 }

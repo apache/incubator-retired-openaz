@@ -66,29 +66,29 @@ import com.google.common.base.Splitter;
 
 public class CSVEngine extends StdConfigurableEngine {
 
-    protected Log logger        = LogFactory.getLog(this.getClass());
+    protected Log logger = LogFactory.getLog(this.getClass());
     /*
-     * Files that are smaller than this number are read into memory during startup.
-     * Larger files are read one line at a time as needed to avoid overloading the JVM memory limit.
+     * Files that are smaller than this number are read into memory during startup. Larger files are read one
+     * line at a time as needed to avoid overloading the JVM memory limit.
      */
-    public static final long    DEFAULT_MAX_FILE_SIZE_FOR_READALL = 100000000;
+    public static final long DEFAULT_MAX_FILE_SIZE_FOR_READALL = 100000000;
 
-    public static final String PROP_CLASSNAME           = "classname";
+    public static final String PROP_CLASSNAME = "classname";
 
-    public static final String PROP_MAXSIZE                     = "maxsize";
-    public static final String PROP_SOURCE                      = "source";
-    public static final String PROP_DELIMITER           = "delimiter";
-    public static final String PROP_QUOTE                       = "quote";
-    public static final String PROP_SKIP                        = "skip";
+    public static final String PROP_MAXSIZE = "maxsize";
+    public static final String PROP_SOURCE = "source";
+    public static final String PROP_DELIMITER = "delimiter";
+    public static final String PROP_QUOTE = "quote";
+    public static final String PROP_SKIP = "skip";
 
-    public static final String PROP_RESOLVERS           = "resolvers";
-    public static final String PROP_RESOLVER            = "resolver";
+    public static final String PROP_RESOLVERS = "resolvers";
+    public static final String PROP_RESOLVER = "resolver";
 
-    private static DataTypeFactory dataTypeFactory              = null;
+    private static DataTypeFactory dataTypeFactory = null;
 
     static {
         try {
-            dataTypeFactory     = DataTypeFactory.newInstance();
+            dataTypeFactory = DataTypeFactory.newInstance();
         } catch (FactoryException fx) {
             throw new RuntimeException(fx);
         }
@@ -97,11 +97,11 @@ public class CSVEngine extends StdConfigurableEngine {
     //
     // Values read from the properties file for use in managing the CSV file
     //
-    private long        maximumSize = DEFAULT_MAX_FILE_SIZE_FOR_READALL;
-    private File        csvSourceFile;
-    private char        csvDelimiter;
-    private char        csvQuote;
-    private int         csvSkip;
+    private long maximumSize = DEFAULT_MAX_FILE_SIZE_FOR_READALL;
+    private File csvSourceFile;
+    private char csvDelimiter;
+    private char csvQuote;
+    private int csvSkip;
     //
     // big files must be read one line at a time; small files are read in all at once
     //
@@ -132,11 +132,13 @@ public class CSVEngine extends StdConfigurableEngine {
         //
         // Is there a max filesize to read into memory?
         //
-        String maxSize = properties.getProperty(prefix + PROP_MAXSIZE, Long.toString(DEFAULT_MAX_FILE_SIZE_FOR_READALL));
+        String maxSize = properties.getProperty(prefix + PROP_MAXSIZE,
+                                                Long.toString(DEFAULT_MAX_FILE_SIZE_FOR_READALL));
         try {
             this.maximumSize = Long.parseLong(maxSize);
         } catch (NumberFormatException e) {
-            String message = this.getName() + ": The maximum size specified is NOT parseable: " + e.getLocalizedMessage();
+            String message = this.getName() + ": The maximum size specified is NOT parseable: "
+                             + e.getLocalizedMessage();
             this.logger.error(message);
             this.maximumSize = DEFAULT_MAX_FILE_SIZE_FOR_READALL;
         }
@@ -153,14 +155,16 @@ public class CSVEngine extends StdConfigurableEngine {
         // Now check the size of that file (and if it exists)
         //
         csvSourceFile = new File(sourcePathString);
-        if ( ! csvSourceFile.exists() || csvSourceFile.length() == 0) {
-            String message = this.getName() + ": The csv.source '" + csvSourceFile.getAbsolutePath() + "' does not exist or has no content";
+        if (!csvSourceFile.exists() || csvSourceFile.length() == 0) {
+            String message = this.getName() + ": The csv.source '" + csvSourceFile.getAbsolutePath()
+                             + "' does not exist or has no content";
             logger.error(message);
             throw new PIPException(message);
         }
         if (csvSourceFile.length() > this.maximumSize) {
             if (logger.isDebugEnabled()) {
-                logger.debug("File size is greater than max allowed (" + this.maximumSize + "): " + csvSourceFile.length());
+                logger.debug("File size is greater than max allowed (" + this.maximumSize + "): "
+                             + csvSourceFile.length());
             }
             fileIsBig = true;
         }
@@ -192,7 +196,8 @@ public class CSVEngine extends StdConfigurableEngine {
         try {
             csvSkip = Integer.parseInt(tmpString);
         } catch (NumberFormatException e) {
-            String message = this.getName() + ": The csv.skip value of '" + tmpString + "' cannot be converted to integer";
+            String message = this.getName() + ": The csv.skip value of '" + tmpString
+                             + "' cannot be converted to integer";
             logger.error(message);
             throw new PIPException(message);
         }
@@ -211,7 +216,7 @@ public class CSVEngine extends StdConfigurableEngine {
         //
         // Get resolvers
         //
-        String propResolverPrefix       = id + "." + PROP_RESOLVERS;
+        String propResolverPrefix = id + "." + PROP_RESOLVERS;
         String stringProp = properties.getProperty(propResolverPrefix);
         if (stringProp == null || stringProp.isEmpty()) {
             this.logger.error("No '" + propResolverPrefix + "' property");
@@ -226,14 +231,16 @@ public class CSVEngine extends StdConfigurableEngine {
         //
         // If the file is small, we read it fully into memory.
         //
-        if ( ! this.fileIsBig) {
-            try (CSVReader csvReader = new CSVReader(new FileReader(csvSourceFile), csvDelimiter, csvQuote, csvSkip)) {
+        if (!this.fileIsBig) {
+            try (CSVReader csvReader = new CSVReader(new FileReader(csvSourceFile), csvDelimiter, csvQuote,
+                                                     csvSkip)) {
                 this.allLines = csvReader.readAll();
                 if (logger.isDebugEnabled()) {
-                    logger.debug(id + ": All lines read from csv file, size="+allLines.size());
+                    logger.debug(id + ": All lines read from csv file, size=" + allLines.size());
                 }
             } catch (IOException e) {
-                String message = id + ": CSVReader unable to read csv.source '" + csvSourceFile.getAbsolutePath() + "': " + e;
+                String message = id + ": CSVReader unable to read csv.source '"
+                                 + csvSourceFile.getAbsolutePath() + "': " + e;
                 logger.error(message, e);
                 throw new PIPException(message);
             }
@@ -241,31 +248,36 @@ public class CSVEngine extends StdConfigurableEngine {
     }
 
     /**
-     * Creates a new {@link com.att.research.xacml.std.pip.engines.csv.CSVResolver} by looking up the "classname"
-     * property for the given <code>String</code> resolver ID and then calling its <code>configure</code> method.
+     * Creates a new {@link com.att.research.xacml.std.pip.engines.csv.CSVResolver} by looking up the
+     * "classname" property for the given <code>String</code> resolver ID and then calling its
+     * <code>configure</code> method.
      *
      * @param resolverId the <code>String</code> identifier of the resolver to configure
-     * @param properties the <code>Properties</code> to search for the "classname" and any resolver-specific properties
-     * @throws com.att.research.xacml.api.pip.PIPException if there is an error creating the <code>CSVResolver</code>.
+     * @param properties the <code>Properties</code> to search for the "classname" and any resolver-specific
+     *            properties
+     * @throws com.att.research.xacml.api.pip.PIPException if there is an error creating the
+     *             <code>CSVResolver</code>.
      */
     protected void createResolver(String resolverId, Properties properties) throws PIPException {
-        String propPrefix       = resolverId + ".";
-        String resolverClassName        = properties.getProperty(propPrefix + PROP_CLASSNAME);
+        String propPrefix = resolverId + ".";
+        String resolverClassName = properties.getProperty(propPrefix + PROP_CLASSNAME);
         if (resolverClassName == null || resolverClassName.length() == 0) {
             this.logger.error("No '" + propPrefix + PROP_CLASSNAME + "' property.");
             throw new PIPException("No '" + propPrefix + PROP_CLASSNAME + "' property.");
         }
         try {
-            Class<?> resolverClass      = Class.forName(resolverClassName);
+            Class<?> resolverClass = Class.forName(resolverClassName);
             if (!CSVResolver.class.isAssignableFrom(resolverClass)) {
-                this.logger.error("CSVResolver class " + propPrefix + " does not implement " + CSVResolver.class.getCanonicalName());
-                throw new PIPException("CSVResolver class " + propPrefix + " does not implement " + CSVResolver.class.getCanonicalName());
+                this.logger.error("CSVResolver class " + propPrefix + " does not implement "
+                                  + CSVResolver.class.getCanonicalName());
+                throw new PIPException("CSVResolver class " + propPrefix + " does not implement "
+                                       + CSVResolver.class.getCanonicalName());
 
             }
             //
             // Try to create the resolver
             //
-            CSVResolver csvResolver     = CSVResolver.class.cast(resolverClass.newInstance());
+            CSVResolver csvResolver = CSVResolver.class.cast(resolverClass.newInstance());
             //
             // Make sure it can configure itself
             //
@@ -311,7 +323,8 @@ public class CSVEngine extends StdConfigurableEngine {
         //
         List<Map<Integer, List<AttributeValue<?>>>> listParameters = new ArrayList<Map<Integer, List<AttributeValue<?>>>>();
         for (CSVResolver resolver : resolvers) {
-            Map<Integer, List<AttributeValue<?>>> map = resolver.getColumnParameterValues(this, pipRequest, pipFinder);
+            Map<Integer, List<AttributeValue<?>>> map = resolver.getColumnParameterValues(this, pipRequest,
+                                                                                          pipFinder);
             //
             // If the resolver cannot find all its parameter values, then we
             //
@@ -325,7 +338,7 @@ public class CSVEngine extends StdConfigurableEngine {
         // Look at each line of the file to see if it matches the (non-unique) criteria in the parameters
         // and add the value in the associated column from the CSV file to the list of response Attributes.
         //
-        StdMutablePIPResponse mutablePIPResponse        = new StdMutablePIPResponse();
+        StdMutablePIPResponse mutablePIPResponse = new StdMutablePIPResponse();
         //
         // for smaller files, this is the index in the allLines List
         //
@@ -391,7 +404,8 @@ public class CSVEngine extends StdConfigurableEngine {
         } catch (Exception e) {
             String message = this.getName() + ": Error processing line: " + e;
             logger.error(message, e);
-            return new StdPIPResponse(new StdStatus(StdStatusCode.STATUS_CODE_PROCESSING_ERROR, e.getMessage()));
+            return new StdPIPResponse(new StdStatus(StdStatusCode.STATUS_CODE_PROCESSING_ERROR,
+                                                    e.getMessage()));
         } finally {
             if (csvReader != null) {
                 try {
@@ -451,10 +465,9 @@ public class CSVEngine extends StdConfigurableEngine {
                 //
                 if (foundMatch == false) {
                     /*
-                    if (this.logger.isDebugEnabled()) {
-                            this.logger.debug("Failed to find value for column " + column);
-                    }
-                    */
+                     * if (this.logger.isDebugEnabled()) {
+                     * this.logger.debug("Failed to find value for column " + column); }
+                     */
                     return false;
                 }
             }

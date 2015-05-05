@@ -92,16 +92,12 @@ import com.google.common.base.Splitter;
 import com.google.common.collect.Lists;
 
 /**
- * This is a base class for setting up a test environment. Using properties files, it contains the
- * necessary information for
- * 1. defining and providing attributes
- * 2. defining and instantiating the PDP engine
- * 3. creating PEP requests and calling the PDP engine
- *
- *
+ * This is a base class for setting up a test environment. Using properties files, it contains the necessary
+ * information for 1. defining and providing attributes 2. defining and instantiating the PDP engine 3.
+ * creating PEP requests and calling the PDP engine
  */
 public class TestBase extends SimpleFileVisitor<Path> {
-    private static final Log logger     = LogFactory.getLog(TestBase.class);
+    private static final Log logger = LogFactory.getLog(TestBase.class);
 
     public class HelpException extends Exception {
         private static final long serialVersionUID = 1L;
@@ -109,11 +105,9 @@ public class TestBase extends SimpleFileVisitor<Path> {
     }
 
     /**
-     * This private class holds information for properties defined for attribute
-     * generation. The user can configure the properties file such that attributes
-     * can be automatically generated and added into each request.
-     *
-     *
+     * This private class holds information for properties defined for attribute generation. The user can
+     * configure the properties file such that attributes can be automatically generated and added into each
+     * request.
      */
     class Generator {
         Path file;
@@ -128,9 +122,9 @@ public class TestBase extends SimpleFileVisitor<Path> {
         /**
          * read - reads in the next line of data
          *
-         * @return      String - a line from the csv containing attribute data
+         * @return String - a line from the csv containing attribute data
          */
-        public String   read() {
+        public String read() {
             String str = null;
             if (is == null) {
                 try {
@@ -160,7 +154,7 @@ public class TestBase extends SimpleFileVisitor<Path> {
             return str;
         }
 
-        public void     close() {
+        public void close() {
             if (this.reader != null) {
                 try {
                     this.reader.close();
@@ -189,12 +183,21 @@ public class TestBase extends SimpleFileVisitor<Path> {
     public static Options options = new Options();
     static {
         options.addOption(new Option(OPTION_HELP, false, "Prints help."));
-        options.addOption(new Option(OPTION_TESTDIR, true, "Directory path where all the test properties and data are located."));
+        options.addOption(new Option(OPTION_TESTDIR, true,
+                                     "Directory path where all the test properties and data are located."));
         options.addOption(new Option(OPTION_TESTREST, false, "Test against RESTful PDP."));
-        options.addOption(new Option(OPTION_TESTURL, true, "URL to the RESTful PDP. Default is " + DEFAULT_RESTURL));
-        options.addOption(new Option(OPTION_TESTOUTPUT, true, "Specify a different location for dumping responses."));
-        options.addOption(new Option(OPTION_LOOP, true, "Number of times to loop through the tests. Default is 1. A value of -1 runs indefinitely."));
-        options.addOption(new Option(OPTION_TESTNUMBERS, true, "Comma-separated list of numbers found in the names of the test files to be run.  Numbers must exactly match the file name, e.g. '02'.  Used to limit testing to specific set of tests."));
+        options.addOption(new Option(OPTION_TESTURL, true, "URL to the RESTful PDP. Default is "
+                                                           + DEFAULT_RESTURL));
+        options.addOption(new Option(OPTION_TESTOUTPUT, true,
+                                     "Specify a different location for dumping responses."));
+        options
+            .addOption(new Option(OPTION_LOOP, true,
+                                  "Number of times to loop through the tests. Default is 1. A value of -1 runs indefinitely."));
+        options
+            .addOption(new Option(
+                                  OPTION_TESTNUMBERS,
+                                  true,
+                                  "Comma-separated list of numbers found in the names of the test files to be run.  Numbers must exactly match the file name, e.g. '02'.  Used to limit testing to specific set of tests."));
     }
 
     protected String directory = null;
@@ -204,29 +207,30 @@ public class TestBase extends SimpleFileVisitor<Path> {
     protected int loop = 1;
     protected PDPEngine engine = null;
     protected List<Generator> generators = new ArrayList<Generator>();
-    protected static DataTypeFactory dataTypeFactory            = null;
+    protected static DataTypeFactory dataTypeFactory = null;
 
-    private long        permits = 0;
-    private long        denies = 0;
-    private long        notapplicables = 0;
-    private long        indeterminates = 0;
+    private long permits = 0;
+    private long denies = 0;
+    private long notapplicables = 0;
+    private long indeterminates = 0;
 
-    private long        expectedPermits = 0;
-    private long        expectedDenies = 0;
-    private long        expectedNotApplicables = 0;
-    private long        expectedIndeterminates = 0;
+    private long expectedPermits = 0;
+    private long expectedDenies = 0;
+    private long expectedNotApplicables = 0;
+    private long expectedIndeterminates = 0;
 
-    private long        generatedpermits = 0;
-    private long        generateddenies = 0;
-    private long        generatednotapplicables = 0;
-    private long        generatedindeterminates = 0;
+    private long generatedpermits = 0;
+    private long generateddenies = 0;
+    private long generatednotapplicables = 0;
+    private long generatedindeterminates = 0;
 
-    private long        responseMatches = 0;
-    private long        responseNotMatches = 0;
+    private long responseMatches = 0;
+    private long responseNotMatches = 0;
 
-    private String[]    testNumbersArray = null;
+    private String[] testNumbersArray = null;
 
-    protected final Pattern pattern = Pattern.compile("Request[.]\\d+[.](Permit|Deny|NA|Indeterminate|Generate|Unknown)\\.(json|xml)");
+    protected final Pattern pattern = Pattern
+        .compile("Request[.]\\d+[.](Permit|Deny|NA|Indeterminate|Generate|Unknown)\\.(json|xml)");
 
     public static boolean isJSON(Path file) {
         return file.toString().endsWith(".json");
@@ -265,8 +269,7 @@ public class TestBase extends SimpleFileVisitor<Path> {
         // Check for what we have
         //
         if (cl.hasOption(OPTION_HELP)) {
-            new HelpFormatter().printHelp("Usage: -dir testdirectory OPTIONS",
-                                          options);
+            new HelpFormatter().printHelp("Usage: -dir testdirectory OPTIONS", options);
             throw new HelpException();
         }
         if (cl.hasOption(OPTION_TESTDIR)) {
@@ -354,7 +357,6 @@ public class TestBase extends SimpleFileVisitor<Path> {
 
     /**
      * Removes all the Response* files from the results directory.
-     *
      */
     public void removeResults() {
         try {
@@ -408,16 +410,19 @@ public class TestBase extends SimpleFileVisitor<Path> {
             // Create an attribute value. It is simply a placeholder for the field within
             // the CSV that contains the actual attribute value. It mainly holds the data type
             //
-            Identifier datatype = new IdentifierImpl(XACMLProperties.getProperty(attributePrefix + ".datatype"));
+            Identifier datatype = new IdentifierImpl(XACMLProperties.getProperty(attributePrefix
+                                                                                 + ".datatype"));
             Integer field = Integer.parseInt(XACMLProperties.getProperty(attributePrefix + ".field"));
             StdAttributeValue<?> value = new StdAttributeValue<>(datatype, field);
             //
             // Get the rest of the attribute properties
             //
-            Identifier category = new IdentifierImpl(XACMLProperties.getProperty(attributePrefix + ".category"));
+            Identifier category = new IdentifierImpl(XACMLProperties.getProperty(attributePrefix
+                                                                                 + ".category"));
             Identifier id = new IdentifierImpl(XACMLProperties.getProperty(attributePrefix + ".id"));
             String issuer = XACMLProperties.getProperty(attributePrefix + ".issuer");
-            boolean include = Boolean.parseBoolean(XACMLProperties.getProperty(attributePrefix + ".include", "false"));
+            boolean include = Boolean.parseBoolean(XACMLProperties.getProperty(attributePrefix + ".include",
+                                                                               "false"));
             //
             // Now we have a skeleton attribute
             //
@@ -426,12 +431,11 @@ public class TestBase extends SimpleFileVisitor<Path> {
     }
 
     /**
-     * This runs() the test instance. It first configure's itself and then walks the
-     * requests directory issue each request to the PDP engine.
+     * This runs() the test instance. It first configure's itself and then walks the requests directory issue
+     * each request to the PDP engine.
      *
      * @throws java.io.IOException
      * @throws com.att.research.xacml.util.FactoryException
-     *
      */
     public void run() throws IOException, FactoryException {
         //
@@ -496,7 +500,7 @@ public class TestBase extends SimpleFileVisitor<Path> {
                 String group = null;
                 int count = matcher.groupCount();
                 if (count >= 1) {
-                    group = matcher.group(count-1);
+                    group = matcher.group(count - 1);
                 }
                 //
                 // Send it
@@ -511,12 +515,13 @@ public class TestBase extends SimpleFileVisitor<Path> {
     }
 
     /**
-     * When a request file is encountered, this method is called send the request to the PDP engine. It will also dump
-     * the response object. If the group equals "Generate", then it will loop and send the request with generated attributes
-     * until that list is empty.
+     * When a request file is encountered, this method is called send the request to the PDP engine. It will
+     * also dump the response object. If the group equals "Generate", then it will loop and send the request
+     * with generated attributes until that list is empty.
      *
      * @param file - Request file. Eg. Request-01-Permit.json
-     * @param group - This is the parsed out string of the request file that defines if it is a Permit/Deny/Generate etc.
+     * @param group - This is the parsed out string of the request file that defines if it is a
+     *            Permit/Deny/Generate etc.
      * @throws Exception
      */
     protected void sendRequest(Path file, String group) throws Exception {
@@ -602,19 +607,19 @@ public class TestBase extends SimpleFileVisitor<Path> {
     }
 
     /**
-     * Reads the request file into a Request object based on its type.
-     *
-     * If the request has "Generate" in its filename, then this function will add
-     * generated attributes into the request.
+     * Reads the request file into a Request object based on its type. If the request has "Generate" in its
+     * filename, then this function will add generated attributes into the request.
      *
      * @param file - Request file. Eg. Request-01-Permit.json
-     * @param group - This is the parsed out string of the request file that defines if it is a Permit/Deny/Generate etc.
+     * @param group - This is the parsed out string of the request file that defines if it is a
+     *            Permit/Deny/Generate etc.
      * @return
      * @throws com.att.research.xacml.std.json.JSONStructureException
      * @throws com.att.research.xacml.std.dom.DOMStructureException
      * @throws com.att.research.xacml.api.pep.PEPException
      */
-    protected Request generateRequest(Path file, String group) throws JSONStructureException, DOMStructureException, PEPException {
+    protected Request generateRequest(Path file, String group) throws JSONStructureException,
+        DOMStructureException, PEPException {
         //
         // Convert to a XACML Request Object
         //
@@ -693,7 +698,7 @@ public class TestBase extends SimpleFileVisitor<Path> {
                 // be only ONE object in the collection.
                 //
                 AttributeValue<?> value = attribute.getValues().iterator().next();
-                Integer field = (Integer) value.getValue();
+                Integer field = (Integer)value.getValue();
                 //
                 // Is the field number valid?
                 //
@@ -704,7 +709,7 @@ public class TestBase extends SimpleFileVisitor<Path> {
                 //
                 // Determine what datatype it is
                 //
-                DataType<?> dataTypeExtended    = dataTypeFactory.getDataType(value.getDataTypeId());
+                DataType<?> dataTypeExtended = dataTypeFactory.getDataType(value.getDataTypeId());
                 if (dataTypeExtended == null) {
                     logger.error("Failed to determine datatype");
                     return null;
@@ -713,15 +718,17 @@ public class TestBase extends SimpleFileVisitor<Path> {
                 // Create the attribute value
                 //
                 try {
-                    AttributeValue<?> attributeValue = dataTypeExtended.createAttributeValue(fields.get(field));
+                    AttributeValue<?> attributeValue = dataTypeExtended.createAttributeValue(fields
+                        .get(field));
                     //
                     // Create the attribute
                     //
                     StdMutableAttribute newAttribute = new StdMutableAttribute(attribute.getCategory(),
-                            attribute.getAttributeId(),
-                            attributeValue,
-                            attribute.getIssuer(),
-                            attribute.getIncludeInResults());
+                                                                               attribute.getAttributeId(),
+                                                                               attributeValue,
+                                                                               attribute.getIssuer(),
+                                                                               attribute
+                                                                                   .getIncludeInResults());
                     boolean added = false;
                     for (StdMutableRequestAttributes a : attributes) {
                         //
@@ -779,7 +786,7 @@ public class TestBase extends SimpleFileVisitor<Path> {
             //
             // Open up the connection
             //
-            connection = (HttpURLConnection) this.restURL.openConnection();
+            connection = (HttpURLConnection)this.restURL.openConnection();
             connection.setRequestProperty("Content-Type", "application/json");
             //
             // Setup our method and headers
@@ -814,17 +821,20 @@ public class TestBase extends SimpleFileVisitor<Path> {
                 try {
                     contentType = ContentType.parse(connection.getContentType());
 
-                    if (contentType.getMimeType().equalsIgnoreCase(ContentType.APPLICATION_JSON.getMimeType())) {
+                    if (contentType.getMimeType()
+                        .equalsIgnoreCase(ContentType.APPLICATION_JSON.getMimeType())) {
                         response = JSONResponse.load(connection.getInputStream());
-                    } else if (contentType.getMimeType().equalsIgnoreCase(ContentType.APPLICATION_XML.getMimeType()) ||
-                               contentType.getMimeType().equalsIgnoreCase("application/xacml+xml") ) {
+                    } else if (contentType.getMimeType().equalsIgnoreCase(ContentType.APPLICATION_XML
+                                                                              .getMimeType())
+                               || contentType.getMimeType().equalsIgnoreCase("application/xacml+xml")) {
                         response = DOMResponse.load(connection.getInputStream());
                     } else {
                         logger.error("unknown content-type: " + contentType);
                     }
 
                 } catch (Exception e) {
-                    String message = "Parsing Content-Type: " + connection.getContentType() + ", error=" + e.getMessage();
+                    String message = "Parsing Content-Type: " + connection.getContentType() + ", error="
+                                     + e.getMessage();
                     logger.error(message, e);
                 }
 
@@ -839,9 +849,9 @@ public class TestBase extends SimpleFileVisitor<Path> {
     }
 
     /**
-     * This processes a response. Saves the response out to disk. If there is a corresponding response file for the request located
-     * in the "responses" sub-directory, then this method will compare that response file with what the engine returned to see if it
-     * matched.
+     * This processes a response. Saves the response out to disk. If there is a corresponding response file
+     * for the request located in the "responses" sub-directory, then this method will compare that response
+     * file with what the engine returned to see if it matched.
      *
      * @param requestFile
      * @param request
@@ -850,7 +860,8 @@ public class TestBase extends SimpleFileVisitor<Path> {
      * @param count
      * @throws Exception
      */
-    protected void processResponse(Path requestFile, Request request, Response response, String group, int count) throws Exception {
+    protected void processResponse(Path requestFile, Request request, Response response, String group,
+                                   int count) throws Exception {
         //
         // Construct the output filename
         //
@@ -859,16 +870,18 @@ public class TestBase extends SimpleFileVisitor<Path> {
         int num = requestFile.getNameCount();
         if (num < 2) {
             logger.error("Too few dir's in request filename.");
-            throw new Exception("Too few dir's in request filename. Format should be Request.[0-9]+.{Permit|Deny|NA|Indeterminate}.{json|xml}");
+            throw new Exception(
+                                "Too few dir's in request filename. Format should be Request.[0-9]+.{Permit|Deny|NA|Indeterminate}.{json|xml}");
         }
         String filename = requestFile.getFileName().toString();
         if (group.equals("Generate")) {
             //
             // Using count variable, construct a filename
             //
-            //          i.e. Response.03.Generate.{count}.json
+            // i.e. Response.03.Generate.{count}.json
             //
-            filename = "Response" + filename.substring(filename.indexOf('.'), filename.lastIndexOf('.')) + String.format("%03d", count) + filename.substring(filename.lastIndexOf('.'));
+            filename = "Response" + filename.substring(filename.indexOf('.'), filename.lastIndexOf('.'))
+                       + String.format("%03d", count) + filename.substring(filename.lastIndexOf('.'));
         } else {
             //
             // Construct filename
@@ -965,7 +978,8 @@ public class TestBase extends SimpleFileVisitor<Path> {
         //
         // Write the response to the result file
         //
-        logger.info("Request: " + requestFile.getFileName() + " response is: " + (response == null ? "null" : response.toString()));
+        logger.info("Request: " + requestFile.getFileName() + " response is: "
+                    + (response == null ? "null" : response.toString()));
         if (resultFile != null && response != null) {
             if (TestBase.isJSON(resultFile)) {
                 Files.write(resultFile, JSONResponse.toString(response, true).getBytes());
@@ -1034,7 +1048,7 @@ public class TestBase extends SimpleFileVisitor<Path> {
         }
     }
 
-    protected void      dumpStats() {
+    protected void dumpStats() {
         StringBuilder dump = new StringBuilder();
         dump.append(System.lineSeparator());
         dump.append("Permits: " + this.permits + " Expected: " + this.expectedPermits);
@@ -1057,18 +1071,16 @@ public class TestBase extends SimpleFileVisitor<Path> {
         dump.append(System.lineSeparator());
         dump.append("Responses NOT Matched: " + this.responseNotMatches);
 
-        if (this.permits != this.expectedPermits ||
-                this.denies != this.expectedDenies ||
-                this.notapplicables != this.expectedNotApplicables ||
-                this.indeterminates != this.expectedIndeterminates ||
-                this.responseNotMatches > 0) {
+        if (this.permits != this.expectedPermits || this.denies != this.expectedDenies
+            || this.notapplicables != this.expectedNotApplicables
+            || this.indeterminates != this.expectedIndeterminates || this.responseNotMatches > 0) {
             logger.fatal(dump.toString());
         } else {
             logger.info(dump.toString());
         }
     }
 
-    protected void      resetStats() {
+    protected void resetStats() {
         this.permits = 0;
         this.denies = 0;
         this.notapplicables = 0;

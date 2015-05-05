@@ -42,7 +42,7 @@ import com.att.research.xacml.api.pap.PAPException;
 import com.att.research.xacml.util.FactoryException;
 
 public class StdEngineFactory extends PAPEngineFactory {
-    private static Log  logger  = LogFactory.getLog(StdEngineFactory.class);
+    private static Log logger = LogFactory.getLog(StdEngineFactory.class);
 
     @Override
     public PAPEngine newEngine() throws FactoryException, PAPException {
@@ -55,8 +55,7 @@ public class StdEngineFactory extends PAPEngineFactory {
     }
 
     @Override
-    public PAPEngine newEngine(Properties properties) throws FactoryException,
-        PAPException {
+    public PAPEngine newEngine(Properties properties) throws FactoryException, PAPException {
         try {
             return new StdEngine(properties);
         } catch (IOException e) {

@@ -36,9 +36,8 @@ import com.att.research.xacml.api.trace.TraceEngine;
 import com.att.research.xacml.api.trace.TraceEngineFactory;
 
 /**
- * Extends the {@link com.att.research.xacml.api.trace.TraceEngineFactory} class to implement the <code>getTraceEngine</code> method to return
- * an instance of the {@link LoggingTraceEngine} class.
- *
+ * Extends the {@link com.att.research.xacml.api.trace.TraceEngineFactory} class to implement the
+ * <code>getTraceEngine</code> method to return an instance of the {@link LoggingTraceEngine} class.
  */
 public class LoggingTraceEngineFactory extends TraceEngineFactory {
     /**

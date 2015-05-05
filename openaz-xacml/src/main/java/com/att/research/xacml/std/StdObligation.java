@@ -39,12 +39,12 @@ import com.att.research.xacml.util.Wrapper;
 
 /**
  * Immutable implementation of the {@link com.att.research.xacml.api.Obligation} interface.
- *
  */
 public class StdObligation extends Wrapper<Obligation> implements Obligation {
     /**
-     * Creates a new immutable <code>StdObligation</code> that wraps the given {@link com.att.research.xacml.api.Obligation}.
-     * The caller agrees not o modify the given <code>Obligation</code> as long as the new <code>StdObligation,</code> refers to it.
+     * Creates a new immutable <code>StdObligation</code> that wraps the given
+     * {@link com.att.research.xacml.api.Obligation}. The caller agrees not o modify the given
+     * <code>Obligation</code> as long as the new <code>StdObligation,</code> refers to it.
      *
      * @param obligation the <code>Obligation</code> to wrap in the new <code>StdObligation</code>.
      */
@@ -53,8 +53,9 @@ public class StdObligation extends Wrapper<Obligation> implements Obligation {
     }
 
     /**
-     * Creates a new immutable <code>StdObligation</code> with the given {@link com.att.research.xacml.api.Identifier} representing the XACML
-     * ObligationId of the Obligation represented by the new <code>StdObligation</code>.
+     * Creates a new immutable <code>StdObligation</code> with the given
+     * {@link com.att.research.xacml.api.Identifier} representing the XACML ObligationId of the Obligation
+     * represented by the new <code>StdObligation</code>.
      *
      * @param identifier the <code>Identifier</code> representing the XACML ObligationId of the Obligation
      */
@@ -63,19 +64,22 @@ public class StdObligation extends Wrapper<Obligation> implements Obligation {
     }
 
     /**
-     * Creates a new immutable <code>StdObligation</code> with the given {@link com.att.research.xacml.api.Identifier} representing the XACML
-     * ObligationId and a copy of the given <code>Collection</code> of {@link com.att.research.xacml.api.AttributeAssignment}s representing the
-     * AttributeAssignment elements of the Obligation represented by the new <code>StdObligation</code>.
+     * Creates a new immutable <code>StdObligation</code> with the given
+     * {@link com.att.research.xacml.api.Identifier} representing the XACML ObligationId and a copy of the
+     * given <code>Collection</code> of {@link com.att.research.xacml.api.AttributeAssignment}s representing
+     * the AttributeAssignment elements of the Obligation represented by the new <code>StdObligation</code>.
      *
      * @param identifier the <code>Identifier</code> representing the XACML ObligationId of the Obligation
-     * @param attributeAssignments <code>Collection</code> of <code>AttributeAssignment</code>s representing the XACML AttributeAssignments of the Obligation.
+     * @param attributeAssignments <code>Collection</code> of <code>AttributeAssignment</code>s representing
+     *            the XACML AttributeAssignments of the Obligation.
      */
     public StdObligation(Identifier identifier, Collection<AttributeAssignment> attributeAssignments) {
         this(new StdMutableObligation(identifier, attributeAssignments));
     }
 
     /**
-     * Creates a new <code>StdObligation</code> as a copy of the given {@link com.att.research.xacml.api.Obligation}.
+     * Creates a new <code>StdObligation</code> as a copy of the given
+     * {@link com.att.research.xacml.api.Obligation}.
      *
      * @param obligation the <code>Obligation</code> to copy
      * @return a new <code>StdObligation</code> copied from the given <code>Obligation</code>.

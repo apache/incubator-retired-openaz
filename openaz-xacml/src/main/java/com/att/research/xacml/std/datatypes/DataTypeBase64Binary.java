@@ -35,10 +35,9 @@ import com.att.research.xacml.api.XACML;
 
 /**
  * DataTypeBase64Binary extends {@link DataTypeBase} for the XACML base64Binary data type.
- *
  */
 public class DataTypeBase64Binary extends DataTypeBase<Base64Binary> {
-    private static final DataTypeBase64Binary   singleInstance  = new DataTypeBase64Binary();
+    private static final DataTypeBase64Binary singleInstance = new DataTypeBase64Binary();
 
     private DataTypeBase64Binary() {
         super(XACML.ID_DATATYPE_BASE64BINARY, Base64Binary.class);
@@ -55,15 +54,17 @@ public class DataTypeBase64Binary extends DataTypeBase<Base64Binary> {
         } else if (source instanceof byte[]) {
             return new Base64Binary((byte[])source);
         } else {
-            String      stringValue     = this.convertToString(source);
+            String stringValue = this.convertToString(source);
             if (stringValue == null) {
                 return null;
             }
-            Base64Binary        base64Binary    = null;
+            Base64Binary base64Binary = null;
             try {
-                base64Binary    = Base64Binary.newInstance(stringValue);
+                base64Binary = Base64Binary.newInstance(stringValue);
             } catch (Exception ex) {
-                throw new DataTypeException(this, "Failed to convert \"" + source.getClass().getCanonicalName() + "\" with value \"" + stringValue + "\" to Base64Binary", ex);
+                throw new DataTypeException(this, "Failed to convert \""
+                                                  + source.getClass().getCanonicalName() + "\" with value \""
+                                                  + stringValue + "\" to Base64Binary", ex);
             }
             return base64Binary;
         }

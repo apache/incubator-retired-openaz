@@ -38,9 +38,8 @@ import com.att.research.xacml.std.IdentifierImpl;
 import com.att.research.xacml.std.StdStatusCode;
 
 /**
- * JaxpStatusCode extends {@link com.att.research.xacml.std.StdStatusCode} with static methods
- * for creating a <code>StatusCode</code> object by parsing JAXP elements based on the XACML 3.0 schema.
- *
+ * JaxpStatusCode extends {@link com.att.research.xacml.std.StdStatusCode} with static methods for creating a
+ * <code>StatusCode</code> object by parsing JAXP elements based on the XACML 3.0 schema.
  */
 public class JaxpStatusCode extends StdStatusCode {
 
@@ -54,9 +53,9 @@ public class JaxpStatusCode extends StdStatusCode {
         } else if (statusCodeType.getValue() == null) {
             throw new IllegalArgumentException("Null StatusCodeValue");
         }
-        Identifier      statusCodeValue = new IdentifierImpl(statusCodeType.getValue());
+        Identifier statusCodeValue = new IdentifierImpl(statusCodeType.getValue());
 
-        StatusCode              statusCodeChild = null;
+        StatusCode statusCodeChild = null;
         if (statusCodeType.getStatusCode() != null) {
             try {
                 statusCodeChild = JaxpStatusCode.newInstance(statusCodeType.getStatusCode());

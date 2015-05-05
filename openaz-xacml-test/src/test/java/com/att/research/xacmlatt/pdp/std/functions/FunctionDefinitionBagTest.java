@@ -36,38 +36,31 @@ import org.junit.Test;
 import com.att.research.xacml.api.AttributeValue;
 import com.att.research.xacml.api.XACML3;
 import com.att.research.xacml.std.datatypes.DataTypes;
-import com.att.research.xacmlatt.pdp.policy.Bag;
-import com.att.research.xacmlatt.pdp.policy.ExpressionResult;
-import com.att.research.xacmlatt.pdp.policy.FunctionArgument;
-import com.att.research.xacmlatt.pdp.policy.FunctionArgumentAttributeValue;
-import com.att.research.xacmlatt.pdp.std.StdFunctions;
 
 /**
- * Test of PDP Functions (See XACML core spec section A.3)
- *
- * TO RUN - use jUnit
- * In Eclipse select this file or the enclosing directory, right-click and select Run As/JUnit Test
- *
- *
+ * Test of PDP Functions (See XACML core spec section A.3) TO RUN - use jUnit In Eclipse select this file or
+ * the enclosing directory, right-click and select Run As/JUnit Test
  */
 public class FunctionDefinitionBagTest {
-
 
     /*
      * variables useful in the following tests
      */
     List<FunctionArgument> arguments = new ArrayList<FunctionArgument>();
 
-
     FunctionArgumentAttributeValue attrInteger = null;
     FunctionArgumentAttributeValue attrString = null;
 
     public FunctionDefinitionBagTest() {
         try {
-            attrInteger = new FunctionArgumentAttributeValue(DataTypes.DT_INTEGER.createAttributeValue(1111111111));
-            attrString = new FunctionArgumentAttributeValue(DataTypes.DT_STRING.createAttributeValue("a string value"));
+            attrInteger = new FunctionArgumentAttributeValue(
+                                                             DataTypes.DT_INTEGER
+                                                                 .createAttributeValue(1111111111));
+            attrString = new FunctionArgumentAttributeValue(
+                                                            DataTypes.DT_STRING
+                                                                .createAttributeValue("a string value"));
         } catch (Exception e) {
-            fail("creating attributes e="+e);
+            fail("creating attributes e=" + e);
         }
     }
 
@@ -82,16 +75,16 @@ public class FunctionDefinitionBagTest {
             attr1 = new FunctionArgumentAttributeValue(DataTypes.DT_STRING.createAttributeValue(s1));
             attr2 = new FunctionArgumentAttributeValue(DataTypes.DT_STRING.createAttributeValue(s2));
         } catch (Exception e) {
-            fail("creating attributes e="+e);
+            fail("creating attributes e=" + e);
         }
 
-        FunctionDefinitionBag<?> fd = (FunctionDefinitionBag<?>) StdFunctions.FD_STRING_BAG;
+        FunctionDefinitionBag<?> fd = (FunctionDefinitionBag<?>)StdFunctions.FD_STRING_BAG;
 
         // check identity and type of the thing created
         assertEquals(XACML3.ID_FUNCTION_STRING_BAG, fd.getId());
         assertEquals(DataTypes.DT_STRING.getId(), fd.getDataTypeId());
 
-        // just to be safe...  If tests take too long these can probably be eliminated
+        // just to be safe... If tests take too long these can probably be eliminated
         assertTrue(fd.returnsBag());
 
         // bag with only one
@@ -115,22 +108,24 @@ public class FunctionDefinitionBagTest {
         assertNotNull(bag);
         assertEquals(0, bag.size());
 
-
         // null argument
         arguments.clear();
         arguments.add(null);
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
         assertEquals("function:string-bag Got null argument", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
         // argument of other type
         arguments.clear();
         arguments.add(attrInteger);
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
-        assertEquals("function:string-bag Expected data type 'string' saw 'integer'", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("function:string-bag Expected data type 'string' saw 'integer'", res.getStatus()
+            .getStatusMessage());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
         // 2 args (check response is correct)
         arguments.clear();
@@ -183,7 +178,6 @@ public class FunctionDefinitionBagTest {
         assertEquals(1000, bag.size());
 
     }
-
 
     @Test
     public void testBoolean() {
@@ -196,16 +190,16 @@ public class FunctionDefinitionBagTest {
             attr1 = new FunctionArgumentAttributeValue(DataTypes.DT_BOOLEAN.createAttributeValue(s1));
             attr2 = new FunctionArgumentAttributeValue(DataTypes.DT_BOOLEAN.createAttributeValue(s2));
         } catch (Exception e) {
-            fail("creating attributes e="+e);
+            fail("creating attributes e=" + e);
         }
 
-        FunctionDefinitionBag<?> fd = (FunctionDefinitionBag<?>) StdFunctions.FD_BOOLEAN_BAG;
+        FunctionDefinitionBag<?> fd = (FunctionDefinitionBag<?>)StdFunctions.FD_BOOLEAN_BAG;
 
         // check identity and type of the thing created
         assertEquals(XACML3.ID_FUNCTION_BOOLEAN_BAG, fd.getId());
         assertEquals(DataTypes.DT_BOOLEAN.getId(), fd.getDataTypeId());
 
-        // just to be safe...  If tests take too long these can probably be eliminated
+        // just to be safe... If tests take too long these can probably be eliminated
         assertTrue(fd.returnsBag());
 
         // bag with only one
@@ -229,22 +223,24 @@ public class FunctionDefinitionBagTest {
         assertNotNull(bag);
         assertEquals(0, bag.size());
 
-
         // null argument
         arguments.clear();
         arguments.add(null);
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
         assertEquals("function:boolean-bag Got null argument", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
         // argument of other type
         arguments.clear();
         arguments.add(attrInteger);
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
-        assertEquals("function:boolean-bag Expected data type 'boolean' saw 'integer'", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("function:boolean-bag Expected data type 'boolean' saw 'integer'", res.getStatus()
+            .getStatusMessage());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
         // 2 args (check response is correct)
         arguments.clear();
@@ -297,8 +293,6 @@ public class FunctionDefinitionBagTest {
         assertEquals(1000, bag.size());
 
     }
-
-
 
     @Test
     public void testInteger() {
@@ -311,16 +305,16 @@ public class FunctionDefinitionBagTest {
             attr1 = new FunctionArgumentAttributeValue(DataTypes.DT_INTEGER.createAttributeValue(s1));
             attr2 = new FunctionArgumentAttributeValue(DataTypes.DT_INTEGER.createAttributeValue(s2));
         } catch (Exception e) {
-            fail("creating attributes e="+e);
+            fail("creating attributes e=" + e);
         }
 
-        FunctionDefinitionBag<?> fd = (FunctionDefinitionBag<?>) StdFunctions.FD_INTEGER_BAG;
+        FunctionDefinitionBag<?> fd = (FunctionDefinitionBag<?>)StdFunctions.FD_INTEGER_BAG;
 
         // check identity and type of the thing created
         assertEquals(XACML3.ID_FUNCTION_INTEGER_BAG, fd.getId());
         assertEquals(DataTypes.DT_INTEGER.getId(), fd.getDataTypeId());
 
-        // just to be safe...  If tests take too long these can probably be eliminated
+        // just to be safe... If tests take too long these can probably be eliminated
         assertTrue(fd.returnsBag());
 
         // bag with only one
@@ -344,22 +338,24 @@ public class FunctionDefinitionBagTest {
         assertNotNull(bag);
         assertEquals(0, bag.size());
 
-
         // null argument
         arguments.clear();
         arguments.add(null);
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
         assertEquals("function:integer-bag Got null argument", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
         // argument of other type
         arguments.clear();
         arguments.add(attrString);
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
-        assertEquals("function:integer-bag Expected data type 'integer' saw 'string'", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("function:integer-bag Expected data type 'integer' saw 'string'", res.getStatus()
+            .getStatusMessage());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
         // 2 args (check response is correct)
         arguments.clear();
@@ -412,9 +408,6 @@ public class FunctionDefinitionBagTest {
         assertEquals(1000, bag.size());
 
     }
-
-
-
 
     @Test
     public void testDouble() {
@@ -427,16 +420,16 @@ public class FunctionDefinitionBagTest {
             attr1 = new FunctionArgumentAttributeValue(DataTypes.DT_DOUBLE.createAttributeValue(s1));
             attr2 = new FunctionArgumentAttributeValue(DataTypes.DT_DOUBLE.createAttributeValue(s2));
         } catch (Exception e) {
-            fail("creating attributes e="+e);
+            fail("creating attributes e=" + e);
         }
 
-        FunctionDefinitionBag<?> fd = (FunctionDefinitionBag<?>) StdFunctions.FD_DOUBLE_BAG;
+        FunctionDefinitionBag<?> fd = (FunctionDefinitionBag<?>)StdFunctions.FD_DOUBLE_BAG;
 
         // check identity and type of the thing created
         assertEquals(XACML3.ID_FUNCTION_DOUBLE_BAG, fd.getId());
         assertEquals(DataTypes.DT_DOUBLE.getId(), fd.getDataTypeId());
 
-        // just to be safe...  If tests take too long these can probably be eliminated
+        // just to be safe... If tests take too long these can probably be eliminated
         assertTrue(fd.returnsBag());
 
         // bag with only one
@@ -460,22 +453,24 @@ public class FunctionDefinitionBagTest {
         assertNotNull(bag);
         assertEquals(0, bag.size());
 
-
         // null argument
         arguments.clear();
         arguments.add(null);
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
         assertEquals("function:double-bag Got null argument", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
         // argument of other type
         arguments.clear();
         arguments.add(attrInteger);
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
-        assertEquals("function:double-bag Expected data type 'double' saw 'integer'", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("function:double-bag Expected data type 'double' saw 'integer'", res.getStatus()
+            .getStatusMessage());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
         // 2 args (check response is correct)
         arguments.clear();
@@ -529,18 +524,11 @@ public class FunctionDefinitionBagTest {
 
     }
 
-
-
-
-
     //
     //
-    //  REST OF DATA TYPES OMITTED
-    //  because they "should" all work the same
+    // REST OF DATA TYPES OMITTED
+    // because they "should" all work the same
     //
     //
-
-
-
 
 }

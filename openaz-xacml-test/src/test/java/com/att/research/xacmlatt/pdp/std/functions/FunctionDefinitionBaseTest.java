@@ -30,7 +30,6 @@
  */
 package com.att.research.xacmlatt.pdp.std.functions;
 
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -39,20 +38,14 @@ import org.junit.Test;
 
 import com.att.research.xacml.api.Identifier;
 import com.att.research.xacml.api.XACML3;
-import com.att.research.xacmlatt.pdp.policy.FunctionDefinition;
-import com.att.research.xacmlatt.pdp.std.StdFunctions;
 
 /**
- * Test functions in the abstract FunctionDefinitionSimpleTest class.
- * Functions are tested by creating instances of other classes that should have appropriate properties to verify all variations of the responses expected.
- *
- * Note: we do not test getDataTypeId() because all it does is get the String out of the Identity object and we assume that the Data Type Identity objects
- * are tested enough in everything else that any errors in them will be found and fixed quickly.
- *
- * TO RUN - use jUnit
- * In Eclipse select this file or the enclosing directory, right-click and select Run As/JUnit Test
- *
- *
+ * Test functions in the abstract FunctionDefinitionSimpleTest class. Functions are tested by creating
+ * instances of other classes that should have appropriate properties to verify all variations of the
+ * responses expected. Note: we do not test getDataTypeId() because all it does is get the String out of the
+ * Identity object and we assume that the Data Type Identity objects are tested enough in everything else that
+ * any errors in them will be found and fixed quickly. TO RUN - use jUnit In Eclipse select this file or the
+ * enclosing directory, right-click and select Run As/JUnit Test
  */
 public class FunctionDefinitionBaseTest {
     /**
@@ -62,7 +55,7 @@ public class FunctionDefinitionBaseTest {
     public void testGetId() {
         FunctionDefinition fd = StdFunctions.FD_STRING_EQUAL;
         Identifier id = fd.getId();
-        assertTrue(XACML3.ID_FUNCTION_STRING_EQUAL.stringValue().equals(id.stringValue()) );
+        assertTrue(XACML3.ID_FUNCTION_STRING_EQUAL.stringValue().equals(id.stringValue()));
     }
 
     /**
@@ -71,7 +64,8 @@ public class FunctionDefinitionBaseTest {
     @Test
     public void testGetDataType() {
 
-//?? Need functions that return each of these data types except for Boolean which is returned by any of the EQUAL functions
+        // ?? Need functions that return each of these data types except for Boolean which is returned by any
+        // of the EQUAL functions
         FunctionDefinition fdstring = StdFunctions.FD_STRING_NORMALIZE_SPACE;
         assertEquals(XACML3.ID_DATATYPE_STRING, fdstring.getDataTypeId());
 
@@ -114,9 +108,9 @@ public class FunctionDefinitionBaseTest {
         FunctionDefinition fdx500Name = StdFunctions.FD_X500NAME_FROM_STRING;
         assertEquals(XACML3.ID_DATATYPE_X500NAME, fdx500Name.getDataTypeId());
 
-//TODO - There are currently no functions that return XPathExpression objects
-//              FunctionDefinition fdxpathExpression = StdFunctions.FD_XPATHEXPRESSION_FROM_STRING;
-//              assertEquals(XACML3.ID_DATATYPE_XPATHEXPRESSION, fdxpathExpression.getDataTypeId());
+        // TODO - There are currently no functions that return XPathExpression objects
+        // FunctionDefinition fdxpathExpression = StdFunctions.FD_XPATHEXPRESSION_FROM_STRING;
+        // assertEquals(XACML3.ID_DATATYPE_XPATHEXPRESSION, fdxpathExpression.getDataTypeId());
 
         FunctionDefinition fdipAddress = StdFunctions.FD_IPADDRESS_FROM_STRING;
         assertEquals(XACML3.ID_DATATYPE_IPADDRESS, fdipAddress.getDataTypeId());
@@ -133,7 +127,7 @@ public class FunctionDefinitionBaseTest {
         FunctionDefinition fdNotBag = StdFunctions.FD_BOOLEAN_EQUAL;
         assertFalse(fdNotBag.returnsBag());
 
-        FunctionDefinitionBag<?> fdBag = (FunctionDefinitionBag<?>) StdFunctions.FD_STRING_BAG;
+        FunctionDefinitionBag<?> fdBag = (FunctionDefinitionBag<?>)StdFunctions.FD_STRING_BAG;
         assertTrue(fdBag.returnsBag());
     }
 

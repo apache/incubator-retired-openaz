@@ -69,41 +69,29 @@ import com.att.research.xacml.util.XACMLProperties;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
- * Servlet implementation class XacmlPdpServlet
- *
- * This is an implementation of the XACML 3.0 RESTful Interface with added features to support
- * simple PAP RESTful API for policy publishing and PIP configuration changes.
- *
- * If you are running this the first time, then we recommend you look at the xacml.pdp.properties file.
- * This properties file has all the default parameter settings. If you are running the servlet as is,
- * then we recommend setting up you're container to run it on port 8080 with context "/pdp". Wherever
- * the default working directory is set to, a "config" directory will be created that holds the policy
- * and pip cache. This setting is located in the xacml.pdp.properties file.
- *
- * When you are ready to customize, you can create a separate xacml.pdp.properties on you're local file
- * system and setup the parameters as you wish. Just set the Java VM System variable to point to that file:
- *
- * -Dxacml.properties=/opt/app/xacml/etc/xacml.pdp.properties
- *
- * Or if you only want to change one or two properties, simply set the Java VM System variable for that property.
- *
- * -Dxacml.rest.pdp.register=false
- *
- *
+ * Servlet implementation class XacmlPdpServlet This is an implementation of the XACML 3.0 RESTful Interface
+ * with added features to support simple PAP RESTful API for policy publishing and PIP configuration changes.
+ * If you are running this the first time, then we recommend you look at the xacml.pdp.properties file. This
+ * properties file has all the default parameter settings. If you are running the servlet as is, then we
+ * recommend setting up you're container to run it on port 8080 with context "/pdp". Wherever the default
+ * working directory is set to, a "config" directory will be created that holds the policy and pip cache. This
+ * setting is located in the xacml.pdp.properties file. When you are ready to customize, you can create a
+ * separate xacml.pdp.properties on you're local file system and setup the parameters as you wish. Just set
+ * the Java VM System variable to point to that file:
+ * -Dxacml.properties=/opt/app/xacml/etc/xacml.pdp.properties Or if you only want to change one or two
+ * properties, simply set the Java VM System variable for that property. -Dxacml.rest.pdp.register=false
  */
-@WebServlet(
-    description = "Implements the XACML PDP RESTful API and client PAP API.",
-    urlPatterns = { "/" },
-    loadOnStartup=1,
-initParams = {
-    @WebInitParam(name = "XACML_PROPERTIES_NAME", value = "xacml.pdp.properties", description = "The location of the PDP xacml.pdp.properties file holding configuration information.")
-})
+@WebServlet(description = "Implements the XACML PDP RESTful API and client PAP API.", urlPatterns = {
+    "/"
+}, loadOnStartup = 1, initParams = {
+                          @WebInitParam(name = "XACML_PROPERTIES_NAME", value = "xacml.pdp.properties", description = "The location of the PDP xacml.pdp.properties file holding configuration information.")
+            })
 public class XACMLPdpServlet extends HttpServlet implements Runnable {
     private static final long serialVersionUID = 1L;
     //
     // Our application debug log
     //
-    private static final Log logger     = LogFactory.getLog(XACMLPdpServlet.class);
+    private static final Log logger = LogFactory.getLog(XACMLPdpServlet.class);
     //
     // This logger is specifically only for Xacml requests and their corresponding response.
     // It's output ideally should be sent to a separate file from the application logger.
@@ -129,6 +117,7 @@ public class XACMLPdpServlet extends HttpServlet implements Runnable {
     //
     private static volatile StdPDPStatus status = new StdPDPStatus();
     private static final Object pdpStatusLock = new Object();
+
     //
     // Queue of PUT requests
     //
@@ -141,6 +130,7 @@ public class XACMLPdpServlet extends HttpServlet implements Runnable {
             this.pipConfigProperties = pips;
         }
     }
+
     public static volatile BlockingQueue<PutRequest> queue = new LinkedBlockingQueue<PutRequest>(2);
     //
     // This is our configuration thread that attempts to load
@@ -158,6 +148,7 @@ public class XACMLPdpServlet extends HttpServlet implements Runnable {
     /**
      * @see Servlet#init(ServletConfig)
      */
+    @Override
     public void init(ServletConfig config) throws ServletException {
         //
         // Initialize
@@ -169,7 +160,7 @@ public class XACMLPdpServlet extends HttpServlet implements Runnable {
         //
         PDPEngine engine = XACMLPdpLoader.loadEngine(XACMLPdpServlet.status, null, null);
         if (engine != null) {
-            synchronized(pdpEngineLock) {
+            synchronized (pdpEngineLock) {
                 pdpEngine = engine;
             }
         }
@@ -192,6 +183,7 @@ public class XACMLPdpServlet extends HttpServlet implements Runnable {
     /**
      * @see Servlet#destroy()
      */
+    @Override
     public void destroy() {
         super.destroy();
         logger.info("Destroying....");
@@ -223,55 +215,27 @@ public class XACMLPdpServlet extends HttpServlet implements Runnable {
     }
 
     /**
-     * PUT - The PAP engine sends configuration information using HTTP PUT request.
-     *
-     * One parameter is expected:
-     *
-     * config=[policy|pip|all]
-     *
-     *  policy - Expect a properties file that contains updated lists of the root and referenced policies that the PDP should
-     *                   be using for PEP requests.
-     *
-     *          Specifically should AT LEAST contain the following properties:
-     *          xacml.rootPolicies
-     *          xacml.referencedPolicies
-     *
-     *          In addition, any relevant information needed by the PDP to load or retrieve the policies to store in its cache.
-     *
-     *          EXAMPLE:
-     *                  xacml.rootPolicies=PolicyA.1, PolicyB.1
-     *
-     *                  PolicyA.1.url=http://localhost:9090/PAP?id=b2d7b86d-d8f1-4adf-ba9d-b68b2a90bee1&version=1
-     *                  PolicyB.1.url=http://localhost:9090/PAP/id=be962404-27f6-41d8-9521-5acb7f0238be&version=1
-     *
-     *                  xacml.referencedPolicies=RefPolicyC.1, RefPolicyD.1
-     *
-     *                  RefPolicyC.1.url=http://localhost:9090/PAP?id=foobar&version=1
-     *                  RefPolicyD.1.url=http://localhost:9090/PAP/id=example&version=1
-     *
-     * pip - Expect a properties file that contain PIP engine configuration properties.
-     *
-     *                  Specifically should AT LEAST the following property:
-     *                  xacml.pip.engines
-     *
-     *          In addition, any relevant information needed by the PDP to load and configure the PIPs.
-     *
-     *          EXAMPLE:
-     *                  xacml.pip.engines=foo,bar
-     *
-     *                  foo.classname=com.foo
-     *                  foo.sample=abc
-     *                  foo.example=xyz
-     *                  ......
-     *
-     *                  bar.classname=com.bar
-     *                  ......
-     *
-     * all - Expect ALL new configuration properties for the PDP
+     * PUT - The PAP engine sends configuration information using HTTP PUT request. One parameter is expected:
+     * config=[policy|pip|all] policy - Expect a properties file that contains updated lists of the root and
+     * referenced policies that the PDP should be using for PEP requests. Specifically should AT LEAST contain
+     * the following properties: xacml.rootPolicies xacml.referencedPolicies In addition, any relevant
+     * information needed by the PDP to load or retrieve the policies to store in its cache. EXAMPLE:
+     * xacml.rootPolicies=PolicyA.1, PolicyB.1
+     * PolicyA.1.url=http://localhost:9090/PAP?id=b2d7b86d-d8f1-4adf-ba9d-b68b2a90bee1&version=1
+     * PolicyB.1.url=http://localhost:9090/PAP/id=be962404-27f6-41d8-9521-5acb7f0238be&version=1
+     * xacml.referencedPolicies=RefPolicyC.1, RefPolicyD.1
+     * RefPolicyC.1.url=http://localhost:9090/PAP?id=foobar&version=1
+     * RefPolicyD.1.url=http://localhost:9090/PAP/id=example&version=1 pip - Expect a properties file that
+     * contain PIP engine configuration properties. Specifically should AT LEAST the following property:
+     * xacml.pip.engines In addition, any relevant information needed by the PDP to load and configure the
+     * PIPs. EXAMPLE: xacml.pip.engines=foo,bar foo.classname=com.foo foo.sample=abc foo.example=xyz ......
+     * bar.classname=com.bar ...... all - Expect ALL new configuration properties for the PDP
      *
      * @see HttpServlet#doPut(HttpServletRequest request, HttpServletResponse response)
      */
-    protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    @Override
+    protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException,
+        IOException {
         //
         // Dump our request out
         //
@@ -286,7 +250,8 @@ public class XACMLPdpServlet extends HttpServlet implements Runnable {
         // Should be a list of policy and pip configurations in Java properties format
         //
         if (cache != null && request.getContentType().equals("text/x-java-properties")) {
-            if (request.getContentLength() > Integer.parseInt(XACMLProperties.getProperty("MAX_CONTENT_LENGTH", "32767"))) {
+            if (request.getContentLength() > Integer.parseInt(XACMLProperties
+                .getProperty("MAX_CONTENT_LENGTH", "32767"))) {
                 String message = "Content-Length larger than server will accept.";
                 logger.info(message);
                 response.sendError(HttpServletResponse.SC_BAD_REQUEST, message);
@@ -294,19 +259,22 @@ public class XACMLPdpServlet extends HttpServlet implements Runnable {
             }
             this.doPutConfig(cache, request, response);
         } else {
-            String message = "Invalid cache: '" + cache + "' or content-type: '" + request.getContentType() + "'";
+            String message = "Invalid cache: '" + cache + "' or content-type: '" + request.getContentType()
+                             + "'";
             logger.error(message);
             response.sendError(HttpServletResponse.SC_BAD_REQUEST, message);
             return;
         }
     }
 
-    protected void doPutConfig(String config, HttpServletRequest request, HttpServletResponse response)  throws ServletException, IOException {
+    protected void doPutConfig(String config, HttpServletRequest request, HttpServletResponse response)
+        throws ServletException, IOException {
         try {
             // prevent multiple configuration changes from stacking up
             if (XACMLPdpServlet.queue.remainingCapacity() <= 0) {
                 logger.error("Queue capacity reached");
-                response.sendError(HttpServletResponse.SC_CONFLICT, "Multiple configuration changes waiting processing.");
+                response.sendError(HttpServletResponse.SC_CONFLICT,
+                                   "Multiple configuration changes waiting processing.");
                 return;
             }
             //
@@ -317,7 +285,8 @@ public class XACMLPdpServlet extends HttpServlet implements Runnable {
             // should have something in the request
             if (newProperties.size() == 0) {
                 logger.error("No properties in PUT");
-                response.sendError(HttpServletResponse.SC_BAD_REQUEST, "PUT must contain at least one property");
+                response.sendError(HttpServletResponse.SC_BAD_REQUEST,
+                                   "PUT must contain at least one property");
                 return;
             }
             //
@@ -328,7 +297,8 @@ public class XACMLPdpServlet extends HttpServlet implements Runnable {
                 newProperties = XACMLProperties.getPolicyProperties(newProperties, true);
                 if (newProperties.size() == 0) {
                     logger.error("No policy properties in PUT");
-                    response.sendError(HttpServletResponse.SC_BAD_REQUEST, "PUT with cache=policies must contain at least one policy property");
+                    response.sendError(HttpServletResponse.SC_BAD_REQUEST,
+                                       "PUT with cache=policies must contain at least one policy property");
                     return;
                 }
                 XACMLPdpServlet.queue.offer(new PutRequest(newProperties, null));
@@ -336,7 +306,8 @@ public class XACMLPdpServlet extends HttpServlet implements Runnable {
                 newProperties = XACMLProperties.getPipProperties(newProperties);
                 if (newProperties.size() == 0) {
                     logger.error("No pips properties in PUT");
-                    response.sendError(HttpServletResponse.SC_BAD_REQUEST, "PUT with cache=pips must contain at least one pip property");
+                    response.sendError(HttpServletResponse.SC_BAD_REQUEST,
+                                       "PUT with cache=pips must contain at least one pip property");
                     return;
                 }
                 XACMLPdpServlet.queue.offer(new PutRequest(null, newProperties));
@@ -344,13 +315,15 @@ public class XACMLPdpServlet extends HttpServlet implements Runnable {
                 Properties newPolicyProperties = XACMLProperties.getPolicyProperties(newProperties, true);
                 if (newPolicyProperties.size() == 0) {
                     logger.error("No policy properties in PUT");
-                    response.sendError(HttpServletResponse.SC_BAD_REQUEST, "PUT with cache=all must contain at least one policy property");
+                    response.sendError(HttpServletResponse.SC_BAD_REQUEST,
+                                       "PUT with cache=all must contain at least one policy property");
                     return;
                 }
                 Properties newPipProperties = XACMLProperties.getPipProperties(newProperties);
                 if (newPipProperties.size() == 0) {
                     logger.error("No pips properties in PUT");
-                    response.sendError(HttpServletResponse.SC_BAD_REQUEST, "PUT with cache=all must contain at least one pip property");
+                    response.sendError(HttpServletResponse.SC_BAD_REQUEST,
+                                       "PUT with cache=all must contain at least one pip property");
                     return;
                 }
                 XACMLPdpServlet.queue.offer(new PutRequest(newPolicyProperties, newPipProperties));
@@ -359,7 +332,8 @@ public class XACMLPdpServlet extends HttpServlet implements Runnable {
                 // Invalid value
                 //
                 logger.error("Invalid config value: " + config);
-                response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Config must be one of 'policies', 'pips', 'all'");
+                response.sendError(HttpServletResponse.SC_BAD_REQUEST,
+                                   "Config must be one of 'policies', 'pips', 'all'");
                 return;
             }
         } catch (Exception e) {
@@ -370,22 +344,17 @@ public class XACMLPdpServlet extends HttpServlet implements Runnable {
     }
 
     /**
-     * Parameters: type=hb|config|Status
-     *
-     * 1. HeartBeat Status
-     * HeartBeat
-     *          OK - All Policies are Loaded, All PIPs are Loaded
-     *          LOADING_IN_PROGRESS - Currently loading a new policy set/pip configuration
-     *          LAST_UPDATE_FAILED - Need to track the items that failed during last update
-     *          LOAD_FAILURE - ??? Need to determine what information is sent and how
-     * 2. Configuration
-     * 3. Status
-     *          return the StdPDPStatus object in the Response content
-     *
+     * Parameters: type=hb|config|Status 1. HeartBeat Status HeartBeat OK - All Policies are Loaded, All PIPs
+     * are Loaded LOADING_IN_PROGRESS - Currently loading a new policy set/pip configuration
+     * LAST_UPDATE_FAILED - Need to track the items that failed during last update LOAD_FAILURE - ??? Need to
+     * determine what information is sent and how 2. Configuration 3. Status return the StdPDPStatus object in
+     * the Response content
      *
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
      */
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException,
+        IOException {
         XACMLRest.dumpRequest(request);
         //
         // What are they requesting?
@@ -397,11 +366,13 @@ public class XACMLPdpServlet extends HttpServlet implements Runnable {
         if ("config".equals(type)) {
             response.setContentType("text/x-java-properties");
             try {
-                String lists = XACMLProperties.PROP_ROOTPOLICIES + "=" + XACMLProperties.getProperty(XACMLProperties.PROP_ROOTPOLICIES, "");
-                lists = lists + "\n" + XACMLProperties.PROP_REFERENCEDPOLICIES + "=" + XACMLProperties.getProperty(XACMLProperties.PROP_REFERENCEDPOLICIES, "") + "\n";
+                String lists = XACMLProperties.PROP_ROOTPOLICIES + "="
+                               + XACMLProperties.getProperty(XACMLProperties.PROP_ROOTPOLICIES, "");
+                lists = lists + "\n" + XACMLProperties.PROP_REFERENCEDPOLICIES + "="
+                        + XACMLProperties.getProperty(XACMLProperties.PROP_REFERENCEDPOLICIES, "") + "\n";
                 try (InputStream listInputStream = new ByteArrayInputStream(lists.getBytes());
-                            InputStream pipInputStream = Files.newInputStream(XACMLPdpLoader.getPIPConfig());
-                            OutputStream os = response.getOutputStream()) {
+                    InputStream pipInputStream = Files.newInputStream(XACMLPdpLoader.getPIPConfig());
+                    OutputStream os = response.getOutputStream()) {
                     IOUtils.copy(listInputStream, os);
                     IOUtils.copy(pipInputStream, os);
                 }
@@ -417,9 +388,9 @@ public class XACMLPdpServlet extends HttpServlet implements Runnable {
 
         } else if ("Status".equals(type)) {
             // convert response object to JSON and include in the response
-            synchronized(pdpStatusLock) {
+            synchronized (pdpStatusLock) {
                 ObjectMapper mapper = new ObjectMapper();
-                mapper.writeValue(response.getOutputStream(),  status);
+                mapper.writeValue(response.getOutputStream(), status);
             }
             response.setStatus(HttpServletResponse.SC_OK);
 
@@ -427,25 +398,28 @@ public class XACMLPdpServlet extends HttpServlet implements Runnable {
             response.sendError(HttpServletResponse.SC_BAD_REQUEST, "type not 'config' or 'hb'");
         }
         if (returnHB) {
-            synchronized(pdpStatusLock) {
-                response.addHeader(XACMLRestProperties.PROP_PDP_HTTP_HEADER_HB, status.getStatus().toString());
+            synchronized (pdpStatusLock) {
+                response
+                    .addHeader(XACMLRestProperties.PROP_PDP_HTTP_HEADER_HB, status.getStatus().toString());
             }
         }
     }
 
     /**
-     * POST - We expect XACML requests to be posted by PEP applications. They can be in the form of XML or JSON according
-     * to the XACML 3.0 Specifications for both.
-     *
+     * POST - We expect XACML requests to be posted by PEP applications. They can be in the form of XML or
+     * JSON according to the XACML 3.0 Specifications for both.
      *
      * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
      */
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException,
+        IOException {
         //
         // no point in doing any work if we know from the get-go that we cannot do anything with the request
         //
         if (status.getLoadedRootPolicies().size() == 0) {
-            logger.warn("Request from PEP at " + request.getRequestURI() + " for service when PDP has No Root Policies loaded");
+            logger.warn("Request from PEP at " + request.getRequestURI()
+                        + " for service when PDP has No Root Policies loaded");
             response.sendError(HttpServletResponse.SC_SERVICE_UNAVAILABLE);
             return;
         }
@@ -466,7 +440,8 @@ public class XACMLPdpServlet extends HttpServlet implements Runnable {
         //
         // Limit the Content-Length to something reasonable
         //
-        if (request.getContentLength() > Integer.parseInt(XACMLProperties.getProperty("MAX_CONTENT_LENGTH", "32767"))) {
+        if (request.getContentLength() > Integer.parseInt(XACMLProperties.getProperty("MAX_CONTENT_LENGTH",
+                                                                                      "32767"))) {
             String message = "Content-Length larger than server will accept.";
             logger.info(message);
             response.sendError(HttpServletResponse.SC_BAD_REQUEST, message);
@@ -482,7 +457,8 @@ public class XACMLPdpServlet extends HttpServlet implements Runnable {
         try {
             contentType = ContentType.parse(request.getContentType());
         } catch (Exception e) {
-            String message = "Parsing Content-Type: " + request.getContentType() + ", error=" + e.getMessage();
+            String message = "Parsing Content-Type: " + request.getContentType() + ", error="
+                             + e.getMessage();
             logger.error(message, e);
             response.sendError(HttpServletResponse.SC_BAD_REQUEST, message);
             return;
@@ -492,16 +468,16 @@ public class XACMLPdpServlet extends HttpServlet implements Runnable {
         //
         String incomingRequestString = null;
         Request pdpRequest = null;
-        if (contentType.getMimeType().equalsIgnoreCase(ContentType.APPLICATION_JSON.getMimeType()) ||
-                contentType.getMimeType().equalsIgnoreCase(ContentType.APPLICATION_XML.getMimeType()) ||
-                contentType.getMimeType().equalsIgnoreCase("application/xacml+xml") ) {
+        if (contentType.getMimeType().equalsIgnoreCase(ContentType.APPLICATION_JSON.getMimeType())
+            || contentType.getMimeType().equalsIgnoreCase(ContentType.APPLICATION_XML.getMimeType())
+            || contentType.getMimeType().equalsIgnoreCase("application/xacml+xml")) {
             //
             // Read in the string
             //
             StringBuilder buffer = new StringBuilder();
             BufferedReader reader = new BufferedReader(new InputStreamReader(request.getInputStream()));
             String line;
-            while((line = reader.readLine()) != null) {
+            while ((line = reader.readLine()) != null) {
                 buffer.append(line);
             }
             incomingRequestString = buffer.toString();
@@ -512,11 +488,12 @@ public class XACMLPdpServlet extends HttpServlet implements Runnable {
             try {
                 if (contentType.getMimeType().equalsIgnoreCase(ContentType.APPLICATION_JSON.getMimeType())) {
                     pdpRequest = JSONRequest.load(incomingRequestString);
-                } else if (     contentType.getMimeType().equalsIgnoreCase(ContentType.APPLICATION_XML.getMimeType()) ||
-                                contentType.getMimeType().equalsIgnoreCase("application/xacml+xml")) {
+                } else if (contentType.getMimeType().equalsIgnoreCase(ContentType.APPLICATION_XML
+                                                                          .getMimeType())
+                           || contentType.getMimeType().equalsIgnoreCase("application/xacml+xml")) {
                     pdpRequest = DOMRequest.load(incomingRequestString);
                 }
-            } catch(Exception e) {
+            } catch (Exception e) {
                 logger.error("Could not parse request", e);
                 response.sendError(HttpServletResponse.SC_BAD_REQUEST, e.getMessage());
                 return;
@@ -530,7 +507,8 @@ public class XACMLPdpServlet extends HttpServlet implements Runnable {
         //
         // Did we successfully get and parse a request?
         //
-        if (pdpRequest == null || pdpRequest.getRequestAttributes() == null || pdpRequest.getRequestAttributes().size() <= 0) {
+        if (pdpRequest == null || pdpRequest.getRequestAttributes() == null
+            || pdpRequest.getRequestAttributes().size() <= 0) {
             String message = "Zero Attributes found in the request";
             logger.error(message);
             response.sendError(HttpServletResponse.SC_BAD_REQUEST, message);
@@ -544,7 +522,7 @@ public class XACMLPdpServlet extends HttpServlet implements Runnable {
             // Get the pointer to the PDP Engine
             //
             PDPEngine myEngine = null;
-            synchronized(pdpEngineLock) {
+            synchronized (pdpEngineLock) {
                 myEngine = this.pdpEngine;
             }
             if (myEngine == null) {
@@ -557,23 +535,27 @@ public class XACMLPdpServlet extends HttpServlet implements Runnable {
             // Send the request and save the response
             //
             long lTimeStart, lTimeEnd;
-            Response pdpResponse        = null;
+            Response pdpResponse = null;
 
-//TODO - Make this unnecessary
-//TODO  It seems that the PDP Engine is not thread-safe, so when a configuration change occurs in the middle of processing
-//TODO  a PEP Request, that Request fails (it throws a NullPointerException in the decide() method).
-//TODO  Using synchronize will slow down processing of PEP requests, possibly by a significant amount.
-//TODO  Since configuration changes are rare, it would be A Very Good Thing if we could eliminate this sychronized block.
-//TODO
-//TODO  This problem was found by starting one PDP then
-//TODO          RestLoadTest switching between 2 configurations, 1 second apart
-//TODO                  both configurations contain the datarouter policy
-//TODO                  both configurations already have all policies cached in the PDPs config directory
-//TODO          RestLoadTest started with the Datarouter test requests, 5 threads, no interval
-//TODO  With that configuration this code (without the synchronized) throws a NullPointerException
-//TODO  within a few seconds.
-//
-            synchronized(pdpEngineLock) {
+            // TODO - Make this unnecessary
+            // TODO It seems that the PDP Engine is not thread-safe, so when a configuration change occurs in
+            // the middle of processing
+            // TODO a PEP Request, that Request fails (it throws a NullPointerException in the decide()
+            // method).
+            // TODO Using synchronize will slow down processing of PEP requests, possibly by a significant
+            // amount.
+            // TODO Since configuration changes are rare, it would be A Very Good Thing if we could eliminate
+            // this sychronized block.
+            // TODO
+            // TODO This problem was found by starting one PDP then
+            // TODO RestLoadTest switching between 2 configurations, 1 second apart
+            // TODO both configurations contain the datarouter policy
+            // TODO both configurations already have all policies cached in the PDPs config directory
+            // TODO RestLoadTest started with the Datarouter test requests, 5 threads, no interval
+            // TODO With that configuration this code (without the synchronized) throws a NullPointerException
+            // TODO within a few seconds.
+            //
+            synchronized (pdpEngineLock) {
                 myEngine = this.pdpEngine;
                 try {
                     lTimeStart = System.currentTimeMillis();
@@ -619,8 +601,8 @@ public class XACMLPdpServlet extends HttpServlet implements Runnable {
                     //
                     outgoingResponseString = JSONResponse.toString(pdpResponse, false);
                 }
-            } else if ( contentType.getMimeType().equalsIgnoreCase(ContentType.APPLICATION_XML.getMimeType()) ||
-                        contentType.getMimeType().equalsIgnoreCase("application/xacml+xml")) {
+            } else if (contentType.getMimeType().equalsIgnoreCase(ContentType.APPLICATION_XML.getMimeType())
+                       || contentType.getMimeType().equalsIgnoreCase("application/xacml+xml")) {
                 //
                 // Get it as a String. This is not very efficient but we need to log our
                 // results for auditing.
@@ -655,27 +637,33 @@ public class XACMLPdpServlet extends HttpServlet implements Runnable {
         // Keep running until we are told to terminate
         //
         try {
-            while (! this.configThreadTerminate) {
+            while (!this.configThreadTerminate) {
                 PutRequest request = XACMLPdpServlet.queue.take();
                 StdPDPStatus newStatus = new StdPDPStatus();
 
-//TODO - This is related to the problem discussed in the doPost() method about the PDPEngine not being thread-safe.
-//TODO  See that discussion, and when the PDPEngine is made thread-safe it should be ok to move the loadEngine out of
-//TODO  the synchronized block.
-//TODO  However, since configuration changes should be rare we may not care about changing this.
+                // TODO - This is related to the problem discussed in the doPost() method about the PDPEngine
+                // not being thread-safe.
+                // TODO See that discussion, and when the PDPEngine is made thread-safe it should be ok to
+                // move the loadEngine out of
+                // TODO the synchronized block.
+                // TODO However, since configuration changes should be rare we may not care about changing
+                // this.
                 PDPEngine newEngine = null;
-                synchronized(pdpStatusLock) {
+                synchronized (pdpStatusLock) {
                     XACMLPdpServlet.status.setStatus(Status.UPDATING_CONFIGURATION);
-                    newEngine = XACMLPdpLoader.loadEngine(newStatus, request.policyProperties, request.pipConfigProperties);
+                    newEngine = XACMLPdpLoader.loadEngine(newStatus, request.policyProperties,
+                                                          request.pipConfigProperties);
                 }
-//                              PDPEngine newEngine = XACMLPdpLoader.loadEngine(newStatus, request.policyProperties, request.pipConfigProperties);
+                // PDPEngine newEngine = XACMLPdpLoader.loadEngine(newStatus, request.policyProperties,
+                // request.pipConfigProperties);
                 if (newEngine != null) {
-                    synchronized(XACMLPdpServlet.pdpEngineLock) {
+                    synchronized (XACMLPdpServlet.pdpEngineLock) {
                         this.pdpEngine = newEngine;
                         try {
                             logger.info("Saving configuration.");
                             if (request.policyProperties != null) {
-                                try (OutputStream os = Files.newOutputStream(XACMLPdpLoader.getPDPPolicyCache())) {
+                                try (OutputStream os = Files.newOutputStream(XACMLPdpLoader
+                                    .getPDPPolicyCache())) {
                                     request.policyProperties.store(os, "");
                                 }
                             }
@@ -695,7 +683,7 @@ public class XACMLPdpServlet extends HttpServlet implements Runnable {
                 } else {
                     newStatus.setStatus(Status.LAST_UPDATE_FAILED);
                 }
-                synchronized(pdpStatusLock) {
+                synchronized (pdpStatusLock) {
                     XACMLPdpServlet.status.set(newStatus);
                 }
             }

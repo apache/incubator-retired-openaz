@@ -44,15 +44,15 @@ import com.att.research.xacml.std.StdMutableAttributeAssignment;
 import com.att.research.xacml.util.FactoryException;
 
 /**
- * JaxpAttributeAssignment extends {@link com.att.research.xacml.std.StdMutableAttributeAssignment} with methods for creation
- * from JAXP elements.
- *
+ * JaxpAttributeAssignment extends {@link com.att.research.xacml.std.StdMutableAttributeAssignment} with
+ * methods for creation from JAXP elements.
  *
  * @param <T> the java class of the value type for the assignment
  */
 public class JaxpAttributeAssignment extends StdMutableAttributeAssignment {
 
-    protected JaxpAttributeAssignment(Identifier attributeIdIn, Identifier categoryIdIn, String issuerIn, AttributeValue<?> attributeValueIn) {
+    protected JaxpAttributeAssignment(Identifier attributeIdIn, Identifier categoryIdIn, String issuerIn,
+                                      AttributeValue<?> attributeValueIn) {
         super(attributeIdIn, categoryIdIn, issuerIn, attributeValueIn);
     }
 
@@ -65,33 +65,35 @@ public class JaxpAttributeAssignment extends StdMutableAttributeAssignment {
             throw new IllegalArgumentException("Null categoryId in AttributeAssignmentType");
         } else if (attributeAssignmentType.getDataType() == null) {
             throw new IllegalArgumentException("Null dataTypeId in AttributeAssignmentType");
-        } else if (attributeAssignmentType.getContent() == null || attributeAssignmentType.getContent().get(0) == null) {
+        } else if (attributeAssignmentType.getContent() == null
+                   || attributeAssignmentType.getContent().get(0) == null) {
             throw new IllegalArgumentException("Null value in AttributeAssignmentType");
         }
-        Identifier              attributeId     = new IdentifierImpl(attributeAssignmentType.getAttributeId());
-        Identifier              categoryId      = new IdentifierImpl(attributeAssignmentType.getCategory());
-        Identifier              dataTypeId      = new IdentifierImpl(attributeAssignmentType.getDataType());
-        DataTypeFactory dataTypeFactory         = null;
+        Identifier attributeId = new IdentifierImpl(attributeAssignmentType.getAttributeId());
+        Identifier categoryId = new IdentifierImpl(attributeAssignmentType.getCategory());
+        Identifier dataTypeId = new IdentifierImpl(attributeAssignmentType.getDataType());
+        DataTypeFactory dataTypeFactory = null;
         try {
-            dataTypeFactory     = DataTypeFactory.newInstance();
+            dataTypeFactory = DataTypeFactory.newInstance();
             if (dataTypeFactory == null) {
                 return null;
             }
         } catch (FactoryException ex) {
             return null;
         }
-        DataType<?> dataType                            = dataTypeFactory.getDataType(dataTypeId);
+        DataType<?> dataType = dataTypeFactory.getDataType(dataTypeId);
         if (dataType == null) {
             throw new IllegalArgumentException("Unknown data type \"" + dataTypeId.toString() + "\"");
         }
 
-        List<Object>    content = attributeAssignmentType.getContent();
-        String                  issuer  = attributeAssignmentType.getIssuer();
-        AttributeValue<?> attributeValue        = null;
+        List<Object> content = attributeAssignmentType.getContent();
+        String issuer = attributeAssignmentType.getIssuer();
+        AttributeValue<?> attributeValue = null;
         try {
             attributeValue = dataType.createAttributeValue(content);
         } catch (DataTypeException ex) {
-            throw new IllegalArgumentException("Failed to create AttributeValue from \"" + dataTypeId.toString() + "\"", ex);
+            throw new IllegalArgumentException("Failed to create AttributeValue from \""
+                                               + dataTypeId.toString() + "\"", ex);
         }
 
         return new JaxpAttributeAssignment(attributeId, categoryId, issuer, attributeValue);

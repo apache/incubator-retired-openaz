@@ -51,15 +51,15 @@ import com.att.research.xacml.std.pip.engines.RequestEngine;
 
 /**
  * RequestFinder implements the {@link com.att.research.xacml.api.pip.PIPFinder} interface by wrapping another
- * <code>PIPFinder</code> a {@link com.att.research.xacml.std.pip.engines.RequestEngine} and a {@link com.att.research.xacml.std.pip.engines.EnvironmentEngine}.
- * When attributes are requested, the
- * <code>RequestEngine</code> is searched first, followed by the <code>EnvironmentEngine</code> and if no results are found, the wrapped <code>PIPFinder</code> is searched.
- *
+ * <code>PIPFinder</code> a {@link com.att.research.xacml.std.pip.engines.RequestEngine} and a
+ * {@link com.att.research.xacml.std.pip.engines.EnvironmentEngine}. When attributes are requested, the
+ * <code>RequestEngine</code> is searched first, followed by the <code>EnvironmentEngine</code> and if no
+ * results are found, the wrapped <code>PIPFinder</code> is searched.
  */
 public class RequestFinder extends WrappingFinder {
     private RequestEngine requestEngine;
     private EnvironmentEngine environmentEngine;
-    private Map<PIPRequest, PIPResponse>        mapCache        = new HashMap<PIPRequest,PIPResponse>();
+    private Map<PIPRequest, PIPResponse> mapCache = new HashMap<PIPRequest, PIPResponse>();
 
     protected RequestEngine getRequestEngine() {
         return this.requestEngine;
@@ -71,54 +71,57 @@ public class RequestFinder extends WrappingFinder {
 
     public RequestFinder(PIPFinder pipFinder, RequestEngine requestEngineIn) {
         super(pipFinder);
-        this.requestEngine      = requestEngineIn;
-        this.environmentEngine  = new EnvironmentEngine(new Date());
+        this.requestEngine = requestEngineIn;
+        this.environmentEngine = new EnvironmentEngine(new Date());
     }
 
     @Override
-    protected PIPResponse getAttributesInternal(PIPRequest pipRequest, PIPEngine exclude, PIPFinder pipFinderRoot) throws PIPException {
-        //long tStart = 0, tEnd = 0;
+    protected PIPResponse getAttributesInternal(PIPRequest pipRequest, PIPEngine exclude,
+                                                PIPFinder pipFinderRoot) throws PIPException {
+        // long tStart = 0, tEnd = 0;
         try {
             /*
              * First try the RequestEngine
              */
-            PIPResponse pipResponse                             = null;
-            RequestEngine thisRequestEngine             = this.getRequestEngine();
-            Status status                                               = null;
+            PIPResponse pipResponse = null;
+            RequestEngine thisRequestEngine = this.getRequestEngine();
+            Status status = null;
             if (thisRequestEngine != null && thisRequestEngine != exclude) {
-                //tStart        = System.nanoTime();
-                pipResponse     = thisRequestEngine.getAttributes(pipRequest, (pipFinderRoot == null ? this : pipFinderRoot));
-                //tEnd  = System.nanoTime();
+                // tStart = System.nanoTime();
+                pipResponse = thisRequestEngine.getAttributes(pipRequest, (pipFinderRoot == null
+                    ? this : pipFinderRoot));
+                // tEnd = System.nanoTime();
                 if (pipResponse.getStatus() == null || pipResponse.getStatus().isOk()) {
                     /*
-                     * We know how the RequestEngine works.  It does not return multiple results
-                     * and all of the results should match the request.
+                     * We know how the RequestEngine works. It does not return multiple results and all of the
+                     * results should match the request.
                      */
                     if (pipResponse.getAttributes().size() > 0) {
                         return pipResponse;
                     }
                 } else {
-                    status      = pipResponse.getStatus();
+                    status = pipResponse.getStatus();
                 }
             }
 
             /*
              * Next try the EnvironmentEngine if no issuer has been specified
              */
-            if (XACML3.ID_ATTRIBUTE_CATEGORY_ENVIRONMENT.equals(pipRequest.getCategory()) && (pipRequest.getIssuer() == null || pipRequest.getIssuer().length() == 0)) {
+            if (XACML3.ID_ATTRIBUTE_CATEGORY_ENVIRONMENT.equals(pipRequest.getCategory())
+                && (pipRequest.getIssuer() == null || pipRequest.getIssuer().length() == 0)) {
                 EnvironmentEngine thisEnvironmentEngine = this.getEnvironmentEngine();
-                pipResponse     = thisEnvironmentEngine.getAttributes(pipRequest, this);
+                pipResponse = thisEnvironmentEngine.getAttributes(pipRequest, this);
                 if (pipResponse.getStatus() == null || pipResponse.getStatus().isOk()) {
                     /*
-                     * We know how the EnvironmentEngine works.  It does not return multiple results
-                     * and all of the results should match the request.
+                     * We know how the EnvironmentEngine works. It does not return multiple results and all of
+                     * the results should match the request.
                      */
                     if (pipResponse.getAttributes().size() > 0) {
                         return pipResponse;
                     }
                 } else {
                     if (status == null) {
-                        status  = pipResponse.getStatus();
+                        status = pipResponse.getStatus();
                     }
                 }
             }
@@ -135,14 +138,16 @@ public class RequestFinder extends WrappingFinder {
              */
             PIPFinder thisWrappedFinder = this.getWrappedFinder();
             if (thisWrappedFinder != null) {
-                pipResponse     = thisWrappedFinder.getAttributes(pipRequest, exclude, (pipFinderRoot == null ? this : pipFinderRoot));
+                pipResponse = thisWrappedFinder.getAttributes(pipRequest, exclude, (pipFinderRoot == null
+                    ? this : pipFinderRoot));
                 if (pipResponse != null) {
                     if (pipResponse.getStatus() == null || pipResponse.getStatus().isOk()) {
                         if (pipResponse.getAttributes().size() > 0) {
                             /*
                              * Cache all of the returned attributes
                              */
-                            Map<PIPRequest,PIPResponse> mapResponses    = StdPIPResponse.splitResponse(pipResponse);
+                            Map<PIPRequest, PIPResponse> mapResponses = StdPIPResponse
+                                .splitResponse(pipResponse);
                             if (mapResponses != null && mapResponses.size() > 0) {
                                 for (PIPRequest pipRequestSplit : mapResponses.keySet()) {
                                     this.mapCache.put(pipRequestSplit, mapResponses.get(pipRequestSplit));
@@ -151,15 +156,15 @@ public class RequestFinder extends WrappingFinder {
                             return pipResponse;
                         }
                     } else if (status == null || status.isOk()) {
-                        status  = pipResponse.getStatus();
+                        status = pipResponse.getStatus();
                     }
                 }
             }
 
             /*
-             * We did not get a valid, non-empty response back from either the Request or the
-             * wrapped PIPFinder.  If there was an error using the RequestEngine, use that
-             * as the status of the response, otherwise return an empty response.
+             * We did not get a valid, non-empty response back from either the Request or the wrapped
+             * PIPFinder. If there was an error using the RequestEngine, use that as the status of the
+             * response, otherwise return an empty response.
              */
             if (status != null && !status.isOk()) {
                 return new StdPIPResponse(status);
@@ -167,7 +172,7 @@ public class RequestFinder extends WrappingFinder {
                 return StdPIPResponse.PIP_RESPONSE_EMPTY;
             }
         } finally {
-            //System.out.println("RequestFinder.getAttributesInternal() = " + (tEnd - tStart));
+            // System.out.println("RequestFinder.getAttributesInternal() = " + (tEnd - tStart));
         }
     }
 

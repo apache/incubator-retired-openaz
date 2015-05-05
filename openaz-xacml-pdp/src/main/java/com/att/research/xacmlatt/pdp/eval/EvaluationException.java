@@ -34,7 +34,6 @@ package com.att.research.xacmlatt.pdp.eval;
 /**
  * EvaluationException extends <code>Exception</code> to represent errors returned by methods of the
  * {@link Evaluatable} interface and the {@link Matchable} interface.
- *
  */
 public class EvaluationException extends Exception {
     private static final long serialVersionUID = 302250127793947492L;
@@ -54,7 +53,8 @@ public class EvaluationException extends Exception {
         super(message, cause);
     }
 
-    public EvaluationException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
+    public EvaluationException(String message, Throwable cause, boolean enableSuppression,
+                               boolean writableStackTrace) {
         super(message, cause, enableSuppression, writableStackTrace);
     }
 

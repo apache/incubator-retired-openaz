@@ -34,8 +34,8 @@ package com.att.research.xacml.api.trace;
 import java.util.Date;
 
 /**
- * Defines the API for objects that represent traceable events during evaluation of a XACML Policy or PolicySet.
- *
+ * Defines the API for objects that represent traceable events during evaluation of a XACML Policy or
+ * PolicySet.
  *
  * @param T the java <code>Class</code> of the traced object wrapped by the <code>TraceEvent</code>
  */
@@ -48,8 +48,8 @@ public interface TraceEvent<T> {
     public Date getTimestamp();
 
     /**
-     * Gets the <code>String</code> message associated with this <code>TraceEvent</code>.  If there is no message,
-     * the implementation may return <code>null</code>.
+     * Gets the <code>String</code> message associated with this <code>TraceEvent</code>. If there is no
+     * message, the implementation may return <code>null</code>.
      *
      * @return the <code>String</code> message associated with this <code>TraceEvent</code>.
      */

@@ -35,7 +35,6 @@ import com.att.research.xacml.std.StdStatusCode;
 
 /**
  * VariableDefinition extends {@link PolicyComponent} to represent a XACML VariableDefinition element.
- *
  */
 public class VariableDefinition extends PolicyComponent {
     private String id;
@@ -91,7 +90,7 @@ public class VariableDefinition extends PolicyComponent {
 
     @Override
     public String toString() {
-        StringBuilder stringBuilder     = new StringBuilder("{");
+        StringBuilder stringBuilder = new StringBuilder("{");
         stringBuilder.append("super=");
         stringBuilder.append(super.toString());
 

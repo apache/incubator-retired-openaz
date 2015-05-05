@@ -36,15 +36,14 @@ import com.att.research.xacml.api.SemanticString;
 
 /**
  * ISO8601TimeZone represents an ISO8601 TimeZone specification.
- *
  */
 public class ISO8601TimeZone implements Comparable<ISO8601TimeZone>, SemanticString {
-    private static int MAX_TZOFFSET_MINUTES                             = 60*24;
-    private static int MAX_NORMALIZED_TZOFFSET_MINUTES  = 60*12;
+    private static int MAX_TZOFFSET_MINUTES = 60 * 24;
+    private static int MAX_NORMALIZED_TZOFFSET_MINUTES = 60 * 12;
 
     private int tzOffsetMinutes;
 
-    public static final ISO8601TimeZone TIMEZONE_GMT    = new ISO8601TimeZone(0);
+    public static final ISO8601TimeZone TIMEZONE_GMT = new ISO8601TimeZone(0);
 
     /**
      * Creates a new <code>ISO8601TimeZone</code> with the given time zone offset in minutes.
@@ -52,17 +51,17 @@ public class ISO8601TimeZone implements Comparable<ISO8601TimeZone>, SemanticStr
      * @param tzOffsetMinutesIn the time zone offset in minutes
      */
     public ISO8601TimeZone(int tzOffsetMinutesIn) {
-        int     absOffsetMinutes        = Math.abs(tzOffsetMinutesIn);
+        int absOffsetMinutes = Math.abs(tzOffsetMinutesIn);
         if (absOffsetMinutes > MAX_TZOFFSET_MINUTES) {
             throw new IllegalArgumentException("Invalid ISO8601 timezone offset " + tzOffsetMinutesIn);
         }
         if (absOffsetMinutes <= MAX_NORMALIZED_TZOFFSET_MINUTES) {
-            this.tzOffsetMinutes        = tzOffsetMinutesIn;
+            this.tzOffsetMinutes = tzOffsetMinutesIn;
         } else {
             if (tzOffsetMinutesIn < 0) {
-                this.tzOffsetMinutes    = MAX_TZOFFSET_MINUTES - absOffsetMinutes;
+                this.tzOffsetMinutes = MAX_TZOFFSET_MINUTES - absOffsetMinutes;
             } else {
-                this.tzOffsetMinutes    = -(MAX_TZOFFSET_MINUTES - absOffsetMinutes);
+                this.tzOffsetMinutes = -(MAX_TZOFFSET_MINUTES - absOffsetMinutes);
             }
         }
     }
@@ -71,38 +70,39 @@ public class ISO8601TimeZone implements Comparable<ISO8601TimeZone>, SemanticStr
         /*
          * Look for timezone information
          */
-        int startPos            = ParseUtils.nextNonWhite(timezoneString, 0);
-        int     offsetMinutes   = 0;
-        int     signPart                = 1;
+        int startPos = ParseUtils.nextNonWhite(timezoneString, 0);
+        int offsetMinutes = 0;
+        int signPart = 1;
 
-        switch(timezoneString.charAt(startPos)) {
+        switch (timezoneString.charAt(startPos)) {
         case 'Z':
-            offsetMinutes       = 0;
+            offsetMinutes = 0;
             startPos++;
             break;
         case '-':
-            signPart    = -1;
-        /*
-         * Note: Purposefully not breaking here so the remainder of timezone parsing takes place following the '+' label
-         */
+            signPart = -1;
+            /*
+             * Note: Purposefully not breaking here so the remainder of timezone parsing takes place following
+             * the '+' label
+             */
         case '+':
             startPos++;
-            int hourPart        = ParseUtils.getTwoDigitValue(timezoneString, startPos);
+            int hourPart = ParseUtils.getTwoDigitValue(timezoneString, startPos);
             if (hourPart < 0 || hourPart > 24) {
                 throw new ParseException("Invalid timezone", startPos);
             }
-            startPos    += 2;
+            startPos += 2;
             if (startPos >= timezoneString.length() || timezoneString.charAt(startPos) != ':') {
                 throw new ParseException("Invalid time string", startPos);
             }
             startPos++;
-            int minutePart      = ParseUtils.getTwoDigitValue(timezoneString, startPos);
+            int minutePart = ParseUtils.getTwoDigitValue(timezoneString, startPos);
             if (minutePart < 0 || minutePart >= 60) {
                 throw new ParseException("Invalid timezone", startPos);
             }
-            startPos    += 2;
+            startPos += 2;
 
-            offsetMinutes       = signPart*(hourPart*60 + minutePart);
+            offsetMinutes = signPart * (hourPart * 60 + minutePart);
             break;
 
         default:
@@ -124,29 +124,29 @@ public class ISO8601TimeZone implements Comparable<ISO8601TimeZone>, SemanticStr
         if (this.tzOffsetMinutes == 0) {
             return "GMT";
         } else {
-            int offsetAbs       = Math.abs(this.tzOffsetMinutes);
-            String sign         = (this.tzOffsetMinutes < 0 ? "-" : "+");
-            int hours           = offsetAbs / 60;
-            int minutes         = offsetAbs - (60 * hours);
-            return "GMT" + sign + String.format("%02d", hours) + ":" + String.format("%02d",  minutes);
+            int offsetAbs = Math.abs(this.tzOffsetMinutes);
+            String sign = (this.tzOffsetMinutes < 0 ? "-" : "+");
+            int hours = offsetAbs / 60;
+            int minutes = offsetAbs - (60 * hours);
+            return "GMT" + sign + String.format("%02d", hours) + ":" + String.format("%02d", minutes);
         }
     }
 
     @Override
     public String stringValue() {
-        int                             offset                  = this.getTzOffsetMinutes();
+        int offset = this.getTzOffsetMinutes();
         if (offset == 0) {
             return "Z";
         }
 
-        StringBuilder   stringBuilder   = new StringBuilder();
+        StringBuilder stringBuilder = new StringBuilder();
         if (offset < 0) {
             stringBuilder.append('-');
         } else {
             stringBuilder.append('+');
         }
-        int     hourPart        = offset / 60;
-        int minutePart  = offset - (hourPart * 60);
+        int hourPart = offset / 60;
+        int minutePart = offset - (hourPart * 60);
         stringBuilder.append(String.format("%02d", hourPart));
         stringBuilder.append(':');
         stringBuilder.append(String.format("%02d", minutePart));

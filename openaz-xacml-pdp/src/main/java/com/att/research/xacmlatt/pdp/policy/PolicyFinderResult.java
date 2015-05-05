@@ -33,9 +33,11 @@ package com.att.research.xacmlatt.pdp.policy;
 import com.att.research.xacml.api.Status;
 
 /**
- * PolicyFinderResult is the interface for return values of the methods in the {@link com.att.research.xacmlatt.pdp.policy.PolicyFinderFactory} interface.
+ * PolicyFinderResult is the interface for return values of the methods in the
+ * {@link com.att.research.xacmlatt.pdp.policy.PolicyFinderFactory} interface.
  *
- * @param <T> the class extending {@link PolicyDef} contained as a result in this <code>PolicyFinderResult</code>
+ * @param <T> the class extending {@link PolicyDef} contained as a result in this
+ *            <code>PolicyFinderResult</code>
  */
 public interface PolicyFinderResult<T extends PolicyDef> {
     /**

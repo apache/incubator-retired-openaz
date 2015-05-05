@@ -35,7 +35,6 @@ import java.util.Iterator;
 
 /**
  * ListUtil contains a number of useful utilities on java <code>Collection</code> objects.
- *
  */
 public class ListUtil {
 
@@ -43,8 +42,8 @@ public class ListUtil {
     }
 
     /**
-     * If the given <code>Iterator</code> is not null, iterate over all <code>T</code> elements
-     * in it and add them to the given <code>Collection</code>.
+     * If the given <code>Iterator</code> is not null, iterate over all <code>T</code> elements in it and add
+     * them to the given <code>Collection</code>.
      *
      * @param iteratorFrom the <code>Iterator</code> to copy from
      * @param collectionTo the <code>Collection</code> to copy to
@@ -63,9 +62,9 @@ public class ListUtil {
         } else if (iterator2 == null || !iterator2.hasNext()) {
             return false;
         } else {
-            boolean result      = true;
+            boolean result = true;
             while (result && iterator1.hasNext() && iterator2.hasNext()) {
-                result  = ObjUtil.equalsAllowNull(iterator1.next(), iterator2.next());
+                result = ObjUtil.equalsAllowNull(iterator1.next(), iterator2.next());
             }
             return result && !iterator1.hasNext() && !iterator2.hasNext();
         }
@@ -79,7 +78,7 @@ public class ListUtil {
         } else if (collection1.size() != collection2.size()) {
             return false;
         } else {
-            for (Iterator<T> i1 = collection1.iterator(), i2 = collection2.iterator() ; i1.hasNext() ; ) {
+            for (Iterator<T> i1 = collection1.iterator(), i2 = collection2.iterator(); i1.hasNext();) {
                 if (!ObjUtil.equalsAllowNull(i1.next(), i2.next())) {
                     return false;
                 }
@@ -89,13 +88,13 @@ public class ListUtil {
     }
 
     public static <T> String toString(Collection<T> collection) {
-        StringBuilder stringBuilder     = new StringBuilder("[");
-        boolean first                           = true;
+        StringBuilder stringBuilder = new StringBuilder("[");
+        boolean first = true;
         for (T t : collection) {
             if (!first) {
                 stringBuilder.append(',');
             } else {
-                first   = true;
+                first = true;
             }
             if (t == null) {
                 stringBuilder.append("null");

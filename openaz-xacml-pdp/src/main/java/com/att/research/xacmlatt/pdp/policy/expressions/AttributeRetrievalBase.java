@@ -41,19 +41,17 @@ import com.att.research.xacmlatt.pdp.policy.Expression;
 import com.att.research.xacmlatt.pdp.policy.ExpressionResult;
 
 /**
- * AttributeRetrievalBase extends {@link com.att.research.xacmlatt.pdp.policy.PolicyComponent} and
- * implements {@link com.att.research.xacmlatt.pdp.eval.Evaluatable} to serve as an abstract base class
- * for the {@link com.att.research.xacmlatt.pdp.policy.AttributeSelector} and {@link com.att.research.xacmlatt.pdp.policy.AttributeDesignator}
- * classes.
- *
+ * AttributeRetrievalBase extends {@link com.att.research.xacmlatt.pdp.policy.PolicyComponent} and implements
+ * {@link com.att.research.xacmlatt.pdp.eval.Evaluatable} to serve as an abstract base class for the
+ * {@link com.att.research.xacmlatt.pdp.policy.AttributeSelector} and
+ * {@link com.att.research.xacmlatt.pdp.policy.AttributeDesignator} classes.
  */
 public abstract class AttributeRetrievalBase extends Expression {
-    private Identifier  category;
-    private Identifier  dataTypeId;
-    private Boolean             mustBePresent;
+    private Identifier category;
+    private Identifier dataTypeId;
+    private Boolean mustBePresent;
 
-    protected AttributeRetrievalBase(StatusCode statusCodeIn,
-                                     String statusMessageIn) {
+    protected AttributeRetrievalBase(StatusCode statusCodeIn, String statusMessageIn) {
         super(statusCodeIn, statusMessageIn);
     }
 
@@ -65,9 +63,9 @@ public abstract class AttributeRetrievalBase extends Expression {
     }
 
     protected AttributeRetrievalBase(Identifier categoryIn, Identifier dataTypeIdIn, Boolean mustBePresentIn) {
-        this.category           = categoryIn;
-        this.dataTypeId         = dataTypeIdIn;
-        this.mustBePresent      = mustBePresentIn;
+        this.category = categoryIn;
+        this.dataTypeId = dataTypeIdIn;
+        this.mustBePresent = mustBePresentIn;
     }
 
     /**
@@ -81,41 +79,49 @@ public abstract class AttributeRetrievalBase extends Expression {
     }
 
     /**
-     * Sets the <code>Identifier</code> for the category associated with this <code>AttributeRetrievalBase</code>.
+     * Sets the <code>Identifier</code> for the category associated with this
+     * <code>AttributeRetrievalBase</code>.
      *
-     * @param categoryIn the <code>Identifier</code> for the category associated with this <code>AttributeRetrievalBase</code>
+     * @param categoryIn the <code>Identifier</code> for the category associated with this
+     *            <code>AttributeRetrievalBase</code>
      */
     public void setCategory(Identifier categoryIn) {
-        this.category   = categoryIn;
+        this.category = categoryIn;
     }
 
     /**
-     * Gets the <code>Identifier</code> for the data type associated with this <code>AttributeRetrievalBase</code>.
+     * Gets the <code>Identifier</code> for the data type associated with this
+     * <code>AttributeRetrievalBase</code>.
      *
-     * @return the <code>Identifier</code> for the data type associated with this <code>AttributeRetrievalBase</code>
+     * @return the <code>Identifier</code> for the data type associated with this
+     *         <code>AttributeRetrievalBase</code>
      */
     public Identifier getDataTypeId() {
         return this.dataTypeId;
     }
 
     /**
-     * Sets the <code>Identifier</code> for the data type associated with this <code>AttributeRetrievalBase</code>.
+     * Sets the <code>Identifier</code> for the data type associated with this
+     * <code>AttributeRetrievalBase</code>.
      *
-     * @param dataTypeIn the <code>Identifier</code> for the data type associated with this <code>AttributeRetrievalBase</code>
+     * @param dataTypeIn the <code>Identifier</code> for the data type associated with this
+     *            <code>AttributeRetrievalBase</code>
      */
     public void setDataTypeId(Identifier dataTypeIn) {
-        // allow old-style Ids for Durations since there is no structural or semantic changes, just a different Id.
+        // allow old-style Ids for Durations since there is no structural or semantic changes, just a
+        // different Id.
         if (dataTypeIn.equals(XACML.ID_DATATYPE_WD_DAYTIMEDURATION)) {
-            dataTypeIn  = DataTypes.DT_DAYTIMEDURATION.getId();
+            dataTypeIn = DataTypes.DT_DAYTIMEDURATION.getId();
         } else if (dataTypeIn.equals(XACML.ID_DATATYPE_WD_YEARMONTHDURATION)) {
-            dataTypeIn  = DataTypes.DT_YEARMONTHDURATION.getId();
+            dataTypeIn = DataTypes.DT_YEARMONTHDURATION.getId();
         }
         this.dataTypeId = dataTypeIn;
     }
 
     /**
-     * Determines if a value must be found for this <code>AttributeRetrievalBase</code> when it is evaluated.  If true,
-     * and no value is found, an indeterminate result is returned, otherwise an empty bag is returned.
+     * Determines if a value must be found for this <code>AttributeRetrievalBase</code> when it is evaluated.
+     * If true, and no value is found, an indeterminate result is returned, otherwise an empty bag is
+     * returned.
      *
      * @return true if the value of this <code>AttributeRetrievalBase</code> must be found, else false
      */
@@ -129,7 +135,7 @@ public abstract class AttributeRetrievalBase extends Expression {
      * @param b the boolean value for the flag
      */
     public void setMustBePresent(boolean b) {
-        this.mustBePresent      = b;
+        this.mustBePresent = b;
     }
 
     @Override
@@ -149,8 +155,9 @@ public abstract class AttributeRetrievalBase extends Expression {
         }
     }
 
-    @Override public String toString() {
-        StringBuilder stringBuilder     = new StringBuilder("{");
+    @Override
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder("{");
         stringBuilder.append("super=");
         stringBuilder.append(super.toString());
 
@@ -172,14 +179,15 @@ public abstract class AttributeRetrievalBase extends Expression {
     }
 
     /**
-     * Creates the appropriate {@link com.att.research.xacmlatt.pdp.policy.ExpressionResult} for an empty list based
-     * on the <code>getMustBePresent</code> value.
+     * Creates the appropriate {@link com.att.research.xacmlatt.pdp.policy.ExpressionResult} for an empty list
+     * based on the <code>getMustBePresent</code> value.
      *
      * @return an appropriate <code>ExpressionResult</code>
      */
     protected ExpressionResult getEmptyResult(String statusMessage, StatusDetail statusDetail) {
         if (this.getMustBePresent() != null && this.getMustBePresent().booleanValue()) {
-            return ExpressionResult.newError(new StdStatus(StdStatusCode.STATUS_CODE_MISSING_ATTRIBUTE, statusMessage, statusDetail));
+            return ExpressionResult.newError(new StdStatus(StdStatusCode.STATUS_CODE_MISSING_ATTRIBUTE,
+                                                           statusMessage, statusDetail));
         } else {
             return ExpressionResult.newEmpty();
         }

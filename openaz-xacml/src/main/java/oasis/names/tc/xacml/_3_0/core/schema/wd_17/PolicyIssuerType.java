@@ -25,7 +25,6 @@
 // Generated on: 2013.05.23 at 02:47:00 PM EDT
 //
 
-
 package oasis.names.tc.xacml._3_0.core.schema.wd_17;
 
 import java.util.ArrayList;
@@ -36,11 +35,11 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
-
 /**
- * <p>Java class for PolicyIssuerType complex type.
- *
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>
+ * Java class for PolicyIssuerType complex type.
+ * <p>
+ * The following schema fragment specifies the expected content contained within this class.
  *
  * <pre>
  * &lt;complexType name="PolicyIssuerType">
@@ -54,13 +53,10 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- *
- *
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "PolicyIssuerType", propOrder = {
-    "content",
-    "attribute"
+                                                 "content", "attribute"
 })
 public class PolicyIssuerType {
 
@@ -72,10 +68,7 @@ public class PolicyIssuerType {
     /**
      * Gets the value of the content property.
      *
-     * @return
-     *     possible object is
-     *     {@link oasis.names.tc.xacml._3_0.core.schema.wd_17.ContentType }
-     *
+     * @return possible object is {@link oasis.names.tc.xacml._3_0.core.schema.wd_17.ContentType }
      */
     public ContentType getContent() {
         return content;
@@ -84,10 +77,7 @@ public class PolicyIssuerType {
     /**
      * Sets the value of the content property.
      *
-     * @param value
-     *     allowed object is
-     *     {@link oasis.names.tc.xacml._3_0.core.schema.wd_17.ContentType }
-     *
+     * @param value allowed object is {@link oasis.names.tc.xacml._3_0.core.schema.wd_17.ContentType }
      */
     public void setContent(ContentType value) {
         this.content = value;
@@ -95,25 +85,19 @@ public class PolicyIssuerType {
 
     /**
      * Gets the value of the attribute property.
-     *
      * <p>
-     * This accessor method returns a reference to the live list,
-     * not a snapshot. Therefore any modification you make to the
-     * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the attribute property.
-     *
+     * This accessor method returns a reference to the live list, not a snapshot. Therefore any modification
+     * you make to the returned list will be present inside the JAXB object. This is why there is not a
+     * <CODE>set</CODE> method for the attribute property.
      * <p>
      * For example, to add a new item, do as follows:
+     * 
      * <pre>
-     *    getAttribute().add(newItem);
+     * getAttribute().add(newItem);
      * </pre>
-     *
-     *
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link oasis.names.tc.xacml._3_0.core.schema.wd_17.AttributeType }
-     *
-     *
      */
     public List<AttributeType> getAttribute() {
         if (attribute == null) {

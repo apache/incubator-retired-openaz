@@ -38,8 +38,8 @@ import com.att.research.xacml.api.Identifier;
 import com.att.research.xacml.util.ObjUtil;
 
 /**
- * IdentifierImpl provides a common implementation of the {@link com.att.research.xacml.api.Identifier} interface with a stored, fixed <code>URI</code>.
- *
+ * IdentifierImpl provides a common implementation of the {@link com.att.research.xacml.api.Identifier}
+ * interface with a stored, fixed <code>URI</code>.
  */
 public class IdentifierImpl implements Identifier {
     private URI uri;
@@ -53,7 +53,7 @@ public class IdentifierImpl implements Identifier {
         if (uriIn == null) {
             throw new IllegalArgumentException("Null URI");
         }
-        this.uri        = uriIn;
+        this.uri = uriIn;
     }
 
     /**
@@ -70,7 +70,7 @@ public class IdentifierImpl implements Identifier {
     }
 
     public static Identifier gensym(String pfx) {
-        UUID uuid       = UUID.randomUUID();
+        UUID uuid = UUID.randomUUID();
         return new IdentifierImpl(pfx + ":" + uuid.toString());
     }
 
@@ -101,13 +101,13 @@ public class IdentifierImpl implements Identifier {
 
     @Override
     public int hashCode() {
-        URI thisURI     = this.getUri();
+        URI thisURI = this.getUri();
         return (thisURI == null ? super.hashCode() : thisURI.hashCode());
     }
 
     @Override
     public String stringValue() {
-        URI thisURI     = this.getUri();
+        URI thisURI = this.getUri();
         return (thisURI == null ? null : thisURI.toString());
     }
 }

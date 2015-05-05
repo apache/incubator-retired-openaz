@@ -35,8 +35,8 @@ import com.att.research.xacmlatt.pdp.eval.EvaluationContext;
 import com.att.research.xacmlatt.pdp.eval.EvaluationException;
 
 /**
- * Expression extends {@link com.att.research.xacmlatt.pdp.policy.PolicyComponent} to represent a XACML ExpressionType element.
- *
+ * Expression extends {@link com.att.research.xacmlatt.pdp.policy.PolicyComponent} to represent a XACML
+ * ExpressionType element.
  */
 public abstract class Expression extends PolicyComponent {
 
@@ -52,11 +52,15 @@ public abstract class Expression extends PolicyComponent {
     }
 
     /**
-     * Evaluates this <code>Expression</code> in the given {@link com.att.research.xacmlatt.pdp.eval.EvaluationContext}.
+     * Evaluates this <code>Expression</code> in the given
+     * {@link com.att.research.xacmlatt.pdp.eval.EvaluationContext}.
      *
-     * @param evaluationContext the <code>EvaluationContext</code> in which to evaluate this <code>Expression</code>
-     * @param policyDefaults the {@link com.att.research.xacml.pdp.policy.PolicyDefaults} to use in evaluating this <code>Expression</code>
+     * @param evaluationContext the <code>EvaluationContext</code> in which to evaluate this
+     *            <code>Expression</code>
+     * @param policyDefaults the {@link com.att.research.xacml.pdp.policy.PolicyDefaults} to use in evaluating
+     *            this <code>Expression</code>
      * @return a {@link com.att.research.xacmlatt.pdp.policy.ExpressionResult}
      */
-    public abstract ExpressionResult evaluate(EvaluationContext evaluationContext, PolicyDefaults policyDefaults) throws EvaluationException;
+    public abstract ExpressionResult evaluate(EvaluationContext evaluationContext,
+                                              PolicyDefaults policyDefaults) throws EvaluationException;
 }

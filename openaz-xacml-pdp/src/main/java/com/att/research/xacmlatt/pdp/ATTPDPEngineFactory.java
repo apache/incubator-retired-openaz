@@ -41,20 +41,19 @@ import com.att.research.xacml.util.FactoryException;
 import com.att.research.xacmlatt.pdp.eval.EvaluationContextFactory;
 
 /**
- * ATTPDPEngineFactory extends {@link com.att.research.xacml.api.pdp.PDPEngineFactory} by implementing the abstract
- * <code>newEngine</code> method to create a {@link ATTPDPEngine} instance and initialize it
- * with policies and PIP instances based on configuration information provided to the factory.
- *
+ * ATTPDPEngineFactory extends {@link com.att.research.xacml.api.pdp.PDPEngineFactory} by implementing the
+ * abstract <code>newEngine</code> method to create a {@link ATTPDPEngine} instance and initialize it with
+ * policies and PIP instances based on configuration information provided to the factory.
  */
 public class ATTPDPEngineFactory extends PDPEngineFactory {
-    private Log logger  = LogFactory.getLog(this.getClass());
+    private Log logger = LogFactory.getLog(this.getClass());
 
     public ATTPDPEngineFactory() {
     }
 
     @Override
     public PDPEngine newEngine() throws FactoryException {
-        EvaluationContextFactory evaluationContextFactory       = EvaluationContextFactory.newInstance();
+        EvaluationContextFactory evaluationContextFactory = EvaluationContextFactory.newInstance();
         if (evaluationContextFactory == null) {
             this.logger.error("Null EvaluationContextFactory");
             throw new FactoryException("Null EvaluationContextFactory");
@@ -64,11 +63,12 @@ public class ATTPDPEngineFactory extends PDPEngineFactory {
 
     @Override
     public PDPEngine newEngine(Properties properties) throws FactoryException {
-        EvaluationContextFactory evaluationContextFactory       = EvaluationContextFactory.newInstance(properties);
+        EvaluationContextFactory evaluationContextFactory = EvaluationContextFactory.newInstance(properties);
         if (evaluationContextFactory == null) {
             this.logger.error("Null EvaluationContextFactory");
             throw new FactoryException("Null EvaluationContextFactory");
         }
-        return new ATTPDPEngine(evaluationContextFactory, this.getDefaultBehavior(), this.getScopeResolver(), properties);
+        return new ATTPDPEngine(evaluationContextFactory, this.getDefaultBehavior(), this.getScopeResolver(),
+                                properties);
     }
 }

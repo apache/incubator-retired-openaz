@@ -25,7 +25,6 @@
 // Generated on: 2013.05.23 at 02:47:00 PM EDT
 //
 
-
 package oasis.names.tc.xacml._3_0.core.schema.wd_17;
 
 import java.util.ArrayList;
@@ -36,11 +35,11 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
-
 /**
- * <p>Java class for AdviceExpressionsType complex type.
- *
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>
+ * Java class for AdviceExpressionsType complex type.
+ * <p>
+ * The following schema fragment specifies the expected content contained within this class.
  *
  * <pre>
  * &lt;complexType name="AdviceExpressionsType">
@@ -53,12 +52,10 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- *
- *
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "AdviceExpressionsType", propOrder = {
-    "adviceExpression"
+                                                      "adviceExpression"
 })
 public class AdviceExpressionsType {
 
@@ -67,25 +64,19 @@ public class AdviceExpressionsType {
 
     /**
      * Gets the value of the adviceExpression property.
-     *
      * <p>
-     * This accessor method returns a reference to the live list,
-     * not a snapshot. Therefore any modification you make to the
-     * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the adviceExpression property.
-     *
+     * This accessor method returns a reference to the live list, not a snapshot. Therefore any modification
+     * you make to the returned list will be present inside the JAXB object. This is why there is not a
+     * <CODE>set</CODE> method for the adviceExpression property.
      * <p>
      * For example, to add a new item, do as follows:
+     * 
      * <pre>
-     *    getAdviceExpression().add(newItem);
+     * getAdviceExpression().add(newItem);
      * </pre>
-     *
-     *
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link oasis.names.tc.xacml._3_0.core.schema.wd_17.AdviceExpressionType }
-     *
-     *
      */
     public List<AdviceExpressionType> getAdviceExpression() {
         if (adviceExpression == null) {

@@ -39,11 +39,11 @@ import com.att.research.xacml.api.SemanticString;
 import com.att.research.xacml.util.StringUtils;
 
 /**
- * Base64Binary provides utilities for converting the XACML base64Binary data type to and from <code>String</code> values.
- *
+ * Base64Binary provides utilities for converting the XACML base64Binary data type to and from
+ * <code>String</code> values.
  */
 public class Base64Binary implements SemanticString {
-    private byte[]      data;
+    private byte[] data;
 
     /**
      * Creates a <code>Base64Binary</code> object from an array of <code>byte</code>s.
@@ -51,7 +51,7 @@ public class Base64Binary implements SemanticString {
      * @param dataIn the array of <code>byte</code>s
      */
     public Base64Binary(byte[] dataIn) {
-        this.data       = dataIn;
+        this.data = dataIn;
     }
 
     /**
@@ -64,7 +64,7 @@ public class Base64Binary implements SemanticString {
         if (stringBase64Binary == null) {
             return null;
         }
-        byte[]  base64Bytes     = (byte[])new Base64().decode(stringBase64Binary);
+        byte[] base64Bytes = new Base64().decode(stringBase64Binary);
         return new Base64Binary(base64Bytes);
     }
 
@@ -89,7 +89,7 @@ public class Base64Binary implements SemanticString {
         } else if (obj == this) {
             return true;
         } else {
-            Base64Binary        hexBinaryObj    = (Base64Binary)obj;
+            Base64Binary hexBinaryObj = (Base64Binary)obj;
             if (this.getData() == null) {
                 if (hexBinaryObj.getData() == null) {
                     return true;
@@ -111,6 +111,7 @@ public class Base64Binary implements SemanticString {
      *
      * @return the <code>String</code> Base 64 binary representation of this <code>Base64Binary</code> object.
      */
+    @Override
     public String stringValue() {
         if (this.getData() == null) {
             return null;
@@ -121,7 +122,7 @@ public class Base64Binary implements SemanticString {
 
     @Override
     public String toString() {
-        StringBuilder stringBuilder     = new StringBuilder("{");
+        StringBuilder stringBuilder = new StringBuilder("{");
 
         byte[] thisData = this.getData();
         if (thisData != null) {

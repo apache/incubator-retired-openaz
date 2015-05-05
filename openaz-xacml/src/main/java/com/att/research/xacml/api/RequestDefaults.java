@@ -34,23 +34,21 @@ import java.net.URI;
 
 /**
  * Defines the API for objects that represent XACML RequestDefaults elements.
- *
  */
 public interface RequestDefaults {
     /**
-     * Returns the <code>URI</code> of the XPath version to use when applying XPath expressions to XML content.
+     * Returns the <code>URI</code> of the XPath version to use when applying XPath expressions to XML
+     * content.
      *
      * @return the <code>URI</code> of the XPath version.
      */
     URI getXPathVersion();
 
     /**
-     * {@inheritDoc}
-     *
-     * Implementations of this interface must override the <code>equals</code> method with the following semantics:
-     *
-     *          Two <code>RequestDefaults</code> (<code>r1</code> and <code>r2</code> are equal if:
-     *                  {@code r1.getXPathVersion() == null && r2.getXPathVersion() == null} OR {@code r1.getXPathVersion().equals(r2.getXPathVersion())}
+     * {@inheritDoc} Implementations of this interface must override the <code>equals</code> method with the
+     * following semantics: Two <code>RequestDefaults</code> (<code>r1</code> and <code>r2</code> are equal
+     * if: {@code r1.getXPathVersion() == null && r2.getXPathVersion() == null} OR
+     * {@code r1.getXPathVersion().equals(r2.getXPathVersion())}
      */
     @Override
     boolean equals(Object obj);

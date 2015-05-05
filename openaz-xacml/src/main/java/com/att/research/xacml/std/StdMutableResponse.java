@@ -42,10 +42,9 @@ import com.att.research.xacml.util.ListUtil;
 
 /**
  * Mutable implementation of the {@link com.att.research.xacml.api.Response} interface.
- *
  */
 public class StdMutableResponse implements Response {
-    private static final List<Result>   EMPTY_LIST      = Collections.unmodifiableList(new ArrayList<Result>());
+    private static final List<Result> EMPTY_LIST = Collections.unmodifiableList(new ArrayList<Result>());
 
     private List<Result> results;
 
@@ -53,7 +52,7 @@ public class StdMutableResponse implements Response {
      * Creates a new <code>StdMutableResponse</code> with no {@link com.att.research.xacml.api.Result}s.
      */
     public StdMutableResponse() {
-        this.results    = EMPTY_LIST;
+        this.results = EMPTY_LIST;
     }
 
     /**
@@ -63,30 +62,32 @@ public class StdMutableResponse implements Response {
      */
     public StdMutableResponse(Result resultIn) {
         if (resultIn != null) {
-            this.results        = new ArrayList<Result>();
+            this.results = new ArrayList<Result>();
             this.results.add(resultIn);
         } else {
-            this.results        = EMPTY_LIST;
+            this.results = EMPTY_LIST;
         }
     }
 
     /**
-     * Creates a new <code>StdMutableResponse</code> with a copy of the {@link com.att.research.xacml.api.Result}s in
-     * the given <code>Collection</code>>
+     * Creates a new <code>StdMutableResponse</code> with a copy of the
+     * {@link com.att.research.xacml.api.Result}s in the given <code>Collection</code>>
      *
-     * @param listResults the <code>Collection</code> of <code>Result</code>s for the new <code>StdMutableResponse</code>
+     * @param listResults the <code>Collection</code> of <code>Result</code>s for the new
+     *            <code>StdMutableResponse</code>
      */
     public StdMutableResponse(Collection<Result> listResults) {
         if (listResults != null && listResults.size() > 0) {
-            this.results        = new ArrayList<Result>();
+            this.results = new ArrayList<Result>();
             this.results.addAll(listResults);
         } else {
-            this.results        = EMPTY_LIST;
+            this.results = EMPTY_LIST;
         }
     }
 
     /**
-     * Creates a new <code>StdMutableResponse</code> that is a copy of the given {@link com.att.research.xacml.api.Response}.
+     * Creates a new <code>StdMutableResponse</code> that is a copy of the given
+     * {@link com.att.research.xacml.api.Response}.
      *
      * @param copy the <code>Response</code> to copy
      */
@@ -95,10 +96,11 @@ public class StdMutableResponse implements Response {
     }
 
     /**
-     * Creates a new <code>StdMutableResponse</code> with a single {@link com.att.research.xacml.api.Result} defined
-     * by the given {@link com.att.research.xacml.api.Status}.
+     * Creates a new <code>StdMutableResponse</code> with a single {@link com.att.research.xacml.api.Result}
+     * defined by the given {@link com.att.research.xacml.api.Status}.
      *
-     * @param status the <code>Status</code> of the <code>Result</code> for the new <code>StdMutableResponse</code>.
+     * @param status the <code>Status</code> of the <code>Result</code> for the new
+     *            <code>StdMutableResponse</code>.
      */
     public StdMutableResponse(Status status) {
         this(new StdMutableResult(status));
@@ -116,7 +118,7 @@ public class StdMutableResponse implements Response {
      */
     public void add(Result result) {
         if (this.results == EMPTY_LIST) {
-            this.results        = new ArrayList<Result>();
+            this.results = new ArrayList<Result>();
         }
         this.results.add(result);
     }
@@ -128,15 +130,15 @@ public class StdMutableResponse implements Response {
         } else if (obj == null || !(obj instanceof Response)) {
             return false;
         } else {
-            Response objResponse        = (Response)obj;
+            Response objResponse = (Response)obj;
             return ListUtil.equalsAllowNulls(this.getResults(), objResponse.getResults());
         }
     }
 
     @Override
     public String toString() {
-        StringBuilder   stringBuilder   = new StringBuilder("{");
-        Collection<Result> listResults  = this.getResults();
+        StringBuilder stringBuilder = new StringBuilder("{");
+        Collection<Result> listResults = this.getResults();
         if (listResults.size() > 0) {
             stringBuilder.append("results=");
             stringBuilder.append(ListUtil.toString(listResults));

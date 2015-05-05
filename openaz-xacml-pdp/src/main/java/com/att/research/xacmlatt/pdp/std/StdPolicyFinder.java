@@ -62,62 +62,82 @@ import com.att.research.xacmlatt.pdp.policy.PolicySetChild;
 import com.att.research.xacmlatt.pdp.policy.dom.DOMPolicyDef;
 
 /**
- * StdPolicyFinder implements the {@link com.att.research.xacmlatt.pdp.policy.PolicyFinder} interface to look up policies
- * by their internal ID or an externally visible ID.
- *
+ * StdPolicyFinder implements the {@link com.att.research.xacmlatt.pdp.policy.PolicyFinder} interface to look
+ * up policies by their internal ID or an externally visible ID.
  */
 public class StdPolicyFinder implements PolicyFinder {
-    private static final PolicyFinderResult<PolicyDef> PFR_MULTIPLE                             = new StdPolicyFinderResult<PolicyDef>(new StdStatus(StdStatusCode.STATUS_CODE_PROCESSING_ERROR, "Multiple applicable root policies"));
-    private static final PolicyFinderResult<PolicyDef> PFR_NOT_FOUND                    = new StdPolicyFinderResult<PolicyDef>(new StdStatus(StdStatusCode.STATUS_CODE_PROCESSING_ERROR, "No matching root policy found"));
+    private static final PolicyFinderResult<PolicyDef> PFR_MULTIPLE = new StdPolicyFinderResult<PolicyDef>(
+                                                                                                           new StdStatus(
+                                                                                                                         StdStatusCode.STATUS_CODE_PROCESSING_ERROR,
+                                                                                                                         "Multiple applicable root policies"));
+    private static final PolicyFinderResult<PolicyDef> PFR_NOT_FOUND = new StdPolicyFinderResult<PolicyDef>(
+                                                                                                            new StdStatus(
+                                                                                                                          StdStatusCode.STATUS_CODE_PROCESSING_ERROR,
+                                                                                                                          "No matching root policy found"));
 
-    private static final PolicyFinderResult<Policy>     PFR_POLICY_NOT_FOUND            = new StdPolicyFinderResult<Policy>(new StdStatus(StdStatusCode.STATUS_CODE_PROCESSING_ERROR, "No matching policy found"));
-    private static final PolicyFinderResult<Policy>     PFR_NOT_A_POLICY                        = new StdPolicyFinderResult<Policy>(new StdStatus(StdStatusCode.STATUS_CODE_PROCESSING_ERROR, "Not a policy"));
-    private static final PolicyFinderResult<PolicySet> PFR_POLICYSET_NOT_FOUND  = new StdPolicyFinderResult<PolicySet>(new StdStatus(StdStatusCode.STATUS_CODE_PROCESSING_ERROR, "No matching policy set found"));
-    private static final PolicyFinderResult<PolicySet> PFR_NOT_A_POLICYSET              = new StdPolicyFinderResult<PolicySet>(new StdStatus(StdStatusCode.STATUS_CODE_PROCESSING_ERROR, "Not a policy set"));
+    private static final PolicyFinderResult<Policy> PFR_POLICY_NOT_FOUND = new StdPolicyFinderResult<Policy>(
+                                                                                                             new StdStatus(
+                                                                                                                           StdStatusCode.STATUS_CODE_PROCESSING_ERROR,
+                                                                                                                           "No matching policy found"));
+    private static final PolicyFinderResult<Policy> PFR_NOT_A_POLICY = new StdPolicyFinderResult<Policy>(
+                                                                                                         new StdStatus(
+                                                                                                                       StdStatusCode.STATUS_CODE_PROCESSING_ERROR,
+                                                                                                                       "Not a policy"));
+    private static final PolicyFinderResult<PolicySet> PFR_POLICYSET_NOT_FOUND = new StdPolicyFinderResult<PolicySet>(
+                                                                                                                      new StdStatus(
+                                                                                                                                    StdStatusCode.STATUS_CODE_PROCESSING_ERROR,
+                                                                                                                                    "No matching policy set found"));
+    private static final PolicyFinderResult<PolicySet> PFR_NOT_A_POLICYSET = new StdPolicyFinderResult<PolicySet>(
+                                                                                                                  new StdStatus(
+                                                                                                                                StdStatusCode.STATUS_CODE_PROCESSING_ERROR,
+                                                                                                                                "Not a policy set"));
 
-    private Log logger  = LogFactory.getLog(this.getClass());
-    private List<PolicyDef> listRoots                                   = new ArrayList<PolicyDef>();
-    private Map<Identifier,List<PolicyDef>> mapPolicies = new HashMap<Identifier,List<PolicyDef>>();
+    private Log logger = LogFactory.getLog(this.getClass());
+    private List<PolicyDef> listRoots = new ArrayList<PolicyDef>();
+    private Map<Identifier, List<PolicyDef>> mapPolicies = new HashMap<Identifier, List<PolicyDef>>();
 
     public static class StdPolicyFinderException extends Exception {
         private static final long serialVersionUID = -8969282995787463288L;
+
         public StdPolicyFinderException(String msg) {
             super(msg);
         }
+
         public StdPolicyFinderException(String msg, Throwable cause) {
             super(msg, cause);
         }
     }
 
     private void storeInPolicyMap(PolicyDef policyDef) {
-        List<PolicyDef> listPolicyDefs  = this.mapPolicies.get(policyDef.getIdentifier());
+        List<PolicyDef> listPolicyDefs = this.mapPolicies.get(policyDef.getIdentifier());
         if (listPolicyDefs == null) {
-            listPolicyDefs      = new ArrayList<PolicyDef>();
+            listPolicyDefs = new ArrayList<PolicyDef>();
             this.mapPolicies.put(policyDef.getIdentifier(), listPolicyDefs);
         }
         listPolicyDefs.add(policyDef);
     }
 
-    private <T extends PolicyDef> List<T> getFromPolicyMap(IdReferenceMatch idReferenceMatch, Class<T> classPolicyDef) {
+    private <T extends PolicyDef> List<T> getFromPolicyMap(IdReferenceMatch idReferenceMatch,
+                                                           Class<T> classPolicyDef) {
         /*
          * Get all of the PolicyDefs for the Identifier in the reference match
          */
-        List<PolicyDef> listPolicyDefForId      = this.mapPolicies.get(idReferenceMatch.getId());
+        List<PolicyDef> listPolicyDefForId = this.mapPolicies.get(idReferenceMatch.getId());
         if (listPolicyDefForId == null) {
             return null;
         }
 
         /*
-         * Iterate over all of the PolicyDefs that were found and select only the ones that match
-         * the version request and the isPolicySet
+         * Iterate over all of the PolicyDefs that were found and select only the ones that match the version
+         * request and the isPolicySet
          */
-        List<T> listPolicyDefMatches                    = null;
-        Iterator<PolicyDef> iterPolicyDefs              = listPolicyDefForId.iterator();
+        List<T> listPolicyDefMatches = null;
+        Iterator<PolicyDef> iterPolicyDefs = listPolicyDefForId.iterator();
         while (iterPolicyDefs.hasNext()) {
             PolicyDef policyDef = iterPolicyDefs.next();
             if (classPolicyDef.isInstance(policyDef) && policyDef.matches(idReferenceMatch)) {
                 if (listPolicyDefMatches == null) {
-                    listPolicyDefMatches        = new ArrayList<T>();
+                    listPolicyDefMatches = new ArrayList<T>();
                 }
                 listPolicyDefMatches.add(classPolicyDef.cast(policyDef));
             }
@@ -127,21 +147,21 @@ public class StdPolicyFinder implements PolicyFinder {
     }
 
     private <T extends PolicyDef> T getBestMatchN(List<T> matches) {
-        T bestMatch                             = null;
-        Version bestVersion             = null;
+        T bestMatch = null;
+        Version bestVersion = null;
         Iterator<T> iterMatches = matches.iterator();
 
         while (iterMatches.hasNext()) {
-            T match     = iterMatches.next();
+            T match = iterMatches.next();
             if (bestMatch == null) {
-                bestMatch       = match;
-                bestVersion     = match.getVersion();
+                bestMatch = match;
+                bestVersion = match.getVersion();
             } else {
-                Version matchVersion    = match.getVersion();
+                Version matchVersion = match.getVersion();
                 if (matchVersion != null) {
                     if (matchVersion.compareTo(bestVersion) > 0) {
-                        bestMatch       = match;
-                        bestVersion     = matchVersion;
+                        bestMatch = match;
+                        bestVersion = matchVersion;
                     }
                 }
             }
@@ -150,7 +170,7 @@ public class StdPolicyFinder implements PolicyFinder {
     }
 
     private <T extends PolicyDef> T getBestMatch(List<T> matches) {
-        switch(matches.size()) {
+        switch (matches.size()) {
         case 0:
             return null;
         case 1:
@@ -161,21 +181,22 @@ public class StdPolicyFinder implements PolicyFinder {
     }
 
     private PolicyDef loadPolicyDefFromURI(URI uri) throws StdPolicyFinderException {
-        PolicyDef policyDef     = null;
+        PolicyDef policyDef = null;
         InputStream inputStream = null;
         try {
             this.logger.info("Loading policy from URI " + uri.toString());
-            URL url     = uri.toURL();
+            URL url = uri.toURL();
             this.logger.debug("Loading policy from URL " + url.toString());
 
             inputStream = url.openStream();
-            policyDef   = DOMPolicyDef.load(inputStream);
+            policyDef = DOMPolicyDef.load(inputStream);
         } catch (MalformedURLException ex) {
             this.logger.debug("Unknown protocol for URI " + uri.toString());
             return null;
         } catch (Exception ex) {
             this.logger.error("Exception loading policy definition", ex);
-            throw new StdPolicyFinderException("Exception loading policy def from \"" + uri.toString() + "\": " + ex.getMessage(), ex);
+            throw new StdPolicyFinderException("Exception loading policy def from \"" + uri.toString()
+                                               + "\": " + ex.getMessage(), ex);
         } finally {
             if (inputStream != null) {
                 try {
@@ -189,8 +210,9 @@ public class StdPolicyFinder implements PolicyFinder {
     }
 
     /**
-     * Looks up the given {@link com.att.research.xacml.api.Identifier} in the map first.  If not found, and the <code>Identifier</code> contains
-     * a URL, then attempts to retrieve the document from the URL and caches it.
+     * Looks up the given {@link com.att.research.xacml.api.Identifier} in the map first. If not found, and
+     * the <code>Identifier</code> contains a URL, then attempts to retrieve the document from the URL and
+     * caches it.
      *
      * @param idReferenceMatch the <code>IdReferenceMatch</code> to look up
      * @return a <code>PolicyFinderResult</code> with the requested <code>Policy</code> or an error status
@@ -198,19 +220,22 @@ public class StdPolicyFinder implements PolicyFinder {
     private PolicyFinderResult<Policy> lookupPolicyByIdentifier(IdReferenceMatch idReferenceMatch) {
         List<Policy> listCachedPolicies = this.getFromPolicyMap(idReferenceMatch, Policy.class);
         if (listCachedPolicies == null) {
-            Identifier id       = idReferenceMatch.getId();
+            Identifier id = idReferenceMatch.getId();
             if (id != null) {
                 URI uri = id.getUri();
                 if (uri != null && uri.isAbsolute()) {
                     PolicyDef policyDef = null;
                     try {
-                        policyDef       = this.loadPolicyDefFromURI(uri);
+                        policyDef = this.loadPolicyDefFromURI(uri);
                     } catch (StdPolicyFinderException ex) {
-                        return new StdPolicyFinderResult<Policy>(new StdStatus(StdStatusCode.STATUS_CODE_PROCESSING_ERROR, ex.getMessage()));
+                        return new StdPolicyFinderResult<Policy>(
+                                                                 new StdStatus(
+                                                                               StdStatusCode.STATUS_CODE_PROCESSING_ERROR,
+                                                                               ex.getMessage()));
                     }
                     if (policyDef != null) {
                         if (policyDef instanceof Policy) {
-                            List<PolicyDef> listPolicyDefs      = new ArrayList<PolicyDef>();
+                            List<PolicyDef> listPolicyDefs = new ArrayList<PolicyDef>();
                             listPolicyDefs.add(policyDef);
                             this.mapPolicies.put(id, listPolicyDefs);
                             this.mapPolicies.put(policyDef.getIdentifier(), listPolicyDefs);
@@ -232,28 +257,32 @@ public class StdPolicyFinder implements PolicyFinder {
     }
 
     /**
-     * Looks up the given {@link com.att.research.xacml.api.Identifier} in the map first.  If not found, and the <code>Identifier</code> contains
-     * a URL, then attempts to retrieve the document from the URL and caches it.
+     * Looks up the given {@link com.att.research.xacml.api.Identifier} in the map first. If not found, and
+     * the <code>Identifier</code> contains a URL, then attempts to retrieve the document from the URL and
+     * caches it.
      *
      * @param idReferenceMatch the <code>IdReferenceMatch</code> to look up
      * @return a <code>PolicyFinderResult</code> with the requested <code>PolicySet</code> or an error status
      */
     private PolicyFinderResult<PolicySet> lookupPolicySetByIdentifier(IdReferenceMatch idReferenceMatch) {
-        List<PolicySet> listCachedPolicySets    = this.getFromPolicyMap(idReferenceMatch, PolicySet.class);
+        List<PolicySet> listCachedPolicySets = this.getFromPolicyMap(idReferenceMatch, PolicySet.class);
         if (listCachedPolicySets == null) {
-            Identifier id       = idReferenceMatch.getId();
+            Identifier id = idReferenceMatch.getId();
             if (id != null) {
                 URI uri = id.getUri();
                 if (uri != null && uri.isAbsolute()) {
                     PolicyDef policyDef = null;
                     try {
-                        policyDef       = this.loadPolicyDefFromURI(uri);
+                        policyDef = this.loadPolicyDefFromURI(uri);
                     } catch (StdPolicyFinderException ex) {
-                        return new StdPolicyFinderResult<PolicySet>(new StdStatus(StdStatusCode.STATUS_CODE_PROCESSING_ERROR, ex.getMessage()));
+                        return new StdPolicyFinderResult<PolicySet>(
+                                                                    new StdStatus(
+                                                                                  StdStatusCode.STATUS_CODE_PROCESSING_ERROR,
+                                                                                  ex.getMessage()));
                     }
                     if (policyDef != null) {
                         if (policyDef instanceof PolicySet) {
-                            List<PolicyDef> listPolicyDefs      = new ArrayList<PolicyDef>();
+                            List<PolicyDef> listPolicyDefs = new ArrayList<PolicyDef>();
                             listPolicyDefs.add(policyDef);
                             this.mapPolicies.put(id, listPolicyDefs);
                             this.mapPolicies.put(policyDef.getIdentifier(), listPolicyDefs);
@@ -275,18 +304,18 @@ public class StdPolicyFinder implements PolicyFinder {
     }
 
     /**
-     * Adds the given <code>PolicyDef</code> to the map of loaded <code>PolicyDef</code>s and adds
-     * its child <code>PolicyDef</code>s recursively.
+     * Adds the given <code>PolicyDef</code> to the map of loaded <code>PolicyDef</code>s and adds its child
+     * <code>PolicyDef</code>s recursively.
      *
      * @param policyDef the <code>PolicyDef</code> to add
      */
     private void updatePolicyMap(PolicyDef policyDef) {
         this.storeInPolicyMap(policyDef);
         if (policyDef instanceof PolicySet) {
-            Iterator<PolicySetChild> iterChildren       = ((PolicySet)policyDef).getChildren();
+            Iterator<PolicySetChild> iterChildren = ((PolicySet)policyDef).getChildren();
             if (iterChildren != null) {
                 while (iterChildren.hasNext()) {
-                    PolicySetChild policySetChild       = iterChildren.next();
+                    PolicySetChild policySetChild = iterChildren.next();
                     if (policySetChild instanceof PolicyDef) {
                         this.updatePolicyMap((PolicyDef)policySetChild);
                     }
@@ -297,13 +326,13 @@ public class StdPolicyFinder implements PolicyFinder {
 
     public StdPolicyFinder(Collection<PolicyDef> listRootPolicies, Collection<PolicyDef> referencedPolicyDefs) {
         if (listRootPolicies != null) {
-            for (PolicyDef policyDef: listRootPolicies) {
+            for (PolicyDef policyDef : listRootPolicies) {
                 this.listRoots.add(policyDef);
                 this.updatePolicyMap(policyDef);
             }
         }
         if (referencedPolicyDefs != null) {
-            for (PolicyDef policyDef: referencedPolicyDefs) {
+            for (PolicyDef policyDef : referencedPolicyDefs) {
                 this.storeInPolicyMap(policyDef);
             }
         }
@@ -321,35 +350,36 @@ public class StdPolicyFinder implements PolicyFinder {
         }
 
         if (referencedPolicyDefs != null) {
-            for (PolicyDef policyDef: referencedPolicyDefs) {
+            for (PolicyDef policyDef : referencedPolicyDefs) {
                 this.storeInPolicyMap(policyDef);
             }
         }
     }
 
-    public StdPolicyFinder(List<PolicyDef> rootPolicies, List<PolicyDef> referencedPolicies, Properties properties) {
+    public StdPolicyFinder(List<PolicyDef> rootPolicies, List<PolicyDef> referencedPolicies,
+                           Properties properties) {
         this(rootPolicies, referencedPolicies);
     }
 
     @Override
     public PolicyFinderResult<PolicyDef> getRootPolicyDef(EvaluationContext evaluationContext) {
-        PolicyDef policyDefFirstMatch                   = null;
-        Iterator<PolicyDef> iterRootPolicies    = this.listRoots.iterator();
-        PolicyFinderResult<PolicyDef> firstIndeterminate        = null;
+        PolicyDef policyDefFirstMatch = null;
+        Iterator<PolicyDef> iterRootPolicies = this.listRoots.iterator();
+        PolicyFinderResult<PolicyDef> firstIndeterminate = null;
         while (iterRootPolicies.hasNext()) {
             PolicyDef policyDef = iterRootPolicies.next();
-            MatchResult matchResult     = null;
+            MatchResult matchResult = null;
             try {
-                matchResult     = policyDef.match(evaluationContext);
-                switch(matchResult.getMatchCode()) {
+                matchResult = policyDef.match(evaluationContext);
+                switch (matchResult.getMatchCode()) {
                 case INDETERMINATE:
                     if (firstIndeterminate == null) {
-                        firstIndeterminate      = new StdPolicyFinderResult<PolicyDef>(matchResult.getStatus());
+                        firstIndeterminate = new StdPolicyFinderResult<PolicyDef>(matchResult.getStatus());
                     }
                     break;
                 case MATCH:
                     if (policyDefFirstMatch == null) {
-                        policyDefFirstMatch     = policyDef;
+                        policyDefFirstMatch = policyDef;
                     } else {
                         return PFR_MULTIPLE;
                     }
@@ -359,7 +389,10 @@ public class StdPolicyFinder implements PolicyFinder {
                 }
             } catch (EvaluationException ex) {
                 if (firstIndeterminate == null) {
-                    firstIndeterminate  = new StdPolicyFinderResult<PolicyDef>(new StdStatus(StdStatusCode.STATUS_CODE_PROCESSING_ERROR, ex.getMessage()));
+                    firstIndeterminate = new StdPolicyFinderResult<PolicyDef>(
+                                                                              new StdStatus(
+                                                                                            StdStatusCode.STATUS_CODE_PROCESSING_ERROR,
+                                                                                            ex.getMessage()));
                 }
             }
         }

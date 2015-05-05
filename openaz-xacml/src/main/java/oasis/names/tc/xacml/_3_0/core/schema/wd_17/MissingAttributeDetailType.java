@@ -25,7 +25,6 @@
 // Generated on: 2013.05.23 at 02:47:00 PM EDT
 //
 
-
 package oasis.names.tc.xacml._3_0.core.schema.wd_17;
 
 import java.util.ArrayList;
@@ -38,11 +37,11 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 
-
 /**
- * <p>Java class for MissingAttributeDetailType complex type.
- *
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>
+ * Java class for MissingAttributeDetailType complex type.
+ * <p>
+ * The following schema fragment specifies the expected content contained within this class.
  *
  * <pre>
  * &lt;complexType name="MissingAttributeDetailType">
@@ -59,12 +58,10 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- *
- *
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "MissingAttributeDetailType", propOrder = {
-    "attributeValue"
+                                                           "attributeValue"
 })
 public class MissingAttributeDetailType {
 
@@ -84,25 +81,19 @@ public class MissingAttributeDetailType {
 
     /**
      * Gets the value of the attributeValue property.
-     *
      * <p>
-     * This accessor method returns a reference to the live list,
-     * not a snapshot. Therefore any modification you make to the
-     * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the attributeValue property.
-     *
+     * This accessor method returns a reference to the live list, not a snapshot. Therefore any modification
+     * you make to the returned list will be present inside the JAXB object. This is why there is not a
+     * <CODE>set</CODE> method for the attributeValue property.
      * <p>
      * For example, to add a new item, do as follows:
+     * 
      * <pre>
-     *    getAttributeValue().add(newItem);
+     * getAttributeValue().add(newItem);
      * </pre>
-     *
-     *
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link oasis.names.tc.xacml._3_0.core.schema.wd_17.AttributeValueType }
-     *
-     *
      */
     public List<AttributeValueType> getAttributeValue() {
         if (attributeValue == null) {
@@ -114,10 +105,7 @@ public class MissingAttributeDetailType {
     /**
      * Gets the value of the category property.
      *
-     * @return
-     *     possible object is
-     *     {@link String }
-     *
+     * @return possible object is {@link String }
      */
     public String getCategory() {
         return category;
@@ -126,10 +114,7 @@ public class MissingAttributeDetailType {
     /**
      * Sets the value of the category property.
      *
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *
+     * @param value allowed object is {@link String }
      */
     public void setCategory(String value) {
         this.category = value;
@@ -138,10 +123,7 @@ public class MissingAttributeDetailType {
     /**
      * Gets the value of the attributeId property.
      *
-     * @return
-     *     possible object is
-     *     {@link String }
-     *
+     * @return possible object is {@link String }
      */
     public String getAttributeId() {
         return attributeId;
@@ -150,10 +132,7 @@ public class MissingAttributeDetailType {
     /**
      * Sets the value of the attributeId property.
      *
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *
+     * @param value allowed object is {@link String }
      */
     public void setAttributeId(String value) {
         this.attributeId = value;
@@ -162,10 +141,7 @@ public class MissingAttributeDetailType {
     /**
      * Gets the value of the dataType property.
      *
-     * @return
-     *     possible object is
-     *     {@link String }
-     *
+     * @return possible object is {@link String }
      */
     public String getDataType() {
         return dataType;
@@ -174,10 +150,7 @@ public class MissingAttributeDetailType {
     /**
      * Sets the value of the dataType property.
      *
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *
+     * @param value allowed object is {@link String }
      */
     public void setDataType(String value) {
         this.dataType = value;
@@ -186,10 +159,7 @@ public class MissingAttributeDetailType {
     /**
      * Gets the value of the issuer property.
      *
-     * @return
-     *     possible object is
-     *     {@link String }
-     *
+     * @return possible object is {@link String }
      */
     public String getIssuer() {
         return issuer;
@@ -198,10 +168,7 @@ public class MissingAttributeDetailType {
     /**
      * Sets the value of the issuer property.
      *
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *
+     * @param value allowed object is {@link String }
      */
     public void setIssuer(String value) {
         this.issuer = value;

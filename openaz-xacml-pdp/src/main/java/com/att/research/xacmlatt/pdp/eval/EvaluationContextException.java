@@ -31,9 +31,8 @@
 package com.att.research.xacmlatt.pdp.eval;
 
 /**
- * EvaluationContextException extends <code>Exception</code> to represent errors thrown by
- * methods in the {@link EvaluationContext} and {@link EvaluationContextFactory}.
- *
+ * EvaluationContextException extends <code>Exception</code> to represent errors thrown by methods in the
+ * {@link EvaluationContext} and {@link EvaluationContextFactory}.
  */
 public class EvaluationContextException extends Exception {
     private static final long serialVersionUID = -8270506903118536839L;
@@ -53,7 +52,8 @@ public class EvaluationContextException extends Exception {
         super(message, cause);
     }
 
-    public EvaluationContextException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
+    public EvaluationContextException(String message, Throwable cause, boolean enableSuppression,
+                                      boolean writableStackTrace) {
         super(message, cause, enableSuppression, writableStackTrace);
     }
 

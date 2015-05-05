@@ -43,14 +43,14 @@ import com.att.research.xacml.std.pip.engines.jdbc.JDBCEngine;
 
 public class HyperCSVEngine extends JDBCEngine {
 
-    public static final String PROP_SOURCE      = "source";
-    public static final String PROP_TARGET      = "target";
-    public static final String PROP_DEFINITION  = "definition";
+    public static final String PROP_SOURCE = "source";
+    public static final String PROP_TARGET = "target";
+    public static final String PROP_DEFINITION = "definition";
 
     public static final String HYPER_DRIVER = "org.hsqldb.jdbcDriver";
     public static final String HYPER_URL = "jdbc:hsqldb:mem:xacml";
     public static final String HYPER_USER = "sa";
-    public static final String HYPER_PASS= "";
+    public static final String HYPER_PASS = "";
 
     private static enum HyperInitState {
         init,
@@ -58,22 +58,18 @@ public class HyperCSVEngine extends JDBCEngine {
         failed
     };
 
-    private String source,
-            target,
-            definition;
+    private String source, target, definition;
     private HyperInitState hyperInitState = HyperInitState.init;
-
-
 
     public HyperCSVEngine() {
     }
 
     @Override
     public void configure(String id, Properties properties) throws PIPException {
-        //hyper sql global option
+        // hyper sql global option
         System.getProperties().setProperty("textdb.allow_full_path", "true");
 
-        //JDBCEngine props that are fixed for a in-memory hypersql text db
+        // JDBCEngine props that are fixed for a in-memory hypersql text db
         String prop = null;
         prop = id + "." + PROP_JDBC_DRIVER;
         properties.setProperty(prop, HYPER_DRIVER);
@@ -100,8 +96,7 @@ public class HyperCSVEngine extends JDBCEngine {
 
         prop = id + "." + PROP_TARGET;
         if ((this.target = properties.getProperty(prop)) == null) {
-            this.target = FileSystems.getDefault()
-                          .getPath(this.source).getFileName().toString();
+            this.target = FileSystems.getDefault().getPath(this.source).getFileName().toString();
             this.target = this.target.substring(0, this.target.indexOf('.'));
             this.logger.info("Target set to '" + this.target + "'");
         }
@@ -110,7 +105,7 @@ public class HyperCSVEngine extends JDBCEngine {
         //
         try {
             getConnection().close();
-        } catch(SQLException sqlx) {
+        } catch (SQLException sqlx) {
             throw new PIPException("The HyperSQL initialization failed");
         }
     }
@@ -120,12 +115,12 @@ public class HyperCSVEngine extends JDBCEngine {
      */
     @Override
     protected Connection getConnection() throws PIPException {
-        switch(this.hyperInitState) {
+        switch (this.hyperInitState) {
         case init:
             try {
                 hyperInit();
                 this.hyperInitState = HyperInitState.completed;
-            } catch(PIPException pipx) {
+            } catch (PIPException pipx) {
                 this.hyperInitState = HyperInitState.failed;
                 throw pipx;
             }
@@ -145,19 +140,12 @@ public class HyperCSVEngine extends JDBCEngine {
         this.logger.info("Starting csv load from '" + this.source + "' in '" + this.target + "'");
 
         StringBuilder createTable = new StringBuilder();
-        createTable.append("CREATE TEXT TABLE IF NOT EXISTS ")
-        .append(this.target)
-        .append("(")
-        .append(this.definition)
-        .append(")");
+        createTable.append("CREATE TEXT TABLE IF NOT EXISTS ").append(this.target).append("(")
+            .append(this.definition).append(")");
 
         StringBuilder linkTable = new StringBuilder();
-        linkTable.append("SET TABLE ")
-        .append(this.target)
-        .append(" SOURCE ")
-        .append("\"")
-        .append(this.source)
-        .append(";ignore_first=true;all_quoted=true\"");
+        linkTable.append("SET TABLE ").append(this.target).append(" SOURCE ").append("\"")
+            .append(this.source).append(";ignore_first=true;all_quoted=true\"");
 
         Connection conn = super.getConnection();
         Statement stmt = null;
@@ -173,7 +161,8 @@ public class HyperCSVEngine extends JDBCEngine {
                     stmt.close();
                 if (conn != null)
                     conn.close();
-            } catch (SQLException sqlx) {}
+            } catch (SQLException sqlx) {
+            }
         }
 
         this.logger.info("Loading '" + this.target + "' from '" + this.source + "' completed");

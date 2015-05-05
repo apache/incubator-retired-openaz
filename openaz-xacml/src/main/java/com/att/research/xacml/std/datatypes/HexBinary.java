@@ -39,11 +39,11 @@ import com.att.research.xacml.api.SemanticString;
 import com.att.research.xacml.util.StringUtils;
 
 /**
- * HexBinary provides utilities for converting the XACML hexBinary data type to and from <code>String</code> values.
- *
+ * HexBinary provides utilities for converting the XACML hexBinary data type to and from <code>String</code>
+ * values.
  */
 public class HexBinary implements SemanticString {
-    private byte[]      data;
+    private byte[] data;
 
     /**
      * Creates a <code>HexBinary</code> object from an array of <code>byte</code>s.
@@ -51,7 +51,7 @@ public class HexBinary implements SemanticString {
      * @param dataIn the array of <code>byte</code>s
      */
     public HexBinary(byte[] dataIn) {
-        this.data       = dataIn;
+        this.data = dataIn;
     }
 
     /**
@@ -64,7 +64,7 @@ public class HexBinary implements SemanticString {
         if (stringHexBinary == null) {
             return null;
         }
-        byte[]  hexBytes        = (byte[])new Hex().decode(stringHexBinary);
+        byte[] hexBytes = (byte[])new Hex().decode(stringHexBinary);
         return new HexBinary(hexBytes);
     }
 
@@ -89,7 +89,7 @@ public class HexBinary implements SemanticString {
         } else if (obj == this) {
             return true;
         } else {
-            HexBinary   hexBinaryObj    = (HexBinary)obj;
+            HexBinary hexBinaryObj = (HexBinary)obj;
             if (this.getData() == null) {
                 if (hexBinaryObj.getData() == null) {
                     return true;
@@ -108,7 +108,7 @@ public class HexBinary implements SemanticString {
 
     @Override
     public String toString() {
-        StringBuilder stringBuilder     = new StringBuilder("{");
+        StringBuilder stringBuilder = new StringBuilder("{");
         byte[] thisData = this.getData();
         if (thisData != null) {
             stringBuilder.append("data=");

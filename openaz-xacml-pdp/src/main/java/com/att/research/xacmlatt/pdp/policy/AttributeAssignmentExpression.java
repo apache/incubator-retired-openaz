@@ -45,13 +45,18 @@ import com.att.research.xacmlatt.pdp.eval.EvaluationContext;
 import com.att.research.xacmlatt.pdp.eval.EvaluationException;
 
 /**
- * AttributeAssignmentExpression extends {@link PolicyComponent} to represent a
- * XACML AttributeAssignmentExpression element.
- *
+ * AttributeAssignmentExpression extends {@link PolicyComponent} to represent a XACML
+ * AttributeAssignmentExpression element.
  */
 public class AttributeAssignmentExpression extends PolicyComponent {
-    private static final AttributeAssignmentResult AAR_NULL_EXPRESSION                  = new AttributeAssignmentResult(new StdStatus(StdStatusCode.STATUS_CODE_SYNTAX_ERROR, "Null expression"));
-    private static final AttributeAssignmentResult AAR_NULL_EXPRESSION_RESULT   = new AttributeAssignmentResult(new StdStatus(StdStatusCode.STATUS_CODE_PROCESSING_ERROR, "Null expression result"));
+    private static final AttributeAssignmentResult AAR_NULL_EXPRESSION = new AttributeAssignmentResult(
+                                                                                                       new StdStatus(
+                                                                                                                     StdStatusCode.STATUS_CODE_SYNTAX_ERROR,
+                                                                                                                     "Null expression"));
+    private static final AttributeAssignmentResult AAR_NULL_EXPRESSION_RESULT = new AttributeAssignmentResult(
+                                                                                                              new StdStatus(
+                                                                                                                            StdStatusCode.STATUS_CODE_PROCESSING_ERROR,
+                                                                                                                            "Null expression result"));
 
     private Expression expression;
     private Identifier attributeId;
@@ -69,11 +74,12 @@ public class AttributeAssignmentExpression extends PolicyComponent {
     public AttributeAssignmentExpression() {
     }
 
-    public AttributeAssignmentExpression(Identifier categoryIn, Identifier attributeIdIn, String issuerIn, Expression expressionIn) {
-        this.category           = categoryIn;
-        this.attributeId        = attributeIdIn;
-        this.issuer                     = issuerIn;
-        this.expression         = expressionIn;
+    public AttributeAssignmentExpression(Identifier categoryIn, Identifier attributeIdIn, String issuerIn,
+                                         Expression expressionIn) {
+        this.category = categoryIn;
+        this.attributeId = attributeIdIn;
+        this.issuer = issuerIn;
+        this.expression = expressionIn;
     }
 
     public Identifier getCategory() {
@@ -81,7 +87,7 @@ public class AttributeAssignmentExpression extends PolicyComponent {
     }
 
     public void setCategory(Identifier identifier) {
-        this.category   = identifier;
+        this.category = identifier;
     }
 
     public Identifier getAttributeId() {
@@ -89,7 +95,7 @@ public class AttributeAssignmentExpression extends PolicyComponent {
     }
 
     public void setAttributeId(Identifier identifier) {
-        this.attributeId        = identifier;
+        this.attributeId = identifier;
     }
 
     public String getIssuer() {
@@ -97,7 +103,7 @@ public class AttributeAssignmentExpression extends PolicyComponent {
     }
 
     public void setIssuer(String string) {
-        this.issuer     = string;
+        this.issuer = string;
     }
 
     public Expression getExpression() {
@@ -108,36 +114,42 @@ public class AttributeAssignmentExpression extends PolicyComponent {
         this.expression = expressionIn;
     }
 
-    public AttributeAssignmentResult evaluate(EvaluationContext evaluationContext, PolicyDefaults policyDefaults) throws EvaluationException {
+    public AttributeAssignmentResult evaluate(EvaluationContext evaluationContext,
+                                              PolicyDefaults policyDefaults) throws EvaluationException {
         if (!this.validate()) {
             return new AttributeAssignmentResult(new StdStatus(this.getStatusCode(), this.getStatusMessage()));
         }
 
-        Expression thisExpression       = this.getExpression();
+        Expression thisExpression = this.getExpression();
         if (thisExpression == null) {
             return AAR_NULL_EXPRESSION;
         }
 
-        ExpressionResult thisExpressionResult   = thisExpression.evaluate(evaluationContext, policyDefaults);
+        ExpressionResult thisExpressionResult = thisExpression.evaluate(evaluationContext, policyDefaults);
         if (thisExpressionResult == null) {
             return AAR_NULL_EXPRESSION_RESULT;
         } else if (!thisExpressionResult.isOk()) {
             return new AttributeAssignmentResult(thisExpressionResult.getStatus());
         } else {
-            List<AttributeAssignment> listAttributeAssignments  = new ArrayList<AttributeAssignment>();
+            List<AttributeAssignment> listAttributeAssignments = new ArrayList<AttributeAssignment>();
             if (thisExpressionResult.isBag()) {
-                Bag bagValues   = thisExpressionResult.getBag();
+                Bag bagValues = thisExpressionResult.getBag();
                 if (bagValues == null || bagValues.size() == 0) {
-                    listAttributeAssignments.add(new StdMutableAttributeAssignment(this.getCategory(), this.getAttributeId(), this.getIssuer(), null));
+                    listAttributeAssignments.add(new StdMutableAttributeAssignment(this.getCategory(), this
+                        .getAttributeId(), this.getIssuer(), null));
                 } else {
-                    Iterator<AttributeValue<?>> iterBagValues   = bagValues.getAttributeValues();
+                    Iterator<AttributeValue<?>> iterBagValues = bagValues.getAttributeValues();
                     while (iterBagValues.hasNext()) {
-                        AttributeValue<?> attributeValue        = iterBagValues.next();
-                        listAttributeAssignments.add(new StdMutableAttributeAssignment(this.getCategory(), this.getAttributeId(), this.getIssuer(), attributeValue));
+                        AttributeValue<?> attributeValue = iterBagValues.next();
+                        listAttributeAssignments.add(new StdMutableAttributeAssignment(this.getCategory(),
+                                                                                       this.getAttributeId(),
+                                                                                       this.getIssuer(),
+                                                                                       attributeValue));
                     }
                 }
             } else {
-                listAttributeAssignments.add(new StdMutableAttributeAssignment(this.getCategory(), this.getAttributeId(), this.getIssuer(), thisExpressionResult.getValue()));
+                listAttributeAssignments.add(new StdMutableAttributeAssignment(this.getCategory(), this
+                    .getAttributeId(), this.getIssuer(), thisExpressionResult.getValue()));
             }
             return new AttributeAssignmentResult(listAttributeAssignments);
         }
@@ -159,7 +171,7 @@ public class AttributeAssignmentExpression extends PolicyComponent {
 
     @Override
     public String toString() {
-        StringBuilder stringBuilder     = new StringBuilder("{");
+        StringBuilder stringBuilder = new StringBuilder("{");
 
         stringBuilder.append("super=");
         stringBuilder.append(super.toString());

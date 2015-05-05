@@ -42,29 +42,27 @@ import com.att.research.xacmlatt.pdp.policy.CombinerParameter;
 import com.att.research.xacmlatt.pdp.policy.CombiningElement;
 
 /**
- * PermitOverrides extends {@link com.att.research.xacmlatt.pdp.std.combiners.CombiningAlgorithmBase} to implement the
- * XACML 1.0 "first-applicable" combining algorithm for policies and rules.
- *
+ * PermitOverrides extends {@link com.att.research.xacmlatt.pdp.std.combiners.CombiningAlgorithmBase} to
+ * implement the XACML 1.0 "first-applicable" combining algorithm for policies and rules.
  *
  * @param <T> the java class of the object to be combined
  */
-public class FirstApplicable<T extends com.att.research.xacmlatt.pdp.eval.Evaluatable> extends CombiningAlgorithmBase<T> {
+public class FirstApplicable<T extends com.att.research.xacmlatt.pdp.eval.Evaluatable> extends
+    CombiningAlgorithmBase<T> {
 
     public FirstApplicable(Identifier identifierIn) {
         super(identifierIn);
     }
 
     @Override
-    public EvaluationResult combine(EvaluationContext evaluationContext,
-                                    List<CombiningElement<T>> elements,
-                                    List<CombinerParameter> combinerParameters)
-    throws EvaluationException {
-        Iterator<CombiningElement<T>> iterElements      = elements.iterator();
+    public EvaluationResult combine(EvaluationContext evaluationContext, List<CombiningElement<T>> elements,
+                                    List<CombinerParameter> combinerParameters) throws EvaluationException {
+        Iterator<CombiningElement<T>> iterElements = elements.iterator();
         while (iterElements.hasNext()) {
-            CombiningElement<T> combiningElement                = iterElements.next();
-            EvaluationResult evaluationResultElement    = combiningElement.evaluate(evaluationContext);
+            CombiningElement<T> combiningElement = iterElements.next();
+            EvaluationResult evaluationResultElement = combiningElement.evaluate(evaluationContext);
 
-            assert(evaluationResultElement != null);
+            assert (evaluationResultElement != null);
             if (evaluationResultElement.getDecision() != Decision.NOTAPPLICABLE) {
                 return evaluationResultElement;
             }

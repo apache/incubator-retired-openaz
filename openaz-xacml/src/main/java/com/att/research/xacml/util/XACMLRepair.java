@@ -48,16 +48,15 @@ import com.att.research.xacml.std.dom.DOMStructureException;
 import com.att.research.xacml.std.dom.DOMUtil;
 
 /**
- * XACMLRepair is an application class that can load individual XACML documents or directories of XACML documents, make any needed
- * repairs on them, and write them back out to an output file or directory.
- *
+ * XACMLRepair is an application class that can load individual XACML documents or directories of XACML
+ * documents, make any needed repairs on them, and write them back out to an output file or directory.
  */
 public class XACMLRepair {
-    private static final Log logger     = LogFactory.getLog(XACMLRepair.class);
+    private static final Log logger = LogFactory.getLog(XACMLRepair.class);
 
-    public static final String  PROP_DOCUMENT_REPAIR_CLASSNAME  = "xacml.documentRepairClassName";
+    public static final String PROP_DOCUMENT_REPAIR_CLASSNAME = "xacml.documentRepairClassName";
 
-    private List<File>  listInputFilesOrDirectories     = new ArrayList<File>();
+    private List<File> listInputFilesOrDirectories = new ArrayList<File>();
     private File outputFileOrDirectory;
     private boolean forceOutput;
     private String documentRepairClassName;
@@ -67,20 +66,22 @@ public class XACMLRepair {
     private DOMDocumentRepair getDOMDocumentRepair() {
         if (this.domDocumentRepair == null) {
             if (this.documentRepairClassName == null) {
-                this.documentRepairClassName    = System.getProperty(PROP_DOCUMENT_REPAIR_CLASSNAME);
+                this.documentRepairClassName = System.getProperty(PROP_DOCUMENT_REPAIR_CLASSNAME);
             }
             if (this.documentRepairClassName == null) {
-                this.domDocumentRepair  = new DOMDocumentRepair();
+                this.domDocumentRepair = new DOMDocumentRepair();
             } else {
                 try {
-                    Class<?> classDocumentRepair        = Class.forName(this.documentRepairClassName);
+                    Class<?> classDocumentRepair = Class.forName(this.documentRepairClassName);
                     if (!DOMDocumentRepair.class.isAssignableFrom(classDocumentRepair)) {
                         throw new IllegalArgumentException("Not a DOMDocumentRepair class");
                     }
-                    this.domDocumentRepair      = (DOMDocumentRepair)(classDocumentRepair.newInstance());
+                    this.domDocumentRepair = (DOMDocumentRepair)(classDocumentRepair.newInstance());
                 } catch (Exception ex) {
-                    System.err.println("Warning: Could not find Class " + this.documentRepairClassName + ":" + ex.getMessage() + ": using " + DOMDocumentRepair.class.getCanonicalName());
-                    this.domDocumentRepair      = new DOMDocumentRepair();
+                    System.err.println("Warning: Could not find Class " + this.documentRepairClassName + ":"
+                                       + ex.getMessage() + ": using "
+                                       + DOMDocumentRepair.class.getCanonicalName());
+                    this.domDocumentRepair = new DOMDocumentRepair();
                 }
             }
         }
@@ -88,9 +89,9 @@ public class XACMLRepair {
     }
 
     private boolean init(String[] args) {
-        for (int i = 0 ; i < args.length ; ) {
+        for (int i = 0; i < args.length;) {
             if (args[i].equals("--input") || args[i].equals("-i")) {
-                if (i+1 < args.length) {
+                if (i + 1 < args.length) {
                     i++;
                     while (i < args.length && !args[i].startsWith("-")) {
                         this.listInputFilesOrDirectories.add(new File(args[i++]));
@@ -100,32 +101,32 @@ public class XACMLRepair {
                     return false;
                 }
             } else if (args[i].equals("--output") || args[i].equals("-o")) {
-                if (i+1 < args.length) {
-                    this.outputFileOrDirectory  = new File(args[i+1]);
-                    i   += 2;
+                if (i + 1 < args.length) {
+                    this.outputFileOrDirectory = new File(args[i + 1]);
+                    i += 2;
                 } else {
                     System.err.println("Missing argument to " + args[i] + " command line option");
                     return false;
                 }
             } else if (args[i].equals("--force") || args[i].equals("-f")) {
-                if (i+1 < args.length) {
-                    this.forceOutput    = true;
-                    i   += 1;
+                if (i + 1 < args.length) {
+                    this.forceOutput = true;
+                    i += 1;
                 } else {
                     System.err.println("Missing argument to " + args[i] + " command line option");
                     return false;
                 }
             } else if (args[i].equals("--repairClass")) {
-                if (i+1 < args.length) {
-                    this.documentRepairClassName        = args[i+1];
-                    i   += 2;
+                if (i + 1 < args.length) {
+                    this.documentRepairClassName = args[i + 1];
+                    i += 2;
                 } else {
                     System.err.println("Missing argument to " + args[i] + " command line option");
                     return false;
                 }
             } else if (args[i].equals("--verbose") || args[i].equals("-i")) {
-                this.verbose    = true;
-                i       += 1;
+                this.verbose = true;
+                i += 1;
             } else {
                 System.err.println("Unknown command line option " + args[i]);
                 return false;
@@ -135,35 +136,42 @@ public class XACMLRepair {
         return true;
     }
 
-    private boolean run(InputStream inputStream, File fileOrig, OutputStream outputStream, File fileDest) throws Exception {
-        String msg      = "Repairing " + (fileOrig == null ? "stdin" : fileOrig.getAbsoluteFile());
+    private boolean run(InputStream inputStream, File fileOrig, OutputStream outputStream, File fileDest)
+        throws Exception {
+        String msg = "Repairing " + (fileOrig == null ? "stdin" : fileOrig.getAbsoluteFile());
         if (this.verbose) {
             System.out.println(msg);
         }
         logger.info(msg);
-        Document documentFile   = null;
+        Document documentFile = null;
         try {
-            documentFile        = DOMUtil.loadDocument(inputStream);
+            documentFile = DOMUtil.loadDocument(inputStream);
         } catch (DOMStructureException ex) {
-            System.err.println((msg = "Error loading " + (fileOrig == null ? "from stdin" : fileOrig.getAbsoluteFile()) + ": " + ex.getMessage()));
+            System.err.println((msg = "Error loading "
+                                      + (fileOrig == null ? "from stdin" : fileOrig.getAbsoluteFile()) + ": "
+                                      + ex.getMessage()));
             logger.error(msg);
             return false;
         }
         if (documentFile == null) {
-            System.err.println((msg = "No document " + (fileOrig == null ? "from stdin" : fileOrig.getAbsoluteFile())));
+            System.err.println((msg = "No document "
+                                      + (fileOrig == null ? "from stdin" : fileOrig.getAbsoluteFile())));
             logger.error(msg);
             return false;
         }
-        boolean bUpdated        = false;
-        DOMDocumentRepair domDocumentRepair     = this.getDOMDocumentRepair();
+        boolean bUpdated = false;
+        DOMDocumentRepair domDocumentRepair = this.getDOMDocumentRepair();
         try {
-            bUpdated    = domDocumentRepair.repair(documentFile);
+            bUpdated = domDocumentRepair.repair(documentFile);
         } catch (DOMStructureException ex) {
-            System.err.println((msg = "Error repairing " + (fileOrig == null ? "from stdin" : fileOrig.getAbsoluteFile()) + ": " + ex.getMessage()));
+            System.err.println((msg = "Error repairing "
+                                      + (fileOrig == null ? "from stdin" : fileOrig.getAbsoluteFile()) + ": "
+                                      + ex.getMessage()));
             logger.error(msg);
             return false;
         } catch (DOMDocumentRepair.UnsupportedDocumentTypeException ex) {
-            msg = "Unknown document type in " + (fileOrig == null ? "stdin" : fileOrig.getAbsoluteFile()) + ": skipping";
+            msg = "Unknown document type in " + (fileOrig == null ? "stdin" : fileOrig.getAbsoluteFile())
+                  + ": skipping";
             if (this.verbose) {
                 System.err.println(msg);
             }
@@ -178,9 +186,10 @@ public class XACMLRepair {
             logger.debug(msg);
         }
         if (bUpdated || this.forceOutput) {
-            System.out.println((msg = "Writing to " + (fileDest == null ? "stdout" : fileDest.getAbsoluteFile())));
+            System.out.println((msg = "Writing to "
+                                      + (fileDest == null ? "stdout" : fileDest.getAbsoluteFile())));
             logger.info(msg);
-            String newDocument  = DOMUtil.toString(documentFile);
+            String newDocument = DOMUtil.toString(documentFile);
             outputStream.write(newDocument.getBytes());
             outputStream.flush();
             return true;
@@ -195,19 +204,19 @@ public class XACMLRepair {
         } else if (this.outputFileOrDirectory.exists()) {
             if (this.outputFileOrDirectory.isDirectory()) {
                 File fileOutput = new File(this.outputFileOrDirectory, fileOrig.getName());
-                boolean bWritten        = false;
-                try (FileOutputStream fileOutputStream  = new FileOutputStream(fileOutput) ) {
-                    bWritten    = this.run(inputStream, fileOrig, fileOutputStream, fileOutput);
+                boolean bWritten = false;
+                try (FileOutputStream fileOutputStream = new FileOutputStream(fileOutput)) {
+                    bWritten = this.run(inputStream, fileOrig, fileOutputStream, fileOutput);
                 }
                 if (!bWritten) {
                     fileOutput.delete();
                 }
             } else {
-                FileOutputStream fileOutputStream       = null;
-                boolean bWritten        = false;
+                FileOutputStream fileOutputStream = null;
+                boolean bWritten = false;
                 try {
-                    fileOutputStream    = new FileOutputStream(this.outputFileOrDirectory);
-                    bWritten    = this.run(inputStream, fileOrig, fileOutputStream, this.outputFileOrDirectory);
+                    fileOutputStream = new FileOutputStream(this.outputFileOrDirectory);
+                    bWritten = this.run(inputStream, fileOrig, fileOutputStream, this.outputFileOrDirectory);
                 } finally {
                     if (fileOutputStream != null) {
                         fileOutputStream.close();
@@ -229,19 +238,19 @@ public class XACMLRepair {
             logger.error(msg);
             return;
         } else if (inputFile.isDirectory()) {
-            File[] directoryContents    = inputFile.listFiles(new FilenameFilter() {
+            File[] directoryContents = inputFile.listFiles(new FilenameFilter() {
                 @Override
                 public boolean accept(File dir, String name) {
                     return name.endsWith(".xml");
                 }
             });
             if (directoryContents != null && directoryContents.length > 0) {
-                for (File file: directoryContents) {
+                for (File file : directoryContents) {
                     this.run(file);
                 }
             }
         } else {
-            try (FileInputStream fileInputStream        = new FileInputStream(inputFile)) {
+            try (FileInputStream fileInputStream = new FileInputStream(inputFile)) {
                 this.run(fileInputStream, inputFile);
             }
         }
@@ -251,7 +260,7 @@ public class XACMLRepair {
         if (this.listInputFilesOrDirectories.size() == 0) {
             this.run(System.in, (File)null);
         } else {
-            for (File inputFile: this.listInputFilesOrDirectories) {
+            for (File inputFile : this.listInputFilesOrDirectories) {
                 this.run(inputFile);
             }
         }
@@ -269,7 +278,8 @@ public class XACMLRepair {
         } catch (Exception ex) {
             System.err.println("Exception: " + ex.getMessage());
             ex.printStackTrace(System.err);
-            System.exit(1);;
+            System.exit(1);
+            ;
         }
         System.exit(0);
     }

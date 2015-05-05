@@ -25,7 +25,6 @@
 // Generated on: 2013.05.23 at 02:47:00 PM EDT
 //
 
-
 package oasis.names.tc.xacml._3_0.core.schema.wd_17;
 
 import javax.xml.bind.JAXBElement;
@@ -34,11 +33,11 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElementRef;
 import javax.xml.bind.annotation.XmlType;
 
-
 /**
- * <p>Java class for ConditionType complex type.
- *
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>
+ * Java class for ConditionType complex type.
+ * <p>
+ * The following schema fragment specifies the expected content contained within this class.
  *
  * <pre>
  * &lt;complexType name="ConditionType">
@@ -51,12 +50,10 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- *
- *
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "ConditionType", propOrder = {
-    "expression"
+                                              "expression"
 })
 public class ConditionType {
 
@@ -66,16 +63,15 @@ public class ConditionType {
     /**
      * Gets the value of the expression property.
      *
-     * @return
-     *     possible object is
-     *     {@link javax.xml.bind.JAXBElement }{@code <}{@link oasis.names.tc.xacml._3_0.core.schema.wd_17.FunctionType }{@code >}
-     *     {@link javax.xml.bind.JAXBElement }{@code <}{@link AttributeDesignatorType }{@code >}
-     *     {@link javax.xml.bind.JAXBElement }{@code <}{@link VariableReferenceType }{@code >}
-     *     {@link javax.xml.bind.JAXBElement }{@code <}{@link ExpressionType }{@code >}
-     *     {@link javax.xml.bind.JAXBElement }{@code <}{@link AttributeSelectorType }{@code >}
-     *     {@link javax.xml.bind.JAXBElement }{@code <}{@link oasis.names.tc.xacml._3_0.core.schema.wd_17.ApplyType }{@code >}
-     *     {@link javax.xml.bind.JAXBElement }{@code <}{@link AttributeValueType }{@code >}
-     *
+     * @return possible object is {@link javax.xml.bind.JAXBElement }{@code <}
+     *         {@link oasis.names.tc.xacml._3_0.core.schema.wd_17.FunctionType }{@code >}
+     *         {@link javax.xml.bind.JAXBElement }{@code <}{@link AttributeDesignatorType }{@code >}
+     *         {@link javax.xml.bind.JAXBElement }{@code <}{@link VariableReferenceType }{@code >}
+     *         {@link javax.xml.bind.JAXBElement }{@code <}{@link ExpressionType }{@code >}
+     *         {@link javax.xml.bind.JAXBElement }{@code <}{@link AttributeSelectorType }{@code >}
+     *         {@link javax.xml.bind.JAXBElement }{@code <}
+     *         {@link oasis.names.tc.xacml._3_0.core.schema.wd_17.ApplyType }{@code >}
+     *         {@link javax.xml.bind.JAXBElement }{@code <}{@link AttributeValueType }{@code >}
      */
     public JAXBElement<?> getExpression() {
         return expression;
@@ -84,19 +80,18 @@ public class ConditionType {
     /**
      * Sets the value of the expression property.
      *
-     * @param value
-     *     allowed object is
-     *     {@link javax.xml.bind.JAXBElement }{@code <}{@link oasis.names.tc.xacml._3_0.core.schema.wd_17.FunctionType }{@code >}
-     *     {@link javax.xml.bind.JAXBElement }{@code <}{@link AttributeDesignatorType }{@code >}
-     *     {@link javax.xml.bind.JAXBElement }{@code <}{@link VariableReferenceType }{@code >}
-     *     {@link javax.xml.bind.JAXBElement }{@code <}{@link ExpressionType }{@code >}
-     *     {@link javax.xml.bind.JAXBElement }{@code <}{@link AttributeSelectorType }{@code >}
-     *     {@link javax.xml.bind.JAXBElement }{@code <}{@link oasis.names.tc.xacml._3_0.core.schema.wd_17.ApplyType }{@code >}
-     *     {@link javax.xml.bind.JAXBElement }{@code <}{@link AttributeValueType }{@code >}
-     *
+     * @param value allowed object is {@link javax.xml.bind.JAXBElement }{@code <}
+     *            {@link oasis.names.tc.xacml._3_0.core.schema.wd_17.FunctionType }{@code >}
+     *            {@link javax.xml.bind.JAXBElement }{@code <}{@link AttributeDesignatorType }{@code >}
+     *            {@link javax.xml.bind.JAXBElement }{@code <}{@link VariableReferenceType }{@code >}
+     *            {@link javax.xml.bind.JAXBElement }{@code <}{@link ExpressionType }{@code >}
+     *            {@link javax.xml.bind.JAXBElement }{@code <}{@link AttributeSelectorType }{@code >}
+     *            {@link javax.xml.bind.JAXBElement }{@code <}
+     *            {@link oasis.names.tc.xacml._3_0.core.schema.wd_17.ApplyType }{@code >}
+     *            {@link javax.xml.bind.JAXBElement }{@code <}{@link AttributeValueType }{@code >}
      */
     public void setExpression(JAXBElement<?> value) {
-        this.expression = ((JAXBElement<?> ) value);
+        this.expression = (value);
     }
 
 }

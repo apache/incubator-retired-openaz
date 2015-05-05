@@ -44,9 +44,10 @@ import com.att.research.xacmlatt.pdp.policy.Rule;
 import com.att.research.xacmlatt.pdp.policy.RuleEffect;
 
 /**
- * LegacyPermitOverridesRule extends {@link com.att.research.xacmlatt.pdp.policy.combiners.CombiningAlgorithmBase} for
- * {@link com.att.research.xacmlatt.pdp.policy.Rule}s to implement the XACML 1.0 permit-overrides rule combining algorithm.
- *
+ * LegacyPermitOverridesRule extends
+ * {@link com.att.research.xacmlatt.pdp.policy.combiners.CombiningAlgorithmBase} for
+ * {@link com.att.research.xacmlatt.pdp.policy.Rule}s to implement the XACML 1.0 permit-overrides rule
+ * combining algorithm.
  */
 public class LegacyPermitOverridesRule extends CombiningAlgorithmBase<Rule> {
 
@@ -55,22 +56,24 @@ public class LegacyPermitOverridesRule extends CombiningAlgorithmBase<Rule> {
     }
 
     @Override
-    public EvaluationResult combine(EvaluationContext evaluationContext, List<CombiningElement<Rule>> elements, List<CombinerParameter> combinerParameters) throws EvaluationException {
-        boolean atLeastOneDeny                                                  = false;
-        boolean potentialPermit                                                 = false;
+    public EvaluationResult combine(EvaluationContext evaluationContext,
+                                    List<CombiningElement<Rule>> elements,
+                                    List<CombinerParameter> combinerParameters) throws EvaluationException {
+        boolean atLeastOneDeny = false;
+        boolean potentialPermit = false;
 
-        EvaluationResult evaluationResultCombined               = new EvaluationResult(Decision.DENY);
-        EvaluationResult evaluationResultIndeterminate  = null;
+        EvaluationResult evaluationResultCombined = new EvaluationResult(Decision.DENY);
+        EvaluationResult evaluationResultIndeterminate = null;
 
-        Iterator<CombiningElement<Rule>> iterElements   = elements.iterator();
+        Iterator<CombiningElement<Rule>> iterElements = elements.iterator();
         while (iterElements.hasNext()) {
-            CombiningElement<Rule> combiningElement             = iterElements.next();
-            EvaluationResult evaluationResultElement    = combiningElement.evaluate(evaluationContext);
+            CombiningElement<Rule> combiningElement = iterElements.next();
+            EvaluationResult evaluationResultElement = combiningElement.evaluate(evaluationContext);
 
-            assert(evaluationResultElement != null);
-            switch(evaluationResultElement.getDecision()) {
+            assert (evaluationResultElement != null);
+            switch (evaluationResultElement.getDecision()) {
             case DENY:
-                atLeastOneDeny  = true;
+                atLeastOneDeny = true;
                 evaluationResultCombined.merge(evaluationResultElement);
                 break;
             case INDETERMINATE:
@@ -78,12 +81,12 @@ public class LegacyPermitOverridesRule extends CombiningAlgorithmBase<Rule> {
             case INDETERMINATE_DENY:
             case INDETERMINATE_PERMIT:
                 if (evaluationResultIndeterminate == null) {
-                    evaluationResultIndeterminate       = evaluationResultElement;
+                    evaluationResultIndeterminate = evaluationResultElement;
                 } else {
                     evaluationResultIndeterminate.merge(evaluationResultElement);
                 }
                 if (combiningElement.getEvaluatable().getRuleEffect() == RuleEffect.PERMIT) {
-                    potentialPermit     = true;
+                    potentialPermit = true;
                 }
                 break;
             case NOTAPPLICABLE:
@@ -91,7 +94,8 @@ public class LegacyPermitOverridesRule extends CombiningAlgorithmBase<Rule> {
             case PERMIT:
                 return evaluationResultElement;
             default:
-                throw new EvaluationException("Illegal Decision: \"" + evaluationResultElement.getDecision().toString());
+                throw new EvaluationException("Illegal Decision: \""
+                                              + evaluationResultElement.getDecision().toString());
             }
         }
 

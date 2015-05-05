@@ -35,10 +35,9 @@ import com.att.research.xacml.api.XACML;
 
 /**
  * DataTypeString extends {@link DataTypeBase} to represent XACML 3.0 Strings as java <code>String</code>s.
- *
  */
 public class DataTypeString extends DataTypeBase<String> {
-    private static final DataTypeString singleInstance  = new DataTypeString();
+    private static final DataTypeString singleInstance = new DataTypeString();
 
     private DataTypeString() {
         super(XACML.ID_DATATYPE_STRING, String.class);

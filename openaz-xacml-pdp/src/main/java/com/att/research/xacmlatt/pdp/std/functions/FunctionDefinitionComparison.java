@@ -45,37 +45,30 @@ import com.att.research.xacmlatt.pdp.policy.FunctionArgument;
 
 /**
  * FunctionDefinitionComparison implements {@link com.att.research.xacmlatt.pdp.policy.FunctionDefinition} to
- * implement the XACML comparison predicates as functions taking two arguments of the same type
- * and returning a <code>Boolean</code>.
- *
- * In the first implementation of XACML we had separate files for each XACML Function.
- * This release combines multiple Functions in fewer files to minimize code duplication.
- * This file supports the following XACML codes:
- *              integer-greater-than
- *              integer-greater-than-or-equal
- *              integer-less-than
- *              integer-less-than-or-equal
- *              double-greater-than
- *              double-greater-than-or-equal
- *              double-less-than
- *              double-less-than-or-equal
- *
- *
+ * implement the XACML comparison predicates as functions taking two arguments of the same type and returning
+ * a <code>Boolean</code>. In the first implementation of XACML we had separate files for each XACML Function.
+ * This release combines multiple Functions in fewer files to minimize code duplication. This file supports
+ * the following XACML codes: integer-greater-than integer-greater-than-or-equal integer-less-than
+ * integer-less-than-or-equal double-greater-than double-greater-than-or-equal double-less-than
+ * double-less-than-or-equal
  *
  * @param <I> the java class for the data type of the function Input arguments
  */
-public class FunctionDefinitionComparison<I extends Comparable<I>> extends FunctionDefinitionHomogeneousSimple<Boolean, I> {
+public class FunctionDefinitionComparison<I extends Comparable<I>> extends
+    FunctionDefinitionHomogeneousSimple<Boolean, I> {
 
     /**
      * List of comparison operations.
-     *
-     *
      */
-    public enum OPERATION {GREATER_THAN, GREATER_THAN_EQUAL, LESS_THAN, LESS_THAN_EQUAL };
+    public enum OPERATION {
+        GREATER_THAN,
+        GREATER_THAN_EQUAL,
+        LESS_THAN,
+        LESS_THAN_EQUAL
+    };
 
     // the operation for this instance of the class
     private OPERATION operation;
-
 
     /**
      * Constructor - need dataType input because of java Generic type-erasure during compilation.
@@ -88,12 +81,11 @@ public class FunctionDefinitionComparison<I extends Comparable<I>> extends Funct
         operation = opIn;
     }
 
-
     @Override
     public ExpressionResult evaluate(EvaluationContext evaluationContext, List<FunctionArgument> arguments) {
 
-        List<I> convertedArguments      = new ArrayList<I>();
-        Status status                           = this.validateArguments(arguments, convertedArguments);
+        List<I> convertedArguments = new ArrayList<I>();
+        Status status = this.validateArguments(arguments, convertedArguments);
 
         /*
          * If the function arguments are not correct, just return an error status immediately
@@ -104,13 +96,14 @@ public class FunctionDefinitionComparison<I extends Comparable<I>> extends Funct
 
         int compareResult;
         try {
-            compareResult = ((I)convertedArguments.get(0)).compareTo((I)convertedArguments.get(1));
+            compareResult = convertedArguments.get(0).compareTo(convertedArguments.get(1));
         } catch (Exception e) {
             String message = e.getMessage();
             if (e.getCause() != null) {
                 message = e.getCause().getMessage();
             }
-            return ExpressionResult.newError(new StdStatus(StdStatusCode.STATUS_CODE_PROCESSING_ERROR, this.getShortFunctionId() + " " + message));
+            return ExpressionResult.newError(new StdStatus(StdStatusCode.STATUS_CODE_PROCESSING_ERROR, this
+                .getShortFunctionId() + " " + message));
         }
 
         switch (operation) {
@@ -144,10 +137,9 @@ public class FunctionDefinitionComparison<I extends Comparable<I>> extends Funct
         }
 
         // switch on enum should handle everything - should never get here
-        return ExpressionResult.newError(new StdStatus(StdStatusCode.STATUS_CODE_PROCESSING_ERROR, this.getShortFunctionId() + " ENUM did not cover case of " + operation));
+        return ExpressionResult.newError(new StdStatus(StdStatusCode.STATUS_CODE_PROCESSING_ERROR, this
+            .getShortFunctionId() + " ENUM did not cover case of " + operation));
 
     }
-
-
 
 }

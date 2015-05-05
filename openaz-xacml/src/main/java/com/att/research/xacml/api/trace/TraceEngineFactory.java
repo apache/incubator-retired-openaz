@@ -38,13 +38,13 @@ import com.att.research.xacml.util.FactoryFinder;
 import com.att.research.xacml.util.XACMLProperties;
 
 /**
- * Provides methods for creating instances of the {@link TraceEngine} interface.  This may be used by PDP, PEP, or PIP
- * implementations to provide tracing facilities that are useful for validating that XACML Policies and PolicySets operate as expected.
- *
+ * Provides methods for creating instances of the {@link TraceEngine} interface. This may be used by PDP, PEP,
+ * or PIP implementations to provide tracing facilities that are useful for validating that XACML Policies and
+ * PolicySets operate as expected.
  */
 public abstract class TraceEngineFactory {
-    private static final String FACTORYID                                       = XACMLProperties.PROP_TRACEENGINEFACTORY;
-    private static final String DEFAULT_FACTORY_CLASSNAME       = "com.att.research.xacml.std.trace.NullTraceEngineFactory";
+    private static final String FACTORYID = XACMLProperties.PROP_TRACEENGINEFACTORY;
+    private static final String DEFAULT_FACTORY_CLASSNAME = "com.att.research.xacml.std.trace.NullTraceEngineFactory";
 
     protected Properties properties = null;
 
@@ -56,8 +56,8 @@ public abstract class TraceEngineFactory {
     }
 
     /**
-     * Gets an instance of the <code>TraceEngineFactory</code> class using standard factory lookup methods defined by
-     * the {@link com.att.research.xacml.util.FactoryFinder} class.
+     * Gets an instance of the <code>TraceEngineFactory</code> class using standard factory lookup methods
+     * defined by the {@link com.att.research.xacml.util.FactoryFinder} class.
      *
      * @return an instance of the <code>TraceEngineFactory</code> class.
      * @throws FactoryException if there is an error finding a <code>TraceEngineFactory</code>
@@ -67,8 +67,8 @@ public abstract class TraceEngineFactory {
     }
 
     /**
-     * Gets an instance of the <code>TraceEngineFactory</code> class using standard factory lookup methods defined by
-     * the {@link com.att.research.xacml.util.FactoryFinder} class.
+     * Gets an instance of the <code>TraceEngineFactory</code> class using standard factory lookup methods
+     * defined by the {@link com.att.research.xacml.util.FactoryFinder} class.
      *
      * @return an instance of the <code>TraceEngineFactory</code> class.
      * @throws FactoryException if there is an error finding a <code>TraceEngineFactory</code>
@@ -78,24 +78,30 @@ public abstract class TraceEngineFactory {
     }
 
     /**
-     * Gets an instance of the <code>TraceEngineFactory</code> class using the given <code>String</code> class name, and <code>ClassLoader</code>>
+     * Gets an instance of the <code>TraceEngineFactory</code> class using the given <code>String</code> class
+     * name, and <code>ClassLoader</code>>
      *
-     * @param className the <code>String</code> name of the <code>Class</code> extending <code>TraceEngineFactory</code> to load
+     * @param className the <code>String</code> name of the <code>Class</code> extending
+     *            <code>TraceEngineFactory</code> to load
      * @param classLoader the <code>ClassLoader</code> to use
      * @return an instance of the <code>TraceEngineFactory</code>
-     * @throws FactoryException if there is an error loading the <code>TraceEngineFactory</code> class or creating an instance from it.
+     * @throws FactoryException if there is an error loading the <code>TraceEngineFactory</code> class or
+     *             creating an instance from it.
      */
-    public static TraceEngineFactory newInstance(String className, ClassLoader classLoader) throws FactoryException {
+    public static TraceEngineFactory newInstance(String className, ClassLoader classLoader)
+        throws FactoryException {
         return FactoryFinder.newInstance(className, TraceEngineFactory.class, classLoader, false);
     }
 
     /**
-     * Gets an instance of the <code>TraceEngineFactory</code> class using the given <code>String</code> class name, and the standard
-     * <code>ClassLoader</code>>
+     * Gets an instance of the <code>TraceEngineFactory</code> class using the given <code>String</code> class
+     * name, and the standard <code>ClassLoader</code>>
      *
-     * @param className the <code>String</code> name of the <code>Class</code> extending <code>TraceEngineFactory</code> to load
+     * @param className the <code>String</code> name of the <code>Class</code> extending
+     *            <code>TraceEngineFactory</code> to load
      * @return an instance of the <code>TraceEngineFactory</code>
-     * @throws FactoryException if there is an error loading the <code>TraceEngineFactory</code> class or creating an instance from it.
+     * @throws FactoryException if there is an error loading the <code>TraceEngineFactory</code> class or
+     *             creating an instance from it.
      */
     public static TraceEngineFactory newInstance(String className) throws FactoryException {
         return FactoryFinder.newInstance(className, TraceEngineFactory.class, null, true);

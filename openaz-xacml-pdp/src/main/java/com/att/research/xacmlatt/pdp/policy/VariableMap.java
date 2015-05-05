@@ -40,17 +40,16 @@ import java.util.Map;
 import com.att.research.xacml.util.StringUtils;
 
 /**
- * VariableMap is a collection of {@link com.att.research.xacmlatt.pdp.policy.VariableDefinition}s that are accessible by
- * the variable identifier.
- *
+ * VariableMap is a collection of {@link com.att.research.xacmlatt.pdp.policy.VariableDefinition}s that are
+ * accessible by the variable identifier.
  */
 public class VariableMap {
-    private List<VariableDefinition>            variableDefinitions;
+    private List<VariableDefinition> variableDefinitions;
     private Map<String, VariableDefinition> mapVariableDefinitions;
 
     private void ensureVariableDefinitions() {
         if (this.variableDefinitions == null) {
-            this.variableDefinitions    = new ArrayList<VariableDefinition>();
+            this.variableDefinitions = new ArrayList<VariableDefinition>();
         }
     }
 
@@ -74,10 +73,11 @@ public class VariableMap {
     }
 
     /**
-     * Gets an <code>Iterator</code> over the <code>VariableDefinition</code>s in this <code>VariableMap</code>
-     * in the order they were added.
+     * Gets an <code>Iterator</code> over the <code>VariableDefinition</code>s in this
+     * <code>VariableMap</code> in the order they were added.
      *
-     * @return an <code>Iterator</code> over the <code>VariableDefinition</code>s in this <code>VariableMap</code>
+     * @return an <code>Iterator</code> over the <code>VariableDefinition</code>s in this
+     *         <code>VariableMap</code>
      */
     public Iterator<VariableDefinition> getVariableDefinitions() {
         return (this.variableDefinitions == null ? null : this.variableDefinitions.iterator());
@@ -96,13 +96,13 @@ public class VariableMap {
     }
 
     /**
-     * Adds the contents of the given <code>Collection</code> of <code>VariableDefinition</code>s to the set of
-     * <code>VariableDefinition</code>s in this <code>VariableMap</code>>
+     * Adds the contents of the given <code>Collection</code> of <code>VariableDefinition</code>s to the set
+     * of <code>VariableDefinition</code>s in this <code>VariableMap</code>>
      *
      * @param listVariableDefinitions the <code>Collection</code> of <code>VariableDefinition</code>s to add
      */
     public void addVariableDefinitions(Collection<VariableDefinition> listVariableDefinitions) {
-        for (VariableDefinition variableDefinition: listVariableDefinitions) {
+        for (VariableDefinition variableDefinition : listVariableDefinitions) {
             this.add(variableDefinition);
         }
     }
@@ -114,8 +114,8 @@ public class VariableMap {
      * @param listVariableDefinitions the <code>Collection</code> of <code>VariableDefinition</code> to set
      */
     public void setVariableDefinitions(Collection<VariableDefinition> listVariableDefinitions) {
-        this.variableDefinitions        = null;
-        this.mapVariableDefinitions     = null;
+        this.variableDefinitions = null;
+        this.mapVariableDefinitions = null;
         if (listVariableDefinitions != null) {
             this.addVariableDefinitions(variableDefinitions);
         }
@@ -123,7 +123,7 @@ public class VariableMap {
 
     @Override
     public String toString() {
-        StringBuilder stringBuilder     = new StringBuilder("{");
+        StringBuilder stringBuilder = new StringBuilder("{");
         if (this.mapVariableDefinitions.size() > 0) {
             stringBuilder.append("variableDefinitions=");
             stringBuilder.append(StringUtils.toString(this.mapVariableDefinitions.values().iterator()));

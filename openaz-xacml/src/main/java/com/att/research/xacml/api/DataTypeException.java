@@ -32,7 +32,6 @@ package com.att.research.xacml.api;
 
 /**
  * Extends <code>Exception</code> to represent errors thrown by methods in the {@link DataType} interface.
- *
  */
 public class DataTypeException extends Exception {
     private static final long serialVersionUID = -6308818179904447096L;
@@ -49,8 +48,8 @@ public class DataTypeException extends Exception {
     }
 
     /**
-     * Creates a new <code>DataTypeException</code> for an error thrown by the given {@link DataType} with
-     * a <code>String</code> message.
+     * Creates a new <code>DataTypeException</code> for an error thrown by the given {@link DataType} with a
+     * <code>String</code> message.
      *
      * @param dataTypeIn the <code>DataType</code> throwing the error
      * @param message the <code>String</code> error message
@@ -61,8 +60,8 @@ public class DataTypeException extends Exception {
     }
 
     /**
-     * Creates a new <code>DataTypeException</code> for an error thrown by the given {@link DataType} with
-     * a <code>Throwable</code> cause.
+     * Creates a new <code>DataTypeException</code> for an error thrown by the given {@link DataType} with a
+     * <code>Throwable</code> cause.
      *
      * @param dataTypeIn the <code>DataType</code> throwing the error
      * @param cause the <code>Throwable</code> cause of the error
@@ -73,8 +72,8 @@ public class DataTypeException extends Exception {
     }
 
     /**
-     * Creates a new <code>DataTypeException</code> for an error thrown by the given {@link DataType} with
-     * the given <code>String</code> message and <code>Throwable</code> cause.
+     * Creates a new <code>DataTypeException</code> for an error thrown by the given {@link DataType} with the
+     * given <code>String</code> message and <code>Throwable</code> cause.
      *
      * @param dataTypeIn the <code>DataType</code> throwing the error
      * @param message the <code>String</code> error message

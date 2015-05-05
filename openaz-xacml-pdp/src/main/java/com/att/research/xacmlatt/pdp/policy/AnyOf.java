@@ -45,9 +45,9 @@ import com.att.research.xacmlatt.pdp.eval.MatchResult;
 import com.att.research.xacmlatt.pdp.eval.Matchable;
 
 /**
- * AnyOf extends {@link com.att.research.xacmlatt.pdp.policy.PolicyComponent} and implements the {@link com.att.research.xacmlatt.pdp.policy.Matchable}
- * interface to represent XACML AnyOf elements in a XACML Target.
- *
+ * AnyOf extends {@link com.att.research.xacmlatt.pdp.policy.PolicyComponent} and implements the
+ * {@link com.att.research.xacmlatt.pdp.policy.Matchable} interface to represent XACML AnyOf elements in a
+ * XACML Target.
  */
 public class AnyOf extends PolicyComponent implements Matchable {
     private List<AllOf> allOfs;
@@ -94,12 +94,12 @@ public class AnyOf extends PolicyComponent implements Matchable {
     }
 
     public void addAllOf(AllOf allOf) {
-        List<AllOf> listAllOfs  = this.getAllOfList(true);
+        List<AllOf> listAllOfs = this.getAllOfList(true);
         listAllOfs.add(allOf);
     }
 
     public void addAllOfs(Collection<AllOf> allOfs) {
-        List<AllOf> listAllOfs  = this.getAllOfList(true);
+        List<AllOf> listAllOfs = this.getAllOfList(true);
         listAllOfs.addAll(allOfs);
     }
 
@@ -108,7 +108,7 @@ public class AnyOf extends PolicyComponent implements Matchable {
         if (!this.validate()) {
             return new MatchResult(new StdStatus(this.getStatusCode(), this.getStatusMessage()));
         }
-        Iterator<AllOf> iterAllOfs      = this.getAllOfs();
+        Iterator<AllOf> iterAllOfs = this.getAllOfs();
         if (iterAllOfs == null || !iterAllOfs.hasNext()) {
             return MatchResult.MM_NOMATCH;
         }
@@ -116,17 +116,17 @@ public class AnyOf extends PolicyComponent implements Matchable {
         /*
          * Assume "No Match" until we find a match or an indeterminate result
          */
-        MatchResult matchResultFallThrough      = MatchResult.MM_NOMATCH;
+        MatchResult matchResultFallThrough = MatchResult.MM_NOMATCH;
         while (iterAllOfs.hasNext()) {
-            MatchResult matchResultAllOf        = iterAllOfs.next().match(evaluationContext);
-            assert(matchResultAllOf != null);
-            switch(matchResultAllOf.getMatchCode()) {
+            MatchResult matchResultAllOf = iterAllOfs.next().match(evaluationContext);
+            assert (matchResultAllOf != null);
+            switch (matchResultAllOf.getMatchCode()) {
             case INDETERMINATE:
                 /*
                  * Keep the first indeterminate value to return if no other match is found
                  */
                 if (matchResultFallThrough.getMatchCode() != MatchResult.MatchCode.INDETERMINATE) {
-                    matchResultFallThrough      = matchResultAllOf;
+                    matchResultFallThrough = matchResultAllOf;
                 }
                 break;
             case MATCH:
@@ -140,7 +140,7 @@ public class AnyOf extends PolicyComponent implements Matchable {
 
     @Override
     protected boolean validateComponent() {
-        Iterator<AllOf> iterAllOfs      = this.getAllOfs();
+        Iterator<AllOf> iterAllOfs = this.getAllOfs();
         if (iterAllOfs == null || !iterAllOfs.hasNext()) {
             this.setStatus(StdStatusCode.STATUS_CODE_SYNTAX_ERROR, "Missing AllOf elements in AnyOf");
             return false;
@@ -152,11 +152,11 @@ public class AnyOf extends PolicyComponent implements Matchable {
 
     @Override
     public String toString() {
-        StringBuilder stringBuilder     = new StringBuilder("{");
+        StringBuilder stringBuilder = new StringBuilder("{");
         stringBuilder.append("super=");
         stringBuilder.append(super.toString());
 
-        String iterToDump       = StringUtils.toString(this.getAllOfs());
+        String iterToDump = StringUtils.toString(this.getAllOfs());
         if (iterToDump != null) {
             stringBuilder.append(",allOfs=");
             stringBuilder.append(iterToDump);

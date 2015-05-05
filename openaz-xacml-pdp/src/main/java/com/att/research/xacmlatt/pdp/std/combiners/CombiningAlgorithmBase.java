@@ -33,7 +33,8 @@ package com.att.research.xacmlatt.pdp.std.combiners;
 import com.att.research.xacml.api.Identifier;
 import com.att.research.xacmlatt.pdp.policy.CombiningAlgorithm;
 
-public abstract class CombiningAlgorithmBase<T extends com.att.research.xacmlatt.pdp.eval.Evaluatable> implements CombiningAlgorithm<T> {
+public abstract class CombiningAlgorithmBase<T extends com.att.research.xacmlatt.pdp.eval.Evaluatable>
+    implements CombiningAlgorithm<T> {
     private Identifier id;
 
     public CombiningAlgorithmBase(Identifier identifierIn) {
@@ -47,7 +48,7 @@ public abstract class CombiningAlgorithmBase<T extends com.att.research.xacmlatt
 
     @Override
     public String toString() {
-        StringBuilder stringBuilder     = new StringBuilder("{");
+        StringBuilder stringBuilder = new StringBuilder("{");
 
         Object objectToDump;
         if ((objectToDump = this.getId()) != null) {

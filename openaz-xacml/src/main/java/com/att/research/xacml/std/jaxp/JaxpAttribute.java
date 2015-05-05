@@ -43,12 +43,13 @@ import com.att.research.xacml.std.IdentifierImpl;
 import com.att.research.xacml.std.StdMutableAttribute;
 
 /**
- * JaxpAttribute extends {@link com.att.research.xacml.std.StdMutableAttribute} with methods for creation from JAXP elements.
- *
+ * JaxpAttribute extends {@link com.att.research.xacml.std.StdMutableAttribute} with methods for creation from
+ * JAXP elements.
  */
 public class JaxpAttribute extends StdMutableAttribute {
 
-    protected JaxpAttribute(Identifier attributeIdIn, Identifier categoryIdIn, List<AttributeValue<?>> valuesIn, String issuerIn, boolean includeInResultsIn) {
+    protected JaxpAttribute(Identifier attributeIdIn, Identifier categoryIdIn,
+                            List<AttributeValue<?>> valuesIn, String issuerIn, boolean includeInResultsIn) {
         super(attributeIdIn, categoryIdIn, valuesIn, issuerIn, includeInResultsIn);
     }
 
@@ -62,13 +63,14 @@ public class JaxpAttribute extends StdMutableAttribute {
         } else if (attributeType.getAttributeValue() == null) {
             throw new IllegalArgumentException("Null attributeValue in AttributeType");
         }
-        Identifier                                              attributeId                             = new IdentifierImpl(attributeType.getAttributeId());
-        List<AttributeValue<?>>                 values                                  = new ArrayList<AttributeValue<?>>();
-        Iterator<AttributeValueType>    iterAttributeValueTypes = attributeType.getAttributeValue().iterator();
+        Identifier attributeId = new IdentifierImpl(attributeType.getAttributeId());
+        List<AttributeValue<?>> values = new ArrayList<AttributeValue<?>>();
+        Iterator<AttributeValueType> iterAttributeValueTypes = attributeType.getAttributeValue().iterator();
         while (iterAttributeValueTypes.hasNext()) {
             values.add(JaxpAttributeValue.newInstance(iterAttributeValueTypes.next()));
         }
 
-        return new JaxpAttribute(attributeId, categoryId, values, attributeType.getIssuer(), attributeType.isIncludeInResult());
+        return new JaxpAttribute(attributeId, categoryId, values, attributeType.getIssuer(),
+                                 attributeType.isIncludeInResult());
     }
 }

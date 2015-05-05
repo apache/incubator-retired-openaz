@@ -25,7 +25,6 @@
 // Generated on: 2013.05.23 at 02:47:00 PM EDT
 //
 
-
 package oasis.names.tc.xacml._3_0.core.schema.wd_17;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -34,11 +33,11 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 
-
 /**
- * <p>Java class for AttributeSelectorType complex type.
- *
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>
+ * Java class for AttributeSelectorType complex type.
+ * <p>
+ * The following schema fragment specifies the expected content contained within this class.
  *
  * <pre>
  * &lt;complexType name="AttributeSelectorType">
@@ -53,13 +52,10 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- *
- *
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "AttributeSelectorType")
-public class AttributeSelectorType
-    extends ExpressionType {
+public class AttributeSelectorType extends ExpressionType {
 
     @XmlAttribute(name = "Category", required = true)
     @XmlSchemaType(name = "anyURI")
@@ -78,10 +74,7 @@ public class AttributeSelectorType
     /**
      * Gets the value of the category property.
      *
-     * @return
-     *     possible object is
-     *     {@link String }
-     *
+     * @return possible object is {@link String }
      */
     public String getCategory() {
         return category;
@@ -90,10 +83,7 @@ public class AttributeSelectorType
     /**
      * Sets the value of the category property.
      *
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *
+     * @param value allowed object is {@link String }
      */
     public void setCategory(String value) {
         this.category = value;
@@ -102,10 +92,7 @@ public class AttributeSelectorType
     /**
      * Gets the value of the contextSelectorId property.
      *
-     * @return
-     *     possible object is
-     *     {@link String }
-     *
+     * @return possible object is {@link String }
      */
     public String getContextSelectorId() {
         return contextSelectorId;
@@ -114,10 +101,7 @@ public class AttributeSelectorType
     /**
      * Sets the value of the contextSelectorId property.
      *
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *
+     * @param value allowed object is {@link String }
      */
     public void setContextSelectorId(String value) {
         this.contextSelectorId = value;
@@ -126,10 +110,7 @@ public class AttributeSelectorType
     /**
      * Gets the value of the path property.
      *
-     * @return
-     *     possible object is
-     *     {@link String }
-     *
+     * @return possible object is {@link String }
      */
     public String getPath() {
         return path;
@@ -138,10 +119,7 @@ public class AttributeSelectorType
     /**
      * Sets the value of the path property.
      *
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *
+     * @param value allowed object is {@link String }
      */
     public void setPath(String value) {
         this.path = value;
@@ -150,10 +128,7 @@ public class AttributeSelectorType
     /**
      * Gets the value of the dataType property.
      *
-     * @return
-     *     possible object is
-     *     {@link String }
-     *
+     * @return possible object is {@link String }
      */
     public String getDataType() {
         return dataType;
@@ -162,10 +137,7 @@ public class AttributeSelectorType
     /**
      * Sets the value of the dataType property.
      *
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *
+     * @param value allowed object is {@link String }
      */
     public void setDataType(String value) {
         this.dataType = value;
@@ -173,7 +145,6 @@ public class AttributeSelectorType
 
     /**
      * Gets the value of the mustBePresent property.
-     *
      */
     public boolean isMustBePresent() {
         return mustBePresent;
@@ -181,7 +152,6 @@ public class AttributeSelectorType
 
     /**
      * Sets the value of the mustBePresent property.
-     *
      */
     public void setMustBePresent(boolean value) {
         this.mustBePresent = value;

@@ -36,11 +36,10 @@ import com.att.research.xacml.std.StdStatusCode;
 
 /**
  * CombinerParameter extends {@link PolicyComponent} to represent a XACML CombinerParameter element.
- *
  */
 public class CombinerParameter extends PolicyComponent {
-    private String                              name;
-    private AttributeValue<?>   attributeValue;
+    private String name;
+    private AttributeValue<?> attributeValue;
 
     @Override
     protected boolean validateComponent() {
@@ -57,23 +56,25 @@ public class CombinerParameter extends PolicyComponent {
     }
 
     /**
-     * Creates a new <code>CombinerParameter</code> with the given <code>String</code> name, <code>AttributeValue</code>,
-     * {@link com.att.research.xacml.api.StatusCode} and <code>String</code> status message.
+     * Creates a new <code>CombinerParameter</code> with the given <code>String</code> name,
+     * <code>AttributeValue</code>, {@link com.att.research.xacml.api.StatusCode} and <code>String</code>
+     * status message.
      *
      * @param nameIn the <code>String</code> name of the <code>CombinerParameter</code>
      * @param attributeValueIn the <code>AttributeValue</code> of the <code>CombinerParameter</code>
      * @param statusCodeIn the <code>StatusCode</code> of the <code>CombinerParameter</code>
      * @param statusMessageIn the <code>String</code> status message of the <code>CombinerParameter</code>
      */
-    public CombinerParameter(String nameIn, AttributeValue<?> attributeValueIn, StatusCode statusCodeIn, String statusMessageIn) {
+    public CombinerParameter(String nameIn, AttributeValue<?> attributeValueIn, StatusCode statusCodeIn,
+                             String statusMessageIn) {
         super(statusCodeIn, statusMessageIn);
-        this.name                       = nameIn;
-        this.attributeValue     = attributeValueIn;
+        this.name = nameIn;
+        this.attributeValue = attributeValueIn;
     }
 
     /**
-     * Creates a new <code>CombinerParameter</code> for an error condition with the given <code>StatusCode</code> and
-     * <code>String</code> status message.
+     * Creates a new <code>CombinerParameter</code> for an error condition with the given
+     * <code>StatusCode</code> and <code>String</code> status message.
      *
      * @param statusCodeIn the <code>StatusCode</code> of the <code>CombinerParameter</code>
      * @param statusMessageIn the <code>String</code> status message of the <code>CombinerParameter</code>
@@ -83,8 +84,8 @@ public class CombinerParameter extends PolicyComponent {
     }
 
     /**
-     * Creates a new <code>CombinerParameter</code> for an error condition with the given <code>StatusCode</code> and
-     * null status message.
+     * Creates a new <code>CombinerParameter</code> for an error condition with the given
+     * <code>StatusCode</code> and null status message.
      *
      * @param statusCodeIn the <code>StatusCode</code> of the <code>CombinerParameter</code>
      */
@@ -93,16 +94,16 @@ public class CombinerParameter extends PolicyComponent {
     }
 
     /**
-     * Creates a new <code>CombinerParameter</code> with a default <code>StatusCode</code>, null status message, and the given
-     * <code>String</code> name and <code>AttributeValue</code>>
+     * Creates a new <code>CombinerParameter</code> with a default <code>StatusCode</code>, null status
+     * message, and the given <code>String</code> name and <code>AttributeValue</code>>
      *
      * @param nameIn the <code>String</code> name of the <code>CombinerParameter</code>
      * @param attributeValueIn the <code>AttributeValue</code> of the <code>CombinerParameter</code>
      */
     public CombinerParameter(String nameIn, AttributeValue<?> attributeValueIn) {
         super();
-        this.name                       = nameIn;
-        this.attributeValue     = attributeValueIn;
+        this.name = nameIn;
+        this.attributeValue = attributeValueIn;
     }
 
     public CombinerParameter() {
@@ -124,7 +125,7 @@ public class CombinerParameter extends PolicyComponent {
      * @param nameIn the <code>String</code> name for this <code>CombinerParameter</code>.
      */
     public void setName(String nameIn) {
-        this.name       = nameIn;
+        this.name = nameIn;
     }
 
     /**
@@ -142,12 +143,12 @@ public class CombinerParameter extends PolicyComponent {
      * @param attributeValueIn the <code>AttributeValue</code> for this <code>CombinerParameter</code>>
      */
     public void setAttributeValue(AttributeValue<?> attributeValueIn) {
-        this.attributeValue     = attributeValueIn;
+        this.attributeValue = attributeValueIn;
     }
 
     @Override
     public String toString() {
-        StringBuilder stringBuilder     = new StringBuilder("{");
+        StringBuilder stringBuilder = new StringBuilder("{");
         stringBuilder.append("super=");
         stringBuilder.append(super.toString());
 

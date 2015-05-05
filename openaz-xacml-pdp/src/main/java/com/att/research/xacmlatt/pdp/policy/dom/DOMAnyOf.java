@@ -44,37 +44,38 @@ import com.att.research.xacml.std.dom.DOMUtil;
 import com.att.research.xacmlatt.pdp.policy.AnyOf;
 
 /**
- * DOMAnyOf extends {@link com.att.research.xacmlatt.pdp.policy.AnyOf} with methods for creation
- * from DOM {@link org.w3c.dom.Node}s.
- *
+ * DOMAnyOf extends {@link com.att.research.xacmlatt.pdp.policy.AnyOf} with methods for creation from DOM
+ * {@link org.w3c.dom.Node}s.
  */
 public class DOMAnyOf extends AnyOf {
-    private static final Log logger     = LogFactory.getLog(DOMAnyOf.class);
+    private static final Log logger = LogFactory.getLog(DOMAnyOf.class);
 
     protected DOMAnyOf() {
     }
 
     /**
-     * Creates a new <code>DOMAnyOf</code> by parsing the given <code>Node</code> representing a XACML AnyOf element.
+     * Creates a new <code>DOMAnyOf</code> by parsing the given <code>Node</code> representing a XACML AnyOf
+     * element.
      *
      * @param nodeAnyOf the <code>Node</code> representing the XACML AnyOf element
      * @return a new <code>DOMAnyOf</code> parsed from the given <code>Node</code>
      * @throws DOMStructureException if there is an error parsing the given <code>Node</code>.
      */
     public static AnyOf newInstance(Node nodeAnyOf) throws DOMStructureException {
-        Element elementAnyOf    = DOMUtil.getElement(nodeAnyOf);
-        boolean bLenient                = DOMProperties.isLenient();
+        Element elementAnyOf = DOMUtil.getElement(nodeAnyOf);
+        boolean bLenient = DOMProperties.isLenient();
 
-        DOMAnyOf domAnyOf               = new DOMAnyOf();
+        DOMAnyOf domAnyOf = new DOMAnyOf();
 
         try {
-            NodeList children   = elementAnyOf.getChildNodes();
+            NodeList children = elementAnyOf.getChildNodes();
             int numChildren;
             if (children != null && (numChildren = children.getLength()) > 0) {
-                for (int i = 0 ; i < numChildren ; i++) {
-                    Node child  = children.item(i);
+                for (int i = 0; i < numChildren; i++) {
+                    Node child = children.item(i);
                     if (DOMUtil.isElement(child)) {
-                        if (DOMUtil.isInNamespace(child, XACML3.XMLNS) && (XACML3.ELEMENT_ALLOF.equals(child.getLocalName()))) {
+                        if (DOMUtil.isInNamespace(child, XACML3.XMLNS)
+                            && (XACML3.ELEMENT_ALLOF.equals(child.getLocalName()))) {
                             domAnyOf.addAllOf(DOMAllOf.newInstance(child));
                         } else if (!bLenient) {
                             throw DOMUtil.newUnexpectedElementException(child, nodeAnyOf);
@@ -93,21 +94,22 @@ public class DOMAnyOf extends AnyOf {
     }
 
     public static boolean repair(Node nodeAnyOf) throws DOMStructureException {
-        Element elementAnyOf    = DOMUtil.getElement(nodeAnyOf);
-        boolean result                  = false;
+        Element elementAnyOf = DOMUtil.getElement(nodeAnyOf);
+        boolean result = false;
 
-        NodeList children       = elementAnyOf.getChildNodes();
+        NodeList children = elementAnyOf.getChildNodes();
         int numChildren;
         if (children != null && (numChildren = children.getLength()) > 0) {
-            for (int i = 0 ; i < numChildren ; i++) {
-                Node child      = children.item(i);
+            for (int i = 0; i < numChildren; i++) {
+                Node child = children.item(i);
                 if (DOMUtil.isElement(child)) {
-                    if (DOMUtil.isInNamespace(child, XACML3.XMLNS) && (XACML3.ELEMENT_ALLOF.equals(child.getLocalName()))) {
-                        result  = DOMAllOf.repair(child) || result;
+                    if (DOMUtil.isInNamespace(child, XACML3.XMLNS)
+                        && (XACML3.ELEMENT_ALLOF.equals(child.getLocalName()))) {
+                        result = DOMAllOf.repair(child) || result;
                     } else {
                         logger.warn("Unexpected element " + child.getNodeName());
                         elementAnyOf.removeChild(child);
-                        result  = true;
+                        result = true;
                     }
                 }
             }

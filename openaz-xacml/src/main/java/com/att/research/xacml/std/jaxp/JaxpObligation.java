@@ -44,9 +44,8 @@ import com.att.research.xacml.std.IdentifierImpl;
 import com.att.research.xacml.std.StdMutableObligation;
 
 /**
- * JaxpObligation extends {@link com.att.research.xacml.std.StdMutableObligation} with methods for creation from
- * JAXP elements.
- *
+ * JaxpObligation extends {@link com.att.research.xacml.std.StdMutableObligation} with methods for creation
+ * from JAXP elements.
  */
 public class JaxpObligation extends StdMutableObligation {
 
@@ -60,13 +59,16 @@ public class JaxpObligation extends StdMutableObligation {
         } else if (obligationType.getObligationId() == null) {
             throw new IllegalArgumentException("Null obligationId for ObligationType");
         }
-        Identifier                                              obligationId                    = new IdentifierImpl(obligationType.getObligationId());
-        List<AttributeAssignment>       attributeAssignments    = null;
-        if (obligationType.getAttributeAssignment() != null && obligationType.getAttributeAssignment().size() > 0) {
-            attributeAssignments        = new ArrayList<AttributeAssignment>();
-            Iterator<AttributeAssignmentType>   iterAttributeAssignmentTypes    = obligationType.getAttributeAssignment().iterator();
+        Identifier obligationId = new IdentifierImpl(obligationType.getObligationId());
+        List<AttributeAssignment> attributeAssignments = null;
+        if (obligationType.getAttributeAssignment() != null
+            && obligationType.getAttributeAssignment().size() > 0) {
+            attributeAssignments = new ArrayList<AttributeAssignment>();
+            Iterator<AttributeAssignmentType> iterAttributeAssignmentTypes = obligationType
+                .getAttributeAssignment().iterator();
             while (iterAttributeAssignmentTypes.hasNext()) {
-                attributeAssignments.add(JaxpAttributeAssignment.newInstance(iterAttributeAssignmentTypes.next()));
+                attributeAssignments.add(JaxpAttributeAssignment.newInstance(iterAttributeAssignmentTypes
+                    .next()));
             }
         }
         return new JaxpObligation(obligationId, attributeAssignments);

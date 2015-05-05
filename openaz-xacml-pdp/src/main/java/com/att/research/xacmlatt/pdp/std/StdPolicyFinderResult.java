@@ -36,17 +36,19 @@ import com.att.research.xacmlatt.pdp.policy.PolicyDef;
 import com.att.research.xacmlatt.pdp.policy.PolicyFinderResult;
 
 /**
- * StdPolicyFinderResult implements the {@link com.att.research.xacmlatt.pdp.policy.PolicyFinderResult} interface.
+ * StdPolicyFinderResult implements the {@link com.att.research.xacmlatt.pdp.policy.PolicyFinderResult}
+ * interface.
  *
- * @param <T> the java class extending {@link com.att.research.xacmlatt.pdp.policy.PolicyDef} held by the <code>StdPolicyFinderResult</code>
+ * @param <T> the java class extending {@link com.att.research.xacmlatt.pdp.policy.PolicyDef} held by the
+ *            <code>StdPolicyFinderResult</code>
  */
 public class StdPolicyFinderResult<T extends PolicyDef> implements PolicyFinderResult<T> {
     private Status status;
     private T policyDef;
 
     public StdPolicyFinderResult(Status statusIn, T policyDefIn) {
-        this.status     = (statusIn == null ? StdStatus.STATUS_OK : statusIn);
-        this.policyDef  = policyDefIn;
+        this.status = (statusIn == null ? StdStatus.STATUS_OK : statusIn);
+        this.policyDef = policyDefIn;
     }
 
     public StdPolicyFinderResult(Status statusIn) {

@@ -47,21 +47,13 @@ import com.att.research.xacmlatt.pdp.policy.FunctionArgument;
 /**
  * FunctionDefinitionTimeInRange implements {@link com.att.research.xacmlatt.pdp.policy.FunctionDefinition} to
  * implement the XACML time-in-range predicates as a function taking three arguments of type <code>Time</code>
- * and returning a <code>Boolean</code>.
- *
- * In the first implementation of XACML we had separate files for each XACML Function.
- * This release combines multiple Functions in fewer files to minimize code duplication.
- * This file supports the following XACML codes:
- *              time-in-range
- *
- *
+ * and returning a <code>Boolean</code>. In the first implementation of XACML we had separate files for each
+ * XACML Function. This release combines multiple Functions in fewer files to minimize code duplication. This
+ * file supports the following XACML codes: time-in-range
  *
  * @param <I> the java class for the data type of the function Input arguments.
  */
 public class FunctionDefinitionTimeInRange<I> extends FunctionDefinitionHomogeneousSimple<Boolean, I> {
-
-
-
 
     /**
      * Constructor - need dataType input because of java Generic type-erasure during compilation.
@@ -73,12 +65,11 @@ public class FunctionDefinitionTimeInRange<I> extends FunctionDefinitionHomogene
         super(idIn, DataTypes.DT_BOOLEAN, dataTypeArgsIn, 3);
     }
 
-
     @Override
     public ExpressionResult evaluate(EvaluationContext evaluationContext, List<FunctionArgument> arguments) {
 
-        List<I> convertedArguments      = new ArrayList<I>();
-        Status status                           = this.validateArguments(arguments, convertedArguments);
+        List<I> convertedArguments = new ArrayList<I>();
+        Status status = this.validateArguments(arguments, convertedArguments);
 
         /*
          * If the function arguments are not correct, just return an error status immediately
@@ -91,24 +82,25 @@ public class FunctionDefinitionTimeInRange<I> extends FunctionDefinitionHomogene
         int compareResultHigh;
         try {
 
-            compareResultLow = ((ISO8601Time) convertedArguments.get(1)).compareTo((ISO8601Time)convertedArguments.get(0));
-            compareResultHigh = ((ISO8601Time)convertedArguments.get(2)).compareTo((ISO8601Time)convertedArguments.get(0));
+            compareResultLow = ((ISO8601Time)convertedArguments.get(1))
+                .compareTo((ISO8601Time)convertedArguments.get(0));
+            compareResultHigh = ((ISO8601Time)convertedArguments.get(2))
+                .compareTo((ISO8601Time)convertedArguments.get(0));
         } catch (Exception e) {
             String message = e.getMessage();
             if (e.getCause() != null) {
                 message = e.getCause().getMessage();
             }
-            return ExpressionResult.newError(new StdStatus(StdStatusCode.STATUS_CODE_PROCESSING_ERROR, this.getShortFunctionId() + " " + message));
+            return ExpressionResult.newError(new StdStatus(StdStatusCode.STATUS_CODE_PROCESSING_ERROR, this
+                .getShortFunctionId() + " " + message));
         }
 
         // is arg 0 within the inclusive range of the other two?
-        if (compareResultLow <=0 && compareResultHigh >= 0) {
+        if (compareResultLow <= 0 && compareResultHigh >= 0) {
             return ER_TRUE;
         } else {
             return ER_FALSE;
         }
     }
-
-
 
 }

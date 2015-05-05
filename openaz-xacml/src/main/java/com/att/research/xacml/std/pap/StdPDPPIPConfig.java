@@ -44,7 +44,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class StdPDPPIPConfig implements PDPPIPConfig, Serializable {
     private static final long serialVersionUID = 1L;
-    private static Log  logger  = LogFactory.getLog(StdPDPPIPConfig.class);
+    private static Log logger = LogFactory.getLog(StdPDPPIPConfig.class);
 
     private String id;
 
@@ -54,7 +54,7 @@ public class StdPDPPIPConfig implements PDPPIPConfig, Serializable {
 
     private String classname;
 
-    private Map<String,String> config = new HashMap<String, String>();
+    private Map<String, String> config = new HashMap<String, String>();
 
     public StdPDPPIPConfig() {
 
@@ -72,7 +72,7 @@ public class StdPDPPIPConfig implements PDPPIPConfig, Serializable {
 
     public StdPDPPIPConfig(String id, Properties properties) {
         this(id);
-        if ( ! this.initialize(properties) ) {
+        if (!this.initialize(properties)) {
             throw new IllegalArgumentException("PIP Engine '" + id + "' has no classname property in config");
         }
     }
@@ -92,7 +92,8 @@ public class StdPDPPIPConfig implements PDPPIPConfig, Serializable {
                     this.classname = properties.getProperty(key.toString());
                     classnameSeen = true;
                 }
-                // all properties, including the special ones located above, are included in the properties list
+                // all properties, including the special ones located above, are included in the properties
+                // list
                 this.config.put(key.toString(), properties.getProperty(key.toString()));
             }
         }
@@ -137,11 +138,11 @@ public class StdPDPPIPConfig implements PDPPIPConfig, Serializable {
 
     @Override
     @JsonIgnore
-    public Map<String,String> getConfiguration() {
+    public Map<String, String> getConfiguration() {
         return Collections.unmodifiableMap(this.config);
     }
 
-    public void setValues(Map<String,String> config) {
+    public void setValues(Map<String, String> config) {
         this.config = config;
     }
 
@@ -159,11 +160,9 @@ public class StdPDPPIPConfig implements PDPPIPConfig, Serializable {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result
-                 + ((classname == null) ? 0 : classname.hashCode());
+        result = prime * result + ((classname == null) ? 0 : classname.hashCode());
         result = prime * result + ((config == null) ? 0 : config.hashCode());
-        result = prime * result
-                 + ((description == null) ? 0 : description.hashCode());
+        result = prime * result + ((description == null) ? 0 : description.hashCode());
         result = prime * result + ((id == null) ? 0 : id.hashCode());
         result = prime * result + ((name == null) ? 0 : name.hashCode());
         return result;
@@ -177,7 +176,7 @@ public class StdPDPPIPConfig implements PDPPIPConfig, Serializable {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        StdPDPPIPConfig other = (StdPDPPIPConfig) obj;
+        StdPDPPIPConfig other = (StdPDPPIPConfig)obj;
         if (classname == null) {
             if (other.classname != null)
                 return false;
@@ -208,12 +207,9 @@ public class StdPDPPIPConfig implements PDPPIPConfig, Serializable {
 
     @Override
     public String toString() {
-        return "StdPDPPIPConfig [id=" + id + ", name=" + name
-               + ", description=" + description + ", classname=" + classname
-               + ", config=" + config + "]";
+        return "StdPDPPIPConfig [id=" + id + ", name=" + name + ", description=" + description
+               + ", classname=" + classname + ", config=" + config + "]";
     }
-
-
 
     //
     // Methods needed for JSON serialization/deserialization
@@ -222,6 +218,7 @@ public class StdPDPPIPConfig implements PDPPIPConfig, Serializable {
     public Map<String, String> getConfig() {
         return config;
     }
+
     public void setConfig(Map<String, String> config) {
         this.config = config;
     }

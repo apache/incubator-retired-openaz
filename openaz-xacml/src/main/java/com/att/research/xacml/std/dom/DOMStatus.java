@@ -42,37 +42,37 @@ import com.att.research.xacml.std.StdMutableStatus;
 import com.att.research.xacml.std.StdStatus;
 
 /**
- * DOMStatus extends {@link com.att.research.xacml.std.StdMutableStatus} with methods for creation from
- * DOM {@link org.w3c.dom.Node}s.
- *
+ * DOMStatus extends {@link com.att.research.xacml.std.StdMutableStatus} with methods for creation from DOM
+ * {@link org.w3c.dom.Node}s.
  */
 public class DOMStatus {
-    private static final Log logger     = LogFactory.getLog(DOMStatus.class);
+    private static final Log logger = LogFactory.getLog(DOMStatus.class);
 
     protected DOMStatus() {
     }
 
     /**
-     * Creates a new <code>DOMStatus</code> by parsing the given <code>Node</code> representing a XACML Status element.
+     * Creates a new <code>DOMStatus</code> by parsing the given <code>Node</code> representing a XACML Status
+     * element.
      *
      * @param nodeStatus the <code>Node</code> representing the Status element
      * @return a new <code>DOMStatus</code> parsed from the given <code>Node</code>
      * @throws DOMStructureException if the conversion cannot be made
      */
     public static Status newInstance(Node nodeStatus) throws DOMStructureException {
-        Element elementStatus   = DOMUtil.getElement(nodeStatus);
-        boolean bLenient                = DOMProperties.isLenient();
+        Element elementStatus = DOMUtil.getElement(nodeStatus);
+        boolean bLenient = DOMProperties.isLenient();
 
-        StdMutableStatus mutableStatus          = new StdMutableStatus();
+        StdMutableStatus mutableStatus = new StdMutableStatus();
 
-        NodeList children       = elementStatus.getChildNodes();
+        NodeList children = elementStatus.getChildNodes();
         int numChildren;
         if (children != null && (numChildren = children.getLength()) > 0) {
-            for (int i = 0 ; i < numChildren ; i++) {
-                Node child      = children.item(i);
+            for (int i = 0; i < numChildren; i++) {
+                Node child = children.item(i);
                 if (DOMUtil.isElement(child)) {
                     if (DOMUtil.isInNamespace(child, XACML3.XMLNS)) {
-                        String childName        = child.getLocalName();
+                        String childName = child.getLocalName();
                         if (XACML3.ELEMENT_STATUSCODE.equals(childName)) {
                             mutableStatus.setStatusCode(DOMStatusCode.newInstance(child));
                         } else if (XACML3.ELEMENT_STATUSMESSAGE.equals(childName)) {
@@ -101,33 +101,33 @@ public class DOMStatus {
     }
 
     public static boolean repair(Node nodeStatus) throws DOMStructureException {
-        Element elementStatus   = DOMUtil.getElement(nodeStatus);
-        boolean result                  = false;
+        Element elementStatus = DOMUtil.getElement(nodeStatus);
+        boolean result = false;
 
-        NodeList children               = elementStatus.getChildNodes();
+        NodeList children = elementStatus.getChildNodes();
         int numChildren;
-        boolean sawStatusCode   = false;
+        boolean sawStatusCode = false;
         if (children != null && (numChildren = children.getLength()) > 0) {
-            for (int i = 0 ; i < numChildren ; i++) {
-                Node child      = children.item(i);
+            for (int i = 0; i < numChildren; i++) {
+                Node child = children.item(i);
                 if (DOMUtil.isElement(child)) {
                     if (DOMUtil.isInNamespace(child, XACML3.XMLNS)) {
-                        String childName        = child.getLocalName();
+                        String childName = child.getLocalName();
                         if (XACML3.ELEMENT_STATUSCODE.equals(childName)) {
-                            result      = DOMStatusCode.repair(child) || result;
-                            sawStatusCode       = true;
+                            result = DOMStatusCode.repair(child) || result;
+                            sawStatusCode = true;
                         } else if (XACML3.ELEMENT_STATUSMESSAGE.equals(childName)) {
                         } else if (XACML3.ELEMENT_STATUSDETAIL.equals(childName)) {
                             result = DOMStatusDetail.repair(child) || result;
                         } else {
                             logger.warn("Unexpected element " + child.getNodeName());
                             elementStatus.removeChild(child);
-                            result      = true;
+                            result = true;
                         }
                     } else {
                         logger.warn("Unexpected element " + child.getNodeName());
                         elementStatus.removeChild(child);
-                        result  = true;
+                        result = true;
                     }
                 }
             }

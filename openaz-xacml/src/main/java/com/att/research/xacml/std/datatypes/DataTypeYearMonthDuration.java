@@ -36,12 +36,10 @@ import com.att.research.xacml.api.DataTypeException;
 import com.att.research.xacml.api.XACML3;
 
 /**
- * DataTypeYearMonthDuration extends {@link DataTypeBase} to implement
- * the XACML yearMonthDuration data type.
- *
+ * DataTypeYearMonthDuration extends {@link DataTypeBase} to implement the XACML yearMonthDuration data type.
  */
 public class DataTypeYearMonthDuration extends DataTypeSemanticStringBase<XPathYearMonthDuration> {
-    private static final DataTypeYearMonthDuration      singleInstance  = new DataTypeYearMonthDuration();
+    private static final DataTypeYearMonthDuration singleInstance = new DataTypeYearMonthDuration();
 
     private DataTypeYearMonthDuration() {
         super(XACML3.ID_DATATYPE_YEARMONTHDURATION, XPathYearMonthDuration.class);
@@ -56,15 +54,17 @@ public class DataTypeYearMonthDuration extends DataTypeSemanticStringBase<XPathY
         if (source == null || (source instanceof XPathYearMonthDuration)) {
             return (XPathYearMonthDuration)source;
         } else {
-            String stringValue  = this.convertToString(source);
+            String stringValue = this.convertToString(source);
             if (stringValue == null) {
                 return null;
             }
-            XPathYearMonthDuration      xpathYearMonthDuration  = null;
+            XPathYearMonthDuration xpathYearMonthDuration = null;
             try {
-                xpathYearMonthDuration  = XPathYearMonthDuration.newInstance(stringValue);
+                xpathYearMonthDuration = XPathYearMonthDuration.newInstance(stringValue);
             } catch (ParseException ex) {
-                throw new DataTypeException(this, "Failed to convert \"" + source.getClass().getCanonicalName() + "\" with value \"" + stringValue + "\" to YearMonthDuration", ex);
+                throw new DataTypeException(this, "Failed to convert \""
+                                                  + source.getClass().getCanonicalName() + "\" with value \""
+                                                  + stringValue + "\" to YearMonthDuration", ex);
             }
             return xpathYearMonthDuration;
         }

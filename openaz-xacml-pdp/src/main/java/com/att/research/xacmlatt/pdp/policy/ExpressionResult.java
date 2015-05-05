@@ -37,16 +37,13 @@ import com.att.research.xacml.api.Status;
 import com.att.research.xacml.std.StdStatus;
 
 /**
- * ExpressionResult is the object returned by the <code>evaluate</code> method of {@link Expression}
- * objects.
- *
+ * ExpressionResult is the object returned by the <code>evaluate</code> method of {@link Expression} objects.
  */
 public abstract class ExpressionResult implements FunctionArgument {
-    private Status      status;
+    private Status status;
 
     /**
      * ExpressionResultError extends <code>ExpressionResult</code> to represent error results.
-     *
      */
     private static class ExpressionResultError extends ExpressionResult {
         public ExpressionResultError(Status statusIn) {
@@ -71,10 +68,9 @@ public abstract class ExpressionResult implements FunctionArgument {
 
     /**
      * ExpressionResultSingle extends <code>ExpressionResult</code> to represent results with a single value.
-     *
      */
     private static class ExpressionResultSingle extends ExpressionResult {
-        AttributeValue<?>       attributeValue;
+        AttributeValue<?> attributeValue;
 
         public ExpressionResultSingle(AttributeValue<?> attributeValueIn) {
             super(StdStatus.STATUS_OK);
@@ -102,12 +98,12 @@ public abstract class ExpressionResult implements FunctionArgument {
 
         public ExpressionResultBag(Bag bagIn) {
             super(StdStatus.STATUS_OK);
-            this.bag    = bagIn;
+            this.bag = bagIn;
         }
 
         @Override
         public AttributeValue<?> getValue() {
-            Iterator<AttributeValue<?>> iter    = this.bag.getAttributeValues();
+            Iterator<AttributeValue<?>> iter = this.bag.getAttributeValues();
             if (iter != null && iter.hasNext()) {
                 return iter.next();
             } else {
@@ -153,7 +149,7 @@ public abstract class ExpressionResult implements FunctionArgument {
      * @param statusIn the <code>Status</code> of this <code>ExpressionResult</code>
      */
     protected ExpressionResult(Status statusIn) {
-        this.status     = statusIn;
+        this.status = statusIn;
     }
 
     /**
@@ -161,48 +157,57 @@ public abstract class ExpressionResult implements FunctionArgument {
      *
      * @return the <code>Status</code> for this <code>ExpressionResult</code>
      */
+    @Override
     public Status getStatus() {
         return this.status;
     }
 
     /**
-     * Shortcut procedure for determining if the <code>Status</code> of this <code>ExpressionResult</code> is OK.
+     * Shortcut procedure for determining if the <code>Status</code> of this <code>ExpressionResult</code> is
+     * OK.
      *
-     * @return true if the <code>Status</code> is null or has a <code>StatusCode</code> value of <code>STATUS_CODE_OK</code>.
+     * @return true if the <code>Status</code> is null or has a <code>StatusCode</code> value of
+     *         <code>STATUS_CODE_OK</code>.
      */
+    @Override
     public boolean isOk() {
         return (this.getStatus() == null || this.getStatus().isOk());
     }
 
     /**
-     * Gets the single {@link com.att.research.xacml.api.AttributeValue} from this <code>ExpressionResult</code>.  If this
-     * <code>ExpressionResult</code> represents a bag, the first element in the bag is returned.
+     * Gets the single {@link com.att.research.xacml.api.AttributeValue} from this
+     * <code>ExpressionResult</code>. If this <code>ExpressionResult</code> represents a bag, the first
+     * element in the bag is returned.
      *
      * @return a single <code>AttributeValue</code> from this <code>ExpressionResult</code>
      */
+    @Override
     public abstract AttributeValue<?> getValue();
 
     /**
-     * Determines if this <code>ExpressionResult</code> represents a bag of <code>AttributeValue</code>s or not.
+     * Determines if this <code>ExpressionResult</code> represents a bag of <code>AttributeValue</code>s or
+     * not.
      *
-     * @return true if this <code>ExpressionResult</code> represents a bag of <code>AttributeValue</code>s, else false
+     * @return true if this <code>ExpressionResult</code> represents a bag of <code>AttributeValue</code>s,
+     *         else false
      */
+    @Override
     public abstract boolean isBag();
 
     /**
-     * Gets the {@link Bag} of values for this <code>ExpressionResult</code> if
-     * there is one.
+     * Gets the {@link Bag} of values for this <code>ExpressionResult</code> if there is one.
      *
      * @return the <code>Bag</code> of <code>AttributeValue</code>s for this <code>ExpressionResult</code>.
      */
+    @Override
     public abstract Bag getBag();
 
     @Override
     public String toString() {
-        StringBuilder stringBuilder     = new StringBuilder("{");
+        StringBuilder stringBuilder = new StringBuilder("{");
         stringBuilder.append("isOk=" + this.isOk());
         stringBuilder.append(", isBag=" + this.isBag());
-        Status thisStatus       = this.getStatus();
+        Status thisStatus = this.getStatus();
         if (thisStatus != null) {
             stringBuilder.append(", status=");
             stringBuilder.append(thisStatus.toString());
@@ -213,16 +218,12 @@ public abstract class ExpressionResult implements FunctionArgument {
             stringBuilder.append(value);
         }
         /*
-         * Not sure if I want this dumped
-        if (this.isBag()) {
-                Bag bag = this.getBag();
-                if (bag != null) {
-                }
-        }
-        */
+         * Not sure if I want this dumped if (this.isBag()) { Bag bag = this.getBag(); if (bag != null) { } }
+         */
         stringBuilder.append('}');
         return stringBuilder.toString();
     }
+
     /**
      * Creates a new instance of the <code>ExpressionResult</code> class representing an error.
      *
@@ -238,8 +239,8 @@ public abstract class ExpressionResult implements FunctionArgument {
     }
 
     /**
-     * Creates a new instance of the <code>ExpressionResult</code> class representing a bag of values
-     * from the given <code>Bag</code>.
+     * Creates a new instance of the <code>ExpressionResult</code> class representing a bag of values from the
+     * given <code>Bag</code>.
      *
      * @param bag the <code>Bag</code> for the new <code>ExpressionResult</code>
      * @return a new <code>ExpressionResult</code> representing the given <code>Bag</code>.

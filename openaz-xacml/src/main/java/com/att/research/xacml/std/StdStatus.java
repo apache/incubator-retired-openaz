@@ -37,14 +37,14 @@ import com.att.research.xacml.util.Wrapper;
 
 /**
  * Immutable implementation of the {@link com.att.research.xacml.api.Status} interface.
- *
  */
 public class StdStatus extends Wrapper<Status> implements Status {
-    public static final Status  STATUS_OK       = new StdStatus(StdStatusCode.STATUS_CODE_OK);
+    public static final Status STATUS_OK = new StdStatus(StdStatusCode.STATUS_CODE_OK);
 
     /**
-     * Creates a new immutable <code>StdStatus</code> that wraps the given {@link com.att.research.xacml.api.Status}.
-     * The caller agrees not to modify the given <code>Status</code> as long as the new <code>StdStatus</code> refers to it.
+     * Creates a new immutable <code>StdStatus</code> that wraps the given
+     * {@link com.att.research.xacml.api.Status}. The caller agrees not to modify the given
+     * <code>Status</code> as long as the new <code>StdStatus</code> refers to it.
      *
      * @param status the <code>Status</code> to wrap
      */
@@ -53,8 +53,8 @@ public class StdStatus extends Wrapper<Status> implements Status {
     }
 
     /**
-     * Creates a new <code>StdStatus</code> with the given {@link com.att.research.xacml.api.StatusCode}, <code>String</code> status message,
-     * and {@link com.att.research.xacml.api.StatusDetail}.
+     * Creates a new <code>StdStatus</code> with the given {@link com.att.research.xacml.api.StatusCode},
+     * <code>String</code> status message, and {@link com.att.research.xacml.api.StatusDetail}.
      *
      * @param statusCodeIn the <code>StatusCode</code> representing the XACML StatusCode.
      * @param statusMessageIn the <code>String</code> representing the XACML StatusMessage
@@ -65,8 +65,8 @@ public class StdStatus extends Wrapper<Status> implements Status {
     }
 
     /**
-     * Creates a new <code>StdStatus</code> with the given {@link com.att.research.xacml.api.StatusCode}, <code>String</code> status message
-     * and no {@link com.att.research.xacml.api.StatusDetail}.
+     * Creates a new <code>StdStatus</code> with the given {@link com.att.research.xacml.api.StatusCode},
+     * <code>String</code> status message and no {@link com.att.research.xacml.api.StatusDetail}.
      *
      * @param statusCodeIn the <code>StatusCode</code> representing the XACML StatusCode.
      * @param statusMessageIn the <code>String</code> representing the XACML StatusMessage
@@ -76,8 +76,8 @@ public class StdStatus extends Wrapper<Status> implements Status {
     }
 
     /**
-     * Creates a new <code>StdStatus</code> with the given {@link com.att.research.xacml.api.StatusCode}, a null status message
-     * and no {@link com.att.research.xacml.api.StatusDetail}.
+     * Creates a new <code>StdStatus</code> with the given {@link com.att.research.xacml.api.StatusCode}, a
+     * null status message and no {@link com.att.research.xacml.api.StatusDetail}.
      *
      * @param statusCodeIn the <code>StatusCode</code> representing the XACML StatusCode.
      */
@@ -86,7 +86,8 @@ public class StdStatus extends Wrapper<Status> implements Status {
     }
 
     /**
-     * Creates a new <code>StdStatus</code> that is a copy of the given {@link com.att.research.xacml.api.Status}.
+     * Creates a new <code>StdStatus</code> that is a copy of the given
+     * {@link com.att.research.xacml.api.Status}.
      *
      * @param status the <code>Status</code> to copy
      * @return a new <code>StatusStatus</code> that is a copy of the given <code>Status</code>.

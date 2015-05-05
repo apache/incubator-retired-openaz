@@ -38,12 +38,11 @@ import com.att.research.xacml.api.DataTypeException;
 import com.att.research.xacml.api.XACML;
 
 /**
- * DataTypeDate extends {@link DataTypeBase} to implement the XACML Date type with
- * a java <code>Date</code> representation.
- *
+ * DataTypeDate extends {@link DataTypeBase} to implement the XACML Date type with a java <code>Date</code>
+ * representation.
  */
 public class DataTypeDate extends DataTypeSemanticStringBase<ISO8601Date> {
-    private static final DataTypeDate   singleInstance  = new DataTypeDate();
+    private static final DataTypeDate singleInstance = new DataTypeDate();
 
     private DataTypeDate() {
         super(XACML.ID_DATATYPE_DATE, ISO8601Date.class);
@@ -62,12 +61,14 @@ public class DataTypeDate extends DataTypeSemanticStringBase<ISO8601Date> {
         } else if (source instanceof Calendar) {
             return ISO8601Date.fromCalendar((Calendar)source);
         } else {
-            String      stringValue     = this.convertToString(source);
-            ISO8601Date dateValue       = null;
+            String stringValue = this.convertToString(source);
+            ISO8601Date dateValue = null;
             try {
-                dateValue       = ISO8601Date.fromISO8601DateString(stringValue);
+                dateValue = ISO8601Date.fromISO8601DateString(stringValue);
             } catch (ParseException ex) {
-                throw new DataTypeException(this, "Failed to convert \"" + source.getClass().getCanonicalName() + "\" with value \"" + stringValue + "\" to Date", ex);
+                throw new DataTypeException(this, "Failed to convert \""
+                                                  + source.getClass().getCanonicalName() + "\" with value \""
+                                                  + stringValue + "\" to Date", ex);
             }
             return dateValue;
         }

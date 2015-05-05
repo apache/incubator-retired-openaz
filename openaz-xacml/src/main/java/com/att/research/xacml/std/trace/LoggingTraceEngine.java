@@ -40,14 +40,14 @@ import com.att.research.xacml.api.trace.TraceEvent;
 import com.att.research.xacml.api.trace.Traceable;
 
 /**
- * Implements the {@link com.att.research.xacml.api.trace.TraceEngine} interface to log {@link com.att.research.xacml.api.trace.TraceEvent}s
- * using the Apache Commons logging system with debug messages.
- *
+ * Implements the {@link com.att.research.xacml.api.trace.TraceEngine} interface to log
+ * {@link com.att.research.xacml.api.trace.TraceEvent}s using the Apache Commons logging system with debug
+ * messages.
  */
 public class LoggingTraceEngine implements TraceEngine {
-    private static final LoggingTraceEngine loggingTraceEngine  = new LoggingTraceEngine();
+    private static final LoggingTraceEngine loggingTraceEngine = new LoggingTraceEngine();
 
-    private Log logger  = LogFactory.getLog(this.getClass());
+    private Log logger = LogFactory.getLog(this.getClass());
 
     protected LoggingTraceEngine() {
     }
@@ -75,14 +75,12 @@ public class LoggingTraceEngine implements TraceEngine {
 
     @Override
     public void trace(TraceEvent<?> traceEvent) {
-        String message  = traceEvent.getMessage();
+        String message = traceEvent.getMessage();
         Traceable cause = traceEvent.getCause();
-        this.logger.debug(
-            traceEvent.getTimestamp().toString() + ": " +
-            "\"" + (message == null ? "" : message) + "\"" +
-            (cause == null ? "" : " from \"" + cause.getTraceId() + "\"")
-        );
-        Object traceObject      = traceEvent.getValue();
+        this.logger.debug(traceEvent.getTimestamp().toString() + ": " + "\""
+                          + (message == null ? "" : message) + "\""
+                          + (cause == null ? "" : " from \"" + cause.getTraceId() + "\""));
+        Object traceObject = traceEvent.getValue();
         if (traceObject != null) {
             this.logger.debug(traceObject);
         }

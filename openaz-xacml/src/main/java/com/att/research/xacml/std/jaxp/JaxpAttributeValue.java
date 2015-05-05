@@ -92,48 +92,68 @@ public class JaxpAttributeValue<T> extends StdAttributeValue<T> {
         } else if (attributeValueType.getDataType() == null) {
             throw new IllegalArgumentException("Null dataType in AttributeValueType");
         }
-        Identifier      dataTypeId      = new IdentifierImpl(attributeValueType.getDataType());
-        Object          source          = (attributeValueType.getContent() == null || attributeValueType.getContent().size() == 0 ? "" : attributeValueType.getContent().get(0));
+        Identifier dataTypeId = new IdentifierImpl(attributeValueType.getDataType());
+        Object source = (attributeValueType.getContent() == null
+                         || attributeValueType.getContent().size() == 0 ? "" : attributeValueType
+            .getContent().get(0));
         try {
             if (dataTypeId.equals(XACML.ID_DATATYPE_ANYURI)) {
                 return new JaxpAttributeValue<URI>(dataTypeId, DataTypeAnyURI.newInstance().convert(source));
             } else if (dataTypeId.equals(XACML.ID_DATATYPE_BASE64BINARY)) {
-                return new JaxpAttributeValue<Base64Binary>(dataTypeId, DataTypeBase64Binary.newInstance().convert(source));
+                return new JaxpAttributeValue<Base64Binary>(dataTypeId, DataTypeBase64Binary.newInstance()
+                    .convert(source));
             } else if (dataTypeId.equals(XACML.ID_DATATYPE_BOOLEAN)) {
-                return new JaxpAttributeValue<Boolean>(dataTypeId, DataTypeBoolean.newInstance().convert(source));
+                return new JaxpAttributeValue<Boolean>(dataTypeId, DataTypeBoolean.newInstance()
+                    .convert(source));
             } else if (dataTypeId.equals(XACML.ID_DATATYPE_DATE)) {
-                return new JaxpAttributeValue<ISO8601Date>(dataTypeId, DataTypeDate.newInstance().convert(source));
+                return new JaxpAttributeValue<ISO8601Date>(dataTypeId, DataTypeDate.newInstance()
+                    .convert(source));
             } else if (dataTypeId.equals(XACML.ID_DATATYPE_DATETIME)) {
-                return new JaxpAttributeValue<ISO8601DateTime>(dataTypeId, DataTypeDateTime.newInstance().convert(source));
+                return new JaxpAttributeValue<ISO8601DateTime>(dataTypeId, DataTypeDateTime.newInstance()
+                    .convert(source));
             } else if (dataTypeId.equals(XACML.ID_DATATYPE_DAYTIMEDURATION)) {
-                return new JaxpAttributeValue<XPathDayTimeDuration>(dataTypeId, DataTypeDayTimeDuration.newInstance().convert(source));
+                return new JaxpAttributeValue<XPathDayTimeDuration>(dataTypeId, DataTypeDayTimeDuration
+                    .newInstance().convert(source));
             } else if (dataTypeId.equals(XACML2.ID_DATATYPE_DNSNAME)) {
-                return new JaxpAttributeValue<RFC2396DomainName>(dataTypeId, DataTypeDNSName.newInstance().convert(source));
+                return new JaxpAttributeValue<RFC2396DomainName>(dataTypeId, DataTypeDNSName.newInstance()
+                    .convert(source));
             } else if (dataTypeId.equals(XACML.ID_DATATYPE_DOUBLE)) {
-                return new JaxpAttributeValue<Double>(dataTypeId, DataTypeDouble.newInstance().convert(source));
+                return new JaxpAttributeValue<Double>(dataTypeId, DataTypeDouble.newInstance()
+                    .convert(source));
             } else if (dataTypeId.equals(XACML.ID_DATATYPE_HEXBINARY)) {
-                return new JaxpAttributeValue<HexBinary>(dataTypeId, DataTypeHexBinary.newInstance().convert(source));
+                return new JaxpAttributeValue<HexBinary>(dataTypeId, DataTypeHexBinary.newInstance()
+                    .convert(source));
             } else if (dataTypeId.equals(XACML.ID_DATATYPE_INTEGER)) {
-                return new JaxpAttributeValue<BigInteger>(dataTypeId, DataTypeInteger.newInstance().convert(source));
+                return new JaxpAttributeValue<BigInteger>(dataTypeId, DataTypeInteger.newInstance()
+                    .convert(source));
             } else if (dataTypeId.equals(XACML2.ID_DATATYPE_IPADDRESS)) {
-                return new JaxpAttributeValue<IPAddress>(dataTypeId, DataTypeIpAddress.newInstance().convert(source));
+                return new JaxpAttributeValue<IPAddress>(dataTypeId, DataTypeIpAddress.newInstance()
+                    .convert(source));
             } else if (dataTypeId.equals(XACML1.ID_DATATYPE_RFC822NAME)) {
-                return new JaxpAttributeValue<RFC822Name>(dataTypeId, DataTypeRFC822Name.newInstance().convert(source));
+                return new JaxpAttributeValue<RFC822Name>(dataTypeId, DataTypeRFC822Name.newInstance()
+                    .convert(source));
             } else if (dataTypeId.equals(XACML.ID_DATATYPE_STRING)) {
-                return new JaxpAttributeValue<String>(dataTypeId, DataTypeString.newInstance().convert(source));
+                return new JaxpAttributeValue<String>(dataTypeId, DataTypeString.newInstance()
+                    .convert(source));
             } else if (dataTypeId.equals(XACML.ID_DATATYPE_TIME)) {
-                return new JaxpAttributeValue<ISO8601Time>(dataTypeId, DataTypeTime.newInstance().convert(source));
+                return new JaxpAttributeValue<ISO8601Time>(dataTypeId, DataTypeTime.newInstance()
+                    .convert(source));
             } else if (dataTypeId.equals(XACML1.ID_DATATYPE_X500NAME)) {
-                return new JaxpAttributeValue<X500Principal>(dataTypeId, DataTypeX500Name.newInstance().convert(source));
+                return new JaxpAttributeValue<X500Principal>(dataTypeId, DataTypeX500Name.newInstance()
+                    .convert(source));
             } else if (dataTypeId.equals(XACML3.ID_DATATYPE_XPATHEXPRESSION)) {
-                return new JaxpAttributeValue<XPathExpression>(dataTypeId, DataTypeXPathExpression.newInstance().convert(source));
+                return new JaxpAttributeValue<XPathExpression>(dataTypeId, DataTypeXPathExpression
+                    .newInstance().convert(source));
             } else if (dataTypeId.equals(XACML.ID_DATATYPE_YEARMONTHDURATION)) {
-                return new JaxpAttributeValue<XPathYearMonthDuration>(dataTypeId, DataTypeYearMonthDuration.newInstance().convert(source));
+                return new JaxpAttributeValue<XPathYearMonthDuration>(dataTypeId, DataTypeYearMonthDuration
+                    .newInstance().convert(source));
             } else {
-                throw new IllegalArgumentException("Unknown dataType \"" + attributeValueType.getDataType() + "\"");
+                throw new IllegalArgumentException("Unknown dataType \"" + attributeValueType.getDataType()
+                                                   + "\"");
             }
         } catch (DataTypeException ex) {
-            throw new IllegalArgumentException("DataTypeException converting to dataType \"" + attributeValueType.getDataType() + "\"");
+            throw new IllegalArgumentException("DataTypeException converting to dataType \""
+                                               + attributeValueType.getDataType() + "\"");
         }
     }
 

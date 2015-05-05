@@ -52,22 +52,21 @@ public class StdPDPGroupStatus implements PDPGroupStatus {
 
     private Set<PDPPolicy> failedPolicies = new HashSet<PDPPolicy>();
 
-    private Set<PDPPIPConfig>   loadedPIPConfigs = new HashSet<PDPPIPConfig>();
+    private Set<PDPPIPConfig> loadedPIPConfigs = new HashSet<PDPPIPConfig>();
 
-    private Set<PDPPIPConfig>   failedPIPConfigs = new HashSet<PDPPIPConfig>();
+    private Set<PDPPIPConfig> failedPIPConfigs = new HashSet<PDPPIPConfig>();
 
-    private Set<PDP>                    inSynchPDPs = new HashSet<PDP>();
+    private Set<PDP> inSynchPDPs = new HashSet<PDP>();
 
-    private Set<PDP>                    outOfSynchPDPs = new HashSet<PDP>();
+    private Set<PDP> outOfSynchPDPs = new HashSet<PDP>();
 
-    private Set<PDP>                    failedPDPs = new HashSet<PDP>();
+    private Set<PDP> failedPDPs = new HashSet<PDP>();
 
-    private Set<PDP>                    updatingPDPs = new HashSet<PDP>();
+    private Set<PDP> updatingPDPs = new HashSet<PDP>();
 
-    private Set<PDP>                    lastUpdateFailedPDPs = new HashSet<PDP>();
+    private Set<PDP> lastUpdateFailedPDPs = new HashSet<PDP>();
 
-    private Set<PDP>                    unknownPDPs = new HashSet<PDP>();
-
+    private Set<PDP> unknownPDPs = new HashSet<PDP>();
 
     // Constructor needed for JSON deserialization
     public StdPDPGroupStatus() {
@@ -109,49 +108,62 @@ public class StdPDPGroupStatus implements PDPGroupStatus {
     public Set<PDPPIPConfig> getLoadedPIPConfigs() {
         return loadedPIPConfigs;
     }
+
     public void setLoadedPIPConfigs(Set<PDPPIPConfig> loadedPIPConfigs) {
         this.loadedPIPConfigs = loadedPIPConfigs;
     }
+
     public Set<PDPPIPConfig> getFailedPIPConfigs() {
         return failedPIPConfigs;
     }
+
     public void setFailedPIPConfigs(Set<PDPPIPConfig> failedPIPConfigs) {
         this.failedPIPConfigs = failedPIPConfigs;
     }
+
     public Set<PDP> getUnknownPDPs() {
         return unknownPDPs;
     }
+
     public void setUnknownPDPs(Set<PDP> unknownPDPs) {
         this.unknownPDPs = unknownPDPs;
     }
+
     public void setLoadErrors(Set<String> loadErrors) {
         this.loadErrors = loadErrors;
     }
+
     public void setLoadWarnings(Set<String> loadWarnings) {
         this.loadWarnings = loadWarnings;
     }
+
     public void setLoadedPolicies(Set<PDPPolicy> loadedPolicies) {
         this.loadedPolicies = loadedPolicies;
     }
+
     public void setFailedPolicies(Set<PDPPolicy> failedPolicies) {
         this.failedPolicies = failedPolicies;
     }
+
     public void setInSynchPDPs(Set<PDP> inSynchPDPs) {
         this.inSynchPDPs = inSynchPDPs;
     }
+
     public void setOutOfSynchPDPs(Set<PDP> outOfSynchPDPs) {
         this.outOfSynchPDPs = outOfSynchPDPs;
     }
+
     public void setFailedPDPs(Set<PDP> failedPDPs) {
         this.failedPDPs = failedPDPs;
     }
+
     public void setUpdatingPDPs(Set<PDP> updatingPDPs) {
         this.updatingPDPs = updatingPDPs;
     }
+
     public void setLastUpdateFailedPDPs(Set<PDP> lastUpdateFailedPDPs) {
         this.lastUpdateFailedPDPs = lastUpdateFailedPDPs;
     }
-
 
     @Override
     public Status getStatus() {
@@ -343,34 +355,19 @@ public class StdPDPGroupStatus implements PDPGroupStatus {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result
-                 + (failedPDPs.hashCode());
-        result = prime
-                 * result
-                 + (failedPIPConfigs.hashCode());
-        result = prime * result
-                 + (failedPolicies.hashCode());
-        result = prime * result
-                 + (inSynchPDPs.hashCode());
-        result = prime
-                 * result
-                 + (lastUpdateFailedPDPs.hashCode());
-        result = prime * result
-                 + (loadErrors.hashCode());
-        result = prime * result
-                 + (loadWarnings.hashCode());
-        result = prime
-                 * result
-                 + (loadedPIPConfigs.hashCode());
-        result = prime * result
-                 + (loadedPolicies.hashCode());
-        result = prime * result
-                 + (outOfSynchPDPs.hashCode());
+        result = prime * result + (failedPDPs.hashCode());
+        result = prime * result + (failedPIPConfigs.hashCode());
+        result = prime * result + (failedPolicies.hashCode());
+        result = prime * result + (inSynchPDPs.hashCode());
+        result = prime * result + (lastUpdateFailedPDPs.hashCode());
+        result = prime * result + (loadErrors.hashCode());
+        result = prime * result + (loadWarnings.hashCode());
+        result = prime * result + (loadedPIPConfigs.hashCode());
+        result = prime * result + (loadedPolicies.hashCode());
+        result = prime * result + (outOfSynchPDPs.hashCode());
         result = prime * result + (status.hashCode());
-        result = prime * result
-                 + (unknownPDPs.hashCode());
-        result = prime * result
-                 + (updatingPDPs.hashCode());
+        result = prime * result + (unknownPDPs.hashCode());
+        result = prime * result + (updatingPDPs.hashCode());
         return result;
     }
 
@@ -382,7 +379,7 @@ public class StdPDPGroupStatus implements PDPGroupStatus {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        StdPDPGroupStatus other = (StdPDPGroupStatus) obj;
+        StdPDPGroupStatus other = (StdPDPGroupStatus)obj;
         if (!failedPDPs.equals(other.failedPDPs))
             return false;
         if (!failedPIPConfigs.equals(other.failedPIPConfigs))
@@ -414,15 +411,12 @@ public class StdPDPGroupStatus implements PDPGroupStatus {
 
     @Override
     public String toString() {
-        return "StdPDPGroupStatus [status=" + status + ", loadErrors="
-               + loadErrors + ", loadWarnings=" + loadWarnings
-               + ", loadedPolicies=" + loadedPolicies + ", failedPolicies="
-               + failedPolicies + ", loadedPIPConfigs=" + loadedPIPConfigs
-               + ", failedPIPConfigs=" + failedPIPConfigs + ", inSynchPDPs="
-               + inSynchPDPs + ", outOfSynchPDPs=" + outOfSynchPDPs
-               + ", failedPDPs=" + failedPDPs + ", updatingPDPs="
-               + updatingPDPs + ", lastUpdateFailedPDPs="
-               + lastUpdateFailedPDPs + ", unknownPDPs=" + unknownPDPs + "]";
+        return "StdPDPGroupStatus [status=" + status + ", loadErrors=" + loadErrors + ", loadWarnings="
+               + loadWarnings + ", loadedPolicies=" + loadedPolicies + ", failedPolicies=" + failedPolicies
+               + ", loadedPIPConfigs=" + loadedPIPConfigs + ", failedPIPConfigs=" + failedPIPConfigs
+               + ", inSynchPDPs=" + inSynchPDPs + ", outOfSynchPDPs=" + outOfSynchPDPs + ", failedPDPs="
+               + failedPDPs + ", updatingPDPs=" + updatingPDPs + ", lastUpdateFailedPDPs="
+            + lastUpdateFailedPDPs + ", unknownPDPs=" + unknownPDPs + "]";
     }
 
 }

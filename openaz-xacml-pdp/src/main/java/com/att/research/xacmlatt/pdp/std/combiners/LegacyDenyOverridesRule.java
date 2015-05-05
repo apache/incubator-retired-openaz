@@ -46,7 +46,6 @@ import com.att.research.xacmlatt.pdp.policy.RuleEffect;
 /**
  * DenyOverrides implements the XACML 1.0 "deny-overrides" combining algorithm for rules.
  *
- *
  * @param <T> the java class for the {@link com.att.research.xacmlatt.pdp.eval.Evaluatable}
  * @param <U> the java class for the identifier
  */
@@ -57,20 +56,22 @@ public class LegacyDenyOverridesRule extends CombiningAlgorithmBase<Rule> {
     }
 
     @Override
-    public EvaluationResult combine(EvaluationContext evaluationContext, List<CombiningElement<Rule>> elements, List<CombinerParameter> combinerParameters) throws EvaluationException {
-        boolean atLeastOnePermit                                                = false;
-        boolean potentialDeny                                                   = false;
+    public EvaluationResult combine(EvaluationContext evaluationContext,
+                                    List<CombiningElement<Rule>> elements,
+                                    List<CombinerParameter> combinerParameters) throws EvaluationException {
+        boolean atLeastOnePermit = false;
+        boolean potentialDeny = false;
 
-        EvaluationResult combinedResult                                 = new EvaluationResult(Decision.PERMIT);
-        EvaluationResult evaluationResultIndeterminate  = null;
+        EvaluationResult combinedResult = new EvaluationResult(Decision.PERMIT);
+        EvaluationResult evaluationResultIndeterminate = null;
 
-        Iterator<CombiningElement<Rule>> iterElements   = elements.iterator();
+        Iterator<CombiningElement<Rule>> iterElements = elements.iterator();
         while (iterElements.hasNext()) {
-            CombiningElement<Rule> combiningElement             = iterElements.next();
-            EvaluationResult evaluationResultElement    = combiningElement.evaluate(evaluationContext);
+            CombiningElement<Rule> combiningElement = iterElements.next();
+            EvaluationResult evaluationResultElement = combiningElement.evaluate(evaluationContext);
 
-            assert(evaluationResultElement != null);
-            switch(evaluationResultElement.getDecision()) {
+            assert (evaluationResultElement != null);
+            switch (evaluationResultElement.getDecision()) {
             case DENY:
                 return evaluationResultElement;
             case INDETERMINATE:
@@ -78,21 +79,22 @@ public class LegacyDenyOverridesRule extends CombiningAlgorithmBase<Rule> {
             case INDETERMINATE_DENY:
             case INDETERMINATE_PERMIT:
                 if (evaluationResultIndeterminate == null) {
-                    evaluationResultIndeterminate       = evaluationResultElement;
+                    evaluationResultIndeterminate = evaluationResultElement;
                 } else {
                     evaluationResultIndeterminate.merge(evaluationResultElement);
                 }
                 if (combiningElement.getEvaluatable().getRuleEffect() == RuleEffect.DENY) {
-                    potentialDeny       = true;
+                    potentialDeny = true;
                 }
             case NOTAPPLICABLE:
                 break;
             case PERMIT:
-                atLeastOnePermit        = true;
+                atLeastOnePermit = true;
                 combinedResult.merge(evaluationResultElement);
                 break;
             default:
-                throw new EvaluationException("Illegal Decision: \"" + evaluationResultElement.getDecision().toString());
+                throw new EvaluationException("Illegal Decision: \""
+                                              + evaluationResultElement.getDecision().toString());
             }
         }
 

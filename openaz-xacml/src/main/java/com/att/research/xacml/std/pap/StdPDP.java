@@ -46,7 +46,7 @@ import com.att.research.xacml.api.pap.PDPStatus;
 
 public class StdPDP extends StdPDPItemSetChangeNotifier implements PDP, Comparable<StdPDP>, Serializable {
     private static final long serialVersionUID = 1L;
-    private static Log  logger  = LogFactory.getLog(StdPDP.class);
+    private static Log logger = LogFactory.getLog(StdPDP.class);
 
     private String id;
 
@@ -105,7 +105,7 @@ public class StdPDP extends StdPDPItemSetChangeNotifier implements PDP, Comparab
     }
 
     public void setId(String id) {
-        this.id=id;
+        this.id = id;
     }
 
     @Override
@@ -173,7 +173,7 @@ public class StdPDP extends StdPDPItemSetChangeNotifier implements PDP, Comparab
             return false;
         if (getClass() != obj.getClass())
             return false;
-        StdPDP other = (StdPDP) obj;
+        StdPDP other = (StdPDP)obj;
         if (id == null) {
             if (other.id != null)
                 return false;
@@ -184,9 +184,8 @@ public class StdPDP extends StdPDPItemSetChangeNotifier implements PDP, Comparab
 
     @Override
     public String toString() {
-        return "StdPDP [id=" + id + ", name=" + name + ", description="
-               + description + ", status=" + status + ", policies=" + policies
-               + ", pipConfigs=" + pipConfigs + "]";
+        return "StdPDP [id=" + id + ", name=" + name + ", description=" + description + ", status=" + status
+               + ", policies=" + policies + ", pipConfigs=" + pipConfigs + "]";
     }
 
     //
@@ -197,16 +196,16 @@ public class StdPDP extends StdPDPItemSetChangeNotifier implements PDP, Comparab
         if (o == null) {
             return -1;
         }
-        if ( ! (o instanceof StdPDP)) {
+        if (!(o instanceof StdPDP)) {
             return -1;
         }
-        if (((StdPDP)o).name == null) {
+        if (o.name == null) {
             return -1;
         }
         if (name == null) {
             return 1;
         }
-        return name.compareTo(((StdPDP)o).name);
+        return name.compareTo(o.name);
     }
 
 }

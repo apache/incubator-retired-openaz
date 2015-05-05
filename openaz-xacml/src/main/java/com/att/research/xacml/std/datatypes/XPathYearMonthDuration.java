@@ -33,16 +33,14 @@ package com.att.research.xacml.std.datatypes;
 import java.text.ParseException;
 
 /**
- * XPathYearMonthDuration extends {@link ISO8601Duration} to implement the XPath yearMonthDuration
- * data type.
- *
+ * XPathYearMonthDuration extends {@link ISO8601Duration} to implement the XPath yearMonthDuration data type.
  */
 public class XPathYearMonthDuration extends ISO8601Duration implements Comparable<XPathYearMonthDuration> {
     private int monthsDuration;
 
     public XPathYearMonthDuration(int durationSignIn, int yearsIn, int monthsIn) {
         super(durationSignIn, yearsIn, monthsIn, 0, 0, 0, 0);
-        this.monthsDuration     = this.getDurationSign() * (this.getYears()*12 + this.getMonths());
+        this.monthsDuration = this.getDurationSign() * (this.getYears() * 12 + this.getMonths());
     }
 
     /**
@@ -55,15 +53,15 @@ public class XPathYearMonthDuration extends ISO8601Duration implements Comparabl
     }
 
     /**
-     * Gets a canonical <code>XPathYearMonthDuration</code> from this <code>XPathYearMonthDuration</code> by ensuring
-     * the number of months never exceeds 11, converting excess months to additional years.
+     * Gets a canonical <code>XPathYearMonthDuration</code> from this <code>XPathYearMonthDuration</code> by
+     * ensuring the number of months never exceeds 11, converting excess months to additional years.
      *
      * @return a new <code>XPathYearMonthDuration</code> in canonical format
      */
     public XPathYearMonthDuration getCanonical() {
-        int     monthsLeft      = Math.abs(this.getMonthsDuration());
-        int years               = monthsLeft / 12;
-        monthsLeft              -= years * 12;
+        int monthsLeft = Math.abs(this.getMonthsDuration());
+        int years = monthsLeft / 12;
+        monthsLeft -= years * 12;
         return new XPathYearMonthDuration(this.getDurationSign(), years, monthsLeft);
     }
 
@@ -82,10 +80,13 @@ public class XPathYearMonthDuration extends ISO8601Duration implements Comparabl
         if (iso8601Duration == null) {
             return null;
         }
-        if (iso8601Duration.getDays() > 0 || iso8601Duration.getHours() > 0 || iso8601Duration.getMinutes() > 0 || iso8601Duration.getFractionalSecs() > 0) {
-            throw new ParseException("Invalid XPath yearMonthDuraiton \"" + iso8601Duration.toString() + "\": includes days, hours, minutes, or seconds", 0);
+        if (iso8601Duration.getDays() > 0 || iso8601Duration.getHours() > 0
+            || iso8601Duration.getMinutes() > 0 || iso8601Duration.getFractionalSecs() > 0) {
+            throw new ParseException("Invalid XPath yearMonthDuraiton \"" + iso8601Duration.toString()
+                                     + "\": includes days, hours, minutes, or seconds", 0);
         }
-        return new XPathYearMonthDuration(iso8601Duration.getDurationSign(), iso8601Duration.getYears(), iso8601Duration.getMonths());
+        return new XPathYearMonthDuration(iso8601Duration.getDurationSign(), iso8601Duration.getYears(),
+                                          iso8601Duration.getMonths());
     }
 
     public static XPathYearMonthDuration newInstance(String iso8601DurationString) throws ParseException {
@@ -94,7 +95,7 @@ public class XPathYearMonthDuration extends ISO8601Duration implements Comparabl
 
     @Override
     public String toString() {
-        StringBuilder stringBuilder     = new StringBuilder("{super=");
+        StringBuilder stringBuilder = new StringBuilder("{super=");
         stringBuilder.append(super.toString());
         stringBuilder.append(",monthsDuration=");
         stringBuilder.append(this.getMonthsDuration());

@@ -25,7 +25,6 @@
 // Generated on: 2013.05.23 at 02:47:00 PM EDT
 //
 
-
 package oasis.names.tc.xacml._3_0.core.schema.wd_17;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -34,11 +33,11 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 
-
 /**
- * <p>Java class for RequestDefaultsType complex type.
- *
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>
+ * Java class for RequestDefaultsType complex type.
+ * <p>
+ * The following schema fragment specifies the expected content contained within this class.
  *
  * <pre>
  * &lt;complexType name="RequestDefaultsType">
@@ -53,12 +52,10 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- *
- *
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "RequestDefaultsType", propOrder = {
-    "xPathVersion"
+                                                    "xPathVersion"
 })
 public class RequestDefaultsType {
 
@@ -69,10 +66,7 @@ public class RequestDefaultsType {
     /**
      * Gets the value of the xPathVersion property.
      *
-     * @return
-     *     possible object is
-     *     {@link String }
-     *
+     * @return possible object is {@link String }
      */
     public String getXPathVersion() {
         return xPathVersion;
@@ -81,10 +75,7 @@ public class RequestDefaultsType {
     /**
      * Sets the value of the xPathVersion property.
      *
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *
+     * @param value allowed object is {@link String }
      */
     public void setXPathVersion(String value) {
         this.xPathVersion = value;

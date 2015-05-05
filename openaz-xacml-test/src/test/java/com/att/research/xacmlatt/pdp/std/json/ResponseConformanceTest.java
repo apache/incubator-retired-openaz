@@ -50,17 +50,14 @@ import com.att.research.xacml.api.Result;
 import com.att.research.xacml.std.dom.DOMResponse;
 import com.att.research.xacml.std.json.JSONResponse;
 import com.att.research.xacml.util.ListUtil;
+
 /**
- * Test JSON Response convert to object - Conformance tests
- *
- * TO RUN - use jUnit
- * In Eclipse select this file or the enclosing directory, right-click and select Run As/JUnit Test
- *
- * Note: some of the validation tests comparing the XML-derived Results to the JSON-derived Results are high-level comparisons of Collections.
- *              When this class was first created that was sufficient to pass all Conformance tests.
- *              However if this sees a failure in a Conformance test, those validations may need to be upgraded to look at the individual data elements to see what is wrong.
- *
- *
+ * Test JSON Response convert to object - Conformance tests TO RUN - use jUnit In Eclipse select this file or
+ * the enclosing directory, right-click and select Run As/JUnit Test Note: some of the validation tests
+ * comparing the XML-derived Results to the JSON-derived Results are high-level comparisons of Collections.
+ * When this class was first created that was sufficient to pass all Conformance tests. However if this sees a
+ * failure in a Conformance test, those validations may need to be upgraded to look at the individual data
+ * elements to see what is wrong.
  */
 public class ResponseConformanceTest {
 
@@ -69,10 +66,6 @@ public class ResponseConformanceTest {
 
     // The request object output from each test conversion from JSON string
     Response response;
-
-
-
-
 
     // test just one of each top-level element.
     // For simple elements also test for incorrect type
@@ -89,25 +82,28 @@ public class ResponseConformanceTest {
             conformanceDirectory = new File(CONFORMANCE_DIRECTORY_PATH);
             filesInDirectory = getRequestsInDirectory(conformanceDirectory);
         } catch (Exception e) {
-            fail("Unable to set up Conformance tests for dir '" + conformanceDirectory.getAbsolutePath()+"' e="+ e);
+            fail("Unable to set up Conformance tests for dir '" + conformanceDirectory.getAbsolutePath()
+                 + "' e=" + e);
         }
 
         // run through each XML file
-        //      - load the file from XML into an internal Response object
-        //      - generate the JSON representation of that Response object
-        //      - load that JSON representation into a new Response object
-        //      - compare the 2 Request objects
+        // - load the file from XML into an internal Response object
+        // - generate the JSON representation of that Response object
+        // - load that JSON representation into a new Response object
+        // - compare the 2 Request objects
         Response xmlResponse = null;
         Response jsonResponse = null;
         try {
             for (File f : filesInDirectory) {
                 currentFile = f;
 
-//// This is a simple way to select just one file for debugging - comment out when not being used
-//if ( ! f.getName().equals("IIIA030Response.xml") && ! f.getName().equals("IIIA330Response.xml")) {   continue;  }
+                // // This is a simple way to select just one file for debugging - comment out when not being
+                // used
+                // if ( ! f.getName().equals("IIIA030Response.xml") && !
+                // f.getName().equals("IIIA330Response.xml")) { continue; }
 
-// during debugging it is helpful to know what file it is starting to work on
-//                              System.out.println("starting file="+currentFile.getName());
+                // during debugging it is helpful to know what file it is starting to work on
+                // System.out.println("starting file="+currentFile.getName());
 
                 try {
                     // load XML into a Response object
@@ -123,23 +119,20 @@ public class ResponseConformanceTest {
                 File jsonFile = new File(conformanceDirectory, jsonFileName);
 
                 if (jsonFile.exists()) {
-//System.out.println("found file "+jsonFile.getName());
+                    // System.out.println("found file "+jsonFile.getName());
                     // json version exists in file, so load it
                     jsonResponse = JSONResponse.load(jsonFile);
                 } else {
-                    // json does not exist in file, so create it from the XML response using a String intermediate version
+                    // json does not exist in file, so create it from the XML response using a String
+                    // intermediate version
                     String jsonResponseString = JSONResponse.toString(xmlResponse, false);
-//System.out.println(jsonResponseString);
-//System.out.println(JSONResponse.toString(xmlResponse, true));
+                    // System.out.println(jsonResponseString);
+                    // System.out.println(JSONResponse.toString(xmlResponse, true));
 
                     jsonResponse = JSONResponse.load(jsonResponseString);
                 }
 
-
-//System.out.println(JSONResponse.toString(xmlResponse, true));
-
-
-
+                // System.out.println(JSONResponse.toString(xmlResponse, true));
 
                 // compare the two Response objects
 
@@ -150,11 +143,11 @@ public class ResponseConformanceTest {
                     fail("neither XML nor JSON response have any Results");
                 }
 
-
                 // Results are an un-ordered Collection.
                 // There is no identifying information that is unique to a specific Result.
                 // If there are more than one we cannot be sure which one corresponds with which.
-                // The best we can do is say that one or more in the first list do not match any in the second list
+                // The best we can do is say that one or more in the first list do not match any in the second
+                // list
                 if (xmlResponse.getResults().size() > 1) {
                     for (Result xmlResult : xmlResponse.getResults()) {
                         boolean found = false;
@@ -171,7 +164,7 @@ public class ResponseConformanceTest {
                         System.out.println("No match for XML in " + f.getName());
                         System.out.println("XML =" + xmlResult.toString());
                         for (Result jsonResult : jsonResponse.getResults()) {
-                            System.out.println("JSON="+ jsonResult.toString());
+                            System.out.println("JSON=" + jsonResult.toString());
                         }
                         fail("JSON Response has no match for XML Result: " + xmlResult.toString());
                     }
@@ -184,7 +177,8 @@ public class ResponseConformanceTest {
                 Result jsonResult = jsonResponse.getResults().iterator().next();
 
                 // The following sections have not given us trouble, so checking is very high-level.
-                // If we see a problem in one of these elements, the single line will need to be replaced with detailed examination of the objects.
+                // If we see a problem in one of these elements, the single line will need to be replaced with
+                // detailed examination of the objects.
                 assertEquals(f.getName() + " Decision", xmlResult.getDecision(), jsonResult.getDecision());
                 assertEquals(f.getName() + " Status", xmlResult.getStatus(), jsonResult.getStatus());
 
@@ -194,11 +188,13 @@ public class ResponseConformanceTest {
                     Collection<Obligation> jsonObligations = jsonResult.getObligations();
                     // if both are null we do not get here
                     if (xmlObligations == null || jsonObligations == null) {
-                        fail(f.getName() + " Obligations has null \nXML="+xmlObligations + "\nJSON="+jsonObligations);
+                        fail(f.getName() + " Obligations has null \nXML=" + xmlObligations + "\nJSON="
+                             + jsonObligations);
                     }
                     if (ListUtil.equalsAllowNulls(xmlObligations, jsonObligations) == false) {
                         // collections are not equal, so need to examine further
-                        fail(f.getName() + " Obligation collections not equal\nXML="+xmlObligations + "\nJSON="+jsonObligations);
+                        fail(f.getName() + " Obligation collections not equal\nXML=" + xmlObligations
+                             + "\nJSON=" + jsonObligations);
                     }
                 }
 
@@ -208,22 +204,22 @@ public class ResponseConformanceTest {
                     Collection<Advice> jsonAdvice = jsonResult.getAssociatedAdvice();
                     // if both are null we do not get here
                     if (xmlAdvice == null || jsonAdvice == null) {
-                        fail(f.getName() + " Advice has null \nXML="+xmlAdvice + "\nJSON="+jsonAdvice);
+                        fail(f.getName() + " Advice has null \nXML=" + xmlAdvice + "\nJSON=" + jsonAdvice);
                     }
                     if (ListUtil.equalsAllowNulls(xmlAdvice, jsonAdvice) == false) {
                         // collections are not equal, so need to examine further
-                        fail(f.getName() + " Advice collections not equal\nXML="+xmlAdvice + "\nJSON="+jsonAdvice);
+                        fail(f.getName() + " Advice collections not equal\nXML=" + xmlAdvice + "\nJSON="
+                             + jsonAdvice);
                     }
                 }
-
-
 
                 // check Attributes in more detail
                 Collection<AttributeCategory> xmlAttributes = xmlResult.getAttributes();
                 Collection<AttributeCategory> jsonAttributes = jsonResult.getAttributes();
-                if (xmlAttributes == null && jsonAttributes != null ||
-                        xmlAttributes != null && jsonAttributes == null) {
-                    fail(f.getName() + " XML Attributes="+xmlAttributes + "  but JSON Attributes=" + jsonAttributes);
+                if (xmlAttributes == null && jsonAttributes != null || xmlAttributes != null
+                    && jsonAttributes == null) {
+                    fail(f.getName() + " XML Attributes=" + xmlAttributes + "  but JSON Attributes="
+                         + jsonAttributes);
                 }
                 if (xmlAttributes != null) {
                     // both are non-null
@@ -236,7 +232,8 @@ public class ResponseConformanceTest {
                         for (AttributeCategory ac : jsonAttributes) {
                             jsonAttributesString += " " + ac.getCategory().stringValue();
                         }
-                        fail(f.getName() + " XML and JSON have different number of Category elements: " + xmlAttributesString + ", " + jsonAttributesString);
+                        fail(f.getName() + " XML and JSON have different number of Category elements: "
+                             + xmlAttributesString + ", " + jsonAttributesString);
                     }
 
                     // Attribute collections are the same size but may be in different orders.
@@ -249,14 +246,20 @@ public class ResponseConformanceTest {
                                 attributeCategoryFound = true;
                                 break;
                             }
-                            // not an exact match, but if same CategoryId then need to check individual Attribute objects
-                            if (xmlAttributeCategory.getCategory().equals(jsonAttributeCategory.getCategory())) {
+                            // not an exact match, but if same CategoryId then need to check individual
+                            // Attribute objects
+                            if (xmlAttributeCategory.getCategory()
+                                .equals(jsonAttributeCategory.getCategory())) {
                                 // same category
-                                if (xmlAttributeCategory.getAttributes().size() != jsonAttributeCategory.getAttributes().size()) {
+                                if (xmlAttributeCategory.getAttributes().size() != jsonAttributeCategory
+                                    .getAttributes().size()) {
                                     System.out.println("XML =" + xmlAttributeCategory.getAttributes());
                                     System.out.println("JSON=" + jsonAttributeCategory.getAttributes());
-                                    fail(f.getName() + " Attributes Category '" + xmlAttributeCategory.getCategory().stringValue() + "' size mismatch; XML="+
-                                         xmlAttributeCategory.getAttributes().size() +", JSON=" + jsonAttributeCategory.getAttributes().size());
+                                    fail(f.getName() + " Attributes Category '"
+                                         + xmlAttributeCategory.getCategory().stringValue()
+                                         + "' size mismatch; XML="
+                                         + xmlAttributeCategory.getAttributes().size() + ", JSON="
+                                         + jsonAttributeCategory.getAttributes().size());
                                 }
                                 for (Attribute xmlAttr : xmlAttributeCategory.getAttributes()) {
                                     boolean attributeFound = false;
@@ -271,22 +274,21 @@ public class ResponseConformanceTest {
                                         // check next XML attribute
                                         continue;
                                     }
-                                    System.out.println("Attribute not found in JSON, Category="+xmlAttributeCategory.getCategory());
-                                    System.out.println("XML Attribute ="+ xmlAttr);
+                                    System.out.println("Attribute not found in JSON, Category="
+                                                       + xmlAttributeCategory.getCategory());
+                                    System.out.println("XML Attribute =" + xmlAttr);
                                     System.out.println("JSON Attributes=" + jsonAttributeCategory.toString());
-                                    fail(f.getName() + " Attribute not found in JSON, Category=" + xmlAttributeCategory.getCategory() +
-                                         "/nXML Attribute="+xmlAttr+
-                                         "\nJSON Category Attributes="+jsonAttributeCategory.toString());
+                                    fail(f.getName() + " Attribute not found in JSON, Category="
+                                         + xmlAttributeCategory.getCategory() + "/nXML Attribute=" + xmlAttr
+                                         + "\nJSON Category Attributes=" + jsonAttributeCategory.toString());
                                 }
-
-
 
                             }
                         }
                         if (attributeCategoryFound) {
                             continue;
                         }
-                        fail("XML Category not found in JSON; xml="+xmlAttributeCategory.toString());
+                        fail("XML Category not found in JSON; xml=" + xmlAttributeCategory.toString());
                     }
 
                 }
@@ -297,11 +299,13 @@ public class ResponseConformanceTest {
                     Collection<IdReference> jsonIdReferences = jsonResult.getPolicyIdentifiers();
                     // if both are null we do not get here
                     if (xmlIdReferences == null || jsonIdReferences == null) {
-                        fail(f.getName() + " PolicyIdentifiers has null \nXML="+xmlIdReferences + "\nJSON="+jsonIdReferences);
+                        fail(f.getName() + " PolicyIdentifiers has null \nXML=" + xmlIdReferences + "\nJSON="
+                             + jsonIdReferences);
                     }
                     if (ListUtil.equalsAllowNulls(xmlIdReferences, jsonIdReferences) == false) {
                         // collections are not equal, so need to examine further
-                        fail(f.getName() + " PolicyIdentifiers collections not equal\nXML="+xmlIdReferences+ "\nJSON="+jsonIdReferences);
+                        fail(f.getName() + " PolicyIdentifiers collections not equal\nXML=" + xmlIdReferences
+                             + "\nJSON=" + jsonIdReferences);
                     }
                 }
 
@@ -311,21 +315,21 @@ public class ResponseConformanceTest {
                     Collection<IdReference> jsonIdReferences = jsonResult.getPolicySetIdentifiers();
                     // if both are null we do not get here
                     if (xmlIdReferences == null || jsonIdReferences == null) {
-                        fail(f.getName() + " PolicySetIdentifiers has null \nXML="+xmlIdReferences + "\nJSON="+jsonIdReferences);
+                        fail(f.getName() + " PolicySetIdentifiers has null \nXML=" + xmlIdReferences
+                             + "\nJSON=" + jsonIdReferences);
                     }
                     if (ListUtil.equalsAllowNulls(xmlIdReferences, jsonIdReferences) == false) {
                         // collections are not equal, so need to examine further
-                        fail(f.getName() + " PolicySetIdentifiers collections not equal\nXML="+xmlIdReferences + "\nJSON="+jsonIdReferences);
+                        fail(f.getName() + " PolicySetIdentifiers collections not equal\nXML="
+                             + xmlIdReferences + "\nJSON=" + jsonIdReferences);
                     }
                 }
-
 
             }
 
         } catch (Exception e) {
-            fail ("Failed test with '" + currentFile.getName() + "', e=" + e);
+            fail("Failed test with '" + currentFile.getName() + "', e=" + e);
         }
-
 
     }
 
@@ -352,29 +356,18 @@ public class ResponseConformanceTest {
 
 }
 
-
-
-
-
 /*
- *
-This is a place to copy the really long output from test rigs that need to be manually edited for readability....
-
-
-
-{"Response":[{"Status":{"StatusCode":{"Value":"urn:oasis:names:tc:xacml:1.0:status:ok"}},"Obligations":[{"Id":"urn:oasis:names:tc:xacml:2.0:conformance-test:IIIA030:obligation-1","AttributeAssignment":[
-{"Value":"assignment1","DataType":"string","AttributeId":"urn:oasis:names:tc:xacml:2.0:conformance-test:IIIA030:assignment1"},
-{"Value":{"Namespaces":[{"Namespace":"urn:oasis:names:tc:xacml:3.0:core:schema:wd-17"},{"Namespace":"http://www.w3.org/2001/XMLSchema-instance","Prefix":"xsi"}],
-                "XPathCategory":"urn:oasis:names:tc:xacml:3.0:attribute-category:resource",
-                "XPath":"//md:records/md:record"},
-        "DataType":"xpathExpression",
-        "AttributeId":"urn:oasis:names:tc:xacml:2.0:conformance-test:IIIA030:assignment2"}]}],"Decision":"Permit"}]}
-
-
-
-*/
-
-
-
-
+ * This is a place to copy the really long output from test rigs that need to be manually edited for
+ * readability....
+ * {"Response":[{"Status":{"StatusCode":{"Value":"urn:oasis:names:tc:xacml:1.0:status:ok"}},"Obligations"
+ * :[{"Id":"urn:oasis:names:tc:xacml:2.0:conformance-test:IIIA030:obligation-1","AttributeAssignment":[
+ * {"Value":"assignment1","DataType":"string","AttributeId":
+ * "urn:oasis:names:tc:xacml:2.0:conformance-test:IIIA030:assignment1"},
+ * {"Value":{"Namespaces":[{"Namespace":"urn:oasis:names:tc:xacml:3.0:core:schema:wd-17"
+ * },{"Namespace":"http://www.w3.org/2001/XMLSchema-instance","Prefix":"xsi"}],
+ * "XPathCategory":"urn:oasis:names:tc:xacml:3.0:attribute-category:resource",
+ * "XPath":"//md:records/md:record"}, "DataType":"xpathExpression",
+ * "AttributeId":"urn:oasis:names:tc:xacml:2.0:conformance-test:IIIA030:assignment2"
+ * }]}],"Decision":"Permit"}]}
+ */
 

@@ -39,11 +39,10 @@ import com.att.research.xacml.util.XACMLProperties;
 
 /**
  * PEPEngineFactory provides the interface for creating {@link PEPEngine} instances.
- *
  */
 public abstract class PEPEngineFactory {
-    private static final String FACTORYID       = XACMLProperties.PROP_PEPENGINEFACTORY;
-    private static final String DEFAULT_FACTORY_CLASSNAME       = "com.att.research.xacml.std.pep.StdEngineFactory";
+    private static final String FACTORYID = XACMLProperties.PROP_PEPENGINEFACTORY;
+    private static final String DEFAULT_FACTORY_CLASSNAME = "com.att.research.xacml.std.pep.StdEngineFactory";
 
     /**
      * The constructor is protected to prevent instantiation of the class.
@@ -58,43 +57,48 @@ public abstract class PEPEngineFactory {
     }
 
     /**
-     * Creates a new <code>PEPEngineFactory</code> instance by examining initialization resources from
-     * various places to determine the class to instantiate and return.
+     * Creates a new <code>PEPEngineFactory</code> instance by examining initialization resources from various
+     * places to determine the class to instantiate and return.
      *
-     * @return an instance of an object that extends <code>PEPEngineFactory</code> to use in creating <code>PEPEngine</code> objects.
+     * @return an instance of an object that extends <code>PEPEngineFactory</code> to use in creating
+     *         <code>PEPEngine</code> objects.
      */
     public static PEPEngineFactory newInstance() throws FactoryException {
         return FactoryFinder.find(FACTORYID, DEFAULT_FACTORY_CLASSNAME, PEPEngineFactory.class);
     }
 
-
     /**
-     * Creates a new <code>PEPEngineFactory</code> instance by examining initialization resources from
-     * various places to determine the class to instantiate and return.
+     * Creates a new <code>PEPEngineFactory</code> instance by examining initialization resources from various
+     * places to determine the class to instantiate and return.
      *
-     * @return an instance of an object that extends <code>PEPEngineFactory</code> to use in creating <code>PEPEngine</code> objects.
+     * @return an instance of an object that extends <code>PEPEngineFactory</code> to use in creating
+     *         <code>PEPEngine</code> objects.
      */
     public static PEPEngineFactory newInstance(Properties properties) throws FactoryException {
         return FactoryFinder.find(FACTORYID, DEFAULT_FACTORY_CLASSNAME, PEPEngineFactory.class, properties);
     }
 
     /**
-     * Creates a new <code>PEPEngineFactory</code> instance using the given class name and <code>ClassLoader</code>.  If the
-     * <code>ClassLoader</code> is null, use the default thread class loader.
+     * Creates a new <code>PEPEngineFactory</code> instance using the given class name and
+     * <code>ClassLoader</code>. If the <code>ClassLoader</code> is null, use the default thread class loader.
      *
      * @param factoryClassName the <code>String</code> name of the factory class to instantiate
      * @param classLoader the <code>ClassLoader</code> to use to load the factory class
-     * @return an instance of an object that extends <code>PEPEngineFactory</code> to use in creating <code>PEPEngine</code> objects.
+     * @return an instance of an object that extends <code>PEPEngineFactory</code> to use in creating
+     *         <code>PEPEngine</code> objects.
      */
-    public static PEPEngineFactory newInstance(String factoryClassName, ClassLoader classLoader) throws FactoryException {
+    public static PEPEngineFactory newInstance(String factoryClassName, ClassLoader classLoader)
+        throws FactoryException {
         return FactoryFinder.newInstance(factoryClassName, PEPEngineFactory.class, classLoader, false);
     }
 
     /**
-     * Creates a new <code>PEPEngineFactory</code> instance using the given class name and the default thread class loader.
+     * Creates a new <code>PEPEngineFactory</code> instance using the given class name and the default thread
+     * class loader.
      *
      * @param factoryClassName the <code>String</code> name of the factory class to instantiate
-     * @return an instance of an object that extends <code>PEPEngineFactory</code> to use in creating <code>PEPEngine</code> objects.
+     * @return an instance of an object that extends <code>PEPEngineFactory</code> to use in creating
+     *         <code>PEPEngine</code> objects.
      */
     public static PEPEngineFactory newInstance(String factoryClassName) throws FactoryException {
         return FactoryFinder.newInstance(factoryClassName, PEPEngineFactory.class, null, true);

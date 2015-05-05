@@ -55,8 +55,8 @@ import com.att.research.xacml.std.pip.StdPIPResponse;
 
 /**
  * StdRequestEngine implements the {@link com.att.research.xacml.api.pip.PIPEngine} interface to retrieve
- * matching {@link com.att.reserach.xacml.api.Attribute}s from a {@link com.att.research.xacml.pip.Request} object.
- *
+ * matching {@link com.att.reserach.xacml.api.Attribute}s from a {@link com.att.research.xacml.pip.Request}
+ * object.
  */
 public class RequestEngine implements PIPEngine {
     private Request request;
@@ -66,12 +66,13 @@ public class RequestEngine implements PIPEngine {
     }
 
     /**
-     * Creates a <code>StdRequestEngine</code> for retrieving <code>Attribute</code>s from a <code>Request</code>.
+     * Creates a <code>StdRequestEngine</code> for retrieving <code>Attribute</code>s from a
+     * <code>Request</code>.
      *
      * @param requestIn the <code>Request</code> to search
      */
     public RequestEngine(Request requestIn) {
-        this.request    = requestIn;
+        this.request = requestIn;
     }
 
     @Override
@@ -86,32 +87,35 @@ public class RequestEngine implements PIPEngine {
 
     @Override
     public PIPResponse getAttributes(PIPRequest pipRequest, PIPFinder pipFinder) throws PIPException {
-        Request thisRequest     = this.getRequest();
+        Request thisRequest = this.getRequest();
         if (thisRequest == null) {
             return StdPIPResponse.PIP_RESPONSE_EMPTY;
         }
 
-        Iterator<RequestAttributes> iterRequestAttributes       = thisRequest.getRequestAttributes(pipRequest.getCategory());
+        Iterator<RequestAttributes> iterRequestAttributes = thisRequest.getRequestAttributes(pipRequest
+            .getCategory());
         if (iterRequestAttributes == null || !iterRequestAttributes.hasNext()) {
             return StdPIPResponse.PIP_RESPONSE_EMPTY;
         }
 
-        StdMutablePIPResponse pipResponse       = null;
+        StdMutablePIPResponse pipResponse = null;
 
         while (iterRequestAttributes.hasNext()) {
             RequestAttributes requestAttributes = iterRequestAttributes.next();
-            Iterator<Attribute> iterAttributes  = requestAttributes.getAttributes(pipRequest.getAttributeId());
+            Iterator<Attribute> iterAttributes = requestAttributes.getAttributes(pipRequest.getAttributeId());
             while (iterAttributes.hasNext()) {
-                Attribute attribute     = iterAttributes.next();
-                if (attribute.getValues().size() > 0 && (pipRequest.getIssuer() == null || pipRequest.getIssuer().equals(attribute.getIssuer()))) {
+                Attribute attribute = iterAttributes.next();
+                if (attribute.getValues().size() > 0
+                    && (pipRequest.getIssuer() == null || pipRequest.getIssuer()
+                        .equals(attribute.getIssuer()))) {
                     /*
-                     * If all of the attribute values in the given Attribute match the requested data type, we can just return
-                     * the whole Attribute as part of the response.
+                     * If all of the attribute values in the given Attribute match the requested data type, we
+                     * can just return the whole Attribute as part of the response.
                      */
-                    boolean bAllMatch                                                   = true;
-                    for (AttributeValue<?> attributeValue: attribute.getValues()) {
+                    boolean bAllMatch = true;
+                    for (AttributeValue<?> attributeValue : attribute.getValues()) {
                         if (!pipRequest.getDataTypeId().equals(attributeValue.getDataTypeId())) {
-                            bAllMatch   = false;
+                            bAllMatch = false;
                             break;
                         }
                     }
@@ -123,11 +127,11 @@ public class RequestEngine implements PIPEngine {
                         }
                     } else {
                         /*
-                         * Only a subset of the values match, so we have to construct a new Attribute containing only the matching
-                         * values.
+                         * Only a subset of the values match, so we have to construct a new Attribute
+                         * containing only the matching values.
                          */
-                        List<AttributeValue<?>> listAttributeValues     = null;
-                        for (AttributeValue<?> attributeValue: attribute.getValues()) {
+                        List<AttributeValue<?>> listAttributeValues = null;
+                        for (AttributeValue<?> attributeValue : attribute.getValues()) {
                             if (pipRequest.getDataTypeId().equals(attributeValue.getDataTypeId())) {
                                 if (listAttributeValues == null) {
                                     listAttributeValues = new ArrayList<AttributeValue<?>>();
@@ -137,9 +141,13 @@ public class RequestEngine implements PIPEngine {
                         }
                         if (listAttributeValues != null) {
                             if (pipResponse == null) {
-                                pipResponse     = new StdMutablePIPResponse();
+                                pipResponse = new StdMutablePIPResponse();
                             }
-                            pipResponse.addAttribute(new StdMutableAttribute(attribute.getCategory(), attribute.getAttributeId(), listAttributeValues, attribute.getIssuer(), attribute.getIncludeInResults()));
+                            pipResponse.addAttribute(new StdMutableAttribute(attribute.getCategory(),
+                                                                             attribute.getAttributeId(),
+                                                                             listAttributeValues, attribute
+                                                                                 .getIssuer(), attribute
+                                                                                 .getIncludeInResults()));
                         }
                     }
                 }
@@ -168,7 +176,8 @@ public class RequestEngine implements PIPEngine {
                     datatypes.add(value.getDataTypeId());
                 }
                 for (Identifier dt : datatypes) {
-                    providedAttributes.add(new StdPIPRequest(attribute.getCategory(), attribute.getAttributeId(), dt, attribute.getIssuer()));
+                    providedAttributes.add(new StdPIPRequest(attribute.getCategory(), attribute
+                        .getAttributeId(), dt, attribute.getIssuer()));
                 }
             }
         }

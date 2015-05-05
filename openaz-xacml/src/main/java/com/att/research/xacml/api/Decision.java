@@ -31,9 +31,8 @@
 package com.att.research.xacml.api;
 
 /**
- * Enumeration of the XACML 3.0 decisions and extended decisions that can be returned as part of
- * a {@link Result}.
- *
+ * Enumeration of the XACML 3.0 decisions and extended decisions that can be returned as part of a
+ * {@link Result}.
  */
 public enum Decision {
     /**
@@ -49,22 +48,24 @@ public enum Decision {
      */
     INDETERMINATE("Indeterminate"),
     /**
-     * Indicates no decision could be reached due to a processing error, but it would have been permitted had the error not occurred
+     * Indicates no decision could be reached due to a processing error, but it would have been permitted had
+     * the error not occurred
      */
     INDETERMINATE_PERMIT("Indeterminate{P}", true, INDETERMINATE),
     /**
-     * Indicates no decision could be reached due to a processing error, but it would have been denied had the error not occurred.
+     * Indicates no decision could be reached due to a processing error, but it would have been denied had the
+     * error not occurred.
      */
     INDETERMINATE_DENY("Indeterminate{D}", true, INDETERMINATE),
     /**
-     * Indicates no decision could be reached due to a processing error, but either a deny or permit would have been returned had the error not occurred.
+     * Indicates no decision could be reached due to a processing error, but either a deny or permit would
+     * have been returned had the error not occurred.
      */
     INDETERMINATE_DENYPERMIT("Indeterminate{DP}", true, INDETERMINATE),
     /**
      * Indicates the policy in question is not applicable to the request
      */
-    NOTAPPLICABLE("NotApplicable")
-    ;
+    NOTAPPLICABLE("NotApplicable");
 
     private String name;
     private boolean extended;
@@ -75,6 +76,7 @@ public enum Decision {
         this.extended = extendedIn;
         this.basicDecision = basicDecisionIn;
     }
+
     private Decision(String nameIn) {
         this(nameIn, false, null);
     }
@@ -89,19 +91,23 @@ public enum Decision {
     }
 
     /**
-     * Returns the <code>Decision</code> representing the XACML 3.0 basic Decision for this <code>Decision</code>.
+     * Returns the <code>Decision</code> representing the XACML 3.0 basic Decision for this
+     * <code>Decision</code>.
      *
-     * @return the <code>Decision</code> representing the XACML 3.0 basic Decision for this <code>Decision</code>.
+     * @return the <code>Decision</code> representing the XACML 3.0 basic Decision for this
+     *         <code>Decision</code>.
      */
     public Decision getBasicDecision() {
         return this.isExtended() ? this.basicDecision : this;
     }
 
     /**
-     * Gets the <code>Decision</code> whose <code>String</code> representation matches the given <code>String</code>.
+     * Gets the <code>Decision</code> whose <code>String</code> representation matches the given
+     * <code>String</code>.
      *
      * @param decisionName the <code>String</code> decision name
-     * @return the <code>Decision</code> with the name matching the given <code>String</code> or null if no match is found
+     * @return the <code>Decision</code> with the name matching the given <code>String</code> or null if no
+     *         match is found
      */
     public static Decision get(String decisionName) {
         for (Decision decision : Decision.values()) {
@@ -117,6 +123,7 @@ public enum Decision {
      *
      * @return the canonical XACML 3.0 <code>String</code> name for this <code>Decision</code>
      */
+    @Override
     public String toString() {
         return this.name;
     }
