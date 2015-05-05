@@ -513,7 +513,7 @@ public class XACMLPdpServlet extends HttpServlet implements Runnable {
                 if (contentType.getMimeType().equalsIgnoreCase(ContentType.APPLICATION_JSON.getMimeType())) {
                     pdpRequest = JSONRequest.load(incomingRequestString);
                 } else if (     contentType.getMimeType().equalsIgnoreCase(ContentType.APPLICATION_XML.getMimeType()) ||
-                            contentType.getMimeType().equalsIgnoreCase("application/xacml+xml")) {
+                                contentType.getMimeType().equalsIgnoreCase("application/xacml+xml")) {
                     pdpRequest = DOMRequest.load(incomingRequestString);
                 }
             } catch(Exception e) {

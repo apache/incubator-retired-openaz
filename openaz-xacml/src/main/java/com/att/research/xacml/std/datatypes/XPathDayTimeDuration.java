@@ -52,11 +52,11 @@ public class XPathDayTimeDuration extends ISO8601Duration implements Comparable<
     public XPathDayTimeDuration(int durationSignIn, int daysIn, int hoursIn, int minutesIn, double secondsIn) {
         super(durationSignIn, 0, 0, daysIn, hoursIn, minutesIn, secondsIn);
         fractionalSeconds       = this.getDurationSign() * (
-                                  this.getDays() * 24 * 60 * 60 +
-                                  this.getHours() * 60 * 60 +
-                                  this.getMinutes() * 60 +
-                                  this.getFractionalSecs()
-                              );
+                                      this.getDays() * 24 * 60 * 60 +
+                                      this.getHours() * 60 * 60 +
+                                      this.getMinutes() * 60 +
+                                      this.getFractionalSecs()
+                                  );
     }
 
     public double getFractionalSeconds() {
