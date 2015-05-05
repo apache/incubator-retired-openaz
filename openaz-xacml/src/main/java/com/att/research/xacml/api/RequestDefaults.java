@@ -42,7 +42,7 @@ public interface RequestDefaults {
      *
      * @return the <code>URI</code> of the XPath version.
      */
-    public URI getXPathVersion();
+    URI getXPathVersion();
 
     /**
      * {@inheritDoc}
@@ -53,5 +53,5 @@ public interface RequestDefaults {
      * 			{@code r1.getXPathVersion() == null && r2.getXPathVersion() == null} OR {@code r1.getXPathVersion().equals(r2.getXPathVersion())}
      */
     @Override
-    public boolean equals(Object obj);
+    boolean equals(Object obj);
 }

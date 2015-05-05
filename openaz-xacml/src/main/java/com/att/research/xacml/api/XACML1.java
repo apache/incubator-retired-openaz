@@ -297,10 +297,10 @@ public class XACML1 {
     public static final Identifier ID_FUNCTION_X500NAME_MATCH								= new IdentifierImpl(ID_FUNCTION, "x500Name-match");
     public static final Identifier ID_FUNCTION_RFC822NAME_MATCH								= new IdentifierImpl(ID_FUNCTION, "rfc822Name-match");
     public static final Identifier ID_FUNCTION_STRING_REGEXP_MATCH							= new IdentifierImpl(ID_FUNCTION, "string-regexp-match");
-// the following xpath-node functions are optional in 3.0 and are NOT included in this implementation.  See the Implementation Notes.
-//	public static final Identifier ID_FUNCTION_XPATH_NODE_COUNT								= new IdentifierImpl(ID_FUNCTION, "xpath-node-count");
-//	public static final Identifier ID_FUNCTION_XPATH_NODE_EQUAL								= new IdentifierImpl(ID_FUNCTION, "xpath-node-equal");
-//	public static final Identifier ID_FUNCTION_XPATH_NODE_MATCH								= new IdentifierImpl(ID_FUNCTION, "xpath-node-match");
+    // the following xpath-node functions are optional in 3.0 and are NOT included in this implementation.  See the Implementation Notes.
+    //	public static final Identifier ID_FUNCTION_XPATH_NODE_COUNT								= new IdentifierImpl(ID_FUNCTION, "xpath-node-count");
+    //	public static final Identifier ID_FUNCTION_XPATH_NODE_EQUAL								= new IdentifierImpl(ID_FUNCTION, "xpath-node-equal");
+    //	public static final Identifier ID_FUNCTION_XPATH_NODE_MATCH								= new IdentifierImpl(ID_FUNCTION, "xpath-node-match");
     public static final Identifier ID_FUNCTION_STRING_INTERSECTION							= new IdentifierImpl(ID_FUNCTION, "string-intersection");
     public static final Identifier ID_FUNCTION_STRING_AT_LEAST_ONE_MEMBER_OF				= new IdentifierImpl(ID_FUNCTION, "string-at-least-one-member-of");
     public static final Identifier ID_FUNCTION_STRING_UNION									= new IdentifierImpl(ID_FUNCTION, "string-union");

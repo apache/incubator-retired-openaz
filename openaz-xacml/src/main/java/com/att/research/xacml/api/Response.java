@@ -45,7 +45,7 @@ public interface Response {
      *
      * @return the <code>Collection</code> of {@link Result}s objects in this <code>Response</code>.
      */
-    public Collection<Result> getResults();
+    Collection<Result> getResults();
 
     /**
      * {@inheritDoc}
@@ -56,5 +56,5 @@ public interface Response {
      * 			{@code r1.getResults()} is pairwise equal to {@code r2.getResults()}
      */
     @Override
-    public boolean equals(Object obj);
+    boolean equals(Object obj);
 }

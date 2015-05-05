@@ -40,28 +40,28 @@ public interface Status {
      *
      * @return the <code>StatusCode</code> for this <code>Status</code>.
      */
-    public StatusCode getStatusCode();
+    StatusCode getStatusCode();
 
     /**
      * Gets the <code>String</code> status message for this <code>Status</code>.
      *
      * @return the <code>String</code> status message for this <code>Status</code>
      */
-    public String getStatusMessage();
+    String getStatusMessage();
 
     /**
      * Gets the {@link com.att.research.xacml.api.StatusDetail} associated with this <code>Status</code> if there is any.
      *
      * @return the <code>StatusDetail</code> for this <code>Status</code> if there is any.
      */
-    public StatusDetail getStatusDetail();
+    StatusDetail getStatusDetail();
 
     /**
      * Returns <code>true</code> if the <code>StatusCode</code> for this <code>Status</code> is the XACML OK value.
      *
      * @return true if the <code>StatusCode</code> for this <code>Status</code> is the XACML OK value, else false
      */
-    public boolean isOk();
+    boolean isOk();
 
     /**
      * Returns a <code>Status</code> with the same <code>StatusCode</code> and status message as this <code>Status</code>
@@ -71,7 +71,7 @@ public interface Status {
      * @param status the <code>Status</code> whose <code>StatusDetail</code> is to be merged in
      * @return a <code>Status</code> with merged <code>StatusDetail</code>
      */
-    public Status merge(Status status);
+    Status merge(Status status);
 
     /**
      * {@inheritDoc}
@@ -84,5 +84,5 @@ public interface Status {
      * 		{@code s1.getStatusDetail() == null && s2.getStatusDetail() == null} OR {@code s1.getStatusDetail().equals(s2.getStatusDetail())}
      */
     @Override
-    public boolean equals(Object obj);
+    boolean equals(Object obj);
 }

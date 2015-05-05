@@ -44,14 +44,14 @@ public interface Attribute {
      *
      * @return the <code>Identifier</code> for this <code>Attribute</code>
      */
-    public Identifier getAttributeId();
+    Identifier getAttributeId();
 
     /**
      * Gets the {@link com.att.research.xacml.api.Identifier} for the XACML 3.0 Category of this <code>Attribute</code>.
      *
      * @return the <code>Identifier</code> for the XACML 3.0 Category of this <code>Attribute</code>.
      */
-    public Identifier getCategory();
+    Identifier getCategory();
 
     /**
      * Gets the <code>Collection</code> of {@link com.att.research.xacml.api.AttributeValue} objects for this <code>Attribute</code>.
@@ -60,7 +60,7 @@ public interface Attribute {
      *
      * @return a <code>Collection</code> of the <code>AttributeValue</code>s for this <code>Attribute</code>
      */
-    public Collection<AttributeValue<?>> getValues();
+    Collection<AttributeValue<?>> getValues();
 
     /**
      * Finds all of the {@link com.att.research.xacml.api.AttributeValue} objects with the given {@link DataType} in
@@ -71,7 +71,7 @@ public interface Attribute {
      * @return an <code>Iterator</code> over all of the <code>AttributeValue</code>s of the given <code>DataType</code>.
      * @throws NullPointerException if the supplied <code>DataType</code> is null
      */
-    public <T> Iterator<AttributeValue<T>> findValues(DataType<T> dataType);
+    <T> Iterator<AttributeValue<T>> findValues(DataType<T> dataType);
 
     /**
      * Gets the <code>String</code> issuer of this <code>Attribute</code>.  If the <code>Attribute</code> does
@@ -79,7 +79,7 @@ public interface Attribute {
      *
      * @return the <code>String</code> issuer of this <code>Attribute</code>.
      */
-    public String getIssuer();
+    String getIssuer();
 
     /**
      * Gets the <code>boolean</code> value indicating whether this <code>Attribute</code> should be included in the {@link com.att.research.xacml.Response}
@@ -87,7 +87,7 @@ public interface Attribute {
      *
      * @return true if this <code>Attribute</code> should be included in the <code>Response</code> else false.
      */
-    public boolean getIncludeInResults();
+    boolean getIncludeInResults();
 
     /**
      * {@inheritDoc}
@@ -102,5 +102,5 @@ public interface Attribute {
      * 			{@code a1.getValues()} is pair-wise equal to {@code a2.getValues()}
      */
     @Override
-    public boolean equals(Object obj);
+    boolean equals(Object obj);
 }

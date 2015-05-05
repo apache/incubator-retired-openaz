@@ -40,14 +40,14 @@ public interface StatusCode {
      *
      * @return the major status <code>Identifier</code> for this <code>StatusCode</code>
      */
-    public Identifier	getStatusCodeValue();
+    Identifier getStatusCodeValue();
 
     /**
      * Gets a child <code>StatusCode</code> of this <code>StatusCode</code> if there is one.
      *
      * @return the child <code>StatusCode</code> of this <code>StatusCode</code> or null if there is none
      */
-    public StatusCode getChild();
+    StatusCode getChild();
 
     /**
      * {@inheritDoc}
@@ -59,5 +59,5 @@ public interface StatusCode {
      * 		{@code s1.getChild() == null && s2.getChild() == null} OR {@code s1.getChild().equals(s2.getChild())}
      */
     @Override
-    public boolean equals(Object obj);
+    boolean equals(Object obj);
 }

@@ -42,14 +42,14 @@ public interface IdReference {
      * @return the <code>Identifier</code> representing the XACML PolicyId or PolicySetId that
      * is referenced by this <code>IdReference</code>.
      */
-    public Identifier getId();
+    Identifier getId();
 
     /**
      * Returns the {@link Version} of the XACML Policy or PolicySet referenced by this <code>IdReference</code>.
      *
      * @return the <code>Version</code> of the XACML Policy or PolicySet referenced by this <code>IdReference</code>.
      */
-    public Version getVersion();
+    Version getVersion();
 
     /**
      * {@inheritDoc}
@@ -61,5 +61,5 @@ public interface IdReference {
      * 			{@code i1.getVersion().equals(i2.getVersion())}
      */
     @Override
-    public boolean equals(Object obj);
+    boolean equals(Object obj);
 }

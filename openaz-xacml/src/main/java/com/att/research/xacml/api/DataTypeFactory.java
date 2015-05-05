@@ -49,8 +49,8 @@ import com.att.research.xacml.util.FactoryFinder;
  *
  */
 public abstract class DataTypeFactory {
-    private static final String	FACTORYID					= "xacml.dataTypeFactory";
-    private static final String	DEFAULT_FACTORY_CLASSNAME	= "com.att.research.xacml.std.StdDataTypeFactory";
+    private static final String	FACTORYID = "xacml.dataTypeFactory";
+    private static final String	DEFAULT_FACTORY_CLASSNAME = "com.att.research.xacml.std.StdDataTypeFactory";
 
     /**
      * Protected constructor so this class cannot be instantiated.

@@ -43,14 +43,14 @@ public interface Result {
      *
      * @return the <code>Decision</code> associated with this <code>Result</code>.
      */
-    public Decision getDecision();
+    Decision getDecision();
 
     /**
      * Gets the {@link com.att.research.xacml.api.Status} associated with this <code>Result</code>.
      *
      * @return the <code>Status</code> associated with this <code>Result</code>
      */
-    public Status getStatus();
+    Status getStatus();
 
     /**
      * Gets the <code>Collection</code> of {@link com.att.research.xacml.api.Obligation}s int this <code>Result</code>.  If there
@@ -58,7 +58,7 @@ public interface Result {
      *
      * @return the <code>Collection</code> of {@link com.att.research.xacml.api.Obligation}s <code>Result</code>.
      */
-    public Collection<Obligation> getObligations();
+    Collection<Obligation> getObligations();
 
     /**
      * Gets the <code>Collection</code> of {@link Advice} objects in this <code>Result</code>.  If there
@@ -66,7 +66,7 @@ public interface Result {
      *
      * @return the <code>Collection</code> of <code>Advice</code> objects in this <code>Result</code>.
      */
-    public Collection<Advice> getAssociatedAdvice();
+    Collection<Advice> getAssociatedAdvice();
 
     /**
      * Gets the <code>Collection</code> of {@link com.att.research.xacml.api.AttributeCategory} objects in this <code>Result</code>.  If there
@@ -74,7 +74,7 @@ public interface Result {
      *
      * @return the <code>Collection</code> of <code>AttributeCategory</code> objects in this <code>Result</code>.
      */
-    public Collection<AttributeCategory> getAttributes();
+    Collection<AttributeCategory> getAttributes();
 
     /**
      * Gets the <code>Collection</code> of {@link com.att.research.xacml.api.IdReference} objects referring to XACML 3.0 Policies
@@ -82,7 +82,7 @@ public interface Result {
      *
      * @return the <code>Collection</code> of Policy <code>IdReference</code>s in this <code>Result</code>.
      */
-    public Collection<IdReference> getPolicyIdentifiers();
+    Collection<IdReference> getPolicyIdentifiers();
 
     /**
      * Gets the <code>Collection</code> of {@link com.att.research.xacml.api.IdReference} objects referring to XACML 3.0 PolicySets
@@ -90,7 +90,7 @@ public interface Result {
      *
      * @return the <code>Collection</code> of PolicySet <code>IdReference</code>s in this <code>Result</code>.
      */
-    public Collection<IdReference> getPolicySetIdentifiers();
+    Collection<IdReference> getPolicySetIdentifiers();
 
     /**
      * {@inheritDoc}
@@ -107,5 +107,5 @@ public interface Result {
      * 			{@code r1.getPolicySetIdentifiers()} is pair-wise equal to {@code r2.getPolicySetIdentifiers()}
      */
     @Override
-    public boolean equals(Object obj);
+    boolean equals(Object obj);
 }

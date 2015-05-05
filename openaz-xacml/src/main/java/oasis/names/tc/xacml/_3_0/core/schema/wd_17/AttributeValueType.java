@@ -44,8 +44,6 @@ import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.namespace.QName;
 
-import org.w3c.dom.Element;
-
 
 /**
  * <p>Java class for AttributeValueType complex type.

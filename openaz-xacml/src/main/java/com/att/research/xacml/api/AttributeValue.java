@@ -42,14 +42,14 @@ public interface AttributeValue<T> {
      *
      * @return the <code>Identifier</code> representing the XACML data type of this <code>AttributeValue</code>
      */
-    public Identifier getDataTypeId();
+    Identifier getDataTypeId();
 
     /**
      * Returns the object representing the value of the XACML AttributeValue element represented by this<code>AttributeValue</code> of type <code>T</code>.
      *
      * @return the object representing the value of the XACML AttributeValue element represented by this<code>AttributeValue</code>
      */
-    public T getValue();
+    T getValue();
 
     /**
      * Returns the {@link Identifier} representing the XACML Category id of this <code>AttributeValue</code> for
@@ -57,7 +57,7 @@ public interface AttributeValue<T> {
      *
      * @return the <code>Identifier</code> representing the XACML Category id of this <code>AttributeValue</code>.
      */
-    public Identifier getXPathCategory();
+    Identifier getXPathCategory();
 
     /**
      * {@inheritDoc}
@@ -69,6 +69,6 @@ public interface AttributeValue<T> {
      * 			{@code a1.getValue() == null && a2.getValue() == null} OR {@code a1.getValue().equals(a2.getValue())}
      */
     @Override
-    public boolean equals(Object obj);
+    boolean equals(Object obj);
 
 }

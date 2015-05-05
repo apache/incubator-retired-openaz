@@ -43,7 +43,7 @@ public interface StatusDetail {
      *
      * @return the <code>MissingAttributeDetail</code> objects for this <code>StatusDetail</code> or null if none.
      */
-    public Collection<MissingAttributeDetail>	getMissingAttributeDetails();
+    Collection<MissingAttributeDetail> getMissingAttributeDetails();
 
     /**
      * Gets a <code>StatusDetail</code> object that is the result of merging this <code>StatusDetail<code> with the
@@ -52,7 +52,7 @@ public interface StatusDetail {
      * @param statusDetail the <code>StatusDetail</code> to merge in
      * @return a <code>StatusDetail</code> merging this <code>StatusDetail</code> with the given <code>StatusDetail</code>.
      */
-    public StatusDetail merge(StatusDetail statusDetail);
+    StatusDetail merge(StatusDetail statusDetail);
 
     /**
      * {@inheritDoc}
@@ -63,5 +63,5 @@ public interface StatusDetail {
      * 			{@code s1.getMissingAttributeDetails()} is pair-wise equal to {@code s2.getMissingAttributeDetails()}
      */
     @Override
-    public boolean equals(Object obj);
+    boolean equals(Object obj);
 }

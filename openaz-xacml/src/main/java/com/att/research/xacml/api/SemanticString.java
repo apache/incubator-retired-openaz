@@ -41,5 +41,5 @@ public interface SemanticString {
      *
      * @return the semantically significant <code>String</code> representation of the object implementing this interface.
      */
-    public String stringValue();
+    String stringValue();
 }

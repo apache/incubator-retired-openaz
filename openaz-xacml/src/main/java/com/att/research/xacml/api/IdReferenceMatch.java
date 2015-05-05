@@ -43,28 +43,28 @@ public interface IdReferenceMatch {
      * @return the <code>Identifier</code> representing the XACML PolicyId or PolicySetId that
      * is referenced by this <code>IdReference</code>.
      */
-    public Identifier getId();
+    Identifier getId();
 
     /**
      * Gets the {@link VersionMatch} representing a full or partial match against a XACML Version string.
      *
      * @return the <code>VersionMatch</code> representing a full or partial match against a XACML Version string.
      */
-    public VersionMatch getVersion();
+    VersionMatch getVersion();
 
     /**
      * Gets the {@link VersionMatch} representing a full or partial match against the earliest XACML Version string.
      *
      * @return the <code>VersionMatch</code> representing a full or partial match against the earliest XACML Version string.
      */
-    public VersionMatch getEarliestVersion();
+    VersionMatch getEarliestVersion();
 
     /**
      * Gets the {@link VersionMatch} representing a full or partial match against the latest XACML Version string.
      *
      * @return the <code>VersionMatch</code> representing a full or partial match against the latest XACML Version string.
      */
-    public VersionMatch getLatestVersion();
+    VersionMatch getLatestVersion();
 
     /**
      * {@inheritDoc}
@@ -78,5 +78,5 @@ public interface IdReferenceMatch {
      * 			{@code i1.getLatestVersion() == null && i2.getLatestVersion() == null} OR {@code i1.getLatestVersion().equals(i2.getLatestVersion())}
      */
     @Override
-    public boolean equals(Object obj);
+    boolean equals(Object obj);
 }

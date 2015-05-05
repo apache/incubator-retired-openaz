@@ -44,7 +44,7 @@ public interface RequestReference {
      *
      * @return the <code>Collection</code> of <code>RequestAttributesReference</code>s contained in this <code>RequestReference</code>.
      */
-    public Collection<RequestAttributesReference> getAttributesReferences();
+    Collection<RequestAttributesReference> getAttributesReferences();
 
     /**
      * {@inheritDoc}
@@ -56,5 +56,5 @@ public interface RequestReference {
      * 			{@code r1.getAttributesReferences()} is pair-wise equal to {@code r2.getAttributesReferences()}
      */
     @Override
-    public boolean equals(Object obj);
+    boolean equals(Object obj);
 }

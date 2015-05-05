@@ -45,7 +45,7 @@ public class DataTypeException extends Exception {
      * @param dataTypeIn the <code>DataType</code> throwing the error.
      */
     public DataTypeException(DataType<?> dataTypeIn) {
-        this.dataType	= dataTypeIn;
+        this.dataType = dataTypeIn;
     }
 
     /**
@@ -57,7 +57,7 @@ public class DataTypeException extends Exception {
      */
     public DataTypeException(DataType<?> dataTypeIn, String message) {
         super(message);
-        this.dataType	= dataTypeIn;
+        this.dataType = dataTypeIn;
     }
 
     /**
@@ -69,7 +69,7 @@ public class DataTypeException extends Exception {
      */
     public DataTypeException(DataType<?> dataTypeIn, Throwable cause) {
         super(cause);
-        this.dataType	= dataTypeIn;
+        this.dataType = dataTypeIn;
     }
 
     /**
@@ -82,7 +82,7 @@ public class DataTypeException extends Exception {
      */
     public DataTypeException(DataType<?> dataTypeIn, String message, Throwable cause) {
         super(message, cause);
-        this.dataType	= dataTypeIn;
+        this.dataType = dataTypeIn;
     }
 
     /**

@@ -41,7 +41,7 @@ public interface VersionMatch {
      *
      * @return the <code>String</code> representation of the <code>Version</code> matching pattern.
      */
-    public String getVersionMatch();
+    String getVersionMatch();
 
     /**
      * Determines if the pattern in this <code>VersionMatch</code> matches the given <code>Version</code> based on the
@@ -56,5 +56,5 @@ public interface VersionMatch {
      * @param cmp integer comparision code
      * @return true if this pattern matches the given <code>Version</code> else false
      */
-    public boolean match(Version version, int cmp);
+    boolean match(Version version, int cmp);
 }

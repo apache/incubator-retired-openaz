@@ -48,7 +48,7 @@ public interface Identifier extends SemanticString {
      *
      * @return the <code>URI</code> representation of this <code>Identifier</code>.
      */
-    public URI getUri();
+    URI getUri();
 
     /**
      * {@inheritDoc}
@@ -57,7 +57,7 @@ public interface Identifier extends SemanticString {
      *
      */
     @Override
-    public int hashCode();
+    int hashCode();
 
     /**
      * {@inheritDoc}
@@ -68,5 +68,5 @@ public interface Identifier extends SemanticString {
      * 			{@code a1.getUri().equals(a2.getUri())}
      */
     @Override
-    public boolean equals(Object obj);
+    boolean equals(Object obj);
 }

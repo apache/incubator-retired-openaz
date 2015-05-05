@@ -41,7 +41,7 @@ public interface AttributeAssignment {
      *
      * @return the <code>Identifier</code> for the XACML Attribute that is assigned by this <code>AttributeAssignment</code>.
      */
-    public Identifier getAttributeId();
+    Identifier getAttributeId();
 
     /**
      * Gets the {@link Identifier} for the XACML Category of the Attribute that is assigned by this
@@ -49,21 +49,21 @@ public interface AttributeAssignment {
      *
      * @return the <code>Identifier</code> for the XACML Category of the Attribute that is assigned by this <code>AttributeAssignment</code>.
      */
-    public Identifier getCategory();
+    Identifier getCategory();
 
     /**
      * Gets the <code>String</code> issuer of the XACML Attribute that is assigned by this <code>AttributeAssignment</code>.
      *
      * @return the <code>String</code> issuer of the XACML Attribute that is assigned by this <code>AttributeAssignment</code>.
      */
-    public String getIssuer();
+    String getIssuer();
 
     /**
      * Gets the {@link Identifier} for the XACML data type of the AttributeValue that is assigned to the Attribute by this <code>AttributeAssignment</code>.
      *
      * @return the <code>Identifier</code> for the XACML data type of the AttributeValue that is assigned to the Attribute by this <code>AttributeAssignment</code>.
      */
-    public Identifier getDataTypeId();
+    Identifier getDataTypeId();
 
     /**
      * Gets the {@link AttributeValue} representing the XACML AttributeValue that is assigned to the Attribute by this
@@ -72,7 +72,7 @@ public interface AttributeAssignment {
      * @return the {@link AttributeValue} representing the XACML AttributeValue that is assigned to the Attribute by this
      * <code>AttributeAssignment</code>.
      */
-    public AttributeValue<?> getAttributeValue();
+    AttributeValue<?> getAttributeValue();
 
     /**
      * {@inheritDoc}
@@ -87,5 +87,5 @@ public interface AttributeAssignment {
      * 			{@code a1.getAttributeValue().equals(a2.getAttributeValue())}
      */
     @Override
-    public boolean equals(Object obj);
+    boolean equals(Object obj);
 }

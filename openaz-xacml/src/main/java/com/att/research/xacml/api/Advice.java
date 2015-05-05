@@ -43,7 +43,7 @@ public interface Advice {
      *
      * @return the <code>Identifier</code> for this <code>Advice</code>.
      */
-    public Identifier getId();
+    Identifier getId();
 
     /**
      * Gets the {@link com.att.research.xacml.api.AttributeAssignment}s in this <code>Advice</code> object.  If there
@@ -52,7 +52,7 @@ public interface Advice {
      *
      * @return the <code>Collection</code> of <code>AttributeAssignment</code>s in this <code>Advice</code> object.
      */
-    public Collection<AttributeAssignment> getAttributeAssignments();
+    Collection<AttributeAssignment> getAttributeAssignments();
 
     /**
      * {@inheritDoc}
@@ -64,5 +64,5 @@ public interface Advice {
      * 			{@code a1.getAttributeAssignments()} is pair-wise equal to {@code a2.getAttributeAssignments()}
      */
     @Override
-    public boolean equals(Object obj);
+    boolean equals(Object obj);
 }

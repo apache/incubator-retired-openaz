@@ -71,9 +71,9 @@ public enum Decision {
     private Decision basicDecision;
 
     private Decision(String nameIn, Boolean extendedIn, Decision basicDecisionIn) {
-        this.name			= nameIn;
-        this.extended		= extendedIn;
-        this.basicDecision	= basicDecisionIn;
+        this.name = nameIn;
+        this.extended = extendedIn;
+        this.basicDecision = basicDecisionIn;
     }
     private Decision(String nameIn) {
         this(nameIn, false, null);
@@ -94,7 +94,7 @@ public enum Decision {
      * @return the <code>Decision</code> representing the XACML 3.0 basic Decision for this <code>Decision</code>.
      */
     public Decision getBasicDecision() {
-        return (this.isExtended() ? this.basicDecision : this);
+        return this.isExtended() ? this.basicDecision : this;
     }
 
     /**

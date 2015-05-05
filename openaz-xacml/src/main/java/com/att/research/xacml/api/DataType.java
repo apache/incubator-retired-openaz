@@ -43,7 +43,7 @@ public interface DataType<T> {
      *
      * @return the <code>Identifier</code> representing the XACML data type id for this <code>DataType</code>.
      */
-    public Identifier getId();
+    Identifier getId();
 
     /**
      * Converts the given <code>Object</code> to a <code>T</code> object if possible.  If the <code>Object</code> is
@@ -53,7 +53,7 @@ public interface DataType<T> {
      * @return a <code>T</code> object
      * @throws UnsupportedOperationException if the given source object cannot be converted to a <code>T</code>
      */
-    public T convert(Object source) throws DataTypeException;
+    T convert(Object source) throws DataTypeException;
 
     /**
      * Converts the given <code>T</code> to a semantically meaningful <code>String</code>.
@@ -62,7 +62,7 @@ public interface DataType<T> {
      * @return the semantically meaningful <code>String</code> representation of the <code>Object</code>
      * @throws DataTypeException if there is an error doing the conversion
      */
-    public String toStringValue(T source) throws DataTypeException;
+    String toStringValue(T source) throws DataTypeException;
 
     /**
      * Converts the given <code>Object</code> to a {@link com.att.research.xacml.api.AttributeValue} whose value
@@ -72,7 +72,7 @@ public interface DataType<T> {
      * @return a new {@link com.att.research.xacml.api.AttributeValue}
      * @throws UnsupportedOperationException if the given source object cannot be converted to a <code>T</code>
      */
-    public AttributeValue<T> createAttributeValue(Object source) throws DataTypeException;
+    AttributeValue<T> createAttributeValue(Object source) throws DataTypeException;
 
     /**
      * Converts the given <code>Object</code> to a {@link com.att.research.xacml.api.AttributeValue} whose value
@@ -83,7 +83,7 @@ public interface DataType<T> {
      * @return a new {@link com.att.research.xacml.api.AttributeValue}
      * @throws UnsupportedOperationException if the given source object cannot be converted to a <code>T</code>
      */
-    public AttributeValue<T> createAttributeValue(Object source, Identifier xpathCategory) throws DataTypeException;
+    AttributeValue<T> createAttributeValue(Object source, Identifier xpathCategory) throws DataTypeException;
 
     /**
      * Converts the given {@link com.att.research.xacml.api.AttributeValue} of an unknown data type to an <code>AttributeValue</code>
@@ -93,5 +93,5 @@ public interface DataType<T> {
      * @return an <code>AttributeValue</code> whose value is represented by an instance of class <code>T</code> if possible.
      * @throws UnsupportedOperationException
      */
-    public AttributeValue<T> convertAttributeValue(AttributeValue<?> attributeValueFrom) throws DataTypeException;
+    AttributeValue<T> convertAttributeValue(AttributeValue<?> attributeValueFrom) throws DataTypeException;
 }

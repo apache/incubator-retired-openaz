@@ -43,28 +43,28 @@ public interface MissingAttributeDetail {
      *
      * @return the <code>Identifier</code> representing the XACML Category of the Attribute that was missing.
      */
-    public Identifier getCategory();
+    Identifier getCategory();
 
     /**
      * Gets the {@link Identifier} representing the XACML AttributeId of the Attribute that was missing.
      *
      * @return the <code>Identifier</code> representing the XACML AttributeId of the Attribute that was missing.
      */
-    public Identifier getAttributeId();
+    Identifier getAttributeId();
 
     /**
      * Gets the {@link Identifier} representing the XACML DataType of the AttributeValue that was missing.
      *
      * @return the <code>Identifier</code> representing the XACML DataType of the Attribute that was missing.
      */
-    public Identifier getDataTypeId();
+    Identifier getDataTypeId();
 
     /**
      * Gets the <code>String</code> representing the XACML Issuer for the Attribute that was missing if required.
      *
      * @return the <code>String</code> representing the XACML Issuer for the Attribute that was missing if required.
      */
-    public String getIssuer();
+    String getIssuer();
 
     /**
      * Gets the <code>Collection</code> of {@link AttributeValue}s that were expected for the Attribute that was missing.
@@ -73,7 +73,7 @@ public interface MissingAttributeDetail {
      *
      * @return a <code>Collection</code> of <code>AttributeValue</code>s that were expected for the Attribute that was missing.
      */
-    public Collection<AttributeValue<?>> getAttributeValues();
+    Collection<AttributeValue<?>> getAttributeValues();
 
     /**
      * {@inheritDoc}
@@ -90,5 +90,5 @@ public interface MissingAttributeDetail {
      * @return
      */
     @Override
-    public boolean equals(Object obj);
+    boolean equals(Object obj);
 }

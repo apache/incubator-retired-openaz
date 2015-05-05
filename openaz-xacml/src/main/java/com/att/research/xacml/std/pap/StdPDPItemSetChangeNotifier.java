@@ -38,15 +38,15 @@ import com.att.research.xacml.api.pap.PDPGroup;
 
 public class StdPDPItemSetChangeNotifier {
 
-    private Collection<StdItemSetChangeListener> listeners = null;
+    private Collection<StdItemSetChangeListener> listeners;
 
     public interface StdItemSetChangeListener {
 
-        public void changed();
+        void changed();
 
-        public void groupChanged(PDPGroup group);
+        void groupChanged(PDPGroup group);
 
-        public void pdpChanged(PDP pdp);
+        void pdpChanged(PDP pdp);
     }
 
     public void addItemSetChangeListener(StdItemSetChangeListener listener) {

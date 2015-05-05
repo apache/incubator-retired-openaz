@@ -40,13 +40,13 @@ public interface Version extends Comparable<Version>, SemanticString {
      *
      * @return the <code>String</code> representation of this <code>Version</code>
      */
-    public String getVersion();
+    String getVersion();
 
     /**
      * Gets the integer array representation of this <code>Version</code>.
      *
      * @return the integer array representation of this <code>Version</code>
      */
-    public int[] getVersionDigits();
+    int[] getVersionDigits();
 
 }

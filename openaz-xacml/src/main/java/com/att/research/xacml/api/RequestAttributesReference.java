@@ -40,7 +40,7 @@ public interface RequestAttributesReference {
      *
      * @return the <code>String</code> representing the xml:Id of the XACML AttributesReference element represented by this <code>RequestAttributesReference</code>
      */
-    public String getReferenceId();
+    String getReferenceId();
 
     /**
      * {@inheritDoc}
@@ -51,5 +51,5 @@ public interface RequestAttributesReference {
      * 			{@code r1.getReferenceId() == null && r2.getReferenceId() == null} OR {@code r1.getReferenceId().equals(r2.getReferenceId())}
      */
     @Override
-    public boolean equals(Object obj);
+    boolean equals(Object obj);
 }

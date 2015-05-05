@@ -47,7 +47,7 @@ public interface RequestAttributes extends AttributeCategory {
      *
      * @return the root <code>Node</code> from the XACML 3.0 Content element of an Attributes element in a Request.
      */
-    public Node getContentRoot();
+    Node getContentRoot();
 
     /**
      * Finds the {@link org.w3c.dom.Node} referenced by the given {@link javax.xml.xpath.XPathExpression} within the
@@ -56,7 +56,7 @@ public interface RequestAttributes extends AttributeCategory {
      * @param xpathExpression the <code>XPathExpression</code> to apply to the Content element.
      * @return the <code>Node</code> returned by the given <code>XPathExpression</code> or null if not found.
      */
-    public Node getContentNodeByXpathExpression(XPathExpression xpathExpression);
+    Node getContentNodeByXpathExpression(XPathExpression xpathExpression);
 
     /**
      * Finds the {@link org.w3c.dom.NodeList} referenced by the given {@link javax.xml.xpath.XPathExpression} within the
@@ -65,7 +65,7 @@ public interface RequestAttributes extends AttributeCategory {
      * @param xpathExpression the <code>XPathExpression</code> to apply to the Content element.
      * @return the <code>NodeList</code> containing all <code>Node</code>s that match the <code>XPathExpression</code>
      */
-    public NodeList getContentNodeListByXpathExpression(XPathExpression xpathExpression);
+    NodeList getContentNodeListByXpathExpression(XPathExpression xpathExpression);
 
     /**
      * Returns the <code>String</code> representing the xml:Id attribute for the XACML Attributes element represented by
@@ -74,7 +74,7 @@ public interface RequestAttributes extends AttributeCategory {
      * @return the <code>String</code> representing the xml:Id attribute for the XACML Attributes element represented by
      * this <code>RequestAttributes</code> object.  May be null.
      */
-    public String getXmlId();
+    String getXmlId();
 
     /**
      * Implementations of the <code>RequestAttributes</code> interface must override the <code>equals</code> method with the following semantics:
@@ -85,5 +85,5 @@ public interface RequestAttributes extends AttributeCategory {
      * 			{@code r1.getXmlId() == null && r2.getXmlId() == null} OR {@code r1.getXmlId().equals(r2.getXmlId())}
      */
     @Override
-    public boolean equals(Object obj);
+    boolean equals(Object obj);
 }

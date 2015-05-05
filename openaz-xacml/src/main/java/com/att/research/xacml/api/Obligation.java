@@ -43,7 +43,7 @@ public interface Obligation {
      *
      * @return the <code>Identifier</code> representing the XACML ObligationId for this <code>Obligation</code>.
      */
-    public Identifier getId();
+    Identifier getId();
 
     /**
      * Gets the <code>Collection</code> of {@link com.att.research.xacml.api.AttributeAssignment}s representing the XACML AttributeAssignment elements
@@ -52,7 +52,7 @@ public interface Obligation {
      * @return a <code>Collection</code> of the <code>AttributeAssignment</code>s representing the XACML AttributeAssignment elements
      * for this <code>Obligation</code>.
      */
-    public Collection<AttributeAssignment> getAttributeAssignments();
+    Collection<AttributeAssignment> getAttributeAssignments();
 
     /**
      * {@inheritDoc}
@@ -64,5 +64,5 @@ public interface Obligation {
      * 			{@code o1.getAttributeAssignments()} is pairwise equal to {@code o2.getAttributeAssignments()}
      */
     @Override
-    public boolean equals(Object obj);
+    boolean equals(Object obj);
 }
