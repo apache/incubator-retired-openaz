@@ -42,7 +42,7 @@ import com.att.research.xacml.std.StdStatus;
  *
  */
 public abstract class ExpressionResult implements FunctionArgument {
-    private Status	status;
+    private Status      status;
 
     /**
      * ExpressionResultError extends <code>ExpressionResult</code> to represent error results.
@@ -74,11 +74,11 @@ public abstract class ExpressionResult implements FunctionArgument {
      *
      */
     private static class ExpressionResultSingle extends ExpressionResult {
-        AttributeValue<?>	attributeValue;
+        AttributeValue<?>       attributeValue;
 
         public ExpressionResultSingle(AttributeValue<?> attributeValueIn) {
             super(StdStatus.STATUS_OK);
-            this.attributeValue	= attributeValueIn;
+            this.attributeValue = attributeValueIn;
         }
 
         @Override
@@ -102,12 +102,12 @@ public abstract class ExpressionResult implements FunctionArgument {
 
         public ExpressionResultBag(Bag bagIn) {
             super(StdStatus.STATUS_OK);
-            this.bag	= bagIn;
+            this.bag    = bagIn;
         }
 
         @Override
         public AttributeValue<?> getValue() {
-            Iterator<AttributeValue<?>> iter	= this.bag.getAttributeValues();
+            Iterator<AttributeValue<?>> iter    = this.bag.getAttributeValues();
             if (iter != null && iter.hasNext()) {
                 return iter.next();
             } else {
@@ -153,7 +153,7 @@ public abstract class ExpressionResult implements FunctionArgument {
      * @param statusIn the <code>Status</code> of this <code>ExpressionResult</code>
      */
     protected ExpressionResult(Status statusIn) {
-        this.status	= statusIn;
+        this.status     = statusIn;
     }
 
     /**
@@ -199,10 +199,10 @@ public abstract class ExpressionResult implements FunctionArgument {
 
     @Override
     public String toString() {
-        StringBuilder stringBuilder	= new StringBuilder("{");
+        StringBuilder stringBuilder     = new StringBuilder("{");
         stringBuilder.append("isOk=" + this.isOk());
         stringBuilder.append(", isBag=" + this.isBag());
-        Status thisStatus	= this.getStatus();
+        Status thisStatus       = this.getStatus();
         if (thisStatus != null) {
             stringBuilder.append(", status=");
             stringBuilder.append(thisStatus.toString());

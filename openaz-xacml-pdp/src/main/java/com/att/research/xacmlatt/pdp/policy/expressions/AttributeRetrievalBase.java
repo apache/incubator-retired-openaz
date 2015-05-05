@@ -48,9 +48,9 @@ import com.att.research.xacmlatt.pdp.policy.ExpressionResult;
  *
  */
 public abstract class AttributeRetrievalBase extends Expression {
-    private Identifier	category;
-    private Identifier	dataTypeId;
-    private Boolean		mustBePresent;
+    private Identifier  category;
+    private Identifier  dataTypeId;
+    private Boolean             mustBePresent;
 
     protected AttributeRetrievalBase(StatusCode statusCodeIn,
                                      String statusMessageIn) {
@@ -65,9 +65,9 @@ public abstract class AttributeRetrievalBase extends Expression {
     }
 
     protected AttributeRetrievalBase(Identifier categoryIn, Identifier dataTypeIdIn, Boolean mustBePresentIn) {
-        this.category		= categoryIn;
-        this.dataTypeId		= dataTypeIdIn;
-        this.mustBePresent	= mustBePresentIn;
+        this.category           = categoryIn;
+        this.dataTypeId         = dataTypeIdIn;
+        this.mustBePresent      = mustBePresentIn;
     }
 
     /**
@@ -86,7 +86,7 @@ public abstract class AttributeRetrievalBase extends Expression {
      * @param categoryIn the <code>Identifier</code> for the category associated with this <code>AttributeRetrievalBase</code>
      */
     public void setCategory(Identifier categoryIn) {
-        this.category	= categoryIn;
+        this.category   = categoryIn;
     }
 
     /**
@@ -106,11 +106,11 @@ public abstract class AttributeRetrievalBase extends Expression {
     public void setDataTypeId(Identifier dataTypeIn) {
         // allow old-style Ids for Durations since there is no structural or semantic changes, just a different Id.
         if (dataTypeIn.equals(XACML.ID_DATATYPE_WD_DAYTIMEDURATION)) {
-            dataTypeIn	= DataTypes.DT_DAYTIMEDURATION.getId();
+            dataTypeIn  = DataTypes.DT_DAYTIMEDURATION.getId();
         } else if (dataTypeIn.equals(XACML.ID_DATATYPE_WD_YEARMONTHDURATION)) {
-            dataTypeIn	= DataTypes.DT_YEARMONTHDURATION.getId();
+            dataTypeIn  = DataTypes.DT_YEARMONTHDURATION.getId();
         }
-        this.dataTypeId	= dataTypeIn;
+        this.dataTypeId = dataTypeIn;
     }
 
     /**
@@ -129,7 +129,7 @@ public abstract class AttributeRetrievalBase extends Expression {
      * @param b the boolean value for the flag
      */
     public void setMustBePresent(boolean b) {
-        this.mustBePresent	= b;
+        this.mustBePresent      = b;
     }
 
     @Override
@@ -150,7 +150,7 @@ public abstract class AttributeRetrievalBase extends Expression {
     }
 
     @Override public String toString() {
-        StringBuilder stringBuilder	= new StringBuilder("{");
+        StringBuilder stringBuilder     = new StringBuilder("{");
         stringBuilder.append("super=");
         stringBuilder.append(super.toString());
 

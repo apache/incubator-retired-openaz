@@ -38,7 +38,7 @@ import com.att.research.xacml.util.ObjUtil;
  *
  */
 public class StdRequestAttributesReference implements RequestAttributesReference {
-    private String	referenceId;
+    private String      referenceId;
 
     /**
      * Creates a new <code>StdRequestAttributesReference</code> with the given <code>String</code> representing the xml:Id.
@@ -46,7 +46,7 @@ public class StdRequestAttributesReference implements RequestAttributesReference
      * @param referenceIdIn the <code>String</code> representing the xml:Id of the XACML AttributesReference represented by the new <code>StdRequestAttributesReference</code>.
      */
     public StdRequestAttributesReference(String referenceIdIn) {
-        this.referenceId	= referenceIdIn;
+        this.referenceId        = referenceIdIn;
     }
 
     @Override
@@ -61,15 +61,15 @@ public class StdRequestAttributesReference implements RequestAttributesReference
         } else if (obj == null || !(obj instanceof RequestAttributesReference)) {
             return false;
         } else {
-            RequestAttributesReference objRequestAttributesReference	= (RequestAttributesReference)obj;
+            RequestAttributesReference objRequestAttributesReference    = (RequestAttributesReference)obj;
             return ObjUtil.equalsAllowNull(this.getReferenceId(), objRequestAttributesReference.getReferenceId());
         }
     }
 
     @Override
     public String toString() {
-        StringBuilder	stringBuilder	= new StringBuilder("{");
-        Object			objectToDump	= this.getReferenceId();
+        StringBuilder   stringBuilder   = new StringBuilder("{");
+        Object                  objectToDump    = this.getReferenceId();
         if (objectToDump != null) {
             stringBuilder.append("referenceId=");
             stringBuilder.append((String)objectToDump);

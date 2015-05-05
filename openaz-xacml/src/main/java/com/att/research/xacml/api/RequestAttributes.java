@@ -79,10 +79,10 @@ public interface RequestAttributes extends AttributeCategory {
     /**
      * Implementations of the <code>RequestAttributes</code> interface must override the <code>equals</code> method with the following semantics:
      *
-     * 		Two <code>RequestAttributes</code> objects (<code>r1</code> and <code>r2</code>) are equal if:
-     * 			{@code r1.super.equals(r2)} AND
-     * 			{@code r1.getContentRoot() == null && r2.getContentRoot() == null} OR {@code r1.getContentRoot().equals(r2.getContentRoot())} AND
-     * 			{@code r1.getXmlId() == null && r2.getXmlId() == null} OR {@code r1.getXmlId().equals(r2.getXmlId())}
+     *          Two <code>RequestAttributes</code> objects (<code>r1</code> and <code>r2</code>) are equal if:
+     *                  {@code r1.super.equals(r2)} AND
+     *                  {@code r1.getContentRoot() == null && r2.getContentRoot() == null} OR {@code r1.getContentRoot().equals(r2.getContentRoot())} AND
+     *                  {@code r1.getXmlId() == null && r2.getXmlId() == null} OR {@code r1.getXmlId().equals(r2.getXmlId())}
      */
     @Override
     boolean equals(Object obj);

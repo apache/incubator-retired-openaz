@@ -57,21 +57,21 @@ import com.att.research.xacml.api.Result;
  * TO RUN in Eclipse:
  * This is run as a Java Application.
  * You must first create a Run/Debug Configuration:
- * 		Under the Argument tab, in Program Arguments you must set the -i or --input command line argument.
- *	 	You should also direct the output to a file using -o or --output. (default is Console)
- *		See the init() method in this file for other useful arguments.
- * 		Example for a Windows machine:
- * 			-i testsets/conformance/xacml3.0-ct-v.0.4
- * 			-o \Users\yourLogin\Downloads\conformance.txt
- * 		You must also set the VM arguments:
- * 			-Dxacml.properties=testsets/conformance/xacml.properties .
- * 			-Dlog4j.configuration=.\logging.properties
+ *              Under the Argument tab, in Program Arguments you must set the -i or --input command line argument.
+ *              You should also direct the output to a file using -o or --output. (default is Console)
+ *              See the init() method in this file for other useful arguments.
+ *              Example for a Windows machine:
+ *                      -i testsets/conformance/xacml3.0-ct-v.0.4
+ *                      -o \Users\yourLogin\Downloads\conformance.txt
+ *              You must also set the VM arguments:
+ *                      -Dxacml.properties=testsets/conformance/xacml.properties .
+ *                      -Dlog4j.configuration=.\logging.properties
  *
  */
 public class Conformance {
     private ConformanceScopeResolver scopeResolver;
     private ConformanceTestEngine testEngine;
-    private ConformanceTestSet testSet			= new ConformanceTestSet();
+    private ConformanceTestSet testSet                  = new ConformanceTestSet();
     private File outputFile;
     private PrintWriter outputFileWriter;
 
@@ -97,7 +97,7 @@ public class Conformance {
 
     protected synchronized ConformanceScopeResolver getScopeResolver() {
         if (this.scopeResolver == null) {
-            this.scopeResolver	= new ConformanceScopeResolver();
+            this.scopeResolver  = new ConformanceScopeResolver();
 
             /*
              * TODO:
@@ -105,13 +105,13 @@ public class Conformance {
              * from a properties file eventually.
              */
             try {
-                URI ID_SCOPE_ROOT	= new URI("urn:root");
-                URI ID_SCOPE_CHILD1	= new URI("urn:root:child1");
-                URI ID_SCOPE_CHILD2	= new URI("urn:root:child2");
-                URI ID_SCOPE_C1D1	= new URI("urn:root:child1:descendant1");
-                URI ID_SCOPE_C1D2	= new URI("urn:root:child1:descendant2");
-                URI ID_SCOPE_C2D1	= new URI("urn:root:child2:descendant1");
-                URI ID_SCOPE_C2D2	= new URI("urn:root:child2:descendant2");
+                URI ID_SCOPE_ROOT       = new URI("urn:root");
+                URI ID_SCOPE_CHILD1     = new URI("urn:root:child1");
+                URI ID_SCOPE_CHILD2     = new URI("urn:root:child2");
+                URI ID_SCOPE_C1D1       = new URI("urn:root:child1:descendant1");
+                URI ID_SCOPE_C1D2       = new URI("urn:root:child1:descendant2");
+                URI ID_SCOPE_C2D1       = new URI("urn:root:child2:descendant1");
+                URI ID_SCOPE_C2D2       = new URI("urn:root:child2:descendant2");
 
                 this.scopeResolver.add(ID_SCOPE_ROOT, ID_SCOPE_CHILD1);
                 this.scopeResolver.add(ID_SCOPE_CHILD1, ID_SCOPE_C1D1);
@@ -134,10 +134,10 @@ public class Conformance {
     }
 
     private boolean init(String[] args) {
-        boolean lenientRequests	= true;
-        boolean lenientPolicies	= false;
+        boolean lenientRequests = true;
+        boolean lenientPolicies = false;
         // default is to not run any non-first-time iterations
-        int iterations			= -1;
+        int iterations                  = -1;
         String testSetDirectoryNames = "";
         for (int i = 0 ; i < args.length ; ) {
 
@@ -164,8 +164,8 @@ public class Conformance {
                 // File path name where output will be put - default is stdout == Console
             } else if (args[i].equals("-o") || args[i].equals("--output")) {
                 if (i+1 < args.length) {
-                    this.outputFile	= new File(args[i+1]);
-                    i	+= 2;
+                    this.outputFile     = new File(args[i+1]);
+                    i   += 2;
                 } else {
                     System.err.println("Missing argument to " + args[i] + " command line option");
                     return false;
@@ -183,35 +183,35 @@ public class Conformance {
                 }
                 // Include full details in the response, both the expected reqsponse (from file) and the actual response
             } else if (args[i].equals("-v") || args[i].equals("--verbose")) {
-                this.verbose	= true;
+                this.verbose    = true;
                 i++;
                 // Report only failures (success is silent)
             } else if (args[i].equals("-f") || args[i].equals("--failures")) {
-                this.failuresOnly	= true;
+                this.failuresOnly       = true;
                 i++;
                 // When set, the XML must not contain extra attibutes/elements.  Default is "lenient" where unexpected entries are ignored
             } else if (args[i].equals("-s") || args[i].equals("--strict")) {
-                this.strict	= true;
+                this.strict     = true;
                 i++;
                 // (self explanatory)
             } else if (args[i].equals("--stop-on-error")) {
-                this.stopOnFirstError	= true;
+                this.stopOnFirstError   = true;
                 i++;
             } else if (args[i].equals("--lenient")) {
-                lenientPolicies	= true;
-                lenientRequests	= true;
+                lenientPolicies = true;
+                lenientRequests = true;
                 i++;
             } else if (args[i].equals("--lenient-policies")) {
-                lenientPolicies	= true;
+                lenientPolicies = true;
                 i++;
             } else if (args[i].equals("--lenient-requests")) {
-                lenientRequests	= true;
+                lenientRequests = true;
                 i++;
             } else if (args[i].equals("--strict-policies")) {
-                lenientPolicies	= false;
+                lenientPolicies = false;
                 i++;
             } else if (args[i].equals("--strict-requests")) {
-                lenientRequests	= false;
+                lenientRequests = false;
                 i++;
             } else if (args[i].equals("--iterations")) {
                 // this is a count of how many ADDITIONAL times the decide() should be called.
@@ -220,8 +220,8 @@ public class Conformance {
                 // and timings for 1 or more non-first-time calls to decide().
                 if (i+1 < args.length) {
                     try {
-                        iterations	= Integer.parseInt(args[i+1]);
-                        i	+= 2;
+                        iterations      = Integer.parseInt(args[i+1]);
+                        i       += 2;
                     } catch (NumberFormatException ex) {
                         System.err.println("Invalid iteration count '" + args[i+1] + "'");
                         return false;
@@ -240,7 +240,7 @@ public class Conformance {
             }
         }
 
-        this.testEngine	= new ConformanceTestEngine(this.getScopeResolver(), lenientRequests, lenientPolicies, iterations);
+        this.testEngine = new ConformanceTestEngine(this.getScopeResolver(), lenientRequests, lenientPolicies, iterations);
 
         if (testSetDirectoryNames.length() == 0) {
             System.err.println("No test set directory given (need -i or --iniput command line option)");
@@ -259,10 +259,10 @@ public class Conformance {
         }
 
         if (this.outputFile == null) {
-            this.outputFileWriter	= new PrintWriter(System.out);
+            this.outputFileWriter       = new PrintWriter(System.out);
         } else {
             try {
-                this.outputFileWriter	= new PrintWriter(new FileOutputStream(this.outputFile));
+                this.outputFileWriter   = new PrintWriter(new FileOutputStream(this.outputFile));
             } catch (IOException ex) {
                 System.err.println("Cannot open " + this.outputFile.getAbsolutePath() + " for writing.");
                 return false;
@@ -275,61 +275,61 @@ public class Conformance {
     private void printHelp() {
         System.out.println("usage: Conformance --input <tests_directory> OPTIONS");
         System.out.println("");
-        System.out.println(" -f, --failures		Only include failed tests in the output.  \n"+
-                           "			Default is to include all test's results in the output file.");
+        System.out.println(" -f, --failures             Only include failed tests in the output.  \n"+
+                           "                    Default is to include all test's results in the output file.");
         System.out.println("");
-        System.out.println(" -h, --help		Prints help.");
+        System.out.println(" -h, --help         Prints help.");
 
         System.out.println("");
-        System.out.println(" -i, --input <dir>	Directory containing the XML Request/Response files.  \n"+
-                           "			This may be multiple space-separated directory paths.  REQUIRED");
+        System.out.println(" -i, --input <dir>  Directory containing the XML Request/Response files.  \n"+
+                           "                    This may be multiple space-separated directory paths.  REQUIRED");
 
         System.out.println("");
-        System.out.println(" --iterations		The number of times to run through the set of tests in the input directory.");
+        System.out.println(" --iterations               The number of times to run through the set of tests in the input directory.");
 
         System.out.println("");
-        System.out.println(" --lenient		Allow both Requests and Policies to have unexpected elements, no data in <Content>, etc. \n"+
-                           "			Default is to not allow anything that is not explicitly listed in the XACML spec.");
+        System.out.println(" --lenient          Allow both Requests and Policies to have unexpected elements, no data in <Content>, etc. \n"+
+                           "                    Default is to not allow anything that is not explicitly listed in the XACML spec.");
 
         System.out.println("");
-        System.out.println(" --lenient-policies	Allow Policies to have unexpected elements, no data in <Content>, etc.  \n" +
-                           "			Default is to not allow anything that is not explicitly listed in the XACML spec.");
+        System.out.println(" --lenient-policies Allow Policies to have unexpected elements, no data in <Content>, etc.  \n" +
+                           "                    Default is to not allow anything that is not explicitly listed in the XACML spec.");
 
         System.out.println("");
-        System.out.println(" --lenient-requests	Allow Requests to have unexpected elements, no data in <Content>, etc.  \n" +
-                           "			Default is to not allow anything that is not explicitly listed in the XACML spec.");
+        System.out.println(" --lenient-requests Allow Requests to have unexpected elements, no data in <Content>, etc.  \n" +
+                           "                    Default is to not allow anything that is not explicitly listed in the XACML spec.");
 
         System.out.println("");
-        System.out.println(" -o, --output <dir>	Directory where the output results file will be put.");
+        System.out.println(" -o, --output <dir> Directory where the output results file will be put.");
 
         System.out.println("");
-        System.out.println(" -s, --strict		Check both the Decision and all other parts of the Response (Attributes, Obligations and Advice). \n "+
-                           "			Default is to check just the Decision.");
+        System.out.println(" -s, --strict               Check both the Decision and all other parts of the Response (Attributes, Obligations and Advice). \n "+
+                           "                    Default is to check just the Decision.");
 
         System.out.println("");
-        System.out.println(" --stop-on-error	Stop running conformance tests the first time one fails.  Default is to continue through all tests.");
+        System.out.println(" --stop-on-error    Stop running conformance tests the first time one fails.  Default is to continue through all tests.");
 
         System.out.println("");
-        System.out.println(" --strict-policies	Require Policies to have no unexpected elements, data in <Content>, etc.  \n" +
-                           "			This is the default, but can be used to override Policies when option --lenient is used.");
+        System.out.println(" --strict-policies  Require Policies to have no unexpected elements, data in <Content>, etc.  \n" +
+                           "                    This is the default, but can be used to override Policies when option --lenient is used.");
 
         System.out.println("");
-        System.out.println(" --strict-requests	Require Requests to have no unexpected elements, data in <Content>, etc.  \n" +
-                           "			This is the default, but can be used to override Requests when option --lenient is used.");
+        System.out.println(" --strict-requests  Require Requests to have no unexpected elements, data in <Content>, etc.  \n" +
+                           "                    This is the default, but can be used to override Requests when option --lenient is used.");
 
         System.out.println("");
-        System.out.println(" -t, --tests <list of test names>	A space-separated list of specific tests to be run. \n" +
-                           "			These are just the names of the tests as in 'IIA001 IIC178'.  \n" +
-                           "			Default is to run all tests in the input directory.");
+        System.out.println(" -t, --tests <list of test names>   A space-separated list of specific tests to be run. \n" +
+                           "                    These are just the names of the tests as in 'IIA001 IIC178'.  \n" +
+                           "                    Default is to run all tests in the input directory.");
 
         System.out.println("");
-        System.out.println(" -v, --verbose 		The entire expected and actual Response objects in the output.  \n"+
-                           "			Default is just a summary line.");
+        System.out.println(" -v, --verbose              The entire expected and actual Response objects in the output.  \n"+
+                           "                    Default is just a summary line.");
 
     }
 
     private boolean failed(ConformanceTestResult conformanceTestResult) {
-        ResponseMatchResult responseMatchResult	= conformanceTestResult.getResponseMatchResult();
+        ResponseMatchResult responseMatchResult = conformanceTestResult.getResponseMatchResult();
         if (responseMatchResult == null) {
             return true;
         }
@@ -372,12 +372,12 @@ public class Conformance {
         if (attribute.getIssuer() != null) {
             this.outputFileWriter.println("\t\t\t\t\t\tIssuer: " + attribute.getIssuer());
         }
-        Iterator<AttributeValue<?>> iterAttributeValues	= attribute.getValues().iterator();
+        Iterator<AttributeValue<?>> iterAttributeValues = attribute.getValues().iterator();
         if (iterAttributeValues.hasNext()) {
             this.outputFileWriter.println("\t\t\t\t\t\tValues: ");
             while (iterAttributeValues.hasNext()) {
                 this.outputFileWriter.print("\t\t\t\t\t\t\t");
-                AttributeValue<?> attributeValue	= iterAttributeValues.next();
+                AttributeValue<?> attributeValue        = iterAttributeValues.next();
                 if (attributeValue.getDataTypeId() != null) {
                     this.outputFileWriter.print("DataType: " + attributeValue.getDataTypeId().stringValue() + " ");
                 }
@@ -391,7 +391,7 @@ public class Conformance {
 
     private void dump(AttributeCategory attributeCategory) {
         this.outputFileWriter.println("\t\t\tAttributeCategory: " + (attributeCategory.getCategory() == null ? "" : attributeCategory.getCategory().stringValue()));
-        Collection<Attribute> listAttributes	= attributeCategory.getAttributes();
+        Collection<Attribute> listAttributes    = attributeCategory.getAttributes();
         if (listAttributes.size() > 0) {
             this.outputFileWriter.println("\t\t\t\tAttributes:");
             for (Attribute attribute: listAttributes) {
@@ -417,14 +417,14 @@ public class Conformance {
                 this.outputFileWriter.println("\t\t\tStatusDetail: " + result.getStatus().getStatusDetail().toString());
             }
         }
-        Collection<Advice> listAdvice	= result.getAssociatedAdvice();
+        Collection<Advice> listAdvice   = result.getAssociatedAdvice();
         if (listAdvice.size() > 0) {
             this.outputFileWriter.println("\t\tAdvice:");
             for (Advice advice : listAdvice) {
                 if (advice.getId() != null) {
                     this.outputFileWriter.println("\t\t\tId: " + advice.getId().stringValue());
                 }
-                Collection<AttributeAssignment> attributeAssignments	= advice.getAttributeAssignments();
+                Collection<AttributeAssignment> attributeAssignments    = advice.getAttributeAssignments();
                 if (attributeAssignments.size() > 0) {
                     this.outputFileWriter.println("\t\t\tAttributeAssignments:");
                     for (AttributeAssignment attributeAssignment: attributeAssignments) {
@@ -433,13 +433,13 @@ public class Conformance {
                 }
             }
         }
-        Collection<Obligation> listObligations	= result.getObligations();
+        Collection<Obligation> listObligations  = result.getObligations();
         if (listObligations.size() > 0) {
             for (Obligation obligation: listObligations) {
                 if (obligation.getId() != null) {
                     this.outputFileWriter.println("\t\t\tId: " + obligation.getId().stringValue());
                 }
-                Collection<AttributeAssignment> attributeAssignments	= obligation.getAttributeAssignments();
+                Collection<AttributeAssignment> attributeAssignments    = obligation.getAttributeAssignments();
                 if (attributeAssignments.size() > 0) {
                     this.outputFileWriter.println("\t\t\tAttributeAssignments:");
                     for (AttributeAssignment attributeAssignment : attributeAssignments) {
@@ -448,7 +448,7 @@ public class Conformance {
                 }
             }
         }
-        Collection<AttributeCategory> listAttributeCategories	= result.getAttributes();
+        Collection<AttributeCategory> listAttributeCategories   = result.getAttributes();
         if (listAttributeCategories.size() > 0) {
             this.outputFileWriter.println("\t\tAttributes:");
             for (AttributeCategory attributeCategory : listAttributeCategories) {
@@ -484,7 +484,7 @@ public class Conformance {
 
     private void dump(ConformanceTestResult conformanceTestResult) {
 
-        ResponseMatchResult responseMatchResult	= conformanceTestResult.getResponseMatchResult();
+        ResponseMatchResult responseMatchResult = conformanceTestResult.getResponseMatchResult();
         if (this.verbose) {
             this.outputFileWriter.println("========== Test " + conformanceTestResult.getConformanceTest().getTestName() + " ==========");
             this.dump("Expected Response", conformanceTestResult.getExpectedResponse());
@@ -501,14 +501,14 @@ public class Conformance {
                 this.outputFileWriter.println("========== End ==========");
             }
         } else {
-            String testName	= conformanceTestResult.getConformanceTest().getTestName();
+            String testName     = conformanceTestResult.getConformanceTest().getTestName();
             if (responseMatchResult != null) {
-                Iterator<ResultMatchResult> iterResultMatches	= responseMatchResult.getResultMatchResults();
+                Iterator<ResultMatchResult> iterResultMatches   = responseMatchResult.getResultMatchResults();
                 if (iterResultMatches == null || !iterResultMatches.hasNext()) {
                     this.outputFileWriter.println(testName);
                 } else {
                     while (iterResultMatches.hasNext()) {
-                        ResultMatchResult resultMatchResult	= iterResultMatches.next();
+                        ResultMatchResult resultMatchResult     = iterResultMatches.next();
                         this.outputFileWriter.printf("%s,%s,%s,%s,%s,%s,%s,%s,%d,%d\n",
                                                      testName,
                                                      resultMatchResult.decisionsMatch(),
@@ -530,22 +530,22 @@ public class Conformance {
 
     private boolean run(ConformanceTest conformanceTest) throws Exception {
         this.testsRun++;
-        ConformanceTestResult conformanceTestResult	= this.testEngine.run(conformanceTest);
-        boolean bFailed								= true;
+        ConformanceTestResult conformanceTestResult     = this.testEngine.run(conformanceTest);
+        boolean bFailed                                                         = true;
         if (conformanceTestResult != null) {
-            ResponseMatchResult responseMatchResult	= conformanceTestResult.getResponseMatchResult();
+            ResponseMatchResult responseMatchResult     = conformanceTestResult.getResponseMatchResult();
             if (responseMatchResult != null) {
                 if (responseMatchResult.decisionsMatch()) {
                     this.decisionsMatch++;
-                    this.statusCodesMatch	+= (responseMatchResult.statusCodesMatch() ? 1 : 0);
-                    this.attributesMatch	+= (responseMatchResult.attributesMatch() ? 1 : 0);
-                    this.policyIdsMatch		+= (responseMatchResult.policyIdentifiersMatch() ? 1 : 0);
-                    this.policySetIdsMatch	+= (responseMatchResult.policySetIdentifiersMatch() ? 1 : 0);
-                    this.associatedAdviceMatch	+= (responseMatchResult.associatedAdviceMatches() ? 1 : 0);
-                    this.obligationsMatch		+= (responseMatchResult.obligationsMatch() ? 1 : 0);
+                    this.statusCodesMatch       += (responseMatchResult.statusCodesMatch() ? 1 : 0);
+                    this.attributesMatch        += (responseMatchResult.attributesMatch() ? 1 : 0);
+                    this.policyIdsMatch         += (responseMatchResult.policyIdentifiersMatch() ? 1 : 0);
+                    this.policySetIdsMatch      += (responseMatchResult.policySetIdentifiersMatch() ? 1 : 0);
+                    this.associatedAdviceMatch  += (responseMatchResult.associatedAdviceMatches() ? 1 : 0);
+                    this.obligationsMatch               += (responseMatchResult.obligationsMatch() ? 1 : 0);
                 }
-                this.unknownFunctions		+= (responseMatchResult.unknownFunction() ? 1 : 0);
-                bFailed	= this.failed(conformanceTestResult);
+                this.unknownFunctions           += (responseMatchResult.unknownFunction() ? 1 : 0);
+                bFailed = this.failed(conformanceTestResult);
                 if (bFailed || !this.failuresOnly) {
                     this.dump(conformanceTestResult);
                 }
@@ -557,25 +557,25 @@ public class Conformance {
     }
 
     private void run() throws Exception {
-        long tStart	= System.currentTimeMillis();
+        long tStart     = System.currentTimeMillis();
 
         if (!this.verbose) {
             this.outputFileWriter.println("Test,Decision,Status,Attributes,PolicyIds,PolicySetIds,Advice,Obligations");
         }
-        Iterator<ConformanceTest> iterConformanceTests	= this.testSet.getConformanceTests();
-        boolean bContinue								= true;
+        Iterator<ConformanceTest> iterConformanceTests  = this.testSet.getConformanceTests();
+        boolean bContinue                                                               = true;
         while (bContinue && iterConformanceTests.hasNext()) {
-//			bContinue	= this.run(iterConformanceTests.next());
+//                      bContinue       = this.run(iterConformanceTests.next());
             ConformanceTest test = iterConformanceTests.next();
             if (testNamesToRun.size() > 0) {
                 if ( ! testNamesToRun.contains(test.getTestName())) {
                     continue;
                 }
             }
-            bContinue	= this.run(test);
+            bContinue   = this.run(test);
         }
 
-        long tElapsed	= System.currentTimeMillis() - tStart;
+        long tElapsed   = System.currentTimeMillis() - tStart;
 
         if (this.verbose) {
             this.outputFileWriter.println("Tests run = " + this.testsRun);
@@ -601,12 +601,12 @@ public class Conformance {
         }
 
         if (tElapsed > 0) {
-            long tHours		= tElapsed / (60*60*1000);
-            tElapsed		= tElapsed - tHours * 60 * 60 *1000;
-            long tMinutes	= tElapsed / (60*1000);
-            tElapsed		= tElapsed - tMinutes * 60 * 1000;
-            long tSeconds	= tElapsed / 1000;
-            tElapsed		= tElapsed - tSeconds * 1000;
+            long tHours         = tElapsed / (60*60*1000);
+            tElapsed            = tElapsed - tHours * 60 * 60 *1000;
+            long tMinutes       = tElapsed / (60*1000);
+            tElapsed            = tElapsed - tMinutes * 60 * 1000;
+            long tSeconds       = tElapsed / 1000;
+            tElapsed            = tElapsed - tSeconds * 1000;
 
             this.outputFileWriter.printf("Elapsed time = %02d:%02d:%02d.%03d\n", tHours, tMinutes, tSeconds, tElapsed);
             this.outputFileWriter.printf("First decide time in nano-seconds %d\n", this.testEngine.getFirstDecideTime());
@@ -621,7 +621,7 @@ public class Conformance {
     }
 
     public static void main(String[] args) {
-        Conformance conformance	= new Conformance();
+        Conformance conformance = new Conformance();
         try {
             if (conformance.init(args)) {
                 conformance.run();

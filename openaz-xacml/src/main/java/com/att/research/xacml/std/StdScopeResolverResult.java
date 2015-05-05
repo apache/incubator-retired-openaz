@@ -46,10 +46,10 @@ import com.att.research.xacml.util.StringUtils;
  */
 public class StdScopeResolverResult implements ScopeResolverResult {
     private Status status;
-    private List<Attribute> attributes	= new ArrayList<Attribute>();
+    private List<Attribute> attributes  = new ArrayList<Attribute>();
 
     public StdScopeResolverResult(Status statusIn, Collection<Attribute> attributesIn) {
-        this.status	= statusIn;
+        this.status     = statusIn;
         if (attributesIn != null) {
             this.attributes.addAll(attributesIn);
         }
@@ -69,7 +69,7 @@ public class StdScopeResolverResult implements ScopeResolverResult {
     }
 
     public void setStatus(Status statusIn) {
-        this.status	= statusIn;
+        this.status     = statusIn;
     }
 
     @Override
@@ -83,23 +83,23 @@ public class StdScopeResolverResult implements ScopeResolverResult {
 
     @Override
     public String toString() {
-        StringBuilder stringBuilder	= new StringBuilder("{");
-        boolean needsComma			= false;
+        StringBuilder stringBuilder     = new StringBuilder("{");
+        boolean needsComma                      = false;
 
-        Status statusToDump	= this.getStatus();
+        Status statusToDump     = this.getStatus();
         if (statusToDump != null) {
             stringBuilder.append("status=");
             stringBuilder.append(statusToDump.toString());
-            needsComma	= true;
+            needsComma  = true;
         }
-        Iterator<Attribute> iterAttributes	= this.getAttributes();
+        Iterator<Attribute> iterAttributes      = this.getAttributes();
         if (iterAttributes != null && iterAttributes.hasNext()) {
             if (needsComma) {
                 stringBuilder.append(',');
             }
             stringBuilder.append("attributes=");
             stringBuilder.append(StringUtils.toString(iterAttributes, true));
-            needsComma	= true;
+            needsComma  = true;
         }
         stringBuilder.append('}');
         return stringBuilder.toString();

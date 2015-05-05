@@ -56,7 +56,7 @@ public class DOMPolicySetIdReference {
      * @throws DOMStructureException if there is an error parsing the <code>Node</code>
      */
     public static PolicySetIdReference newInstance(Node nodePolicySetIdReference, PolicySet policySetParent) throws DOMStructureException {
-        PolicySetIdReference domPolicySetIdReference	= new PolicySetIdReference(policySetParent);
+        PolicySetIdReference domPolicySetIdReference    = new PolicySetIdReference(policySetParent);
 
         try {
             domPolicySetIdReference.setIdReferenceMatch(DOMIdReferenceMatch.newInstance(nodePolicySetIdReference));

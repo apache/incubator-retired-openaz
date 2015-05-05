@@ -45,8 +45,8 @@ import com.att.research.xacmlatt.pdp.util.ATTPDPProperties;
  *
  */
 public abstract class EvaluationContextFactory {
-    private static final String	FACTORYID					= ATTPDPProperties.PROP_EVALUATIONCONTEXTFACTORY;
-    private static final String DEFAULT_FACTORY_CLASSNAME	= "com.att.research.xacmlatt.pdp.std.StdEvaluationContextFactory";
+    private static final String FACTORYID                                       = ATTPDPProperties.PROP_EVALUATIONCONTEXTFACTORY;
+    private static final String DEFAULT_FACTORY_CLASSNAME       = "com.att.research.xacmlatt.pdp.std.StdEvaluationContextFactory";
 
     protected EvaluationContextFactory() {
     }

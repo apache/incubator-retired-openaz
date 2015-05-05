@@ -59,14 +59,14 @@ import com.att.research.xacmlatt.pdp.eval.Matchable;
  *
  */
 public class Rule extends PolicyComponent implements Matchable, Evaluatable, Traceable {
-    private Policy						policy;
-    private String						ruleId;
-    private RuleEffect					ruleEffect;
-    private String 						description;
-    private Target						target;
-    private Condition					condition;
-    private List<ObligationExpression>	obligationExpressions	= new ArrayList<ObligationExpression>();
-    private List<AdviceExpression>		adviceExpressions		= new ArrayList<AdviceExpression>();
+    private Policy                                              policy;
+    private String                                              ruleId;
+    private RuleEffect                                  ruleEffect;
+    private String                                              description;
+    private Target                                              target;
+    private Condition                                   condition;
+    private List<ObligationExpression>  obligationExpressions   = new ArrayList<ObligationExpression>();
+    private List<AdviceExpression>              adviceExpressions               = new ArrayList<AdviceExpression>();
 
     protected List<ObligationExpression> getObligationExpressionList() {
         return this.obligationExpressions;
@@ -100,7 +100,7 @@ public class Rule extends PolicyComponent implements Matchable, Evaluatable, Tra
     }
 
     public void setPolicy(Policy policyIn) {
-        this.policy	= policyIn;
+        this.policy     = policyIn;
     }
 
     public String getRuleId() {
@@ -108,7 +108,7 @@ public class Rule extends PolicyComponent implements Matchable, Evaluatable, Tra
     }
 
     public void setRuleId(String ruleIdIn) {
-        this.ruleId	= ruleIdIn;
+        this.ruleId     = ruleIdIn;
     }
 
     public RuleEffect getRuleEffect() {
@@ -116,7 +116,7 @@ public class Rule extends PolicyComponent implements Matchable, Evaluatable, Tra
     }
 
     public void setRuleEffect(RuleEffect ruleEffectIn) {
-        this.ruleEffect	= ruleEffectIn;
+        this.ruleEffect = ruleEffectIn;
     }
 
     public String getDescription() {
@@ -124,7 +124,7 @@ public class Rule extends PolicyComponent implements Matchable, Evaluatable, Tra
     }
 
     public void setDescription(String descriptionIn) {
-        this.description	= descriptionIn;
+        this.description        = descriptionIn;
     }
 
     public Target getTarget() {
@@ -132,7 +132,7 @@ public class Rule extends PolicyComponent implements Matchable, Evaluatable, Tra
     }
 
     public void setTarget(Target targetIn) {
-        this.target	= targetIn;
+        this.target     = targetIn;
     }
 
     public Condition getCondition() {
@@ -140,7 +140,7 @@ public class Rule extends PolicyComponent implements Matchable, Evaluatable, Tra
     }
 
     public void setCondition(Condition conditionIn) {
-        this.condition	= conditionIn;
+        this.condition  = conditionIn;
     }
 
     public Iterator<ObligationExpression> getObligationExpressions() {
@@ -190,7 +190,7 @@ public class Rule extends PolicyComponent implements Matchable, Evaluatable, Tra
         /*
          * See if our target matches
          */
-        MatchResult matchResult	= this.match(evaluationContext);
+        MatchResult matchResult = this.match(evaluationContext);
         if (evaluationContext.isTracing()) {
             evaluationContext.trace(new StdTraceEvent<MatchResult>("Match", this, matchResult));
         }
@@ -206,9 +206,9 @@ public class Rule extends PolicyComponent implements Matchable, Evaluatable, Tra
         /*
          * See if our condition matches
          */
-        Condition thisCondition	= this.getCondition();
+        Condition thisCondition = this.getCondition();
         if (thisCondition != null) {
-            ExpressionResultBoolean expressionResultCondition	= thisCondition.evaluate(evaluationContext, this.getPolicy().getPolicyDefaults());
+            ExpressionResultBoolean expressionResultCondition   = thisCondition.evaluate(evaluationContext, this.getPolicy().getPolicyDefaults());
             assert(expressionResultCondition != null);
 
             if (evaluationContext.isTracing()) {
@@ -225,10 +225,10 @@ public class Rule extends PolicyComponent implements Matchable, Evaluatable, Tra
         /*
          * The target and condition match, so we can start creating the EvaluationResult
          */
-        List<Obligation> listObligations	= ObligationExpression.evaluate(evaluationContext, this.getPolicy().getPolicyDefaults(), this.getRuleEffect().getDecision(), this.getObligationExpressionList());
-        List<Advice> listAdvices			= AdviceExpression.evaluate(evaluationContext, this.getPolicy().getPolicyDefaults(), this.getRuleEffect().getDecision(), this.getAdviceExpressionList());
+        List<Obligation> listObligations        = ObligationExpression.evaluate(evaluationContext, this.getPolicy().getPolicyDefaults(), this.getRuleEffect().getDecision(), this.getObligationExpressionList());
+        List<Advice> listAdvices                        = AdviceExpression.evaluate(evaluationContext, this.getPolicy().getPolicyDefaults(), this.getRuleEffect().getDecision(), this.getAdviceExpressionList());
 
-        EvaluationResult evaluationResult	= new EvaluationResult(this.getRuleEffect().getDecision(), listObligations, listAdvices);
+        EvaluationResult evaluationResult       = new EvaluationResult(this.getRuleEffect().getDecision(), listObligations, listAdvices);
         if (evaluationContext.isTracing()) {
             evaluationContext.trace(new StdTraceEvent<Result>("Result", this, evaluationResult));
         }
@@ -240,7 +240,7 @@ public class Rule extends PolicyComponent implements Matchable, Evaluatable, Tra
         if (!this.validate()) {
             return new MatchResult(new StdStatus(this.getStatusCode(), this.getStatusMessage()));
         }
-        Target thisTarget	= this.getTarget();
+        Target thisTarget       = this.getTarget();
         if (thisTarget != null) {
             return thisTarget.match(evaluationContext);
         } else {
@@ -265,7 +265,7 @@ public class Rule extends PolicyComponent implements Matchable, Evaluatable, Tra
 
     @Override
     public String toString() {
-        StringBuffer stringBuffer	= new StringBuffer("{");
+        StringBuffer stringBuffer       = new StringBuffer("{");
         stringBuffer.append("super=");
         stringBuffer.append(super.toString());
 

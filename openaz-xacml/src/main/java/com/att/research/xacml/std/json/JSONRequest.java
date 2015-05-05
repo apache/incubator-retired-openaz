@@ -108,15 +108,15 @@ import com.fasterxml.jackson.databind.SerializationFeature;
  *
  */
 public class JSONRequest {
-    private static final Log logger	= LogFactory.getLog(JSONRequest.class);
+    private static final Log logger     = LogFactory.getLog(JSONRequest.class);
 
     /*
      * Map of Data Type Identifiers used to map shorthand notation for DataTypes into the full Identifer.
      * This is loaded the first time a Request is processed.
      * Loading is done using Reflection.
      * The map contains keys for both the short form and the long form of each DataType.  For example both of the following are in the table:
-     * 		http://www.w3.org/2001/XMLSchema#base64Binary = http://www.w3.org/2001/XMLSchema#base64Binary
-     * 										 base64Binary = http://www.w3.org/2001/XMLSchema#base64Binary
+     *          http://www.w3.org/2001/XMLSchema#base64Binary = http://www.w3.org/2001/XMLSchema#base64Binary
+     *                                                                           base64Binary = http://www.w3.org/2001/XMLSchema#base64Binary
      *
      * (Note difference in structure and usage from JSONResponse.)
      */
@@ -196,9 +196,9 @@ public class JSONRequest {
      * Convert a JSON representation of an XPathExpression into the internal objects.
      * XPathExpression is the only DataType that has a complex multi-part description.
      * It includes
-     * 	- XPathCategory - required
-     * 	- XPath - required
-     * 	- Namespaces - optional; a list of complex structures
+     *  - XPathCategory - required
+     *  - XPath - required
+     *  - Namespaces - optional; a list of complex structures
      *
      * @param valueMap
      * @return
@@ -283,7 +283,7 @@ public class JSONRequest {
      * This is done once the first time a Request is processed.
      */
     private static void initShorthandMap() throws JSONStructureException {
-        Field[] declaredFields	= XACML3.class.getDeclaredFields();
+        Field[] declaredFields  = XACML3.class.getDeclaredFields();
         shorthandMap = new HashMap<String, Identifier>();
         for (Field field : declaredFields) {
             if (Modifier.isStatic(field.getModifiers()) &&
@@ -402,11 +402,11 @@ public class JSONRequest {
 
         //
         // Data Type is complicated because:
-        //	- it may use shorthand (e.g. "integer" instead of full Id)
-        //	- it may be missing and have to be inferred
-        //	- inference on Arrays of values is tricky
-        //	- arrays must all use the same DataType
-        //	- we are limited in the data types that the Jackson parser is able to infer
+        //      - it may use shorthand (e.g. "integer" instead of full Id)
+        //      - it may be missing and have to be inferred
+        //      - inference on Arrays of values is tricky
+        //      - arrays must all use the same DataType
+        //      - we are limited in the data types that the Jackson parser is able to infer
         //
         Object DataType = attributeMap.remove("DataType");
         if (DataType != null && ! (DataType instanceof String)) {
@@ -430,8 +430,8 @@ public class JSONRequest {
         // The best we can do is infer based on the JSON data type, so we recognize boolean, integer, and double, and everything else is handled as a string.
         // Unfortunately the value may be an array of values, so we need to look at all of them before making a decision.
         // The algorithm for arrays is:
-        //		- take the dataType of the first element in the array as the array's data type
-        //		- if the array is of type Integer and we see a Double, make the array be Double.
+        //              - take the dataType of the first element in the array as the array's data type
+        //              - if the array is of type Integer and we see a Double, make the array be Double.
         // Try to determine the over-all type for the list based on the contents.
         // The only mixing that is allowed is Integers and Doubles, in which case the list is Double
 
@@ -441,9 +441,9 @@ public class JSONRequest {
 
 //TODO - ASSUME that we need to infer data type for array if not given.  Spec is inconsistent on this point, but author seems to want to do it.
 //TODO - Also ASSUME that
-//			- everything other than JSON integer, double and boolean is handled as a string, and
-//			- the only mixture of data types allowed within the same array is integer and double, yielding the DataType for the array = Double, and
-//			- an array of the same JSON data type has the same data type;  for strings this means type=string irrespective of what the strings represent (e.g. Date, URI, etc).
+//                      - everything other than JSON integer, double and boolean is handled as a string, and
+//                      - the only mixture of data types allowed within the same array is integer and double, yielding the DataType for the array = Double, and
+//                      - an array of the same JSON data type has the same data type;  for strings this means type=string irrespective of what the strings represent (e.g. Date, URI, etc).
 
         if (Value instanceof List) {
             List<?> valueList = (List<?>)Value;
@@ -616,7 +616,7 @@ public class JSONRequest {
         String unescapedContent = xmlContent.replace("\\\"", "\"");
         unescapedContent = unescapedContent.replace("\\\\", "\\");
 
-//    	logger.info("Escaped content: \n" + unescapedContent);
+//      logger.info("Escaped content: \n" + unescapedContent);
 
         try (InputStream is = new ByteArrayInputStream(unescapedContent.getBytes("UTF-8"))) {
             doc = db.parse(is);
@@ -915,10 +915,10 @@ public class JSONRequest {
             }
 
             // The following may be either a single instance or an array.  This allows multiple decisions to work with the Default Category objects.
-            //	Example:
-            //		"AccessSubject" : [ {attributes group one},
-            //						{attributes group two}
-            //					]
+            //  Example:
+            //          "AccessSubject" : [ {attributes group one},
+            //                                          {attributes group two}
+            //                                  ]
 
             //
             // Look for default Shorthand AccessSubject
@@ -1271,18 +1271,18 @@ public class JSONRequest {
             // but if we use the Default category objects we might end up with multiples of the same Category name,
             // and the Jackson parser does not handle that well.
             // Example: This is ok because the AccessSubjects are independent items within the list:
-            // 		{ "Request" : {
-            //			"Category" : [
+            //          { "Request" : {
+            //                  "Category" : [
             //             { "CategoryId" : ""subject", " },
             //             { "CategoryId" : ""subject", " }
-            //			]
-            //		}}
+            //                  ]
+            //          }}
             //
             // This is NOT ok because the Subjects are seen as duplicate elements:
-            //		{ "Request" : {
-            //		   "AccessSubject" : {"},
-            //		   "AccessSubject" : {"},
-            //		}}
+            //          { "Request" : {
+            //             "AccessSubject" : {"},
+            //             "AccessSubject" : {"},
+            //          }}
 
             categoryMap.put("CategoryId", ra.getCategory().stringValue());
             generalCategoriesList.add(categoryMap);

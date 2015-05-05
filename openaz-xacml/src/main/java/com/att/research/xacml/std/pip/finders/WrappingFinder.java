@@ -51,7 +51,7 @@ public abstract class WrappingFinder implements PIPFinder {
     }
 
     public WrappingFinder(PIPFinder wrappedFinderIn) {
-        this.wrappedFinder	= wrappedFinderIn;
+        this.wrappedFinder      = wrappedFinderIn;
     }
 
     /**
@@ -65,7 +65,7 @@ public abstract class WrappingFinder implements PIPFinder {
      * @throws com.att.research.xacml.api.pip.PIPException if there is an error getting attributes from the wrapped <code>PIPFinder</code>
      */
     protected PIPResponse getAttributesWrapped(PIPRequest pipRequest, PIPEngine exclude, PIPFinder pipFinderParent) throws PIPException {
-        PIPFinder thisWrappedFinder	= this.getWrappedFinder();
+        PIPFinder thisWrappedFinder     = this.getWrappedFinder();
         if (thisWrappedFinder == null) {
             return StdPIPResponse.PIP_RESPONSE_EMPTY;
         } else {

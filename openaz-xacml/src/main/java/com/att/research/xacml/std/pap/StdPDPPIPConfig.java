@@ -44,7 +44,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class StdPDPPIPConfig implements PDPPIPConfig, Serializable {
     private static final long serialVersionUID = 1L;
-    private static Log	logger	= LogFactory.getLog(StdPDPPIPConfig.class);
+    private static Log  logger  = LogFactory.getLog(StdPDPPIPConfig.class);
 
     private String id;
 

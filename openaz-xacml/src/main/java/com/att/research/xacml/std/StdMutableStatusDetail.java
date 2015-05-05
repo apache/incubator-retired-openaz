@@ -44,15 +44,15 @@ import com.att.research.xacml.util.ListUtil;
  *
  */
 public class StdMutableStatusDetail implements StatusDetail {
-    private static final List<MissingAttributeDetail> EMPTY_LIST	= Collections.unmodifiableList(new ArrayList<MissingAttributeDetail>());
+    private static final List<MissingAttributeDetail> EMPTY_LIST        = Collections.unmodifiableList(new ArrayList<MissingAttributeDetail>());
 
-    private List<MissingAttributeDetail>	missingAttributeDetails;
+    private List<MissingAttributeDetail>        missingAttributeDetails;
 
     /**
      * Creates a new empty <code>StdMutableStatusDetail</code>.
      */
     public StdMutableStatusDetail() {
-        this.missingAttributeDetails	= EMPTY_LIST;
+        this.missingAttributeDetails    = EMPTY_LIST;
     }
 
     /**
@@ -97,7 +97,7 @@ public class StdMutableStatusDetail implements StatusDetail {
      */
     public void addMissingAttributeDetail(MissingAttributeDetail missingAttributeDetail) {
         if (this.missingAttributeDetails == EMPTY_LIST) {
-            this.missingAttributeDetails	= new ArrayList<MissingAttributeDetail>();
+            this.missingAttributeDetails        = new ArrayList<MissingAttributeDetail>();
         }
         this.missingAttributeDetails.add(missingAttributeDetail);
     }
@@ -110,7 +110,7 @@ public class StdMutableStatusDetail implements StatusDetail {
     public void addMissingAttributeDetails(Collection<MissingAttributeDetail> missingAttributeDetailsIn) {
         if (missingAttributeDetailsIn != null && missingAttributeDetailsIn.size() > 0) {
             if (this.missingAttributeDetails == EMPTY_LIST) {
-                this.missingAttributeDetails	= new ArrayList<MissingAttributeDetail>();
+                this.missingAttributeDetails    = new ArrayList<MissingAttributeDetail>();
             }
             this.missingAttributeDetails.addAll(missingAttributeDetailsIn);
         }
@@ -123,7 +123,7 @@ public class StdMutableStatusDetail implements StatusDetail {
      * @param missingAttributeDetailsIn the <code>Collection</code> of <code>MissingAttributeDetail</code>s to set in this <code>StdMutableStatusDetail</code>.
      */
     public void setMissingAttributeDetails(Collection<MissingAttributeDetail> missingAttributeDetailsIn) {
-        this.missingAttributeDetails	= EMPTY_LIST;
+        this.missingAttributeDetails    = EMPTY_LIST;
         this.addMissingAttributeDetails(missingAttributeDetailsIn);
     }
 
@@ -134,16 +134,16 @@ public class StdMutableStatusDetail implements StatusDetail {
         } else if (obj == null || !(obj instanceof StatusDetail)) {
             return false;
         } else {
-            StatusDetail objStatusDetail	= (StatusDetail)obj;
+            StatusDetail objStatusDetail        = (StatusDetail)obj;
             return ListUtil.equalsAllowNulls(this.getMissingAttributeDetails(), objStatusDetail.getMissingAttributeDetails());
         }
     }
 
     @Override
     public String toString() {
-        StringBuilder	stringBuilder	= new StringBuilder("{");
+        StringBuilder   stringBuilder   = new StringBuilder("{");
 
-        Collection<MissingAttributeDetail>	listMissingAttributeDetail	= this.getMissingAttributeDetails();
+        Collection<MissingAttributeDetail>      listMissingAttributeDetail      = this.getMissingAttributeDetails();
         if (listMissingAttributeDetail.size() > 0) {
             stringBuilder.append("missingAttributeDetails=[");
             stringBuilder.append(ListUtil.toString(listMissingAttributeDetail));
@@ -157,14 +157,14 @@ public class StdMutableStatusDetail implements StatusDetail {
         if (statusDetail == null) {
             return this;
         }
-        Collection<MissingAttributeDetail> listMissingAttributeDetails	= statusDetail.getMissingAttributeDetails();
+        Collection<MissingAttributeDetail> listMissingAttributeDetails  = statusDetail.getMissingAttributeDetails();
         if (listMissingAttributeDetails.size() == 0) {
             return this;
         }
         if (this.getMissingAttributeDetails().size() == 0) {
             return statusDetail;
         }
-        StdMutableStatusDetail stdStatusDetail	= StdMutableStatusDetail.copy(this);
+        StdMutableStatusDetail stdStatusDetail  = StdMutableStatusDetail.copy(this);
         stdStatusDetail.addMissingAttributeDetails(listMissingAttributeDetails);
         return stdStatusDetail;
     }

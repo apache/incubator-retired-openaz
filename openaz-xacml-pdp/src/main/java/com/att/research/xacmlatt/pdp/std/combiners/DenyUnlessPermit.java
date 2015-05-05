@@ -56,12 +56,12 @@ public class DenyUnlessPermit<T extends com.att.research.xacmlatt.pdp.eval.Evalu
 
     @Override
     public EvaluationResult combine(EvaluationContext evaluationContext, List<CombiningElement<T>> elements, List<CombinerParameter> combinerParameters) throws EvaluationException {
-        EvaluationResult combinedResult			= new EvaluationResult(Decision.DENY);
+        EvaluationResult combinedResult                 = new EvaluationResult(Decision.DENY);
 
-        Iterator<CombiningElement<T>> iterElements	= elements.iterator();
+        Iterator<CombiningElement<T>> iterElements      = elements.iterator();
         while (iterElements.hasNext()) {
-            CombiningElement<T> combiningElement		= iterElements.next();
-            EvaluationResult evaluationResultElement	= combiningElement.evaluate(evaluationContext);
+            CombiningElement<T> combiningElement                = iterElements.next();
+            EvaluationResult evaluationResultElement    = combiningElement.evaluate(evaluationContext);
 
             assert(evaluationResultElement != null);
             switch(evaluationResultElement.getDecision()) {

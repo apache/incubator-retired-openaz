@@ -42,7 +42,7 @@ import com.att.research.xacml.std.StdStatus;
  *
  */
 public class FunctionArgumentBag implements FunctionArgument {
-    private Bag	bag;
+    private Bag bag;
 
     /**
      * Creates a new <code>FunctionArgumentBag</code> from the given <code>Bag</code>.
@@ -50,7 +50,7 @@ public class FunctionArgumentBag implements FunctionArgument {
      * @param bagIn the <code>Bag</code> for the new <code>FunctionArgumentBag</code>.
      */
     public FunctionArgumentBag(Bag bagIn) {
-        this.bag	= bagIn;
+        this.bag        = bagIn;
     }
 
     @Override
@@ -70,7 +70,7 @@ public class FunctionArgumentBag implements FunctionArgument {
 
     @Override
     public AttributeValue<?> getValue() {
-        Iterator<AttributeValue<?>> iterAttributeValues	= this.bag.getAttributeValues();
+        Iterator<AttributeValue<?>> iterAttributeValues = this.bag.getAttributeValues();
         if (iterAttributeValues == null || !iterAttributeValues.hasNext()) {
             return null;
         } else {

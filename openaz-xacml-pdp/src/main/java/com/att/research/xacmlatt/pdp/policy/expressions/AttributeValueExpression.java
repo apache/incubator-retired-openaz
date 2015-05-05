@@ -60,7 +60,7 @@ public class AttributeValueExpression extends Expression {
     }
 
     public AttributeValueExpression(AttributeValue<?> attributeValueIn) {
-        this.attributeValue	= attributeValueIn;
+        this.attributeValue     = attributeValueIn;
     }
 
     public AttributeValue<?> getAttributeValue() {
@@ -68,7 +68,7 @@ public class AttributeValueExpression extends Expression {
     }
 
     public void setAttributeValue(AttributeValue<?> attributeValueIn) {
-        this.attributeValue	= attributeValueIn;
+        this.attributeValue     = attributeValueIn;
     }
 
     @Override
@@ -93,7 +93,7 @@ public class AttributeValueExpression extends Expression {
 
     @Override
     public String toString() {
-        StringBuilder stringBuilder	= new StringBuilder("{");
+        StringBuilder stringBuilder     = new StringBuilder("{");
 
         Object objectToDump;
         if ((objectToDump = this.getAttributeValue()) != null) {

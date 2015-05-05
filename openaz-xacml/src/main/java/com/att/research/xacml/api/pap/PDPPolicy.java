@@ -52,22 +52,22 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 })
 public interface PDPPolicy {
 
-    public String 		getId();
+    public String               getId();
 
-    public String		getName();
+    public String               getName();
 
-    public String		getPolicyId();
+    public String               getPolicyId();
 
-    public String		getDescription();
+    public String               getDescription();
 
-    public String 		getVersion();
-    public int[]		getVersionInts();
+    public String               getVersion();
+    public int[]                getVersionInts();
 
-    public boolean		isRoot();
+    public boolean              isRoot();
 
-    public boolean		isValid();
+    public boolean              isValid();
 
-    public InputStream 	getStream() throws PAPException, IOException;
+    public InputStream  getStream() throws PAPException, IOException;
 
-    public URI			getLocation() throws PAPException, IOException;
+    public URI                  getLocation() throws PAPException, IOException;
 }

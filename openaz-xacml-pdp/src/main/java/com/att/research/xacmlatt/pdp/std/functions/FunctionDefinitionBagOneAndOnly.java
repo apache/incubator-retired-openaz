@@ -49,27 +49,27 @@ import com.att.research.xacmlatt.pdp.policy.FunctionArgument;
  * In the first implementation of XACML we had separate files for each XACML Function.
  * This release combines multiple Functions in fewer files to minimize code duplication.
  * This file supports the following XACML codes:
- * 		string-one-and-only
- * 		boolean-one-and-only
- * 		integer-one-and-only
- * 		double-one-and-only
- * 		time-one-and-only
- * 		date-one-and-only
- * 		dateTime-one-and-only
- * 		anyURI-one-and-only
- * 		hexBinary-one-and-only
- * 		base64Binary-one-and-only
- * 		dayTimeDuration-one-and-only (version 1 and3)
- * 		yearMonthDuration-one-and-only (version 1 and 3)
- * 		x500Name-one-and-only
- * 		rfc822Name-one-and-only
- * 		ipAddress-one-and-only
- * 		dnsName-one-and-only
+ *              string-one-and-only
+ *              boolean-one-and-only
+ *              integer-one-and-only
+ *              double-one-and-only
+ *              time-one-and-only
+ *              date-one-and-only
+ *              dateTime-one-and-only
+ *              anyURI-one-and-only
+ *              hexBinary-one-and-only
+ *              base64Binary-one-and-only
+ *              dayTimeDuration-one-and-only (version 1 and3)
+ *              yearMonthDuration-one-and-only (version 1 and 3)
+ *              x500Name-one-and-only
+ *              rfc822Name-one-and-only
+ *              ipAddress-one-and-only
+ *              dnsName-one-and-only
  *
  *
  *
  * @param <I> the java class for the data type of the elements in the bag handed to this as the Input argument,
- * 	which is also the type of the return value
+ *      which is also the type of the return value
  *
  */
 public class FunctionDefinitionBagOneAndOnly<I> extends FunctionDefinitionBase<I,I> {
@@ -115,7 +115,7 @@ public class FunctionDefinitionBagOneAndOnly<I> extends FunctionDefinitionBase<I
         }
 
         // get the single value from the bag
-        AttributeValue<?> attributeValueOneAndOnly	= bag.getAttributeValues().next();
+        AttributeValue<?> attributeValueOneAndOnly      = bag.getAttributeValues().next();
         assert(attributeValueOneAndOnly != null);
 
         // make sure it has the right type

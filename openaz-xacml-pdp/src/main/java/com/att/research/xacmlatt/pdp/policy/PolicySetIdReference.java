@@ -64,7 +64,7 @@ public class PolicySetIdReference extends PolicyIdReferenceBase<PolicySet> {
     @Override
     protected PolicySet ensureReferencee(EvaluationContext evaluationContext) throws EvaluationException {
         if (this.getReferencee() == null) {
-            PolicyFinderResult<PolicySet> policyFactoryResult	= evaluationContext.getPolicySet(this.getIdReferenceMatch());
+            PolicyFinderResult<PolicySet> policyFactoryResult   = evaluationContext.getPolicySet(this.getIdReferenceMatch());
             if (policyFactoryResult.getStatus() == null || policyFactoryResult.getStatus().isOk()) {
                 this.setReferencee(policyFactoryResult.getPolicyDef());
             }

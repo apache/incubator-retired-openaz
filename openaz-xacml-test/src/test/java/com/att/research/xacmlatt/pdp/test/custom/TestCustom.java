@@ -86,7 +86,7 @@ import com.att.research.xacmlatt.pdp.test.TestBase;
  *
  */
 public class TestCustom extends TestBase {
-    private static final Log logger	= LogFactory.getLog(TestCustom.class);
+    private static final Log logger     = LogFactory.getLog(TestCustom.class);
 
     //
     // Our public's

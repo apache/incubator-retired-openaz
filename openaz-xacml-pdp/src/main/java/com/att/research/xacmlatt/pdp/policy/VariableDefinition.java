@@ -68,7 +68,7 @@ public class VariableDefinition extends PolicyComponent {
      * @param idIn the <code>String</code> id for the variable for this <code>VariableDefinition</code>.
      */
     public void setId(String idIn) {
-        this.id	= idIn;
+        this.id = idIn;
     }
 
     /**
@@ -86,12 +86,12 @@ public class VariableDefinition extends PolicyComponent {
      * @param expressionIn the <code>Expression</code> for this <code>VariableDefinition</code>
      */
     public void setExpression(Expression expressionIn) {
-        this.expression	= expressionIn;
+        this.expression = expressionIn;
     }
 
     @Override
     public String toString() {
-        StringBuilder stringBuilder	= new StringBuilder("{");
+        StringBuilder stringBuilder     = new StringBuilder("{");
         stringBuilder.append("super=");
         stringBuilder.append(super.toString());
 

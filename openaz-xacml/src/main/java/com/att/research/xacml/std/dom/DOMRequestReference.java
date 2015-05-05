@@ -47,7 +47,7 @@ import com.att.research.xacml.std.StdRequestReference;
  *
  */
 public class DOMRequestReference {
-    private static final Log logger	= LogFactory.getLog(DOMRequestReference.class);
+    private static final Log logger     = LogFactory.getLog(DOMRequestReference.class);
 
     protected DOMRequestReference() {
     }
@@ -60,21 +60,21 @@ public class DOMRequestReference {
      * @throws DOMStructureException if the conversion cannot be made
      */
     public static RequestReference newInstance(Node nodeRequestReference) throws DOMStructureException {
-        Element	elementRequestReference			= DOMUtil.getElement(nodeRequestReference);
-        boolean bLenient						= DOMProperties.isLenient();
+        Element elementRequestReference                 = DOMUtil.getElement(nodeRequestReference);
+        boolean bLenient                                                = DOMProperties.isLenient();
 
-        StdMutableRequestReference stdRequestReference	= new StdMutableRequestReference();
+        StdMutableRequestReference stdRequestReference  = new StdMutableRequestReference();
 
-        NodeList children	= elementRequestReference.getChildNodes();
+        NodeList children       = elementRequestReference.getChildNodes();
         int numChildren;
-        boolean sawAttributesReference	= false;
+        boolean sawAttributesReference  = false;
         if (children != null && (numChildren = children.getLength()) > 0) {
             for (int i = 0 ; i < numChildren ; i++) {
-                Node child	= children.item(i);
+                Node child      = children.item(i);
                 if (DOMUtil.isElement(child)) {
                     if (DOMUtil.isInNamespace(child, XACML3.XMLNS) && XACML3.ELEMENT_ATTRIBUTESREFERENCE.equals(child.getLocalName())) {
                         stdRequestReference.add(DOMRequestAttributesReference.newInstance(child));
-                        sawAttributesReference	= true;
+                        sawAttributesReference  = true;
                     } else {
                         if (!bLenient) {
                             throw DOMUtil.newUnexpectedElementException(child, nodeRequestReference);
@@ -90,23 +90,23 @@ public class DOMRequestReference {
     }
 
     public static boolean repair(Node nodeRequestReference) throws DOMStructureException {
-        Element	elementRequestReference			= DOMUtil.getElement(nodeRequestReference);
-        boolean result							= false;
+        Element elementRequestReference                 = DOMUtil.getElement(nodeRequestReference);
+        boolean result                                                  = false;
 
-        NodeList children	= elementRequestReference.getChildNodes();
+        NodeList children       = elementRequestReference.getChildNodes();
         int numChildren;
-        boolean sawAttributesReference	= false;
+        boolean sawAttributesReference  = false;
         if (children != null && (numChildren = children.getLength()) > 0) {
             for (int i = 0 ; i < numChildren ; i++) {
-                Node child	= children.item(i);
+                Node child      = children.item(i);
                 if (DOMUtil.isElement(child)) {
                     if (DOMUtil.isInNamespace(child, XACML3.XMLNS) && XACML3.ELEMENT_ATTRIBUTESREFERENCE.equals(child.getLocalName())) {
-                        result					= DOMRequestAttributesReference.repair(child) || result;
-                        sawAttributesReference	= true;
+                        result                                  = DOMRequestAttributesReference.repair(child) || result;
+                        sawAttributesReference  = true;
                     } else {
                         logger.warn("Unexpected element " + child.getNodeName());
                         elementRequestReference.removeChild(child);
-                        result	= true;
+                        result  = true;
                     }
                 }
             }

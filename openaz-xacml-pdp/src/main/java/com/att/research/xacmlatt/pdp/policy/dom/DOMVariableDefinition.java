@@ -49,7 +49,7 @@ import com.att.research.xacmlatt.pdp.policy.VariableDefinition;
  *
  */
 public class DOMVariableDefinition extends VariableDefinition {
-    private static final Log logger	= LogFactory.getLog(DOMVariableDefinition.class);
+    private static final Log logger     = LogFactory.getLog(DOMVariableDefinition.class);
 
     protected DOMVariableDefinition() {
     }
@@ -63,13 +63,13 @@ public class DOMVariableDefinition extends VariableDefinition {
      * @throws DOMStructureException if there is an error parsing the <code>Node</code>
      */
     public static VariableDefinition newInstance(Node nodeVariableDefinition, Policy policy) throws DOMStructureException {
-        Element elementVariableDefinition			= DOMUtil.getElement(nodeVariableDefinition);
-        boolean bLenient							= DOMProperties.isLenient();
+        Element elementVariableDefinition                       = DOMUtil.getElement(nodeVariableDefinition);
+        boolean bLenient                                                        = DOMProperties.isLenient();
 
-        DOMVariableDefinition domVariableDefinition	= new DOMVariableDefinition();
+        DOMVariableDefinition domVariableDefinition     = new DOMVariableDefinition();
 
         try {
-            Element elementExpression	= DOMUtil.getFirstChildElement(elementVariableDefinition);
+            Element elementExpression   = DOMUtil.getFirstChildElement(elementVariableDefinition);
             if (elementExpression != null) {
                 if (DOMExpression.isExpression(elementExpression)) {
                     domVariableDefinition.setExpression(DOMExpression.newInstance(elementExpression, policy));
@@ -90,23 +90,23 @@ public class DOMVariableDefinition extends VariableDefinition {
     }
 
     public static boolean repair(Node nodeVariableDefinition) throws DOMStructureException {
-        Element elementVariableDefinition			= DOMUtil.getElement(nodeVariableDefinition);
-        boolean result								= false;
+        Element elementVariableDefinition                       = DOMUtil.getElement(nodeVariableDefinition);
+        boolean result                                                          = false;
 
-        Element elementExpression	= DOMUtil.getFirstChildElement(elementVariableDefinition);
+        Element elementExpression       = DOMUtil.getFirstChildElement(elementVariableDefinition);
         if (elementExpression != null) {
             if (DOMExpression.isExpression(elementExpression)) {
-                result	= result || DOMExpression.repair(elementExpression);
+                result  = result || DOMExpression.repair(elementExpression);
             } else {
                 logger.warn("Unexpected element " + elementExpression.getNodeName());
                 elementVariableDefinition.removeChild(elementExpression);
-                result	= true;
+                result  = true;
             }
         } else {
             throw DOMUtil.newMissingElementException(elementVariableDefinition, XACML3.XMLNS, XACML3.ELEMENT_EXPRESSION);
         }
 
-        result	= result || DOMUtil.repairStringAttribute(elementVariableDefinition, XACML3.ATTRIBUTE_VARIABLEID, "variable", logger);
+        result  = result || DOMUtil.repairStringAttribute(elementVariableDefinition, XACML3.ATTRIBUTE_VARIABLEID, "variable", logger);
         return result;
     }
 }

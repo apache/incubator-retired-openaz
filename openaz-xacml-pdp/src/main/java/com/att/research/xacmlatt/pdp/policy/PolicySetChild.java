@@ -43,8 +43,8 @@ import com.att.research.xacmlatt.pdp.eval.Matchable;
  *
  */
 public abstract class PolicySetChild extends PolicyComponent implements Evaluatable, Matchable, Traceable {
-    private Identifier		identifier;
-    private PolicyDefaults	policyDefaults;
+    private Identifier          identifier;
+    private PolicyDefaults      policyDefaults;
     private PolicySet parent;
 
     /**
@@ -56,7 +56,7 @@ public abstract class PolicySetChild extends PolicyComponent implements Evaluata
      */
     protected PolicySetChild(PolicySet parentIn, StatusCode statusCodeIn, String statusMessageIn) {
         super(statusCodeIn, statusMessageIn);
-        this.parent	= parentIn;
+        this.parent     = parentIn;
     }
 
     protected PolicySetChild(StatusCode statusCodeIn, String statusMessageIn) {
@@ -73,7 +73,7 @@ public abstract class PolicySetChild extends PolicyComponent implements Evaluata
     }
 
     protected PolicySetChild(PolicySet parentIn) {
-        this.parent	= parentIn;
+        this.parent     = parentIn;
     }
 
     /**
@@ -93,7 +93,7 @@ public abstract class PolicySetChild extends PolicyComponent implements Evaluata
     }
 
     public void setIdentifier(Identifier identifierIn) {
-        this.identifier	= identifierIn;
+        this.identifier = identifierIn;
     }
 
     /**
@@ -111,7 +111,7 @@ public abstract class PolicySetChild extends PolicyComponent implements Evaluata
      * @param policyDefaultsIn the <code>PolicyDefaults</code> for this <code>PolicySetChild</code>
      */
     public void setPolicyDefaults(PolicyDefaults policyDefaultsIn) {
-        this.policyDefaults	= policyDefaultsIn;
+        this.policyDefaults     = policyDefaultsIn;
     }
 
     /**
@@ -147,7 +147,7 @@ public abstract class PolicySetChild extends PolicyComponent implements Evaluata
 
     @Override
     public String toString() {
-        StringBuilder stringBuilder	= new StringBuilder("{");
+        StringBuilder stringBuilder     = new StringBuilder("{");
 
         stringBuilder.append("super=");
         stringBuilder.append(super.toString());

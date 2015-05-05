@@ -94,12 +94,12 @@ public interface Attribute {
      *
      * The implementation of the <code>Attribute</code> interface must override the <code>equals</code> method with the following semantics:
      *
-     * 		Two <code>Attribute</code>s (<code>a1</code> and <code>a2</code>) are equal if:
-     * 			{@code a1.getAttributeId().equals(a2.getAttributeId())} AND
-     * 			{@code a1.getCategory().equals(a2.getCategory())} AND
-     * 			{@code a1.getIssuer().equals(a2.getIssuer())} or both issuers are null AND
-     * 			{@code a1.getIncludeInResults() == a2.getIncludeInResults} AND
-     * 			{@code a1.getValues()} is pair-wise equal to {@code a2.getValues()}
+     *          Two <code>Attribute</code>s (<code>a1</code> and <code>a2</code>) are equal if:
+     *                  {@code a1.getAttributeId().equals(a2.getAttributeId())} AND
+     *                  {@code a1.getCategory().equals(a2.getCategory())} AND
+     *                  {@code a1.getIssuer().equals(a2.getIssuer())} or both issuers are null AND
+     *                  {@code a1.getIncludeInResults() == a2.getIncludeInResults} AND
+     *                  {@code a1.getValues()} is pair-wise equal to {@code a2.getValues()}
      */
     @Override
     boolean equals(Object obj);

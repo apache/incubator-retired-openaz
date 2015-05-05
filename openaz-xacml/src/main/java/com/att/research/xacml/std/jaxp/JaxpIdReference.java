@@ -58,10 +58,10 @@ public class JaxpIdReference extends StdIdReference {
             throw new IllegalArgumentException("Null value in IdReferenceType");
         }
 
-        Version version	= null;
+        Version version = null;
         if (idReferenceType.getVersion() != null) {
             try {
-                version	= StdVersion.newInstance(idReferenceType.getVersion());
+                version = StdVersion.newInstance(idReferenceType.getVersion());
             } catch (ParseException ex) {
                 throw new IllegalArgumentException("Invalid version");
             }

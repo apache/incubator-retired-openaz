@@ -45,18 +45,18 @@ import com.att.research.xacml.util.StringUtils;
  *
  */
 public class VariableMap {
-    private List<VariableDefinition>		variableDefinitions;
+    private List<VariableDefinition>            variableDefinitions;
     private Map<String, VariableDefinition> mapVariableDefinitions;
 
     private void ensureVariableDefinitions() {
         if (this.variableDefinitions == null) {
-            this.variableDefinitions	= new ArrayList<VariableDefinition>();
+            this.variableDefinitions    = new ArrayList<VariableDefinition>();
         }
     }
 
     private void ensureMap() {
         if (this.mapVariableDefinitions == null) {
-            this.mapVariableDefinitions	= new HashMap<String, VariableDefinition>();
+            this.mapVariableDefinitions = new HashMap<String, VariableDefinition>();
         }
     }
 
@@ -114,8 +114,8 @@ public class VariableMap {
      * @param listVariableDefinitions the <code>Collection</code> of <code>VariableDefinition</code> to set
      */
     public void setVariableDefinitions(Collection<VariableDefinition> listVariableDefinitions) {
-        this.variableDefinitions	= null;
-        this.mapVariableDefinitions	= null;
+        this.variableDefinitions        = null;
+        this.mapVariableDefinitions     = null;
         if (listVariableDefinitions != null) {
             this.addVariableDefinitions(variableDefinitions);
         }
@@ -123,7 +123,7 @@ public class VariableMap {
 
     @Override
     public String toString() {
-        StringBuilder stringBuilder	= new StringBuilder("{");
+        StringBuilder stringBuilder     = new StringBuilder("{");
         if (this.mapVariableDefinitions.size() > 0) {
             stringBuilder.append("variableDefinitions=");
             stringBuilder.append(StringUtils.toString(this.mapVariableDefinitions.values().iterator()));

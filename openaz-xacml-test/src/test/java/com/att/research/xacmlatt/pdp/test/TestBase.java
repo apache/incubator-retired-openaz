@@ -101,7 +101,7 @@ import com.google.common.collect.Lists;
  *
  */
 public class TestBase extends SimpleFileVisitor<Path> {
-    private static final Log logger	= LogFactory.getLog(TestBase.class);
+    private static final Log logger     = LogFactory.getLog(TestBase.class);
 
     public class HelpException extends Exception {
         private static final long serialVersionUID = 1L;
@@ -128,9 +128,9 @@ public class TestBase extends SimpleFileVisitor<Path> {
         /**
          * read - reads in the next line of data
          *
-         * @return	String - a line from the csv containing attribute data
+         * @return      String - a line from the csv containing attribute data
          */
-        public String	read() {
+        public String   read() {
             String str = null;
             if (is == null) {
                 try {
@@ -160,7 +160,7 @@ public class TestBase extends SimpleFileVisitor<Path> {
             return str;
         }
 
-        public void 	close() {
+        public void     close() {
             if (this.reader != null) {
                 try {
                     this.reader.close();
@@ -204,27 +204,27 @@ public class TestBase extends SimpleFileVisitor<Path> {
     protected int loop = 1;
     protected PDPEngine engine = null;
     protected List<Generator> generators = new ArrayList<Generator>();
-    protected static DataTypeFactory dataTypeFactory		= null;
+    protected static DataTypeFactory dataTypeFactory            = null;
 
-    private long	permits = 0;
-    private long	denies = 0;
-    private long	notapplicables = 0;
-    private long	indeterminates = 0;
+    private long        permits = 0;
+    private long        denies = 0;
+    private long        notapplicables = 0;
+    private long        indeterminates = 0;
 
-    private long	expectedPermits = 0;
-    private long	expectedDenies = 0;
-    private long	expectedNotApplicables = 0;
-    private long	expectedIndeterminates = 0;
+    private long        expectedPermits = 0;
+    private long        expectedDenies = 0;
+    private long        expectedNotApplicables = 0;
+    private long        expectedIndeterminates = 0;
 
-    private long	generatedpermits = 0;
-    private long	generateddenies = 0;
-    private long	generatednotapplicables = 0;
-    private long	generatedindeterminates = 0;
+    private long        generatedpermits = 0;
+    private long        generateddenies = 0;
+    private long        generatednotapplicables = 0;
+    private long        generatedindeterminates = 0;
 
-    private long	responseMatches = 0;
-    private long	responseNotMatches = 0;
+    private long        responseMatches = 0;
+    private long        responseNotMatches = 0;
 
-    private String[]	testNumbersArray = null;
+    private String[]    testNumbersArray = null;
 
     protected final Pattern pattern = Pattern.compile("Request[.]\\d+[.](Permit|Deny|NA|Indeterminate|Generate|Unknown)\\.(json|xml)");
 
@@ -326,7 +326,7 @@ public class TestBase extends SimpleFileVisitor<Path> {
         //
         // Now we can create the data type factory
         //
-        dataTypeFactory	= DataTypeFactory.newInstance();
+        dataTypeFactory = DataTypeFactory.newInstance();
         //
         // Load in what generators we are to create
         //
@@ -356,7 +356,7 @@ public class TestBase extends SimpleFileVisitor<Path> {
      * Removes all the Response* files from the results directory.
      *
      */
-    public void	removeResults() {
+    public void removeResults() {
         try {
             //
             // Determine where the results are supposed to be written to
@@ -704,7 +704,7 @@ public class TestBase extends SimpleFileVisitor<Path> {
                 //
                 // Determine what datatype it is
                 //
-                DataType<?> dataTypeExtended	= dataTypeFactory.getDataType(value.getDataTypeId());
+                DataType<?> dataTypeExtended    = dataTypeFactory.getDataType(value.getDataTypeId());
                 if (dataTypeExtended == null) {
                     logger.error("Failed to determine datatype");
                     return null;
@@ -866,7 +866,7 @@ public class TestBase extends SimpleFileVisitor<Path> {
             //
             // Using count variable, construct a filename
             //
-            //		i.e. Response.03.Generate.{count}.json
+            //          i.e. Response.03.Generate.{count}.json
             //
             filename = "Response" + filename.substring(filename.indexOf('.'), filename.lastIndexOf('.')) + String.format("%03d", count) + filename.substring(filename.lastIndexOf('.'));
         } else {
@@ -1034,7 +1034,7 @@ public class TestBase extends SimpleFileVisitor<Path> {
         }
     }
 
-    protected void	dumpStats() {
+    protected void      dumpStats() {
         StringBuilder dump = new StringBuilder();
         dump.append(System.lineSeparator());
         dump.append("Permits: " + this.permits + " Expected: " + this.expectedPermits);
@@ -1068,7 +1068,7 @@ public class TestBase extends SimpleFileVisitor<Path> {
         }
     }
 
-    protected void	resetStats() {
+    protected void      resetStats() {
         this.permits = 0;
         this.denies = 0;
         this.notapplicables = 0;

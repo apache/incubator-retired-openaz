@@ -56,14 +56,14 @@ public interface PIPEngine {
      *
      * @return Collection of required attributes
      */
-    public Collection<PIPRequest>	attributesRequired();
+    public Collection<PIPRequest>       attributesRequired();
 
     /**
      * Returns a list of PIPRequest objects that the Engine can return.
      *
      * @return Collection of provided attributes
      */
-    public Collection<PIPRequest>	attributesProvided();
+    public Collection<PIPRequest>       attributesProvided();
 
     /**
      * Retrieves <code>Attribute</code>s that match the given {@link com.att.research.xacml.api.pip.PIPRequest}.

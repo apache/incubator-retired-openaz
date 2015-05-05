@@ -45,15 +45,15 @@ public class MatchResult {
         NOMATCH
     }
 
-    public static MatchResult	MM_MATCH	= new MatchResult(MatchCode.MATCH);
-    public static MatchResult	MM_NOMATCH	= new MatchResult(MatchCode.NOMATCH);
+    public static MatchResult   MM_MATCH        = new MatchResult(MatchCode.MATCH);
+    public static MatchResult   MM_NOMATCH      = new MatchResult(MatchCode.NOMATCH);
 
-    private MatchCode	matchCode;
-    private Status		status;
+    private MatchCode   matchCode;
+    private Status              status;
 
     public MatchResult(MatchCode matchCodeIn, Status statusIn) {
-        this.matchCode	= matchCodeIn;
-        this.status		= statusIn;
+        this.matchCode  = matchCodeIn;
+        this.status             = statusIn;
     }
 
     public MatchResult(MatchCode matchCodeIn) {
@@ -74,11 +74,11 @@ public class MatchResult {
 
     @Override
     public String toString() {
-        StringBuilder stringBuilder	= new StringBuilder("{");
+        StringBuilder stringBuilder     = new StringBuilder("{");
 
         stringBuilder.append("matchCode=");
         stringBuilder.append(this.getMatchCode());
-        Status thisStatus	= this.getStatus();
+        Status thisStatus       = this.getStatus();
         if (thisStatus != null) {
             stringBuilder.append(", status=");
             stringBuilder.append(thisStatus.toString());

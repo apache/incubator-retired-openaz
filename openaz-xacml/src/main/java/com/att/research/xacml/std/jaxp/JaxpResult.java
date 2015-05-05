@@ -60,7 +60,7 @@ public class JaxpResult extends StdMutableResult {
         } else if (resultType.getDecision() == null) {
             throw new IllegalArgumentException("Null Decision in ResultType");
         }
-        JaxpResult	jaxpResult	= new JaxpResult();
+        JaxpResult      jaxpResult      = new JaxpResult();
 
         switch(resultType.getDecision()) {
         case DENY:
@@ -86,7 +86,7 @@ public class JaxpResult extends StdMutableResult {
         if (resultType.getObligations() != null &&
                 resultType.getObligations().getObligation() != null &&
                 resultType.getObligations().getObligation().size() > 0) {
-            Iterator<ObligationType>	iterObligationTypes	= resultType.getObligations().getObligation().iterator();
+            Iterator<ObligationType>    iterObligationTypes     = resultType.getObligations().getObligation().iterator();
             while (iterObligationTypes.hasNext()) {
                 jaxpResult.addObligation(JaxpObligation.newInstance(iterObligationTypes.next()));
             }
@@ -95,14 +95,14 @@ public class JaxpResult extends StdMutableResult {
         if (resultType.getAssociatedAdvice() != null &&
                 resultType.getAssociatedAdvice().getAdvice() != null &&
                 resultType.getAssociatedAdvice().getAdvice().size() > 0) {
-            Iterator<AdviceType>		iterAdviceTypes	= resultType.getAssociatedAdvice().getAdvice().iterator();
+            Iterator<AdviceType>                iterAdviceTypes = resultType.getAssociatedAdvice().getAdvice().iterator();
             while (iterAdviceTypes.hasNext()) {
                 jaxpResult.addAdvice(JaxpAdvice.newInstance(iterAdviceTypes.next()));
             }
         }
 
         if (resultType.getAttributes() != null && resultType.getAttributes().size() > 0) {
-            Iterator<AttributesType>		iterAttributesTypes	= resultType.getAttributes().iterator();
+            Iterator<AttributesType>            iterAttributesTypes     = resultType.getAttributes().iterator();
             while (iterAttributesTypes.hasNext()) {
                 jaxpResult.addAttributeCategory(JaxpAttributeCategory.newInstance(iterAttributesTypes.next()));
             }
@@ -111,9 +111,9 @@ public class JaxpResult extends StdMutableResult {
         if (resultType.getPolicyIdentifierList() != null &&
                 resultType.getPolicyIdentifierList().getPolicyIdReferenceOrPolicySetIdReference() != null &&
                 resultType.getPolicyIdentifierList().getPolicyIdReferenceOrPolicySetIdReference().size() > 0) {
-            Iterator<JAXBElement<IdReferenceType>>	iterJAXBElements	= resultType.getPolicyIdentifierList().getPolicyIdReferenceOrPolicySetIdReference().iterator();
+            Iterator<JAXBElement<IdReferenceType>>      iterJAXBElements        = resultType.getPolicyIdentifierList().getPolicyIdReferenceOrPolicySetIdReference().iterator();
             while (iterJAXBElements.hasNext()) {
-                JAXBElement<IdReferenceType>	jaxbElement	= iterJAXBElements.next();
+                JAXBElement<IdReferenceType>    jaxbElement     = iterJAXBElements.next();
                 if (jaxbElement.getName().getLocalPart().equals(XACML3.ELEMENT_POLICYIDREFERENCE)) {
                     jaxpResult.addPolicyIdentifier(JaxpIdReference.newInstance(jaxbElement.getValue()));
                 } else if (jaxbElement.getName().getLocalPart().equals(XACML3.ELEMENT_POLICYSETIDREFERENCE)) {

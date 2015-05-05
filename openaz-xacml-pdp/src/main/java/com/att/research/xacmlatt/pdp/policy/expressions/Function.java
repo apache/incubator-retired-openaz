@@ -56,7 +56,7 @@ public class Function extends Expression {
 
     protected ExpressionResult getExpressionResultOk() {
         if (this.expressionResultOk == null) {
-            this.expressionResultOk	= ExpressionResult.newSingle(this.getAttributeValue());
+            this.expressionResultOk     = ExpressionResult.newSingle(this.getAttributeValue());
         }
         return this.expressionResultOk;
     }
@@ -73,7 +73,7 @@ public class Function extends Expression {
     }
 
     public Function(Identifier functionIdIn) {
-        this.functionId	= functionIdIn;
+        this.functionId = functionIdIn;
     }
 
     public Identifier getFunctionId() {
@@ -81,19 +81,19 @@ public class Function extends Expression {
     }
 
     public void setFunctionId(Identifier identifier) {
-        this.functionId	= identifier;
-        this.attributeValue	= null;
-        this.expressionResultOk	= null;
+        this.functionId = identifier;
+        this.attributeValue     = null;
+        this.expressionResultOk = null;
     }
 
     public AttributeValue<URI> getAttributeValue() {
         if (this.attributeValue == null) {
-            Identifier thisFunctionId	= this.getFunctionId();
+            Identifier thisFunctionId   = this.getFunctionId();
             if (thisFunctionId != null) {
                 try {
-                    this.attributeValue	= DataTypes.DT_ANYURI.createAttributeValue(thisFunctionId);
+                    this.attributeValue = DataTypes.DT_ANYURI.createAttributeValue(thisFunctionId);
                 } catch (DataTypeException ex) {
-                    this.attributeValue	= null;
+                    this.attributeValue = null;
                 }
             }
         }

@@ -58,14 +58,14 @@ public class LegacyDenyOverridesPolicy extends CombiningAlgorithmBase<PolicySetC
 
     @Override
     public EvaluationResult combine(EvaluationContext evaluationContext, List<CombiningElement<PolicySetChild>> elements, List<CombinerParameter> combinerParameters) throws EvaluationException {
-        boolean atLeastOnePermit				= false;
+        boolean atLeastOnePermit                                = false;
 
-        EvaluationResult combinedResult			= new EvaluationResult(Decision.PERMIT);
+        EvaluationResult combinedResult                 = new EvaluationResult(Decision.PERMIT);
 
-        Iterator<CombiningElement<PolicySetChild>> iterElements	= elements.iterator();
+        Iterator<CombiningElement<PolicySetChild>> iterElements = elements.iterator();
         while (iterElements.hasNext()) {
-            CombiningElement<PolicySetChild> combiningElement		= iterElements.next();
-            EvaluationResult evaluationResultElement	= combiningElement.evaluate(evaluationContext);
+            CombiningElement<PolicySetChild> combiningElement           = iterElements.next();
+            EvaluationResult evaluationResultElement    = combiningElement.evaluate(evaluationContext);
 
             assert(evaluationResultElement != null);
             switch(evaluationResultElement.getDecision()) {
@@ -79,7 +79,7 @@ public class LegacyDenyOverridesPolicy extends CombiningAlgorithmBase<PolicySetC
             case NOTAPPLICABLE:
                 break;
             case PERMIT:
-                atLeastOnePermit	= true;
+                atLeastOnePermit        = true;
                 combinedResult.merge(evaluationResultElement);
                 break;
             default:

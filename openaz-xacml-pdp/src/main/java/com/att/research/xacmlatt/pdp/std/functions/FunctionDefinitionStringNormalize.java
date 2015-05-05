@@ -52,8 +52,8 @@ import com.att.research.xacmlatt.pdp.policy.FunctionArgument;
  * In the first implementation of XACML we had separate files for each XACML Function.
  * This release combines multiple Functions in fewer files to minimize code duplication.
  * This file supports the following XACML codes:
- * 		string-normalize-space
- * 		string-normalize-to-lower-case
+ *              string-normalize-space
+ *              string-normalize-to-lower-case
  *
  *
  */
@@ -71,7 +71,7 @@ public class FunctionDefinitionStringNormalize extends FunctionDefinitionHomogen
 
 
     // result variables used by all functions
-    AttributeValue<String>	result;
+    AttributeValue<String>      result;
 
 
     /**
@@ -93,8 +93,8 @@ public class FunctionDefinitionStringNormalize extends FunctionDefinitionHomogen
 
     @Override
     public ExpressionResult evaluate(EvaluationContext evaluationContext, List<FunctionArgument> arguments) {
-        List<String> convertedArguments	= new ArrayList<String>();
-        Status status				= this.validateArguments(arguments, convertedArguments);
+        List<String> convertedArguments = new ArrayList<String>();
+        Status status                           = this.validateArguments(arguments, convertedArguments);
 
         /*
          * If the function arguments are not correct, just return an error status immediately
@@ -110,10 +110,10 @@ public class FunctionDefinitionStringNormalize extends FunctionDefinitionHomogen
 
         switch (operation) {
         case SPACE:
-            result	= new StdAttributeValue<String>(XACML.ID_DATATYPE_STRING, convertedArguments.get(0).trim() );
+            result      = new StdAttributeValue<String>(XACML.ID_DATATYPE_STRING, convertedArguments.get(0).trim() );
             break;
         case LOWER_CASE:
-            result	= new StdAttributeValue<String>(XACML.ID_DATATYPE_STRING, convertedArguments.get(0).toLowerCase() );
+            result      = new StdAttributeValue<String>(XACML.ID_DATATYPE_STRING, convertedArguments.get(0).toLowerCase() );
             break;
         }
 

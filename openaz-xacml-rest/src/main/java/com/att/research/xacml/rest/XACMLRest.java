@@ -51,7 +51,7 @@ import com.att.research.xacml.util.XACMLProperties;
  *
  */
 public class XACMLRest {
-    private static final Log logger	= LogFactory.getLog(XACMLRest.class);
+    private static final Log logger     = LogFactory.getLog(XACMLRest.class);
     private static Properties restProperties = new Properties();
 
     /**

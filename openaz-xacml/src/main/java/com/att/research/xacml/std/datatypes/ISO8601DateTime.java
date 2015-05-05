@@ -46,15 +46,15 @@ import com.att.research.xacml.api.SemanticString;
  *
  */
 public class ISO8601DateTime implements IDateTime<ISO8601DateTime>, Comparable<ISO8601DateTime>, SemanticString {
-    private static final long		TZOFFSET_14_HOURS_MILLIS	= 14*60*60*1000;
+    private static final long           TZOFFSET_14_HOURS_MILLIS        = 14*60*60*1000;
     private boolean hasTimeZone;
     private Calendar calendar;
 
     private void validateDate() {
         this.calendar.getTime();
-        int year	= this.calendar.get(Calendar.YEAR);
+        int year        = this.calendar.get(Calendar.YEAR);
         if (this.calendar.isSet(Calendar.ERA) && this.calendar.get(Calendar.ERA) == GregorianCalendar.BC) {
-            year	= 0 - year + 1;
+            year        = 0 - year + 1;
         }
 
     }
@@ -72,10 +72,10 @@ public class ISO8601DateTime implements IDateTime<ISO8601DateTime>, Comparable<I
      * @param millisecondIn the integer milliseconds (0-999)
      */
     public ISO8601DateTime(TimeZone timeZone, int yearIn, int monthIn, int dayIn, int hourIn, int minuteIn, int secondIn, int millisecondIn) {
-        this.calendar	= Calendar.getInstance();
+        this.calendar   = Calendar.getInstance();
         this.calendar.setLenient(false);
         if (timeZone != null) {
-            this.hasTimeZone	= true;
+            this.hasTimeZone    = true;
             this.calendar.setTimeZone(timeZone);
         }
         if (yearIn <= 0) {
@@ -118,13 +118,13 @@ public class ISO8601DateTime implements IDateTime<ISO8601DateTime>, Comparable<I
      */
     private ISO8601DateTime(Calendar calendarIn, boolean hasTimeZoneIn) {
         /*
-        this.calendar		= Calendar.getInstance();
+        this.calendar           = Calendar.getInstance();
         this.calendar.setLenient(false);
         this.calendar.setTimeZone(calendarIn.getTimeZone());
         this.calendar.setTimeInMillis(calendarIn.getTimeInMillis());
         */
-        this.calendar		= calendarIn;
-        this.hasTimeZone	= hasTimeZoneIn;
+        this.calendar           = calendarIn;
+        this.hasTimeZone        = hasTimeZoneIn;
     }
 
     /**
@@ -138,13 +138,13 @@ public class ISO8601DateTime implements IDateTime<ISO8601DateTime>, Comparable<I
 
     public String getTimeZone() {
         if (this.getHasTimeZone()) {
-            int tzOffsetMillis	= this.calendar.get(Calendar.ZONE_OFFSET);
+            int tzOffsetMillis  = this.calendar.get(Calendar.ZONE_OFFSET);
             if (tzOffsetMillis == 0) {
                 return "Z";
             } else {
-                int tzOffsetHours	= Math.abs(tzOffsetMillis) / (60 * 60 * 1000);
-                int tzOffsetMinutes	= (Math.abs(tzOffsetMillis) - (tzOffsetHours * 60 * 60 * 1000)) / (60 * 1000);
-                StringBuilder stringBuilder	= new StringBuilder();
+                int tzOffsetHours       = Math.abs(tzOffsetMillis) / (60 * 60 * 1000);
+                int tzOffsetMinutes     = (Math.abs(tzOffsetMillis) - (tzOffsetHours * 60 * 60 * 1000)) / (60 * 1000);
+                StringBuilder stringBuilder     = new StringBuilder();
                 stringBuilder.append((tzOffsetMillis < 0 ? '-' : '+'));
                 stringBuilder.append(String.format("%02d", tzOffsetHours));
                 stringBuilder.append(':');
@@ -158,7 +158,7 @@ public class ISO8601DateTime implements IDateTime<ISO8601DateTime>, Comparable<I
     }
 
     public int getYear() {
-        int year	= this.calendar.get(Calendar.YEAR);
+        int year        = this.calendar.get(Calendar.YEAR);
         if (this.calendar.get(Calendar.ERA) == GregorianCalendar.BC) {
             return -(year - 1);
         } else {
@@ -190,7 +190,7 @@ public class ISO8601DateTime implements IDateTime<ISO8601DateTime>, Comparable<I
      * @return a copy of the <code>Calendar</code> backing this <code>ISO8601DateTime</code>.
      */
     public Calendar getCalendar() {
-        Calendar calendarCopy	= Calendar.getInstance();
+        Calendar calendarCopy   = Calendar.getInstance();
         calendarCopy.setLenient(false);
         if (this.getHasTimeZone()) {
             calendarCopy.setTimeZone(this.calendar.getTimeZone());
@@ -214,7 +214,7 @@ public class ISO8601DateTime implements IDateTime<ISO8601DateTime>, Comparable<I
         if (this.calendar.get(Calendar.ZONE_OFFSET) == 0) {
             return this;
         } else {
-            Calendar calendarGMT	= Calendar.getInstance();
+            Calendar calendarGMT        = Calendar.getInstance();
             calendarGMT.setLenient(false);
             calendarGMT.setTimeZone(TimeZone.getTimeZone("GMT"));
             calendarGMT.setTimeInMillis(this.calendar.getTimeInMillis());
@@ -223,7 +223,7 @@ public class ISO8601DateTime implements IDateTime<ISO8601DateTime>, Comparable<I
     }
 
     private ISO8601DateTime add(ISO8601Duration iso8601Duration, int sign) {
-        Calendar calendarCopy	= this.getCalendar();
+        Calendar calendarCopy   = this.getCalendar();
 
         int value;
         if ((value = iso8601Duration.getYears()) != 0) {
@@ -241,11 +241,11 @@ public class ISO8601DateTime implements IDateTime<ISO8601DateTime>, Comparable<I
         if ((value = iso8601Duration.getMinutes()) != 0) {
             calendarCopy.add(Calendar.MINUTE, sign*value);
         }
-        int seconds	= iso8601Duration.getSeconds();
+        int seconds     = iso8601Duration.getSeconds();
         if (seconds >= 1) {
             calendarCopy.add(Calendar.SECOND, sign*seconds);
         }
-        int millis	= iso8601Duration.getMillis();
+        int millis      = iso8601Duration.getMillis();
         if (millis != 0) {
             calendarCopy.add(Calendar.MILLISECOND, sign*millis);
         }
@@ -280,20 +280,20 @@ public class ISO8601DateTime implements IDateTime<ISO8601DateTime>, Comparable<I
         } else if (obj == null || !(obj instanceof ISO8601DateTime)) {
             return false;
         } else {
-            ISO8601DateTime iso8601DateTime	= (ISO8601DateTime)obj;
+            ISO8601DateTime iso8601DateTime     = (ISO8601DateTime)obj;
             return (this.getHasTimeZone() == iso8601DateTime.getHasTimeZone()) && (this.calendar.equals(iso8601DateTime.calendar));
         }
     }
 
     public static ISO8601DateTime fromCalendar(Calendar calendar) {
-        Calendar calendarNew	= Calendar.getInstance();
+        Calendar calendarNew    = Calendar.getInstance();
         calendarNew.setTime(calendar.getTime());
         calendarNew.setLenient(false);
         return new ISO8601DateTime(calendarNew, true);
     }
 
     public static ISO8601DateTime fromDate(Date date) {
-        Calendar calendar	= Calendar.getInstance();
+        Calendar calendar       = Calendar.getInstance();
         calendar.setTime(date);
         calendar.setLenient(false);
         return new ISO8601DateTime(calendar, true);
@@ -311,37 +311,37 @@ public class ISO8601DateTime implements IDateTime<ISO8601DateTime>, Comparable<I
         /*
          * Trim whitespace
          */
-        int startPos	= ParseUtils.nextNonWhite(strDateTime, 0);
+        int startPos    = ParseUtils.nextNonWhite(strDateTime, 0);
 
-        ParseUtils.ParseValue<Integer> parseValue	= ParseUtils.getSignedValue(strDateTime, startPos);
+        ParseUtils.ParseValue<Integer> parseValue       = ParseUtils.getSignedValue(strDateTime, startPos);
         if (parseValue == null) {
             throw new ParseException("Invalid year", startPos);
         }
-        int year		= parseValue.getValue();
+        int year                = parseValue.getValue();
         if (parseValue.getNextPos() < 4) {
             throw new ParseException("Invalid year (must be at least 4 digits)", startPos);
         }
-        startPos		+= parseValue.getNextPos();
+        startPos                += parseValue.getNextPos();
         if (startPos >= strDateTime.length() || strDateTime.charAt(startPos) != '-') {
             throw new ParseException("Invalid date", startPos);
         }
         startPos++;
 
-        int month		= ParseUtils.getTwoDigitValue(strDateTime,  startPos);
+        int month               = ParseUtils.getTwoDigitValue(strDateTime,  startPos);
         if (month <= 0 || month > 12) {
             throw new ParseException("Invalid month", startPos);
         }
-        startPos		+= 2;
+        startPos                += 2;
         if (startPos >= strDateTime.length() || strDateTime.charAt(startPos) != '-') {
             throw new ParseException("Invalid date", startPos);
         }
         startPos++;
 
-        int day			= ParseUtils.getTwoDigitValue(strDateTime, startPos);
+        int day                 = ParseUtils.getTwoDigitValue(strDateTime, startPos);
         if (day < 1 || day > 31) {
             throw new ParseException("Invalid day", startPos);
         }
-        startPos		+= 2;
+        startPos                += 2;
 
         /*
          * There should now be a 'T'
@@ -354,11 +354,11 @@ public class ISO8601DateTime implements IDateTime<ISO8601DateTime>, Comparable<I
         /*
          * Get the hours
          */
-        int hours		= ParseUtils.getTwoDigitValue(strDateTime, startPos);
+        int hours               = ParseUtils.getTwoDigitValue(strDateTime, startPos);
         if (hours < 0 || hours > 23) {
             throw new ParseException("Invalid hours", startPos);
         }
-        startPos		+= 2;
+        startPos                += 2;
         if (startPos >= strDateTime.length() || strDateTime.charAt(startPos) != ':') {
             throw new ParseException("Invalid date", startPos);
         }
@@ -367,11 +367,11 @@ public class ISO8601DateTime implements IDateTime<ISO8601DateTime>, Comparable<I
         /*
          * Get the minutes
          */
-        int minutes		= ParseUtils.getTwoDigitValue(strDateTime, startPos);
+        int minutes             = ParseUtils.getTwoDigitValue(strDateTime, startPos);
         if (minutes < 0 || minutes > 59) {
             throw new ParseException("Invalid minutes", startPos);
         }
-        startPos		+= 2;
+        startPos                += 2;
         if (startPos >= strDateTime.length() || strDateTime.charAt(startPos) != ':') {
             throw new ParseException("Invalid date", startPos);
         }
@@ -380,41 +380,41 @@ public class ISO8601DateTime implements IDateTime<ISO8601DateTime>, Comparable<I
         /*
          * Get the two-digit second of minute
          */
-        int	ss			= ParseUtils.getTwoDigitValue(strDateTime, startPos);
+        int     ss                      = ParseUtils.getTwoDigitValue(strDateTime, startPos);
         if (ss < 0 || ss >= 60) {
             throw new ParseException("Invalid second of minute", startPos);
         }
-        startPos				+= 2;
+        startPos                                += 2;
 
         /*
          * Now determine if we have a milliseconds portion
          */
-        int	ms			= 0;
+        int     ms                      = 0;
         if (startPos < strDateTime.length()) {
             if (strDateTime.charAt(startPos) == '.') {
                 startPos++;
                 if ((ms = ParseUtils.getThreeDigitValue(strDateTime, startPos)) < 0 || ms >= 1000) {
                     throw new ParseException("Invalid milliseconds", startPos);
                 }
-                startPos	+= 3;
+                startPos        += 3;
             }
         }
 
         /*
          * Now determine if there is a timezone
          */
-        String timezone		= null;
+        String timezone         = null;
 
         if (startPos < strDateTime.length()) {
             switch(strDateTime.charAt(startPos)) {
             case 'Z':
-                timezone	= "GMT";
+                timezone        = "GMT";
                 startPos++;
                 break;
             case '-':
             case '+':
                 if (startPos+5 < strDateTime.length()) {
-                    timezone	= "GMT" + strDateTime.substring(startPos, startPos+6);
+                    timezone    = "GMT" + strDateTime.substring(startPos, startPos+6);
                 } else {
                     throw new ParseException("Invalid timezone", startPos);
                 }
@@ -429,9 +429,9 @@ public class ISO8601DateTime implements IDateTime<ISO8601DateTime>, Comparable<I
 
     @Override
     public String stringValue() {
-        StringBuilder stringBuilder	= new StringBuilder();
+        StringBuilder stringBuilder     = new StringBuilder();
         if (this.calendar.get(Calendar.ERA) == GregorianCalendar.BC) {
-            int yearBC	= this.calendar.get(Calendar.YEAR) - 1;
+            int yearBC  = this.calendar.get(Calendar.YEAR) - 1;
             stringBuilder.append('-');
             stringBuilder.append(String.format("%d", yearBC));
         } else {
@@ -447,7 +447,7 @@ public class ISO8601DateTime implements IDateTime<ISO8601DateTime>, Comparable<I
         stringBuilder.append(String.format("%02d", this.calendar.get(Calendar.MINUTE)));
         stringBuilder.append(':');
         stringBuilder.append(String.format("%02d", this.calendar.get(Calendar.SECOND)));
-        int ms	= this.calendar.get(Calendar.MILLISECOND);
+        int ms  = this.calendar.get(Calendar.MILLISECOND);
         if (ms != 0) {
             stringBuilder.append('.');
             stringBuilder.append(String.format("%03d",  ms));
@@ -464,8 +464,8 @@ public class ISO8601DateTime implements IDateTime<ISO8601DateTime>, Comparable<I
     }
 
     private static int compareCalendars(Calendar cal1, Calendar cal2) {
-        long cal1Time	= cal1.getTimeInMillis();
-        long cal2Time	= cal2.getTimeInMillis();
+        long cal1Time   = cal1.getTimeInMillis();
+        long cal2Time   = cal2.getTimeInMillis();
         if (cal1Time < cal2Time) {
             return -1;
         } else if (cal1Time > cal2Time) {
@@ -481,8 +481,8 @@ public class ISO8601DateTime implements IDateTime<ISO8601DateTime>, Comparable<I
             if (o.getHasTimeZone()) {
                 return compareCalendars(this.calendar, o.calendar);
             } else {
-                long thisMilliseconds	= this.calendar.getTimeInMillis();
-                long oMilliseconds		= o.calendar.getTimeInMillis();
+                long thisMilliseconds   = this.calendar.getTimeInMillis();
+                long oMilliseconds              = o.calendar.getTimeInMillis();
                 if (thisMilliseconds < (oMilliseconds - TZOFFSET_14_HOURS_MILLIS)) {
                     return -1;
                 } else if (thisMilliseconds > (oMilliseconds + TZOFFSET_14_HOURS_MILLIS)) {
@@ -493,8 +493,8 @@ public class ISO8601DateTime implements IDateTime<ISO8601DateTime>, Comparable<I
             }
         } else {
             if (o.getHasTimeZone()) {
-                long thisMilliseconds	= this.calendar.getTimeInMillis();
-                long oMilliseconds		= o.calendar.getTimeInMillis();
+                long thisMilliseconds   = this.calendar.getTimeInMillis();
+                long oMilliseconds              = o.calendar.getTimeInMillis();
                 if ((thisMilliseconds + TZOFFSET_14_HOURS_MILLIS) < oMilliseconds) {
                     return -1;
                 } else if ((thisMilliseconds - TZOFFSET_14_HOURS_MILLIS) > oMilliseconds) {

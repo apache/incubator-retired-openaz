@@ -51,14 +51,14 @@ import com.att.research.xacml.std.StdStatusCode;
  *
  */
 public class XPathExpressionWrapper implements XPathExpression {
-    private XPathExpression	xpathExpressionWrapped;
+    private XPathExpression     xpathExpressionWrapped;
     private String path;
     private ExtendedNamespaceContext namespaceContext;
     private Status status;
 
     public XPathExpressionWrapper(ExtendedNamespaceContext namespaceContextIn, String pathIn) {
-        this.namespaceContext	= namespaceContextIn;
-        this.path				= pathIn;
+        this.namespaceContext   = namespaceContextIn;
+        this.path                               = pathIn;
     }
 
     public XPathExpressionWrapper(Document documentIn, String pathIn) {
@@ -77,22 +77,22 @@ public class XPathExpressionWrapper implements XPathExpression {
     }
 
     public XPathExpressionWrapper(XPathExpression xpathExpression) {
-        this.xpathExpressionWrapped	= xpathExpression;
+        this.xpathExpressionWrapped     = xpathExpression;
     }
 
     public synchronized XPathExpression getXpathExpressionWrapped() {
         if (this.xpathExpressionWrapped == null && (this.getStatus() == null || this.getStatus().isOk())) {
-            String thisPath	= this.getPath();
+            String thisPath     = this.getPath();
             if (thisPath != null) {
-                XPath xPath	= XPathFactory.newInstance().newXPath();
-                NamespaceContext namespaceContextThis	= this.getNamespaceContext();
+                XPath xPath     = XPathFactory.newInstance().newXPath();
+                NamespaceContext namespaceContextThis   = this.getNamespaceContext();
                 if (namespaceContextThis != null) {
                     xPath.setNamespaceContext(namespaceContextThis);
                 }
                 try {
-                    this.xpathExpressionWrapped	= xPath.compile(thisPath);
+                    this.xpathExpressionWrapped = xPath.compile(thisPath);
                 } catch (XPathExpressionException ex) {
-                    this.status	= new StdStatus(StdStatusCode.STATUS_CODE_SYNTAX_ERROR, "Error compiling XPath " + thisPath + ": " + ex.getMessage());
+                    this.status = new StdStatus(StdStatusCode.STATUS_CODE_SYNTAX_ERROR, "Error compiling XPath " + thisPath + ": " + ex.getMessage());
                 }
             }
         }
@@ -113,25 +113,25 @@ public class XPathExpressionWrapper implements XPathExpression {
 
     @Override
     public Object evaluate(Object item, QName returnType) throws XPathExpressionException {
-        XPathExpression thisXPathExpression	= this.getXpathExpressionWrapped();
+        XPathExpression thisXPathExpression     = this.getXpathExpressionWrapped();
         return (thisXPathExpression == null ? null : thisXPathExpression.evaluate(item, returnType));
     }
 
     @Override
     public String evaluate(Object item) throws XPathExpressionException {
-        XPathExpression thisXPathExpression	= this.getXpathExpressionWrapped();
+        XPathExpression thisXPathExpression     = this.getXpathExpressionWrapped();
         return (thisXPathExpression == null ? null : thisXPathExpression.evaluate(item));
     }
 
     @Override
     public Object evaluate(InputSource source, QName returnType) throws XPathExpressionException {
-        XPathExpression thisXPathExpression	= this.getXpathExpressionWrapped();
+        XPathExpression thisXPathExpression     = this.getXpathExpressionWrapped();
         return (thisXPathExpression == null ? null : thisXPathExpression.evaluate(source, returnType));
     }
 
     @Override
     public String evaluate(InputSource source) throws XPathExpressionException {
-        XPathExpression thisXPathExpression	= this.getXpathExpressionWrapped();
+        XPathExpression thisXPathExpression     = this.getXpathExpressionWrapped();
         return (thisXPathExpression == null ? null : thisXPathExpression.evaluate(source));
     }
 

@@ -51,10 +51,10 @@ public class JaxpRequestDefaults extends StdRequestDefaults {
         if (requestDefaultsType == null) {
             throw new NullPointerException("Null RequestDefaultsType");
         }
-        URI	uriXPathVersion	= null;
+        URI     uriXPathVersion = null;
         if (requestDefaultsType.getXPathVersion() != null) {
             try {
-                uriXPathVersion	= new URI(requestDefaultsType.getXPathVersion());
+                uriXPathVersion = new URI(requestDefaultsType.getXPathVersion());
             } catch (Exception ex) {
                 throw new IllegalArgumentException("Invalid URI for XPathVersion \"" + requestDefaultsType.getXPathVersion() + "\"", ex);
             }

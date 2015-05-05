@@ -59,8 +59,8 @@ public interface StatusDetail {
      *
      * Implementations of the <code>StatusDetail</code> interface must override the <code>equals</code> method as follows:
      *
-     * 		Two <code>StatusDetail</code>s (<code>s1</code> and <code>s2</code>) are equal if:
-     * 			{@code s1.getMissingAttributeDetails()} is pair-wise equal to {@code s2.getMissingAttributeDetails()}
+     *          Two <code>StatusDetail</code>s (<code>s1</code> and <code>s2</code>) are equal if:
+     *                  {@code s1.getMissingAttributeDetails()} is pair-wise equal to {@code s2.getMissingAttributeDetails()}
      */
     @Override
     boolean equals(Object obj);

@@ -12,10 +12,10 @@
  *
  * Authors:
  *    (2014): Ajith Nair, David Laurance
- * 	  1.1 (2011): Rich Levinson, Prateek Mishra (Oracle)
- * 	  1.0 (2009): Josh Bregman, Rich Levinson, Prateek Mishra (Oracle)
+ *        1.1 (2011): Rich Levinson, Prateek Mishra (Oracle)
+ *        1.0 (2009): Josh Bregman, Rich Levinson, Prateek Mishra (Oracle)
  * Contributor:
- * 	  Rich Levinson (Oracle)
+ *        Rich Levinson (Oracle)
  */
 package org.openliberty.openaz.pepapi;
 

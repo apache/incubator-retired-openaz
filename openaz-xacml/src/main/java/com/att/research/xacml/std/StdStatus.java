@@ -40,7 +40,7 @@ import com.att.research.xacml.util.Wrapper;
  *
  */
 public class StdStatus extends Wrapper<Status> implements Status {
-    public static final Status	STATUS_OK	= new StdStatus(StdStatusCode.STATUS_CODE_OK);
+    public static final Status  STATUS_OK       = new StdStatus(StdStatusCode.STATUS_CODE_OK);
 
     /**
      * Creates a new immutable <code>StdStatus</code> that wraps the given {@link com.att.research.xacml.api.Status}.

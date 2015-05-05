@@ -57,21 +57,21 @@ import com.att.research.xacmlatt.pdp.policy.FunctionArgument;
  * In the first implementation of XACML we had separate files for each XACML Function.
  * This release combines multiple Functions in fewer files to minimize code duplication.
  * This file supports the following XACML codes:
- * 		string-concatenate
- * 		string-starts-with
- * 		anyURI-starts-with
- * 		string-ends-with
- * 		anyURI-ends-with
- * 		string-contains
- * 		anyURI-contains
- * 		string-substring
- * 		anyURI-substring
+ *              string-concatenate
+ *              string-starts-with
+ *              anyURI-starts-with
+ *              string-ends-with
+ *              anyURI-ends-with
+ *              string-contains
+ *              anyURI-contains
+ *              string-substring
+ *              anyURI-substring
  *
  *
  *
  * @param <I> the java class for the data type of the function Input arguments
  * @param <O> the java class for the data type of the function Output -
- * 		needed because different functions within this class have different output types
+ *              needed because different functions within this class have different output types
  */
 public class FunctionDefinitionStringFunctions<O, I> extends FunctionDefinitionBase<O, I> {
 

@@ -80,9 +80,9 @@ public interface AttributeCategory {
      *
      * Implementations of the <code>AttributeCategory</code> interface must override the <code>equals</code> method with the following semantics:
      *
-     * 		Two <code>AttributeCategory</code>s (<code>a1</code> and <code>a2</code>) are equal if:
-     * 			{@code a1.getCategory().equals(a2.getCategory())} AND
-     * 			The {@link Attribute}s in <code>a1</code> and <code>a2</code> are pairwise equal.
+     *          Two <code>AttributeCategory</code>s (<code>a1</code> and <code>a2</code>) are equal if:
+     *                  {@code a1.getCategory().equals(a2.getCategory())} AND
+     *                  The {@link Attribute}s in <code>a1</code> and <code>a2</code> are pairwise equal.
      */
     @Override
     boolean equals(Object obj);

@@ -46,9 +46,9 @@ import com.att.research.xacml.std.StdStatus;
  *
  */
 public class StdMutablePIPResponse implements PIPResponse {
-    private static final List<Attribute> EMPTY_LIST			= Collections.unmodifiableList(new ArrayList<Attribute>());
+    private static final List<Attribute> EMPTY_LIST                     = Collections.unmodifiableList(new ArrayList<Attribute>());
 
-    private List<Attribute> attributes	= EMPTY_LIST;
+    private List<Attribute> attributes  = EMPTY_LIST;
     private Status status;
     private boolean simple;
 
@@ -58,8 +58,8 @@ public class StdMutablePIPResponse implements PIPResponse {
      * @param statusIn the <code>Status</code> of the new <code>StdMutablePIPResponse</code>
      */
     public StdMutablePIPResponse(Status statusIn) {
-        this.status	= statusIn;
-        this.simple	= true;
+        this.status     = statusIn;
+        this.simple     = true;
     }
 
     /**
@@ -107,7 +107,7 @@ public class StdMutablePIPResponse implements PIPResponse {
      * @param statusIn the <code>Status</code> for this <code>StdMutablePIPResponse</code>.
      */
     public void setStatus(Status statusIn) {
-        this.status	= statusIn;
+        this.status     = statusIn;
     }
 
     @Override
@@ -127,14 +127,14 @@ public class StdMutablePIPResponse implements PIPResponse {
      */
     public void addAttribute(Attribute attributeIn) {
         if (this.attributes == EMPTY_LIST) {
-            this.attributes	= new ArrayList<Attribute>();
+            this.attributes     = new ArrayList<Attribute>();
         }
         /*
          * Determine if the simple status should be changed or not
          */
         if (this.simple) {
             if (this.attributes.size() > 0) {
-                this.simple	= false;
+                this.simple     = false;
             }
         }
         this.attributes.add(attributeIn);
@@ -149,11 +149,11 @@ public class StdMutablePIPResponse implements PIPResponse {
     public void addAttributes(Collection<Attribute> attributesIn) {
         if (attributesIn != null && attributesIn.size() > 0) {
             if (this.attributes == EMPTY_LIST) {
-                this.attributes	= new ArrayList<Attribute>();
+                this.attributes = new ArrayList<Attribute>();
             }
             if (this.simple) {
                 if (this.attributes.size() > 0 || attributesIn.size() > 1) {
-                    this.simple	= false;
+                    this.simple = false;
                 }
             }
             this.attributes.addAll(attributesIn);
@@ -167,8 +167,8 @@ public class StdMutablePIPResponse implements PIPResponse {
      * @param attributesIn the <code>Collection</code> of <code>Attribute</code>s to set in this <code>StdMutablePIPResponse</code>.
      */
     public void setAttributes(Collection<Attribute> attributesIn) {
-        this.attributes	= EMPTY_LIST;
-        this.simple		= true;
+        this.attributes = EMPTY_LIST;
+        this.simple             = true;
         this.addAttributes(attributesIn);
     }
 

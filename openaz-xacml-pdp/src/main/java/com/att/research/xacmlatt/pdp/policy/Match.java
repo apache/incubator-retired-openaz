@@ -55,17 +55,17 @@ import com.att.research.xacmlatt.pdp.policy.expressions.AttributeRetrievalBase;
  *
  */
 public class Match extends PolicyComponent implements Matchable {
-    private Identifier				matchId;
-    private AttributeValue<?>		attributeValue;
-    private AttributeRetrievalBase	attributeRetrievalBase;
-    private PolicyDefaults			policyDefaults;
-    private FunctionDefinition		functionDefinition;
+    private Identifier                          matchId;
+    private AttributeValue<?>           attributeValue;
+    private AttributeRetrievalBase      attributeRetrievalBase;
+    private PolicyDefaults                      policyDefaults;
+    private FunctionDefinition          functionDefinition;
 
     protected FunctionDefinition getFunctionDefinition() {
-        Identifier functionDefinitionId	= this.getMatchId();
+        Identifier functionDefinitionId = this.getMatchId();
         if (this.functionDefinition == null && functionDefinitionId != null) {
             try {
-                this.functionDefinition	= FunctionDefinitionFactory.newInstance().getFunctionDefinition(functionDefinitionId);
+                this.functionDefinition = FunctionDefinitionFactory.newInstance().getFunctionDefinition(functionDefinitionId);
             } catch (FactoryException ex) {
                 this.setStatus(StdStatusCode.STATUS_CODE_PROCESSING_ERROR, "FactoryException getting FunctionDefinition");
             }
@@ -86,10 +86,10 @@ public class Match extends PolicyComponent implements Matchable {
 
     public Match(Identifier matchIdIn, AttributeValue<?> attributeValueIn, AttributeRetrievalBase attributeRetrievalBaseIn, PolicyDefaults policyDefaultsIn) {
         this(StdStatusCode.STATUS_CODE_OK);
-        this.matchId				= matchIdIn;
-        this.attributeValue			= attributeValueIn;
-        this.attributeRetrievalBase	= attributeRetrievalBaseIn;
-        this.policyDefaults			= policyDefaultsIn;
+        this.matchId                            = matchIdIn;
+        this.attributeValue                     = attributeValueIn;
+        this.attributeRetrievalBase     = attributeRetrievalBaseIn;
+        this.policyDefaults                     = policyDefaultsIn;
     }
 
     public Identifier getMatchId() {
@@ -97,7 +97,7 @@ public class Match extends PolicyComponent implements Matchable {
     }
 
     public void setMatchId(Identifier matchIdIn) {
-        this.matchId	= matchIdIn;
+        this.matchId    = matchIdIn;
     }
 
     public AttributeValue<?> getAttributeValue() {
@@ -105,7 +105,7 @@ public class Match extends PolicyComponent implements Matchable {
     }
 
     public void setAttributeValue(AttributeValue<?> attributeValueIn) {
-        this.attributeValue	= attributeValueIn;
+        this.attributeValue     = attributeValueIn;
     }
 
     public AttributeRetrievalBase getAttributeRetrievalBase() {
@@ -113,7 +113,7 @@ public class Match extends PolicyComponent implements Matchable {
     }
 
     public void setAttributeRetrievalBase(AttributeRetrievalBase attributeRetrievalBaseIn) {
-        this.attributeRetrievalBase	= attributeRetrievalBaseIn;
+        this.attributeRetrievalBase     = attributeRetrievalBaseIn;
     }
 
     public PolicyDefaults getPolicyDefaults() {
@@ -121,23 +121,23 @@ public class Match extends PolicyComponent implements Matchable {
     }
 
     public void setPolicyDefaults(PolicyDefaults policyDefaultsIn) {
-        this.policyDefaults	= policyDefaultsIn;
+        this.policyDefaults     = policyDefaultsIn;
     }
 
     private static MatchResult match(EvaluationContext evaluationContext, FunctionDefinition functionDefinition, FunctionArgument arg1, FunctionArgument arg2) throws EvaluationException {
-        List<FunctionArgument> listArguments	= new ArrayList<FunctionArgument>(2);
+        List<FunctionArgument> listArguments    = new ArrayList<FunctionArgument>(2);
         listArguments.add(arg1);
         listArguments.add(arg2);
 
-        ExpressionResult expressionResult	= functionDefinition.evaluate(evaluationContext, listArguments);
+        ExpressionResult expressionResult       = functionDefinition.evaluate(evaluationContext, listArguments);
         assert(expressionResult != null);
         if (!expressionResult.isOk()) {
             return new MatchResult(expressionResult.getStatus());
         }
 
-        AttributeValue<Boolean> attributeValueResult	= null;
+        AttributeValue<Boolean> attributeValueResult    = null;
         try {
-            attributeValueResult	= DataTypes.DT_BOOLEAN.convertAttributeValue(expressionResult.getValue());
+            attributeValueResult        = DataTypes.DT_BOOLEAN.convertAttributeValue(expressionResult.getValue());
         } catch (DataTypeException ex) {
             return new MatchResult(new StdStatus(StdStatusCode.STATUS_CODE_PROCESSING_ERROR, ex.getMessage()));
         }
@@ -157,37 +157,37 @@ public class Match extends PolicyComponent implements Matchable {
             return new MatchResult(new StdStatus(this.getStatusCode(), this.getStatusMessage()));
         }
 
-        FunctionDefinition functionDefinitionMatch		= this.getFunctionDefinition();
+        FunctionDefinition functionDefinitionMatch              = this.getFunctionDefinition();
         assert(functionDefinitionMatch != null);
 
-        AttributeValue<?> attributeValue				= this.getAttributeValue();
+        AttributeValue<?> attributeValue                                = this.getAttributeValue();
         assert(attributeValue != null);
-        FunctionArgument functionArgument1				= new FunctionArgumentAttributeValue(attributeValue);
+        FunctionArgument functionArgument1                              = new FunctionArgumentAttributeValue(attributeValue);
 
-        AttributeRetrievalBase attributeRetrievalBase	= this.getAttributeRetrievalBase();
+        AttributeRetrievalBase attributeRetrievalBase   = this.getAttributeRetrievalBase();
         assert(attributeRetrievalBase != null);
 
-        ExpressionResult expressionResult	= attributeRetrievalBase.evaluate(evaluationContext, this.getPolicyDefaults());
+        ExpressionResult expressionResult       = attributeRetrievalBase.evaluate(evaluationContext, this.getPolicyDefaults());
         assert(expressionResult != null);
         if (!expressionResult.isOk()) {
             return new MatchResult(expressionResult.getStatus());
         }
 
         if (expressionResult.isBag()) {
-            MatchResult matchResult	= MatchResult.MM_NOMATCH;
-            Bag bagAttributeValues	= expressionResult.getBag();
+            MatchResult matchResult     = MatchResult.MM_NOMATCH;
+            Bag bagAttributeValues      = expressionResult.getBag();
             if (bagAttributeValues != null) {
-                Iterator<AttributeValue<?>> iterAttributeValues	= bagAttributeValues.getAttributeValues();
+                Iterator<AttributeValue<?>> iterAttributeValues = bagAttributeValues.getAttributeValues();
                 while (matchResult.getMatchCode() != MatchResult.MatchCode.MATCH && iterAttributeValues.hasNext()) {
-                    MatchResult matchResultValue	= match(evaluationContext, functionDefinitionMatch, functionArgument1, new FunctionArgumentAttributeValue(iterAttributeValues.next()));
+                    MatchResult matchResultValue        = match(evaluationContext, functionDefinitionMatch, functionArgument1, new FunctionArgumentAttributeValue(iterAttributeValues.next()));
                     switch(matchResultValue.getMatchCode()) {
                     case INDETERMINATE:
                         if (matchResult.getMatchCode() != MatchResult.MatchCode.INDETERMINATE) {
-                            matchResult	= matchResultValue;
+                            matchResult = matchResultValue;
                         }
                         break;
                     case MATCH:
-                        matchResult	= matchResultValue;
+                        matchResult     = matchResultValue;
                         break;
                     case NOMATCH:
                         break;
@@ -199,7 +199,7 @@ public class Match extends PolicyComponent implements Matchable {
             /*
              * There is a single value, so add it as the second argument and do the one function evaluation
              */
-            AttributeValue<?> attributeValueExpressionResult	= expressionResult.getValue();
+            AttributeValue<?> attributeValueExpressionResult    = expressionResult.getValue();
             if (attributeValueExpressionResult == null) {
                 return new MatchResult(new StdStatus(StdStatusCode.STATUS_CODE_PROCESSING_ERROR, "Null AttributeValue"));
             }
@@ -237,7 +237,7 @@ public class Match extends PolicyComponent implements Matchable {
 
     @Override
     public String toString() {
-        StringBuilder stringBuilder	= new StringBuilder("{");
+        StringBuilder stringBuilder     = new StringBuilder("{");
         stringBuilder.append("super=");
         stringBuilder.append(super.toString());
 

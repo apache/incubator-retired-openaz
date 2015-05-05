@@ -39,7 +39,7 @@ import java.net.URI;
  * interface to allow for extensions.
  *
  * Classes that implement the <code>Identifier</code> interface should override the <code>equals</code> method to meet the following semantics:
- * 		Two <code>Identifier</code>s are <code>equal</code> if the values returned by the <code>getUri</code> method are <code>equal</code>.
+ *              Two <code>Identifier</code>s are <code>equal</code> if the values returned by the <code>getUri</code> method are <code>equal</code>.
  *
  */
 public interface Identifier extends SemanticString {
@@ -64,8 +64,8 @@ public interface Identifier extends SemanticString {
      *
      * The implementation of the <code>Identifier</code> interface must override the <code>equals</code> method with the following
      * semantics:
-     * 		Two <code>Identifier</code> objects (<code>i1</code> and <code>i2</code>) are equal if:
-     * 			{@code a1.getUri().equals(a2.getUri())}
+     *          Two <code>Identifier</code> objects (<code>i1</code> and <code>i2</code>) are equal if:
+     *                  {@code a1.getUri().equals(a2.getUri())}
      */
     @Override
     boolean equals(Object obj);

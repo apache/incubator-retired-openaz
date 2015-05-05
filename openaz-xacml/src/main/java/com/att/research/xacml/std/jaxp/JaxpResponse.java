@@ -61,7 +61,7 @@ import com.att.research.xacml.std.StdMutableResponse;
  *
  */
 public class JaxpResponse extends StdMutableResponse {
-    private static Log	logger	= LogFactory.getLog(JaxpResponse.class);
+    private static Log  logger  = LogFactory.getLog(JaxpResponse.class);
 
     protected JaxpResponse() {
     }
@@ -72,9 +72,9 @@ public class JaxpResponse extends StdMutableResponse {
         } else if (responseType.getResult() == null || responseType.getResult().size() == 0) {
             throw new IllegalArgumentException("No ResultTypes in ResponseType");
         }
-        JaxpResponse	jaxpResponse	= new JaxpResponse();
+        JaxpResponse    jaxpResponse    = new JaxpResponse();
 
-        Iterator<ResultType>	iterResults	= responseType.getResult().iterator();
+        Iterator<ResultType>    iterResults     = responseType.getResult().iterator();
         while (iterResults.hasNext()) {
             jaxpResponse.add(JaxpResult.newInstance(iterResults.next()));
         }
@@ -106,26 +106,26 @@ public class JaxpResponse extends StdMutableResponse {
         /*
          * Parse the file into a Document
          */
-        Document	document	= documentBuilder.parse(fileXmlResponse);
+        Document        document        = documentBuilder.parse(fileXmlResponse);
         if (document == null) {
             logger.error("No Document returned parsing \"" + fileXmlResponse.getAbsolutePath() + "\"");
             return null;
         }
 
-        NodeList	nodeListRoot	= document.getChildNodes();
+        NodeList        nodeListRoot    = document.getChildNodes();
         if (nodeListRoot == null || nodeListRoot.getLength() == 0) {
             logger.warn("No child elements of the XML document");
             return null;
         }
-        Node		nodeRoot		= nodeListRoot.item(0);
+        Node            nodeRoot                = nodeListRoot.item(0);
         if (nodeRoot == null || nodeRoot.getNodeType() != Node.ELEMENT_NODE) {
             logger.warn("Root of the document is not an ELEMENT");
             return null;
         }
 
-        JAXBContext 				context 			= JAXBContext.newInstance(ResponseType.class);
-        Unmarshaller 				unmarshaller 		= context.createUnmarshaller();
-        JAXBElement<ResponseType>	jaxbElementResponse = unmarshaller.unmarshal((Element)nodeRoot, ResponseType.class);
+        JAXBContext                             context                         = JAXBContext.newInstance(ResponseType.class);
+        Unmarshaller                            unmarshaller            = context.createUnmarshaller();
+        JAXBElement<ResponseType>       jaxbElementResponse = unmarshaller.unmarshal((Element)nodeRoot, ResponseType.class);
         if (jaxbElementResponse == null || jaxbElementResponse.getValue() == null) {
             logger.error("JAXB unmarshalling did not return a ResponseType node");
             return null;
@@ -136,9 +136,9 @@ public class JaxpResponse extends StdMutableResponse {
 
     public static void main(String[] args) {
         for (String fileName: args) {
-            JaxpResponse	jaxpResponse	= null;
+            JaxpResponse        jaxpResponse    = null;
             try {
-                jaxpResponse	= JaxpResponse.load(new File(fileName));
+                jaxpResponse    = JaxpResponse.load(new File(fileName));
             } catch (Exception ex) {
                 logger.fatal("Failed to load \"" + fileName + "\" as a JaxpResponse", ex);
                 continue;

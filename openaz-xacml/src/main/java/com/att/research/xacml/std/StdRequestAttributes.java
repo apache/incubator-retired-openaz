@@ -51,7 +51,7 @@ import com.att.research.xacml.util.ObjUtil;
  *
  */
 public class StdRequestAttributes extends StdAttributeCategory implements RequestAttributes {
-    private Log logger	= LogFactory.getLog(this.getClass());
+    private Log logger  = LogFactory.getLog(this.getClass());
 
     private Node contentRoot;
     private String xmlId;
@@ -68,8 +68,8 @@ public class StdRequestAttributes extends StdAttributeCategory implements Reques
      */
     public StdRequestAttributes(Identifier identifierCategory, Collection<Attribute> listAttributes, Node nodeContentRoot, String xmlIdIn) {
         super(identifierCategory, listAttributes);
-        this.contentRoot	= nodeContentRoot;
-        this.xmlId			= xmlIdIn;
+        this.contentRoot        = nodeContentRoot;
+        this.xmlId                      = xmlIdIn;
     }
 
     /**
@@ -79,8 +79,8 @@ public class StdRequestAttributes extends StdAttributeCategory implements Reques
      */
     public StdRequestAttributes(RequestAttributes requestAttributes) {
         super(requestAttributes);
-        this.contentRoot	= requestAttributes.getContentRoot();
-        this.xmlId			= requestAttributes.getXmlId();
+        this.contentRoot        = requestAttributes.getContentRoot();
+        this.xmlId                      = requestAttributes.getXmlId();
     }
 
     @Override
@@ -98,13 +98,13 @@ public class StdRequestAttributes extends StdAttributeCategory implements Reques
         if (xpathExpression == null) {
             throw new NullPointerException("Null XPathExpression");
         }
-        Node	nodeRootThis	= this.getContentRoot();
+        Node    nodeRootThis    = this.getContentRoot();
         if (nodeRootThis == null) {
             return null;
         }
-        Node	matchingNode	= null;
+        Node    matchingNode    = null;
         try {
-            matchingNode	= (Node)xpathExpression.evaluate(nodeRootThis, XPathConstants.NODE);
+            matchingNode        = (Node)xpathExpression.evaluate(nodeRootThis, XPathConstants.NODE);
         } catch (XPathExpressionException ex) {
             this.logger.warn("Failed to retrieve node for \"" + xpathExpression.toString() + "\"", ex);
         }
@@ -116,13 +116,13 @@ public class StdRequestAttributes extends StdAttributeCategory implements Reques
         if (xpathExpression == null) {
             throw new NullPointerException("Null XPathExpression");
         }
-        Node	nodeRootThis	= this.getContentRoot();
+        Node    nodeRootThis    = this.getContentRoot();
         if (nodeRootThis == null) {
             return null;
         }
-        NodeList	matchingNodeList	= null;
+        NodeList        matchingNodeList        = null;
         try {
-            matchingNodeList	= (NodeList)xpathExpression.evaluate(nodeRootThis, XPathConstants.NODESET);
+            matchingNodeList    = (NodeList)xpathExpression.evaluate(nodeRootThis, XPathConstants.NODESET);
         } catch (XPathExpressionException ex) {
             this.logger.warn("Failed to retrieve nodelist for \"" + xpathExpression.toString() + "\"", ex);
         }
@@ -136,7 +136,7 @@ public class StdRequestAttributes extends StdAttributeCategory implements Reques
         } else if (obj == null || !(obj instanceof RequestAttributes)) {
             return false;
         } else {
-            RequestAttributes objRequestAttributes	= (RequestAttributes)obj;
+            RequestAttributes objRequestAttributes      = (RequestAttributes)obj;
             // Content nodes need to be handled specially because content.equals(content) does not work unless they are the same object, and
             // content.isEqualNode(content) only works if the nodes have identical newlines and spaces, which is not what we care about.
             if (ObjUtil.xmlEqualsAllowNull(this.getContentRoot(), objRequestAttributes.getContentRoot()) == false) {
@@ -150,7 +150,7 @@ public class StdRequestAttributes extends StdAttributeCategory implements Reques
 
     @Override
     public String toString() {
-        StringBuilder	stringBuilder	= new StringBuilder("{");
+        StringBuilder   stringBuilder   = new StringBuilder("{");
         stringBuilder.append("super=");
         stringBuilder.append(super.toString());
 

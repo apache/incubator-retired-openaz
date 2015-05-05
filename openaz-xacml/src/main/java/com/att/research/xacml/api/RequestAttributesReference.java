@@ -47,8 +47,8 @@ public interface RequestAttributesReference {
      *
      * Implementations of this interface must override the <code>equals</code> method with the following semantics:
      *
-     * 		Two <code>RequestAttributesReference</code>s (<code>r1</code> and <code>r2</code>) are equal if:
-     * 			{@code r1.getReferenceId() == null && r2.getReferenceId() == null} OR {@code r1.getReferenceId().equals(r2.getReferenceId())}
+     *          Two <code>RequestAttributesReference</code>s (<code>r1</code> and <code>r2</code>) are equal if:
+     *                  {@code r1.getReferenceId() == null && r2.getReferenceId() == null} OR {@code r1.getReferenceId().equals(r2.getReferenceId())}
      */
     @Override
     boolean equals(Object obj);

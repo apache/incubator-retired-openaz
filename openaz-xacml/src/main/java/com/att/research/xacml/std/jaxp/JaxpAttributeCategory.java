@@ -59,11 +59,11 @@ public class JaxpAttributeCategory {
         } else if (attributesType.getCategory() == null) {
             throw new IllegalArgumentException("Null categoryId for AttributesType");
         }
-        Identifier identifierCategory	= new IdentifierImpl(attributesType.getCategory());
-        List<Attribute> listAttributes	= new ArrayList<Attribute>();
+        Identifier identifierCategory   = new IdentifierImpl(attributesType.getCategory());
+        List<Attribute> listAttributes  = new ArrayList<Attribute>();
 
         if (attributesType.getAttribute() != null && attributesType.getAttribute().size() > 0) {
-            Iterator<AttributeType>	iterAttributeTypes	= attributesType.getAttribute().iterator();
+            Iterator<AttributeType>     iterAttributeTypes      = attributesType.getAttribute().iterator();
             while (iterAttributeTypes.hasNext()) {
                 listAttributes.add(JaxpAttribute.newInstance(identifierCategory, iterAttributeTypes.next()));
             }

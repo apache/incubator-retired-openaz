@@ -59,32 +59,32 @@ import com.google.common.base.Splitter;
 
 public class ConfigurableCSVResolver implements CSVResolver {
 
-    public static final String PROP_PARAMETERS		= "parameters";
+    public static final String PROP_PARAMETERS          = "parameters";
 
-    public static final String PROP_ID				= "id";
-    public static final String PROP_DATATYPE		= "datatype";
-    public static final String PROP_CATEGORY		= "category";
-    public static final String PROP_ISSUER			= "issuer";
+    public static final String PROP_ID                          = "id";
+    public static final String PROP_DATATYPE            = "datatype";
+    public static final String PROP_CATEGORY            = "category";
+    public static final String PROP_ISSUER                      = "issuer";
 
-    public static final String PROP_COLUMN			= "column";
+    public static final String PROP_COLUMN                      = "column";
 
-    private static DataTypeFactory dataTypeFactory		= null;
+    private static DataTypeFactory dataTypeFactory              = null;
 
     static {
         try {
-            dataTypeFactory	= DataTypeFactory.newInstance();
+            dataTypeFactory     = DataTypeFactory.newInstance();
         } catch (FactoryException fx) {
             throw new RuntimeException(fx);
         }
     }
 
-    protected Log logger	= LogFactory.getLog(this.getClass());
+    protected Log logger        = LogFactory.getLog(this.getClass());
 
     private String id;
     private String defaultIssuer;
 
-    private Map<Integer, PIPRequest>	parameterMap = new HashMap<Integer, PIPRequest>();
-    private Map<Integer, PIPRequest>	fieldMap = new HashMap<Integer, PIPRequest>();
+    private Map<Integer, PIPRequest>    parameterMap = new HashMap<Integer, PIPRequest>();
+    private Map<Integer, PIPRequest>    fieldMap = new HashMap<Integer, PIPRequest>();
 
     public ConfigurableCSVResolver() {
 
@@ -226,7 +226,7 @@ public class ConfigurableCSVResolver implements CSVResolver {
     }
 
     @Override
-    public Map<Integer, List<AttributeValue<?>>>	getColumnParameterValues(PIPEngine engine, PIPRequest request, PIPFinder finder) throws PIPException {
+    public Map<Integer, List<AttributeValue<?>>>        getColumnParameterValues(PIPEngine engine, PIPRequest request, PIPFinder finder) throws PIPException {
         Map<Integer, List<AttributeValue<?>>> map = new HashMap<Integer, List<AttributeValue<?>>>();
         for (Integer column : this.parameterMap.keySet()) {
             PIPRequest requestParameter = this.parameterMap.get(column);

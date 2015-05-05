@@ -55,20 +55,20 @@ public class LegacyPermitOverridesPolicy extends CombiningAlgorithmBase<PolicySe
 
     @Override
     public EvaluationResult combine(EvaluationContext evaluationContext, List<CombiningElement<PolicySetChild>> elements, List<CombinerParameter> combinerParameters) throws EvaluationException {
-        boolean atLeastOneDeny							= false;
+        boolean atLeastOneDeny                                                  = false;
 
-        EvaluationResult evaluationResultCombined		= new EvaluationResult(Decision.DENY);
-        EvaluationResult evaluationResultIndeterminate	= null;
+        EvaluationResult evaluationResultCombined               = new EvaluationResult(Decision.DENY);
+        EvaluationResult evaluationResultIndeterminate  = null;
 
-        Iterator<CombiningElement<PolicySetChild>> iterElements	= elements.iterator();
+        Iterator<CombiningElement<PolicySetChild>> iterElements = elements.iterator();
         while (iterElements.hasNext()) {
-            CombiningElement<PolicySetChild> combiningElement	= iterElements.next();
-            EvaluationResult evaluationResultElement			= combiningElement.evaluate(evaluationContext);
+            CombiningElement<PolicySetChild> combiningElement   = iterElements.next();
+            EvaluationResult evaluationResultElement                    = combiningElement.evaluate(evaluationContext);
 
             assert(evaluationResultElement != null);
             switch(evaluationResultElement.getDecision()) {
             case DENY:
-                atLeastOneDeny	= true;
+                atLeastOneDeny  = true;
                 evaluationResultCombined.merge(evaluationResultElement);
                 break;
             case INDETERMINATE:
@@ -76,7 +76,7 @@ public class LegacyPermitOverridesPolicy extends CombiningAlgorithmBase<PolicySe
             case INDETERMINATE_DENYPERMIT:
             case INDETERMINATE_PERMIT:
                 if (evaluationResultIndeterminate == null) {
-                    evaluationResultIndeterminate	= evaluationResultElement;
+                    evaluationResultIndeterminate       = evaluationResultElement;
                 } else {
                     evaluationResultIndeterminate.merge(evaluationResultElement);
                 }

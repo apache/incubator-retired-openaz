@@ -116,12 +116,12 @@ public interface Request {
      *
      * Implementations of the <code>Request</code> interface must override the <code>equals</code> method with the following semantics:
      *
-     * 		Two <code>Requests</code> (<code>r1</code> and <code>r2</code>) are equals if:
-     * 			{@code r1.getRequestDefaults() == null && r2.getRequestDefaults() == null} OR {@code r1.getRequestDefaults().equals(r2.getRequestDefaults())} AND
-     * 			{@code r1.getReturnPolicyIdList() == r2.getReturnPolicyIdList()} AND
-     * 			{@code r1.getCombinedDecision() == r2.getCombinedDecision()} AND
-     * 			{@code r1.getRequestAttributes()} is pairwise equal to {@code r2.getRequestAttributes()} AND
-     * 			{@code r1.getMultiRequests()} is pairwise equal to {@code r2.getMultiRequests()}
+     *          Two <code>Requests</code> (<code>r1</code> and <code>r2</code>) are equals if:
+     *                  {@code r1.getRequestDefaults() == null && r2.getRequestDefaults() == null} OR {@code r1.getRequestDefaults().equals(r2.getRequestDefaults())} AND
+     *                  {@code r1.getReturnPolicyIdList() == r2.getReturnPolicyIdList()} AND
+     *                  {@code r1.getCombinedDecision() == r2.getCombinedDecision()} AND
+     *                  {@code r1.getRequestAttributes()} is pairwise equal to {@code r2.getRequestAttributes()} AND
+     *                  {@code r1.getMultiRequests()} is pairwise equal to {@code r2.getMultiRequests()}
      */
     @Override
     boolean equals(Object obj);

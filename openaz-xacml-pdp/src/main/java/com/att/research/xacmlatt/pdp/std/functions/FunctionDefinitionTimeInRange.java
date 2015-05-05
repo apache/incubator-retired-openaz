@@ -52,7 +52,7 @@ import com.att.research.xacmlatt.pdp.policy.FunctionArgument;
  * In the first implementation of XACML we had separate files for each XACML Function.
  * This release combines multiple Functions in fewer files to minimize code duplication.
  * This file supports the following XACML codes:
- * 		time-in-range
+ *              time-in-range
  *
  *
  *
@@ -77,8 +77,8 @@ public class FunctionDefinitionTimeInRange<I> extends FunctionDefinitionHomogene
     @Override
     public ExpressionResult evaluate(EvaluationContext evaluationContext, List<FunctionArgument> arguments) {
 
-        List<I> convertedArguments	= new ArrayList<I>();
-        Status status				= this.validateArguments(arguments, convertedArguments);
+        List<I> convertedArguments      = new ArrayList<I>();
+        Status status                           = this.validateArguments(arguments, convertedArguments);
 
         /*
          * If the function arguments are not correct, just return an error status immediately

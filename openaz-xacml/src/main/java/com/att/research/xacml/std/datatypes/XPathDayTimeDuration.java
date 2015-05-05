@@ -38,7 +38,7 @@ import java.text.ParseException;
  *
  */
 public class XPathDayTimeDuration extends ISO8601Duration implements Comparable<XPathDayTimeDuration> {
-    private double	fractionalSeconds;
+    private double      fractionalSeconds;
 
     /**
      * Creates a new XPathDayTimeDuration with the given sign, days, hours, minutes, and seconds.
@@ -51,7 +51,7 @@ public class XPathDayTimeDuration extends ISO8601Duration implements Comparable<
      */
     public XPathDayTimeDuration(int durationSignIn, int daysIn, int hoursIn, int minutesIn, double secondsIn) {
         super(durationSignIn, 0, 0, daysIn, hoursIn, minutesIn, secondsIn);
-        fractionalSeconds	= this.getDurationSign() * (
+        fractionalSeconds       = this.getDurationSign() * (
                                   this.getDays() * 24 * 60 * 60 +
                                   this.getHours() * 60 * 60 +
                                   this.getMinutes() * 60 +
@@ -111,19 +111,19 @@ public class XPathDayTimeDuration extends ISO8601Duration implements Comparable<
      * @return the canonical <code>XPathDayTimeDuration</code> for this <code>XPathDayTimeDuration</code>
      */
     public XPathDayTimeDuration getCanonicalDuration() {
-        double	fractionalSecondsLeft	= Math.abs(this.getFractionalSeconds());
-        int		days					= (int)(fractionalSecondsLeft/(24*60*60));
-        fractionalSecondsLeft			-= (days*24*60*60);
-        int		hours					= (int)(fractionalSecondsLeft/(60*60));
-        fractionalSecondsLeft			-= (hours*60*60);
-        int		minutes					= (int)(fractionalSecondsLeft/60);
-        fractionalSecondsLeft			-= (minutes*60);
+        double  fractionalSecondsLeft   = Math.abs(this.getFractionalSeconds());
+        int             days                                    = (int)(fractionalSecondsLeft/(24*60*60));
+        fractionalSecondsLeft                   -= (days*24*60*60);
+        int             hours                                   = (int)(fractionalSecondsLeft/(60*60));
+        fractionalSecondsLeft                   -= (hours*60*60);
+        int             minutes                                 = (int)(fractionalSecondsLeft/60);
+        fractionalSecondsLeft                   -= (minutes*60);
         return new XPathDayTimeDuration(this.getDurationSign(), days, hours, minutes, fractionalSecondsLeft);
     }
 
     @Override
     public String toString() {
-        StringBuilder stringBuilder	= new StringBuilder("{super=");
+        StringBuilder stringBuilder     = new StringBuilder("{super=");
         stringBuilder.append(super.toString());
         stringBuilder.append(",factionalSeconds=");
         stringBuilder.append(this.getFractionalSecs());

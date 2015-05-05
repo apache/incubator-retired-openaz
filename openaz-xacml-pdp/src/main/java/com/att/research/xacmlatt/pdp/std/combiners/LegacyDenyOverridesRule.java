@@ -58,16 +58,16 @@ public class LegacyDenyOverridesRule extends CombiningAlgorithmBase<Rule> {
 
     @Override
     public EvaluationResult combine(EvaluationContext evaluationContext, List<CombiningElement<Rule>> elements, List<CombinerParameter> combinerParameters) throws EvaluationException {
-        boolean atLeastOnePermit						= false;
-        boolean potentialDeny							= false;
+        boolean atLeastOnePermit                                                = false;
+        boolean potentialDeny                                                   = false;
 
-        EvaluationResult combinedResult					= new EvaluationResult(Decision.PERMIT);
-        EvaluationResult evaluationResultIndeterminate	= null;
+        EvaluationResult combinedResult                                 = new EvaluationResult(Decision.PERMIT);
+        EvaluationResult evaluationResultIndeterminate  = null;
 
-        Iterator<CombiningElement<Rule>> iterElements	= elements.iterator();
+        Iterator<CombiningElement<Rule>> iterElements   = elements.iterator();
         while (iterElements.hasNext()) {
-            CombiningElement<Rule> combiningElement		= iterElements.next();
-            EvaluationResult evaluationResultElement	= combiningElement.evaluate(evaluationContext);
+            CombiningElement<Rule> combiningElement             = iterElements.next();
+            EvaluationResult evaluationResultElement    = combiningElement.evaluate(evaluationContext);
 
             assert(evaluationResultElement != null);
             switch(evaluationResultElement.getDecision()) {
@@ -78,17 +78,17 @@ public class LegacyDenyOverridesRule extends CombiningAlgorithmBase<Rule> {
             case INDETERMINATE_DENY:
             case INDETERMINATE_PERMIT:
                 if (evaluationResultIndeterminate == null) {
-                    evaluationResultIndeterminate	= evaluationResultElement;
+                    evaluationResultIndeterminate       = evaluationResultElement;
                 } else {
                     evaluationResultIndeterminate.merge(evaluationResultElement);
                 }
                 if (combiningElement.getEvaluatable().getRuleEffect() == RuleEffect.DENY) {
-                    potentialDeny	= true;
+                    potentialDeny       = true;
                 }
             case NOTAPPLICABLE:
                 break;
             case PERMIT:
-                atLeastOnePermit	= true;
+                atLeastOnePermit        = true;
                 combinedResult.merge(evaluationResultElement);
                 break;
             default:

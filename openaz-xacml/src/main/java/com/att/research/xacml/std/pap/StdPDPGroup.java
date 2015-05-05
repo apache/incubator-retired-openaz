@@ -65,7 +65,7 @@ import com.google.common.io.ByteStreams;
 
 public class StdPDPGroup extends StdPDPItemSetChangeNotifier implements PDPGroup, StdItemSetChangeListener, Comparable<Object>, Serializable {
     private static final long serialVersionUID = 1L;
-    private static Log	logger	= LogFactory.getLog(StdPDPGroup.class);
+    private static Log  logger  = LogFactory.getLog(StdPDPGroup.class);
 
     private String id;
 
@@ -77,7 +77,7 @@ public class StdPDPGroup extends StdPDPItemSetChangeNotifier implements PDPGroup
 
     private StdPDPGroupStatus status = new StdPDPGroupStatus(Status.UNKNOWN);
 
-    private Set<PDP>	pdps = new HashSet<PDP>();
+    private Set<PDP>    pdps = new HashSet<PDP>();
 
     private Set<PDPPolicy> policies = new HashSet<PDPPolicy>();
 
@@ -249,20 +249,20 @@ public class StdPDPGroup extends StdPDPItemSetChangeNotifier implements PDPGroup
     }
 
     public void resetStatus() {
-//		//
-//		// If we are updating, don't allow reset
-//		//
-//		if (this.status.getStatus() == Status.UPDATING_CONFIGURATION) {
-//			logger.warn("We are updating, chill.");
-//			return;
-//		}
-//		//
-//		// Load errors take precedence
-//		//
-//		if (this.status.getStatus() == Status.LOAD_ERRORS) {
-//			logger.warn("We had load errors.");
-//			return;
-//		}
+//              //
+//              // If we are updating, don't allow reset
+//              //
+//              if (this.status.getStatus() == Status.UPDATING_CONFIGURATION) {
+//                      logger.warn("We are updating, chill.");
+//                      return;
+//              }
+//              //
+//              // Load errors take precedence
+//              //
+//              if (this.status.getStatus() == Status.LOAD_ERRORS) {
+//                      logger.warn("We had load errors.");
+//                      return;
+//              }
         //
         // Reset our status object
         //
@@ -514,27 +514,27 @@ public class StdPDPGroup extends StdPDPItemSetChangeNotifier implements PDPGroup
 
 
 
-//			if (Files.exists(policyFilePath)) {
-//				// compare the
-//				String incomingPolicyString = null;
-//				try (ByteArrayOutputStream os = new ByteArrayOutputStream()) {
-//					num = ByteStreams.copy(policy, os);
-//					incomingPolicyString = new String(os.toByteArray(), "UTF-8");
-//				}
-//				String existingPolicyString = null;
-//				try {
-//					byte[] bytes =  Files.readAllBytes(policyFilePath);
-//					existingPolicyString = new String(bytes, "UTF-8");
-//				} catch (Exception e) {
-//					logger.error("Unable to read existing file '" + policyFilePath + "': " + e, e);
-//					throw new PAPException("Unable to read policy file for comparison: " + e);
-//				}
-//				if (incomingPolicyString.equals(existingPolicyString)) {
-//					throw new PAPException("Policy '" + policyFilePath + "' does not match existing policy on server");
-//				}
-//				// input is same as existing file
-//				return;
-//			}
+//                      if (Files.exists(policyFilePath)) {
+//                              // compare the
+//                              String incomingPolicyString = null;
+//                              try (ByteArrayOutputStream os = new ByteArrayOutputStream()) {
+//                                      num = ByteStreams.copy(policy, os);
+//                                      incomingPolicyString = new String(os.toByteArray(), "UTF-8");
+//                              }
+//                              String existingPolicyString = null;
+//                              try {
+//                                      byte[] bytes =  Files.readAllBytes(policyFilePath);
+//                                      existingPolicyString = new String(bytes, "UTF-8");
+//                              } catch (Exception e) {
+//                                      logger.error("Unable to read existing file '" + policyFilePath + "': " + e, e);
+//                                      throw new PAPException("Unable to read policy file for comparison: " + e);
+//                              }
+//                              if (incomingPolicyString.equals(existingPolicyString)) {
+//                                      throw new PAPException("Policy '" + policyFilePath + "' does not match existing policy on server");
+//                              }
+//                              // input is same as existing file
+//                              return;
+//                      }
 
 
             Path policyFile;
@@ -711,7 +711,7 @@ public class StdPDPGroup extends StdPDPItemSetChangeNotifier implements PDPGroup
         }
     }
 
-    private void	readPolicyProperties(Path directory, Properties properties) {
+    private void        readPolicyProperties(Path directory, Properties properties) {
         //
         // There are 2 property values that hold policies, root and referenced
         //
@@ -775,7 +775,7 @@ public class StdPDPGroup extends StdPDPItemSetChangeNotifier implements PDPGroup
         }
     }
 
-    private void	readPIPProperties(Path directory, Properties properties) {
+    private void        readPIPProperties(Path directory, Properties properties) {
         String list = properties.getProperty(XACMLProperties.PROP_PIP_ENGINES);
         if (list == null || list.length() == 0) {
             return;

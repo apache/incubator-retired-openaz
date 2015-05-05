@@ -60,11 +60,11 @@ public class JaxpObligation extends StdMutableObligation {
         } else if (obligationType.getObligationId() == null) {
             throw new IllegalArgumentException("Null obligationId for ObligationType");
         }
-        Identifier						obligationId			= new IdentifierImpl(obligationType.getObligationId());
-        List<AttributeAssignment>	attributeAssignments	= null;
+        Identifier                                              obligationId                    = new IdentifierImpl(obligationType.getObligationId());
+        List<AttributeAssignment>       attributeAssignments    = null;
         if (obligationType.getAttributeAssignment() != null && obligationType.getAttributeAssignment().size() > 0) {
-            attributeAssignments	= new ArrayList<AttributeAssignment>();
-            Iterator<AttributeAssignmentType>	iterAttributeAssignmentTypes	= obligationType.getAttributeAssignment().iterator();
+            attributeAssignments        = new ArrayList<AttributeAssignment>();
+            Iterator<AttributeAssignmentType>   iterAttributeAssignmentTypes    = obligationType.getAttributeAssignment().iterator();
             while (iterAttributeAssignmentTypes.hasNext()) {
                 attributeAssignments.add(JaxpAttributeAssignment.newInstance(iterAttributeAssignmentTypes.next()));
             }

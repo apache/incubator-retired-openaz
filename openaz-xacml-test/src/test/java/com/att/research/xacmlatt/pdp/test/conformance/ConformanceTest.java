@@ -43,25 +43,25 @@ public class ConformanceTest {
     private ConformanceRepository repository;
 
     public ConformanceTest(String name, ConformanceRepository conformanceRepository, File fileRequest, File fileResponse) {
-        this.testName	= name;
-        this.request	= fileRequest;
-        this.response	= fileResponse;
-        this.repository	= conformanceRepository;
+        this.testName   = name;
+        this.request    = fileRequest;
+        this.response   = fileResponse;
+        this.repository = conformanceRepository;
     }
 
     public ConformanceTest(String name) {
-        this.testName	= name;
+        this.testName   = name;
     }
 
     public String getTestName() {
         return this.testName;
     }
     public void setTestName(String s) {
-        this.testName	= s;
+        this.testName   = s;
     }
     public ConformanceRepository getRepository() {
         if (this.repository == null) {
-            this.repository	= new ConformanceRepository();
+            this.repository     = new ConformanceRepository();
         }
         return this.repository;
     }
@@ -69,13 +69,13 @@ public class ConformanceTest {
         return this.request;
     }
     public void setRequest(File f) {
-        this.request	= f;
+        this.request    = f;
     }
     public File getResponse() {
         return this.response;
     }
     public void setResponse(File f) {
-        this.response	= f;
+        this.response   = f;
     }
 
     public boolean isComplete() {
@@ -84,11 +84,11 @@ public class ConformanceTest {
 
     @Override
     public String toString() {
-        StringBuilder stringBuilder	= new StringBuilder();
-        boolean needColon			= false;
+        StringBuilder stringBuilder     = new StringBuilder();
+        boolean needColon                       = false;
         if (this.getTestName() != null) {
             stringBuilder.append(this.getTestName());
-            needColon	= true;
+            needColon   = true;
         }
         if (this.getRepository() != null) {
 
@@ -98,14 +98,14 @@ public class ConformanceTest {
                 stringBuilder.append(':');
             }
             stringBuilder.append(this.getRequest().getName());
-            needColon	= true;
+            needColon   = true;
         }
         if (this.getResponse() != null) {
             if (needColon) {
                 stringBuilder.append(':');
             }
             stringBuilder.append(this.getResponse().getName());
-            needColon	= true;
+            needColon   = true;
         }
         return stringBuilder.toString();
     }

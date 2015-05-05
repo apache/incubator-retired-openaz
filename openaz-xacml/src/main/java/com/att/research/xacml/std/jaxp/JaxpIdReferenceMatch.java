@@ -58,20 +58,20 @@ public class JaxpIdReferenceMatch extends StdIdReferenceMatch {
             throw new IllegalArgumentException("Null value for IdReferenceType");
         }
 
-        VersionMatch version			= null;
-        VersionMatch earliestVersion	= null;
-        VersionMatch latestVersion		= null;
+        VersionMatch version                    = null;
+        VersionMatch earliestVersion    = null;
+        VersionMatch latestVersion              = null;
 
         if (idReferenceType.getVersion() != null) {
             try {
-                version	= StdVersionMatch.newInstance(idReferenceType.getVersion());
+                version = StdVersionMatch.newInstance(idReferenceType.getVersion());
             } catch (ParseException ex) {
                 throw new IllegalArgumentException("Invalid version");
             }
         }
         if (idReferenceType.getEarliestVersion() != null) {
             try {
-                earliestVersion	= StdVersionMatch.newInstance(idReferenceType.getEarliestVersion());
+                earliestVersion = StdVersionMatch.newInstance(idReferenceType.getEarliestVersion());
             } catch (ParseException ex) {
                 throw new IllegalArgumentException("Invalid earliest version");
             }
@@ -79,7 +79,7 @@ public class JaxpIdReferenceMatch extends StdIdReferenceMatch {
 
         if (idReferenceType.getLatestVersion() != null) {
             try {
-                latestVersion	= StdVersionMatch.newInstance(idReferenceType.getLatestVersion());
+                latestVersion   = StdVersionMatch.newInstance(idReferenceType.getLatestVersion());
             } catch (ParseException ex) {
                 throw new IllegalArgumentException("Invalid latest version");
             }

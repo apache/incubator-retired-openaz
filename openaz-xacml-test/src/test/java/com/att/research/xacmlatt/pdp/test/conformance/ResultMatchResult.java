@@ -40,45 +40,45 @@ import com.att.research.xacml.util.ListUtil;
  *
  */
 public class ResultMatchResult {
-    private boolean bAssociatedAdviceMatches	= true;
-    private boolean bAttributesMatch			= true;
-    private boolean bDecisionsMatch				= true;
-    private boolean bObligationsMatch			= true;
-    private boolean bPolicyIdentifiersMatch		= true;
-    private boolean bPolicySetIdentifiersMatch	= true;
-    private boolean bStatusCodesMatch			= true;
-    private boolean bUnknownFunction			= false;
+    private boolean bAssociatedAdviceMatches    = true;
+    private boolean bAttributesMatch                    = true;
+    private boolean bDecisionsMatch                             = true;
+    private boolean bObligationsMatch                   = true;
+    private boolean bPolicyIdentifiersMatch             = true;
+    private boolean bPolicySetIdentifiersMatch  = true;
+    private boolean bStatusCodesMatch                   = true;
+    private boolean bUnknownFunction                    = false;
 
     protected void setAssociatedAdviceMatches(boolean b) {
-        this.bAssociatedAdviceMatches	= b;
+        this.bAssociatedAdviceMatches   = b;
     }
     protected void setAttributesMatch(boolean b) {
-        this.bAttributesMatch	= b;
+        this.bAttributesMatch   = b;
     }
     protected void setDecisionsMatch(boolean b) {
-        this.bDecisionsMatch	= b;
+        this.bDecisionsMatch    = b;
     }
     protected void setObligationsMatch(boolean b) {
-        this.bObligationsMatch	= b;
+        this.bObligationsMatch  = b;
     }
     protected void setPolicyIdentifiersMatch(boolean b) {
-        this.bPolicyIdentifiersMatch	= b;
+        this.bPolicyIdentifiersMatch    = b;
     }
     protected void setPolicySetIdentifiersMatch(boolean b) {
-        this.bPolicySetIdentifiersMatch	= b;
+        this.bPolicySetIdentifiersMatch = b;
     }
     protected void setStatusCodesMatch(boolean b) {
-        this.bStatusCodesMatch	= b;
+        this.bStatusCodesMatch  = b;
     }
     protected void setUnknownFunction(boolean b) {
-        this.bUnknownFunction	= b;
+        this.bUnknownFunction   = b;
     }
 
     public ResultMatchResult() {
     }
 
     public static ResultMatchResult newInstance(Result result1, Result result2) {
-        ResultMatchResult resultMatchResult	= new ResultMatchResult();
+        ResultMatchResult resultMatchResult     = new ResultMatchResult();
         if (result2 != null && result2.getStatus() != null &&
                 result2.getStatus().getStatusCode().equals(StdStatusCode.STATUS_CODE_PROCESSING_ERROR) &&
                 result2.getStatus().getStatusMessage() != null &&

@@ -72,9 +72,9 @@ import com.att.research.xacmlatt.pdp.test.TestBase;
  *
  */
 public class TestAnnotation extends TestBase {
-    private static final Log logger	= LogFactory.getLog(TestAnnotation.class);
+    private static final Log logger     = LogFactory.getLog(TestAnnotation.class);
 
-    private int	num;
+    private int num;
 
     /**
      * This is a sample class that uses annotations. In addition to demonstrating how to use XACML annotations,
@@ -96,7 +96,7 @@ public class TestAnnotation extends TestBase {
         }
 
         @XACMLSubject(includeInResults=true)
-        String	userID;
+        String  userID;
 
         @XACMLSubject(attributeId="urn:oasis:names:tc:xacml:1.0:subject:subject-id-qualifier")
         boolean admin = false;
@@ -105,7 +105,7 @@ public class TestAnnotation extends TestBase {
         HexBinary publicKey = new HexBinary(new byte[] {'1', '0'});
 
         @XACMLSubject(attributeId="urn:oasis:names:tc:xacml:1.0:subject:authentication-time")
-        ISO8601Time	authenticationTime = new ISO8601Time(8, 0, 0, 0);
+        ISO8601Time     authenticationTime = new ISO8601Time(8, 0, 0, 0);
 
         /**
          * Here our base object is "Object", but it is reflected as a Java "String". The parser
@@ -132,37 +132,37 @@ public class TestAnnotation extends TestBase {
         String dnsName = "localhost";
 
         @XACMLAction()
-        String	action;
+        String  action;
 
         @XACMLAction(attributeId="urn:oasis:names:tc:xacml:1.0:action:implied-action")
-        long	impliedAction;
+        long    impliedAction;
 
         @XACMLResource()
-        String	resource;
+        String  resource;
 
         @XACMLEnvironment()
-        Date		today;
+        Date            today;
 
         @XACMLEnvironment()
-        Calendar	yesterday;
+        Calendar        yesterday;
 
         /**
          * This field demonstrates how the parser can detect collections and build a bag of values.
          */
         @XACMLAttribute(attributeId="foo:bar:attribute")
-        Collection<Double>		fooBar = Arrays.asList(2.5, 3.5);
+        Collection<Double>              fooBar = Arrays.asList(2.5, 3.5);
 
         /**
          * The XACMLAttribute annotation allows one to specify all the
          */
         @XACMLAttribute(category="foo:bar:category", attributeId="foo:bar:attribute2")
-        double		fooBar2 = 3.999;
+        double          fooBar2 = 3.999;
 
         /**
          * This field demonstrates how the parser can detect arrays and build a bag of values.
          */
         @XACMLAttribute(category="foo:bar:category", attributeId="foo:bar:attribute:many")
-        URI[]		fooBarMany = new URI[] {URI.create("file://opt/app/test"), URI.create("https://localhost:8443/")};
+        URI[]           fooBarMany = new URI[] {URI.create("file://opt/app/test"), URI.create("https://localhost:8443/")};
 
     };
 
@@ -176,16 +176,16 @@ public class TestAnnotation extends TestBase {
     public class MyMultiRequestAttributes {
 
         @XACMLSubject(id="subject1")
-        String	userID1 = "John";
+        String  userID1 = "John";
 
         @XACMLSubject(id="subject2")
-        String	userID2 = "Ringo";
+        String  userID2 = "Ringo";
 
         @XACMLAction(id="action")
-        String	action = "access";
+        String  action = "access";
 
         @XACMLResource(id="resource")
-        String	resource = "www.mywebsite.com";
+        String  resource = "www.mywebsite.com";
     }
 
     public TestAnnotation(String[] args) throws MalformedURLException, ParseException, HelpException {

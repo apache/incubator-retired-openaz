@@ -47,7 +47,7 @@ import com.att.research.xacml.std.StdMutableAttributeAssignment;
 import com.att.research.xacml.util.FactoryException;
 
 public class DOMAttributeAssignment {
-    private static final Log logger	= LogFactory.getLog(DOMAttributeAssignment.class);
+    private static final Log logger     = LogFactory.getLog(DOMAttributeAssignment.class);
 
     protected DOMAttributeAssignment() {
     }
@@ -60,29 +60,29 @@ public class DOMAttributeAssignment {
      * @throws IllegalArgumentException
      */
     public static AttributeAssignment newInstance(Node nodeAttributeAssignment) throws DOMStructureException {
-        Element	elementAttributeAssignment							= DOMUtil.getElement(nodeAttributeAssignment);
-        boolean bLenient											= DOMProperties.isLenient();
-        StdMutableAttributeAssignment mutableAttributeAssignment	= new StdMutableAttributeAssignment();
+        Element elementAttributeAssignment                                                      = DOMUtil.getElement(nodeAttributeAssignment);
+        boolean bLenient                                                                                        = DOMProperties.isLenient();
+        StdMutableAttributeAssignment mutableAttributeAssignment        = new StdMutableAttributeAssignment();
 
         mutableAttributeAssignment.setAttributeId(DOMUtil.getIdentifierAttribute(elementAttributeAssignment, XACML3.ATTRIBUTE_ATTRIBUTEID, !bLenient));
-        Identifier	identifierDataTypeId	= DOMUtil.getIdentifierAttribute(elementAttributeAssignment, XACML3.ATTRIBUTE_DATATYPE, !bLenient);
-        DataTypeFactory dataTypeFactory		= null;
+        Identifier      identifierDataTypeId    = DOMUtil.getIdentifierAttribute(elementAttributeAssignment, XACML3.ATTRIBUTE_DATATYPE, !bLenient);
+        DataTypeFactory dataTypeFactory         = null;
         try {
-            dataTypeFactory	= DataTypeFactory.newInstance();
+            dataTypeFactory     = DataTypeFactory.newInstance();
             if (dataTypeFactory == null) {
                 throw new DOMStructureException("Failed to get DataTypeFactory");
             }
         } catch (FactoryException ex) {
             throw new DOMStructureException("FactoryException loading DataTypeFactory: " + ex.getMessage(), ex);
         }
-        DataType<?> dataType				= dataTypeFactory.getDataType(identifierDataTypeId);
+        DataType<?> dataType                            = dataTypeFactory.getDataType(identifierDataTypeId);
         if (dataType == null) {
             throw new DOMStructureException(elementAttributeAssignment, "Unknown dataType \"" + identifierDataTypeId.toString() + "\" in \"" + DOMUtil.getNodeLabel(elementAttributeAssignment));
         }
 
-        AttributeValue<?> attributeValue	= null;
+        AttributeValue<?> attributeValue        = null;
         try {
-            attributeValue	= dataType.createAttributeValue(elementAttributeAssignment);
+            attributeValue      = dataType.createAttributeValue(elementAttributeAssignment);
         } catch (DataTypeException ex) {
             if (!bLenient) {
                 throw new DOMStructureException("DataTypeException creating AttributeValue from \"" + DOMUtil.getNodeLabel(elementAttributeAssignment) + "\" contents", ex);
@@ -100,27 +100,27 @@ public class DOMAttributeAssignment {
     }
 
     public static boolean repair(Node nodeAttributeAssignment) throws DOMStructureException {
-        Element	elementAttributeAssignment	= DOMUtil.getElement(nodeAttributeAssignment);
-        boolean result						= false;
+        Element elementAttributeAssignment      = DOMUtil.getElement(nodeAttributeAssignment);
+        boolean result                                          = false;
 
-        result								= DOMUtil.repairIdentifierAttribute(elementAttributeAssignment, XACML3.ATTRIBUTE_ATTRIBUTEID, logger) || result;
-        result								= DOMUtil.repairIdentifierAttribute(elementAttributeAssignment, XACML3.ATTRIBUTE_DATATYPE, logger) || result;
+        result                                                          = DOMUtil.repairIdentifierAttribute(elementAttributeAssignment, XACML3.ATTRIBUTE_ATTRIBUTEID, logger) || result;
+        result                                                          = DOMUtil.repairIdentifierAttribute(elementAttributeAssignment, XACML3.ATTRIBUTE_DATATYPE, logger) || result;
 
-        DataTypeFactory dataTypeFactory		= null;
+        DataTypeFactory dataTypeFactory         = null;
         try {
-            dataTypeFactory	= DataTypeFactory.newInstance();
+            dataTypeFactory     = DataTypeFactory.newInstance();
             if (dataTypeFactory == null) {
                 throw new DOMStructureException("Failed to get DataTypeFactory");
             }
         } catch (FactoryException ex) {
             throw new DOMStructureException("FactoryException loading DataTypeFactory: " + ex.getMessage(), ex);
         }
-        Identifier identifierDataType	= DOMUtil.getIdentifierAttribute(elementAttributeAssignment, XACML3.ATTRIBUTE_DATATYPE);
-        DataType<?> dataType	= dataTypeFactory.getDataType(identifierDataType);
+        Identifier identifierDataType   = DOMUtil.getIdentifierAttribute(elementAttributeAssignment, XACML3.ATTRIBUTE_DATATYPE);
+        DataType<?> dataType    = dataTypeFactory.getDataType(identifierDataType);
         if (dataType == null) {
             logger.warn("Changing unknown DataType " + identifierDataType.stringValue() + " to " + XACML3.ID_DATATYPE_STRING.stringValue());
             elementAttributeAssignment.setAttribute(XACML3.ATTRIBUTE_DATATYPE, XACML3.ID_DATATYPE_STRING.stringValue());
-            result	= true;
+            result      = true;
         }
 
         return result;

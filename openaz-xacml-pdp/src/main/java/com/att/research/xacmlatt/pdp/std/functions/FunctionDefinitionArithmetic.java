@@ -56,19 +56,19 @@ import com.att.research.xacmlatt.pdp.policy.FunctionArgument;
  * In the first implementation of XACML we had separate files for each XACML Function.
  * This release combines multiple Functions in fewer files to minimize code duplication.
  * This file supports the following XACML codes:
- * 		integer-add
- * 		double-add
- * 		integer-subtract
- * 		double-subtract
- * 		integer-multiply
- * 		double-multiply
- * 		integer-divide
- * 		double-divide
- * 		integer-mod
- * 		integer-abs
- * 		double-abs
- * 		round
- * 		floor
+ *              integer-add
+ *              double-add
+ *              integer-subtract
+ *              double-subtract
+ *              integer-multiply
+ *              double-multiply
+ *              integer-divide
+ *              double-divide
+ *              integer-mod
+ *              integer-abs
+ *              double-abs
+ *              round
+ *              floor
  *
  *
  * @param <T> the java class for the data type of the function arguments
@@ -86,8 +86,8 @@ public class FunctionDefinitionArithmetic<T extends Number> extends FunctionDefi
     private final OPERATION operation;
 
     // result variables used by all functions, one for each type
-    private AttributeValue<BigInteger>	integerResult;
-    private AttributeValue<Double>	doubleResult;
+    private AttributeValue<BigInteger>  integerResult;
+    private AttributeValue<Double>      doubleResult;
 
     /**
      * Constructor
@@ -107,8 +107,8 @@ public class FunctionDefinitionArithmetic<T extends Number> extends FunctionDefi
 
     @Override
     public ExpressionResult evaluate(EvaluationContext evaluationContext, List<FunctionArgument> arguments) {
-        List<T> convertedArguments	= new ArrayList<T>();
-        Status status				= this.validateArguments(arguments, convertedArguments);
+        List<T> convertedArguments      = new ArrayList<T>();
+        Status status                           = this.validateArguments(arguments, convertedArguments);
 
         /*
          * If the function arguments are not correct, just return an error status immediately
@@ -126,28 +126,28 @@ public class FunctionDefinitionArithmetic<T extends Number> extends FunctionDefi
             switch (operation) {
             case ADD:
                 if (this.getDataType() == DataTypes.DT_INTEGER) {
-                    integerResult	= new StdAttributeValue<BigInteger>(XACML.ID_DATATYPE_INTEGER, ((BigInteger)convertedArguments.get(0)).add( (BigInteger)convertedArguments.get(1)) );
+                    integerResult       = new StdAttributeValue<BigInteger>(XACML.ID_DATATYPE_INTEGER, ((BigInteger)convertedArguments.get(0)).add( (BigInteger)convertedArguments.get(1)) );
                     expressionResult = ExpressionResult.newSingle(integerResult);
                 } else {
-                    doubleResult	= new StdAttributeValue<Double>(XACML.ID_DATATYPE_DOUBLE, (Double)convertedArguments.get(0) + (Double)convertedArguments.get(1));
+                    doubleResult        = new StdAttributeValue<Double>(XACML.ID_DATATYPE_DOUBLE, (Double)convertedArguments.get(0) + (Double)convertedArguments.get(1));
                     expressionResult = ExpressionResult.newSingle(doubleResult);
                 }
                 break;
             case SUBTRACT:
                 if (this.getDataType() == DataTypes.DT_INTEGER) {
-                    integerResult	= new StdAttributeValue<BigInteger>(XACML.ID_DATATYPE_INTEGER, ((BigInteger)convertedArguments.get(0)).subtract( (BigInteger)convertedArguments.get(1)) );
+                    integerResult       = new StdAttributeValue<BigInteger>(XACML.ID_DATATYPE_INTEGER, ((BigInteger)convertedArguments.get(0)).subtract( (BigInteger)convertedArguments.get(1)) );
                     expressionResult = ExpressionResult.newSingle(integerResult);
                 } else {
-                    doubleResult	= new StdAttributeValue<Double>(XACML.ID_DATATYPE_DOUBLE, (Double)convertedArguments.get(0) - (Double)convertedArguments.get(1));
+                    doubleResult        = new StdAttributeValue<Double>(XACML.ID_DATATYPE_DOUBLE, (Double)convertedArguments.get(0) - (Double)convertedArguments.get(1));
                     expressionResult = ExpressionResult.newSingle(doubleResult);
                 }
                 break;
             case MULTIPLY:
                 if (this.getDataType() == DataTypes.DT_INTEGER) {
-                    integerResult	= new StdAttributeValue<BigInteger>(XACML.ID_DATATYPE_INTEGER, ((BigInteger)convertedArguments.get(0)).multiply((BigInteger)convertedArguments.get(1)) );
+                    integerResult       = new StdAttributeValue<BigInteger>(XACML.ID_DATATYPE_INTEGER, ((BigInteger)convertedArguments.get(0)).multiply((BigInteger)convertedArguments.get(1)) );
                     expressionResult = ExpressionResult.newSingle(integerResult);
                 } else {
-                    doubleResult	= new StdAttributeValue<Double>(XACML.ID_DATATYPE_DOUBLE, (Double)convertedArguments.get(0) * (Double)convertedArguments.get(1));
+                    doubleResult        = new StdAttributeValue<Double>(XACML.ID_DATATYPE_DOUBLE, (Double)convertedArguments.get(0) * (Double)convertedArguments.get(1));
                     expressionResult = ExpressionResult.newSingle(doubleResult);
                 }
                 break;
@@ -157,14 +157,14 @@ public class FunctionDefinitionArithmetic<T extends Number> extends FunctionDefi
                         return ExpressionResult.newError(new StdStatus(StdStatusCode.STATUS_CODE_PROCESSING_ERROR, this.getShortFunctionId() +" Divide by 0 error: "+
                                                          arguments.get(0).getValue().getValue().toString() + ", " + arguments.get(1).getValue().getValue().toString()));
                     }
-                    integerResult	= new StdAttributeValue<BigInteger>(XACML.ID_DATATYPE_INTEGER, ((BigInteger)convertedArguments.get(0)).divide((BigInteger)convertedArguments.get(1)) );
+                    integerResult       = new StdAttributeValue<BigInteger>(XACML.ID_DATATYPE_INTEGER, ((BigInteger)convertedArguments.get(0)).divide((BigInteger)convertedArguments.get(1)) );
                     expressionResult = ExpressionResult.newSingle(integerResult);
                 } else {
                     if ((Double)convertedArguments.get(1) == 0) {
                         return ExpressionResult.newError(new StdStatus(StdStatusCode.STATUS_CODE_PROCESSING_ERROR, this.getShortFunctionId() +" Divide by 0 error: "+
                                                          arguments.get(0).getValue().getValue().toString() + ", " + arguments.get(1).getValue().getValue().toString()));
                     }
-                    doubleResult	= new StdAttributeValue<Double>(XACML.ID_DATATYPE_DOUBLE, (Double)convertedArguments.get(0) / (Double)convertedArguments.get(1));
+                    doubleResult        = new StdAttributeValue<Double>(XACML.ID_DATATYPE_DOUBLE, (Double)convertedArguments.get(0) / (Double)convertedArguments.get(1));
                     expressionResult = ExpressionResult.newSingle(doubleResult);
                 }
                 break;
@@ -173,24 +173,24 @@ public class FunctionDefinitionArithmetic<T extends Number> extends FunctionDefi
                     return ExpressionResult.newError(new StdStatus(StdStatusCode.STATUS_CODE_PROCESSING_ERROR, this.getShortFunctionId() +" Divide by 0 error: "+
                                                      arguments.get(0).getValue().getValue().toString() + ", " + arguments.get(1).getValue().getValue().toString()));
                 }
-                integerResult	= new StdAttributeValue<BigInteger>(XACML.ID_DATATYPE_INTEGER, ((BigInteger)convertedArguments.get(0)).remainder((BigInteger)convertedArguments.get(1)) );
+                integerResult   = new StdAttributeValue<BigInteger>(XACML.ID_DATATYPE_INTEGER, ((BigInteger)convertedArguments.get(0)).remainder((BigInteger)convertedArguments.get(1)) );
                 expressionResult = ExpressionResult.newSingle(integerResult);
                 break;
             case ABS:
                 if (this.getDataType() == DataTypes.DT_INTEGER) {
-                    integerResult	= new StdAttributeValue<BigInteger>(XACML.ID_DATATYPE_INTEGER, ((BigInteger)convertedArguments.get(0)).abs() );
+                    integerResult       = new StdAttributeValue<BigInteger>(XACML.ID_DATATYPE_INTEGER, ((BigInteger)convertedArguments.get(0)).abs() );
                     expressionResult = ExpressionResult.newSingle(integerResult);
                 } else {
-                    doubleResult	= new StdAttributeValue<Double>(XACML.ID_DATATYPE_DOUBLE, Math.abs((Double)convertedArguments.get(0)));
+                    doubleResult        = new StdAttributeValue<Double>(XACML.ID_DATATYPE_DOUBLE, Math.abs((Double)convertedArguments.get(0)));
                     expressionResult = ExpressionResult.newSingle(doubleResult);
                 }
                 break;
             case ROUND:
-                doubleResult	= new StdAttributeValue<Double>(XACML.ID_DATATYPE_DOUBLE, (double)(Math.round((Double)convertedArguments.get(0))) );
+                doubleResult    = new StdAttributeValue<Double>(XACML.ID_DATATYPE_DOUBLE, (double)(Math.round((Double)convertedArguments.get(0))) );
                 expressionResult = ExpressionResult.newSingle(doubleResult);
                 break;
             case FLOOR:
-                doubleResult	= new StdAttributeValue<Double>(XACML.ID_DATATYPE_DOUBLE, Math.floor((Double)convertedArguments.get(0)));
+                doubleResult    = new StdAttributeValue<Double>(XACML.ID_DATATYPE_DOUBLE, Math.floor((Double)convertedArguments.get(0)));
                 expressionResult = ExpressionResult.newSingle(doubleResult);
                 break;
             }

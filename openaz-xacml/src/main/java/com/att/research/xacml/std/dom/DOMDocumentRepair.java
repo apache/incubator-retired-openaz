@@ -74,7 +74,7 @@ public class DOMDocumentRepair {
      * @throws com.att.research.xacml.std.dom.DOMDocumentRepair.UnsupportedDocumentTypeException if the root element is not a XACML Request or Response.
      */
     public boolean repair(Document document) throws DOMStructureException, UnsupportedDocumentTypeException {
-        Node firstChild	= DOMUtil.getFirstChildElement(document);
+        Node firstChild = DOMUtil.getFirstChildElement(document);
         if (firstChild == null || !DOMUtil.isElement(firstChild)) {
             return false;
         }

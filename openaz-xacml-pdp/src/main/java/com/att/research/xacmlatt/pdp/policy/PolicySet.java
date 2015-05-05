@@ -54,14 +54,14 @@ import com.att.research.xacmlatt.pdp.eval.MatchResult;
  *
  */
 public class PolicySet extends PolicyDef {
-    private TargetedCombinerParameterMap<Identifier,PolicySetChild>		policyCombinerParameters	= new TargetedCombinerParameterMap<Identifier,PolicySetChild>();
-    private List<PolicySetChild>										children;
-    private List<CombiningElement<PolicySetChild>>						combiningPolicies;
-    private CombiningAlgorithm<PolicySetChild>							combiningAlgorithm;
+    private TargetedCombinerParameterMap<Identifier,PolicySetChild>             policyCombinerParameters        = new TargetedCombinerParameterMap<Identifier,PolicySetChild>();
+    private List<PolicySetChild>                                                                                children;
+    private List<CombiningElement<PolicySetChild>>                                              combiningPolicies;
+    private CombiningAlgorithm<PolicySetChild>                                                  combiningAlgorithm;
 
     private void ensureChildren() {
         if (this.children == null) {
-            this.children	= new ArrayList<PolicySetChild>();
+            this.children       = new ArrayList<PolicySetChild>();
         }
     }
 
@@ -72,11 +72,11 @@ public class PolicySet extends PolicyDef {
      */
     protected List<CombiningElement<PolicySetChild>> getCombiningPolicies() {
         if (this.combiningPolicies == null) {
-            this.combiningPolicies			= new ArrayList<CombiningElement<PolicySetChild>>();
-            Iterator<PolicySetChild> iterPolicies	= this.getChildren();
+            this.combiningPolicies                      = new ArrayList<CombiningElement<PolicySetChild>>();
+            Iterator<PolicySetChild> iterPolicies       = this.getChildren();
             if (iterPolicies != null) {
                 while (iterPolicies.hasNext()) {
-                    PolicySetChild policySetChild	= iterPolicies.next();
+                    PolicySetChild policySetChild       = iterPolicies.next();
                     this.combiningPolicies.add(new CombiningElement<PolicySetChild>(policySetChild, this.policyCombinerParameters.getCombinerParameters(policySetChild)));
                 }
             }
@@ -153,7 +153,7 @@ public class PolicySet extends PolicyDef {
     }
 
     public void setChildren(Collection<PolicySetChild> policySetChildren) {
-        this.children	= null;
+        this.children   = null;
         if (policySetChildren != null) {
             this.addChildren(policySetChildren);
         }
@@ -179,7 +179,7 @@ public class PolicySet extends PolicyDef {
     }
 
     public void setPolicyCombiningAlgorithm(CombiningAlgorithm<PolicySetChild> combiningAlgorithmIn) {
-        this.combiningAlgorithm	= combiningAlgorithmIn;
+        this.combiningAlgorithm = combiningAlgorithmIn;
     }
 
     @Override
@@ -197,7 +197,7 @@ public class PolicySet extends PolicyDef {
         /*
          * See if we match
          */
-        MatchResult thisMatchResult	= this.match(evaluationContext);
+        MatchResult thisMatchResult     = this.match(evaluationContext);
         assert(thisMatchResult != null);
         if (evaluationContext.isTracing()) {
             evaluationContext.trace(new StdTraceEvent<MatchResult>("Match", this, thisMatchResult));
@@ -214,14 +214,14 @@ public class PolicySet extends PolicyDef {
         /*
          * Get the combining elements
          */
-        List<CombiningElement<PolicySetChild>> listCombiningElements	= this.getCombiningPolicies();
+        List<CombiningElement<PolicySetChild>> listCombiningElements    = this.getCombiningPolicies();
         assert(listCombiningElements != null);
 
         /*
          * Run the PolicyCombiningAlgorithm
          */
         assert(this.getPolicyCombiningAlgorithm() != null);
-        EvaluationResult evaluationResultCombined	= this.getPolicyCombiningAlgorithm().combine(evaluationContext, listCombiningElements, getCombinerParameterList());
+        EvaluationResult evaluationResultCombined       = this.getPolicyCombiningAlgorithm().combine(evaluationContext, listCombiningElements, getCombinerParameterList());
         assert(evaluationResultCombined != null);
 
         if (evaluationResultCombined.getDecision() == Decision.DENY || evaluationResultCombined.getDecision() == Decision.PERMIT) {
@@ -242,7 +242,7 @@ public class PolicySet extends PolicyDef {
 
     @Override
     public String toString() {
-        StringBuilder stringBuilder	= new StringBuilder("{");
+        StringBuilder stringBuilder     = new StringBuilder("{");
         stringBuilder.append("super=");
         stringBuilder.append(super.toString());
 

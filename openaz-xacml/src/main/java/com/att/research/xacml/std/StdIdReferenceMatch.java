@@ -40,10 +40,10 @@ import com.att.research.xacml.util.ObjUtil;
  *
  */
 public class StdIdReferenceMatch implements IdReferenceMatch {
-    private Identifier		id;
-    private VersionMatch	version;
-    private VersionMatch	earliestVersion;
-    private VersionMatch	latestVersion;
+    private Identifier          id;
+    private VersionMatch        version;
+    private VersionMatch        earliestVersion;
+    private VersionMatch        latestVersion;
 
     /**
      * Creates a new <code>StdIdReferenceMatch</code> with the given {@link com.att.research.xacml.api.Identifier} representing the PolicyId or PolicySetId
@@ -55,10 +55,10 @@ public class StdIdReferenceMatch implements IdReferenceMatch {
      * @param latestVersionIn the <code>VersionMatch</code> for an upper-bound match against the current Version of a Policy or PolicySet (may be null)
      */
     public StdIdReferenceMatch(Identifier idIn, VersionMatch versionIn, VersionMatch earliestVersionIn, VersionMatch latestVersionIn) {
-        this.id			= idIn;
-        this.version			= versionIn;
-        this.earliestVersion	= earliestVersionIn;
-        this.latestVersion		= latestVersionIn;
+        this.id                 = idIn;
+        this.version                    = versionIn;
+        this.earliestVersion    = earliestVersionIn;
+        this.latestVersion              = latestVersionIn;
     }
 
     @Override
@@ -88,7 +88,7 @@ public class StdIdReferenceMatch implements IdReferenceMatch {
         } else if (obj == null || !(obj instanceof IdReferenceMatch)) {
             return false;
         } else {
-            IdReferenceMatch objIdReferenceMatch	= (IdReferenceMatch)id;
+            IdReferenceMatch objIdReferenceMatch        = (IdReferenceMatch)id;
             return ObjUtil.equalsAllowNull(this.getId(), objIdReferenceMatch.getId()) &&
                    ObjUtil.equalsAllowNull(this.getVersion(), objIdReferenceMatch.getVersion()) &&
                    ObjUtil.equalsAllowNull(this.getEarliestVersion(), objIdReferenceMatch.getEarliestVersion()) &&
@@ -98,14 +98,14 @@ public class StdIdReferenceMatch implements IdReferenceMatch {
 
     @Override
     public String toString() {
-        StringBuilder	stringBuilder	= new StringBuilder("{");
+        StringBuilder   stringBuilder   = new StringBuilder("{");
 
-        boolean needsComma	= false;
-        Object	objectToDump;
+        boolean needsComma      = false;
+        Object  objectToDump;
         if ((objectToDump = this.getId()) != null) {
             stringBuilder.append("id=");
             stringBuilder.append(objectToDump.toString());
-            needsComma		= true;
+            needsComma          = true;
         }
         if ((objectToDump = this.getVersion()) != null) {
             if (needsComma) {

@@ -49,7 +49,7 @@ import com.att.research.xacmlatt.pdp.policy.VariableDefinition;
  *
  */
 public class VariableReference extends Expression implements Traceable {
-    private static final ExpressionResult ER_SE_NO_EXPRESSION	= ExpressionResult.newError(new StdStatus(StdStatusCode.STATUS_CODE_SYNTAX_ERROR, "Missing Expression for VariableDefinition"));
+    private static final ExpressionResult ER_SE_NO_EXPRESSION   = ExpressionResult.newError(new StdStatus(StdStatusCode.STATUS_CODE_SYNTAX_ERROR, "Missing Expression for VariableDefinition"));
 
     private Policy policy;
     private String variableId;
@@ -57,11 +57,11 @@ public class VariableReference extends Expression implements Traceable {
 
     protected VariableDefinition getVariableDefinition() {
         if (this.variableDefinition == null) {
-            Policy thisPolicy	= this.getPolicy();
+            Policy thisPolicy   = this.getPolicy();
             if (thisPolicy != null) {
-                String thisVariableId	= this.getVariableId();
+                String thisVariableId   = this.getVariableId();
                 if (thisVariableId != null) {
-                    this.variableDefinition	= thisPolicy.getVariableDefinition(thisVariableId);
+                    this.variableDefinition     = thisPolicy.getVariableDefinition(thisVariableId);
                 }
             }
         }
@@ -80,8 +80,8 @@ public class VariableReference extends Expression implements Traceable {
     }
 
     public VariableReference(Policy policyIn, String variableIdIn) {
-        this.policy		= policyIn;
-        this.variableId	= variableIdIn;
+        this.policy             = policyIn;
+        this.variableId = variableIdIn;
     }
 
     public Policy getPolicy() {
@@ -89,7 +89,7 @@ public class VariableReference extends Expression implements Traceable {
     }
 
     public void setPolicy(Policy policyIn) {
-        this.policy	= policyIn;
+        this.policy     = policyIn;
     }
 
     public String getVariableId() {
@@ -97,7 +97,7 @@ public class VariableReference extends Expression implements Traceable {
     }
 
     public void setVariableId(String variableIdIn) {
-        this.variableId	= variableIdIn;
+        this.variableId = variableIdIn;
     }
 
     @Override
@@ -106,11 +106,11 @@ public class VariableReference extends Expression implements Traceable {
             return ExpressionResult.newError(new StdStatus(this.getStatusCode(), this.getStatusMessage()));
         }
 
-        VariableDefinition variableDefinition	= this.getVariableDefinition();
+        VariableDefinition variableDefinition   = this.getVariableDefinition();
         if (variableDefinition == null) {
             return ExpressionResult.newError(new StdStatus(StdStatusCode.STATUS_CODE_PROCESSING_ERROR, "No VariableDefinition found for \"" + this.getVariableId() + "\""));
         }
-        Expression expression					= variableDefinition.getExpression();
+        Expression expression                                   = variableDefinition.getExpression();
         if (expression == null) {
             return ER_SE_NO_EXPRESSION;
         }
@@ -140,7 +140,7 @@ public class VariableReference extends Expression implements Traceable {
 
     @Override
     public String toString() {
-        StringBuilder stringBuilder	= new StringBuilder("{");
+        StringBuilder stringBuilder     = new StringBuilder("{");
 
         stringBuilder.append("super=");
         stringBuilder.append(super.toString());

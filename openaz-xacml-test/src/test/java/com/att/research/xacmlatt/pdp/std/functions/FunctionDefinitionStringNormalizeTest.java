@@ -54,7 +54,7 @@ public class FunctionDefinitionStringNormalizeTest {
 
     @Test
     public void testString_normalize_space() {
-        String initialString = "  First and last are whitespace 	";
+        String initialString = "  First and last are whitespace         ";
         FunctionArgumentAttributeValue attr1 = null;
         try {
             attr1 = new FunctionArgumentAttributeValue(DataTypes.DT_STRING.createAttributeValue(initialString));
@@ -86,7 +86,7 @@ public class FunctionDefinitionStringNormalizeTest {
 
     @Test
     public void testString_normalize_to_lower_case() {
-        String initialString = "  First and last are whitespace 	";
+        String initialString = "  First and last are whitespace         ";
         FunctionArgumentAttributeValue attr1 = null;
         try {
             attr1 = new FunctionArgumentAttributeValue(DataTypes.DT_STRING.createAttributeValue(initialString));

@@ -61,45 +61,45 @@ public class CombinedPermitOverrides<T extends com.att.research.xacmlatt.pdp.eva
                                     List<CombiningElement<T>> elements,
                                     List<CombinerParameter> combinerParameters)
     throws EvaluationException {
-        boolean atLeastOneDeny					= false;
-        boolean atLeastOnePermit				= false;
+        boolean atLeastOneDeny                                  = false;
+        boolean atLeastOnePermit                                = false;
 
-        EvaluationResult combinedResultDeny			= new EvaluationResult(Decision.DENY);
-        EvaluationResult combinedResultPermit		= new EvaluationResult(Decision.PERMIT);
+        EvaluationResult combinedResultDeny                     = new EvaluationResult(Decision.DENY);
+        EvaluationResult combinedResultPermit           = new EvaluationResult(Decision.PERMIT);
 
-        EvaluationResult firstIndeterminateD	= null;
-        EvaluationResult firstIndeterminateP	= null;
-        EvaluationResult firstIndeterminateDP	= null;
+        EvaluationResult firstIndeterminateD    = null;
+        EvaluationResult firstIndeterminateP    = null;
+        EvaluationResult firstIndeterminateDP   = null;
 
-        Iterator<CombiningElement<T>> iterElements	= elements.iterator();
+        Iterator<CombiningElement<T>> iterElements      = elements.iterator();
         while (iterElements.hasNext()) {
-            CombiningElement<T> combiningElement		= iterElements.next();
-            EvaluationResult evaluationResultElement	= combiningElement.evaluate(evaluationContext);
+            CombiningElement<T> combiningElement                = iterElements.next();
+            EvaluationResult evaluationResultElement    = combiningElement.evaluate(evaluationContext);
 
             assert(evaluationResultElement != null);
             switch(evaluationResultElement.getDecision()) {
             case DENY:
-                atLeastOneDeny	= true;
+                atLeastOneDeny  = true;
                 combinedResultDeny.merge(evaluationResultElement);
                 break;
             case INDETERMINATE:
             case INDETERMINATE_DENYPERMIT:
                 if (firstIndeterminateDP == null) {
-                    firstIndeterminateDP	= evaluationResultElement;
+                    firstIndeterminateDP        = evaluationResultElement;
                 } else {
                     firstIndeterminateDP.merge(evaluationResultElement);
                 }
                 break;
             case INDETERMINATE_DENY:
                 if (firstIndeterminateD == null) {
-                    firstIndeterminateD		= evaluationResultElement;
+                    firstIndeterminateD         = evaluationResultElement;
                 } else {
                     firstIndeterminateD.merge(evaluationResultElement);
                 }
                 break;
             case INDETERMINATE_PERMIT:
                 if (firstIndeterminateP == null) {
-                    firstIndeterminateP		= evaluationResultElement;
+                    firstIndeterminateP         = evaluationResultElement;
                 } else {
                     firstIndeterminateP.merge(evaluationResultElement);
                 }

@@ -45,7 +45,7 @@ import com.att.research.xacml.std.StdRequestAttributesReference;
  *
  */
 public class DOMRequestAttributesReference {
-    private static final Log logger	= LogFactory.getLog(DOMRequestAttributesReference.class);
+    private static final Log logger     = LogFactory.getLog(DOMRequestAttributesReference.class);
 
     protected DOMRequestAttributesReference() {
     }
@@ -58,14 +58,14 @@ public class DOMRequestAttributesReference {
      * @throws com.att.research.xacml.std.dom.DOMStructureException if the conversion cannot be made
      */
     public static RequestAttributesReference newInstance(Node nodeAttributesReference) throws DOMStructureException {
-        Element	elementAttributesReference	= DOMUtil.getElement(nodeAttributesReference);
-        boolean bLenient					= DOMProperties.isLenient();
+        Element elementAttributesReference      = DOMUtil.getElement(nodeAttributesReference);
+        boolean bLenient                                        = DOMProperties.isLenient();
 
         return new StdRequestAttributesReference(DOMUtil.getStringAttribute(elementAttributesReference, XACML3.ATTRIBUTE_REFERENCEID, !bLenient));
     }
 
     public static boolean repair(Node nodeAttributesReference) throws DOMStructureException {
-        Element	elementAttributesReference	= DOMUtil.getElement(nodeAttributesReference);
+        Element elementAttributesReference      = DOMUtil.getElement(nodeAttributesReference);
         return DOMUtil.repairStringAttribute(elementAttributesReference, XACML3.ATTRIBUTE_REFERENCEID, null, logger);
     }
 

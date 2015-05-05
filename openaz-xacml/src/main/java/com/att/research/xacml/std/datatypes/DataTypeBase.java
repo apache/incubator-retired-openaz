@@ -52,12 +52,12 @@ import com.att.research.xacml.std.dom.DOMUtil;
  * @param <T> the value type for conversion
  */
 public abstract class DataTypeBase<T> implements DataType<T> {
-    private Identifier	id;
-    private Class<T>	classConvert;
+    private Identifier  id;
+    private Class<T>    classConvert;
 
     protected DataTypeBase(Identifier identifierIn, Class<T> classConvertIn) {
-        this.id				= identifierIn;
-        this.classConvert	= classConvertIn;
+        this.id                         = identifierIn;
+        this.classConvert       = classConvertIn;
     }
 
     protected Class<T> getClassConvert() {
@@ -70,8 +70,8 @@ public abstract class DataTypeBase<T> implements DataType<T> {
         } else if (objects.size() == 1) {
             return objects.iterator().next();
         } else {
-            Iterator<?>			iterObjects	= objects.iterator();
-            StringBuilder		stringBuilder	= new StringBuilder();
+            Iterator<?>                 iterObjects     = objects.iterator();
+            StringBuilder               stringBuilder   = new StringBuilder();
             while (iterObjects.hasNext()) {
                 stringBuilder.append(this.convertToString(iterObjects.next()));
             }
@@ -113,9 +113,9 @@ public abstract class DataTypeBase<T> implements DataType<T> {
          * create the StdAttributeValue.
          */
         if (source != null && (source instanceof Node)) {
-            Identifier xpathCategory	= null;
+            Identifier xpathCategory    = null;
             try {
-                xpathCategory	= DOMUtil.getIdentifierAttribute((Node)source, XACML3.ATTRIBUTE_XPATHCATEGORY, false);
+                xpathCategory   = DOMUtil.getIdentifierAttribute((Node)source, XACML3.ATTRIBUTE_XPATHCATEGORY, false);
             } catch (Exception ex) {
                 // TODO:
             }

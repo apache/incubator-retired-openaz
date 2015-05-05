@@ -63,9 +63,9 @@ public class ListUtil {
         } else if (iterator2 == null || !iterator2.hasNext()) {
             return false;
         } else {
-            boolean result	= true;
+            boolean result      = true;
             while (result && iterator1.hasNext() && iterator2.hasNext()) {
-                result	= ObjUtil.equalsAllowNull(iterator1.next(), iterator2.next());
+                result  = ObjUtil.equalsAllowNull(iterator1.next(), iterator2.next());
             }
             return result && !iterator1.hasNext() && !iterator2.hasNext();
         }
@@ -89,13 +89,13 @@ public class ListUtil {
     }
 
     public static <T> String toString(Collection<T> collection) {
-        StringBuilder stringBuilder	= new StringBuilder("[");
-        boolean first				= true;
+        StringBuilder stringBuilder     = new StringBuilder("[");
+        boolean first                           = true;
         for (T t : collection) {
             if (!first) {
                 stringBuilder.append(',');
             } else {
-                first	= true;
+                first   = true;
             }
             if (t == null) {
                 stringBuilder.append("null");

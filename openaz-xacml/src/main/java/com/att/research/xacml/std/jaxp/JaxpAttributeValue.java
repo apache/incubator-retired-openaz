@@ -92,8 +92,8 @@ public class JaxpAttributeValue<T> extends StdAttributeValue<T> {
         } else if (attributeValueType.getDataType() == null) {
             throw new IllegalArgumentException("Null dataType in AttributeValueType");
         }
-        Identifier	dataTypeId	= new IdentifierImpl(attributeValueType.getDataType());
-        Object		source		= (attributeValueType.getContent() == null || attributeValueType.getContent().size() == 0 ? "" : attributeValueType.getContent().get(0));
+        Identifier      dataTypeId      = new IdentifierImpl(attributeValueType.getDataType());
+        Object          source          = (attributeValueType.getContent() == null || attributeValueType.getContent().size() == 0 ? "" : attributeValueType.getContent().get(0));
         try {
             if (dataTypeId.equals(XACML.ID_DATATYPE_ANYURI)) {
                 return new JaxpAttributeValue<URI>(dataTypeId, DataTypeAnyURI.newInstance().convert(source));

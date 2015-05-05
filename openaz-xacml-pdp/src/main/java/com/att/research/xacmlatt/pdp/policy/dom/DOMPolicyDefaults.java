@@ -52,7 +52,7 @@ import com.att.research.xacmlatt.pdp.policy.PolicyDefaults;
  *
  */
 public class DOMPolicyDefaults extends PolicyDefaults {
-    private static final Log logger	= LogFactory.getLog(DOMPolicyDefaults.class);
+    private static final Log logger     = LogFactory.getLog(DOMPolicyDefaults.class);
 
     protected DOMPolicyDefaults(URI xpathVersionIn, PolicyDefaults policyDefaultsParentIn) {
         super(xpathVersionIn, policyDefaultsParentIn);
@@ -67,19 +67,19 @@ public class DOMPolicyDefaults extends PolicyDefaults {
      * @throws DOMStructureException if the conversion is not possible
      */
     public static PolicyDefaults newInstance(Node nodePolicyDefaults, PolicyDefaults policyDefaultsParent) throws DOMStructureException {
-        Element elementPolicyDefaults	= DOMUtil.getElement(nodePolicyDefaults);
-        boolean bLenient				= DOMProperties.isLenient();
+        Element elementPolicyDefaults   = DOMUtil.getElement(nodePolicyDefaults);
+        boolean bLenient                                = DOMProperties.isLenient();
 
-        URI uriXPathVersion		= null;
+        URI uriXPathVersion             = null;
 
-        NodeList children	= elementPolicyDefaults.getChildNodes();
+        NodeList children       = elementPolicyDefaults.getChildNodes();
         int numChildren;
         if (children != null && (numChildren = children.getLength()) > 0) {
             for (int i = 0 ; i < numChildren ; i++) {
-                Node child	= children.item(i);
+                Node child      = children.item(i);
                 if (DOMUtil.isElement(child)) {
                     if (DOMUtil.isInNamespace(child, XACML3.XMLNS) && XACML3.ELEMENT_XPATHVERSION.equals(child.getLocalName())) {
-                        uriXPathVersion	= DOMUtil.getURIContent(child);
+                        uriXPathVersion = DOMUtil.getURIContent(child);
                     } else if (!bLenient) {
                         throw DOMUtil.newUnexpectedElementException(child, nodePolicyDefaults);
                     }
@@ -90,14 +90,14 @@ public class DOMPolicyDefaults extends PolicyDefaults {
     }
 
     public static boolean repair(Node nodePolicyDefaults) throws DOMStructureException {
-        Element elementPolicyDefaults	= DOMUtil.getElement(nodePolicyDefaults);
-        boolean result					= false;
+        Element elementPolicyDefaults   = DOMUtil.getElement(nodePolicyDefaults);
+        boolean result                                  = false;
 
-        NodeList children	= elementPolicyDefaults.getChildNodes();
+        NodeList children       = elementPolicyDefaults.getChildNodes();
         int numChildren;
         if (children != null && (numChildren = children.getLength()) > 0) {
             for (int i = 0 ; i < numChildren ; i++) {
-                Node child	= children.item(i);
+                Node child      = children.item(i);
                 if (DOMUtil.isElement(child)) {
                     if (DOMUtil.isInNamespace(child, XACML3.XMLNS) && XACML3.ELEMENT_XPATHVERSION.equals(child.getLocalName())) {
                         try {
@@ -105,12 +105,12 @@ public class DOMPolicyDefaults extends PolicyDefaults {
                         } catch (DOMStructureException ex) {
                             logger.warn("Setting invalid " + XACML3.ELEMENT_XPATHVERSION + " attribute " + child.getTextContent() + " to " + XACML.XPATHVERSION_2_0);
                             child.setTextContent(XACML.XPATHVERSION_2_0);
-                            result	= true;
+                            result      = true;
                         }
                     } else {
                         logger.warn("Unexpected element " + child.getNodeName());
                         elementPolicyDefaults.removeChild(child);
-                        result	= true;
+                        result  = true;
                     }
                 }
             }

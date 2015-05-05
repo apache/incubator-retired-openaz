@@ -46,8 +46,8 @@ import com.att.research.xacmlatt.pdp.policy.FunctionDefinitionFactory;
  *
  */
 public class StdFunctionDefinitionFactory extends FunctionDefinitionFactory {
-    private static Map<Identifier,FunctionDefinition> 	mapFunctionDefinitions	= new HashMap<Identifier,FunctionDefinition>();
-    private static boolean								needMapInit				= true;
+    private static Map<Identifier,FunctionDefinition>   mapFunctionDefinitions  = new HashMap<Identifier,FunctionDefinition>();
+    private static boolean                                                              needMapInit                             = true;
 
     private static void register(FunctionDefinition functionDefinition) {
         mapFunctionDefinitions.put(functionDefinition.getId(), functionDefinition);
@@ -57,8 +57,8 @@ public class StdFunctionDefinitionFactory extends FunctionDefinitionFactory {
         if (needMapInit) {
             synchronized(mapFunctionDefinitions) {
                 if (needMapInit) {
-                    needMapInit	= false;
-                    Field[] declaredFields	= StdFunctions.class.getDeclaredFields();
+                    needMapInit = false;
+                    Field[] declaredFields      = StdFunctions.class.getDeclaredFields();
                     for (Field field : declaredFields) {
                         if (Modifier.isStatic(field.getModifiers()) &&
                                 field.getName().startsWith(StdFunctions.FD_PREFIX) &&

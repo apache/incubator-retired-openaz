@@ -56,18 +56,18 @@ public class DenyOverrides<T extends com.att.research.xacmlatt.pdp.eval.Evaluata
 
     @Override
     public EvaluationResult combine(EvaluationContext evaluationContext, List<CombiningElement<T>> elements, List<CombinerParameter> combinerParameters) throws EvaluationException {
-        boolean atLeastOnePermit				= false;
+        boolean atLeastOnePermit                                = false;
 
-        EvaluationResult combinedResult			= new EvaluationResult(Decision.PERMIT);
+        EvaluationResult combinedResult                 = new EvaluationResult(Decision.PERMIT);
 
-        EvaluationResult firstIndeterminateD	= null;
-        EvaluationResult firstIndeterminateP	= null;
-        EvaluationResult firstIndeterminateDP	= null;
+        EvaluationResult firstIndeterminateD    = null;
+        EvaluationResult firstIndeterminateP    = null;
+        EvaluationResult firstIndeterminateDP   = null;
 
-        Iterator<CombiningElement<T>> iterElements	= elements.iterator();
+        Iterator<CombiningElement<T>> iterElements      = elements.iterator();
         while (iterElements.hasNext()) {
-            CombiningElement<T> combiningElement		= iterElements.next();
-            EvaluationResult evaluationResultElement	= combiningElement.evaluate(evaluationContext);
+            CombiningElement<T> combiningElement                = iterElements.next();
+            EvaluationResult evaluationResultElement    = combiningElement.evaluate(evaluationContext);
 
             assert(evaluationResultElement != null);
             switch(evaluationResultElement.getDecision()) {
@@ -76,21 +76,21 @@ public class DenyOverrides<T extends com.att.research.xacmlatt.pdp.eval.Evaluata
             case INDETERMINATE:
             case INDETERMINATE_DENYPERMIT:
                 if (firstIndeterminateDP == null) {
-                    firstIndeterminateDP	= evaluationResultElement;
+                    firstIndeterminateDP        = evaluationResultElement;
                 } else {
                     firstIndeterminateDP.merge(evaluationResultElement);
                 }
                 break;
             case INDETERMINATE_DENY:
                 if (firstIndeterminateD == null) {
-                    firstIndeterminateD		= evaluationResultElement;
+                    firstIndeterminateD         = evaluationResultElement;
                 } else {
                     firstIndeterminateD.merge(evaluationResultElement);
                 }
                 break;
             case INDETERMINATE_PERMIT:
                 if (firstIndeterminateP == null) {
-                    firstIndeterminateP		= evaluationResultElement;
+                    firstIndeterminateP         = evaluationResultElement;
                 } else {
                     firstIndeterminateP.merge(evaluationResultElement);
                 }
@@ -98,7 +98,7 @@ public class DenyOverrides<T extends com.att.research.xacmlatt.pdp.eval.Evaluata
             case NOTAPPLICABLE:
                 break;
             case PERMIT:
-                atLeastOnePermit	= true;
+                atLeastOnePermit        = true;
                 combinedResult.merge(evaluationResultElement);
                 break;
             default:

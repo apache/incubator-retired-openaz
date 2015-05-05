@@ -43,9 +43,9 @@ import com.att.research.xacml.std.pip.engines.jdbc.JDBCEngine;
 
 public class HyperCSVEngine extends JDBCEngine {
 
-    public static final String PROP_SOURCE	= "source";
-    public static final String PROP_TARGET	= "target";
-    public static final String PROP_DEFINITION	= "definition";
+    public static final String PROP_SOURCE      = "source";
+    public static final String PROP_TARGET      = "target";
+    public static final String PROP_DEFINITION  = "definition";
 
     public static final String HYPER_DRIVER = "org.hsqldb.jdbcDriver";
     public static final String HYPER_URL = "jdbc:hsqldb:mem:xacml";

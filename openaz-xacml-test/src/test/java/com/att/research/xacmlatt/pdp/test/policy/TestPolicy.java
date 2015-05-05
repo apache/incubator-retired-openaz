@@ -91,7 +91,7 @@ import com.att.research.xacmlatt.pdp.test.TestBase;
  *
  */
 public class TestPolicy extends TestBase {
-    private static Log logger	= LogFactory.getLog(TestPolicy.class);
+    private static Log logger   = LogFactory.getLog(TestPolicy.class);
 
     private boolean skip;
     private Path policy;
@@ -400,7 +400,7 @@ public class TestPolicy extends TestBase {
         }
     }
 
-    public static long	computePossibleCombinations(long numberOfAttributes) {
+    public static long  computePossibleCombinations(long numberOfAttributes) {
         long num = 0;
         for (long i = numberOfAttributes; i > 0; i--) {
             num += computeCombinations(numberOfAttributes, i);
@@ -408,7 +408,7 @@ public class TestPolicy extends TestBase {
         return num;
     }
 
-    public static long	computeFactorial(long n) {
+    public static long  computeFactorial(long n) {
         long fact = 1;
         for (long i = 1; i <= n; i++) {
             fact *= i;
@@ -416,10 +416,10 @@ public class TestPolicy extends TestBase {
         return fact;
     }
 
-    public static long	computePermutationsWithoutRepetition(long n, long r) {
+    public static long  computePermutationsWithoutRepetition(long n, long r) {
         //
         //      n!
-        //	---------
+        //      ---------
         //   (n - r)!
         //
         long nPrime = 1;
@@ -434,10 +434,10 @@ public class TestPolicy extends TestBase {
         return nPrime / n_rPrime;
     }
 
-    public static long	computeCombinations(long n, long r) {
+    public static long  computeCombinations(long n, long r) {
         //
-        //		 n!
-        //	-----------
+        //               n!
+        //      -----------
         //  r! * (n-r)!
         //
         long nPrime = 1;
@@ -483,9 +483,9 @@ public class TestPolicy extends TestBase {
     }
 
     protected AttributeValue<?> createAttributeValue(Identifier datatype, Object value) {
-        DataTypeFactory dataTypeFactory		= null;
+        DataTypeFactory dataTypeFactory         = null;
         try {
-            dataTypeFactory	= DataTypeFactory.newInstance();
+            dataTypeFactory     = DataTypeFactory.newInstance();
             if (dataTypeFactory == null) {
                 logger.error("Could not create data type factory");
                 return null;
@@ -494,7 +494,7 @@ public class TestPolicy extends TestBase {
             logger.error("Can't get Data type Factory: " + e.getLocalizedMessage());
             return null;
         }
-        DataType<?> dataTypeExtended	= dataTypeFactory.getDataType(datatype);
+        DataType<?> dataTypeExtended    = dataTypeFactory.getDataType(datatype);
         if (dataTypeExtended == null) {
             logger.error("Unknown datatype: " + datatype);
             return null;
@@ -597,7 +597,7 @@ public class TestPolicy extends TestBase {
         this.index++;
     }
 
-    protected boolean	addAttribute(RequestType request, String category, String id, AttributeValueType value) {
+    protected boolean   addAttribute(RequestType request, String category, String id, AttributeValueType value) {
         //
         // See if the category exists
         //
@@ -710,7 +710,7 @@ public class TestPolicy extends TestBase {
                                     category2Attribute.put(record[0].toString(), attributes);
                                     attributesList.add(attributes);
                             }
-    //				attributes.setId(record[2].toString());
+    //                          attributes.setId(record[2].toString());
                             List<AttributeType> attrList = attributes.getAttribute();
 
                             AttributeType attribute = new AttributeType();
@@ -736,7 +736,7 @@ public class TestPolicy extends TestBase {
                             m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
                             m.marshal(requestElement, output.resolve("request" + count + ".xml").toFile());
 
-    //				if (count == 0) {//Just send the first request to the engine
+    //                          if (count == 0) {//Just send the first request to the engine
                                     StringWriter sw = new StringWriter();
                                     m.marshal(requestElement, sw);
                                     logger.info(sw.toString());
@@ -748,7 +748,7 @@ public class TestPolicy extends TestBase {
                                             writer.close();
                                             logger.info("Response received: \n" + response);
                                     }
-    //				}
+    //                          }
                     } catch (Exception e) {
                             e.printStackTrace();
                     }

@@ -101,7 +101,7 @@ public class FunctionDefinitionLogicalTest {
         resValue = (Boolean)res.getValue().getValue();
         assertEquals(new Boolean(false), resValue);
 
-        //	test no args
+        //      test no args
         arguments.clear();
         res = fd.evaluate(null, arguments);
         assertTrue(res.isOk());
@@ -195,7 +195,7 @@ public class FunctionDefinitionLogicalTest {
         resValue = (Boolean)res.getValue().getValue();
         assertEquals(new Boolean(false), resValue);
 
-        //	test no args
+        //      test no args
         arguments.clear();
         res = fd.evaluate(null, arguments);
         assertTrue(res.isOk());

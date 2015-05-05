@@ -46,27 +46,27 @@ import com.att.research.xacmlatt.pdp.policy.FunctionArgument;
  * In the first implementation of XACML we had separate files for each XACML Function.
  * This release combines multiple Functions in fewer files to minimize code duplication.
  * This file supports the following XACML codes:
- * 		string-bag
- * 		boolean-bag
- * 		integer-bag
- * 		double-bag
- * 		time-bag
- * 		date-bag
- * 		dateTime-bag
- * 		anyURI-bag
- * 		hexBinary-bag
- * 		base64Binary-bag
- * 		dayTimeDuration-bag (version 1 and3)
- * 		yearMonthDuration-bag (version 1 and 3)
- * 		x500Name-bag
- * 		rfc822Name-bag
- * 		ipAddress-bag
- * 		dnsName-bag
+ *              string-bag
+ *              boolean-bag
+ *              integer-bag
+ *              double-bag
+ *              time-bag
+ *              date-bag
+ *              dateTime-bag
+ *              anyURI-bag
+ *              hexBinary-bag
+ *              base64Binary-bag
+ *              dayTimeDuration-bag (version 1 and3)
+ *              yearMonthDuration-bag (version 1 and 3)
+ *              x500Name-bag
+ *              rfc822Name-bag
+ *              ipAddress-bag
+ *              dnsName-bag
  *
  *
  *
  * @param <I> the java class for the data type of the function Input arguments,
- * 		which is also the "type" of the returned bag
+ *              which is also the "type" of the returned bag
  */
 public class FunctionDefinitionBag<I> extends FunctionDefinitionBase<I, I> {
 
@@ -92,7 +92,7 @@ public class FunctionDefinitionBag<I> extends FunctionDefinitionBase<I, I> {
     public ExpressionResult evaluate(EvaluationContext evaluationContext, List<FunctionArgument> arguments) {
 
         // create a list to put the values into
-        Bag elementBag	= new Bag();
+        Bag elementBag  = new Bag();
 
         // see if we have arguments
         if (arguments != null && arguments.size() > 0) {

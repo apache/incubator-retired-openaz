@@ -61,7 +61,7 @@ import com.att.research.xacml.std.StdRequest;
  *
  */
 public class DOMRequest {
-    private static final Log logger	= LogFactory.getLog(DOMRequest.class);
+    private static final Log logger     = LogFactory.getLog(DOMRequest.class);
 
     /*
      * Prevent creation of instances - this class contains only static methods that return other object types.
@@ -135,7 +135,7 @@ public class DOMRequest {
         /*
          * Get the DocumentBuilderFactory
          */
-        DocumentBuilderFactory documentBuilderFactory	= DocumentBuilderFactory.newInstance();
+        DocumentBuilderFactory documentBuilderFactory   = DocumentBuilderFactory.newInstance();
         if (documentBuilderFactory == null) {
             throw new DOMStructureException("No XML DocumentBuilderFactory configured");
         }
@@ -144,9 +144,9 @@ public class DOMRequest {
         /*
          * Get the DocumentBuilder
          */
-        DocumentBuilder documentBuilder	= null;
+        DocumentBuilder documentBuilder = null;
         try {
-            documentBuilder	= documentBuilderFactory.newDocumentBuilder();
+            documentBuilder     = documentBuilderFactory.newDocumentBuilder();
         } catch (Exception ex) {
             throw new DOMStructureException("Exception creating DocumentBuilder: " + ex.getMessage(), ex);
         }
@@ -154,15 +154,15 @@ public class DOMRequest {
         /*
          * Parse the XML file
          */
-        Document document	= null;
-        Request request	= null;
+        Document document       = null;
+        Request request = null;
         try {
-            document	= documentBuilder.parse(is);
+            document    = documentBuilder.parse(is);
             if (document == null) {
                 throw new Exception("Null document returned");
             }
 
-            Node rootNode	= document.getFirstChild();
+            Node rootNode       = document.getFirstChild();
             while (rootNode != null && rootNode.getNodeType() != Node.ELEMENT_NODE) {
                 rootNode = rootNode.getNextSibling();
             }
@@ -172,7 +172,7 @@ public class DOMRequest {
 
             if (DOMUtil.isInNamespace(rootNode, XACML3.XMLNS)) {
                 if (XACML3.ELEMENT_REQUEST.equals(rootNode.getLocalName())) {
-                    request	= DOMRequest.newInstance(rootNode);
+                    request     = DOMRequest.newInstance(rootNode);
                     if (request == null) {
                         throw new DOMStructureException("Failed to parse Request");
                     }
@@ -196,34 +196,34 @@ public class DOMRequest {
      * @throws DOMStructureException if the conversion cannot be made
      */
     public static Request newInstance(Node nodeRequest) throws DOMStructureException {
-        Element	elementRequest	= DOMUtil.getElement(nodeRequest);
-        boolean bLenient		= DOMProperties.isLenient();
+        Element elementRequest  = DOMUtil.getElement(nodeRequest);
+        boolean bLenient                = DOMProperties.isLenient();
 
-        StdMutableRequest stdMutableRequest	= new StdMutableRequest();
+        StdMutableRequest stdMutableRequest     = new StdMutableRequest();
 
         stdMutableRequest.setReturnPolicyIdList(DOMUtil.getBooleanAttribute(elementRequest, XACML3.ATTRIBUTE_RETURNPOLICYIDLIST, !bLenient));
         stdMutableRequest.setCombinedDecision(DOMUtil.getBooleanAttribute(elementRequest, XACML3.ATTRIBUTE_COMBINEDDECISION, !bLenient));
 
-        NodeList children	= elementRequest.getChildNodes();
+        NodeList children       = elementRequest.getChildNodes();
         int numChildren;
-        boolean sawAttributes	= false;
+        boolean sawAttributes   = false;
         if (children != null && (numChildren = children.getLength()) > 0) {
             for (int i = 0 ; i < numChildren ; i++) {
-                Node child	= children.item(i);
+                Node child      = children.item(i);
                 if (DOMUtil.isElement(child)) {
                     if (DOMUtil.isInNamespace(child, XACML3.XMLNS)) {
-                        String childName	= child.getLocalName();
+                        String childName        = child.getLocalName();
                         if (XACML3.ELEMENT_ATTRIBUTES.equals(childName)) {
                             stdMutableRequest.add(DOMRequestAttributes.newInstance(child));
-                            sawAttributes	= true;
+                            sawAttributes       = true;
                         } else if (XACML3.ELEMENT_REQUESTDEFAULTS.equals(childName)) {
                             stdMutableRequest.setRequestDefaults(DOMRequestDefaults.newInstance(child));
                         } else if (XACML3.ELEMENT_MULTIREQUESTS.equals(childName)) {
-                            NodeList grandchildren	= child.getChildNodes();
+                            NodeList grandchildren      = child.getChildNodes();
                             int numGrandchildren;
                             if (grandchildren != null && (numGrandchildren = grandchildren.getLength()) > 0) {
                                 for (int j = 0 ; j < numGrandchildren ; j++) {
-                                    Node grandchild	= grandchildren.item(j);
+                                    Node grandchild     = grandchildren.item(j);
                                     if (DOMUtil.isElement(grandchild)) {
                                         if (DOMUtil.isInNamespace(grandchild, XACML3.XMLNS)) {
                                             if (XACML3.ELEMENT_REQUESTREFERENCE.equals(grandchild.getLocalName())) {
@@ -269,45 +269,45 @@ public class DOMRequest {
      * @throws DOMStructureException
      */
     public static boolean repair(Node nodeRequest) throws DOMStructureException {
-        Element	elementRequest	= DOMUtil.getElement(nodeRequest);
-        boolean result			= false;
+        Element elementRequest  = DOMUtil.getElement(nodeRequest);
+        boolean result                  = false;
 
-        result					= DOMUtil.repairBooleanAttribute(elementRequest, XACML3.ATTRIBUTE_RETURNPOLICYIDLIST, false, logger) || result;
-        result					= DOMUtil.repairBooleanAttribute(elementRequest, XACML3.ATTRIBUTE_COMBINEDDECISION, false, logger) || result;
+        result                                  = DOMUtil.repairBooleanAttribute(elementRequest, XACML3.ATTRIBUTE_RETURNPOLICYIDLIST, false, logger) || result;
+        result                                  = DOMUtil.repairBooleanAttribute(elementRequest, XACML3.ATTRIBUTE_COMBINEDDECISION, false, logger) || result;
 
-        NodeList children	= elementRequest.getChildNodes();
+        NodeList children       = elementRequest.getChildNodes();
         int numChildren;
-        boolean sawAttributes	= false;
+        boolean sawAttributes   = false;
         if (children != null && (numChildren = children.getLength()) > 0) {
             for (int i = 0 ; i < numChildren ; i++) {
-                Node child	= children.item(i);
+                Node child      = children.item(i);
                 if (DOMUtil.isElement(child)) {
                     if (DOMUtil.isInNamespace(child, XACML3.XMLNS)) {
-                        String childName	= child.getLocalName();
+                        String childName        = child.getLocalName();
                         if (XACML3.ELEMENT_ATTRIBUTES.equals(childName)) {
-                            result	= DOMRequestAttributes.repair(child) || result;
-                            sawAttributes	= true;
+                            result      = DOMRequestAttributes.repair(child) || result;
+                            sawAttributes       = true;
                         } else if (XACML3.ELEMENT_REQUESTDEFAULTS.equals(childName)) {
-                            result	= result || DOMRequestDefaults.repair(child);
+                            result      = result || DOMRequestDefaults.repair(child);
                         } else if (XACML3.ELEMENT_MULTIREQUESTS.equals(childName)) {
-                            NodeList grandchildren	= child.getChildNodes();
+                            NodeList grandchildren      = child.getChildNodes();
                             int numGrandchildren;
                             if (grandchildren != null && (numGrandchildren = grandchildren.getLength()) > 0) {
                                 for (int j = 0 ; j < numGrandchildren ; j++) {
-                                    Node grandchild	= grandchildren.item(j);
+                                    Node grandchild     = grandchildren.item(j);
                                     if (DOMUtil.isElement(grandchild)) {
                                         if (DOMUtil.isInNamespace(grandchild, XACML3.XMLNS)) {
                                             if (XACML3.ELEMENT_REQUESTREFERENCE.equals(grandchild.getLocalName())) {
-                                                result	= DOMRequestReference.repair(grandchild) || result;
+                                                result  = DOMRequestReference.repair(grandchild) || result;
                                             } else {
                                                 logger.warn("Unexpected element " + grandchild.getNodeName());
                                                 child.removeChild(grandchild);
-                                                result	= true;
+                                                result  = true;
                                             }
                                         } else {
                                             logger.warn("Unexpected element " + grandchild.getNodeName());
                                             child.removeChild(grandchild);
-                                            result	= true;
+                                            result      = true;
                                         }
                                     }
                                 }
@@ -315,12 +315,12 @@ public class DOMRequest {
                         } else {
                             logger.warn("Unexpected element " + child.getNodeName());
                             elementRequest.removeChild(child);
-                            result	= true;
+                            result      = true;
                         }
                     } else {
                         logger.warn("Unexpected element " + child.getNodeName());
                         elementRequest.removeChild(child);
-                        result	= true;
+                        result  = true;
                     }
                 }
             }
@@ -339,10 +339,10 @@ public class DOMRequest {
      */
     public static void main(String[] args) {
         if (args.length > 0) {
-            DocumentBuilderFactory	documentBuilderFactory	= DocumentBuilderFactory.newInstance();
+            DocumentBuilderFactory      documentBuilderFactory  = DocumentBuilderFactory.newInstance();
             documentBuilderFactory.setNamespaceAware(true);
             for (String xmlFileName: args) {
-                File	fileXml	= new File(xmlFileName);
+                File    fileXml = new File(xmlFileName);
                 if (!fileXml.exists()) {
                     System.err.println("Input file \"" + fileXml.getAbsolutePath() + "\" does not exist.");
                     continue;
@@ -352,25 +352,25 @@ public class DOMRequest {
                 }
                 System.out.println(fileXml.getAbsolutePath() + ":");
                 try {
-                    DocumentBuilder	documentBuilder	= documentBuilderFactory.newDocumentBuilder();
+                    DocumentBuilder     documentBuilder = documentBuilderFactory.newDocumentBuilder();
                     assert(documentBuilder.isNamespaceAware());
-                    Document documentRequest		= documentBuilder.parse(fileXml);
+                    Document documentRequest            = documentBuilder.parse(fileXml);
                     assert(documentRequest != null);
 
-                    NodeList children				= documentRequest.getChildNodes();
+                    NodeList children                           = documentRequest.getChildNodes();
                     if (children == null || children.getLength() == 0) {
                         System.err.println("No Requests found in \"" + fileXml.getAbsolutePath() + "\"");
                         continue;
                     } else if (children.getLength() > 1) {
                         System.err.println("Multiple Requests found in \"" + fileXml.getAbsolutePath() + "\"");
                     }
-                    Node nodeRequest				= children.item(0);
+                    Node nodeRequest                            = children.item(0);
                     if (!nodeRequest.getLocalName().equals(XACML3.ELEMENT_REQUEST)) {
                         System.err.println("\"" + fileXml.getAbsolutePath() + "\" is not a Request");
                         continue;
                     }
 
-                    Request domRequest			= DOMRequest.newInstance(nodeRequest);
+                    Request domRequest                  = DOMRequest.newInstance(nodeRequest);
                     System.out.println(domRequest.toString());
                     System.out.println();
                 } catch (Exception ex) {

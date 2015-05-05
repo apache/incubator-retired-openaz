@@ -83,10 +83,10 @@ public class DOMResponseConformanceTest {
         }
 
         // run through each XML file
-        //	- load the file from XML into an internal Response object
-        //	- generate the XML representation from that Response object
-        // 	- reload the file into a String
-        //	- compare the 2 XML strings
+        //      - load the file from XML into an internal Response object
+        //      - generate the XML representation from that Response object
+        //      - reload the file into a String
+        //      - compare the 2 XML strings
         Response xmlResponse = null;
         try {
             for (File f : filesInDirectory) {
@@ -96,7 +96,7 @@ public class DOMResponseConformanceTest {
 //if ( ! f.getName().equals("IID302Response.xml")) {   continue;  }
 
 // during debugging it is helpful to know what file it is starting to work on
-//				System.out.println("starting file="+currentFile.getName());
+//                              System.out.println("starting file="+currentFile.getName());
 
 
                 BufferedReader br = new BufferedReader(new FileReader(f));
@@ -142,19 +142,19 @@ public class DOMResponseConformanceTest {
                     fail("Output string did not re-generate eqivilent object.");
                 }
 
-//				// Normally whitespace is significant in XML.
-//				// However in this case we are generating an XML string for output and comparing it to a hand-made file.
-//				// The file may contain extra newlines or fewer spaces then our prettyPrinted output version.
-//				// Therefore we do the comparison on the un-prettyPrinted generated string.
-//				// To do this we have to remove the extra whitespace from the version read from the file.
-//				String normalizedFromFile = xmlFromFile.replaceAll("\\r|\\n", "");
-//				normalizedFromFile = normalizedFromFile.replaceAll("\\s+", " ");
-//				normalizedFromFile = normalizedFromFile.replaceAll(">\\s*<", "><");
+//                              // Normally whitespace is significant in XML.
+//                              // However in this case we are generating an XML string for output and comparing it to a hand-made file.
+//                              // The file may contain extra newlines or fewer spaces then our prettyPrinted output version.
+//                              // Therefore we do the comparison on the un-prettyPrinted generated string.
+//                              // To do this we have to remove the extra whitespace from the version read from the file.
+//                              String normalizedFromFile = xmlFromFile.replaceAll("\\r|\\n", "");
+//                              normalizedFromFile = normalizedFromFile.replaceAll("\\s+", " ");
+//                              normalizedFromFile = normalizedFromFile.replaceAll(">\\s*<", "><");
 //
-//				if ( ! xmlResponseString.equals(normalizedFromFile)) {
-//					System.out.println("file="+normalizedFromFile+"\ngend="+xmlResponseString);
-//					fail("file not same as generated string: " + f.getName()+ "\nFile="+xmlFromFile + "\nString="+xmlResponseString);
-//				}
+//                              if ( ! xmlResponseString.equals(normalizedFromFile)) {
+//                                      System.out.println("file="+normalizedFromFile+"\ngend="+xmlResponseString);
+//                                      fail("file not same as generated string: " + f.getName()+ "\nFile="+xmlFromFile + "\nString="+xmlResponseString);
+//                              }
 
 
             }

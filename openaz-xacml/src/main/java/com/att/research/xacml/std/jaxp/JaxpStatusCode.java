@@ -54,12 +54,12 @@ public class JaxpStatusCode extends StdStatusCode {
         } else if (statusCodeType.getValue() == null) {
             throw new IllegalArgumentException("Null StatusCodeValue");
         }
-        Identifier	statusCodeValue	= new IdentifierImpl(statusCodeType.getValue());
+        Identifier      statusCodeValue = new IdentifierImpl(statusCodeType.getValue());
 
-        StatusCode		statusCodeChild	= null;
+        StatusCode              statusCodeChild = null;
         if (statusCodeType.getStatusCode() != null) {
             try {
-                statusCodeChild	= JaxpStatusCode.newInstance(statusCodeType.getStatusCode());
+                statusCodeChild = JaxpStatusCode.newInstance(statusCodeType.getStatusCode());
             } catch (Exception ex) {
                 throw new IllegalArgumentException("Invalid child StatusCodeValue", ex);
             }

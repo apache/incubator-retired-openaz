@@ -61,26 +61,26 @@ public interface PDPStatus {
         CANNOT_CONNECT
     }
 
-    public Status				getStatus();
+    public Status                               getStatus();
 
-    public Set<String>			getLoadErrors();
+    public Set<String>                  getLoadErrors();
 
-    public Set<String>			getLoadWarnings();
+    public Set<String>                  getLoadWarnings();
 
-    public Set<PDPPolicy>		getLoadedPolicies();
+    public Set<PDPPolicy>               getLoadedPolicies();
 
-    public Set<PDPPolicy>		getLoadedRootPolicies();
+    public Set<PDPPolicy>               getLoadedRootPolicies();
 
-    public Set<PDPPolicy>		getFailedPolicies();
+    public Set<PDPPolicy>               getFailedPolicies();
 
-    public boolean				policiesOK();
+    public boolean                              policiesOK();
 
-    public Set<PDPPIPConfig>	getLoadedPipConfigs();
+    public Set<PDPPIPConfig>    getLoadedPipConfigs();
 
-    public Set<PDPPIPConfig>	getFailedPipConfigs();
+    public Set<PDPPIPConfig>    getFailedPipConfigs();
 
-    public boolean				pipConfigOK();
+    public boolean                              pipConfigOK();
 
-    public boolean				isOk();
+    public boolean                              isOk();
 
 }

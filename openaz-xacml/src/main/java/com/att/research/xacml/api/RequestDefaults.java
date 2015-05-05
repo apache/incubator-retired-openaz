@@ -49,8 +49,8 @@ public interface RequestDefaults {
      *
      * Implementations of this interface must override the <code>equals</code> method with the following semantics:
      *
-     * 		Two <code>RequestDefaults</code> (<code>r1</code> and <code>r2</code> are equal if:
-     * 			{@code r1.getXPathVersion() == null && r2.getXPathVersion() == null} OR {@code r1.getXPathVersion().equals(r2.getXPathVersion())}
+     *          Two <code>RequestDefaults</code> (<code>r1</code> and <code>r2</code> are equal if:
+     *                  {@code r1.getXPathVersion() == null && r2.getXPathVersion() == null} OR {@code r1.getXPathVersion().equals(r2.getXPathVersion())}
      */
     @Override
     boolean equals(Object obj);

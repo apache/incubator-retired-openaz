@@ -49,11 +49,11 @@ import com.att.research.xacmlatt.pdp.eval.Matchable;
  *
  */
 public class Target extends PolicyComponent implements Matchable {
-    private List<AnyOf>	anyOfs;
+    private List<AnyOf> anyOfs;
 
     protected List<AnyOf> getAnyOfList(boolean bNoNull) {
         if (this.anyOfs == null && bNoNull) {
-            this.anyOfs	= new ArrayList<AnyOf>();
+            this.anyOfs = new ArrayList<AnyOf>();
         }
         return this.anyOfs;
     }
@@ -104,12 +104,12 @@ public class Target extends PolicyComponent implements Matchable {
     }
 
     public void addAnyOf(AnyOf anyOfIn) {
-        List<AnyOf> listAnyOfs	= this.getAnyOfList(true);
+        List<AnyOf> listAnyOfs  = this.getAnyOfList(true);
         listAnyOfs.add(anyOfIn);
     }
 
     public void addAnyOfs(Collection<AnyOf> anyOfsIn) {
-        List<AnyOf> listAnyOfs	= this.getAnyOfList(true);
+        List<AnyOf> listAnyOfs  = this.getAnyOfList(true);
         listAnyOfs.addAll(anyOfsIn);
     }
 
@@ -118,13 +118,13 @@ public class Target extends PolicyComponent implements Matchable {
         if (!this.validate()) {
             return new MatchResult(new StdStatus(this.getStatusCode(), this.getStatusMessage()));
         }
-        Iterator<AnyOf> iterAnyOfs	= this.getAnyOfs();
+        Iterator<AnyOf> iterAnyOfs      = this.getAnyOfs();
         if (iterAnyOfs == null || !iterAnyOfs.hasNext()) {
             return MatchResult.MM_MATCH;
         } else {
-            MatchResult matchResult	= MatchResult.MM_MATCH;
+            MatchResult matchResult     = MatchResult.MM_MATCH;
             while (iterAnyOfs.hasNext()) {
-                matchResult	= iterAnyOfs.next().match(evaluationContext);
+                matchResult     = iterAnyOfs.next().match(evaluationContext);
                 if (matchResult.getMatchCode() != MatchResult.MatchCode.MATCH) {
                     return matchResult;
                 }
@@ -140,11 +140,11 @@ public class Target extends PolicyComponent implements Matchable {
 
     @Override
     public String toString() {
-        StringBuilder stringBuilder	= new StringBuilder("{");
+        StringBuilder stringBuilder     = new StringBuilder("{");
         stringBuilder.append("super=");
         stringBuilder.append(super.toString());
 
-        String iterToDump	= StringUtils.toString(this.getAnyOfs());
+        String iterToDump       = StringUtils.toString(this.getAnyOfs());
         if (iterToDump != null) {
             stringBuilder.append(",anyOfs=");
             stringBuilder.append(iterToDump);

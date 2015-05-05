@@ -58,9 +58,9 @@ public class StdCombiningAlgorithms {
     protected StdCombiningAlgorithms() {
     }
 
-    public static final String	PREFIX_CA		= "CA_";
-    public static final String	PREFIX_RULE		= PREFIX_CA + "RULE_";
-    public static final String	PREFIX_POLICY	= PREFIX_CA + "POLICY_";
+    public static final String  PREFIX_CA               = "CA_";
+    public static final String  PREFIX_RULE             = PREFIX_CA + "RULE_";
+    public static final String  PREFIX_POLICY   = PREFIX_CA + "POLICY_";
 
     // C.2 Deny-overrides
     public static final CombiningAlgorithm<Rule> CA_RULE_DENY_OVERRIDES
@@ -106,7 +106,7 @@ public class StdCombiningAlgorithms {
 
     // C.9 Only-one-applicable
     //public static final CombiningAlgorithm<Rule> CA_RULE_ONLY_ONE_APPLICABLE
-    //	= new OnlyOneApplicable<Rule>(XACML1.ID_RULE_ONLY_ONE_APPLICABLE);
+    //  = new OnlyOneApplicable<Rule>(XACML1.ID_RULE_ONLY_ONE_APPLICABLE);
     public static final CombiningAlgorithm<PolicySetChild> CA_POLICY_ONLY_ONE_APPLICABLE
         = new OnlyOneApplicable(XACML1.ID_POLICY_ONLY_ONE_APPLICABLE);
 

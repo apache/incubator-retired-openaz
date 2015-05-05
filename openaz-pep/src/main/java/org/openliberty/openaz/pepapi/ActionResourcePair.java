@@ -35,8 +35,8 @@ public final class ActionResourcePair {
     /**
      * Creates a new action - resource pair
      *
-     * @param action	an Object representing the action being performed.
-     * @param resource	an Object representing the resource on which the action is being performed.
+     * @param action    an Object representing the action being performed.
+     * @param resource  an Object representing the resource on which the action is being performed.
      */
     public ActionResourcePair(Object action, Object resource) {
         this.resource = resource;

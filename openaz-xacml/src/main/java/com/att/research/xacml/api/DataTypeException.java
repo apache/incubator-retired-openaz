@@ -37,7 +37,7 @@ package com.att.research.xacml.api;
 public class DataTypeException extends Exception {
     private static final long serialVersionUID = -6308818179904447096L;
 
-    private DataType<?>	dataType;
+    private DataType<?> dataType;
 
     /**
      * Creates a new <code>DataTypeException</code> for an error thrown by the given {@link DataType}.

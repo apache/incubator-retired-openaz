@@ -49,7 +49,7 @@ public final class ThreadLocalObligationStore implements ObligationStore {
     /**
      * Set Obligations for the current thread of execution.
      *
-     * @param obligationMap	a <code>Map</code> containing <code>Obligation</code> instances keyed by ObligationHandler Class.
+     * @param obligationMap     a <code>Map</code> containing <code>Obligation</code> instances keyed by ObligationHandler Class.
      */
     void setObligations(Map<Class<?>, Set<Obligation>> obligationMap) {
         if(obligationMap != null && !obligationMap.isEmpty()) {
@@ -62,7 +62,7 @@ public final class ThreadLocalObligationStore implements ObligationStore {
     /**
      * Returns all obligations in the current thread of execution.
      *
-     * @return	a <code>Set</code> of <code>Obligation</code> instances.
+     * @return  a <code>Set</code> of <code>Obligation</code> instances.
      */
     public Set<Obligation> getAllObligations() {
         Set<Obligation> allObligations = new HashSet<Obligation>();

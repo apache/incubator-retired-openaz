@@ -56,7 +56,7 @@ import com.att.research.xacmlatt.pdp.std.StdFunctions;
  * In the first implementation of XACML we had separate files for each XACML Function.
  * This release combines multiple Functions in fewer files to minimize code duplication.
  * This file supports the following XACML codes:
- * 		string-equal-ignore-case
+ *              string-equal-ignore-case
  *
  *
  */

@@ -65,7 +65,7 @@ public abstract class FunctionDefinitionHomogeneousSimple<O,I> extends FunctionD
 
 
     // null means that number of arguments is variable
-    private Integer			numArgs;
+    private Integer                     numArgs;
 
     /**
      * Constructor
@@ -77,7 +77,7 @@ public abstract class FunctionDefinitionHomogeneousSimple<O,I> extends FunctionD
      */
     public FunctionDefinitionHomogeneousSimple(Identifier idIn, DataType<O> dataTypeReturnIn, DataType<I> dataTypeArgsIn, Integer nArgs) {
         super(idIn, dataTypeReturnIn, dataTypeArgsIn, false);
-        this.numArgs		= nArgs;
+        this.numArgs            = nArgs;
     }
 
 

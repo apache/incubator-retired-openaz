@@ -50,7 +50,7 @@ import com.att.research.xacmlatt.pdp.policy.Match;
  *
  */
 public class DOMMatch extends Match {
-    private static Log logger	= LogFactory.getLog(DOMMatch.class);
+    private static Log logger   = LogFactory.getLog(DOMMatch.class);
 
     protected DOMMatch() {
     }
@@ -63,21 +63,21 @@ public class DOMMatch extends Match {
      * @throws DOMStructureException if there is an error parsing the given <code>Node</code>
      */
     public static Match newInstance(Node nodeMatch) throws DOMStructureException {
-        Element elementMatch	= DOMUtil.getElement(nodeMatch);
-        boolean bLenient		= DOMProperties.isLenient();
+        Element elementMatch    = DOMUtil.getElement(nodeMatch);
+        boolean bLenient                = DOMProperties.isLenient();
 
-        DOMMatch domMatch		= new DOMMatch();
+        DOMMatch domMatch               = new DOMMatch();
 
         try {
-            NodeList children	= elementMatch.getChildNodes();
+            NodeList children   = elementMatch.getChildNodes();
             int numChildren;
 
             if (children != null && (numChildren = children.getLength()) > 0) {
                 for (int i = 0 ; i < numChildren ; i++) {
-                    Node child	= children.item(i);
+                    Node child  = children.item(i);
                     if (DOMUtil.isElement(child)) {
                         if (DOMUtil.isInNamespace(child, XACML3.XMLNS)) {
-                            String childName	= child.getLocalName();
+                            String childName    = child.getLocalName();
                             if (XACML3.ELEMENT_ATTRIBUTEVALUE.equals(childName)) {
                                 domMatch.setAttributeValue(DOMAttributeValue.newInstance(child, null));
                             } else if (XACML3.ELEMENT_ATTRIBUTEDESIGNATOR.equals(childName)) {
@@ -121,56 +121,56 @@ public class DOMMatch extends Match {
     }
 
     public static boolean repair(Node nodeMatch) throws DOMStructureException {
-        Element elementMatch	= DOMUtil.getElement(nodeMatch);
-        boolean result			= false;
+        Element elementMatch    = DOMUtil.getElement(nodeMatch);
+        boolean result                  = false;
 
-        NodeList children	= elementMatch.getChildNodes();
+        NodeList children       = elementMatch.getChildNodes();
         int numChildren;
-        boolean sawAttributeRetrievalBase	= false;
-        boolean sawAttributeValue			= false;
+        boolean sawAttributeRetrievalBase       = false;
+        boolean sawAttributeValue                       = false;
 
         if (children != null && (numChildren = children.getLength()) > 0) {
             for (int i = 0 ; i < numChildren ; i++) {
-                Node child	= children.item(i);
+                Node child      = children.item(i);
                 if (DOMUtil.isElement(child)) {
                     if (DOMUtil.isInNamespace(child, XACML3.XMLNS)) {
-                        String childName	= child.getLocalName();
+                        String childName        = child.getLocalName();
                         if (XACML3.ELEMENT_ATTRIBUTEVALUE.equals(childName)) {
                             if (sawAttributeValue) {
                                 logger.warn("Unexpected element " + child.getNodeName());
                                 elementMatch.removeChild(child);
-                                result	= true;
+                                result  = true;
                             } else {
-                                result				= DOMAttributeValue.repair(child) || result;
-                                sawAttributeValue	= true;
+                                result                          = DOMAttributeValue.repair(child) || result;
+                                sawAttributeValue       = true;
                             }
                         } else if (XACML3.ELEMENT_ATTRIBUTEDESIGNATOR.equals(childName)) {
                             if (sawAttributeRetrievalBase) {
                                 logger.warn("Unexpected element " + child.getNodeName());
                                 elementMatch.removeChild(child);
-                                result	= true;
+                                result  = true;
                             } else {
-                                result						= DOMAttributeDesignator.repair(child) || result;
-                                sawAttributeRetrievalBase	= true;
+                                result                                          = DOMAttributeDesignator.repair(child) || result;
+                                sawAttributeRetrievalBase       = true;
                             }
                         } else if (XACML3.ELEMENT_ATTRIBUTESELECTOR.equals(childName)) {
                             if (sawAttributeRetrievalBase) {
                                 logger.warn("Unexpected element " + child.getNodeName());
                                 elementMatch.removeChild(child);
-                                result	= true;
+                                result  = true;
                             } else {
-                                result	= DOMAttributeSelector.repair(child) || result;
-                                sawAttributeRetrievalBase	= true;
+                                result  = DOMAttributeSelector.repair(child) || result;
+                                sawAttributeRetrievalBase       = true;
                             }
                         } else {
                             logger.warn("Unexpected element " + child.getNodeName());
                             elementMatch.removeChild(child);
-                            result	= true;
+                            result      = true;
                         }
                     } else {
                         logger.warn("Unexpected element " + child.getNodeName());
                         elementMatch.removeChild(child);
-                        result	= true;
+                        result  = true;
                     }
                 }
             }
@@ -184,7 +184,7 @@ public class DOMMatch extends Match {
         } else if (!sawAttributeValue) {
             throw DOMUtil.newMissingElementException(nodeMatch, XACML3.XMLNS, XACML3.ELEMENT_ATTRIBUTEVALUE);
         }
-        result	= DOMUtil.repairIdentifierAttribute(elementMatch, XACML3.ATTRIBUTE_MATCHID, logger) || result;
+        result  = DOMUtil.repairIdentifierAttribute(elementMatch, XACML3.ATTRIBUTE_MATCHID, logger) || result;
 
         return result;
     }

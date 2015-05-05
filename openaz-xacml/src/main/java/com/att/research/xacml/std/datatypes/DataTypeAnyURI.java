@@ -42,7 +42,7 @@ import com.att.research.xacml.api.XACML;
  *
  */
 public class DataTypeAnyURI extends DataTypeBase<URI> {
-    private static final DataTypeAnyURI	singleInstance	= new DataTypeAnyURI();
+    private static final DataTypeAnyURI singleInstance  = new DataTypeAnyURI();
 
     /**
      * Creates a <code>DataTypeAnyURI</code> with the XACML anyURI id and the java <code>URI</code> class.
@@ -62,14 +62,14 @@ public class DataTypeAnyURI extends DataTypeBase<URI> {
         } else if (source instanceof Identifier) {
             return ((Identifier)source).getUri();
         } else {
-            String stringValue	= this.convertToString(source);
+            String stringValue  = this.convertToString(source);
             if (stringValue == null) {
                 return null;
             }
-            URI		uriValue	= null;
+            URI         uriValue        = null;
             try {
-                //uriValue	= URI.create(stringValue);
-                uriValue	= new URI(stringValue);
+                //uriValue      = URI.create(stringValue);
+                uriValue        = new URI(stringValue);
             } catch (URISyntaxException ex) {
                 throw new DataTypeException(this, "Failed to convert \"" + source.getClass().getCanonicalName() + "\" with value \"" + stringValue + "\" to anyURI", ex);
             }

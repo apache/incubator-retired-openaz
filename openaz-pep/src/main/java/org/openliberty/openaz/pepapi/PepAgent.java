@@ -46,8 +46,8 @@ import java.util.List;
  * from the ones shared across requests.
  *
  * Thus, in a <code>bulkDecide()</code> call applications provide two sets of arguments:
- * 		- a List of Domain Object bindings, each of which map to an individual request.
- * 		- a collection of common Domain Objects shared across all requests.
+ *              - a List of Domain Object bindings, each of which map to an individual request.
+ *              - a collection of common Domain Objects shared across all requests.
  *
  * Specific AzService implementations(PDP Providers) may implement bulkDecide() as a XACML MultiRequest (Note: XACML Multi Decision Profile is optional)
  * or as individual requests executed iteratively.
@@ -66,9 +66,9 @@ public interface PepAgent {
      * @param resourceId
      * @return
      * @throws PepException
-     * 			- if an appropriate ObjectMapper cannot be found.
-     * 			- if the underlying AzService instance/PDP throws an exception
-     * 			- if the PepAgent is configured to throw PepExceptions for "Indeterminate" or "Not Applicable" decisions.
+     *                  - if an appropriate ObjectMapper cannot be found.
+     *                  - if the underlying AzService instance/PDP throws an exception
+     *                  - if the PepAgent is configured to throw PepExceptions for "Indeterminate" or "Not Applicable" decisions.
      * @throws IllegalArgumentException if any of the arguments are null
      */
     public PepResponse simpleDecide(String subjectId, String actionId, String resourceId);
@@ -82,9 +82,9 @@ public interface PepAgent {
      * @param objects
      * @return
      * @throws PepException
-     * 			- if an appropriate ObjectMapper cannot be found.
-     * 			- if the underlying AzService instance/PDP throws an exception
-     * 			- if the PepAgent is configured to throw PepException for "Indeterminate" or "Not Applicable" decisions.
+     *                  - if an appropriate ObjectMapper cannot be found.
+     *                  - if the underlying AzService instance/PDP throws an exception
+     *                  - if the PepAgent is configured to throw PepException for "Indeterminate" or "Not Applicable" decisions.
      * @throws IllegalArgumentException if any of the arguments are null
      */
     public PepResponse decide(Object... objects);
@@ -98,9 +98,9 @@ public interface PepAgent {
      * @param objects a collection of common Domain Objects shared across all Requests.
      * @return
      * @throws PepException
-     * 			- if an appropriate ObjectMapper cannot be found.
-     * 			- if the underlying AzService instance/PDP throws an exception
-     * 			- if the PepAgent is configured to throw PepExceptions for "Indeterminate" or "Not Applicable" decisions.
+     *                  - if an appropriate ObjectMapper cannot be found.
+     *                  - if the underlying AzService instance/PDP throws an exception
+     *                  - if the PepAgent is configured to throw PepExceptions for "Indeterminate" or "Not Applicable" decisions.
      * @throws IllegalArgumentException if any of the arguments are null
      */
     public List<PepResponse> bulkDecide(List<?> associations, Object... objects);

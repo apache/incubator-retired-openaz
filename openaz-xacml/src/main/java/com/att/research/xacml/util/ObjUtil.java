@@ -42,7 +42,7 @@ import org.w3c.dom.NodeList;
  */
 public class ObjUtil {
 
-    private static final Log logger	= LogFactory.getLog(ObjUtil.class);
+    private static final Log logger     = LogFactory.getLog(ObjUtil.class);
 
 
     protected ObjUtil() {
@@ -73,10 +73,10 @@ public class ObjUtil {
      * because the text formatting is not significant to the meaning of the content.  Therefore the (Node).isEqualNode() method is not appropriate either.
      *
      * This method looks at the Node elements and each of their children:
-     * 	- ignoring empty text nodes
-     * 	- ignoring comment nodes
-     * 	- checking that all attributes on the nodes are the same
-     * 	- checking that each non-empty-text child is in the same order
+     *  - ignoring empty text nodes
+     *  - ignoring comment nodes
+     *  - checking that all attributes on the nodes are the same
+     *  - checking that each non-empty-text child is in the same order
      *
      * @param node1 the first Node object to compare
      * @param node2 the second Node object to compare
@@ -104,9 +104,9 @@ public class ObjUtil {
     /**
      * Recursively clean up this node and all its children,
      * where "clean" means
-     * 	- remove comments
-     * 	- remove empty nodes
-     * 	- remove xmlns (Namespace) attributes
+     *  - remove comments
+     *  - remove empty nodes
+     *  - remove xmlns (Namespace) attributes
      *
      * @param node
      */

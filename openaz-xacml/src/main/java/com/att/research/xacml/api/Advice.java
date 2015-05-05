@@ -59,9 +59,9 @@ public interface Advice {
      *
      * The implementation of the <code>Advice</code> interface must override the <code>equals</code> method with the following
      * semantics:
-     * 		Two <code>Advice</code> objects (<code>a1</code> and <code>a2</code>) are equal if:
-     * 			{@code a1.getId().equals(a2.getId())} AND
-     * 			{@code a1.getAttributeAssignments()} is pair-wise equal to {@code a2.getAttributeAssignments()}
+     *          Two <code>Advice</code> objects (<code>a1</code> and <code>a2</code>) are equal if:
+     *                  {@code a1.getId().equals(a2.getId())} AND
+     *                  {@code a1.getAttributeAssignments()} is pair-wise equal to {@code a2.getAttributeAssignments()}
      */
     @Override
     boolean equals(Object obj);

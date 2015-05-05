@@ -63,7 +63,7 @@ import com.att.research.xacmlatt.pdp.policy.PolicySetChild;
  *
  */
 public class DOMPolicySet {
-    private static final Log logger	= LogFactory.getLog(DOMPolicySet.class);
+    private static final Log logger     = LogFactory.getLog(DOMPolicySet.class);
 
     protected DOMPolicySet() {
     }
@@ -77,24 +77,24 @@ public class DOMPolicySet {
      * @throws DOMStructureException if there is an error parsing the <code>Node</code>
      */
     public static PolicySet newInstance(Node nodePolicySet, PolicySet policySetParent, PolicyDefaults policyDefaultsParent) throws DOMStructureException {
-        Element elementPolicySet	= DOMUtil.getElement(nodePolicySet);
-        boolean bLenient			= DOMProperties.isLenient();
+        Element elementPolicySet        = DOMUtil.getElement(nodePolicySet);
+        boolean bLenient                        = DOMProperties.isLenient();
 
-        PolicySet domPolicySet		= new PolicySet(policySetParent);
+        PolicySet domPolicySet          = new PolicySet(policySetParent);
 
         Iterator<?> iterator;
         Identifier identifier;
         Integer integer;
 
         try {
-            NodeList children	= elementPolicySet.getChildNodes();
+            NodeList children   = elementPolicySet.getChildNodes();
             int numChildren;
             if (children != null && (numChildren = children.getLength()) > 0) {
                 /*
                  * Run through once, quickly, to set the PolicyDefaults for the new DOMPolicySet
                  */
                 for (int i = 0 ; i < numChildren ; i++) {
-                    Node child	= children.item(i);
+                    Node child  = children.item(i);
                     if (DOMUtil.isNamespaceElement(child, XACML3.XMLNS) && XACML3.ELEMENT_POLICYDEFAULTS.equals(child.getLocalName())) {
                         if (domPolicySet.getPolicyDefaults() != null && !bLenient) {
                             throw DOMUtil.newUnexpectedElementException(child, nodePolicySet);
@@ -110,10 +110,10 @@ public class DOMPolicySet {
                  * Now process the other elements so we can pull up the parent policy defaults
                  */
                 for (int i = 0 ; i < numChildren ; i++) {
-                    Node child	= children.item(i);
+                    Node child  = children.item(i);
                     if (DOMUtil.isElement(child)) {
                         if (DOMUtil.isInNamespace(child, XACML3.XMLNS)) {
-                            String childName	= child.getLocalName();
+                            String childName    = child.getLocalName();
                             if (XACML3.ELEMENT_DESCRIPTION.equals(childName)) {
                                 if (domPolicySet.getDescription() != null && !bLenient) {
                                     throw DOMUtil.newUnexpectedElementException(child, nodePolicySet);
@@ -173,10 +173,10 @@ public class DOMPolicySet {
             domPolicySet.setIdentifier(DOMUtil.getIdentifierAttribute(elementPolicySet, XACML3.ATTRIBUTE_POLICYSETID, !bLenient));
             domPolicySet.setVersion(DOMUtil.getVersionAttribute(elementPolicySet, XACML3.ATTRIBUTE_VERSION, !bLenient));
 
-            identifier	= DOMUtil.getIdentifierAttribute(elementPolicySet, XACML3.ATTRIBUTE_POLICYCOMBININGALGID, !bLenient);
-            CombiningAlgorithm<PolicySetChild> combiningAlgorithm	= null;
+            identifier  = DOMUtil.getIdentifierAttribute(elementPolicySet, XACML3.ATTRIBUTE_POLICYCOMBININGALGID, !bLenient);
+            CombiningAlgorithm<PolicySetChild> combiningAlgorithm       = null;
             try {
-                combiningAlgorithm	= CombiningAlgorithmFactory.newInstance().getPolicyCombiningAlgorithm(identifier);
+                combiningAlgorithm      = CombiningAlgorithmFactory.newInstance().getPolicyCombiningAlgorithm(identifier);
             } catch (FactoryException ex) {
                 if (!bLenient) {
                     throw new DOMStructureException("Failed to get CombinginAlgorithm", ex);
@@ -202,103 +202,103 @@ public class DOMPolicySet {
     }
 
     public static boolean repair(Node nodePolicySet) throws DOMStructureException {
-        Element elementPolicySet	= DOMUtil.getElement(nodePolicySet);
-        boolean result				= false;
+        Element elementPolicySet        = DOMUtil.getElement(nodePolicySet);
+        boolean result                          = false;
 
-        NodeList children	= elementPolicySet.getChildNodes();
+        NodeList children       = elementPolicySet.getChildNodes();
         int numChildren;
-        boolean sawDescription		= false;
-        boolean sawPolicyIssuer		= false;
-        boolean sawPolicyDefaults	= false;
-        boolean sawTarget			= false;
-        boolean sawObligationExprs	= false;
-        boolean sawAdviceExprs		= false;
+        boolean sawDescription          = false;
+        boolean sawPolicyIssuer         = false;
+        boolean sawPolicyDefaults       = false;
+        boolean sawTarget                       = false;
+        boolean sawObligationExprs      = false;
+        boolean sawAdviceExprs          = false;
 
         if (children != null && (numChildren = children.getLength()) > 0) {
             /*
              * Now process the other elements so we can pull up the parent policy defaults
              */
             for (int i = 0 ; i < numChildren ; i++) {
-                Node child	= children.item(i);
+                Node child      = children.item(i);
                 if (DOMUtil.isElement(child)) {
                     if (DOMUtil.isInNamespace(child, XACML3.XMLNS)) {
-                        String childName	= child.getLocalName();
+                        String childName        = child.getLocalName();
                         if (XACML3.ELEMENT_DESCRIPTION.equals(childName)) {
                             if (sawDescription) {
                                 logger.warn("Unexpected element " + child.getNodeName());
                                 elementPolicySet.removeChild(child);
-                                result	= true;
+                                result  = true;
                             } else {
-                                sawDescription	= true;
+                                sawDescription  = true;
                             }
                         } else if (XACML3.ELEMENT_POLICYISSUER.equals(childName)) {
                             if (sawPolicyIssuer) {
                                 logger.warn("Unexpected element " + child.getNodeName());
                                 elementPolicySet.removeChild(child);
-                                result	= true;
+                                result  = true;
                             } else {
-                                sawPolicyIssuer	= true;
-                                result	= DOMPolicyIssuer.repair(child) || result;
+                                sawPolicyIssuer = true;
+                                result  = DOMPolicyIssuer.repair(child) || result;
                             }
                         } else if (XACML3.ELEMENT_POLICYSETDEFAULTS.equals(childName)) {
                             if (sawPolicyDefaults) {
                                 logger.warn("Unexpected element " + child.getNodeName());
                                 elementPolicySet.removeChild(child);
-                                result	= true;
+                                result  = true;
                             } else {
-                                sawPolicyDefaults	= true;
-                                result				= DOMPolicyDefaults.repair(child) || result;
+                                sawPolicyDefaults       = true;
+                                result                          = DOMPolicyDefaults.repair(child) || result;
                             }
                         } else if (XACML3.ELEMENT_TARGET.equals(childName)) {
                             if (sawTarget) {
                                 logger.warn("Unexpected element " + child.getNodeName());
                                 elementPolicySet.removeChild(child);
-                                result	= true;
+                                result  = true;
                             } else {
-                                sawTarget	= true;
-                                result		= DOMTarget.repair(child) || result;
+                                sawTarget       = true;
+                                result          = DOMTarget.repair(child) || result;
                             }
                         } else if (XACML3.ELEMENT_POLICYSET.equals(childName)) {
-                            result	= DOMPolicySet.repair(child) || result;
+                            result      = DOMPolicySet.repair(child) || result;
                         } else if (XACML3.ELEMENT_POLICY.equals(childName)) {
-                            result 	= DOMPolicy.repair(child) || result;
+                            result      = DOMPolicy.repair(child) || result;
                         } else if (XACML3.ELEMENT_POLICYIDREFERENCE.equals(childName)) {
-                            result	= DOMPolicyIdReference.repair(child) || result;
+                            result      = DOMPolicyIdReference.repair(child) || result;
                         } else if (XACML3.ELEMENT_POLICYSETIDREFERENCE.equals(childName)) {
-                            result	= DOMPolicySetIdReference.repair(child) || result;
+                            result      = DOMPolicySetIdReference.repair(child) || result;
                         } else if (XACML3.ELEMENT_COMBINERPARAMETERS.equals(childName)) {
-                            result	= DOMCombinerParameter.repair(child) || result;
+                            result      = DOMCombinerParameter.repair(child) || result;
                         } else if (XACML3.ELEMENT_POLICYCOMBINERPARAMETERS.equals(childName)) {
-                            result	= DOMPolicyCombinerParameter.repair(child) || result;
+                            result      = DOMPolicyCombinerParameter.repair(child) || result;
                         } else if (XACML3.ELEMENT_POLICYSETCOMBINERPARAMETERS.equals(childName)) {
-                            result	= DOMPolicySetCombinerParameter.repair(child) || result;
+                            result      = DOMPolicySetCombinerParameter.repair(child) || result;
                         } else if (XACML3.ELEMENT_OBLIGATIONEXPRESSIONS.equals(childName)) {
                             if (sawObligationExprs) {
                                 logger.warn("Unexpected element " + child.getNodeName());
                                 elementPolicySet.removeChild(child);
-                                result	= true;
+                                result  = true;
                             } else {
-                                sawObligationExprs	= true;
-                                result				= DOMObligationExpression.repairList(child) || result;
+                                sawObligationExprs      = true;
+                                result                          = DOMObligationExpression.repairList(child) || result;
                             }
                         } else if (XACML3.ELEMENT_ADVICEEXPRESSIONS.equals(childName)) {
                             if (sawAdviceExprs) {
                                 logger.warn("Unexpected element " + child.getNodeName());
                                 elementPolicySet.removeChild(child);
-                                result	= true;
+                                result  = true;
                             } else {
-                                sawAdviceExprs	= true;
-                                result			= DOMAdviceExpression.repairList(child) || result;
+                                sawAdviceExprs  = true;
+                                result                  = DOMAdviceExpression.repairList(child) || result;
                             }
                         } else {
                             logger.warn("Unexpected element " + child.getNodeName());
                             elementPolicySet.removeChild(child);
-                            result	= true;
+                            result      = true;
                         }
                     } else  {
                         logger.warn("Unexpected element " + child.getNodeName());
                         elementPolicySet.removeChild(child);
-                        result	= true;
+                        result  = true;
                     }
                 }
             }
@@ -310,21 +310,21 @@ public class DOMPolicySet {
         /*
          * Get the attributes
          */
-        result	= DOMUtil.repairIdentifierAttribute(elementPolicySet, XACML3.ATTRIBUTE_POLICYSETID, logger) || result;
-        result	= DOMUtil.repairVersionAttribute(elementPolicySet, XACML3.ATTRIBUTE_VERSION, logger) || result;
-        result	= DOMUtil.repairIdentifierAttribute(elementPolicySet, XACML3.ATTRIBUTE_POLICYCOMBININGALGID, XACML3.ID_POLICY_DENY_OVERRIDES, logger) || result;
+        result  = DOMUtil.repairIdentifierAttribute(elementPolicySet, XACML3.ATTRIBUTE_POLICYSETID, logger) || result;
+        result  = DOMUtil.repairVersionAttribute(elementPolicySet, XACML3.ATTRIBUTE_VERSION, logger) || result;
+        result  = DOMUtil.repairIdentifierAttribute(elementPolicySet, XACML3.ATTRIBUTE_POLICYCOMBININGALGID, XACML3.ID_POLICY_DENY_OVERRIDES, logger) || result;
 
-        Identifier identifier	= DOMUtil.getIdentifierAttribute(elementPolicySet, XACML3.ATTRIBUTE_POLICYCOMBININGALGID);
-        CombiningAlgorithm<PolicySetChild> combiningAlgorithm	= null;
+        Identifier identifier   = DOMUtil.getIdentifierAttribute(elementPolicySet, XACML3.ATTRIBUTE_POLICYCOMBININGALGID);
+        CombiningAlgorithm<PolicySetChild> combiningAlgorithm   = null;
         try {
-            combiningAlgorithm	= CombiningAlgorithmFactory.newInstance().getPolicyCombiningAlgorithm(identifier);
+            combiningAlgorithm  = CombiningAlgorithmFactory.newInstance().getPolicyCombiningAlgorithm(identifier);
         } catch (FactoryException ex) {
-            combiningAlgorithm	= null;
+            combiningAlgorithm  = null;
         }
         if (combiningAlgorithm == null) {
             logger.warn("Setting invalid " + XACML3.ATTRIBUTE_POLICYCOMBININGALGID + " attribute " + identifier.stringValue() + " to " + XACML3.ID_POLICY_DENY_OVERRIDES.stringValue());
             elementPolicySet.setAttribute(XACML3.ATTRIBUTE_POLICYCOMBININGALGID, XACML3.ID_POLICY_DENY_OVERRIDES.stringValue());
-            result	= true;
+            result      = true;
         }
 
         return result;
@@ -332,21 +332,21 @@ public class DOMPolicySet {
 
     public static void main(String args[]) {
         try {
-            DocumentBuilderFactory documentBuilderFactory	= DocumentBuilderFactory.newInstance();
+            DocumentBuilderFactory documentBuilderFactory       = DocumentBuilderFactory.newInstance();
             documentBuilderFactory.setNamespaceAware(true);
-            DocumentBuilder documentBuilder					= documentBuilderFactory.newDocumentBuilder();
+            DocumentBuilder documentBuilder                                     = documentBuilderFactory.newDocumentBuilder();
 
             for (String fileName: args) {
-                File filePolicy	= new File(fileName);
+                File filePolicy = new File(fileName);
                 if (filePolicy.exists() && filePolicy.canRead()) {
                     try {
-                        Document documentPolicy	= documentBuilder.parse(filePolicy);
+                        Document documentPolicy = documentBuilder.parse(filePolicy);
                         if (documentPolicy.getFirstChild() == null) {
                             System.err.println(fileName + ": Error: No PolicySet found");
                         } else if (!XACML3.ELEMENT_POLICYSET.equals(documentPolicy.getFirstChild().getLocalName())) {
                             System.err.println(fileName + ": Error: Not a PolicySet document");
                         } else {
-                            PolicySet	policySet	= DOMPolicySet.newInstance(documentPolicy.getFirstChild(), null, null);
+                            PolicySet   policySet       = DOMPolicySet.newInstance(documentPolicy.getFirstChild(), null, null);
                             System.out.println(fileName + ": validate()=" + policySet.validate());
                             System.out.println(StringUtils.prettyPrint(policySet.toString()));
                         }

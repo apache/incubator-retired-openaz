@@ -47,7 +47,7 @@ import com.att.research.xacml.std.StdStatusDetail;
  *
  */
 public class DOMStatusDetail {
-    private static final Log logger	= LogFactory.getLog(DOMStatusDetail.class);
+    private static final Log logger     = LogFactory.getLog(DOMStatusDetail.class);
 
     protected DOMStatusDetail() {
     }
@@ -60,16 +60,16 @@ public class DOMStatusDetail {
      * @throws DOMStructureException if the conversion cannot be made
      */
     public static StatusDetail newInstance(Node nodeStatusDetail) throws DOMStructureException {
-        Element elementStatusDetail	= DOMUtil.getElement(nodeStatusDetail);
-        boolean bLenient			= DOMProperties.isLenient();
+        Element elementStatusDetail     = DOMUtil.getElement(nodeStatusDetail);
+        boolean bLenient                        = DOMProperties.isLenient();
 
-        StdMutableStatusDetail mutableStatusDetail	= new StdMutableStatusDetail();
+        StdMutableStatusDetail mutableStatusDetail      = new StdMutableStatusDetail();
 
-        NodeList children	= elementStatusDetail.getChildNodes();
+        NodeList children       = elementStatusDetail.getChildNodes();
         int numChildren;
         if (children != null && (numChildren = children.getLength()) > 0) {
             for (int i = 0 ; i < numChildren ; i++) {
-                Node child	= children.item(i);
+                Node child      = children.item(i);
                 if (DOMUtil.isElement(child)) {
                     if (DOMUtil.isInNamespace(child, XACML3.XMLNS) && XACML3.ELEMENT_MISSINGATTRIBUTEDETAIL.equals(child.getLocalName())) {
                         mutableStatusDetail.addMissingAttributeDetail(DOMMissingAttributeDetail.newInstance(child));
@@ -86,21 +86,21 @@ public class DOMStatusDetail {
     }
 
     public static boolean repair(Node nodeStatusDetail) throws DOMStructureException {
-        Element elementStatusDetail	= DOMUtil.getElement(nodeStatusDetail);
-        boolean result				= false;
+        Element elementStatusDetail     = DOMUtil.getElement(nodeStatusDetail);
+        boolean result                          = false;
 
-        NodeList children	= elementStatusDetail.getChildNodes();
+        NodeList children       = elementStatusDetail.getChildNodes();
         int numChildren;
         if (children != null && (numChildren = children.getLength()) > 0) {
             for (int i = 0 ; i < numChildren ; i++) {
-                Node child	= children.item(i);
+                Node child      = children.item(i);
                 if (DOMUtil.isElement(child)) {
                     if (DOMUtil.isInNamespace(child, XACML3.XMLNS) && XACML3.ELEMENT_MISSINGATTRIBUTEDETAIL.equals(child.getLocalName())) {
-                        result	= DOMMissingAttributeDetail.repair(child) || result;
+                        result  = DOMMissingAttributeDetail.repair(child) || result;
                     } else {
                         logger.warn("Unexpected element " + child.getNodeName());
                         elementStatusDetail.removeChild(child);
-                        result	= true;
+                        result  = true;
                     }
                 }
             }

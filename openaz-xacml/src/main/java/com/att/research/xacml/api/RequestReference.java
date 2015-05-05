@@ -51,9 +51,9 @@ public interface RequestReference {
      *
      * Implementations of this interface must override the <code>equals</code> method with the following semantics:
      *
-     * 		Two <code>RequestReference</code>s (<code>r1</code> and <code>r2</code>) are equal if:
+     *          Two <code>RequestReference</code>s (<code>r1</code> and <code>r2</code>) are equal if:
      *
-     * 			{@code r1.getAttributesReferences()} is pair-wise equal to {@code r2.getAttributesReferences()}
+     *                  {@code r1.getAttributesReferences()} is pair-wise equal to {@code r2.getAttributesReferences()}
      */
     @Override
     boolean equals(Object obj);

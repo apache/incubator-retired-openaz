@@ -39,7 +39,7 @@ import java.util.Arrays;
  */
 public class IPv6Address extends IPAddress {
 
-    private static final short[] NULL_ADDRESS	= { 0, 0, 0, 0, 0, 0, 0, 0 };
+    private static final short[] NULL_ADDRESS   = { 0, 0, 0, 0, 0, 0, 0, 0 };
 
 
 
@@ -48,15 +48,15 @@ public class IPv6Address extends IPAddress {
     // They are usually represented differently (4 octets vs. one number), but they are actually equivalent since they are both specifying which bits
     // in the address are defining a set of subnets.  The trick is that IPv4 is expected to start with the top-most bit and fill in to the right,
     // and the prefix says how many of those bits have been set to 1.  Typical examples:
-    //		255.0.0.0    = 8
-    //		255.255.0.0  = 16
-    //		255.255.255.0 = 24
+    //          255.0.0.0    = 8
+    //          255.255.0.0  = 16
+    //          255.255.255.0 = 24
     // Thus it is possible to hold the addressMask for IPv4 internally as a single number (as IPv6 does) and translate its representation to/from the octet version
     // as input string is parsed and output string generated, which might allow for common processing between IPv4 and IPv6.
 
-    private short[]		addressBytes;
-    private Short		prefix;
-    private PortRange	portRange;
+    private short[]             addressBytes;
+    private Short               prefix;
+    private PortRange   portRange;
 
     public IPv6Address(short[] addressBytesIn, Short prefixIn, PortRange portRangeIn) {
         addressBytes = addressBytesIn;
@@ -95,31 +95,31 @@ public class IPv6Address extends IPAddress {
      * @return
      */
     public static String formatAddress(short[] addressParts) {
-        StringBuilder	stringBuilder	= new StringBuilder();
+        StringBuilder   stringBuilder   = new StringBuilder();
 
         if (isIPv4Address(addressParts)) {
             stringBuilder.append("::FFFF:");
-            short[]	ipv4Octets	= new short[4];
-            ipv4Octets[0]	= (short)((addressParts[6] >> 8) & 0xFF);
-            ipv4Octets[1]	= (short)(addressParts[6] & 0xFF);
-            ipv4Octets[2]	= (short)((addressParts[7] >> 8) & 0xFF);
-            ipv4Octets[3]	= (short)(addressParts[7] & 0xFF);
+            short[]     ipv4Octets      = new short[4];
+            ipv4Octets[0]       = (short)((addressParts[6] >> 8) & 0xFF);
+            ipv4Octets[1]       = (short)(addressParts[6] & 0xFF);
+            ipv4Octets[2]       = (short)((addressParts[7] >> 8) & 0xFF);
+            ipv4Octets[3]       = (short)(addressParts[7] & 0xFF);
             stringBuilder.append(IPv4Address.formatAddress(ipv4Octets));
         } else {
             /*
              * Find the longest string of consecutive zeros
              */
-            int zeroPos	= -1;
-            int	zeroLen	= 0;
+            int zeroPos = -1;
+            int zeroLen = 0;
             for (int i = 0 ; i < addressParts.length ; ) {
                 if (addressParts[i] == 0) {
-                    int zeroCount	= 1;
+                    int zeroCount       = 1;
                     for (int j = i+1 ; j < addressParts.length && addressParts[j] == 0 ; j++, zeroCount++);
                     if (zeroCount > zeroLen) {
-                        zeroPos	= i;
-                        zeroLen	= zeroCount;
+                        zeroPos = i;
+                        zeroLen = zeroCount;
                     }
-                    i	+= zeroCount;
+                    i   += zeroCount;
                 } else {
                     i++;
                 }
@@ -135,7 +135,7 @@ public class IPv6Address extends IPAddress {
                             stringBuilder.append(':');
                         }
                         stringBuilder.append(':');
-                        i	+= zeroLen;
+                        i       += zeroLen;
                     } else {
                         stringBuilder.append('0');
                         i++;
@@ -173,32 +173,32 @@ public class IPv6Address extends IPAddress {
             return NULL_ADDRESS;
         }
 
-        String	parseString	= ipv6Address;
+        String  parseString     = ipv6Address;
         if (ipv6Address.startsWith("::")) {
             /*
              * Skip over the first ':' of the '::' to avoid getting two null fields in a row at the beginning
              */
-            parseString	= ipv6Address.substring(1);
+            parseString = ipv6Address.substring(1);
         } else if (ipv6Address.endsWith("::")) {
             /*
              * Skip over the last ':' of the '::' to avoid getting two null fields in a row at the end
              */
-            parseString	= ipv6Address.substring(0, ipv6Address.length()-1);
+            parseString = ipv6Address.substring(0, ipv6Address.length()-1);
         }
-        String[]	addressFields	= parseString.split("[:]",-1);
+        String[]        addressFields   = parseString.split("[:]",-1);
         if (addressFields == null || addressFields.length == 0 || addressFields.length > 8) {
             throw new ParseException("Invalid IPv6Address string \"" + ipv6Address + "\"", 0);
         }
 
-        boolean		isIPv4				= false;
+        boolean         isIPv4                          = false;
         if (addressFields.length == 3 && addressFields[0].length() == 0 && addressFields[1].equalsIgnoreCase("FFFF") && addressFields[2].contains(".")) {
-            isIPv4	= true;
+            isIPv4      = true;
         }
 
-        short[]		addressShorts		= new short[8];
-        int			nAddressShorts		= 0;
-        int			missingFields		= (isIPv4 ? 4 : 8 - addressFields.length);
-        boolean 	sawMissingField		= false;
+        short[]         addressShorts           = new short[8];
+        int                     nAddressShorts          = 0;
+        int                     missingFields           = (isIPv4 ? 4 : 8 - addressFields.length);
+        boolean         sawMissingField         = false;
 
         for (int i = 0 ; i < addressFields.length ; i++) {
             if (addressFields[i].length() == 0) {
@@ -209,10 +209,10 @@ public class IPv6Address extends IPAddress {
                     throw new ParseException("Invalid IPv6Address string \"" + ipv6Address + "\": multiple zero runs", i);
                 }
 
-                sawMissingField	= true;
-                addressShorts[nAddressShorts++]	= 0;
+                sawMissingField = true;
+                addressShorts[nAddressShorts++] = 0;
                 for (int j = 0 ; j < missingFields ; j++) {
-                    addressShorts[nAddressShorts++]	= 0;
+                    addressShorts[nAddressShorts++]     = 0;
                 }
             } else if (addressFields[i].indexOf('.') >= 0) {
                 if (nAddressShorts != 6) {
@@ -222,9 +222,9 @@ public class IPv6Address extends IPAddress {
                 /*
                  * IPv4 address
                  */
-                short[] ipv4Octets	= null;
+                short[] ipv4Octets      = null;
                 try {
-                    ipv4Octets	= IPv4Address.getAddress(addressFields[i]);
+                    ipv4Octets  = IPv4Address.getAddress(addressFields[i]);
                 } catch (ParseException ex) {
                     throw new ParseException("Invalid IPv4Address in Ipv6Address \"" + addressFields[i] + "\"", i);
                 }
@@ -233,11 +233,11 @@ public class IPv6Address extends IPAddress {
                 }
                 assert(ipv4Octets.length == 4);
 
-                addressShorts[nAddressShorts++]	= (short)(ipv4Octets[0] * 256 + ipv4Octets[1]);
-                addressShorts[nAddressShorts++]	= (short)(ipv4Octets[2] * 256 + ipv4Octets[3]);
+                addressShorts[nAddressShorts++] = (short)(ipv4Octets[0] * 256 + ipv4Octets[1]);
+                addressShorts[nAddressShorts++] = (short)(ipv4Octets[2] * 256 + ipv4Octets[3]);
             } else {
                 try {
-                    addressShorts[nAddressShorts++]	= (short)(Integer.parseInt(addressFields[i], 16));
+                    addressShorts[nAddressShorts++]     = (short)(Integer.parseInt(addressFields[i], 16));
                 } catch (NumberFormatException ex) {
                     throw new ParseException("Invalid IPv6Address component \"" + addressFields[i] + "\": invalid hex", i);
                 }
@@ -255,9 +255,9 @@ public class IPv6Address extends IPAddress {
 
     /**
      * Specs not clear on format of a "prefix".  It could be either
-     * 		"[" <address> [ "/" <prefix> ] "]" [ ":" portrange ]
+     *          "[" <address> [ "/" <prefix> ] "]" [ ":" portrange ]
      * or
-     * 		"[" <address> "]" [ "/" <prefix> ] [ ":" portrange ]
+     *          "[" <address> "]" [ "/" <prefix> ] [ ":" portrange ]
      * but we cannot tell which the specs are saying.
      * To avoid problems in the future it seems safest to implement both of these formats.
      *
@@ -276,8 +276,8 @@ public class IPv6Address extends IPAddress {
         /*
          * Start with the address
          */
-        int	addressStart	= 1;
-        int	addressEnd		= ipv6AddressString.indexOf(']', addressStart);
+        int     addressStart    = 1;
+        int     addressEnd              = ipv6AddressString.indexOf(']', addressStart);
         if (addressEnd < 0) {
             throw new ParseException("Invalid IPv6Address string \"" + ipv6AddressString + "\": missing closing bracket", 0);
         } else if ((addressEnd - addressStart) < 2) {
@@ -290,15 +290,15 @@ public class IPv6Address extends IPAddress {
             addressEnd = slashIndex ;
         }
 
-        short[]	addressShorts	= getAddress(ipv6AddressString.substring(addressStart, addressEnd));
-        int		nextPos			= addressEnd;
+        short[] addressShorts   = getAddress(ipv6AddressString.substring(addressStart, addressEnd));
+        int             nextPos                 = addressEnd;
 
         /*
          * See if there is a slash for the prefix
          * The four cases we are looking at are:
-         * 		]
-         * 		]/<prefix>
-         * 		/<prefix>]
+         *              ]
+         *              ]/<prefix>
+         *              /<prefix>]
          * all of which may be followed by ":<portrange>"
          */
         // adjust starting point for case of ]/<prefix>
@@ -311,8 +311,8 @@ public class IPv6Address extends IPAddress {
             if (nextPos >= ipv6AddressString.length() || ipv6AddressString.charAt(nextPos) == ']' || ipv6AddressString.charAt(nextPos) == ':') {
                 throw new ParseException("Invalid Ipv6Address string \"" + ipv6AddressString + "\": prefix designation without value", nextPos);
             }
-            addressStart	= nextPos;
-            addressEnd		= ipv6AddressString.indexOf(']', addressStart);
+            addressStart        = nextPos;
+            addressEnd          = ipv6AddressString.indexOf(']', addressStart);
 
             if (addressEnd < 0) {
                 // looking at ]/<prefix> or ]/<prefix>:<portRange>
@@ -329,10 +329,10 @@ public class IPv6Address extends IPAddress {
             if (prefix > 128) {
                 throw new ParseException("Invalid Ipv6Address string \"" + ipv6AddressString + "\": prefix is larger than 128", nextPos);
             }
-            nextPos		= addressEnd;
+            nextPos             = addressEnd;
         }
         // adjust for case of
-        //		/<prefix>]
+        //              /<prefix>]
         if (nextPos < ipv6AddressString.length() && ipv6AddressString.charAt(nextPos) == ']') {
             nextPos++;
         }
@@ -340,14 +340,14 @@ public class IPv6Address extends IPAddress {
         /*
          * See if there is a ':' for the port range
          */
-        PortRange	portRange		= null;
+        PortRange       portRange               = null;
         if (nextPos < ipv6AddressString.length() && ipv6AddressString.charAt(nextPos) == ':') {
             if (ipv6AddressString.substring(nextPos+1).length() < 1) {
                 throw new ParseException("Invalid IPv6 address string \"" + ipv6AddressString + "\": no portrange given after ':'", nextPos+1);
             }
 
-            portRange	= PortRange.newInstance(ipv6AddressString.substring(nextPos+1));
-            nextPos		= ipv6AddressString.length();
+            portRange   = PortRange.newInstance(ipv6AddressString.substring(nextPos+1));
+            nextPos             = ipv6AddressString.length();
         }
 
         if (nextPos < ipv6AddressString.length()) {
@@ -391,16 +391,16 @@ public class IPv6Address extends IPAddress {
      * The specifications are ambiguous on how to handle /prefix in IPv6.
      * There are two possibilities and the documents are silent on how to handle it, and no examples are readily apparent on the internet.
      * The two possible representations are:
-     * 		[<address>/prefix]
+     *          [<address>/prefix]
      * and
-     * 		[<address>]/prefix
+     *          [<address>]/prefix
      * The prefix is optional as is the ":&lt;portrange&gt;" that can follow it.
      *
      * We have chosen to use the first representation because the prefix seems to be part of the address itself, which is supposed to be inside the brackets.
      */
     @Override
     public String stringValue() {
-        StringBuilder	stringBuilder	= new StringBuilder("[");
+        StringBuilder   stringBuilder   = new StringBuilder("[");
 
         if (addressBytes != null) {
             stringBuilder.append(formatAddress(addressBytes));
@@ -436,10 +436,10 @@ public class IPv6Address extends IPAddress {
         } else if (obj == this) {
             return true;
         } else {
-            IPv6Address ipAddress	= (IPv6Address)obj;
+            IPv6Address ipAddress       = (IPv6Address)obj;
 
-            short[]	bytesThis	= this.addressBytes;
-            short[]	bytesThat	= ipAddress.addressBytes;
+            short[]     bytesThis       = this.addressBytes;
+            short[]     bytesThat       = ipAddress.addressBytes;
             if (bytesThis == null) {
                 if (bytesThat != null) {
                     return false;
@@ -450,8 +450,8 @@ public class IPv6Address extends IPAddress {
                 }
             }
 
-            Short prefixThis	= this.prefix;
-            Short prefixThat	= ipAddress.prefix;
+            Short prefixThis    = this.prefix;
+            Short prefixThat    = ipAddress.prefix;
             if (prefixThis == null) {
                 if (prefixThat != null) {
                     return false;

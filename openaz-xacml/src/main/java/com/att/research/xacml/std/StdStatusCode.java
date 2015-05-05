@@ -40,13 +40,13 @@ import com.att.research.xacml.api.XACML1;
  *
  */
 public class StdStatusCode implements StatusCode {
-    private Identifier			statusCodeValue;
-    private StatusCode			child;
+    private Identifier                  statusCodeValue;
+    private StatusCode                  child;
 
-    public static final StatusCode	STATUS_CODE_OK					= new StdStatusCode(XACML1.ID_STATUS_OK);
-    public static final StatusCode	STATUS_CODE_MISSING_ATTRIBUTE	= new StdStatusCode(XACML1.ID_STATUS_MISSING_ATTRIBUTE);
-    public static final StatusCode	STATUS_CODE_SYNTAX_ERROR		= new StdStatusCode(XACML1.ID_STATUS_SYNTAX_ERROR);
-    public static final StatusCode	STATUS_CODE_PROCESSING_ERROR	= new StdStatusCode(XACML1.ID_STATUS_PROCESSING_ERROR);
+    public static final StatusCode      STATUS_CODE_OK                                  = new StdStatusCode(XACML1.ID_STATUS_OK);
+    public static final StatusCode      STATUS_CODE_MISSING_ATTRIBUTE   = new StdStatusCode(XACML1.ID_STATUS_MISSING_ATTRIBUTE);
+    public static final StatusCode      STATUS_CODE_SYNTAX_ERROR                = new StdStatusCode(XACML1.ID_STATUS_SYNTAX_ERROR);
+    public static final StatusCode      STATUS_CODE_PROCESSING_ERROR    = new StdStatusCode(XACML1.ID_STATUS_PROCESSING_ERROR);
 
     /**
      * Creates a new <code>StdStatusCode</code> with the given {@link com.att.research.xacml.api.Identifier} representing the XACML StatusCode value,
@@ -56,8 +56,8 @@ public class StdStatusCode implements StatusCode {
      * @param childIn the <code>StatusCode</code> representing the XACML sub-StatusCode value
      */
     public StdStatusCode(Identifier statusCodeValueIn, StatusCode childIn) {
-        this.statusCodeValue	= statusCodeValueIn;
-        this.child				= childIn;
+        this.statusCodeValue    = statusCodeValueIn;
+        this.child                              = childIn;
     }
 
     /**
@@ -91,14 +91,14 @@ public class StdStatusCode implements StatusCode {
 
     @Override
     public String toString() {
-        StringBuilder	stringBuilder	= new StringBuilder("{");
-        boolean			needsComma		= false;
-        Object			objectToDump;
+        StringBuilder   stringBuilder   = new StringBuilder("{");
+        boolean                 needsComma              = false;
+        Object                  objectToDump;
 
         if ((objectToDump = this.getStatusCodeValue()) != null) {
             stringBuilder.append("statusCodeValue=");
             stringBuilder.append(objectToDump.toString());
-            needsComma	= true;
+            needsComma  = true;
         }
         if ((objectToDump = this.getChild()) != null) {
             if (needsComma) {
@@ -106,7 +106,7 @@ public class StdStatusCode implements StatusCode {
             }
             stringBuilder.append("child=");
             stringBuilder.append(objectToDump.toString());
-            needsComma	= true;
+            needsComma  = true;
         }
         stringBuilder.append('}');
         return stringBuilder.toString();
@@ -114,12 +114,12 @@ public class StdStatusCode implements StatusCode {
 
     @Override
     public int hashCode() {
-        Identifier identifierStatusCodeValue	= this.getStatusCodeValue();
-        StatusCode statusCodeChild				= this.getChild();
+        Identifier identifierStatusCodeValue    = this.getStatusCodeValue();
+        StatusCode statusCodeChild                              = this.getChild();
 
-        int hc	= (identifierStatusCodeValue == null ? 0 : identifierStatusCodeValue.hashCode());
+        int hc  = (identifierStatusCodeValue == null ? 0 : identifierStatusCodeValue.hashCode());
         if (statusCodeChild != null) {
-            hc	+= statusCodeChild.hashCode();
+            hc  += statusCodeChild.hashCode();
         }
         return hc;
     }
@@ -133,13 +133,13 @@ public class StdStatusCode implements StatusCode {
         } else if (!(obj instanceof StatusCode)) {
             return false;
         }
-        StatusCode	statusCodeObj	= (StatusCode)obj;
+        StatusCode      statusCodeObj   = (StatusCode)obj;
         if (!(statusCodeObj.getStatusCodeValue().equals(this.getStatusCodeValue()))) {
             return false;
         }
 
-        StatusCode	statusCodeChildThis	= this.getChild();
-        StatusCode	statusCodeChildObj	= statusCodeObj.getChild();
+        StatusCode      statusCodeChildThis     = this.getChild();
+        StatusCode      statusCodeChildObj      = statusCodeObj.getChild();
         if (statusCodeChildThis == null) {
             return (statusCodeChildObj == null);
         } else {

@@ -43,12 +43,12 @@ import com.att.research.xacml.api.StatusCode;
  * @param <U> the type of the targeted object
  */
 public class TargetedCombinerParameter<T, U> extends CombinerParameter {
-    private T	targetId;
-    private U	target;
+    private T   targetId;
+    private U   target;
 
     public TargetedCombinerParameter(T targetIdIn, String nameIn, AttributeValue<?> attributeValueIn, StatusCode statusCodeIn, String statusMessageIn) {
         super(nameIn, attributeValueIn, statusCodeIn, statusMessageIn);
-        this.targetId	= targetIdIn;
+        this.targetId   = targetIdIn;
     }
 
     public TargetedCombinerParameter(StatusCode statusCodeIn, String statusMessageIn) {
@@ -61,7 +61,7 @@ public class TargetedCombinerParameter<T, U> extends CombinerParameter {
 
     public TargetedCombinerParameter(T targetIdIn, String nameIn, AttributeValue<?> attributeValueIn) {
         super(nameIn, attributeValueIn);
-        this.targetId	= targetIdIn;
+        this.targetId   = targetIdIn;
     }
 
     public TargetedCombinerParameter() {
@@ -83,7 +83,7 @@ public class TargetedCombinerParameter<T, U> extends CombinerParameter {
      * @param targetIdIn the <code>T</code> to set as the target id
      */
     public void setTargetId(T targetIdIn) {
-        this.targetId	= targetIdIn;
+        this.targetId   = targetIdIn;
     }
 
     /**
@@ -101,12 +101,12 @@ public class TargetedCombinerParameter<T, U> extends CombinerParameter {
      * @param targetIn the <code>U</code> target for this <code>TargetedCombinerParameter</code>
      */
     public void setTarget(U targetIn) {
-        this.target	= targetIn;
+        this.target     = targetIn;
     }
 
     @Override
     public String toString() {
-        StringBuilder stringBuilder	= new StringBuilder("{");
+        StringBuilder stringBuilder     = new StringBuilder("{");
         stringBuilder.append("super=");
         stringBuilder.append(super.toString());
 

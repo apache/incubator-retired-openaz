@@ -41,9 +41,9 @@ import com.att.research.xacml.api.AttributeValue;
  *
  */
 public class Bag {
-    public static final Bag	EMPTY	= new Bag();
+    public static final Bag     EMPTY   = new Bag();
 
-    private List<AttributeValue<?>> attributeValues	= new ArrayList<AttributeValue<?>>();
+    private List<AttributeValue<?>> attributeValues     = new ArrayList<AttributeValue<?>>();
 
     /**
      * Gets the <code>List</code> of <code>AttributeValue</code>s for this <code>Bag</code>.

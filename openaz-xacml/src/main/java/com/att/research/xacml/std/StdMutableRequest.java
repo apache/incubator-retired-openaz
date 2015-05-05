@@ -54,18 +54,18 @@ import com.att.research.xacml.util.ObjUtil;
  *
  */
 public class StdMutableRequest implements Request {
-    private static final List<RequestReference>	EMPTY_REQUEST_REFERENCE_LIST	= Collections.unmodifiableList(new ArrayList<RequestReference>());
-    private static final List<RequestAttributes> EMPTY_REQUEST_ATTRIBUTES_LIST	= Collections.unmodifiableList(new ArrayList<RequestAttributes>());
-    private static final List<AttributeCategory> EMPTY_ATTRIBUTE_CATEGORY_LIST	= Collections.unmodifiableList(new ArrayList<AttributeCategory>());
+    private static final List<RequestReference> EMPTY_REQUEST_REFERENCE_LIST    = Collections.unmodifiableList(new ArrayList<RequestReference>());
+    private static final List<RequestAttributes> EMPTY_REQUEST_ATTRIBUTES_LIST  = Collections.unmodifiableList(new ArrayList<RequestAttributes>());
+    private static final List<AttributeCategory> EMPTY_ATTRIBUTE_CATEGORY_LIST  = Collections.unmodifiableList(new ArrayList<AttributeCategory>());
 
     private Status status;
-    private RequestDefaults	requestDefaults;
-    private boolean	returnPolicyIdList;
-    private boolean	combinedDecision;
+    private RequestDefaults     requestDefaults;
+    private boolean     returnPolicyIdList;
+    private boolean     combinedDecision;
     private List<RequestAttributes> requestAttributes;
-    private List<AttributeCategory> requestAttributesIncludeInResult					= EMPTY_ATTRIBUTE_CATEGORY_LIST;
-    private HashMap<Identifier,List<RequestAttributes>>	requestAttributesByCategoryId	= new HashMap<Identifier,List<RequestAttributes>>();
-    private HashMap<String,RequestAttributes> requestAttributesByXmlId					= new HashMap<String,RequestAttributes>();
+    private List<AttributeCategory> requestAttributesIncludeInResult                                    = EMPTY_ATTRIBUTE_CATEGORY_LIST;
+    private HashMap<Identifier,List<RequestAttributes>> requestAttributesByCategoryId   = new HashMap<Identifier,List<RequestAttributes>>();
+    private HashMap<String,RequestAttributes> requestAttributesByXmlId                                  = new HashMap<String,RequestAttributes>();
     private List<RequestReference> requestReferences;
 
     /**
@@ -84,23 +84,23 @@ public class StdMutableRequest implements Request {
                              boolean combinedDecisionIn,
                              Collection<RequestAttributes> listRequestAttributes,
                              Collection<RequestReference> listRequestReferences) {
-        this.status				= statusIn;
-        this.requestDefaults	= requestDefaultsIn;
-        this.returnPolicyIdList	= returnPolicyIdListIn;
-        this.combinedDecision	= combinedDecisionIn;
+        this.status                             = statusIn;
+        this.requestDefaults    = requestDefaultsIn;
+        this.returnPolicyIdList = returnPolicyIdListIn;
+        this.combinedDecision   = combinedDecisionIn;
         if (listRequestAttributes != null) {
-            this.requestAttributes	= new ArrayList<RequestAttributes>();
+            this.requestAttributes      = new ArrayList<RequestAttributes>();
             for (RequestAttributes requestAttributes : listRequestAttributes) {
                 this.add(requestAttributes);
             }
         } else {
-            this.requestAttributes	= EMPTY_REQUEST_ATTRIBUTES_LIST;
+            this.requestAttributes      = EMPTY_REQUEST_ATTRIBUTES_LIST;
         }
         if (listRequestReferences != null) {
-            this.requestReferences	= new ArrayList<RequestReference>();
+            this.requestReferences      = new ArrayList<RequestReference>();
             this.requestReferences.addAll(listRequestReferences);
         } else {
-            this.requestReferences	= EMPTY_REQUEST_REFERENCE_LIST;
+            this.requestReferences      = EMPTY_REQUEST_REFERENCE_LIST;
         }
     }
 
@@ -165,7 +165,7 @@ public class StdMutableRequest implements Request {
      * @param requestDefaultsIn the <code>RequestDefaults</code> to use for this <code>PEPRequest</code>.
      */
     public void setRequestDefaults(RequestDefaults requestDefaultsIn) {
-        this.requestDefaults	= requestDefaultsIn;
+        this.requestDefaults    = requestDefaultsIn;
     }
 
     @Override
@@ -179,7 +179,7 @@ public class StdMutableRequest implements Request {
      * @param returnPolicyIdListIn if true, policy ids will be returned in the response, otherwise they may not be.
      */
     public void setReturnPolicyIdList(boolean returnPolicyIdListIn) {
-        this.returnPolicyIdList	= returnPolicyIdListIn;
+        this.returnPolicyIdList = returnPolicyIdListIn;
     }
 
     @Override
@@ -194,7 +194,7 @@ public class StdMutableRequest implements Request {
      * @param combinedDecisionIn if true, multiple results should be combined into a single results
      */
     public void setCombinedDecision(boolean combinedDecisionIn) {
-        this.combinedDecision	= combinedDecisionIn;
+        this.combinedDecision   = combinedDecisionIn;
     }
 
     @Override
@@ -204,7 +204,7 @@ public class StdMutableRequest implements Request {
 
     @Override
     public Iterator<RequestAttributes> getRequestAttributes(Identifier categoryId) {
-        List<RequestAttributes>	listRequestAttributesForCategory	= this.requestAttributesByCategoryId.get(categoryId);
+        List<RequestAttributes> listRequestAttributesForCategory        = this.requestAttributesByCategoryId.get(categoryId);
         if (listRequestAttributesForCategory != null) {
             return listRequestAttributesForCategory.iterator();
         } else {
@@ -220,23 +220,23 @@ public class StdMutableRequest implements Request {
      */
     public void add(RequestAttributes requestAttributesNew) {
         if (this.requestAttributes == EMPTY_REQUEST_ATTRIBUTES_LIST) {
-            this.requestAttributes	= new ArrayList<RequestAttributes>();
+            this.requestAttributes      = new ArrayList<RequestAttributes>();
         }
         this.requestAttributes.add(requestAttributesNew);
-        List<RequestAttributes>	listRequestAttributesForCategoryId	= this.requestAttributesByCategoryId.get(requestAttributesNew.getCategory());
+        List<RequestAttributes> listRequestAttributesForCategoryId      = this.requestAttributesByCategoryId.get(requestAttributesNew.getCategory());
         if (listRequestAttributesForCategoryId == null) {
-            listRequestAttributesForCategoryId	= new ArrayList<RequestAttributes>();
+            listRequestAttributesForCategoryId  = new ArrayList<RequestAttributes>();
             this.requestAttributesByCategoryId.put(requestAttributesNew.getCategory(), listRequestAttributesForCategoryId);
         }
         listRequestAttributesForCategoryId.add(requestAttributesNew);
         if (requestAttributesNew.getXmlId() != null) {
             this.requestAttributesByXmlId.put(requestAttributesNew.getXmlId(), requestAttributesNew);
         }
-        StdMutableAttributeCategory attributeCategoryIncludeInResult	= null;
+        StdMutableAttributeCategory attributeCategoryIncludeInResult    = null;
         for (Attribute attribute : requestAttributesNew.getAttributes()) {
             if (attribute.getIncludeInResults()) {
                 if (attributeCategoryIncludeInResult == null) {
-                    attributeCategoryIncludeInResult	= new StdMutableAttributeCategory();
+                    attributeCategoryIncludeInResult    = new StdMutableAttributeCategory();
                     attributeCategoryIncludeInResult.setCategory(requestAttributesNew.getCategory());
                 }
                 attributeCategoryIncludeInResult.add(attribute);
@@ -244,7 +244,7 @@ public class StdMutableRequest implements Request {
         }
         if (attributeCategoryIncludeInResult != null) {
             if (this.requestAttributesIncludeInResult == EMPTY_ATTRIBUTE_CATEGORY_LIST) {
-                this.requestAttributesIncludeInResult	= new ArrayList<AttributeCategory>();
+                this.requestAttributesIncludeInResult   = new ArrayList<AttributeCategory>();
             }
             this.requestAttributesIncludeInResult.add(attributeCategoryIncludeInResult);
         }
@@ -268,7 +268,7 @@ public class StdMutableRequest implements Request {
      */
     public void add(RequestReference requestReference) {
         if (this.requestReferences == EMPTY_REQUEST_REFERENCE_LIST) {
-            this.requestReferences	= new ArrayList<RequestReference>();
+            this.requestReferences      = new ArrayList<RequestReference>();
         }
         this.requestReferences.add(requestReference);
     }
@@ -285,7 +285,7 @@ public class StdMutableRequest implements Request {
         } else if (obj == null || !(obj instanceof Request)) {
             return false;
         } else {
-            Request objRequest	= (Request)obj;
+            Request objRequest  = (Request)obj;
             return ObjUtil.equalsAllowNull(this.getStatus(), objRequest.getStatus()) &&
                    ObjUtil.equalsAllowNull(this.getRequestDefaults(), objRequest.getRequestDefaults()) &&
                    this.getCombinedDecision() == objRequest.getCombinedDecision() &&
@@ -297,13 +297,13 @@ public class StdMutableRequest implements Request {
 
     @Override
     public String toString() {
-        StringBuilder	stringBuilder	= new StringBuilder("{");
-        boolean			needsComma		= false;
-        Object			objectToDump;
+        StringBuilder   stringBuilder   = new StringBuilder("{");
+        boolean                 needsComma              = false;
+        Object                  objectToDump;
         if ((objectToDump = this.getRequestDefaults()) != null) {
             stringBuilder.append("requestDefaults=");
             stringBuilder.append(objectToDump.toString());
-            needsComma	= true;
+            needsComma  = true;
         }
         if (needsComma) {
             stringBuilder.append(',');
@@ -312,12 +312,12 @@ public class StdMutableRequest implements Request {
         stringBuilder.append(this.getReturnPolicyIdList());
         stringBuilder.append(",combinedDecision=");
         stringBuilder.append(this.getCombinedDecision());
-        Collection<RequestAttributes> thisRequestAttributes	= this.getRequestAttributes();
+        Collection<RequestAttributes> thisRequestAttributes     = this.getRequestAttributes();
         if (thisRequestAttributes.size() > 0) {
             stringBuilder.append(",requestAttributes=");
             stringBuilder.append(ListUtil.toString(thisRequestAttributes));
         }
-        Collection<RequestReference> thisRequestReferences	= this.getMultiRequests();
+        Collection<RequestReference> thisRequestReferences      = this.getMultiRequests();
         if (thisRequestReferences.size() > 0) {
             stringBuilder.append(",multiRequests=");
             stringBuilder.append(ListUtil.toString(thisRequestReferences));
@@ -331,13 +331,13 @@ public class StdMutableRequest implements Request {
             this.setStatus(new StdStatus(StdStatusCode.STATUS_CODE_SYNTAX_ERROR, "Missing AttributeId"));
             return;
         }
-        Iterator<AttributeValue<?>> iterAttributeValues	= attribute.getValues().iterator();
+        Iterator<AttributeValue<?>> iterAttributeValues = attribute.getValues().iterator();
         if (!iterAttributeValues.hasNext()) {
             this.setStatus(new StdStatus(StdStatusCode.STATUS_CODE_SYNTAX_ERROR, "Missing AttributeValue for Attribute " + attribute.getAttributeId().stringValue()));
             return;
         } else {
             while (iterAttributeValues.hasNext()) {
-                AttributeValue<?> attributeValue	= iterAttributeValues.next();
+                AttributeValue<?> attributeValue        = iterAttributeValues.next();
                 if (attributeValue.getDataTypeId() == null) {
                     this.setStatus(new StdStatus(StdStatusCode.STATUS_CODE_SYNTAX_ERROR, "Missing DataType in AttributeValue for Attribute " + attribute.getAttributeId().stringValue()));
                     return;
@@ -354,7 +354,7 @@ public class StdMutableRequest implements Request {
             this.setStatus(new StdStatus(StdStatusCode.STATUS_CODE_SYNTAX_ERROR, "Missing Category"));
             return;
         }
-        Iterator<Attribute> iterAttributes	= requestAttributes.getAttributes().iterator();
+        Iterator<Attribute> iterAttributes      = requestAttributes.getAttributes().iterator();
         if (iterAttributes != null) {
             while (iterAttributes.hasNext() && this.status == null) {
                 this.validate(iterAttributes.next());
@@ -367,7 +367,7 @@ public class StdMutableRequest implements Request {
      * attributes.
      */
     protected void validate() {
-        Iterator<RequestAttributes> iterRequestAttributes	= this.getRequestAttributes().iterator();
+        Iterator<RequestAttributes> iterRequestAttributes       = this.getRequestAttributes().iterator();
         if (iterRequestAttributes != null && iterRequestAttributes.hasNext()) {
             while (iterRequestAttributes.hasNext() && this.status == null) {
                 this.validate(iterRequestAttributes.next());
@@ -389,7 +389,7 @@ public class StdMutableRequest implements Request {
      * @param statusIn the <code>Status</code> for this <code>StdMutableRequest</code>.
      */
     public void setStatus(Status statusIn) {
-        this.status	= statusIn;
+        this.status     = statusIn;
     }
 
 }

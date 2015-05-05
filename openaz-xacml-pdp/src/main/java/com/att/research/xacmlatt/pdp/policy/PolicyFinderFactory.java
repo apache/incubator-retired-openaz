@@ -42,8 +42,8 @@ import com.att.research.xacmlatt.pdp.util.ATTPDPProperties;
  *
  */
 public abstract class PolicyFinderFactory {
-    private static final String	FACTORYID					= ATTPDPProperties.PROP_POLICYFINDERFACTORY;
-    private static final String DEFAULT_FACTORY_CLASSNAME	= "com.att.research.xacmlatt.pdp.std.StdPolicyFinderFactory";
+    private static final String FACTORYID                                       = ATTPDPProperties.PROP_POLICYFINDERFACTORY;
+    private static final String DEFAULT_FACTORY_CLASSNAME       = "com.att.research.xacmlatt.pdp.std.StdPolicyFinderFactory";
 
     protected PolicyFinderFactory() {
     }

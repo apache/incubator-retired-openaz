@@ -50,7 +50,7 @@ import com.att.research.xacmlatt.pdp.policy.FunctionArgument;
  * In the first implementation of XACML we had separate files for each XACML Function.
  * This release combines multiple Functions in fewer files to minimize code duplication.
  * This file supports the following XACML codes:
- * 		rfc822Name-match
+ *              rfc822Name-match
  *
  *
  */
@@ -101,9 +101,9 @@ public class FunctionDefinitionRFC822NameMatch extends FunctionDefinitionBase<Bo
 
         /*
          * According to the spec the string must be one of the following 3 things:
-         * 	- a name with an '@' in it = a full name that must exactly match the whole RFC name (domain part is ignore case)
-         * 	- a domain name (without an '@' and not starting with a '.') = must match whole RFC domain name (ignore case)
-         * 	- a partial domain name (without an '@') starting with a '.' = the last part of the RFC domain name (ignore case)
+         *      - a name with an '@' in it = a full name that must exactly match the whole RFC name (domain part is ignore case)
+         *      - a domain name (without an '@' and not starting with a '.') = must match whole RFC domain name (ignore case)
+         *      - a partial domain name (without an '@') starting with a '.' = the last part of the RFC domain name (ignore case)
          */
 
         String[] searchTerms = searchTermString.split("@");

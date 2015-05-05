@@ -51,7 +51,7 @@ import com.att.research.xacml.std.StdMutableAdvice;
  *
  */
 public class DOMAdvice {
-    private static Log logger	= LogFactory.getLog(StdMutableAdvice.class);
+    private static Log logger   = LogFactory.getLog(StdMutableAdvice.class);
 
     protected DOMAdvice() {
     }
@@ -64,17 +64,17 @@ public class DOMAdvice {
      * @throws DOMStructureException if there is an error parsing the <code>Node</code>
      */
     public static Advice newInstance(Node nodeAdvice) throws DOMStructureException {
-        Element	elementAdvice								= DOMUtil.getElement(nodeAdvice);
-        StdMutableAdvice mutableAdvice						= new StdMutableAdvice();
-        boolean bLenient									= DOMProperties.isLenient();
+        Element elementAdvice                                                           = DOMUtil.getElement(nodeAdvice);
+        StdMutableAdvice mutableAdvice                                          = new StdMutableAdvice();
+        boolean bLenient                                                                        = DOMProperties.isLenient();
 
         mutableAdvice.setId(DOMUtil.getIdentifierAttribute(elementAdvice, XACML3.ATTRIBUTE_ADVICEID, !bLenient));
 
-        NodeList children	= elementAdvice.getChildNodes();
+        NodeList children       = elementAdvice.getChildNodes();
         int numChildren;
         if (children != null && (numChildren = children.getLength()) > 0) {
             for (int i = 0 ; i < numChildren ; i++) {
-                Node child	= children.item(i);
+                Node child      = children.item(i);
                 if (DOMUtil.isElement(child)) {
                     if (DOMUtil.isInNamespace(child, XACML3.XMLNS)) {
                         if (XACML3.ELEMENT_ATTRIBUTEASSIGNMENT.equals(child.getLocalName())) {
@@ -104,29 +104,29 @@ public class DOMAdvice {
      * @throws DOMStructureException if an error occurred while repairing the <code>Node</code>
      */
     public static boolean repair(Node nodeAdvice) throws DOMStructureException {
-        Element elementAdvice	= DOMUtil.getElement(nodeAdvice);
-        boolean result			= false;
+        Element elementAdvice   = DOMUtil.getElement(nodeAdvice);
+        boolean result                  = false;
 
-        result					= result || DOMUtil.repairIdentifierAttribute(elementAdvice, XACML3.ATTRIBUTE_ADVICEID, logger);
+        result                                  = result || DOMUtil.repairIdentifierAttribute(elementAdvice, XACML3.ATTRIBUTE_ADVICEID, logger);
 
-        NodeList children	= elementAdvice.getChildNodes();
+        NodeList children       = elementAdvice.getChildNodes();
         int numChildren;
         if (children != null && (numChildren = children.getLength()) > 0) {
             for (int i = 0 ; i < numChildren ; i++) {
-                Node child	= children.item(i);
+                Node child      = children.item(i);
                 if (DOMUtil.isElement(child)) {
                     if (DOMUtil.isInNamespace(child, XACML3.XMLNS)) {
                         if (XACML3.ELEMENT_ATTRIBUTEASSIGNMENT.equals(child.getLocalName())) {
-                            result	=  DOMAttributeAssignment.repair(child) || result;
+                            result      =  DOMAttributeAssignment.repair(child) || result;
                         } else {
                             logger.warn("Unexpected element " + child.getNodeName());
                             elementAdvice.removeChild(child);
-                            result	= true;
+                            result      = true;
                         }
                     } else {
                         logger.warn("Unexpected element " + child.getNodeName());
                         elementAdvice.removeChild(child);
-                        result	= true;
+                        result  = true;
                     }
                 }
             }
@@ -143,15 +143,15 @@ public class DOMAdvice {
      * @throws DOMStructureException if there is an error parsing the <code>Node</code>
      */
     public static List<Advice> newList(Node nodeAssociatedAdvice) throws DOMStructureException {
-        Element elementAssociatedAdvice	= DOMUtil.getElement(nodeAssociatedAdvice);
-        List<Advice> listAdvice			= new ArrayList<Advice>();
-        boolean bLenient				= DOMProperties.isLenient();
+        Element elementAssociatedAdvice = DOMUtil.getElement(nodeAssociatedAdvice);
+        List<Advice> listAdvice                 = new ArrayList<Advice>();
+        boolean bLenient                                = DOMProperties.isLenient();
 
-        NodeList children				= elementAssociatedAdvice.getChildNodes();
+        NodeList children                               = elementAssociatedAdvice.getChildNodes();
         int numChildren;
         if (children != null && (numChildren = children.getLength()) > 0) {
             for (int i = 0 ; i < numChildren ; i++) {
-                Node child	= children.item(i);
+                Node child      = children.item(i);
                 if (DOMUtil.isElement(child)) {
                     if (DOMUtil.isInNamespace(child, XACML3.XMLNS)) {
                         if (XACML3.ELEMENT_ADVICE.equals(child.getLocalName())) {
@@ -173,27 +173,27 @@ public class DOMAdvice {
     }
 
     public static boolean repairList(Node nodeAssociatedAdvice) throws DOMStructureException {
-        Element elementAssociatedAdvice	= DOMUtil.getElement(nodeAssociatedAdvice);
-        boolean result	= false;
-        NodeList children				= elementAssociatedAdvice.getChildNodes();
+        Element elementAssociatedAdvice = DOMUtil.getElement(nodeAssociatedAdvice);
+        boolean result  = false;
+        NodeList children                               = elementAssociatedAdvice.getChildNodes();
         int numChildren;
 
         if (children != null && (numChildren = children.getLength()) > 0) {
             for (int i = 0 ; i < numChildren ; i++) {
-                Node child	= children.item(i);
+                Node child      = children.item(i);
                 if (DOMUtil.isElement(child)) {
                     if (DOMUtil.isInNamespace(child, XACML3.XMLNS)) {
                         if (XACML3.ELEMENT_ADVICE.equals(child.getLocalName())) {
-                            result	= repair(child) || result;
+                            result      = repair(child) || result;
                         } else {
                             logger.warn("Unexpected element " + child.getNodeName());
                             elementAssociatedAdvice.removeChild(child);
-                            result	= true;
+                            result      = true;
                         }
                     } else {
                         logger.warn("Unexpected element " + child.getNodeName());
                         elementAssociatedAdvice.removeChild(child);
-                        result	= true;
+                        result  = true;
                     }
                 }
             }

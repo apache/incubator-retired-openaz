@@ -40,10 +40,10 @@ import com.att.research.xacml.util.ObjUtil;
  *
  */
 public class StdMutableAttributeAssignment implements AttributeAssignment {
-    private Identifier			attributeId;
-    private Identifier			category;
-    private String				issuer;
-    private AttributeValue<?>	attributeValue;
+    private Identifier                  attributeId;
+    private Identifier                  category;
+    private String                              issuer;
+    private AttributeValue<?>   attributeValue;
 
     /**
      * Creates an empty <code>StdMutableAttributeAssignment</code>.
@@ -62,10 +62,10 @@ public class StdMutableAttributeAssignment implements AttributeAssignment {
      * @param attributeValueIn the <code>AttributeValue</code> for the new StdMutableAttributeAssignment
      */
     public StdMutableAttributeAssignment(Identifier categoryIn, Identifier attributeIdIn, String issuerIn, AttributeValue<?> attributeValueIn) {
-        this.attributeId	= attributeIdIn;
-        this.category		= categoryIn;
-        this.issuer			= issuerIn;
-        this.attributeValue	= attributeValueIn;
+        this.attributeId        = attributeIdIn;
+        this.category           = categoryIn;
+        this.issuer                     = issuerIn;
+        this.attributeValue     = attributeValueIn;
     }
 
     @Override
@@ -86,7 +86,7 @@ public class StdMutableAttributeAssignment implements AttributeAssignment {
      * <code>StdMutableAttributeAssignment</code>
      */
     public void setAttributeValue(AttributeValue<?> attributeValueIn) {
-        this.attributeValue	= attributeValueIn;
+        this.attributeValue     = attributeValueIn;
     }
 
     @Override
@@ -100,7 +100,7 @@ public class StdMutableAttributeAssignment implements AttributeAssignment {
      * @param identifier the <code>Identifier</code> representing the XACML AttributeId to be assigned in this <code>StdMutableAttributeAssignment</code>
      */
     public void setAttributeId(Identifier identifier) {
-        this.attributeId	= identifier;
+        this.attributeId        = identifier;
     }
 
     @Override
@@ -116,7 +116,7 @@ public class StdMutableAttributeAssignment implements AttributeAssignment {
      * <code>StdMutableAttributeAssignment</code>.
      */
     public void setCategory(Identifier identifier) {
-        this.category	= identifier;
+        this.category   = identifier;
     }
 
     @Override
@@ -130,7 +130,7 @@ public class StdMutableAttributeAssignment implements AttributeAssignment {
      * @param issuerIn the <code>String</code> representing the Issuer of the XACML Attribute to be assigned in this <code>StdMutableAttributeAssignment</code>.
      */
     public void setIssuer(String issuerIn) {
-        this.issuer	= issuerIn;
+        this.issuer     = issuerIn;
     }
 
     @Override
@@ -140,7 +140,7 @@ public class StdMutableAttributeAssignment implements AttributeAssignment {
         } else if (obj == null || !(obj instanceof AttributeAssignment)) {
             return false;
         } else {
-            AttributeAssignment objAttributeAssignment	= (AttributeAssignment)obj;
+            AttributeAssignment objAttributeAssignment  = (AttributeAssignment)obj;
             return ObjUtil.equalsAllowNull(this.getCategory(), objAttributeAssignment.getCategory()) &&
                    ObjUtil.equalsAllowNull(this.getAttributeId(), objAttributeAssignment.getAttributeId()) &&
                    ObjUtil.equalsAllowNull(this.getAttributeValue(), objAttributeAssignment.getAttributeValue()) &&
@@ -150,13 +150,13 @@ public class StdMutableAttributeAssignment implements AttributeAssignment {
 
     @Override
     public String toString() {
-        StringBuilder	stringBuilder	= new StringBuilder("{");
-        boolean			needsComma		= false;
-        Object			objectToDump;
+        StringBuilder   stringBuilder   = new StringBuilder("{");
+        boolean                 needsComma              = false;
+        Object                  objectToDump;
         if ((objectToDump = this.getAttributeId()) != null) {
             stringBuilder.append("attributeId=");
             stringBuilder.append(objectToDump.toString());
-            needsComma	= true;
+            needsComma  = true;
         }
         if ((objectToDump = this.getCategory()) != null) {
             if (needsComma) {
@@ -164,7 +164,7 @@ public class StdMutableAttributeAssignment implements AttributeAssignment {
             }
             stringBuilder.append("category=");
             stringBuilder.append(objectToDump.toString());
-            needsComma	= true;
+            needsComma  = true;
         }
         if ((objectToDump = this.getIssuer()) != null) {
             if (needsComma) {
@@ -172,7 +172,7 @@ public class StdMutableAttributeAssignment implements AttributeAssignment {
             }
             stringBuilder.append("issuer=");
             stringBuilder.append((String)objectToDump);
-            needsComma	= true;
+            needsComma  = true;
         }
         if (this.attributeValue != null) {
             if (needsComma) {
@@ -180,7 +180,7 @@ public class StdMutableAttributeAssignment implements AttributeAssignment {
             }
             stringBuilder.append("attributeValue=");
             stringBuilder.append(this.attributeValue.toString());
-            needsComma	= true;
+            needsComma  = true;
         }
         stringBuilder.append('}');
         return stringBuilder.toString();

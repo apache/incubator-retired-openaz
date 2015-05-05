@@ -95,7 +95,7 @@ import com.att.research.xacml.util.XACMLPolicyScanner.SimpleCallback;
  *
  */
 public class XACMLPolicyAggregator extends SimpleCallback  {
-    private static Log logger	= LogFactory.getLog(XACMLPolicyAggregator.class);
+    private static Log logger   = LogFactory.getLog(XACMLPolicyAggregator.class);
     //
     // This holds all the attributes found within the policy
     // Map<CATEGORY, MAP<DATATYPE, MAP<ATTRIBUTEID, SET<VALUES>>>
@@ -106,7 +106,7 @@ public class XACMLPolicyAggregator extends SimpleCallback  {
     protected Map<PolicyType, List<VariableDefinitionType>> variableDefinitionMap;
     protected List<VariableReferenceType> variableReferences;
 
-//	@SuppressWarnings("unchecked")
+//      @SuppressWarnings("unchecked")
     @Override
     public CallbackResult onAttribute(Object parent, Object container, Attribute attribute) {
         //

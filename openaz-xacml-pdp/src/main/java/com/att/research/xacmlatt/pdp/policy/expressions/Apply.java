@@ -58,7 +58,7 @@ public class Apply extends Expression {
     private Identifier functionId;
     private FunctionDefinition functionDefinition;
     private String description;
-    private List<Expression> arguments	= new ArrayList<Expression>();
+    private List<Expression> arguments  = new ArrayList<Expression>();
 
     protected List<Expression> getArgumentList() {
         return this.arguments;
@@ -80,8 +80,8 @@ public class Apply extends Expression {
     }
 
     public Apply(Identifier functionIdIn, String descriptionIn, Collection<Expression> argumentsIn) {
-        this.functionId		= functionIdIn;
-        this.description	= descriptionIn;
+        this.functionId         = functionIdIn;
+        this.description        = descriptionIn;
         if (argumentsIn != null) {
             this.arguments.addAll(argumentsIn);
         }
@@ -92,8 +92,8 @@ public class Apply extends Expression {
     }
 
     public void setFunctionId(Identifier identifier) {
-        this.functionId			= identifier;
-        this.functionDefinition	= null;
+        this.functionId                 = identifier;
+        this.functionDefinition = null;
     }
 
     /**
@@ -104,10 +104,10 @@ public class Apply extends Expression {
      */
     public FunctionDefinition getFunctionDefinition() {
         if (this.functionDefinition == null) {
-            Identifier thisFunctionId	= this.getFunctionId();
+            Identifier thisFunctionId   = this.getFunctionId();
             if (thisFunctionId != null) {
                 try {
-                    this.functionDefinition	= FunctionDefinitionFactory.newInstance().getFunctionDefinition(thisFunctionId);
+                    this.functionDefinition     = FunctionDefinitionFactory.newInstance().getFunctionDefinition(thisFunctionId);
                 } catch (FactoryException ex) {
                     this.setStatus(StdStatusCode.STATUS_CODE_PROCESSING_ERROR, "FactoryException getting FunctionDefinition");
                 }
@@ -121,7 +121,7 @@ public class Apply extends Expression {
     }
 
     public void setDescription(String string) {
-        this.description	= string;
+        this.description        = string;
     }
 
     public Iterator<Expression> getArguments() {
@@ -152,7 +152,7 @@ public class Apply extends Expression {
         /*
          * Get the FunctionDefinition
          */
-        FunctionDefinition thisFunctionDefinition	= this.getFunctionDefinition();
+        FunctionDefinition thisFunctionDefinition       = this.getFunctionDefinition();
         if (thisFunctionDefinition == null) {
             return ExpressionResult.newError(new StdStatus(StdStatusCode.STATUS_CODE_PROCESSING_ERROR, "Unknown Function \"" + this.getFunctionId().toString() + "\""));
         }
@@ -160,8 +160,8 @@ public class Apply extends Expression {
         /*
          * Get all of the arguments and convert them into FunctionArgument objects.
          */
-        List<FunctionArgument> listFunctionArguments	= new ArrayList<FunctionArgument>();
-        Iterator<Expression> iterExpressionArguments	= this.getArguments();
+        List<FunctionArgument> listFunctionArguments    = new ArrayList<FunctionArgument>();
+        Iterator<Expression> iterExpressionArguments    = this.getArguments();
         if (iterExpressionArguments != null) {
             while (iterExpressionArguments.hasNext()) {
                 listFunctionArguments.add(new FunctionArgumentExpression(iterExpressionArguments.next(), evaluationContext, policyDefaults));

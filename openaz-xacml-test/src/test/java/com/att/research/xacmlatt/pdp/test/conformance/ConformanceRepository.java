@@ -49,14 +49,14 @@ import com.att.research.xacmlatt.pdp.std.StdPolicyFinderFactory;
  *
  */
 public class ConformanceRepository {
-    private List<File> rootPolicies			= new ArrayList<File>();
-    private List<File> referencedPolicies	= new ArrayList<File>();
+    private List<File> rootPolicies                     = new ArrayList<File>();
+    private List<File> referencedPolicies       = new ArrayList<File>();
 
     private void setXACMLProperty(String propertyName, List<File> listFiles) {
-        Iterator<File> iterFiles			= listFiles.iterator();
-        StringBuilder stringBuilderIdList	= new StringBuilder();
+        Iterator<File> iterFiles                        = listFiles.iterator();
+        StringBuilder stringBuilderIdList       = new StringBuilder();
         while (iterFiles.hasNext()) {
-            File file	= iterFiles.next();
+            File file   = iterFiles.next();
             if (stringBuilderIdList.length() > 0) {
                 stringBuilderIdList.append(',');
             }
@@ -80,12 +80,12 @@ public class ConformanceRepository {
     }
 
     private void loadProperty(File fileDir, Properties properties, String propertyName, List<File> listFiles) {
-        String fileNameList	= properties.getProperty(propertyName);
+        String fileNameList     = properties.getProperty(propertyName);
         if (fileNameList != null) {
-            String[] fileNameArray	= fileNameList.split("[,]",0);
+            String[] fileNameArray      = fileNameList.split("[,]",0);
             if (fileNameArray != null && fileNameArray.length > 0) {
                 for (String fileName : fileNameArray) {
-                    File file	= new File(fileDir, fileName);
+                    File file   = new File(fileDir, fileName);
                     if (file.exists() && file.canRead()) {
                         listFiles.add(file);
                     }
@@ -95,7 +95,7 @@ public class ConformanceRepository {
     }
 
     public void load(File fileRepository) throws IOException {
-        Properties propertiesRepository	= new Properties();
+        Properties propertiesRepository = new Properties();
         try (InputStream is = new FileInputStream(fileRepository)) {
             propertiesRepository.load(is);
         }
@@ -113,13 +113,13 @@ public class ConformanceRepository {
 
     @Override
     public String toString() {
-        StringBuilder stringBuilder	= new StringBuilder("{");
-        boolean needComma			= false;
+        StringBuilder stringBuilder     = new StringBuilder("{");
+        boolean needComma                       = false;
 
         if (this.rootPolicies != null && this.rootPolicies.size() > 0) {
             stringBuilder.append("rootPolicies=");
             stringBuilder.append(StringUtils.toString(this.rootPolicies.iterator()));
-            needComma	= true;
+            needComma   = true;
         }
         if (this.referencedPolicies != null && this.referencedPolicies.size() > 0) {
             if (needComma) {
@@ -127,7 +127,7 @@ public class ConformanceRepository {
             }
             stringBuilder.append("referencedPolicies=");
             stringBuilder.append(StringUtils.toString(this.referencedPolicies.iterator()));
-            needComma	= true;
+            needComma   = true;
         }
         stringBuilder.append('}');
         return stringBuilder.toString();

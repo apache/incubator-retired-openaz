@@ -80,12 +80,12 @@ public interface MissingAttributeDetail {
      *
      * Implementations of the <code>MissingAttributeDetail</code> interface must override the <code>equals</code> method with the following semantics:
      *
-     * 		Two <code>MissingAttributeDetail</code>s (<code>m1</code> and <code>m2</code>) are equal if:
-     * 			{@code m1.getCategory().equals(m2.getCategory())} AND
-     * 			{@code m1.getAttributeId().equals(m2.getAttributeId())} AND
-     * 			{@code m1.getDataTypeId().equals(m2.getDataTypeId())} AND
-     * 			{@code m1.getIssuer() == null && m2.getIssuer() == null} OR {@code m1.getIssuer().equals(m2.getIssuer())} AND
-     * 			{@code m1.getAttributeValues()} is pairwise equal to {@code m2.getAttributeValues()}
+     *          Two <code>MissingAttributeDetail</code>s (<code>m1</code> and <code>m2</code>) are equal if:
+     *                  {@code m1.getCategory().equals(m2.getCategory())} AND
+     *                  {@code m1.getAttributeId().equals(m2.getAttributeId())} AND
+     *                  {@code m1.getDataTypeId().equals(m2.getDataTypeId())} AND
+     *                  {@code m1.getIssuer() == null && m2.getIssuer() == null} OR {@code m1.getIssuer().equals(m2.getIssuer())} AND
+     *                  {@code m1.getAttributeValues()} is pairwise equal to {@code m2.getAttributeValues()}
      * @param obj
      * @return
      */

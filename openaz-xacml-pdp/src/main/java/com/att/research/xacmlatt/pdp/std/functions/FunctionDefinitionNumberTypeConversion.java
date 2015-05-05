@@ -53,8 +53,8 @@ import com.att.research.xacmlatt.pdp.policy.FunctionArgument;
  * In the first implementation of XACML we had separate files for each XACML Function.
  * This release combines multiple Functions in fewer files to minimize code duplication.
  * This file supports the following XACML codes:
- * 		double-to-integer
- * 		integer-to-double
+ *              double-to-integer
+ *              integer-to-double
  *
  *
  * @param <O> the java class for the data type of the function Output
@@ -70,8 +70,8 @@ public class FunctionDefinitionNumberTypeConversion<O extends Number, I extends 
 
     @Override
     public ExpressionResult evaluate(EvaluationContext evaluationContext, List<FunctionArgument> arguments) {
-        List<I> convertedArguments	= new ArrayList<I>();
-        Status status				= this.validateArguments(arguments, convertedArguments);
+        List<I> convertedArguments      = new ArrayList<I>();
+        Status status                           = this.validateArguments(arguments, convertedArguments);
 
         /*
          * If the function arguments are not correct, just return an error status immediately
@@ -87,11 +87,11 @@ public class FunctionDefinitionNumberTypeConversion<O extends Number, I extends 
         ExpressionResult expressionResult;
         try {
             if (convertedArguments.get(0).getClass() == BigInteger.class) {
-                AttributeValue<Double>	doubleResult	= new StdAttributeValue<Double>(XACML.ID_DATATYPE_DOUBLE,
+                AttributeValue<Double>  doubleResult    = new StdAttributeValue<Double>(XACML.ID_DATATYPE_DOUBLE,
                         new Double(  ((BigInteger)convertedArguments.get(0)).toString()  ) );
                 expressionResult = ExpressionResult.newSingle(doubleResult);
             } else {
-                AttributeValue<BigInteger>	integerResult	= new StdAttributeValue<BigInteger>(XACML.ID_DATATYPE_INTEGER, BigInteger.valueOf(((Double)convertedArguments.get(0)).intValue()) );
+                AttributeValue<BigInteger>      integerResult   = new StdAttributeValue<BigInteger>(XACML.ID_DATATYPE_INTEGER, BigInteger.valueOf(((Double)convertedArguments.get(0)).intValue()) );
                 expressionResult = ExpressionResult.newSingle(integerResult);
             }
         } catch (Exception e) {

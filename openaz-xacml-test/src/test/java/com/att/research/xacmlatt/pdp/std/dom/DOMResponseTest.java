@@ -57,9 +57,9 @@ import static org.junit.Assert.fail;
  * This class was copied from the JSON tests.  At this time only the first two methods have been revised to work with XML.
  * The second method includes multiple instances of all possible fields and has been manually verified.
  * The remaining methods have not been converted because:
- * 	- "conversion" consists of replacing the JSON strings with XML
- * 	- the replacement would consist of copying the XML from the JUnit output and doing a String replace
- * 	- there would be little examination of the (long) XML strings, so their validity would be questionable
+ *      - "conversion" consists of replacing the JSON strings with XML
+ *      - the replacement would consist of copying the XML from the JUnit output and doing a String replace
+ *      - there would be little examination of the (long) XML strings, so their validity would be questionable
  * so the benefit for the cost of doing that work is not clear.
  *
  *
@@ -957,62 +957,62 @@ public class DOMResponseTest {
             fail("operation failed, e="+e);
         }
 
-//		StringNamespaceContext snc = new StringNamespaceContext();
-//		try {
-//			snc.add("defaultURI");
-//			snc.add("md", "referenceForMD");
-//		} catch (Exception e) {
-//			fail("unable to create NamespaceContext e="+e);
-//		}
-//		XPathExpressionWrapper xpathExpressionWrapper = new XPathExpressionWrapper(snc, "//md:record");
+//              StringNamespaceContext snc = new StringNamespaceContext();
+//              try {
+//                      snc.add("defaultURI");
+//                      snc.add("md", "referenceForMD");
+//              } catch (Exception e) {
+//                      fail("unable to create NamespaceContext e="+e);
+//              }
+//              XPathExpressionWrapper xpathExpressionWrapper = new XPathExpressionWrapper(snc, "//md:record");
 //
 //TODO - assume that we will never try to pass back an XPathExpression in a MissingAttributeDetail - it doesn't make sense and is unclear how to put into XML
-//		// Status with StatusDetail with valid detail with XPathExpression value when MissingAttribute
-//		response = new StdMutableResponse();
-//		result = new StdMutableResult();
-//		status = new StdMutableStatus();
-//		status.setStatusCode(StdStatusCode.STATUS_CODE_MISSING_ATTRIBUTE);
-//		statusDetail = new StdMutableStatusDetail();
-//		mad = new StdMutableMissingAttributeDetail();
-//		mad.setAttributeId(new IdentifierImpl("mad"));
-//		mad.setCategory(XACML3.ID_ACTION);
-//		mad.setDataTypeId(DataTypes.DT_STRING.getId());
-//		mad.addAttributeValue(new StdAttributeValue<XPathExpressionWrapper>(DataTypes.DT_XPATHEXPRESSION.getId(), xpathExpressionWrapper, new IdentifierImpl("xpathCategoryId")));
-//		statusDetail.addMissingAttributeDetail(mad);
-//		status.setStatusDetail(statusDetail);
-//		result.setStatus(status);
-//		result.setDecision(Decision.INDETERMINATE);
-//		response.add(result);
-//		try {
-//			xmlResponse = DOMResponse.toString(response, false);
-//			assertEquals("{\"Response\":[{\"Status\":{\"StatusCode\":{\"Value\":\"urn:oasis:names:tc:xacml:1.0:status:missing-attribute\"},\"StatusDetail\":\"<MissingAttributeDetail><AttributeValue>1111</AttributeValue><Category>urn:oasis:names:tc:xacml:1.0:action</Category><AttributeId>mad</AttributeId><DataType>http://www.w3.org/2001/XMLSchema#string</DataType></MissingAttributeDetail>\"},\"Decision\":\"Indeterminate\"}]}", xmlResponse);
-//		} catch (Exception e) {
-//			fail("operation failed, e="+e);
-//		}
+//              // Status with StatusDetail with valid detail with XPathExpression value when MissingAttribute
+//              response = new StdMutableResponse();
+//              result = new StdMutableResult();
+//              status = new StdMutableStatus();
+//              status.setStatusCode(StdStatusCode.STATUS_CODE_MISSING_ATTRIBUTE);
+//              statusDetail = new StdMutableStatusDetail();
+//              mad = new StdMutableMissingAttributeDetail();
+//              mad.setAttributeId(new IdentifierImpl("mad"));
+//              mad.setCategory(XACML3.ID_ACTION);
+//              mad.setDataTypeId(DataTypes.DT_STRING.getId());
+//              mad.addAttributeValue(new StdAttributeValue<XPathExpressionWrapper>(DataTypes.DT_XPATHEXPRESSION.getId(), xpathExpressionWrapper, new IdentifierImpl("xpathCategoryId")));
+//              statusDetail.addMissingAttributeDetail(mad);
+//              status.setStatusDetail(statusDetail);
+//              result.setStatus(status);
+//              result.setDecision(Decision.INDETERMINATE);
+//              response.add(result);
+//              try {
+//                      xmlResponse = DOMResponse.toString(response, false);
+//                      assertEquals("{\"Response\":[{\"Status\":{\"StatusCode\":{\"Value\":\"urn:oasis:names:tc:xacml:1.0:status:missing-attribute\"},\"StatusDetail\":\"<MissingAttributeDetail><AttributeValue>1111</AttributeValue><Category>urn:oasis:names:tc:xacml:1.0:action</Category><AttributeId>mad</AttributeId><DataType>http://www.w3.org/2001/XMLSchema#string</DataType></MissingAttributeDetail>\"},\"Decision\":\"Indeterminate\"}]}", xmlResponse);
+//              } catch (Exception e) {
+//                      fail("operation failed, e="+e);
+//              }
 //
-//		// Status with StatusDetail with array valid detail with XPathExpression value when MissingAttribute
-//		response = new StdMutableResponse();
-//		result = new StdMutableResult();
-//		status = new StdMutableStatus();
-//		status.setStatusCode(StdStatusCode.STATUS_CODE_MISSING_ATTRIBUTE);
-//		statusDetail = new StdMutableStatusDetail();
-//		mad = new StdMutableMissingAttributeDetail();
-//		mad.setAttributeId(new IdentifierImpl("mad"));
-//		mad.setCategory(XACML3.ID_ACTION);
-//		mad.setDataTypeId(DataTypes.DT_STRING.getId());
-//		mad.addAttributeValue(new StdAttributeValue<XPathExpressionWrapper>(DataTypes.DT_XPATHEXPRESSION.getId(), xpathExpressionWrapper, new IdentifierImpl("xpathCategoryId1")));
-//		mad.addAttributeValue(new StdAttributeValue<XPathExpressionWrapper>(DataTypes.DT_XPATHEXPRESSION.getId(), xpathExpressionWrapper, new IdentifierImpl("xpathCategoryId2")));
-//		statusDetail.addMissingAttributeDetail(mad);
-//		status.setStatusDetail(statusDetail);
-//		result.setStatus(status);
-//		result.setDecision(Decision.INDETERMINATE);
-//		response.add(result);
-//		try {
-//			xmlResponse = DOMResponse.toString(response, false);
-//			assertEquals("{\"Response\":[{\"Status\":{\"StatusCode\":{\"Value\":\"urn:oasis:names:tc:xacml:1.0:status:missing-attribute\"},\"StatusDetail\":\"<MissingAttributeDetail><AttributeValue>1111</AttributeValue><AttributeValue>2222</AttributeValue><Category>urn:oasis:names:tc:xacml:1.0:action</Category><AttributeId>mad</AttributeId><DataType>http://www.w3.org/2001/XMLSchema#string</DataType></MissingAttributeDetail>\"},\"Decision\":\"Indeterminate\"}]}", xmlResponse);
-//		} catch (Exception e) {
-//			fail("operation failed, e="+e);
-//		}
+//              // Status with StatusDetail with array valid detail with XPathExpression value when MissingAttribute
+//              response = new StdMutableResponse();
+//              result = new StdMutableResult();
+//              status = new StdMutableStatus();
+//              status.setStatusCode(StdStatusCode.STATUS_CODE_MISSING_ATTRIBUTE);
+//              statusDetail = new StdMutableStatusDetail();
+//              mad = new StdMutableMissingAttributeDetail();
+//              mad.setAttributeId(new IdentifierImpl("mad"));
+//              mad.setCategory(XACML3.ID_ACTION);
+//              mad.setDataTypeId(DataTypes.DT_STRING.getId());
+//              mad.addAttributeValue(new StdAttributeValue<XPathExpressionWrapper>(DataTypes.DT_XPATHEXPRESSION.getId(), xpathExpressionWrapper, new IdentifierImpl("xpathCategoryId1")));
+//              mad.addAttributeValue(new StdAttributeValue<XPathExpressionWrapper>(DataTypes.DT_XPATHEXPRESSION.getId(), xpathExpressionWrapper, new IdentifierImpl("xpathCategoryId2")));
+//              statusDetail.addMissingAttributeDetail(mad);
+//              status.setStatusDetail(statusDetail);
+//              result.setStatus(status);
+//              result.setDecision(Decision.INDETERMINATE);
+//              response.add(result);
+//              try {
+//                      xmlResponse = DOMResponse.toString(response, false);
+//                      assertEquals("{\"Response\":[{\"Status\":{\"StatusCode\":{\"Value\":\"urn:oasis:names:tc:xacml:1.0:status:missing-attribute\"},\"StatusDetail\":\"<MissingAttributeDetail><AttributeValue>1111</AttributeValue><AttributeValue>2222</AttributeValue><Category>urn:oasis:names:tc:xacml:1.0:action</Category><AttributeId>mad</AttributeId><DataType>http://www.w3.org/2001/XMLSchema#string</DataType></MissingAttributeDetail>\"},\"Decision\":\"Indeterminate\"}]}", xmlResponse);
+//              } catch (Exception e) {
+//                      fail("operation failed, e="+e);
+//              }
 
 //TODO - try with other data types, esp XPathExpression
 
@@ -1159,7 +1159,7 @@ public class DOMResponseTest {
 
 
 
-        //	AttributeAssignment	- with AttributeId, Value,  Category, DataType, Issuer
+        //      AttributeAssignment     - with AttributeId, Value,  Category, DataType, Issuer
         response = new StdMutableResponse();
         result = new StdMutableResult();
         result.setDecision(Decision.PERMIT);
@@ -1180,7 +1180,7 @@ public class DOMResponseTest {
         }
 
 
-        //	AttributeAssignment	- with AttributeId, Value, no Category, DataType, Issuer
+        //      AttributeAssignment     - with AttributeId, Value, no Category, DataType, Issuer
         response = new StdMutableResponse();
         result = new StdMutableResult();
         result.setDecision(Decision.PERMIT);
@@ -1200,7 +1200,7 @@ public class DOMResponseTest {
             fail("operation failed, e="+e);
         }
 
-        //	AttributeAssignment	- Missing AttributeId
+        //      AttributeAssignment     - Missing AttributeId
         response = new StdMutableResponse();
         result = new StdMutableResult();
         result.setDecision(Decision.PERMIT);
@@ -1222,7 +1222,7 @@ public class DOMResponseTest {
             fail ("Failed convert from object to XML: " + e);
         }
 
-        //	AttributeAssignment	- Missing Value
+        //      AttributeAssignment     - Missing Value
         response = new StdMutableResponse();
         result = new StdMutableResult();
         result.setDecision(Decision.PERMIT);
@@ -1332,18 +1332,18 @@ public class DOMResponseTest {
 
         //
         // Technically arrays cannot occur in Obligations and Advice elements.  The XML spec boils down to the following definition:
-        //		<Obligation (attributes of the obligation) >
-        //			<AttributeAssignment (attributes of this assignment) >value</AttributeAssignment>
-        //			<AttributeAssignment (attributes of this assignment) >value</AttributeAssignment>
-        //			:
-        //		</Obligation
-        //	which means that there may be multiple AttributeAssignments but each one has only one value.
-        //	This differs from the Attributes section in which each <Attribute> may have multiple <AttributeValue> elements.
+        //              <Obligation (attributes of the obligation) >
+        //                      <AttributeAssignment (attributes of this assignment) >value</AttributeAssignment>
+        //                      <AttributeAssignment (attributes of this assignment) >value</AttributeAssignment>
+        //                      :
+        //              </Obligation
+        //      which means that there may be multiple AttributeAssignments but each one has only one value.
+        //      This differs from the Attributes section in which each <Attribute> may have multiple <AttributeValue> elements.
         // For Obligations and Advice we can simulate an array by having multiple AttributeAssignment elements with the same Category, Id and Issuer.
         //
 
 
-        //	AttributeAssignment	- Multiple values with same Category and Id (one way of doing array)
+        //      AttributeAssignment     - Multiple values with same Category and Id (one way of doing array)
         response = new StdMutableResponse();
         result = new StdMutableResult();
         result.setDecision(Decision.PERMIT);
@@ -1374,7 +1374,7 @@ public class DOMResponseTest {
         }
 
 
-        //	AttributeAssignment	- Multiple Integer values with same Category and Id (one way of doing array)
+        //      AttributeAssignment     - Multiple Integer values with same Category and Id (one way of doing array)
         response = new StdMutableResponse();
         result = new StdMutableResult();
         result.setDecision(Decision.PERMIT);
@@ -1484,7 +1484,7 @@ public class DOMResponseTest {
 
 
 
-        //	AttributeAssignment	- with AttributeId, Value,  Category, DataType, Issuer
+        //      AttributeAssignment     - with AttributeId, Value,  Category, DataType, Issuer
         response = new StdMutableResponse();
         result = new StdMutableResult();
         result.setDecision(Decision.PERMIT);
@@ -1505,7 +1505,7 @@ public class DOMResponseTest {
         }
 
 
-        //	AttributeAssignment	- with AttributeId, Value, no Category, DataType, Issuer
+        //      AttributeAssignment     - with AttributeId, Value, no Category, DataType, Issuer
         response = new StdMutableResponse();
         result = new StdMutableResult();
         result.setDecision(Decision.PERMIT);
@@ -1525,7 +1525,7 @@ public class DOMResponseTest {
             fail("operation failed, e="+e);
         }
 
-        //	AttributeAssignment	- Missing AttributeId
+        //      AttributeAssignment     - Missing AttributeId
         response = new StdMutableResponse();
         result = new StdMutableResult();
         result.setDecision(Decision.PERMIT);
@@ -1547,7 +1547,7 @@ public class DOMResponseTest {
             fail ("Failed convert from object to XML: " + e);
         }
 
-        //	AttributeAssignment	- Missing Value
+        //      AttributeAssignment     - Missing Value
         response = new StdMutableResponse();
         result = new StdMutableResult();
         result.setDecision(Decision.PERMIT);
@@ -1657,17 +1657,17 @@ public class DOMResponseTest {
 
         //
         // Technically arrays cannot occur in Obligations and Advice elements.  The XML spec boils down to the following definition:
-        //		<Obligation (attributes of the obligation) >
-        //			<AttributeAssignment (attributes of this assignment) >value</AttributeAssignment>
-        //			<AttributeAssignment (attributes of this assignment) >value</AttributeAssignment>
-        //			:
-        //		</Obligation
-        //	which means that there may be multiple AttributeAssignments but each one has only one value.
-        //	This differs from the Attributes section in which each <Attribute> may have multiple <AttributeValue> elements.
+        //              <Obligation (attributes of the obligation) >
+        //                      <AttributeAssignment (attributes of this assignment) >value</AttributeAssignment>
+        //                      <AttributeAssignment (attributes of this assignment) >value</AttributeAssignment>
+        //                      :
+        //              </Obligation
+        //      which means that there may be multiple AttributeAssignments but each one has only one value.
+        //      This differs from the Attributes section in which each <Attribute> may have multiple <AttributeValue> elements.
         // For Obligations and Advice we can simulate an array by having multiple AttributeAssignment elements with the same Category, Id and Issuer.
         //
 
-        //	AttributeAssignment	- Multiple values with same Category and Id (one way of doing array)
+        //      AttributeAssignment     - Multiple values with same Category and Id (one way of doing array)
         response = new StdMutableResponse();
         result = new StdMutableResult();
         result.setDecision(Decision.PERMIT);
@@ -1698,7 +1698,7 @@ public class DOMResponseTest {
         }
 
 
-        //	AttributeAssignment	- Multiple Integer values with same Category and Id (one way of doing array)
+        //      AttributeAssignment     - Multiple Integer values with same Category and Id (one way of doing array)
         response = new StdMutableResponse();
         result = new StdMutableResult();
         result.setDecision(Decision.PERMIT);

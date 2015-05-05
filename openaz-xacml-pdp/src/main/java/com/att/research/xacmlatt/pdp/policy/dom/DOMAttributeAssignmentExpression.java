@@ -50,7 +50,7 @@ import com.att.research.xacmlatt.pdp.policy.Policy;
  *
  */
 public class DOMAttributeAssignmentExpression extends AttributeAssignmentExpression {
-    private static final Log logger	= LogFactory.getLog(DOMAttributeAssignmentExpression.class);
+    private static final Log logger     = LogFactory.getLog(DOMAttributeAssignmentExpression.class);
 
     protected DOMAttributeAssignmentExpression() {
     }
@@ -64,13 +64,13 @@ public class DOMAttributeAssignmentExpression extends AttributeAssignmentExpress
      * @throws DOMStructureException if there is an error parsing the <code>Node</code>
      */
     public static AttributeAssignmentExpression newInstance(Node nodeAttributeAssignmentExpression, Policy policy) throws DOMStructureException {
-        Element elementAttributeAssignmentExpression	= DOMUtil.getElement(nodeAttributeAssignmentExpression);
-        boolean bLenient								= DOMProperties.isLenient();
+        Element elementAttributeAssignmentExpression    = DOMUtil.getElement(nodeAttributeAssignmentExpression);
+        boolean bLenient                                                                = DOMProperties.isLenient();
 
-        DOMAttributeAssignmentExpression domAttributeAssignmentExpression	= new DOMAttributeAssignmentExpression();
+        DOMAttributeAssignmentExpression domAttributeAssignmentExpression       = new DOMAttributeAssignmentExpression();
 
         try {
-            Node node	= DOMUtil.getFirstChildElement(elementAttributeAssignmentExpression);
+            Node node   = DOMUtil.getFirstChildElement(elementAttributeAssignmentExpression);
             if (node == null) {
                 if (!bLenient) {
                     throw DOMUtil.newMissingElementException(elementAttributeAssignmentExpression, XACML3.XMLNS, XACML3.ELEMENT_EXPRESSION);
@@ -85,7 +85,7 @@ public class DOMAttributeAssignmentExpression extends AttributeAssignmentExpress
                 domAttributeAssignmentExpression.setCategory(identifier);
             }
 
-            String issuer	= DOMUtil.getStringAttribute(elementAttributeAssignmentExpression, XACML3.ATTRIBUTE_ISSUER);
+            String issuer       = DOMUtil.getStringAttribute(elementAttributeAssignmentExpression, XACML3.ATTRIBUTE_ISSUER);
             if (issuer != null) {
                 domAttributeAssignmentExpression.setIssuer(issuer);
             }
@@ -100,20 +100,20 @@ public class DOMAttributeAssignmentExpression extends AttributeAssignmentExpress
     }
 
     public static boolean repair(Node nodeAttributeAssignmentExpression) throws DOMStructureException {
-        Element elementAttributeAssignmentExpression	= DOMUtil.getElement(nodeAttributeAssignmentExpression);
-        boolean result									= false;
+        Element elementAttributeAssignmentExpression    = DOMUtil.getElement(nodeAttributeAssignmentExpression);
+        boolean result                                                                  = false;
 
         if (DOMUtil.getFirstChildElement(elementAttributeAssignmentExpression) == null) {
             /*
              * See if we can repair the <AttributeAssignmentExpression DataType="">string</AttributeAssignmentExpression> pattern
              */
-            Identifier identifier	= DOMUtil.getIdentifierAttribute(elementAttributeAssignmentExpression, XACML3.ATTRIBUTE_DATATYPE);
-            String textContent	= elementAttributeAssignmentExpression.getTextContent();
+            Identifier identifier       = DOMUtil.getIdentifierAttribute(elementAttributeAssignmentExpression, XACML3.ATTRIBUTE_DATATYPE);
+            String textContent  = elementAttributeAssignmentExpression.getTextContent();
             if (textContent != null) {
-                textContent	= textContent.trim();
+                textContent     = textContent.trim();
             }
             if (textContent != null && textContent.length() > 0 && identifier != null) {
-                Element attributeValue	= elementAttributeAssignmentExpression.getOwnerDocument().createElementNS(XACML3.XMLNS, XACML3.ELEMENT_ATTRIBUTEVALUE);
+                Element attributeValue  = elementAttributeAssignmentExpression.getOwnerDocument().createElementNS(XACML3.XMLNS, XACML3.ELEMENT_ATTRIBUTEVALUE);
                 attributeValue.setAttribute(XACML3.ATTRIBUTE_DATATYPE, identifier.stringValue());
                 attributeValue.setTextContent(textContent);
                 logger.warn("Adding a new AttributeValue using the DataType from the AttributeAssignment");
@@ -122,12 +122,12 @@ public class DOMAttributeAssignmentExpression extends AttributeAssignmentExpress
                     elementAttributeAssignmentExpression.removeChild(elementAttributeAssignmentExpression.getFirstChild());
                 }
                 elementAttributeAssignmentExpression.appendChild(attributeValue);
-                result	= true;
+                result  = true;
             } else {
                 throw DOMUtil.newMissingElementException(elementAttributeAssignmentExpression, XACML3.XMLNS, XACML3.ELEMENT_EXPRESSION);
             }
         }
-        result	= DOMUtil.repairIdentifierAttribute(elementAttributeAssignmentExpression, XACML3.ATTRIBUTE_ATTRIBUTEID, logger) || result;
+        result  = DOMUtil.repairIdentifierAttribute(elementAttributeAssignmentExpression, XACML3.ATTRIBUTE_ATTRIBUTEID, logger) || result;
 
         return result;
     }

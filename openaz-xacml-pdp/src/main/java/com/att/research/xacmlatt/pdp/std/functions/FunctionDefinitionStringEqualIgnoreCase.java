@@ -40,14 +40,14 @@ import com.att.research.xacml.std.datatypes.DataTypes;
  * The specification actually says that the strings are first converted to lower case using the string-normalize-to-lower-case function.
  * This code ASSUMES that
  * <UL>
- * <LI>	the normalize function just calls the Java toLowerCase() function, and
- * <LI>	the Java VM is consistent in that equalsIgnoreCase provides the same result as calling toLowerCase on each string and doing a compare.
+ * <LI> the normalize function just calls the Java toLowerCase() function, and
+ * <LI> the Java VM is consistent in that equalsIgnoreCase provides the same result as calling toLowerCase on each string and doing a compare.
  * </UL>
  *
  * In the first implementation of XACML we had separate files for each XACML Function.
  * This release combines multiple Functions in fewer files to minimize code duplication.
  * This file supports the following XACML codes:
- * 		string-equal-ignore-case
+ *              string-equal-ignore-case
  *
  *
  */

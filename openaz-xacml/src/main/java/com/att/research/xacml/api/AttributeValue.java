@@ -64,9 +64,9 @@ public interface AttributeValue<T> {
      *
      * Implementations of the <code>AttributeValue</code> interface must override the <code>equals</code> method with the following semantics:
      *
-     * 		Two <code>AttributeValue</code>s (<code>a1</code> and <code>a2</code>) are equal if:
-     * 			{@code a1.getDataTypeId().equals(a2.getDataTypeId())} AND
-     * 			{@code a1.getValue() == null && a2.getValue() == null} OR {@code a1.getValue().equals(a2.getValue())}
+     *          Two <code>AttributeValue</code>s (<code>a1</code> and <code>a2</code>) are equal if:
+     *                  {@code a1.getDataTypeId().equals(a2.getDataTypeId())} AND
+     *                  {@code a1.getValue() == null && a2.getValue() == null} OR {@code a1.getValue().equals(a2.getValue())}
      */
     @Override
     boolean equals(Object obj);

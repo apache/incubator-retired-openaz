@@ -45,7 +45,7 @@ import com.att.research.xacmlatt.pdp.policy.FunctionDefinition;
  * The child classes derived from this are of two types:
  * <UL>
  * <LI> Functions returning a single simple value of a type defined in {@link com.att.research.xacml.std.datatypes.DataTypes}.
- * 	These functions will all derive from {@link com.att.research.xacmlatt.pdp.std.functions.FunctionDefinitionSimple}.
+ *      These functions will all derive from {@link com.att.research.xacmlatt.pdp.std.functions.FunctionDefinitionSimple}.
  * <LI> Functions returning a single bag with elements of a single type.
  * <UL>
  * <P>
@@ -53,22 +53,22 @@ import com.att.research.xacmlatt.pdp.policy.FunctionDefinition;
  * <UL>
  * <LI> The Identity for this function.
  * <LI> The DataType of the data returned from this function.
- * 	For Bags this means the DataType of the elements in the bag, or null if that is ambiguous.
+ *      For Bags this means the DataType of the elements in the bag, or null if that is ambiguous.
  * <LI> Commonly-used values.
  * </UL>
  *
  *
  * @param <O> the java class for the Output data type returned by the <code>FunctionDefinition</code>
  * @param <I> the java class for the Input data type expected in the arguments to the <code>FunctionDefinition</code>.
- * 		Some functions have non-homogeneous arguments but may still have a main 'type'.
+ *              Some functions have non-homogeneous arguments but may still have a main 'type'.
  */
 public abstract class FunctionDefinitionBase<O,I> implements FunctionDefinition {
 
     // The XACML identifier string for this particular function
-    private Identifier	id;
+    private Identifier  id;
 
     // each function derived from this returns a single non-bag data value of the following type, or a Bag containing elements of this type
-    private DataType<O>	dataTypeReturn;
+    private DataType<O> dataTypeReturn;
 
     // All functions have input arguments and expect them to be of a given type.
     // In some instances the argument gets multiple values of different types, but when the function has a 'type' associated with it's name
@@ -83,8 +83,8 @@ public abstract class FunctionDefinitionBase<O,I> implements FunctionDefinition 
     /*
      * For functions that return a Boolean result we create a single instance of the True/False return values that they can share
      */
-    protected static final ExpressionResult			ER_TRUE		= ExpressionResult.newSingle(DataTypeBoolean.AV_TRUE);
-    protected static final ExpressionResult			ER_FALSE	= ExpressionResult.newSingle(DataTypeBoolean.AV_FALSE);
+    protected static final ExpressionResult                     ER_TRUE         = ExpressionResult.newSingle(DataTypeBoolean.AV_TRUE);
+    protected static final ExpressionResult                     ER_FALSE        = ExpressionResult.newSingle(DataTypeBoolean.AV_FALSE);
 
     /**
      * Creates a new <code>FunctionDefinitionBase</code> with the {@link com.att.research.xacml.api.Identifier} <code>idIn</code> as
@@ -93,7 +93,7 @@ public abstract class FunctionDefinitionBase<O,I> implements FunctionDefinition 
      * @param idIn the <code>Identifier</code> for this <code>FunctionDefinitionBase</code>
      */
     protected FunctionDefinitionBase(Identifier idIn, DataType<O> returnDataTypeIn, DataType<I> argumentDataTypeIn, boolean returnsBagIn) {
-        this.id			= idIn;
+        this.id                 = idIn;
         this.dataTypeReturn = returnDataTypeIn;
         this.dataTypeArgs = argumentDataTypeIn;
         this.returnsBag = returnsBagIn;

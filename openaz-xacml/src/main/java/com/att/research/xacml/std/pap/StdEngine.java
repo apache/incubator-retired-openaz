@@ -72,12 +72,12 @@ import com.google.common.collect.Sets;
  *
  */
 public class StdEngine extends StdPDPItemSetChangeNotifier implements PAPEngine {
-    private static Log	logger	= LogFactory.getLog(StdEngine.class);
+    private static Log  logger  = LogFactory.getLog(StdEngine.class);
 
-    public static String	PROP_PAP_REPO = "xacml.pap.pdps";
-    public static String	PROP_PAP_GROUPS = "xacml.pap.groups";
-    public static String	PROP_PAP_GROUPS_DEFAULT = "xacml.pap.groups.default";
-    public static String	PROP_PAP_GROUPS_DEFAULT_NAME = "default";
+    public static String        PROP_PAP_REPO = "xacml.pap.pdps";
+    public static String        PROP_PAP_GROUPS = "xacml.pap.groups";
+    public static String        PROP_PAP_GROUPS_DEFAULT = "xacml.pap.groups.default";
+    public static String        PROP_PAP_GROUPS_DEFAULT_NAME = "default";
 
     protected final Path repository;
     protected Set<StdPDPGroup> groups;
@@ -266,7 +266,7 @@ public class StdEngine extends StdPDPItemSetChangeNotifier implements PAPEngine 
     }
 
     @Override
-    public void	SetDefaultGroup(PDPGroup group) throws PAPException {
+    public void SetDefaultGroup(PDPGroup group) throws PAPException {
 
         boolean changesMade = false;
         for (PDPGroup aGroup : groups) {
@@ -310,7 +310,7 @@ public class StdEngine extends StdPDPItemSetChangeNotifier implements PAPEngine 
     }
 
     @Override
-    public PDPGroup	getGroup(String id) throws PAPException {
+    public PDPGroup     getGroup(String id) throws PAPException {
         for (PDPGroup g: this.groups) {
             if (g.getId().equals(id)) {
                 return g;
@@ -320,7 +320,7 @@ public class StdEngine extends StdPDPItemSetChangeNotifier implements PAPEngine 
     }
 
     @Override
-    public void	newGroup(String name, String description) throws PAPException, NullPointerException {
+    public void newGroup(String name, String description) throws PAPException, NullPointerException {
         //
         // Null check
         //
@@ -527,7 +527,7 @@ public class StdEngine extends StdPDPItemSetChangeNotifier implements PAPEngine 
     }
 
     @Override
-    public void	removeGroup(PDPGroup group, PDPGroup newGroup) throws PAPException, NullPointerException {
+    public void removeGroup(PDPGroup group, PDPGroup newGroup) throws PAPException, NullPointerException {
         if (group == null) {
             throw new NullPointerException();
         }
@@ -635,7 +635,7 @@ public class StdEngine extends StdPDPItemSetChangeNotifier implements PAPEngine 
     }
 
     @Override
-    public PDP	getPDP(String pdpId) throws PAPException {
+    public PDP  getPDP(String pdpId) throws PAPException {
         for (PDPGroup group : this.groups) {
             for (PDP pdp : group.getPdps()) {
                 if (pdp.getId().equals(pdpId)) {
@@ -710,7 +710,7 @@ public class StdEngine extends StdPDPItemSetChangeNotifier implements PAPEngine 
 
 
     @Override
-    public void	updatePDP(PDP pdp) throws PAPException {
+    public void updatePDP(PDP pdp) throws PAPException {
         PDP currentPDP = this.getPDP(pdp.getId());
         if (currentPDP == null) {
             String message = "Unknown PDP id '" + pdp.getId() + "'";
@@ -790,7 +790,7 @@ public class StdEngine extends StdPDPItemSetChangeNotifier implements PAPEngine 
     // HELPER methods
     //
 
-    private Set<StdPDPGroup>	readProperties(Path repository, Properties properties) throws PAPException {
+    private Set<StdPDPGroup>    readProperties(Path repository, Properties properties) throws PAPException {
         Set<StdPDPGroup> groups = new HashSet<StdPDPGroup>();
         //
         // See if there is a groups property
@@ -900,7 +900,7 @@ public class StdEngine extends StdPDPItemSetChangeNotifier implements PAPEngine 
         }
     }
 
-    public static void	removeGroupProperties(String id, Properties properties) {
+    public static void  removeGroupProperties(String id, Properties properties) {
         for (Object key : properties.keySet()) {
             if (key.toString().startsWith(id + ".")) {
                 properties.remove(key);

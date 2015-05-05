@@ -53,7 +53,7 @@ import com.att.research.xacmlatt.pdp.policy.CombinerParameter;
  *
  */
 public class DOMCombinerParameter extends CombinerParameter {
-    private static final Log logger	= LogFactory.getLog(DOMCombinerParameter.class);
+    private static final Log logger     = LogFactory.getLog(DOMCombinerParameter.class);
 
     protected DOMCombinerParameter() {
 
@@ -67,17 +67,17 @@ public class DOMCombinerParameter extends CombinerParameter {
      * @throws DOMStructureException if there is an error parsing the <code>Node</code>
      */
     public static CombinerParameter newInstance(Node nodeCombinerParameter) throws DOMStructureException {
-        Element elementCombinerParameter		= DOMUtil.getElement(nodeCombinerParameter);
-        boolean bLenient						= DOMProperties.isLenient();
+        Element elementCombinerParameter                = DOMUtil.getElement(nodeCombinerParameter);
+        boolean bLenient                                                = DOMProperties.isLenient();
 
-        DOMCombinerParameter combinerParameter	= new DOMCombinerParameter();
+        DOMCombinerParameter combinerParameter  = new DOMCombinerParameter();
 
         try {
-            NodeList children					= elementCombinerParameter.getChildNodes();
+            NodeList children                                   = elementCombinerParameter.getChildNodes();
             int numChildren;
             if (children != null && (numChildren = children.getLength()) > 0) {
                 for (int i = 0 ; i < numChildren ; i++) {
-                    Node child	= children.item(i);
+                    Node child  = children.item(i);
                     if (DOMUtil.isElement(child)) {
                         if (DOMUtil.isInNamespace(child, XACML3.XMLNS) && XACML3.ELEMENT_ATTRIBUTEVALUE.equals(child.getLocalName())) {
                             if (combinerParameter.getAttributeValue() != null && !bLenient) {
@@ -107,30 +107,30 @@ public class DOMCombinerParameter extends CombinerParameter {
     }
 
     public static boolean repair(Node nodeCombinerParameter) throws DOMStructureException {
-        Element elementCombinerParameter	= DOMUtil.getElement(nodeCombinerParameter);
-        boolean result						= false;
+        Element elementCombinerParameter        = DOMUtil.getElement(nodeCombinerParameter);
+        boolean result                                          = false;
 
-        NodeList children					= elementCombinerParameter.getChildNodes();
+        NodeList children                                       = elementCombinerParameter.getChildNodes();
         int numChildren;
-        boolean sawAttributeValue			= false;
+        boolean sawAttributeValue                       = false;
 
         if (children != null && (numChildren = children.getLength()) > 0) {
             for (int i = 0 ; i < numChildren ; i++) {
-                Node child	= children.item(i);
+                Node child      = children.item(i);
                 if (DOMUtil.isElement(child)) {
                     if (DOMUtil.isInNamespace(child, XACML3.XMLNS) && XACML3.ELEMENT_ATTRIBUTEVALUE.equals(child.getLocalName())) {
                         if (sawAttributeValue) {
                             logger.warn("Unexpected element " + child.getNodeName());
                             elementCombinerParameter.removeChild(child);
-                            result	= true;
+                            result      = true;
                         } else {
-                            result				= DOMAttributeValue.repair(child) || result;
-                            sawAttributeValue	= true;
+                            result                              = DOMAttributeValue.repair(child) || result;
+                            sawAttributeValue   = true;
                         }
                     } else {
                         logger.warn("Unexpected element " + child.getNodeName());
                         elementCombinerParameter.removeChild(child);
-                        result	= true;
+                        result  = true;
                     }
                 }
             }
@@ -140,7 +140,7 @@ public class DOMCombinerParameter extends CombinerParameter {
             throw DOMUtil.newMissingElementException(elementCombinerParameter, XACML3.XMLNS, XACML3.ELEMENT_ATTRIBUTEVALUE);
         }
 
-        result	= DOMUtil.repairStringAttribute(elementCombinerParameter, XACML3.ATTRIBUTE_PARAMETERNAME, "parameter", logger) || result;
+        result  = DOMUtil.repairStringAttribute(elementCombinerParameter, XACML3.ATTRIBUTE_PARAMETERNAME, "parameter", logger) || result;
 
         return result;
     }
@@ -154,16 +154,16 @@ public class DOMCombinerParameter extends CombinerParameter {
      * @throws DOMStructureException if there is an error parsing the <code>Node</code>
      */
     public static List<CombinerParameter> newList(Node nodeCombinerParameters) throws DOMStructureException {
-        Element elementCombinerParameters	= DOMUtil.getElement(nodeCombinerParameters);
-        boolean bLenient					= DOMProperties.isLenient();
+        Element elementCombinerParameters       = DOMUtil.getElement(nodeCombinerParameters);
+        boolean bLenient                                        = DOMProperties.isLenient();
 
-        List<CombinerParameter> listCombinerParameters	= new ArrayList<CombinerParameter>();
+        List<CombinerParameter> listCombinerParameters  = new ArrayList<CombinerParameter>();
 
-        NodeList children	= elementCombinerParameters.getChildNodes();
+        NodeList children       = elementCombinerParameters.getChildNodes();
         int numChildren;
         if (children != null && (numChildren = children.getLength()) > 0) {
             for (int i = 0 ; i < numChildren ; i++) {
-                Node child	= children.item(i);
+                Node child      = children.item(i);
                 if (DOMUtil.isElement(child)) {
                     if (DOMUtil.isInNamespace(child, XACML3.XMLNS) && XACML3.ELEMENT_COMBINERPARAMETER.equals(child.getLocalName())) {
                         listCombinerParameters.add(DOMCombinerParameter.newInstance(child));
@@ -177,21 +177,21 @@ public class DOMCombinerParameter extends CombinerParameter {
     }
 
     public static boolean repairList(Node nodeCombinerParameters) throws DOMStructureException {
-        Element elementCombinerParameters	= DOMUtil.getElement(nodeCombinerParameters);
-        boolean result						= false;
+        Element elementCombinerParameters       = DOMUtil.getElement(nodeCombinerParameters);
+        boolean result                                          = false;
 
-        NodeList children	= elementCombinerParameters.getChildNodes();
+        NodeList children       = elementCombinerParameters.getChildNodes();
         int numChildren;
         if (children != null && (numChildren = children.getLength()) > 0) {
             for (int i = 0 ; i < numChildren ; i++) {
-                Node child	= children.item(i);
+                Node child      = children.item(i);
                 if (DOMUtil.isElement(child)) {
                     if (DOMUtil.isInNamespace(child, XACML3.XMLNS) && XACML3.ELEMENT_COMBINERPARAMETER.equals(child.getLocalName())) {
-                        result	= DOMCombinerParameter.repair(child) || result;
+                        result  = DOMCombinerParameter.repair(child) || result;
                     } else {
                         logger.warn("Unexpected element " + child.getNodeName());
                         elementCombinerParameters.removeChild(child);
-                        result	= true;
+                        result  = true;
                     }
                 }
             }

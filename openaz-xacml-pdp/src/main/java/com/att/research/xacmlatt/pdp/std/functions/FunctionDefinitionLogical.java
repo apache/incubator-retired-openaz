@@ -48,10 +48,10 @@ import com.att.research.xacmlatt.pdp.policy.FunctionArgument;
  * In the first implementation of XACML we had separate files for each XACML Function.
  * This release combines multiple Functions in fewer files to minimize code duplication.
  * This file supports the following XACML codes:
- * 		or
- * 		and
- * 		n-of
- * 		not
+ *              or
+ *              and
+ *              n-of
+ *              not
  *
  *
  */
@@ -139,11 +139,11 @@ public class FunctionDefinitionLogical extends FunctionDefinitionHomogeneousSimp
             try {
                 //
                 // Special case:
-                //	The first argument in the list (an Integer) is not homogeneous with the rest of the arguments (Booleans).
-                //	While this is technically not a FunctionDefinitionHomogeneousSimple type of object, we derive from that class anyway
-                //	so that we can take advantage of the validateArgument() method in that class.
-                //	Unfortunately we cannot re-use that same code (because of generics - it gets messy) for the Integer argument.
-                //	The following code essentially does the same job as validateArgument() on the first argument in the list.
+                //      The first argument in the list (an Integer) is not homogeneous with the rest of the arguments (Booleans).
+                //      While this is technically not a FunctionDefinitionHomogeneousSimple type of object, we derive from that class anyway
+                //      so that we can take advantage of the validateArgument() method in that class.
+                //      Unfortunately we cannot re-use that same code (because of generics - it gets messy) for the Integer argument.
+                //      The following code essentially does the same job as validateArgument() on the first argument in the list.
                 //
 
                 // first arg is the number of remaining arguments that must be TRUE

@@ -61,7 +61,7 @@ import com.att.research.xacml.std.StdMutableRequest;
  *
  */
 public class JaxpRequest extends StdMutableRequest {
-    private static Log	logger	= LogFactory.getLog(JaxpRequest.class);
+    private static Log  logger  = LogFactory.getLog(JaxpRequest.class);
 
     public JaxpRequest() {
     }
@@ -70,17 +70,17 @@ public class JaxpRequest extends StdMutableRequest {
         if (requestType == null) {
             throw new NullPointerException("Null RequestType");
         }
-        JaxpRequest	jaxpRequest	= new JaxpRequest();
+        JaxpRequest     jaxpRequest     = new JaxpRequest();
         jaxpRequest.setCombinedDecision(requestType.isCombinedDecision());
         jaxpRequest.setReturnPolicyIdList(requestType.isReturnPolicyIdList());
         if (requestType.getAttributes() != null) {
-            Iterator<AttributesType>	iterAttributesTypes			= requestType.getAttributes().iterator();
+            Iterator<AttributesType>    iterAttributesTypes                     = requestType.getAttributes().iterator();
             while (iterAttributesTypes.hasNext()) {
                 jaxpRequest.add(JaxpRequestAttributes.newInstance(iterAttributesTypes.next()));
             }
         }
         if (requestType.getMultiRequests() != null && requestType.getMultiRequests().getRequestReference() != null) {
-            Iterator<RequestReferenceType>	iterRequestReferenceTypes	= requestType.getMultiRequests().getRequestReference().iterator();
+            Iterator<RequestReferenceType>      iterRequestReferenceTypes       = requestType.getMultiRequests().getRequestReference().iterator();
             while (iterRequestReferenceTypes.hasNext()) {
                 jaxpRequest.add(JaxpRequestReference.newInstance(iterRequestReferenceTypes.next()));
             }
@@ -117,26 +117,26 @@ public class JaxpRequest extends StdMutableRequest {
         /*
          * Parse the file into a Document
          */
-        Document	document	= documentBuilder.parse(fileXmlRequest);
+        Document        document        = documentBuilder.parse(fileXmlRequest);
         if (document == null) {
             logger.error("No Document returned parsing \"" + fileXmlRequest.getAbsolutePath() + "\"");
             return null;
         }
 
-        NodeList	nodeListRoot	= document.getChildNodes();
+        NodeList        nodeListRoot    = document.getChildNodes();
         if (nodeListRoot == null || nodeListRoot.getLength() == 0) {
             logger.warn("No child elements of the XML document");
             return null;
         }
-        Node		nodeRoot		= nodeListRoot.item(0);
+        Node            nodeRoot                = nodeListRoot.item(0);
         if (nodeRoot == null || nodeRoot.getNodeType() != Node.ELEMENT_NODE) {
             logger.warn("Root of the document is not an ELEMENT");
             return null;
         }
 
-        JAXBContext 				context 			= JAXBContext.newInstance(RequestType.class);
-        Unmarshaller 				unmarshaller 		= context.createUnmarshaller();
-        JAXBElement<RequestType>	jaxbElementRequest 	= unmarshaller.unmarshal((Element)nodeRoot, RequestType.class);
+        JAXBContext                             context                         = JAXBContext.newInstance(RequestType.class);
+        Unmarshaller                            unmarshaller            = context.createUnmarshaller();
+        JAXBElement<RequestType>        jaxbElementRequest      = unmarshaller.unmarshal((Element)nodeRoot, RequestType.class);
         if (jaxbElementRequest == null || jaxbElementRequest.getValue() == null) {
             logger.error("JAXB unmarshalling did not return a RequestType node");
             return null;
@@ -147,9 +147,9 @@ public class JaxpRequest extends StdMutableRequest {
 
     public static void main(String[] args) {
         for (String fileName: args) {
-            JaxpRequest	jaxpRequest	= null;
+            JaxpRequest jaxpRequest     = null;
             try {
-                jaxpRequest	= JaxpRequest.load(new File(fileName));
+                jaxpRequest     = JaxpRequest.load(new File(fileName));
             } catch (Exception ex) {
                 logger.fatal("Failed to load \"" + fileName + "\" as a JaxpRequest", ex);
                 continue;

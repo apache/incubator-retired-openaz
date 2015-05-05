@@ -42,37 +42,37 @@ public interface PDPGroup {
      * and a key in a properties file.
      * The ID does not need to be unique forever.  It just needs to distinguish this group from other groups that currently exist.
      */
-    public String						getId();
+    public String                                               getId();
 
-    public boolean						isDefaultGroup();
+    public boolean                                              isDefaultGroup();
 
     /*
      * The name is a free-form string that is user input.
      */
-    public String 						getName();
+    public String                                               getName();
 
-    public void							setName(String name);
+    public void                                                 setName(String name);
 
-    public String 						getDescription();
+    public String                                               getDescription();
 
-    public void							setDescription(String description);
+    public void                                                 setDescription(String description);
 
-    public PDPGroupStatus				getStatus();
+    public PDPGroupStatus                               getStatus();
 
-    public Set<PDP> 					getPdps();
+    public Set<PDP>                                     getPdps();
 
-    public Set<PDPPolicy>	 			getPolicies();
+    public Set<PDPPolicy>                               getPolicies();
 
-    public PDPPolicy					getPolicy(String id);
+    public PDPPolicy                                    getPolicy(String id);
 
-    public Properties		 			getPolicyProperties();
+    public Properties                                   getPolicyProperties();
 
-    public Set<PDPPIPConfig> 			getPipConfigs();
+    public Set<PDPPIPConfig>                    getPipConfigs();
 
-    public PDPPIPConfig					getPipConfig(String id);
+    public PDPPIPConfig                                 getPipConfig(String id);
 
-    public Properties		 			getPipConfigProperties();
+    public Properties                                   getPipConfigProperties();
 
-    public void							repair();
+    public void                                                 repair();
 
 }

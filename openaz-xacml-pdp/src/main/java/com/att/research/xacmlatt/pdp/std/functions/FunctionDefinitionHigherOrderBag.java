@@ -60,20 +60,20 @@ import com.att.research.xacmlatt.pdp.std.StdFunctionDefinitionFactory;
  * In the first implementation of XACML we had separate files for each XACML Function.
  * This release combines multiple Functions in fewer files to minimize code duplication.
  * This file supports the following XACML codes:
- * 		string-bag
- * 		boolean-bag
- * 		integer-bag
- * 		double-bag
- * 		time-bag
- * 		date-bag
- * 		dateTime-bag
- * 		anyURI-bag
- * 		hexBinary-bag
- * 		base64Binary-bag
- * 		dayTimeDuration-bag (version 1 and3)
- * 		yearMonthDuration-bag (version 1 and 3)
- * 		x500Name-bag
- * 		rfc822Name-bag
+ *              string-bag
+ *              boolean-bag
+ *              integer-bag
+ *              double-bag
+ *              time-bag
+ *              date-bag
+ *              dateTime-bag
+ *              anyURI-bag
+ *              hexBinary-bag
+ *              base64Binary-bag
+ *              dayTimeDuration-bag (version 1 and3)
+ *              yearMonthDuration-bag (version 1 and 3)
+ *              x500Name-bag
+ *              rfc822Name-bag
  *
  *
  *
@@ -501,7 +501,7 @@ public class FunctionDefinitionHigherOrderBag<O,I> extends FunctionDefinitionBas
          * Have we hit a leaf?
          */
         if (nPosition >= valueList.size()) {
-            List<FunctionArgument>	copy	= new ArrayList<FunctionArgument>();
+            List<FunctionArgument>      copy    = new ArrayList<FunctionArgument>();
             copy.addAll(argListInProgress);
             listArgLists.add(copy);
             return;
@@ -510,12 +510,12 @@ public class FunctionDefinitionHigherOrderBag<O,I> extends FunctionDefinitionBas
         /*
          * Check to see if the value at the current position is a primitive or a bag
          */
-        FunctionArgument	FunctionArgument	= valueList.get(nPosition);
+        FunctionArgument        FunctionArgument        = valueList.get(nPosition);
         if (FunctionArgument.isBag() && FunctionArgument.getBag().getAttributeValues() != null && FunctionArgument.getBag().size() > 0) {
-            Iterator<AttributeValue<?>>	iterBagValues	= FunctionArgument.getBag().getAttributeValues();
+            Iterator<AttributeValue<?>> iterBagValues   = FunctionArgument.getBag().getAttributeValues();
             while (iterBagValues.hasNext()) {
-                AttributeValue<?>	attributeValue	= iterBagValues.next();
-                FunctionArgument	functionArgument	= new FunctionArgumentAttributeValue(attributeValue);
+                AttributeValue<?>       attributeValue  = iterBagValues.next();
+                FunctionArgument        functionArgument        = new FunctionArgumentAttributeValue(attributeValue);
                 argListInProgress.add(functionArgument);
                 appendCrossProduct(argListInProgress, valueList, nPosition+1, listArgLists);
                 argListInProgress.remove(argListInProgress.size()-1);

@@ -54,22 +54,22 @@ import com.att.research.xacmlatt.pdp.policy.FunctionArgument;
  * In the first implementation of XACML we had separate files for each XACML Function.
  * This release combines multiple Functions in fewer files to minimize code duplication.
  * This file supports the following XACML codes:
- * 		string-bag-size
- * 		boolean-bag-size
- * 		integer-bag-size
- * 		double-bag-size
- * 		time-bag-size
- * 		date-bag-size
- * 		dateTime-bag-size
- * 		anyURI-bag-size
- * 		hexBinary-bag-size
- * 		base64Binary-bag-size
- * 		dayTimeDuration-bag-size (version 1 and3)
- * 		yearMonthDuration-bag-size (version 1 and 3)
- * 		x500Name-bag-size
- * 		rfc822Name-bag-size
- * 		ipAddress-bag-size
- * 		dnsName-bag-size
+ *              string-bag-size
+ *              boolean-bag-size
+ *              integer-bag-size
+ *              double-bag-size
+ *              time-bag-size
+ *              date-bag-size
+ *              dateTime-bag-size
+ *              anyURI-bag-size
+ *              hexBinary-bag-size
+ *              base64Binary-bag-size
+ *              dayTimeDuration-bag-size (version 1 and3)
+ *              yearMonthDuration-bag-size (version 1 and 3)
+ *              x500Name-bag-size
+ *              rfc822Name-bag-size
+ *              ipAddress-bag-size
+ *              dnsName-bag-size
  *
  *
  *

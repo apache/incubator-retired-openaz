@@ -43,10 +43,10 @@ import com.att.research.xacml.util.XACMLProperties;
  *
  */
 public abstract class PDPEngineFactory {
-    private static final String	FACTORYID					= XACMLProperties.PROP_PDPENGINEFACTORY;
-    private static final String	DEFAULT_FACTORY_CLASSNAME	= "com.att.research.xacmlatt.pdp.ATTPDPEngineFactory";
+    private static final String FACTORYID                                       = XACMLProperties.PROP_PDPENGINEFACTORY;
+    private static final String DEFAULT_FACTORY_CLASSNAME       = "com.att.research.xacmlatt.pdp.ATTPDPEngineFactory";
 
-    private Decision defaultBehavior	= Decision.INDETERMINATE;
+    private Decision defaultBehavior    = Decision.INDETERMINATE;
     private ScopeResolver scopeResolver;
 
     protected static Decision getConfiguredDefaultBehavior() {
@@ -86,8 +86,8 @@ public abstract class PDPEngineFactory {
      * @return an instance of an object that extends <code>PDPEngineFactory</code> to use in creating <code>PDPEngine</code> objects.
      */
     public static PDPEngineFactory newInstance() throws FactoryException {
-        PDPEngineFactory pdpEngineFactory	= FactoryFinder.find(FACTORYID, DEFAULT_FACTORY_CLASSNAME, PDPEngineFactory.class);
-        Decision defaultDecisionBehavior	= getConfiguredDefaultBehavior();
+        PDPEngineFactory pdpEngineFactory       = FactoryFinder.find(FACTORYID, DEFAULT_FACTORY_CLASSNAME, PDPEngineFactory.class);
+        Decision defaultDecisionBehavior        = getConfiguredDefaultBehavior();
         if (defaultDecisionBehavior != null) {
             pdpEngineFactory.setDefaultBehavior(defaultDecisionBehavior);
         }
@@ -101,8 +101,8 @@ public abstract class PDPEngineFactory {
      * @return an instance of an object that extends <code>PDPEngineFactory</code> to use in creating <code>PDPEngine</code> objects.
      */
     public static PDPEngineFactory newInstance(Properties properties) throws FactoryException {
-        PDPEngineFactory pdpEngineFactory	= FactoryFinder.find(FACTORYID, DEFAULT_FACTORY_CLASSNAME, PDPEngineFactory.class, properties);
-        Decision defaultDecisionBehavior	= getConfiguredDefaultBehavior(properties);
+        PDPEngineFactory pdpEngineFactory       = FactoryFinder.find(FACTORYID, DEFAULT_FACTORY_CLASSNAME, PDPEngineFactory.class, properties);
+        Decision defaultDecisionBehavior        = getConfiguredDefaultBehavior(properties);
         if (defaultDecisionBehavior != null) {
             pdpEngineFactory.setDefaultBehavior(defaultDecisionBehavior);
         }
@@ -118,8 +118,8 @@ public abstract class PDPEngineFactory {
      * @return an instance of an object that extends <code>PDPEngineFactory</code> to use in creating <code>PDPEngine</code> objects.
      */
     public static PDPEngineFactory newInstance(String factoryClassName, ClassLoader classLoader) throws FactoryException {
-        PDPEngineFactory pdpEngineFactory	=  FactoryFinder.newInstance(factoryClassName, PDPEngineFactory.class, classLoader, false);
-        Decision defaultDecisionBehavior	= getConfiguredDefaultBehavior();
+        PDPEngineFactory pdpEngineFactory       =  FactoryFinder.newInstance(factoryClassName, PDPEngineFactory.class, classLoader, false);
+        Decision defaultDecisionBehavior        = getConfiguredDefaultBehavior();
         if (defaultDecisionBehavior != null) {
             pdpEngineFactory.setDefaultBehavior(defaultDecisionBehavior);
         }
@@ -133,8 +133,8 @@ public abstract class PDPEngineFactory {
      * @return an instance of an object that extends <code>PDPEngineFactory</code> to use in creating <code>PDPEngine</code> objects.
      */
     public static PDPEngineFactory newInstance(String factoryClassName) throws FactoryException {
-        PDPEngineFactory pdpEngineFactory	= FactoryFinder.newInstance(factoryClassName, PDPEngineFactory.class, null, true);
-        Decision defaultDecisionBehavior	= getConfiguredDefaultBehavior();
+        PDPEngineFactory pdpEngineFactory       = FactoryFinder.newInstance(factoryClassName, PDPEngineFactory.class, null, true);
+        Decision defaultDecisionBehavior        = getConfiguredDefaultBehavior();
         if (defaultDecisionBehavior != null) {
             pdpEngineFactory.setDefaultBehavior(defaultDecisionBehavior);
         }
@@ -178,7 +178,7 @@ public abstract class PDPEngineFactory {
      * @param decision the <code>Decision</code> to return
      */
     public void setDefaultBehavior(Decision decision) {
-        this.defaultBehavior	= decision;
+        this.defaultBehavior    = decision;
     }
 
     /**
@@ -198,7 +198,7 @@ public abstract class PDPEngineFactory {
      * @param scopeResolverIn
      */
     public void setScopeResolver(ScopeResolver scopeResolverIn) {
-        this.scopeResolver	= scopeResolverIn;
+        this.scopeResolver      = scopeResolverIn;
     }
 
 }

@@ -63,18 +63,18 @@ public class OnlyOneApplicable extends CombiningAlgorithmBase<PolicySetChild> {
                                     List<CombiningElement<PolicySetChild>> elements,
                                     List<CombinerParameter> combinerParameters)
     throws EvaluationException {
-        Iterator<CombiningElement<PolicySetChild>> iterElements	= elements.iterator();
-        PolicySetChild policySetChildApplicable					= null;
+        Iterator<CombiningElement<PolicySetChild>> iterElements = elements.iterator();
+        PolicySetChild policySetChildApplicable                                 = null;
         while (iterElements.hasNext()) {
-            CombiningElement<PolicySetChild> combiningElement		= iterElements.next();
-            MatchResult matchResultElement				= combiningElement.getEvaluatable().match(evaluationContext);
+            CombiningElement<PolicySetChild> combiningElement           = iterElements.next();
+            MatchResult matchResultElement                              = combiningElement.getEvaluatable().match(evaluationContext);
 
             switch(matchResultElement.getMatchCode()) {
             case INDETERMINATE:
                 return new EvaluationResult(Decision.INDETERMINATE, matchResultElement.getStatus());
             case MATCH:
                 if (policySetChildApplicable == null) {
-                    policySetChildApplicable	= combiningElement.getEvaluatable();
+                    policySetChildApplicable    = combiningElement.getEvaluatable();
                 } else {
                     return new EvaluationResult(Decision.INDETERMINATE, new StdStatus(StdStatusCode.STATUS_CODE_PROCESSING_ERROR, "More than one applicable policy"));
                 }

@@ -43,12 +43,12 @@ import org.apache.commons.logging.LogFactory;
 
 /**
  * FactoryFinder is a utility for finding various XACML Factory objects using a common search procedure:
- * 	1.  Look in the jav.home/lib/xacml.properties file for the name of a Class to serve as the Factory instance
+ *      1.  Look in the jav.home/lib/xacml.properties file for the name of a Class to serve as the Factory instance
  *  2.
  *
  */
 public class FactoryFinder {
-    private static final Log logger				= LogFactory.getLog(FactoryFinder.class);
+    private static final Log logger                             = LogFactory.getLog(FactoryFinder.class);
 
     private FactoryFinder() {
     }
@@ -67,7 +67,7 @@ public class FactoryFinder {
     private static Class<?> getProviderClass(String className, ClassLoader cl, boolean doFallback) throws ClassNotFoundException {
         try {
             if (cl == null) {
-                cl	= Thread.class.getClassLoader();
+                cl      = Thread.class.getClassLoader();
                 if (cl == null) {
                     cl = FactoryFinder.class.getClassLoader();
                     if (cl == null) {
@@ -99,28 +99,28 @@ public class FactoryFinder {
      * @throws FactoryException
      */
     private static <T> T findJarServiceProvider(String factoryId, Class<T> classExtends, Properties xacmlProperties) throws FactoryException {
-        String serviceId	= "META-INF/services/" + factoryId;
-        InputStream is		= null;
+        String serviceId        = "META-INF/services/" + factoryId;
+        InputStream is          = null;
 
         /*
          * First try using the Context ClassLoader
          */
-        ClassLoader cl	= Thread.currentThread().getContextClassLoader();
+        ClassLoader cl  = Thread.currentThread().getContextClassLoader();
         if (cl != null) {
-            is	= cl.getResourceAsStream(serviceId);
+            is  = cl.getResourceAsStream(serviceId);
             if (is == null) {
                 /*
                  * Fall back to the current ClassLoader
                  */
-                cl	= FactoryFinder.class.getClassLoader();
-                is	= cl.getResourceAsStream(serviceId);
+                cl      = FactoryFinder.class.getClassLoader();
+                is      = cl.getResourceAsStream(serviceId);
             }
         } else {
             /*
              *  No Context ClassLoader, try the current ClassLoader
              */
-            cl	= FactoryFinder.class.getClassLoader();
-            is	= cl.getResourceAsStream(serviceId);
+            cl  = FactoryFinder.class.getClassLoader();
+            is  = cl.getResourceAsStream(serviceId);
         }
 
         if (is == null) {
@@ -139,14 +139,14 @@ public class FactoryFinder {
          */
         BufferedReader rd;
         try {
-            rd	= new BufferedReader(new InputStreamReader(is, "UTF-8"));
+            rd  = new BufferedReader(new InputStreamReader(is, "UTF-8"));
         } catch (UnsupportedEncodingException ex) {
-            rd	= new BufferedReader(new InputStreamReader(is));
+            rd  = new BufferedReader(new InputStreamReader(is));
         }
 
-        String factoryClassName	= null;
+        String factoryClassName = null;
         try {
-            factoryClassName	= rd.readLine();
+            factoryClassName    = rd.readLine();
         } catch (IOException ex) {
             logger.error("IOException reading resource stream: " + ex.getMessage(), ex);
             return null;
@@ -177,11 +177,11 @@ public class FactoryFinder {
 
     public static <T> T newInstance(String className, Class<T> classExtends, ClassLoader cl, boolean doFallback, Properties xacmlProperties) throws FactoryException {
         try {
-            Class<?> providerClass	= getProviderClass(className, cl, doFallback);
+            Class<?> providerClass      = getProviderClass(className, cl, doFallback);
             if (classExtends.isAssignableFrom(providerClass)) {
                 Object instance = null;
                 if (xacmlProperties == null) {
-                    instance	= providerClass.newInstance();
+                    instance    = providerClass.newInstance();
                 } else {
                     //
                     // Search for a constructor that takes Properties
@@ -221,7 +221,7 @@ public class FactoryFinder {
         /*
          * Check the system property first
          */
-        String systemProp	= System.getProperty(factoryId);
+        String systemProp       = System.getProperty(factoryId);
         if (systemProp != null) {
             if (logger.isDebugEnabled()) {
                 logger.debug("Found system property, value=" + systemProp);
@@ -234,11 +234,11 @@ public class FactoryFinder {
          * can be changed via System variable.
          */
         try {
-            String factoryClassName		= null;
+            String factoryClassName             = null;
             if (xacmlProperties == null) {
-                factoryClassName	= XACMLProperties.getProperty(factoryId);
+                factoryClassName        = XACMLProperties.getProperty(factoryId);
             } else {
-                factoryClassName	= xacmlProperties.getProperty(factoryId);
+                factoryClassName        = xacmlProperties.getProperty(factoryId);
             }
             if (factoryClassName != null) {
                 if (logger.isTraceEnabled()) {
@@ -253,7 +253,7 @@ public class FactoryFinder {
         /*
          * Try the Jar Service Provider Mechanism
          */
-        T provider	= findJarServiceProvider(factoryId, classExtends, xacmlProperties);
+        T provider      = findJarServiceProvider(factoryId, classExtends, xacmlProperties);
         if (provider != null) {
             return provider;
         }

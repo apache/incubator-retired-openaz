@@ -71,11 +71,11 @@ public interface IdReferenceMatch {
      *
      * Implementations of the <code>IdReferenceMatch</code> interface must override the <code>equals</code> method with the following semantics:
      *
-     * 		Two <code>IdReferenceMatch</code> objects (<code>i1</code> and <code>i2</code>) are equal if:
-     * 			{@code i1.getId().equals(i2.getId())} AND
-     * 			{@code i1.getVersion() == null && i2.getVersion() == null} OR {@code i1.getVersion().equals(i2.getVersion())}
-     * 			{@code i1.getEarliestVersion() == null && i2.getEarliestVersion() == null} OR {@code i1.getEarliestVersion().equals(i2.getEarliestVersion())} AND
-     * 			{@code i1.getLatestVersion() == null && i2.getLatestVersion() == null} OR {@code i1.getLatestVersion().equals(i2.getLatestVersion())}
+     *          Two <code>IdReferenceMatch</code> objects (<code>i1</code> and <code>i2</code>) are equal if:
+     *                  {@code i1.getId().equals(i2.getId())} AND
+     *                  {@code i1.getVersion() == null && i2.getVersion() == null} OR {@code i1.getVersion().equals(i2.getVersion())}
+     *                  {@code i1.getEarliestVersion() == null && i2.getEarliestVersion() == null} OR {@code i1.getEarliestVersion().equals(i2.getEarliestVersion())} AND
+     *                  {@code i1.getLatestVersion() == null && i2.getLatestVersion() == null} OR {@code i1.getLatestVersion().equals(i2.getLatestVersion())}
      */
     @Override
     boolean equals(Object obj);

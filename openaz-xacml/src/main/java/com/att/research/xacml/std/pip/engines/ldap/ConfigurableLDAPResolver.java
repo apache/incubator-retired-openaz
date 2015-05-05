@@ -74,11 +74,11 @@ import com.att.research.xacml.util.FactoryException;
 
 public class ConfigurableLDAPResolver implements LDAPResolver {
 
-    private static DataTypeFactory dataTypeFactory		= null;
+    private static DataTypeFactory dataTypeFactory              = null;
 
     static {
         try {
-            dataTypeFactory	= DataTypeFactory.newInstance();
+            dataTypeFactory     = DataTypeFactory.newInstance();
         } catch (FactoryException fx) {
             throw new RuntimeException(fx);
         }
@@ -304,7 +304,7 @@ public class ConfigurableLDAPResolver implements LDAPResolver {
     private Attribute decodeResultValue(SearchResult searchResult,
                                         String view,
                                         PIPRequest viewRequest) {
-        AttributeValue<?> attributeValue	= null;
+        AttributeValue<?> attributeValue        = null;
         Collection<AttributeValue<?>> attributeMultiValue = null;
         DataType<?> dataType = null;
 
@@ -320,7 +320,7 @@ public class ConfigurableLDAPResolver implements LDAPResolver {
             }
 
             if ("dn".equalsIgnoreCase(view)) {
-                attributeValue	= dataType.createAttributeValue(
+                attributeValue  = dataType.createAttributeValue(
                                       searchResult.getNameInNamespace());
             } else {
                 javax.naming.directory.Attribute dirAttr =
@@ -331,7 +331,7 @@ public class ConfigurableLDAPResolver implements LDAPResolver {
                     }
                     //we could guide this more elaborately by object class ..
                     if (dirAttr.size() == 1) {
-                        attributeValue	= dataType.createAttributeValue(
+                        attributeValue  = dataType.createAttributeValue(
                                               dirAttr.get().toString());
                     } else {
                         if (this.logger.isTraceEnabled()) {
@@ -379,9 +379,9 @@ public class ConfigurableLDAPResolver implements LDAPResolver {
     @Override
     public List<Attribute> decodeResult(SearchResult searchResult)
     throws PIPException {
-        List<Attribute> attributes	= new ArrayList<Attribute>();
+        List<Attribute> attributes      = new ArrayList<Attribute>();
         for (Map.Entry<String,PIPRequest> viewEntry: this.filterView.entrySet()) {
-            Attribute attribute	= this.decodeResultValue(searchResult, viewEntry.getKey(), viewEntry.getValue());
+            Attribute attribute = this.decodeResultValue(searchResult, viewEntry.getKey(), viewEntry.getValue());
             if (attribute != null) {
                 attributes.add(attribute);
             }
@@ -430,7 +430,7 @@ public class ConfigurableLDAPResolver implements LDAPResolver {
 
     private class VelocityParameterWriter extends VelocityParameterHandler {
 
-        private PIPEngine	engine;
+        private PIPEngine       engine;
         private PIPFinder finder;
         private Map<String,PIPRequest> parameters;
 
@@ -447,7 +447,7 @@ public class ConfigurableLDAPResolver implements LDAPResolver {
 
             String param = (String)super.referenceInsert(theReference, theValue);
             try {
-                PIPRequest request =	parameters.get(param);
+                PIPRequest request =    parameters.get(param);
                 if (ConfigurableLDAPResolver.this.logger.isTraceEnabled()) {
                     ConfigurableLDAPResolver.this.logger.trace("(" + id + ") " + "Velocity parameter: " + param + " requests " + request);
                 }

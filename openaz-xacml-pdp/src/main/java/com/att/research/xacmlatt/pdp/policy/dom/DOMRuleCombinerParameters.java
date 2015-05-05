@@ -51,7 +51,7 @@ import com.att.research.xacmlatt.pdp.policy.TargetedCombinerParameter;
  *
  */
 public class DOMRuleCombinerParameters extends TargetedCombinerParameter<String,Rule> {
-    private static final Log logger	= LogFactory.getLog(DOMRuleCombinerParameters.class);
+    private static final Log logger     = LogFactory.getLog(DOMRuleCombinerParameters.class);
 
     protected DOMRuleCombinerParameters() {
     }
@@ -65,17 +65,17 @@ public class DOMRuleCombinerParameters extends TargetedCombinerParameter<String,
      * @throws DOMStructureException if there is an error parsing the <code>Node</code>.
      */
     public static TargetedCombinerParameter<String,Rule> newInstance(Node nodeRuleCombinerParameters) throws DOMStructureException {
-        Element elementRuleCombinerParameters	= DOMUtil.getElement(nodeRuleCombinerParameters);
-        boolean bLenient						= DOMProperties.isLenient();
+        Element elementRuleCombinerParameters   = DOMUtil.getElement(nodeRuleCombinerParameters);
+        boolean bLenient                                                = DOMProperties.isLenient();
 
-        DOMRuleCombinerParameters domRuleCombinerParameters	= new DOMRuleCombinerParameters();
+        DOMRuleCombinerParameters domRuleCombinerParameters     = new DOMRuleCombinerParameters();
 
         try {
-            NodeList children	= elementRuleCombinerParameters.getChildNodes();
+            NodeList children   = elementRuleCombinerParameters.getChildNodes();
             int numChildren;
             if (children != null && (numChildren = children.getLength()) > 0) {
                 for (int i = 0 ; i < numChildren ; i++) {
-                    Node child	= children.item(i);
+                    Node child  = children.item(i);
                     if (DOMUtil.isElement(child)) {
                         if (DOMUtil.isInNamespace(child, XACML3.XMLNS) && XACML3.ELEMENT_ATTRIBUTEVALUE.equals(child.getLocalName())) {
                             if (domRuleCombinerParameters.getAttributeValue() != null) {
@@ -103,29 +103,29 @@ public class DOMRuleCombinerParameters extends TargetedCombinerParameter<String,
     }
 
     public static boolean repair(Node nodeRuleCombinerParameters) throws DOMStructureException {
-        Element elementRuleCombinerParameters	= DOMUtil.getElement(nodeRuleCombinerParameters);
-        boolean result							= false;
+        Element elementRuleCombinerParameters   = DOMUtil.getElement(nodeRuleCombinerParameters);
+        boolean result                                                  = false;
 
-        NodeList children			= elementRuleCombinerParameters.getChildNodes();
+        NodeList children                       = elementRuleCombinerParameters.getChildNodes();
         int numChildren;
-        boolean sawAttributeValue	= false;
+        boolean sawAttributeValue       = false;
         if (children != null && (numChildren = children.getLength()) > 0) {
             for (int i = 0 ; i < numChildren ; i++) {
-                Node child	= children.item(i);
+                Node child      = children.item(i);
                 if (DOMUtil.isElement(child)) {
                     if (DOMUtil.isInNamespace(child, XACML3.XMLNS) && XACML3.ELEMENT_ATTRIBUTEVALUE.equals(child.getLocalName())) {
                         if (sawAttributeValue) {
                             logger.warn("Unexpected element " + child.getNodeName());
                             elementRuleCombinerParameters.removeChild(child);
-                            result	= true;
+                            result      = true;
                         } else {
-                            sawAttributeValue	= true;
-                            result				= result || DOMAttributeValue.repair(child);
+                            sawAttributeValue   = true;
+                            result                              = result || DOMAttributeValue.repair(child);
                         }
                     } else {
                         logger.warn("Unexpected element " + child.getNodeName());
                         elementRuleCombinerParameters.removeChild(child);
-                        result	= true;
+                        result  = true;
                     }
                 }
             }
@@ -133,8 +133,8 @@ public class DOMRuleCombinerParameters extends TargetedCombinerParameter<String,
         if (!sawAttributeValue) {
             throw DOMUtil.newMissingElementException(nodeRuleCombinerParameters, XACML3.XMLNS, XACML3.ELEMENT_ATTRIBUTEVALUE);
         }
-        result	= result || DOMUtil.repairStringAttribute(elementRuleCombinerParameters, XACML3.ATTRIBUTE_PARAMETERNAME, "parameter", logger);
-        result	= result || DOMUtil.repairIdentifierAttribute(elementRuleCombinerParameters, XACML3.ATTRIBUTE_RULEIDREF, logger);
+        result  = result || DOMUtil.repairStringAttribute(elementRuleCombinerParameters, XACML3.ATTRIBUTE_PARAMETERNAME, "parameter", logger);
+        result  = result || DOMUtil.repairIdentifierAttribute(elementRuleCombinerParameters, XACML3.ATTRIBUTE_RULEIDREF, logger);
 
         return result;
     }

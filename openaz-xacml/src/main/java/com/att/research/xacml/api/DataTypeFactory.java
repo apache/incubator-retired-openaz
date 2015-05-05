@@ -41,16 +41,16 @@ import com.att.research.xacml.util.FactoryFinder;
  *
  * The static <code>newInstance</code> method looks for the class name of the class extending <code>DataTypeFactory</code> by looking for the
  * property: {@code xacml.dataTypeFactory} in the following places (in order):
- * 		1. System properties
- * 		2. The xacml.properties file which is located by:
- * 			a) {@code System.getProperty("xacml.properties")}
- * 			b) {@code java.home/xacml.properties}
- * 		3. If the class name is not found in one of these properties, the default is: {@code com.att.research.xacml.std.StdDataTypeFactory}
+ *              1. System properties
+ *              2. The xacml.properties file which is located by:
+ *                      a) {@code System.getProperty("xacml.properties")}
+ *                      b) {@code java.home/xacml.properties}
+ *              3. If the class name is not found in one of these properties, the default is: {@code com.att.research.xacml.std.StdDataTypeFactory}
  *
  */
 public abstract class DataTypeFactory {
-    private static final String	FACTORYID = "xacml.dataTypeFactory";
-    private static final String	DEFAULT_FACTORY_CLASSNAME = "com.att.research.xacml.std.StdDataTypeFactory";
+    private static final String FACTORYID = "xacml.dataTypeFactory";
+    private static final String DEFAULT_FACTORY_CLASSNAME = "com.att.research.xacml.std.StdDataTypeFactory";
 
     /**
      * Protected constructor so this class cannot be instantiated.

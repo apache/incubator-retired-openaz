@@ -49,16 +49,16 @@ import com.att.research.xacmlatt.pdp.policy.FunctionArgument;
  * In the first implementation of XACML we had separate files for each XACML Function.
  * This release combines multiple Functions in fewer files to minimize code duplication.
  * This file supports the following XACML codes:
- * 		string-equal
- * 		boolean-equal
- * 		integer-equal
- * 		double-equal
- * 		date-equal
- * 		time-equal
- * 		dateTime-equal
- * 		dayTimeDuration-equal
- * 		yearMonthDuration-equal
- * 		anyURI-equal
+ *              string-equal
+ *              boolean-equal
+ *              integer-equal
+ *              double-equal
+ *              date-equal
+ *              time-equal
+ *              dateTime-equal
+ *              dayTimeDuration-equal
+ *              yearMonthDuration-equal
+ *              anyURI-equal
  *
  *
  * @param <I> the java class for the data type of the function Input arguments
@@ -83,8 +83,8 @@ public class FunctionDefinitionEquality<I> extends FunctionDefinitionHomogeneous
 
     @Override
     public ExpressionResult evaluate(EvaluationContext evaluationContext, List<FunctionArgument> arguments) {
-        List<I> convertedArguments	= new ArrayList<I>();
-        Status status				= this.validateArguments(arguments, convertedArguments);
+        List<I> convertedArguments      = new ArrayList<I>();
+        Status status                           = this.validateArguments(arguments, convertedArguments);
 
         /*
          * If the function arguments are not correct, just return an error status immediately

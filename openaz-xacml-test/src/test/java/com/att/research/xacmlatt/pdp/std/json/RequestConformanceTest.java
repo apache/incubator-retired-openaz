@@ -65,8 +65,8 @@ import com.att.research.xacml.std.json.JSONStructureException;
  * To simplify testing we assume that request.toString() correctly includes a complete text representation of every sub-component of the Request object
  * and we compare the resulting String to our expected String.
  * This has two possible sources of error:
- * 	- toString might not include some sub-component, and
- * 	- the initial verification of the resulting string is done by hand and may have been incorrect.
+ *      - toString might not include some sub-component, and
+ *      - the initial verification of the resulting string is done by hand and may have been incorrect.
  *
  *
  */
@@ -101,10 +101,10 @@ public class RequestConformanceTest {
         }
 
         // run through each XML file
-        //	- load the file from XML into an internal Request object
-        //	- generate the JSON representation of that Request object
-        //	- load that JSON representation into a new Request object
-        //	- compare the 2 Request objects
+        //      - load the file from XML into an internal Request object
+        //      - generate the JSON representation of that Request object
+        //      - load that JSON representation into a new Request object
+        //      - compare the 2 Request objects
         Request xmlRequest = null;
         Request jsonRequest = null;
         try {
@@ -115,7 +115,7 @@ public class RequestConformanceTest {
 //if ( ! f.getName().equals("IIA023Request.xml")) {   continue;  }
 
 // during debugging it is helpful to know what file it is starting to work on
-//				System.out.println("starting file="+currentFile.getName());
+//                              System.out.println("starting file="+currentFile.getName());
 
                 try {
                     // load XML into a Request object
@@ -135,32 +135,32 @@ public class RequestConformanceTest {
 
 // single-value elements
 //jsonString = "{\"Request\":{\"Category\":[{\"CategoryId\":\"urn:oasis:names:tc:xacml:1.0:subject-category:access-subject\",\"Attribute\":["
-//		+ "{\"Issuer\":\"ConformanceTester\",\"Value\":\"Julius Hibbert\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#string\",\"IncludeInResult\":\"true\",\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject:subject-id\"},"
-//		+ "{\"Issuer\":\"ConformanceTester\",\"Value\":123,\"DataType\":\"http://www.w3.org/2001/XMLSchema#string\",\"IncludeInResult\":true,\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject:subject-string\"},"
-//		+ "{\"Issuer\":\"ConformanceTester\",\"Value\":\"true\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#boolean\",\"IncludeInResult\":true,\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject:subject-boolean\"},"
-//		+ "{\"Issuer\":\"ConformanceTester\",\"Value\":\"56\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#integer\",\"IncludeInResult\":true,\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject:subject-integer\"},"
-//		+ "{\"Issuer\":\"ConformanceTester\",\"Value\":\"27.5\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#double\",\"IncludeInResult\":true,\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject:subject-double\"},"
-//		+ "{\"Issuer\":\"ConformanceTester\",\"Value\":\"2002-03-22\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#date\",\"IncludeInResult\":true,\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject:subject-date\"},"
-//		+ "{\"Issuer\":\"ConformanceTester\",\"Value\":\"2002-03-22T08:23:47-05:00\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#dateTime\",\"IncludeInResult\":true,\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject:subject-dateTime\"},"
-//		+ "{\"Issuer\":\"ConformanceTester\",\"Value\":\"P50DT5H4M3S\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#dayTimeDuration\",\"IncludeInResult\":true,\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject:subject-dayTimeDuration\"},"
-//		+ "{\"Issuer\":\"ConformanceTester\",\"Value\":\"-P5Y3M\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#yearMonthDuration\",\"IncludeInResult\":true,\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject:subject-yearMonthDuration\"},"
-//		+ "{\"Issuer\":\"ConformanceTester\",\"Value\":\"0bf7a9876cde\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#hexBinary\",\"IncludeInResult\":true,\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject:subject-hexBinary\"},"
-//		+ "{\"Issuer\":\"ConformanceTester\",\"Value\":\"c3VyZS4=\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#base64Binary\",\"IncludeInResult\":true,\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject:subject-rfc822Name\"},"
-//		+ "{\"Issuer\":\"ConformanceTester\",\"Value\":\"j_hibbert@medico.com\",\"DataType\":\"urn:oasis:names:tc:xacml:1.0:data-type:rfc822Name\",\"IncludeInResult\":true,\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject:subject-rfc822Name\"},"
-//		+ "{\"Issuer\":\"ConformanceTester\",\"Value\":\"CN=Julius Hibbert, O=Medi Corporation, C=US\",\"DataType\":\"urn:oasis:names:tc:xacml:1.0:data-type:x500Name\",\"IncludeInResult\":true,\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject:subject-x500Name\"},"
-//		+ "{\"Issuer\":\"ConformanceTester\",\"Value\":\"122.45.38.245/255.255.255.64:8080-8080\",\"DataType\":\"urn:oasis:names:tc:xacml:2.0:data-type:ipAddress\",\"IncludeInResult\":true,\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject:subject-ipAddress\"},"
-//		+ "{\"Issuer\":\"ConformanceTester\",\"Value\":\"some.host.name:147-874\",\"DataType\":\"urn:oasis:names:tc:xacml:2.0:data-type:dnsName\",\"IncludeInResult\":true,\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject:subject-dnsName\"}"
-//		+ "]},"
-//		+ "{\"CategoryId\":\"urn:oasis:names:tc:xacml:3.0:attribute-category:resource\",\"Attribute\":["
-//		+ "{\"Issuer\":\"ConformanceTester\",\"Value\":{\"Namespaces\":[{\"Namespace\":\"urn:oasis:names:tc:xacml:3.0:core:schema:wd-17\"},{\"Namespace\":\"http://www.medico.com/schemas/record\",\"Prefix\":\"md\"},{\"Namespace\":\"http://www.w3.org/2001/XMLSchema-instance\",\"Prefix\":\"xsi\"}],\"XPathCategory\":\"urn:oasis:names:tc:xacml:3.0:attribute-category:resource\",\"XPath\":\"//md:records/md:record\"},\"DataType\":\"urn:oasis:names:tc:xacml:3.0:data-type:xpathExpression\",\"IncludeInResult\":true,\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:resource:xpathExpression\"},"
-//		+ "{\"Issuer\":\"ConformanceTester\",\"Value\":\"http://medico.com/record/patient/BartSimpson\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#anyURI\",\"IncludeInResult\":true,\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:resource:resource-id\"}"
-//		+ "]},"
-//		+ "{\"CategoryId\":\"urn:oasis:names:tc:xacml:3.0:attribute-category:action\",\"Attribute\":["
-//		+ "{\"Issuer\":\"ConformanceTester\",\"Value\":\"read\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#string\",\"IncludeInResult\":true,\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:action:action-id\"}"
-//		+ "]},"
-//		+ "{\"CategoryId\":\"urn:oasis:names:tc:xacml:3.0:attribute-category:environment\",\"Attribute\":["
-//		+ "{\"Issuer\":\"ConformanceTester\",\"Value\":\"08:23:47-05:00\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#time\",\"IncludeInResult\":true,\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:environment:current-time\"}"
-//		+ "]}],\"ReturnPolicyIdList\":false,\"CombinedDecision\":false}}";
+//              + "{\"Issuer\":\"ConformanceTester\",\"Value\":\"Julius Hibbert\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#string\",\"IncludeInResult\":\"true\",\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject:subject-id\"},"
+//              + "{\"Issuer\":\"ConformanceTester\",\"Value\":123,\"DataType\":\"http://www.w3.org/2001/XMLSchema#string\",\"IncludeInResult\":true,\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject:subject-string\"},"
+//              + "{\"Issuer\":\"ConformanceTester\",\"Value\":\"true\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#boolean\",\"IncludeInResult\":true,\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject:subject-boolean\"},"
+//              + "{\"Issuer\":\"ConformanceTester\",\"Value\":\"56\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#integer\",\"IncludeInResult\":true,\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject:subject-integer\"},"
+//              + "{\"Issuer\":\"ConformanceTester\",\"Value\":\"27.5\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#double\",\"IncludeInResult\":true,\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject:subject-double\"},"
+//              + "{\"Issuer\":\"ConformanceTester\",\"Value\":\"2002-03-22\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#date\",\"IncludeInResult\":true,\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject:subject-date\"},"
+//              + "{\"Issuer\":\"ConformanceTester\",\"Value\":\"2002-03-22T08:23:47-05:00\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#dateTime\",\"IncludeInResult\":true,\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject:subject-dateTime\"},"
+//              + "{\"Issuer\":\"ConformanceTester\",\"Value\":\"P50DT5H4M3S\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#dayTimeDuration\",\"IncludeInResult\":true,\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject:subject-dayTimeDuration\"},"
+//              + "{\"Issuer\":\"ConformanceTester\",\"Value\":\"-P5Y3M\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#yearMonthDuration\",\"IncludeInResult\":true,\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject:subject-yearMonthDuration\"},"
+//              + "{\"Issuer\":\"ConformanceTester\",\"Value\":\"0bf7a9876cde\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#hexBinary\",\"IncludeInResult\":true,\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject:subject-hexBinary\"},"
+//              + "{\"Issuer\":\"ConformanceTester\",\"Value\":\"c3VyZS4=\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#base64Binary\",\"IncludeInResult\":true,\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject:subject-rfc822Name\"},"
+//              + "{\"Issuer\":\"ConformanceTester\",\"Value\":\"j_hibbert@medico.com\",\"DataType\":\"urn:oasis:names:tc:xacml:1.0:data-type:rfc822Name\",\"IncludeInResult\":true,\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject:subject-rfc822Name\"},"
+//              + "{\"Issuer\":\"ConformanceTester\",\"Value\":\"CN=Julius Hibbert, O=Medi Corporation, C=US\",\"DataType\":\"urn:oasis:names:tc:xacml:1.0:data-type:x500Name\",\"IncludeInResult\":true,\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject:subject-x500Name\"},"
+//              + "{\"Issuer\":\"ConformanceTester\",\"Value\":\"122.45.38.245/255.255.255.64:8080-8080\",\"DataType\":\"urn:oasis:names:tc:xacml:2.0:data-type:ipAddress\",\"IncludeInResult\":true,\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject:subject-ipAddress\"},"
+//              + "{\"Issuer\":\"ConformanceTester\",\"Value\":\"some.host.name:147-874\",\"DataType\":\"urn:oasis:names:tc:xacml:2.0:data-type:dnsName\",\"IncludeInResult\":true,\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject:subject-dnsName\"}"
+//              + "]},"
+//              + "{\"CategoryId\":\"urn:oasis:names:tc:xacml:3.0:attribute-category:resource\",\"Attribute\":["
+//              + "{\"Issuer\":\"ConformanceTester\",\"Value\":{\"Namespaces\":[{\"Namespace\":\"urn:oasis:names:tc:xacml:3.0:core:schema:wd-17\"},{\"Namespace\":\"http://www.medico.com/schemas/record\",\"Prefix\":\"md\"},{\"Namespace\":\"http://www.w3.org/2001/XMLSchema-instance\",\"Prefix\":\"xsi\"}],\"XPathCategory\":\"urn:oasis:names:tc:xacml:3.0:attribute-category:resource\",\"XPath\":\"//md:records/md:record\"},\"DataType\":\"urn:oasis:names:tc:xacml:3.0:data-type:xpathExpression\",\"IncludeInResult\":true,\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:resource:xpathExpression\"},"
+//              + "{\"Issuer\":\"ConformanceTester\",\"Value\":\"http://medico.com/record/patient/BartSimpson\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#anyURI\",\"IncludeInResult\":true,\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:resource:resource-id\"}"
+//              + "]},"
+//              + "{\"CategoryId\":\"urn:oasis:names:tc:xacml:3.0:attribute-category:action\",\"Attribute\":["
+//              + "{\"Issuer\":\"ConformanceTester\",\"Value\":\"read\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#string\",\"IncludeInResult\":true,\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:action:action-id\"}"
+//              + "]},"
+//              + "{\"CategoryId\":\"urn:oasis:names:tc:xacml:3.0:attribute-category:environment\",\"Attribute\":["
+//              + "{\"Issuer\":\"ConformanceTester\",\"Value\":\"08:23:47-05:00\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#time\",\"IncludeInResult\":true,\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:environment:current-time\"}"
+//              + "]}],\"ReturnPolicyIdList\":false,\"CombinedDecision\":false}}";
 
 
 
@@ -174,43 +174,43 @@ public class RequestConformanceTest {
 
 // String for testing Arrays of Attribute values
 //jsonString = "{\"Request\":{\"Category\":[{\"CategoryId\":\"urn:oasis:names:tc:xacml:1.0:subject-category:access-subject\",\"Attribute\":["
-//		+ "{\"Issuer\":\"ConformanceTester\",\"Value\":[\"test string\",\"Julius Hibbert\",\"Julius Hibbert as string\"],\"DataType\":\"http://www.w3.org/2001/XMLSchema#string\",\"IncludeInResult\":true,\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject:subject-id\"},"
-//		+ "{\"Issuer\":\"ConformanceTester\",\"Value\":[true, false],\"DataType\":\"http://www.w3.org/2001/XMLSchema#boolean\",\"IncludeInResult\":true,\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject:subject-boolean\"},"
-//		+ "{\"Issuer\":\"ConformanceTester\",\"Value\":[56, 12],\"DataType\":\"http://www.w3.org/2001/XMLSchema#integer\",\"IncludeInResult\":true,\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject:subject-integer\"},"
-//		+ "{\"Issuer\":\"ConformanceTester\",\"Value\":[27.12, 12112.344],\"DataType\":\"http://www.w3.org/2001/XMLSchema#double\",\"IncludeInResult\":true,\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject:subject-double\"},"
-//		+ "{\"Issuer\":\"ConformanceTester\",\"Value\":[\"2002-03-22\",\"1256-11-11\"],\"IncludeInResult\":true,\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject:subject-date\"},"
-//		+ "{\"Issuer\":\"ConformanceTester\",\"Value\":[\"2002-03-22T08:23:47-05:00\",\"1056-11-05T19:08:12-14:30\"],\"DataType\":\"http://www.w3.org/2001/XMLSchema#dateTime\",\"IncludeInResult\":true,\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject:subject-dateTime\"},"
-//		+ "{\"Issuer\":\"ConformanceTester\",\"Value\":[\"P50DT5H4M3S\",\"P12DT148H18M21S\"],\"DataType\":\"http://www.w3.org/2001/XMLSchema#dayTimeDuration\",\"IncludeInResult\":true,\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject:subject-dayTimeDuration\"},"
-//		+ "{\"Issuer\":\"ConformanceTester\",\"Value\":\"-P5Y3M\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#yearMonthDuration\",\"IncludeInResult\":true,\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject:subject-yearMonthDuration\"},"
-//		+ "{\"Issuer\":\"ConformanceTester\",\"Value\":\"-P28Y7M\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#yearMonthDuration\",\"IncludeInResult\":true,\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject:subject-yearMonthDuration\"},"
-//		+ "{\"Issuer\":\"ConformanceTester\",\"Value\":\"0bf7a9876cde\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#hexBinary\",\"IncludeInResult\":true,\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject:subject-hexBinary\"},"
-//		+ "{\"Issuer\":\"ConformanceTester\",\"Value\":\"0fb8\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#hexBinary\",\"IncludeInResult\":true,\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject:subject-hexBinary\"},"
-//		+ "{\"Issuer\":\"ConformanceTester\",\"Value\":\"c3VyZS4=\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#base64Binary\",\"IncludeInResult\":true,\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject:subject-rfc822Name\"},"
-//		+ "{\"Issuer\":\"ConformanceTester\",\"Value\":\"YXN1cmUu\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#base64Binary\",\"IncludeInResult\":true,\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject:subject-rfc822Name\"},"
-//		+ "{\"Issuer\":\"ConformanceTester\",\"Value\":\"j_hibbert@medico.com\",\"DataType\":\"urn:oasis:names:tc:xacml:1.0:data-type:rfc822Name\",\"IncludeInResult\":true,\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject:subject-rfc822Name\"},"
-//		+ "{\"Issuer\":\"ConformanceTester\",\"Value\":\"c_clown@nose_medico.com\",\"DataType\":\"urn:oasis:names:tc:xacml:1.0:data-type:rfc822Name\",\"IncludeInResult\":true,\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject:subject-rfc822Name\"},"
-//		+ "{\"Issuer\":\"ConformanceTester\",\"Value\":\"CN=Julius Hibbert, O=Medi Corporation, C=US\",\"DataType\":\"urn:oasis:names:tc:xacml:1.0:data-type:x500Name\",\"IncludeInResult\":true,\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject:subject-x500Name\"},"
-//		+ "{\"Issuer\":\"ConformanceTester\",\"Value\":\"CN=Crusty Clown, O=Red Nose Corporation, C=US\",\"DataType\":\"urn:oasis:names:tc:xacml:1.0:data-type:x500Name\",\"IncludeInResult\":true,\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject:subject-x500Name\"},"
-//		+ "{\"Issuer\":\"ConformanceTester\",\"Value\":\"122.45.38.245/255.255.255.64:8080-8080\",\"DataType\":\"urn:oasis:names:tc:xacml:2.0:data-type:ipAddress\",\"IncludeInResult\":true,\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject:subject-ipAddress\"},"
-//		+ "{\"Issuer\":\"ConformanceTester\",\"Value\":\"35.123.111.56/255.64.32.255:9999-9999\",\"DataType\":\"urn:oasis:names:tc:xacml:2.0:data-type:ipAddress\",\"IncludeInResult\":true,\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject:subject-ipAddress\"},"
-//		+ "{\"Issuer\":\"ConformanceTester\",\"Value\":\"some.host.name:147-874\",\"DataType\":\"urn:oasis:names:tc:xacml:2.0:data-type:dnsName\",\"IncludeInResult\":true,\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject:subject-dnsName\"},"
-//		+ "{\"Issuer\":\"ConformanceTester\",\"Value\":\"a.different.host:-45\",\"DataType\":\"urn:oasis:names:tc:xacml:2.0:data-type:dnsName\",\"IncludeInResult\":true,\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject:subject-dnsName\"}"
-//		+ "]},"
-//		+ "{\"CategoryId\":\"urn:oasis:names:tc:xacml:3.0:attribute-category:resource\",\"Attribute\":["
-//		+ "{\"Issuer\":\"ConformanceTester\",\"Value\":{\"Namespaces\":[{\"Namespace\":\"urn:oasis:names:tc:xacml:3.0:core:schema:wd-17\"},{\"Namespace\":\"http://www.medico.com/schemas/record\",\"Prefix\":\"md\"},{\"Namespace\":\"http://www.w3.org/2001/XMLSchema-instance\",\"Prefix\":\"xsi\"}],\"XPathCategory\":\"urn:oasis:names:tc:xacml:3.0:attribute-category:resource\",\"XPath\":\"//md:records/md:record\"},\"DataType\":\"urn:oasis:names:tc:xacml:3.0:data-type:xpathExpression\",\"IncludeInResult\":true,\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:resource:xpathExpression\"},"
-//		+ "{\"Issuer\":\"ConformanceTester\",\"Value\":{\"Namespaces\":[{\"Namespace\":\"urn:oasis:names:tc:xacml:3.0:core:schema:wd-17\"},{\"Namespace\":\"http://www.medico.com/schemas/record\",\"Prefix\":\"md\"},{\"Namespace\":\"http://www.w3.org/2001/XMLSchema-instance\",\"Prefix\":\"xsi\"}],\"XPathCategory\":\"urn:oasis:names:tc:xacml:3.0:attribute-category:resource\",\"XPath\":\"//md:records/md:diagnosis_info\"},\"DataType\":\"urn:oasis:names:tc:xacml:3.0:data-type:xpathExpression\",\"IncludeInResult\":true,\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:resource:xpathExpression\"},"
-//		+ "{\"Issuer\":\"ConformanceTester\",\"Value\":\"http://medico.com/record/patient/BartSimpson\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#anyURI\",\"IncludeInResult\":true,\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:resource:resource-id\"},"
-//		+ "{\"Issuer\":\"ConformanceTester\",\"Value\":\"http://medico.com/record/patient/HomerSimpson\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#anyURI\",\"IncludeInResult\":true,\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:resource:resource-id\"}"
-//		+ "],"
-//		+ "\"Content\":\"<?xml version=\\\"1.0\\\" encoding=\\\"UTF-8\\\"?><md:records xmlns:md=\\\"http://www.medico.com/schemas/record\\\">\\r\\n            \\t<md:record>\\r\\n                \\t<md:patient_info>\\r\\n                    \\t<md:name>Bart Simpson</md:name>\\r\\n                    \\t<md:age>60</md:age>\\r\\n                    \\t<md:sex>male</md:sex>\\r\\n                    \\t<md:health_insurance>123456</md:health_insurance>\\r\\n                \\t</md:patient_info>\\r\\n                \\t<md:diagnosis_info>\\r\\n                    \\t<md:diagnosis>\\r\\n                        \\t<md:item type=\\\"primary\\\">Gastric Cancer</md:item>\\r\\n                        \\t<md:item type=\\\"secondary\\\">Hyper tension</md:item>\\r\\n                    \\t</md:diagnosis>\\r\\n                    \\t<md:pathological_diagnosis>\\r\\n                        \\t<md:diagnosis>\\r\\n                            \\t<md:item type=\\\"primary\\\">Well differentiated adeno carcinoma</md:item>\\r\\n                        \\t</md:diagnosis>\\r\\n                        \\t<md:date>2000-10-05</md:date>\\r\\n                        \\t<md:malignancy type=\\\"yes\\\"/>\\r\\n                    \\t</md:pathological_diagnosis>\\r\\n                \\t</md:diagnosis_info>                \\r\\n            \\t</md:record>\\r\\n            \\t<md:record>\\r\\n                \\t<md:patient_info>\\r\\n                    \\t<md:name>Homer Simpson</md:name>\\r\\n                    \\t<md:age>80</md:age>\\r\\n                    \\t<md:sex>male</md:sex>\\r\\n                    \\t<md:health_insurance>123456</md:health_insurance>\\r\\n                \\t</md:patient_info>\\r\\n                \\t<md:diagnosis_info>\\r\\n                    \\t<md:diagnosis>\\r\\n                        \\t<md:item type=\\\"primary\\\">Gastric Cancer</md:item>\\r\\n                        \\t<md:item type=\\\"secondary\\\">Hyper tension</md:item>\\r\\n                    \\t</md:diagnosis>\\r\\n                    \\t<md:pathological_diagnosis>\\r\\n                        \\t<md:diagnosis>\\r\\n                            \\t<md:item type=\\\"primary\\\">Well differentiated adeno carcinoma</md:item>\\r\\n                        \\t</md:diagnosis>\\r\\n                        \\t<md:date>2000-10-05</md:date>\\r\\n                        \\t<md:malignancy type=\\\"yes\\\"/>\\r\\n                    \\t</md:pathological_diagnosis>\\r\\n                \\t</md:diagnosis_info>                \\r\\n            \\t</md:record>\\r\\n\\t    </md:records>\"},"
-//		+ "{\"CategoryId\":\"urn:oasis:names:tc:xacml:3.0:attribute-category:action\",\"Attribute\":["
-//		+ "{\"Issuer\":\"ConformanceTester\",\"Value\":\"read\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#string\",\"IncludeInResult\":true,\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:action:action-id\"},"
-//		+ "{\"Issuer\":\"ConformanceTester\",\"Value\":\"write\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#string\",\"IncludeInResult\":true,\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:action:action-id\"}"
-//		+ "]},"
-//		+ "{\"CategoryId\":\"urn:oasis:names:tc:xacml:3.0:attribute-category:environment\",\"Attribute\":["
-//		+ "{\"Issuer\":\"ConformanceTester\",\"Value\":\"08:23:47-05:00\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#time\",\"IncludeInResult\":true,\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:environment:current-time\"},"
-//		+ "{\"Issuer\":\"ConformanceTester\",\"Value\":\"22:12:10Z\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#time\",\"IncludeInResult\":true,\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:environment:current-time\"}]}]"
-//		+ ",\"ReturnPolicyIdList\":false,\"CombinedDecision\":false}}";
+//              + "{\"Issuer\":\"ConformanceTester\",\"Value\":[\"test string\",\"Julius Hibbert\",\"Julius Hibbert as string\"],\"DataType\":\"http://www.w3.org/2001/XMLSchema#string\",\"IncludeInResult\":true,\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject:subject-id\"},"
+//              + "{\"Issuer\":\"ConformanceTester\",\"Value\":[true, false],\"DataType\":\"http://www.w3.org/2001/XMLSchema#boolean\",\"IncludeInResult\":true,\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject:subject-boolean\"},"
+//              + "{\"Issuer\":\"ConformanceTester\",\"Value\":[56, 12],\"DataType\":\"http://www.w3.org/2001/XMLSchema#integer\",\"IncludeInResult\":true,\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject:subject-integer\"},"
+//              + "{\"Issuer\":\"ConformanceTester\",\"Value\":[27.12, 12112.344],\"DataType\":\"http://www.w3.org/2001/XMLSchema#double\",\"IncludeInResult\":true,\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject:subject-double\"},"
+//              + "{\"Issuer\":\"ConformanceTester\",\"Value\":[\"2002-03-22\",\"1256-11-11\"],\"IncludeInResult\":true,\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject:subject-date\"},"
+//              + "{\"Issuer\":\"ConformanceTester\",\"Value\":[\"2002-03-22T08:23:47-05:00\",\"1056-11-05T19:08:12-14:30\"],\"DataType\":\"http://www.w3.org/2001/XMLSchema#dateTime\",\"IncludeInResult\":true,\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject:subject-dateTime\"},"
+//              + "{\"Issuer\":\"ConformanceTester\",\"Value\":[\"P50DT5H4M3S\",\"P12DT148H18M21S\"],\"DataType\":\"http://www.w3.org/2001/XMLSchema#dayTimeDuration\",\"IncludeInResult\":true,\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject:subject-dayTimeDuration\"},"
+//              + "{\"Issuer\":\"ConformanceTester\",\"Value\":\"-P5Y3M\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#yearMonthDuration\",\"IncludeInResult\":true,\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject:subject-yearMonthDuration\"},"
+//              + "{\"Issuer\":\"ConformanceTester\",\"Value\":\"-P28Y7M\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#yearMonthDuration\",\"IncludeInResult\":true,\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject:subject-yearMonthDuration\"},"
+//              + "{\"Issuer\":\"ConformanceTester\",\"Value\":\"0bf7a9876cde\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#hexBinary\",\"IncludeInResult\":true,\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject:subject-hexBinary\"},"
+//              + "{\"Issuer\":\"ConformanceTester\",\"Value\":\"0fb8\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#hexBinary\",\"IncludeInResult\":true,\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject:subject-hexBinary\"},"
+//              + "{\"Issuer\":\"ConformanceTester\",\"Value\":\"c3VyZS4=\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#base64Binary\",\"IncludeInResult\":true,\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject:subject-rfc822Name\"},"
+//              + "{\"Issuer\":\"ConformanceTester\",\"Value\":\"YXN1cmUu\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#base64Binary\",\"IncludeInResult\":true,\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject:subject-rfc822Name\"},"
+//              + "{\"Issuer\":\"ConformanceTester\",\"Value\":\"j_hibbert@medico.com\",\"DataType\":\"urn:oasis:names:tc:xacml:1.0:data-type:rfc822Name\",\"IncludeInResult\":true,\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject:subject-rfc822Name\"},"
+//              + "{\"Issuer\":\"ConformanceTester\",\"Value\":\"c_clown@nose_medico.com\",\"DataType\":\"urn:oasis:names:tc:xacml:1.0:data-type:rfc822Name\",\"IncludeInResult\":true,\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject:subject-rfc822Name\"},"
+//              + "{\"Issuer\":\"ConformanceTester\",\"Value\":\"CN=Julius Hibbert, O=Medi Corporation, C=US\",\"DataType\":\"urn:oasis:names:tc:xacml:1.0:data-type:x500Name\",\"IncludeInResult\":true,\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject:subject-x500Name\"},"
+//              + "{\"Issuer\":\"ConformanceTester\",\"Value\":\"CN=Crusty Clown, O=Red Nose Corporation, C=US\",\"DataType\":\"urn:oasis:names:tc:xacml:1.0:data-type:x500Name\",\"IncludeInResult\":true,\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject:subject-x500Name\"},"
+//              + "{\"Issuer\":\"ConformanceTester\",\"Value\":\"122.45.38.245/255.255.255.64:8080-8080\",\"DataType\":\"urn:oasis:names:tc:xacml:2.0:data-type:ipAddress\",\"IncludeInResult\":true,\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject:subject-ipAddress\"},"
+//              + "{\"Issuer\":\"ConformanceTester\",\"Value\":\"35.123.111.56/255.64.32.255:9999-9999\",\"DataType\":\"urn:oasis:names:tc:xacml:2.0:data-type:ipAddress\",\"IncludeInResult\":true,\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject:subject-ipAddress\"},"
+//              + "{\"Issuer\":\"ConformanceTester\",\"Value\":\"some.host.name:147-874\",\"DataType\":\"urn:oasis:names:tc:xacml:2.0:data-type:dnsName\",\"IncludeInResult\":true,\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject:subject-dnsName\"},"
+//              + "{\"Issuer\":\"ConformanceTester\",\"Value\":\"a.different.host:-45\",\"DataType\":\"urn:oasis:names:tc:xacml:2.0:data-type:dnsName\",\"IncludeInResult\":true,\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject:subject-dnsName\"}"
+//              + "]},"
+//              + "{\"CategoryId\":\"urn:oasis:names:tc:xacml:3.0:attribute-category:resource\",\"Attribute\":["
+//              + "{\"Issuer\":\"ConformanceTester\",\"Value\":{\"Namespaces\":[{\"Namespace\":\"urn:oasis:names:tc:xacml:3.0:core:schema:wd-17\"},{\"Namespace\":\"http://www.medico.com/schemas/record\",\"Prefix\":\"md\"},{\"Namespace\":\"http://www.w3.org/2001/XMLSchema-instance\",\"Prefix\":\"xsi\"}],\"XPathCategory\":\"urn:oasis:names:tc:xacml:3.0:attribute-category:resource\",\"XPath\":\"//md:records/md:record\"},\"DataType\":\"urn:oasis:names:tc:xacml:3.0:data-type:xpathExpression\",\"IncludeInResult\":true,\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:resource:xpathExpression\"},"
+//              + "{\"Issuer\":\"ConformanceTester\",\"Value\":{\"Namespaces\":[{\"Namespace\":\"urn:oasis:names:tc:xacml:3.0:core:schema:wd-17\"},{\"Namespace\":\"http://www.medico.com/schemas/record\",\"Prefix\":\"md\"},{\"Namespace\":\"http://www.w3.org/2001/XMLSchema-instance\",\"Prefix\":\"xsi\"}],\"XPathCategory\":\"urn:oasis:names:tc:xacml:3.0:attribute-category:resource\",\"XPath\":\"//md:records/md:diagnosis_info\"},\"DataType\":\"urn:oasis:names:tc:xacml:3.0:data-type:xpathExpression\",\"IncludeInResult\":true,\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:resource:xpathExpression\"},"
+//              + "{\"Issuer\":\"ConformanceTester\",\"Value\":\"http://medico.com/record/patient/BartSimpson\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#anyURI\",\"IncludeInResult\":true,\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:resource:resource-id\"},"
+//              + "{\"Issuer\":\"ConformanceTester\",\"Value\":\"http://medico.com/record/patient/HomerSimpson\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#anyURI\",\"IncludeInResult\":true,\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:resource:resource-id\"}"
+//              + "],"
+//              + "\"Content\":\"<?xml version=\\\"1.0\\\" encoding=\\\"UTF-8\\\"?><md:records xmlns:md=\\\"http://www.medico.com/schemas/record\\\">\\r\\n            \\t<md:record>\\r\\n                \\t<md:patient_info>\\r\\n                    \\t<md:name>Bart Simpson</md:name>\\r\\n                    \\t<md:age>60</md:age>\\r\\n                    \\t<md:sex>male</md:sex>\\r\\n                    \\t<md:health_insurance>123456</md:health_insurance>\\r\\n                \\t</md:patient_info>\\r\\n                \\t<md:diagnosis_info>\\r\\n                    \\t<md:diagnosis>\\r\\n                        \\t<md:item type=\\\"primary\\\">Gastric Cancer</md:item>\\r\\n                        \\t<md:item type=\\\"secondary\\\">Hyper tension</md:item>\\r\\n                    \\t</md:diagnosis>\\r\\n                    \\t<md:pathological_diagnosis>\\r\\n                        \\t<md:diagnosis>\\r\\n                            \\t<md:item type=\\\"primary\\\">Well differentiated adeno carcinoma</md:item>\\r\\n                        \\t</md:diagnosis>\\r\\n                        \\t<md:date>2000-10-05</md:date>\\r\\n                        \\t<md:malignancy type=\\\"yes\\\"/>\\r\\n                    \\t</md:pathological_diagnosis>\\r\\n                \\t</md:diagnosis_info>                \\r\\n            \\t</md:record>\\r\\n            \\t<md:record>\\r\\n                \\t<md:patient_info>\\r\\n                    \\t<md:name>Homer Simpson</md:name>\\r\\n                    \\t<md:age>80</md:age>\\r\\n                    \\t<md:sex>male</md:sex>\\r\\n                    \\t<md:health_insurance>123456</md:health_insurance>\\r\\n                \\t</md:patient_info>\\r\\n                \\t<md:diagnosis_info>\\r\\n                    \\t<md:diagnosis>\\r\\n                        \\t<md:item type=\\\"primary\\\">Gastric Cancer</md:item>\\r\\n                        \\t<md:item type=\\\"secondary\\\">Hyper tension</md:item>\\r\\n                    \\t</md:diagnosis>\\r\\n                    \\t<md:pathological_diagnosis>\\r\\n                        \\t<md:diagnosis>\\r\\n                            \\t<md:item type=\\\"primary\\\">Well differentiated adeno carcinoma</md:item>\\r\\n                        \\t</md:diagnosis>\\r\\n                        \\t<md:date>2000-10-05</md:date>\\r\\n                        \\t<md:malignancy type=\\\"yes\\\"/>\\r\\n                    \\t</md:pathological_diagnosis>\\r\\n                \\t</md:diagnosis_info>                \\r\\n            \\t</md:record>\\r\\n\\t    </md:records>\"},"
+//              + "{\"CategoryId\":\"urn:oasis:names:tc:xacml:3.0:attribute-category:action\",\"Attribute\":["
+//              + "{\"Issuer\":\"ConformanceTester\",\"Value\":\"read\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#string\",\"IncludeInResult\":true,\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:action:action-id\"},"
+//              + "{\"Issuer\":\"ConformanceTester\",\"Value\":\"write\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#string\",\"IncludeInResult\":true,\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:action:action-id\"}"
+//              + "]},"
+//              + "{\"CategoryId\":\"urn:oasis:names:tc:xacml:3.0:attribute-category:environment\",\"Attribute\":["
+//              + "{\"Issuer\":\"ConformanceTester\",\"Value\":\"08:23:47-05:00\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#time\",\"IncludeInResult\":true,\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:environment:current-time\"},"
+//              + "{\"Issuer\":\"ConformanceTester\",\"Value\":\"22:12:10Z\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#time\",\"IncludeInResult\":true,\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:environment:current-time\"}]}]"
+//              + ",\"ReturnPolicyIdList\":false,\"CombinedDecision\":false}}";
 
 
 

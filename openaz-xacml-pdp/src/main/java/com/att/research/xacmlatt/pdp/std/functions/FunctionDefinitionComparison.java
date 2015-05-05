@@ -51,14 +51,14 @@ import com.att.research.xacmlatt.pdp.policy.FunctionArgument;
  * In the first implementation of XACML we had separate files for each XACML Function.
  * This release combines multiple Functions in fewer files to minimize code duplication.
  * This file supports the following XACML codes:
- * 		integer-greater-than
- * 		integer-greater-than-or-equal
- * 		integer-less-than
- * 		integer-less-than-or-equal
- * 		double-greater-than
- * 		double-greater-than-or-equal
- * 		double-less-than
- * 		double-less-than-or-equal
+ *              integer-greater-than
+ *              integer-greater-than-or-equal
+ *              integer-less-than
+ *              integer-less-than-or-equal
+ *              double-greater-than
+ *              double-greater-than-or-equal
+ *              double-less-than
+ *              double-less-than-or-equal
  *
  *
  *
@@ -92,8 +92,8 @@ public class FunctionDefinitionComparison<I extends Comparable<I>> extends Funct
     @Override
     public ExpressionResult evaluate(EvaluationContext evaluationContext, List<FunctionArgument> arguments) {
 
-        List<I> convertedArguments	= new ArrayList<I>();
-        Status status				= this.validateArguments(arguments, convertedArguments);
+        List<I> convertedArguments      = new ArrayList<I>();
+        Status status                           = this.validateArguments(arguments, convertedArguments);
 
         /*
          * If the function arguments are not correct, just return an error status immediately

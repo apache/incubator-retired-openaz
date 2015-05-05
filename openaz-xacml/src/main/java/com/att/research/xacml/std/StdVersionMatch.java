@@ -41,8 +41,8 @@ import com.att.research.xacml.util.ObjUtil;
  *
  */
 public class StdVersionMatch implements VersionMatch {
-    private int[]	matchComponents;
-    private String	cachedStringRep;
+    private int[]       matchComponents;
+    private String      cachedStringRep;
 
     private static void addComponent(StringBuilder stringBuilder, int component) {
         if (component == -2) {
@@ -55,26 +55,26 @@ public class StdVersionMatch implements VersionMatch {
     }
 
     public StdVersionMatch(int[] matchComponentsIn) {
-        this.matchComponents	= matchComponentsIn;
+        this.matchComponents    = matchComponentsIn;
     }
 
     public static StdVersionMatch newInstance(String versionMatch) throws ParseException {
         if (versionMatch == null) {
             throw new NullPointerException("Null version string");
         }
-        String[] versionMatchParts	= versionMatch.split("[.]", -1);
+        String[] versionMatchParts      = versionMatch.split("[.]", -1);
         if (versionMatchParts == null) {
             throw new ParseException("Invalid version string \"" + versionMatch + "\"", 0);
         }
-        int[]	versionMatchNumberParts	= new int[versionMatchParts.length];
+        int[]   versionMatchNumberParts = new int[versionMatchParts.length];
         for (int i = 0 ; i < versionMatchParts.length ; i++) {
             if (versionMatchParts[i].equals("*")) {
-                versionMatchNumberParts[i]	= -1;
+                versionMatchNumberParts[i]      = -1;
             } else if (versionMatchParts[i].equals("+")) {
-                versionMatchNumberParts[i]	= -2;
+                versionMatchNumberParts[i]      = -2;
             } else {
                 try {
-                    versionMatchNumberParts[i]	= Integer.parseInt(versionMatchParts[i]);
+                    versionMatchNumberParts[i]  = Integer.parseInt(versionMatchParts[i]);
                 } catch (NumberFormatException ex) {
                     throw new ParseException("Invalid version number \"" + versionMatchParts[i] + "\"", i);
                 }
@@ -87,8 +87,8 @@ public class StdVersionMatch implements VersionMatch {
     @Override
     public String getVersionMatch() {
         if (this.cachedStringRep == null) {
-            StringBuilder stringBuilder	= new StringBuilder();
-            int[] matchComponentsHere	= this.getMatchComponents();
+            StringBuilder stringBuilder = new StringBuilder();
+            int[] matchComponentsHere   = this.getMatchComponents();
             if (matchComponentsHere != null && matchComponentsHere.length > 0) {
                 addComponent(stringBuilder, matchComponents[0]);
                 for (int i = 1 ; i < matchComponents.length ; i++) {
@@ -96,7 +96,7 @@ public class StdVersionMatch implements VersionMatch {
                     addComponent(stringBuilder, matchComponents[i]);
                 }
             }
-            this.cachedStringRep	= stringBuilder.toString();
+            this.cachedStringRep        = stringBuilder.toString();
         }
         return this.cachedStringRep;
     }
@@ -107,23 +107,23 @@ public class StdVersionMatch implements VersionMatch {
 
     @Override
     public boolean match(Version version, int cmp) {
-        int[] matchComponentsHere	= this.getMatchComponents();
+        int[] matchComponentsHere       = this.getMatchComponents();
         if (matchComponentsHere == null || matchComponentsHere.length == 0) {
             return false;
         }
-        int[] versionComponents		= version.getVersionDigits();
+        int[] versionComponents         = version.getVersionDigits();
         if (versionComponents == null || versionComponents.length == 0) {
             return false;
         }
-        int	iMatch	= 0, iVersion	= 0;
+        int     iMatch  = 0, iVersion   = 0;
         int matchValue;
         while (iMatch < matchComponents.length && iVersion < versionComponents.length) {
             if ((matchValue = matchComponentsHere[iMatch]) == -2) {
-                iVersion	= versionComponents.length;
+                iVersion        = versionComponents.length;
             } else if (matchValue == -1) {
                 iVersion++;
             } else {
-                int versionValue	= versionComponents[iVersion];
+                int versionValue        = versionComponents[iVersion];
                 if (((cmp == 0) && (versionValue == matchValue)) ||
                         ((cmp < 0) && (versionValue <= matchValue)) ||
                         ((cmp > 0) && (versionValue >= matchValue))) {
@@ -144,7 +144,7 @@ public class StdVersionMatch implements VersionMatch {
         } else if (obj == null || !(obj instanceof VersionMatch)) {
             return false;
         } else {
-            VersionMatch objVersionMatch	= (VersionMatch)obj;
+            VersionMatch objVersionMatch        = (VersionMatch)obj;
             return ObjUtil.equalsAllowNull(this.getVersionMatch(), objVersionMatch.getVersionMatch());
         }
     }

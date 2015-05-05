@@ -55,7 +55,7 @@ import com.att.research.xacml.std.pip.StdPIPResponse;
  *
  */
 public class EngineFinder implements PIPFinder {
-    private Map<String,List<PIPEngine>> pipEngines	= new HashMap<String,List<PIPEngine>>();
+    private Map<String,List<PIPEngine>> pipEngines      = new HashMap<String,List<PIPEngine>>();
 
     /**
      * Creates an empty <code>EngineFinder</code>
@@ -70,9 +70,9 @@ public class EngineFinder implements PIPFinder {
      */
     public void register(PIPEngine pipEngine) {
         if (pipEngine != null) {
-            List<PIPEngine> pipEnginesForName	= this.pipEngines.get(pipEngine.getName());
+            List<PIPEngine> pipEnginesForName   = this.pipEngines.get(pipEngine.getName());
             if (pipEnginesForName == null) {
-                pipEnginesForName	= new ArrayList<PIPEngine>();
+                pipEnginesForName       = new ArrayList<PIPEngine>();
                 this.pipEngines.put(pipEngine.getName(), pipEnginesForName);
             }
             pipEnginesForName.add(pipEngine);
@@ -81,11 +81,11 @@ public class EngineFinder implements PIPFinder {
 
     @Override
     public PIPResponse getAttributes(PIPRequest pipRequest, PIPEngine exclude, PIPFinder pipFinderParent) throws PIPException {
-        StdMutablePIPResponse pipResponse	= new StdMutablePIPResponse();
-        Status firstErrorStatus	= null;
-        Iterator<List<PIPEngine>> iterPIPEngineLists	= this.pipEngines.values().iterator();
+        StdMutablePIPResponse pipResponse       = new StdMutablePIPResponse();
+        Status firstErrorStatus = null;
+        Iterator<List<PIPEngine>> iterPIPEngineLists    = this.pipEngines.values().iterator();
         while (iterPIPEngineLists.hasNext()) {
-            List<PIPEngine> listPIPEngines	= iterPIPEngineLists.next();
+            List<PIPEngine> listPIPEngines      = iterPIPEngineLists.next();
             for (PIPEngine pipEngine : listPIPEngines) {
                 if (pipEngine != exclude) {
                     PIPResponse pipResponseEngine = null;

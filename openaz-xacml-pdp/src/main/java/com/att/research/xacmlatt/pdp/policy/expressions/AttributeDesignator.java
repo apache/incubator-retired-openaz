@@ -67,21 +67,21 @@ public class AttributeDesignator extends AttributeRetrievalBase {
 
     protected PIPRequest getPIPRequest() {
         if (this.pipRequestCached == null) {
-            this.pipRequestCached	= new StdPIPRequest(this.getCategory(), this.getAttributeId(), this.getDataTypeId(), this.getIssuer());
+            this.pipRequestCached       = new StdPIPRequest(this.getCategory(), this.getAttributeId(), this.getDataTypeId(), this.getIssuer());
         }
         return this.pipRequestCached;
     }
 
     protected MissingAttributeDetail getMissingAttributeDetail() {
         if (this.missingAttributeDetail == null) {
-            this.missingAttributeDetail	= new StdMutableMissingAttributeDetail(this.getCategory(), this.getAttributeId(), this.getDataTypeId(), this.getIssuer());
+            this.missingAttributeDetail = new StdMutableMissingAttributeDetail(this.getCategory(), this.getAttributeId(), this.getDataTypeId(), this.getIssuer());
         }
         return this.missingAttributeDetail;
     }
 
     protected StatusDetail getStatusDetail() {
         if (this.statusDetail == null) {
-            this.statusDetail	= new StdStatusDetail(this.getMissingAttributeDetail());
+            this.statusDetail   = new StdStatusDetail(this.getMissingAttributeDetail());
         }
         return this.statusDetail;
     }
@@ -102,7 +102,7 @@ public class AttributeDesignator extends AttributeRetrievalBase {
     }
 
     public void setAttributeId(Identifier identifierAttributeId) {
-        this.attributeId	= identifierAttributeId;
+        this.attributeId        = identifierAttributeId;
     }
 
     public String getIssuer() {
@@ -110,7 +110,7 @@ public class AttributeDesignator extends AttributeRetrievalBase {
     }
 
     public void setIssuer(String issuerIn) {
-        this.issuer	= issuerIn;
+        this.issuer     = issuerIn;
     }
 
     @Override
@@ -168,15 +168,15 @@ public class AttributeDesignator extends AttributeRetrievalBase {
         /*
          * Set up the PIPRequest representing this
          */
-        PIPRequest pipRequest	= this.getPIPRequest();
+        PIPRequest pipRequest   = this.getPIPRequest();
         assert(pipRequest != null);
 
         /*
          * Query the evaluation context for results
          */
-        PIPResponse pipResponse	= null;
+        PIPResponse pipResponse = null;
         try {
-            pipResponse	= evaluationContext.getAttributes(pipRequest);
+            pipResponse = evaluationContext.getAttributes(pipRequest);
         } catch (PIPException ex) {
             throw new EvaluationException("PIPException getting Attributes", ex);
         }
@@ -185,7 +185,7 @@ public class AttributeDesignator extends AttributeRetrievalBase {
         /*
          * See if the request was successful
          */
-        Status pipStatus		= pipResponse.getStatus();
+        Status pipStatus                = pipResponse.getStatus();
         if (pipStatus != null && !pipStatus.getStatusCode().equals(StdStatusCode.STATUS_CODE_OK)) {
             return ExpressionResult.newInstance(pipStatus);
         }
@@ -193,8 +193,8 @@ public class AttributeDesignator extends AttributeRetrievalBase {
         /*
          * See if there were any results
          */
-        Bag bagAttributeValues				= new Bag();
-        Collection<Attribute> listAttributes	= pipResponse.getAttributes();
+        Bag bagAttributeValues                          = new Bag();
+        Collection<Attribute> listAttributes    = pipResponse.getAttributes();
         for (Attribute attribute : listAttributes) {
             if (this.match(attribute)) {
                 for (AttributeValue<?> attributeValue: attribute.getValues()) {
@@ -213,7 +213,7 @@ public class AttributeDesignator extends AttributeRetrievalBase {
 
     @Override
     public String toString() {
-        StringBuilder stringBuilder	= new StringBuilder("{");
+        StringBuilder stringBuilder     = new StringBuilder("{");
 
         stringBuilder.append("super=");
         stringBuilder.append(super.toString());

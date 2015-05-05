@@ -163,9 +163,9 @@ public class ConvertedArgument<I> {
      * @param listFunctionArguments the <code>List</code> of <code>FunctionArgument</code>s to validate
      * @param convertedValues the <code>List</code> of <code>U</code> that the converted value is added to.
      * @return a {@link com.att.research.xacml.api.Status} indication with an error if the arguments are not valid,
-     * 			or an object of the correct DataType containing the value.
+     *                  or an object of the correct DataType containing the value.
      */
-    @SuppressWarnings("unchecked")	// to suppress warning on bag conversion
+    @SuppressWarnings("unchecked")      // to suppress warning on bag conversion
     public ConvertedArgument(FunctionArgument functionArgument, DataType<I> expectedDataType, boolean expectBag) {
 
         if (functionArgument == null ) {
@@ -195,7 +195,7 @@ public class ConvertedArgument<I> {
             status = new StdStatus(StdStatusCode.STATUS_CODE_PROCESSING_ERROR, "Expected a simple value, saw a bag");
             return;
         }
-        AttributeValue<?> attributeValue	= functionArgument.getValue();
+        AttributeValue<?> attributeValue        = functionArgument.getValue();
         if (attributeValue == null || attributeValue.getValue() == null) {
             status = new StdStatus(StdStatusCode.STATUS_CODE_PROCESSING_ERROR, "Got null attribute");
             return;

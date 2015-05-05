@@ -41,8 +41,8 @@ import com.att.research.xacml.util.XACMLProperties;
  *
  */
 public abstract class PIPFinderFactory {
-    private static final String	FACTORYID					= XACMLProperties.PROP_PIPFINDERFACTORY;
-    private static final String	DEFAULT_FACTORY_CLASSNAME	= "com.att.research.xacml.std.pip.StdPIPFinderFactory";
+    private static final String FACTORYID                                       = XACMLProperties.PROP_PIPFINDERFACTORY;
+    private static final String DEFAULT_FACTORY_CLASSNAME       = "com.att.research.xacml.std.pip.StdPIPFinderFactory";
 
     protected Properties properties = null;
 

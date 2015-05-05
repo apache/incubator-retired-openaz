@@ -58,37 +58,37 @@ public interface PDPGroupStatus {
         UNKNOWN
     }
 
-    Status						getStatus();
+    Status                                              getStatus();
 
-    public Set<String>			getLoadErrors();
+    public Set<String>                  getLoadErrors();
 
-    public Set<String>			getLoadWarnings();
+    public Set<String>                  getLoadWarnings();
 
-    public Set<PDPPolicy>		getLoadedPolicies();
+    public Set<PDPPolicy>               getLoadedPolicies();
 
-    public Set<PDPPolicy>		getFailedPolicies();
+    public Set<PDPPolicy>               getFailedPolicies();
 
-    public boolean				policiesOK();
+    public boolean                              policiesOK();
 
-    public Set<PDPPIPConfig>	getLoadedPipConfigs();
+    public Set<PDPPIPConfig>    getLoadedPipConfigs();
 
-    public Set<PDPPIPConfig>	getFailedPipConfigs();
+    public Set<PDPPIPConfig>    getFailedPipConfigs();
 
-    public boolean				pipConfigOK();
+    public boolean                              pipConfigOK();
 
-    public Set<PDP>				getInSynchPDPs();
+    public Set<PDP>                             getInSynchPDPs();
 
-    public Set<PDP>				getOutOfSynchPDPs();
+    public Set<PDP>                             getOutOfSynchPDPs();
 
-    public Set<PDP>				getFailedPDPs();
+    public Set<PDP>                             getFailedPDPs();
 
-    public Set<PDP>				getUpdatingPDPs();
+    public Set<PDP>                             getUpdatingPDPs();
 
-    public Set<PDP>				getLastUpdateFailedPDPs();
+    public Set<PDP>                             getLastUpdateFailedPDPs();
 
-    public Set<PDP>				getUnknownStatusPDPs();
+    public Set<PDP>                             getUnknownStatusPDPs();
 
-    public boolean				pdpsOK();
+    public boolean                              pdpsOK();
 
-    public boolean				isGroupOk();
+    public boolean                              isGroupOk();
 }

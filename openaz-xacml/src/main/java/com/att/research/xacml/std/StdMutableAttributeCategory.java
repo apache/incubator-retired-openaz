@@ -52,12 +52,12 @@ import com.att.research.xacml.util.ObjUtil;
  *
  */
 public class StdMutableAttributeCategory implements AttributeCategory {
-    private static final List<Attribute> EMPTY_LIST			= Collections.unmodifiableList(new ArrayList<Attribute>());
+    private static final List<Attribute> EMPTY_LIST                     = Collections.unmodifiableList(new ArrayList<Attribute>());
 
     protected Log logger = LogFactory.getLog(this.getClass());
     private Identifier category;
-    private List<Attribute> attributes 						= new ArrayList<Attribute>();
-    private Map<Identifier,List<Attribute>> attributesById	= new HashMap<Identifier,List<Attribute>>();
+    private List<Attribute> attributes                                          = new ArrayList<Attribute>();
+    private Map<Identifier,List<Attribute>> attributesById      = new HashMap<Identifier,List<Attribute>>();
 
     /**
      * Builds the <code>Map</code> from {@link com.att.research.xacml.api.Identifier}s for XACML AttributeIds to
@@ -65,9 +65,9 @@ public class StdMutableAttributeCategory implements AttributeCategory {
      */
     private void buildMap() {
         for (Attribute attribute: this.attributes) {
-            List<Attribute> listAttributes	= this.attributesById.get(attribute.getAttributeId());
+            List<Attribute> listAttributes      = this.attributesById.get(attribute.getAttributeId());
             if (listAttributes == null) {
-                listAttributes	= new ArrayList<Attribute>();
+                listAttributes  = new ArrayList<Attribute>();
                 this.attributesById.put(attribute.getAttributeId(), listAttributes);
             }
             listAttributes.add(attribute);
@@ -91,7 +91,7 @@ public class StdMutableAttributeCategory implements AttributeCategory {
      * @param listAttributes a <code>Collection</code> of <code>Attribute</code>s for the new <code>StdMutableAttributeCategory</code>.
      */
     public StdMutableAttributeCategory(Identifier identifierCategory, Collection<Attribute> listAttributes) {
-        this.category	= identifierCategory;
+        this.category   = identifierCategory;
         if (listAttributes != null) {
             this.attributes.addAll(listAttributes);
             this.buildMap();
@@ -104,7 +104,7 @@ public class StdMutableAttributeCategory implements AttributeCategory {
      * @param attributeCategory the <code>AttributeCategory</code> to copy
      */
     public StdMutableAttributeCategory(AttributeCategory attributeCategory) {
-        this.category	= attributeCategory.getCategory();
+        this.category   = attributeCategory.getCategory();
         this.attributes.addAll(attributeCategory.getAttributes());
         this.buildMap();
     }
@@ -120,7 +120,7 @@ public class StdMutableAttributeCategory implements AttributeCategory {
      * @param identifierCategory the <code>Identifier</code> representing the XACML Category of this <code>StdMutableAttributeCategory</code>.
      */
     public void setCategory(Identifier identifierCategory) {
-        this.category	= identifierCategory;
+        this.category   = identifierCategory;
     }
 
     @Override
@@ -135,9 +135,9 @@ public class StdMutableAttributeCategory implements AttributeCategory {
      */
     public void add(Attribute attribute) {
         this.attributes.add(attribute);
-        List<Attribute> listAttributes	= this.attributesById.get(attribute.getAttributeId());
+        List<Attribute> listAttributes  = this.attributesById.get(attribute.getAttributeId());
         if (listAttributes == null) {
-            listAttributes	= new ArrayList<Attribute>();
+            listAttributes      = new ArrayList<Attribute>();
             this.attributesById.put(attribute.getAttributeId(), listAttributes);
         }
         listAttributes.add(attribute);
@@ -145,13 +145,13 @@ public class StdMutableAttributeCategory implements AttributeCategory {
 
     @Override
     public Iterator<Attribute> getAttributes(Identifier attributeId) {
-        List<Attribute> listAttributes	= this.attributesById.get(attributeId);
+        List<Attribute> listAttributes  = this.attributesById.get(attributeId);
         return (listAttributes == null ? EMPTY_LIST.iterator() : listAttributes.iterator());
     }
 
     @Override
     public boolean hasAttributes(Identifier attributeId) {
-        List<Attribute> listAttributes	= this.attributesById.get(attributeId);
+        List<Attribute> listAttributes  = this.attributesById.get(attributeId);
         return (listAttributes != null && listAttributes.size() > 0);
     }
 
@@ -162,7 +162,7 @@ public class StdMutableAttributeCategory implements AttributeCategory {
         } else if (obj == null || !(obj instanceof AttributeCategory)) {
             return false;
         } else {
-            AttributeCategory objAttributeCategory	= (AttributeCategory)obj;
+            AttributeCategory objAttributeCategory      = (AttributeCategory)obj;
             return ObjUtil.equalsAllowNull(this.getCategory(), objAttributeCategory.getCategory()) &&
                    ListUtil.equalsAllowNulls(this.getAttributes(), objAttributeCategory.getAttributes());
         }
@@ -170,13 +170,13 @@ public class StdMutableAttributeCategory implements AttributeCategory {
 
     @Override
     public String toString() {
-        StringBuilder	stringBuilder	= new StringBuilder("{");
-        boolean			needsComma		= false;
-        Object			objectToDump;
+        StringBuilder   stringBuilder   = new StringBuilder("{");
+        boolean                 needsComma              = false;
+        Object                  objectToDump;
         if ((objectToDump = this.getCategory()) != null) {
             stringBuilder.append("category=");
             stringBuilder.append(objectToDump.toString());
-            needsComma	= true;
+            needsComma  = true;
         }
         if (this.attributes.size() > 0) {
             if (needsComma) {
@@ -184,7 +184,7 @@ public class StdMutableAttributeCategory implements AttributeCategory {
             }
             stringBuilder.append("attributes=");
             stringBuilder.append(ListUtil.toString(this.attributes));
-            needsComma	= true;
+            needsComma  = true;
         }
         stringBuilder.append('}');
         return stringBuilder.toString();

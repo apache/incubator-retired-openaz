@@ -50,8 +50,8 @@ import com.att.research.xacml.std.json.JSONStructureException;
  * To simplify testing we assume that request.toString() correctly includes a complete text representation of every sub-component of the Request object
  * and we compare the resulting String to our expected String.
  * This has two possible sources of error:
- * 	- toString might not include some sub-component, and
- * 	- the initial verification of the resulting string is done by hand and may have been incorrect.
+ *      - toString might not include some sub-component, and
+ *      - the initial verification of the resulting string is done by hand and may have been incorrect.
  *
  *
  */
@@ -85,18 +85,18 @@ public class RequestDefaultCategoryTest {
         "\"Id\" : \"customId\", " +
         "\"Attribute\" : [" +
         "{" +
-        "\"AttributeId\"		: \"document-id\", " +
-        "\"DataType\"	: \"integer\", " +
-        "\"Value\"	: 123 " +
+        "\"AttributeId\"                : \"document-id\", " +
+        "\"DataType\"   : \"integer\", " +
+        "\"Value\"      : 123 " +
         "}, " +
         "{" +
-        "\"AttributeId\"		: \"document-url\", " +
-        "\"DataType\"	: \"anyURI\", " +
-        "\"Value\"	: \"http://somewhere.over.the.com/rainbow\" " +
+        "\"AttributeId\"                : \"document-url\", " +
+        "\"DataType\"   : \"anyURI\", " +
+        "\"Value\"      : \"http://somewhere.over.the.com/rainbow\" " +
         "}, " +
         "{" +
-        "\"AttributeId\"		: \"page-list\", " +
-        "\"Value\"	: [1, 2, 3, 4.5, 3, 2, 1] " +
+        "\"AttributeId\"                : \"page-list\", " +
+        "\"Value\"      : [1, 2, 3, 4.5, 3, 2, 1] " +
         "} " +
         "]" +
         "}, " +
@@ -206,10 +206,10 @@ public class RequestDefaultCategoryTest {
     // Given that the functions within the categories are the same irrespective of the name of the category,
     // we assume that the contents of the category will work ok once the Shorthand notation is recognized, so all we need to test is the shorthand
     // The ones that are tested in their own sections are:
-    //		AccessSubject
-    //		Action
-    //		Resource
-    //		Environment
+    //          AccessSubject
+    //          Action
+    //          Resource
+    //          Environment
     // test Subject
     @Test
     public void testCategoryShorthand() {
@@ -220,11 +220,11 @@ public class RequestDefaultCategoryTest {
                                        + "\"Category\": ["
                                        + "{\"CategoryId\" : \"urn:oasis:names:tc:xacml:1.0:subject-category:recipient-subject\", \"Attribute\" : [{" +
                                        "\"Id\" : \"document-id\", " +
-                                       "\"Value\"	: [ \"aValue\", \"aValue\", \"aValue\" ] " +
+                                       "\"Value\"       : [ \"aValue\", \"aValue\", \"aValue\" ] " +
                                        "}] }, "
                                        + "{\"CategoryId\" : \"urn:oasis:names:tc:xacml:1.0:subject-category:recipient-subject\", \"Attribute\" : [{" +
                                        "\"Id\" : \"document-id\", " +
-                                       "\"Value\"	: \"aValue\"" +
+                                       "\"Value\"       : \"aValue\"" +
                                        "}] } "
                                        + "]," +
                                        "\"RecipientSubject\" : { " +
@@ -252,11 +252,11 @@ public class RequestDefaultCategoryTest {
                                        + "\"Category\": ["
                                        + "{\"CategoryId\" : \"urn:oasis:names:tc:xacml:1.0:subject-category:intermediary-subject\", \"Attribute\" : [{" +
                                        "\"Id\" : \"document-id\", " +
-                                       "\"Value\"	: [ \"aValue\", \"aValue\", \"aValue\" ] " +
+                                       "\"Value\"       : [ \"aValue\", \"aValue\", \"aValue\" ] " +
                                        "}] }, "
                                        + "{\"CategoryId\" : \"urn:oasis:names:tc:xacml:1.0:subject-category:intermediary-subject\", \"Attribute\" : [{" +
                                        "\"Id\" : \"document-id\", " +
-                                       "\"Value\"	: \"aValue\"" +
+                                       "\"Value\"       : \"aValue\"" +
                                        "}] } "
                                        + "]," +
                                        "\"IntermediarySubject\" : { " +
@@ -284,11 +284,11 @@ public class RequestDefaultCategoryTest {
                                        + "\"Category\": ["
                                        + "{\"CategoryId\" : \"urn:oasis:names:tc:xacml:1.0:subject-category:codebase\", \"Attribute\" : [{" +
                                        "\"Id\" : \"document-id\", " +
-                                       "\"Value\"	: [ \"aValue\", \"aValue\", \"aValue\" ] " +
+                                       "\"Value\"       : [ \"aValue\", \"aValue\", \"aValue\" ] " +
                                        "}] }, "
                                        + "{\"CategoryId\" : \"urn:oasis:names:tc:xacml:1.0:subject-category:codebase\", \"Attribute\" : [{" +
                                        "\"Id\" : \"document-id\", " +
-                                       "\"Value\"	: \"aValue\"" +
+                                       "\"Value\"       : \"aValue\"" +
                                        "}] } "
                                        + "]," +
                                        "\"Codebase\" : { " +
@@ -317,11 +317,11 @@ public class RequestDefaultCategoryTest {
                                        + "\"Category\": ["
                                        + "{\"CategoryId\" : \"urn:oasis:names:tc:xacml:1.0:subject-category:requesting-machine\", \"Attribute\" : [{" +
                                        "\"Id\" : \"document-id\", " +
-                                       "\"Value\"	: [ \"aValue\", \"aValue\", \"aValue\" ] " +
+                                       "\"Value\"       : [ \"aValue\", \"aValue\", \"aValue\" ] " +
                                        "}] }, "
                                        + "{\"CategoryId\" : \"urn:oasis:names:tc:xacml:1.0:subject-category:requesting-machine\", \"Attribute\" : [{" +
                                        "\"Id\" : \"document-id\", " +
-                                       "\"Value\"	: \"aValue\"" +
+                                       "\"Value\"       : \"aValue\"" +
                                        "}] } "
                                        + "]," +
                                        "\"RequestingMachine\" : { " +
@@ -367,7 +367,7 @@ public class RequestDefaultCategoryTest {
         try {
             request = JSONRequest.load("{\"Request\" : {\"Category\": [{\"CategoryId\" : \"custom-category\", \"Attribute\" : [{" +
                                        "\"Id\" : \"document-id\", " +
-                                       "\"Value\"	: [ \"aValue\", \"aValue\", \"aValue\" ] " +
+                                       "\"Value\"       : [ \"aValue\", \"aValue\", \"aValue\" ] " +
                                        "}] } ] }}");
             assertEquals("{returnPolicyIdList=false,combinedDecision=false,requestAttributes=[{super={category=custom-category,attributes=[{attributeId=document-id,category=custom-category,values=[{dataTypeId=http://www.w3.org/2001/XMLSchema#string,value=aValue}{dataTypeId=http://www.w3.org/2001/XMLSchema#string,value=aValue}{dataTypeId=http://www.w3.org/2001/XMLSchema#string,value=aValue}],includeInResults=false}]}}]}", request.toString());
         } catch (Exception e) {
@@ -378,7 +378,7 @@ public class RequestDefaultCategoryTest {
         try {
             request = JSONRequest.load("{\"Request\" : {\"Category\": [{\"CategoryId\" : \"urn:oasis:names:tc:xacml:1.0:subject-category:access-subject\", \"Attribute\" : [{" +
                                        "\"Id\" : \"document-id\", " +
-                                       "\"Value\"	: \"aValue\" " +
+                                       "\"Value\"       : \"aValue\" " +
                                        "}] } ] }}");
             assertEquals("{returnPolicyIdList=false,combinedDecision=false,requestAttributes=[{super={category=urn:oasis:names:tc:xacml:1.0:subject-category:access-subject,attributes=[{attributeId=document-id,category=urn:oasis:names:tc:xacml:1.0:subject-category:access-subject,values=[{dataTypeId=http://www.w3.org/2001/XMLSchema#string,value=aValue}],includeInResults=false}]}}]}", request.toString());
         } catch (Exception e) {
@@ -390,11 +390,11 @@ public class RequestDefaultCategoryTest {
             request = JSONRequest.load("{\"Request\" : {\"Category\": ["
                                        + "{\"CategoryId\" : \"urn:oasis:names:tc:xacml:1.0:subject-category:access-subject\", \"Attribute\" : [{" +
                                        "\"Id\" : \"document-id\", " +
-                                       "\"Value\"	: [ \"aValue\", \"aValue\", \"aValue\" ] " +
+                                       "\"Value\"       : [ \"aValue\", \"aValue\", \"aValue\" ] " +
                                        "}] }, "
                                        + "{\"CategoryId\" : \"urn:oasis:names:tc:xacml:1.0:subject-category:access-subject\", \"Attribute\" : [{" +
                                        "\"Id\" : \"document-id\", " +
-                                       "\"Value\"	: \"aValue\"" +
+                                       "\"Value\"       : \"aValue\"" +
                                        "}] } "
                                        + "] }}");
             assertEquals("{returnPolicyIdList=false,combinedDecision=false,requestAttributes=[{super={category=urn:oasis:names:tc:xacml:1.0:subject-category:access-subject,attributes=[{attributeId=document-id,category=urn:oasis:names:tc:xacml:1.0:subject-category:access-subject,values=[{dataTypeId=http://www.w3.org/2001/XMLSchema#string,value=aValue}{dataTypeId=http://www.w3.org/2001/XMLSchema#string,value=aValue}{dataTypeId=http://www.w3.org/2001/XMLSchema#string,value=aValue}],includeInResults=false}]}}{super={category=urn:oasis:names:tc:xacml:1.0:subject-category:access-subject,attributes=[{attributeId=document-id,category=urn:oasis:names:tc:xacml:1.0:subject-category:access-subject,values=[{dataTypeId=http://www.w3.org/2001/XMLSchema#string,value=aValue}],includeInResults=false}]}}]}", request.toString());
@@ -408,11 +408,11 @@ public class RequestDefaultCategoryTest {
                                        + "\"Category\": ["
                                        + "{\"CategoryId\" : \"urn:oasis:names:tc:xacml:1.0:subject-category:access-subject\", \"Attribute\" : [{" +
                                        "\"Id\" : \"document-id\", " +
-                                       "\"Value\"	: [ \"aValue\", \"aValue\", \"aValue\" ] " +
+                                       "\"Value\"       : [ \"aValue\", \"aValue\", \"aValue\" ] " +
                                        "}] }, "
                                        + "{\"CategoryId\" : \"urn:oasis:names:tc:xacml:1.0:subject-category:access-subject\", \"Attribute\" : [{" +
                                        "\"Id\" : \"document-id\", " +
-                                       "\"Value\"	: \"aValue\"" +
+                                       "\"Value\"       : \"aValue\"" +
                                        "}] } "
                                        + "]," +
                                        "\"AccessSubject\" : { " +
@@ -484,7 +484,7 @@ public class RequestDefaultCategoryTest {
                                        + "\"Category\": ["
                                        + "{\"CategoryId\" : \"custom-category\", \"Attribute\" : [{" +
                                        "\"Id\" : \"document-id\", " +
-                                       "\"Value\"	: \"aValue\"" +
+                                       "\"Value\"       : \"aValue\"" +
                                        "}] } "
                                        + "]," +
                                        "\"AccessSubject\" : { " +
@@ -657,7 +657,7 @@ public class RequestDefaultCategoryTest {
         try {
             request = JSONRequest.load("{\"Request\" : {\"Category\": [{\"CategoryId\" : \"custom-category\", \"Attribute\" : [{" +
                                        "\"Id\" : \"document-id\", " +
-                                       "\"Value\"	: [ \"aValue\", \"aValue\", \"aValue\" ] " +
+                                       "\"Value\"       : [ \"aValue\", \"aValue\", \"aValue\" ] " +
                                        "}] } ] }}");
             assertEquals("{returnPolicyIdList=false,combinedDecision=false,requestAttributes=[{super={category=custom-category,attributes=[{attributeId=document-id,category=custom-category,values=[{dataTypeId=http://www.w3.org/2001/XMLSchema#string,value=aValue}{dataTypeId=http://www.w3.org/2001/XMLSchema#string,value=aValue}{dataTypeId=http://www.w3.org/2001/XMLSchema#string,value=aValue}],includeInResults=false}]}}]}", request.toString());
         } catch (Exception e) {
@@ -668,7 +668,7 @@ public class RequestDefaultCategoryTest {
         try {
             request = JSONRequest.load("{\"Request\" : {\"Category\": [{\"CategoryId\" : \"urn:oasis:names:tc:xacml:3.0:attribute-category:environment\", \"Attribute\" : [{" +
                                        "\"Id\" : \"document-id\", " +
-                                       "\"Value\"	: \"aValue\" " +
+                                       "\"Value\"       : \"aValue\" " +
                                        "}] } ] }}");
             assertEquals("{returnPolicyIdList=false,combinedDecision=false,requestAttributes=[{super={category=urn:oasis:names:tc:xacml:3.0:attribute-category:environment,attributes=[{attributeId=document-id,category=urn:oasis:names:tc:xacml:3.0:attribute-category:environment,values=[{dataTypeId=http://www.w3.org/2001/XMLSchema#string,value=aValue}],includeInResults=false}]}}]}", request.toString());
         } catch (Exception e) {
@@ -680,11 +680,11 @@ public class RequestDefaultCategoryTest {
             request = JSONRequest.load("{\"Request\" : {\"Category\": ["
                                        + "{\"CategoryId\" : \"urn:oasis:names:tc:xacml:3.0:attribute-category:environment\", \"Attribute\" : [{" +
                                        "\"Id\" : \"document-id\", " +
-                                       "\"Value\"	: [ \"aValue\", \"aValue\", \"aValue\" ] " +
+                                       "\"Value\"       : [ \"aValue\", \"aValue\", \"aValue\" ] " +
                                        "}] }, "
                                        + "{\"CategoryId\" : \"urn:oasis:names:tc:xacml:3.0:attribute-category:environment\", \"Attribute\" : [{" +
                                        "\"Id\" : \"document-id\", " +
-                                       "\"Value\"	: \"aValue\"" +
+                                       "\"Value\"       : \"aValue\"" +
                                        "}] } "
                                        + "] }}");
             assertEquals("{returnPolicyIdList=false,combinedDecision=false,requestAttributes=[{super={category=urn:oasis:names:tc:xacml:3.0:attribute-category:environment,attributes=[{attributeId=document-id,category=urn:oasis:names:tc:xacml:3.0:attribute-category:environment,values=[{dataTypeId=http://www.w3.org/2001/XMLSchema#string,value=aValue}{dataTypeId=http://www.w3.org/2001/XMLSchema#string,value=aValue}{dataTypeId=http://www.w3.org/2001/XMLSchema#string,value=aValue}],includeInResults=false}]}}{super={category=urn:oasis:names:tc:xacml:3.0:attribute-category:environment,attributes=[{attributeId=document-id,category=urn:oasis:names:tc:xacml:3.0:attribute-category:environment,values=[{dataTypeId=http://www.w3.org/2001/XMLSchema#string,value=aValue}],includeInResults=false}]}}]}", request.toString());
@@ -698,11 +698,11 @@ public class RequestDefaultCategoryTest {
                                        + "\"Category\": ["
                                        + "{\"CategoryId\" : \"urn:oasis:names:tc:xacml:3.0:attribute-category:environment\", \"Attribute\" : [{" +
                                        "\"Id\" : \"document-id\", " +
-                                       "\"Value\"	: [ \"aValue\", \"aValue\", \"aValue\" ] " +
+                                       "\"Value\"       : [ \"aValue\", \"aValue\", \"aValue\" ] " +
                                        "}] }, "
                                        + "{\"CategoryId\" : \"urn:oasis:names:tc:xacml:3.0:attribute-category:environment\", \"Attribute\" : [{" +
                                        "\"Id\" : \"document-id\", " +
-                                       "\"Value\"	: \"aValue\"" +
+                                       "\"Value\"       : \"aValue\"" +
                                        "}] } "
                                        + "]," +
                                        "\"Action\" : { " +
@@ -751,7 +751,7 @@ public class RequestDefaultCategoryTest {
                                        + "\"Category\": ["
                                        + "{\"CategoryId\" : \"custom-category\", \"Attribute\" : [{" +
                                        "\"Id\" : \"document-id\", " +
-                                       "\"Value\"	: \"aValue\"" +
+                                       "\"Value\"       : \"aValue\"" +
                                        "}] } "
                                        + "]," +
                                        "\"Action\" : { " +
@@ -919,7 +919,7 @@ public class RequestDefaultCategoryTest {
         try {
             request = JSONRequest.load("{\"Request\" : {\"Category\": [{\"CategoryId\" : \"custom-category\", \"Attribute\" : [{" +
                                        "\"Id\" : \"document-id\", " +
-                                       "\"Value\"	: [ \"aValue\", \"aValue\", \"aValue\" ] " +
+                                       "\"Value\"       : [ \"aValue\", \"aValue\", \"aValue\" ] " +
                                        "}] } ] }}");
             assertEquals("{returnPolicyIdList=false,combinedDecision=false,requestAttributes=[{super={category=custom-category,attributes=[{attributeId=document-id,category=custom-category,values=[{dataTypeId=http://www.w3.org/2001/XMLSchema#string,value=aValue}{dataTypeId=http://www.w3.org/2001/XMLSchema#string,value=aValue}{dataTypeId=http://www.w3.org/2001/XMLSchema#string,value=aValue}],includeInResults=false}]}}]}", request.toString());
         } catch (Exception e) {
@@ -930,7 +930,7 @@ public class RequestDefaultCategoryTest {
         try {
             request = JSONRequest.load("{\"Request\" : {\"Category\": [{\"CategoryId\" : \"urn:oasis:names:tc:xacml:3.0:attribute-category:environment\", \"Attribute\" : [{" +
                                        "\"Id\" : \"document-id\", " +
-                                       "\"Value\"	: \"aValue\" " +
+                                       "\"Value\"       : \"aValue\" " +
                                        "}] } ] }}");
             assertEquals("{returnPolicyIdList=false,combinedDecision=false,requestAttributes=[{super={category=urn:oasis:names:tc:xacml:3.0:attribute-category:environment,attributes=[{attributeId=document-id,category=urn:oasis:names:tc:xacml:3.0:attribute-category:environment,values=[{dataTypeId=http://www.w3.org/2001/XMLSchema#string,value=aValue}],includeInResults=false}]}}]}", request.toString());
         } catch (Exception e) {
@@ -942,11 +942,11 @@ public class RequestDefaultCategoryTest {
             request = JSONRequest.load("{\"Request\" : {\"Category\": ["
                                        + "{\"CategoryId\" : \"urn:oasis:names:tc:xacml:3.0:attribute-category:environment\", \"Attribute\" : [{" +
                                        "\"Id\" : \"document-id\", " +
-                                       "\"Value\"	: [ \"aValue\", \"aValue\", \"aValue\" ] " +
+                                       "\"Value\"       : [ \"aValue\", \"aValue\", \"aValue\" ] " +
                                        "}] }, "
                                        + "{\"CategoryId\" : \"urn:oasis:names:tc:xacml:3.0:attribute-category:environment\", \"Attribute\" : [{" +
                                        "\"Id\" : \"document-id\", " +
-                                       "\"Value\"	: \"aValue\"" +
+                                       "\"Value\"       : \"aValue\"" +
                                        "}] } "
                                        + "] }}");
             assertEquals("{returnPolicyIdList=false,combinedDecision=false,requestAttributes=[{super={category=urn:oasis:names:tc:xacml:3.0:attribute-category:environment,attributes=[{attributeId=document-id,category=urn:oasis:names:tc:xacml:3.0:attribute-category:environment,values=[{dataTypeId=http://www.w3.org/2001/XMLSchema#string,value=aValue}{dataTypeId=http://www.w3.org/2001/XMLSchema#string,value=aValue}{dataTypeId=http://www.w3.org/2001/XMLSchema#string,value=aValue}],includeInResults=false}]}}{super={category=urn:oasis:names:tc:xacml:3.0:attribute-category:environment,attributes=[{attributeId=document-id,category=urn:oasis:names:tc:xacml:3.0:attribute-category:environment,values=[{dataTypeId=http://www.w3.org/2001/XMLSchema#string,value=aValue}],includeInResults=false}]}}]}", request.toString());
@@ -960,11 +960,11 @@ public class RequestDefaultCategoryTest {
                                        + "\"Category\": ["
                                        + "{\"CategoryId\" : \"urn:oasis:names:tc:xacml:3.0:attribute-category:environment\", \"Attribute\" : [{" +
                                        "\"Id\" : \"document-id\", " +
-                                       "\"Value\"	: [ \"aValue\", \"aValue\", \"aValue\" ] " +
+                                       "\"Value\"       : [ \"aValue\", \"aValue\", \"aValue\" ] " +
                                        "}] }, "
                                        + "{\"CategoryId\" : \"urn:oasis:names:tc:xacml:3.0:attribute-category:environment\", \"Attribute\" : [{" +
                                        "\"Id\" : \"document-id\", " +
-                                       "\"Value\"	: \"aValue\"" +
+                                       "\"Value\"       : \"aValue\"" +
                                        "}] } "
                                        + "]," +
                                        "\"Resource\" : { " +
@@ -1013,7 +1013,7 @@ public class RequestDefaultCategoryTest {
                                        + "\"Category\": ["
                                        + "{\"CategoryId\" : \"custom-category\", \"Attribute\" : [{" +
                                        "\"Id\" : \"document-id\", " +
-                                       "\"Value\"	: \"aValue\"" +
+                                       "\"Value\"       : \"aValue\"" +
                                        "}] } "
                                        + "]," +
                                        "\"Resource\" : { " +
@@ -1183,7 +1183,7 @@ public class RequestDefaultCategoryTest {
         try {
             request = JSONRequest.load("{\"Request\" : {\"Category\": [{\"CategoryId\" : \"custom-category\", \"Attribute\" : [{" +
                                        "\"Id\" : \"document-id\", " +
-                                       "\"Value\"	: [ \"aValue\", \"aValue\", \"aValue\" ] " +
+                                       "\"Value\"       : [ \"aValue\", \"aValue\", \"aValue\" ] " +
                                        "}] } ] }}");
             assertEquals("{returnPolicyIdList=false,combinedDecision=false,requestAttributes=[{super={category=custom-category,attributes=[{attributeId=document-id,category=custom-category,values=[{dataTypeId=http://www.w3.org/2001/XMLSchema#string,value=aValue}{dataTypeId=http://www.w3.org/2001/XMLSchema#string,value=aValue}{dataTypeId=http://www.w3.org/2001/XMLSchema#string,value=aValue}],includeInResults=false}]}}]}", request.toString());
         } catch (Exception e) {
@@ -1194,7 +1194,7 @@ public class RequestDefaultCategoryTest {
         try {
             request = JSONRequest.load("{\"Request\" : {\"Category\": [{\"CategoryId\" : \"urn:oasis:names:tc:xacml:3.0:attribute-category:environment\", \"Attribute\" : [{" +
                                        "\"Id\" : \"document-id\", " +
-                                       "\"Value\"	: \"aValue\" " +
+                                       "\"Value\"       : \"aValue\" " +
                                        "}] } ] }}");
             assertEquals("{returnPolicyIdList=false,combinedDecision=false,requestAttributes=[{super={category=urn:oasis:names:tc:xacml:3.0:attribute-category:environment,attributes=[{attributeId=document-id,category=urn:oasis:names:tc:xacml:3.0:attribute-category:environment,values=[{dataTypeId=http://www.w3.org/2001/XMLSchema#string,value=aValue}],includeInResults=false}]}}]}", request.toString());
         } catch (Exception e) {
@@ -1206,11 +1206,11 @@ public class RequestDefaultCategoryTest {
             request = JSONRequest.load("{\"Request\" : {\"Category\": ["
                                        + "{\"CategoryId\" : \"urn:oasis:names:tc:xacml:3.0:attribute-category:environment\", \"Attribute\" : [{" +
                                        "\"Id\" : \"document-id\", " +
-                                       "\"Value\"	: [ \"aValue\", \"aValue\", \"aValue\" ] " +
+                                       "\"Value\"       : [ \"aValue\", \"aValue\", \"aValue\" ] " +
                                        "}] }, "
                                        + "{\"CategoryId\" : \"urn:oasis:names:tc:xacml:3.0:attribute-category:environment\", \"Attribute\" : [{" +
                                        "\"Id\" : \"document-id\", " +
-                                       "\"Value\"	: \"aValue\"" +
+                                       "\"Value\"       : \"aValue\"" +
                                        "}] } "
                                        + "] }}");
             assertEquals("{returnPolicyIdList=false,combinedDecision=false,requestAttributes=[{super={category=urn:oasis:names:tc:xacml:3.0:attribute-category:environment,attributes=[{attributeId=document-id,category=urn:oasis:names:tc:xacml:3.0:attribute-category:environment,values=[{dataTypeId=http://www.w3.org/2001/XMLSchema#string,value=aValue}{dataTypeId=http://www.w3.org/2001/XMLSchema#string,value=aValue}{dataTypeId=http://www.w3.org/2001/XMLSchema#string,value=aValue}],includeInResults=false}]}}{super={category=urn:oasis:names:tc:xacml:3.0:attribute-category:environment,attributes=[{attributeId=document-id,category=urn:oasis:names:tc:xacml:3.0:attribute-category:environment,values=[{dataTypeId=http://www.w3.org/2001/XMLSchema#string,value=aValue}],includeInResults=false}]}}]}", request.toString());
@@ -1224,11 +1224,11 @@ public class RequestDefaultCategoryTest {
                                        + "\"Category\": ["
                                        + "{\"CategoryId\" : \"urn:oasis:names:tc:xacml:3.0:attribute-category:environment\", \"Attribute\" : [{" +
                                        "\"Id\" : \"document-id\", " +
-                                       "\"Value\"	: [ \"aValue\", \"aValue\", \"aValue\" ] " +
+                                       "\"Value\"       : [ \"aValue\", \"aValue\", \"aValue\" ] " +
                                        "}] }, "
                                        + "{\"CategoryId\" : \"urn:oasis:names:tc:xacml:3.0:attribute-category:environment\", \"Attribute\" : [{" +
                                        "\"Id\" : \"document-id\", " +
-                                       "\"Value\"	: \"aValue\"" +
+                                       "\"Value\"       : \"aValue\"" +
                                        "}] } "
                                        + "]," +
                                        "\"Environment\" : { " +
@@ -1277,7 +1277,7 @@ public class RequestDefaultCategoryTest {
                                        + "\"Category\": ["
                                        + "{\"CategoryId\" : \"custom-category\", \"Attribute\" : [{" +
                                        "\"Id\" : \"document-id\", " +
-                                       "\"Value\"	: \"aValue\"" +
+                                       "\"Value\"       : \"aValue\"" +
                                        "}] } "
                                        + "]," +
                                        "\"Environment\" : { " +

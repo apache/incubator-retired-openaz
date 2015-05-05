@@ -41,8 +41,8 @@ import com.att.research.xacml.util.ObjUtil;
  * @param <T> the java type of the object representing the value of the XACML AttributeValue element represented by the <code>StdAttributeValue</code>
  */
 public class StdAttributeValue<T> implements AttributeValue<T> {
-    private Identifier	dataTypeId;
-    private T			value;
+    private Identifier  dataTypeId;
+    private T                   value;
     private Identifier xpathCategory;
 
     /**
@@ -55,9 +55,9 @@ public class StdAttributeValue<T> implements AttributeValue<T> {
      * @param xpathCategoryIn the <code>Identifier</code> representing the XACML XPathCategory id for the new <code>StdAttributeValue</code>
      */
     public StdAttributeValue(Identifier dataTypeIdIn, T valueIn, Identifier xpathCategoryIn) {
-        this.dataTypeId		= dataTypeIdIn;
-        this.value			= valueIn;
-        this.xpathCategory	= xpathCategoryIn;
+        this.dataTypeId         = dataTypeIdIn;
+        this.value                      = valueIn;
+        this.xpathCategory      = xpathCategoryIn;
     }
 
     /**
@@ -115,7 +115,7 @@ public class StdAttributeValue<T> implements AttributeValue<T> {
         } else if (obj == this) {
             return true;
         } else {
-            AttributeValue<?> attributeValueObj	= this.getClass().cast(obj);
+            AttributeValue<?> attributeValueObj = this.getClass().cast(obj);
             return ObjUtil.equalsAllowNull(this.getDataTypeId(), attributeValueObj.getDataTypeId()) &&
                    ObjUtil.equalsAllowNull(this.getValue(), attributeValueObj.getValue());
         }
@@ -123,13 +123,13 @@ public class StdAttributeValue<T> implements AttributeValue<T> {
 
     @Override
     public String toString() {
-        StringBuilder	stringBuilder	= new StringBuilder("{");
-        boolean			needsComma		= false;
-        Object			objectToDump	= null;
+        StringBuilder   stringBuilder   = new StringBuilder("{");
+        boolean                 needsComma              = false;
+        Object                  objectToDump    = null;
         if ((objectToDump = this.getDataTypeId()) != null) {
             stringBuilder.append("dataTypeId=");
             stringBuilder.append(objectToDump.toString());
-            needsComma	= true;
+            needsComma  = true;
         }
         if ((objectToDump = this.getValue()) != null) {
             if (needsComma) {
@@ -137,7 +137,7 @@ public class StdAttributeValue<T> implements AttributeValue<T> {
             }
             stringBuilder.append("value=");
             stringBuilder.append(objectToDump.toString());
-            needsComma	= true;
+            needsComma  = true;
         }
         if ((objectToDump = this.getXPathCategory()) != null) {
             if (needsComma) {
@@ -145,7 +145,7 @@ public class StdAttributeValue<T> implements AttributeValue<T> {
             }
             stringBuilder.append("xpathCategory=");
             stringBuilder.append(objectToDump.toString());
-            needsComma	= true;
+            needsComma  = true;
         }
         stringBuilder.append('}');
         return stringBuilder.toString();

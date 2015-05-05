@@ -43,7 +43,7 @@ public enum ScopeQualifier {
     private String name;
 
     private ScopeQualifier(String nameIn) {
-        this.name	= nameIn;
+        this.name       = nameIn;
     }
 
     public String getName() {

@@ -50,29 +50,29 @@ import com.att.research.xacml.std.StdVersionMatch;
  *
  */
 public class DOMIdReferenceMatch extends StdIdReferenceMatch {
-    private static final Log logger	= LogFactory.getLog(DOMIdReferenceMatch.class);
+    private static final Log logger     = LogFactory.getLog(DOMIdReferenceMatch.class);
 
     protected DOMIdReferenceMatch(Identifier idIn, VersionMatch versionIn, VersionMatch earliestVersionIn, VersionMatch latestVersionIn) {
         super(idIn, versionIn, earliestVersionIn, latestVersionIn);
     }
 
     public static IdReferenceMatch newInstance(Node nodeIdReferenceMatch) throws DOMStructureException {
-        Element	elementIdReferenceMatch		= DOMUtil.getElement(nodeIdReferenceMatch);
-        boolean bLenient					= DOMProperties.isLenient();
+        Element elementIdReferenceMatch         = DOMUtil.getElement(nodeIdReferenceMatch);
+        boolean bLenient                                        = DOMProperties.isLenient();
 
-        Identifier	idReferenceMatch		= DOMUtil.getIdentifierContent(elementIdReferenceMatch, !bLenient);
+        Identifier      idReferenceMatch                = DOMUtil.getIdentifierContent(elementIdReferenceMatch, !bLenient);
 
-        String versionString			= DOMUtil.getStringAttribute(elementIdReferenceMatch, XACML3.ATTRIBUTE_VERSION);
-        String versionEarliestString	= DOMUtil.getStringAttribute(elementIdReferenceMatch, XACML3.ATTRIBUTE_EARLIESTVERSION);
-        String versionLatestString		= DOMUtil.getStringAttribute(elementIdReferenceMatch, XACML3.ATTRIBUTE_LATESTVERSION);
+        String versionString                    = DOMUtil.getStringAttribute(elementIdReferenceMatch, XACML3.ATTRIBUTE_VERSION);
+        String versionEarliestString    = DOMUtil.getStringAttribute(elementIdReferenceMatch, XACML3.ATTRIBUTE_EARLIESTVERSION);
+        String versionLatestString              = DOMUtil.getStringAttribute(elementIdReferenceMatch, XACML3.ATTRIBUTE_LATESTVERSION);
 
-        VersionMatch version			= null;
-        VersionMatch versionEarliest	= null;
-        VersionMatch versionLatest		= null;
+        VersionMatch version                    = null;
+        VersionMatch versionEarliest    = null;
+        VersionMatch versionLatest              = null;
 
         if (versionString != null) {
             try {
-                version	= StdVersionMatch.newInstance(versionString);
+                version = StdVersionMatch.newInstance(versionString);
             } catch (ParseException ex) {
                 if (!bLenient) {
                     throw new DOMStructureException(nodeIdReferenceMatch, "Invalid " + XACML3.ATTRIBUTE_VERSION + " string \"" + versionString + "\" in \"" + DOMUtil.getNodeLabel(nodeIdReferenceMatch), ex);
@@ -102,13 +102,13 @@ public class DOMIdReferenceMatch extends StdIdReferenceMatch {
     }
 
     public static boolean repair(Node nodeIdReferenceMatch) throws DOMStructureException {
-        Element	elementIdReferenceMatch		= DOMUtil.getElement(nodeIdReferenceMatch);
-        boolean result						= false;
+        Element elementIdReferenceMatch         = DOMUtil.getElement(nodeIdReferenceMatch);
+        boolean result                                          = false;
 
-        result	= DOMUtil.repairIdentifierContent(elementIdReferenceMatch, logger) || result;
-        result	= DOMUtil.repairVersionMatchAttribute(elementIdReferenceMatch, XACML3.ATTRIBUTE_VERSION, logger) || result;
-        result	= DOMUtil.repairVersionMatchAttribute(elementIdReferenceMatch, XACML3.ATTRIBUTE_EARLIESTVERSION, logger) || result;
-        result	= DOMUtil.repairVersionMatchAttribute(elementIdReferenceMatch, XACML3.ATTRIBUTE_LATESTVERSION, logger) || result;
+        result  = DOMUtil.repairIdentifierContent(elementIdReferenceMatch, logger) || result;
+        result  = DOMUtil.repairVersionMatchAttribute(elementIdReferenceMatch, XACML3.ATTRIBUTE_VERSION, logger) || result;
+        result  = DOMUtil.repairVersionMatchAttribute(elementIdReferenceMatch, XACML3.ATTRIBUTE_EARLIESTVERSION, logger) || result;
+        result  = DOMUtil.repairVersionMatchAttribute(elementIdReferenceMatch, XACML3.ATTRIBUTE_LATESTVERSION, logger) || result;
 
         return result;
     }

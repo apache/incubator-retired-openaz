@@ -66,29 +66,29 @@ import com.google.common.base.Splitter;
 
 public class CSVEngine extends StdConfigurableEngine {
 
-    protected Log logger	= LogFactory.getLog(this.getClass());
+    protected Log logger        = LogFactory.getLog(this.getClass());
     /*
      * Files that are smaller than this number are read into memory during startup.
      * Larger files are read one line at a time as needed to avoid overloading the JVM memory limit.
      */
-    public static final long	DEFAULT_MAX_FILE_SIZE_FOR_READALL = 100000000;
+    public static final long    DEFAULT_MAX_FILE_SIZE_FOR_READALL = 100000000;
 
-    public static final String PROP_CLASSNAME		= "classname";
+    public static final String PROP_CLASSNAME           = "classname";
 
-    public static final String PROP_MAXSIZE			= "maxsize";
-    public static final String PROP_SOURCE			= "source";
-    public static final String PROP_DELIMITER		= "delimiter";
-    public static final String PROP_QUOTE			= "quote";
-    public static final String PROP_SKIP			= "skip";
+    public static final String PROP_MAXSIZE                     = "maxsize";
+    public static final String PROP_SOURCE                      = "source";
+    public static final String PROP_DELIMITER           = "delimiter";
+    public static final String PROP_QUOTE                       = "quote";
+    public static final String PROP_SKIP                        = "skip";
 
-    public static final String PROP_RESOLVERS		= "resolvers";
-    public static final String PROP_RESOLVER		= "resolver";
+    public static final String PROP_RESOLVERS           = "resolvers";
+    public static final String PROP_RESOLVER            = "resolver";
 
-    private static DataTypeFactory dataTypeFactory		= null;
+    private static DataTypeFactory dataTypeFactory              = null;
 
     static {
         try {
-            dataTypeFactory	= DataTypeFactory.newInstance();
+            dataTypeFactory     = DataTypeFactory.newInstance();
         } catch (FactoryException fx) {
             throw new RuntimeException(fx);
         }
@@ -97,11 +97,11 @@ public class CSVEngine extends StdConfigurableEngine {
     //
     // Values read from the properties file for use in managing the CSV file
     //
-    private long	maximumSize = DEFAULT_MAX_FILE_SIZE_FOR_READALL;
-    private File	csvSourceFile;
-    private char	csvDelimiter;
-    private char	csvQuote;
-    private int		csvSkip;
+    private long        maximumSize = DEFAULT_MAX_FILE_SIZE_FOR_READALL;
+    private File        csvSourceFile;
+    private char        csvDelimiter;
+    private char        csvQuote;
+    private int         csvSkip;
     //
     // big files must be read one line at a time; small files are read in all at once
     //
@@ -211,7 +211,7 @@ public class CSVEngine extends StdConfigurableEngine {
         //
         // Get resolvers
         //
-        String propResolverPrefix	= id + "." + PROP_RESOLVERS;
+        String propResolverPrefix       = id + "." + PROP_RESOLVERS;
         String stringProp = properties.getProperty(propResolverPrefix);
         if (stringProp == null || stringProp.isEmpty()) {
             this.logger.error("No '" + propResolverPrefix + "' property");
@@ -249,14 +249,14 @@ public class CSVEngine extends StdConfigurableEngine {
      * @throws com.att.research.xacml.api.pip.PIPException if there is an error creating the <code>CSVResolver</code>.
      */
     protected void createResolver(String resolverId, Properties properties) throws PIPException {
-        String propPrefix	= resolverId + ".";
-        String resolverClassName	= properties.getProperty(propPrefix + PROP_CLASSNAME);
+        String propPrefix       = resolverId + ".";
+        String resolverClassName        = properties.getProperty(propPrefix + PROP_CLASSNAME);
         if (resolverClassName == null || resolverClassName.length() == 0) {
             this.logger.error("No '" + propPrefix + PROP_CLASSNAME + "' property.");
             throw new PIPException("No '" + propPrefix + PROP_CLASSNAME + "' property.");
         }
         try {
-            Class<?> resolverClass	= Class.forName(resolverClassName);
+            Class<?> resolverClass      = Class.forName(resolverClassName);
             if (!CSVResolver.class.isAssignableFrom(resolverClass)) {
                 this.logger.error("CSVResolver class " + propPrefix + " does not implement " + CSVResolver.class.getCanonicalName());
                 throw new PIPException("CSVResolver class " + propPrefix + " does not implement " + CSVResolver.class.getCanonicalName());
@@ -265,7 +265,7 @@ public class CSVEngine extends StdConfigurableEngine {
             //
             // Try to create the resolver
             //
-            CSVResolver csvResolver	= CSVResolver.class.cast(resolverClass.newInstance());
+            CSVResolver csvResolver     = CSVResolver.class.cast(resolverClass.newInstance());
             //
             // Make sure it can configure itself
             //
@@ -325,7 +325,7 @@ public class CSVEngine extends StdConfigurableEngine {
         // Look at each line of the file to see if it matches the (non-unique) criteria in the parameters
         // and add the value in the associated column from the CSV file to the list of response Attributes.
         //
-        StdMutablePIPResponse mutablePIPResponse	= new StdMutablePIPResponse();
+        StdMutablePIPResponse mutablePIPResponse        = new StdMutablePIPResponse();
         //
         // for smaller files, this is the index in the allLines List
         //

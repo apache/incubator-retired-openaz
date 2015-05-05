@@ -46,13 +46,13 @@ import java.util.Map;
  * @param <U> the type of the object referenced by the identifier
  */
 public class TargetedCombinerParameterMap<T, U> {
-    List<TargetedCombinerParameter<T,U>>	targetedCombinerParameters		= null;
-    Map<T,U>								mapTargetIdToTarget				= new HashMap<T,U>();
-    Map<U,List<CombinerParameter>>			mapTargetToCombinerParameters	= null;
+    List<TargetedCombinerParameter<T,U>>        targetedCombinerParameters              = null;
+    Map<T,U>                                                            mapTargetIdToTarget                             = new HashMap<T,U>();
+    Map<U,List<CombinerParameter>>                      mapTargetToCombinerParameters   = null;
 
     private void ensureTargetedCombinerParameters() {
         if (this.targetedCombinerParameters == null) {
-            this.targetedCombinerParameters	= new ArrayList<TargetedCombinerParameter<T,U>>();
+            this.targetedCombinerParameters     = new ArrayList<TargetedCombinerParameter<T,U>>();
         }
     }
 
@@ -85,15 +85,15 @@ public class TargetedCombinerParameterMap<T, U> {
     protected void ensureMap() throws IllegalStateException {
         if (this.mapTargetToCombinerParameters == null) {
             if (this.targetedCombinerParameters != null && this.targetedCombinerParameters.size() > 0) {
-                this.mapTargetToCombinerParameters	= new HashMap<U,List<CombinerParameter>>();
+                this.mapTargetToCombinerParameters      = new HashMap<U,List<CombinerParameter>>();
                 for (TargetedCombinerParameter<T,U> targetedCombinerParameter: this.targetedCombinerParameters) {
-                    U	target	= this.resolve(targetedCombinerParameter);
+                    U   target  = this.resolve(targetedCombinerParameter);
                     if (target == null) {
                         throw new IllegalStateException("Unresolved TargetCombinerParameter \"" + targetedCombinerParameter.toString() + "\"");
                     }
-                    List<CombinerParameter>	listCombinerParameters	= this.mapTargetToCombinerParameters.get(target);
+                    List<CombinerParameter>     listCombinerParameters  = this.mapTargetToCombinerParameters.get(target);
                     if (listCombinerParameters == null) {
-                        listCombinerParameters	= new ArrayList<CombinerParameter>();
+                        listCombinerParameters  = new ArrayList<CombinerParameter>();
                         this.mapTargetToCombinerParameters.put(target, listCombinerParameters);
                     }
                     listCombinerParameters.add(targetedCombinerParameter);
@@ -126,7 +126,7 @@ public class TargetedCombinerParameterMap<T, U> {
     public void addCombinerParameter(TargetedCombinerParameter<T,U> targetdCombinerParameter) {
         this.ensureTargetedCombinerParameters();
         this.targetedCombinerParameters.add(targetdCombinerParameter);
-        this.mapTargetToCombinerParameters	= null;
+        this.mapTargetToCombinerParameters      = null;
     }
 
     /**
@@ -137,7 +137,7 @@ public class TargetedCombinerParameterMap<T, U> {
     public void addCombinerParameters(Collection<TargetedCombinerParameter<T,U>> listTargetedCombinerParameters) {
         this.ensureTargetedCombinerParameters();
         this.targetedCombinerParameters.addAll(listTargetedCombinerParameters);
-        this.mapTargetToCombinerParameters	= null;
+        this.mapTargetToCombinerParameters      = null;
     }
 
     /**
@@ -147,7 +147,7 @@ public class TargetedCombinerParameterMap<T, U> {
      * @param listTargetedCombinerParameters the <code>Collection</code> of <code>TargetedCombinerParameter</code>s to set
      */
     public void setCombinerParameters(Collection<TargetedCombinerParameter<T,U>> listTargetedCombinerParameters) {
-        this.targetedCombinerParameters	= null;
+        this.targetedCombinerParameters = null;
         if (listTargetedCombinerParameters != null) {
             this.addCombinerParameters(targetedCombinerParameters);
         }

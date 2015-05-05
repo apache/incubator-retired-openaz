@@ -51,7 +51,7 @@ import com.att.research.xacml.std.StdAttributeCategory;
  *
  */
 public class DOMAttributeCategory {
-    private static final Log logger	= LogFactory.getLog(DOMAttributeCategory.class);
+    private static final Log logger     = LogFactory.getLog(DOMAttributeCategory.class);
 
     protected DOMAttributeCategory() {
     }
@@ -64,17 +64,17 @@ public class DOMAttributeCategory {
      * @throws DOMStructureException if the <code>Node</code> cannot be converted to a <code>DOMAttributeCategory</code>>
      */
     public static AttributeCategory newInstance(Node nodeAttributeCategory) throws DOMStructureException {
-        Element	elementAttributeCategory			= DOMUtil.getElement(nodeAttributeCategory);
-        boolean bLenient							= DOMProperties.isLenient();
+        Element elementAttributeCategory                        = DOMUtil.getElement(nodeAttributeCategory);
+        boolean bLenient                                                        = DOMProperties.isLenient();
 
-        Identifier identifierCategory	= DOMUtil.getIdentifierAttribute(nodeAttributeCategory, XACML3.ATTRIBUTE_CATEGORY, !bLenient);
-        List<Attribute> listAttributes	= new ArrayList<Attribute>();
+        Identifier identifierCategory   = DOMUtil.getIdentifierAttribute(nodeAttributeCategory, XACML3.ATTRIBUTE_CATEGORY, !bLenient);
+        List<Attribute> listAttributes  = new ArrayList<Attribute>();
 
-        NodeList children							= elementAttributeCategory.getChildNodes();
+        NodeList children                                                       = elementAttributeCategory.getChildNodes();
         int numChildren;
         if (children != null && (numChildren = children.getLength()) > 0) {
             for (int i = 0 ; i < numChildren ; i++) {
-                Node child	= children.item(i);
+                Node child      = children.item(i);
                 if (DOMUtil.isElement(child)) {
                     if (DOMUtil.isInNamespace(child, XACML3.XMLNS)) {
                         if (XACML3.ELEMENT_ATTRIBUTE.equals(child.getLocalName())) {
@@ -97,29 +97,29 @@ public class DOMAttributeCategory {
     }
 
     public static boolean repair(Node nodeAttributeCategory) throws DOMStructureException {
-        Element	elementAttributeCategory	= DOMUtil.getElement(nodeAttributeCategory);
-        boolean result						= false;
+        Element elementAttributeCategory        = DOMUtil.getElement(nodeAttributeCategory);
+        boolean result                                          = false;
 
-        result								= DOMUtil.repairIdentifierAttribute(elementAttributeCategory, XACML3.ATTRIBUTE_CATEGORY, logger) || result;
+        result                                                          = DOMUtil.repairIdentifierAttribute(elementAttributeCategory, XACML3.ATTRIBUTE_CATEGORY, logger) || result;
 
-        NodeList children							= elementAttributeCategory.getChildNodes();
+        NodeList children                                                       = elementAttributeCategory.getChildNodes();
         int numChildren;
         if (children != null && (numChildren = children.getLength()) > 0) {
             for (int i = 0 ; i < numChildren ; i++) {
-                Node child	= children.item(i);
+                Node child      = children.item(i);
                 if (DOMUtil.isElement(child)) {
                     if (DOMUtil.isInNamespace(child, XACML3.XMLNS)) {
                         if (XACML3.ELEMENT_ATTRIBUTE.equals(child.getLocalName())) {
-                            result	= DOMAttribute.repair(child) || result;
+                            result      = DOMAttribute.repair(child) || result;
                         } else {
                             logger.warn("Unexpected element " + child.getNodeName());
                             elementAttributeCategory.removeChild(child);
-                            result	= true;
+                            result      = true;
                         }
                     } else {
                         logger.warn("Unexpected element " + child.getNodeName());
                         elementAttributeCategory.removeChild(child);
-                        result	= true;
+                        result  = true;
                     }
                 }
             }

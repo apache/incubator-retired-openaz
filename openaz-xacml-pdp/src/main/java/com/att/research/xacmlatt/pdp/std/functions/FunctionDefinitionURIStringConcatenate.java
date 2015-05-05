@@ -56,7 +56,7 @@ import com.att.research.xacmlatt.pdp.policy.FunctionArgument;
  * In the first implementation of XACML we had separate files for each XACML Function.
  * This release combines multiple Functions in fewer files to minimize code duplication.
  * This file supports the following XACML codes:
- * 		uri-string-concatenate
+ *              uri-string-concatenate
  *
  *
  */

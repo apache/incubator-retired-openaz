@@ -50,8 +50,8 @@ import com.att.research.xacml.std.json.JSONStructureException;
  * To simplify testing we assume that request.toString() correctly includes a complete text representation of every sub-component of the Request object
  * and we compare the resulting String to our expected String.
  * This has two possible sources of error:
- * 	- toString might not include some sub-component, and
- * 	- the initial verification of the resulting string is done by hand and may have been incorrect.
+ *      - toString might not include some sub-component, and
+ *      - the initial verification of the resulting string is done by hand and may have been incorrect.
  *
  *
  */
@@ -85,18 +85,18 @@ public class RequestMainTest {
         "\"Id\" : \"customId\", " +
         "\"Attribute\" : [" +
         "{" +
-        "\"AttributeId\"		: \"document-id\", " +
-        "\"DataType\"	: \"integer\", " +
-        "\"Value\"	: 123 " +
+        "\"AttributeId\"                : \"document-id\", " +
+        "\"DataType\"   : \"integer\", " +
+        "\"Value\"      : 123 " +
         "}, " +
         "{" +
-        "\"AttributeId\"		: \"document-url\", " +
-        "\"DataType\"	: \"anyURI\", " +
-        "\"Value\"	: \"http://somewhere.over.the.com/rainbow\" " +
+        "\"AttributeId\"                : \"document-url\", " +
+        "\"DataType\"   : \"anyURI\", " +
+        "\"Value\"      : \"http://somewhere.over.the.com/rainbow\" " +
         "}, " +
         "{" +
-        "\"AttributeId\"		: \"page-list\", " +
-        "\"Value\"	: [1, 2, 3, 4.5, 3, 2, 1] " +
+        "\"AttributeId\"                : \"page-list\", " +
+        "\"Value\"      : [1, 2, 3, 4.5, 3, 2, 1] " +
         "} " +
         "]" +
         "}, " +

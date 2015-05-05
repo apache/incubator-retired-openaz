@@ -103,7 +103,7 @@ public class XACMLPdpServlet extends HttpServlet implements Runnable {
     //
     // Our application debug log
     //
-    private static final Log logger	= LogFactory.getLog(XACMLPdpServlet.class);
+    private static final Log logger     = LogFactory.getLog(XACMLPdpServlet.class);
     //
     // This logger is specifically only for Xacml requests and their corresponding response.
     // It's output ideally should be sent to a separate file from the application logger.
@@ -120,7 +120,7 @@ public class XACMLPdpServlet extends HttpServlet implements Runnable {
     // for access to the pointer. In case we are servicing PEP requests while
     // an update is occurring from the PAP.
     //
-    private PDPEngine pdpEngine	= null;
+    private PDPEngine pdpEngine = null;
     private static final Object pdpEngineLock = new Object();
     //
     // This is our PDP's status. What policies are loaded (or not) and
@@ -229,43 +229,43 @@ public class XACMLPdpServlet extends HttpServlet implements Runnable {
      *
      * config=[policy|pip|all]
      *
-     * 	policy - Expect a properties file that contains updated lists of the root and referenced policies that the PDP should
-     * 			 be using for PEP requests.
+     *  policy - Expect a properties file that contains updated lists of the root and referenced policies that the PDP should
+     *                   be using for PEP requests.
      *
-     * 		Specifically should AT LEAST contain the following properties:
-     * 		xacml.rootPolicies
-     * 		xacml.referencedPolicies
+     *          Specifically should AT LEAST contain the following properties:
+     *          xacml.rootPolicies
+     *          xacml.referencedPolicies
      *
-     * 		In addition, any relevant information needed by the PDP to load or retrieve the policies to store in its cache.
+     *          In addition, any relevant information needed by the PDP to load or retrieve the policies to store in its cache.
      *
-     * 		EXAMPLE:
-     *	 		xacml.rootPolicies=PolicyA.1, PolicyB.1
+     *          EXAMPLE:
+     *                  xacml.rootPolicies=PolicyA.1, PolicyB.1
      *
-     *			PolicyA.1.url=http://localhost:9090/PAP?id=b2d7b86d-d8f1-4adf-ba9d-b68b2a90bee1&version=1
-     *			PolicyB.1.url=http://localhost:9090/PAP/id=be962404-27f6-41d8-9521-5acb7f0238be&version=1
+     *                  PolicyA.1.url=http://localhost:9090/PAP?id=b2d7b86d-d8f1-4adf-ba9d-b68b2a90bee1&version=1
+     *                  PolicyB.1.url=http://localhost:9090/PAP/id=be962404-27f6-41d8-9521-5acb7f0238be&version=1
      *
-     *			xacml.referencedPolicies=RefPolicyC.1, RefPolicyD.1
+     *                  xacml.referencedPolicies=RefPolicyC.1, RefPolicyD.1
      *
-     *			RefPolicyC.1.url=http://localhost:9090/PAP?id=foobar&version=1
-     *			RefPolicyD.1.url=http://localhost:9090/PAP/id=example&version=1
+     *                  RefPolicyC.1.url=http://localhost:9090/PAP?id=foobar&version=1
+     *                  RefPolicyD.1.url=http://localhost:9090/PAP/id=example&version=1
      *
      * pip - Expect a properties file that contain PIP engine configuration properties.
      *
-     *  		Specifically should AT LEAST the following property:
-     * 			xacml.pip.engines
+     *                  Specifically should AT LEAST the following property:
+     *                  xacml.pip.engines
      *
-     * 		In addition, any relevant information needed by the PDP to load and configure the PIPs.
+     *          In addition, any relevant information needed by the PDP to load and configure the PIPs.
      *
-     * 		EXAMPLE:
-     * 			xacml.pip.engines=foo,bar
+     *          EXAMPLE:
+     *                  xacml.pip.engines=foo,bar
      *
-     * 			foo.classname=com.foo
-     * 			foo.sample=abc
-     * 			foo.example=xyz
-     * 			......
+     *                  foo.classname=com.foo
+     *                  foo.sample=abc
+     *                  foo.example=xyz
+     *                  ......
      *
-     * 			bar.classname=com.bar
-     * 			......
+     *                  bar.classname=com.bar
+     *                  ......
      *
      * all - Expect ALL new configuration properties for the PDP
      *
@@ -374,13 +374,13 @@ public class XACMLPdpServlet extends HttpServlet implements Runnable {
      *
      * 1. HeartBeat Status
      * HeartBeat
-     * 		OK - All Policies are Loaded, All PIPs are Loaded
-     *  	LOADING_IN_PROGRESS - Currently loading a new policy set/pip configuration
-     *  	LAST_UPDATE_FAILED - Need to track the items that failed during last update
-     *  	LOAD_FAILURE - ??? Need to determine what information is sent and how
+     *          OK - All Policies are Loaded, All PIPs are Loaded
+     *          LOADING_IN_PROGRESS - Currently loading a new policy set/pip configuration
+     *          LAST_UPDATE_FAILED - Need to track the items that failed during last update
+     *          LOAD_FAILURE - ??? Need to determine what information is sent and how
      * 2. Configuration
      * 3. Status
-     * 		return the StdPDPStatus object in the Response content
+     *          return the StdPDPStatus object in the Response content
      *
      *
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -512,7 +512,7 @@ public class XACMLPdpServlet extends HttpServlet implements Runnable {
             try {
                 if (contentType.getMimeType().equalsIgnoreCase(ContentType.APPLICATION_JSON.getMimeType())) {
                     pdpRequest = JSONRequest.load(incomingRequestString);
-                } else if (	contentType.getMimeType().equalsIgnoreCase(ContentType.APPLICATION_XML.getMimeType()) ||
+                } else if (     contentType.getMimeType().equalsIgnoreCase(ContentType.APPLICATION_XML.getMimeType()) ||
                             contentType.getMimeType().equalsIgnoreCase("application/xacml+xml")) {
                     pdpRequest = DOMRequest.load(incomingRequestString);
                 }
@@ -557,27 +557,27 @@ public class XACMLPdpServlet extends HttpServlet implements Runnable {
             // Send the request and save the response
             //
             long lTimeStart, lTimeEnd;
-            Response pdpResponse	= null;
+            Response pdpResponse        = null;
 
 //TODO - Make this unnecessary
-//TODO	It seems that the PDP Engine is not thread-safe, so when a configuration change occurs in the middle of processing
-//TODO	a PEP Request, that Request fails (it throws a NullPointerException in the decide() method).
-//TODO	Using synchronize will slow down processing of PEP requests, possibly by a significant amount.
-//TODO	Since configuration changes are rare, it would be A Very Good Thing if we could eliminate this sychronized block.
+//TODO  It seems that the PDP Engine is not thread-safe, so when a configuration change occurs in the middle of processing
+//TODO  a PEP Request, that Request fails (it throws a NullPointerException in the decide() method).
+//TODO  Using synchronize will slow down processing of PEP requests, possibly by a significant amount.
+//TODO  Since configuration changes are rare, it would be A Very Good Thing if we could eliminate this sychronized block.
 //TODO
-//TODO	This problem was found by starting one PDP then
-//TODO		RestLoadTest switching between 2 configurations, 1 second apart
-//TODO			both configurations contain the datarouter policy
-//TODO			both configurations already have all policies cached in the PDPs config directory
-//TODO		RestLoadTest started with the Datarouter test requests, 5 threads, no interval
-//TODO	With that configuration this code (without the synchronized) throws a NullPointerException
-//TODO	within a few seconds.
+//TODO  This problem was found by starting one PDP then
+//TODO          RestLoadTest switching between 2 configurations, 1 second apart
+//TODO                  both configurations contain the datarouter policy
+//TODO                  both configurations already have all policies cached in the PDPs config directory
+//TODO          RestLoadTest started with the Datarouter test requests, 5 threads, no interval
+//TODO  With that configuration this code (without the synchronized) throws a NullPointerException
+//TODO  within a few seconds.
 //
             synchronized(pdpEngineLock) {
                 myEngine = this.pdpEngine;
                 try {
                     lTimeStart = System.currentTimeMillis();
-                    pdpResponse	= myEngine.decide(pdpRequest);
+                    pdpResponse = myEngine.decide(pdpRequest);
                     lTimeEnd = System.currentTimeMillis();
                 } catch (PDPException e) {
                     String message = "Exception during decide: " + e.getMessage();
@@ -619,7 +619,7 @@ public class XACMLPdpServlet extends HttpServlet implements Runnable {
                     //
                     outgoingResponseString = JSONResponse.toString(pdpResponse, false);
                 }
-            } else if (	contentType.getMimeType().equalsIgnoreCase(ContentType.APPLICATION_XML.getMimeType()) ||
+            } else if ( contentType.getMimeType().equalsIgnoreCase(ContentType.APPLICATION_XML.getMimeType()) ||
                         contentType.getMimeType().equalsIgnoreCase("application/xacml+xml")) {
                 //
                 // Get it as a String. This is not very efficient but we need to log our
@@ -660,15 +660,15 @@ public class XACMLPdpServlet extends HttpServlet implements Runnable {
                 StdPDPStatus newStatus = new StdPDPStatus();
 
 //TODO - This is related to the problem discussed in the doPost() method about the PDPEngine not being thread-safe.
-//TODO	See that discussion, and when the PDPEngine is made thread-safe it should be ok to move the loadEngine out of
-//TODO	the synchronized block.
-//TODO	However, since configuration changes should be rare we may not care about changing this.
+//TODO  See that discussion, and when the PDPEngine is made thread-safe it should be ok to move the loadEngine out of
+//TODO  the synchronized block.
+//TODO  However, since configuration changes should be rare we may not care about changing this.
                 PDPEngine newEngine = null;
                 synchronized(pdpStatusLock) {
                     XACMLPdpServlet.status.setStatus(Status.UPDATING_CONFIGURATION);
                     newEngine = XACMLPdpLoader.loadEngine(newStatus, request.policyProperties, request.pipConfigProperties);
                 }
-//				PDPEngine newEngine = XACMLPdpLoader.loadEngine(newStatus, request.policyProperties, request.pipConfigProperties);
+//                              PDPEngine newEngine = XACMLPdpLoader.loadEngine(newStatus, request.policyProperties, request.pipConfigProperties);
                 if (newEngine != null) {
                     synchronized(XACMLPdpServlet.pdpEngineLock) {
                         this.pdpEngine = newEngine;

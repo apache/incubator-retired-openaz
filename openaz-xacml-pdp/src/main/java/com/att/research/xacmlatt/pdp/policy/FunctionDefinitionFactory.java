@@ -43,8 +43,8 @@ import com.att.research.xacmlatt.pdp.util.ATTPDPProperties;
  *
  */
 public abstract class FunctionDefinitionFactory {
-    private static final String	FACTORYID					= ATTPDPProperties.PROP_FUNCTIONDEFINITIONFACTORY;
-    private static final String DEFAULT_FACTORY_CLASSNAME	= "com.att.research.xacmlatt.pdp.std.StdFunctionDefinitionFactory";
+    private static final String FACTORYID                                       = ATTPDPProperties.PROP_FUNCTIONDEFINITIONFACTORY;
+    private static final String DEFAULT_FACTORY_CLASSNAME       = "com.att.research.xacmlatt.pdp.std.StdFunctionDefinitionFactory";
 
     protected FunctionDefinitionFactory() {
     }

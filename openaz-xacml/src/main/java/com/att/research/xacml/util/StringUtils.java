@@ -54,7 +54,7 @@ public class StringUtils {
         if (iterObjects == null || (!allowEmptyLists && !iterObjects.hasNext())) {
             return null;
         } else {
-            StringBuilder stringBuilder	= new StringBuilder("[");
+            StringBuilder stringBuilder = new StringBuilder("[");
             if (iterObjects.hasNext()) {
                 stringBuilder.append(iterObjects.next().toString());
                 while (iterObjects.hasNext()) {
@@ -68,7 +68,7 @@ public class StringUtils {
     }
 
     public static String toString(short[] a) {
-        StringBuilder stringBuilder	= new StringBuilder("[");
+        StringBuilder stringBuilder     = new StringBuilder("[");
         if (a != null && a.length > 0) {
             stringBuilder.append(a[0]);
             for (int i = 1 ; i < a.length ; i++) {
@@ -81,7 +81,7 @@ public class StringUtils {
     }
 
     public static String toString(byte[] a) {
-        StringBuilder stringBuilder	= new StringBuilder("[");
+        StringBuilder stringBuilder     = new StringBuilder("[");
         if (a != null && a.length > 0) {
             stringBuilder.append(a[0]);
             for (int i = 1 ; i < a.length ; i++) {
@@ -107,18 +107,18 @@ public class StringUtils {
         if (string == null) {
             return "null";
         }
-        StringBuilder stringBuilder	= new StringBuilder();
-        int stringLen	= string.length();
-        int curIndent	= 0;
-        boolean bstart	= false;
+        StringBuilder stringBuilder     = new StringBuilder();
+        int stringLen   = string.length();
+        int curIndent   = 0;
+        boolean bstart  = false;
         for (int i = 0 ; i < stringLen ; ) {
-            char charAt	= string.charAt(i);
+            char charAt = string.charAt(i);
             switch(charAt) {
             case '{':
                 if (i+1 < stringLen) {
                     if (string.charAt(i+1) == '}') {
                         stringBuilder.append("{}");
-                        i	+= 2;
+                        i       += 2;
                     } else {
                         if (i > 0) {
                             stringBuilder.append('\n');
@@ -134,7 +134,7 @@ public class StringUtils {
                     stringBuilder.append(charAt);
                     i++;
                 }
-                bstart	= true;
+                bstart  = true;
                 break;
             case '}':
                 stringBuilder.append('\n');
@@ -144,13 +144,13 @@ public class StringUtils {
                     curIndent--;
                 }
                 i++;
-                bstart	= true;
+                bstart  = true;
                 break;
             case '[':
                 if (i+1 < stringLen) {
                     if (string.charAt(i+1) == ']') {
                         stringBuilder.append("[]");
-                        i	+= 2;
+                        i       += 2;
                     } else {
                         if (i > 0) {
                             stringBuilder.append('\n');
@@ -166,7 +166,7 @@ public class StringUtils {
                     stringBuilder.append(charAt);
                     i++;
                 }
-                bstart	= true;
+                bstart  = true;
                 break;
             case ']':
                 stringBuilder.append('\n');
@@ -176,7 +176,7 @@ public class StringUtils {
                     curIndent--;
                 }
                 i++;
-                bstart	= true;
+                bstart  = true;
                 break;
             case ',':
                 stringBuilder.append(charAt);
@@ -191,7 +191,7 @@ public class StringUtils {
                 if (bstart) {
                     stringBuilder.append('\n');
                     indent(stringBuilder, (curIndent+1)*indentSize);
-                    bstart	= false;
+                    bstart      = false;
                 }
                 stringBuilder.append(charAt);
                 i++;

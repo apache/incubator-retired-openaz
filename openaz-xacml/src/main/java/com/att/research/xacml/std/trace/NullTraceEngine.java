@@ -41,7 +41,7 @@ import com.att.research.xacml.api.trace.TraceEvent;
  *
  */
 public class NullTraceEngine implements TraceEngine {
-    private static final NullTraceEngine nullTraceEngine	= new NullTraceEngine();
+    private static final NullTraceEngine nullTraceEngine        = new NullTraceEngine();
 
     protected NullTraceEngine() {
     }

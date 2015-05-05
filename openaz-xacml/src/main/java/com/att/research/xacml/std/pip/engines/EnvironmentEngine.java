@@ -97,7 +97,7 @@ public class EnvironmentEngine implements PIPEngine {
     }
 
     public EnvironmentEngine(Date dateContextTimeIn) {
-        this.contextTime	= dateContextTimeIn;
+        this.contextTime        = dateContextTimeIn;
     }
 
     @Override
@@ -142,15 +142,15 @@ public class EnvironmentEngine implements PIPEngine {
         /*
          * See which environment attribute is requested
          */
-        Identifier attributeIdRequest		= pipRequest.getAttributeId();
-        StdSinglePIPResponse pipResponse	= null;
+        Identifier attributeIdRequest           = pipRequest.getAttributeId();
+        StdSinglePIPResponse pipResponse        = null;
         try {
             if (XACML3.ID_ENVIRONMENT_CURRENT_DATE.equals(attributeIdRequest)) {
-                pipResponse	= this.getResponseDate();
+                pipResponse     = this.getResponseDate();
             } else if (XACML3.ID_ENVIRONMENT_CURRENT_TIME.equals(attributeIdRequest)) {
-                pipResponse	= this.getResponseTime();
+                pipResponse     = this.getResponseTime();
             } else if (XACML3.ID_ENVIRONMENT_CURRENT_DATETIME.equals(attributeIdRequest)) {
-                pipResponse	= this.getResponseDateTime();
+                pipResponse     = this.getResponseDateTime();
             }
         } catch (DataTypeException ex) {
             throw new PIPException("DataTypeException getting \"" + attributeIdRequest.stringValue() + "\"", ex);
@@ -163,7 +163,7 @@ public class EnvironmentEngine implements PIPEngine {
         /*
          * Ensure the data types match
          */
-        AttributeValue<?> attributeValuePipResponse	= pipResponse.getSingleAttribute().getValues().iterator().next();
+        AttributeValue<?> attributeValuePipResponse     = pipResponse.getSingleAttribute().getValues().iterator().next();
         if (attributeValuePipResponse.getDataTypeId().equals(pipRequest.getDataTypeId())) {
             return pipResponse;
         } else {

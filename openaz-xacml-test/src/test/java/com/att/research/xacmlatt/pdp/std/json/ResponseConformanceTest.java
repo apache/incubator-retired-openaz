@@ -57,8 +57,8 @@ import com.att.research.xacml.util.ListUtil;
  * In Eclipse select this file or the enclosing directory, right-click and select Run As/JUnit Test
  *
  * Note: some of the validation tests comparing the XML-derived Results to the JSON-derived Results are high-level comparisons of Collections.
- *		When this class was first created that was sufficient to pass all Conformance tests.
- *		However if this sees a failure in a Conformance test, those validations may need to be upgraded to look at the individual data elements to see what is wrong.
+ *              When this class was first created that was sufficient to pass all Conformance tests.
+ *              However if this sees a failure in a Conformance test, those validations may need to be upgraded to look at the individual data elements to see what is wrong.
  *
  *
  */
@@ -93,10 +93,10 @@ public class ResponseConformanceTest {
         }
 
         // run through each XML file
-        //	- load the file from XML into an internal Response object
-        //	- generate the JSON representation of that Response object
-        //	- load that JSON representation into a new Response object
-        //	- compare the 2 Request objects
+        //      - load the file from XML into an internal Response object
+        //      - generate the JSON representation of that Response object
+        //      - load that JSON representation into a new Response object
+        //      - compare the 2 Request objects
         Response xmlResponse = null;
         Response jsonResponse = null;
         try {
@@ -107,7 +107,7 @@ public class ResponseConformanceTest {
 //if ( ! f.getName().equals("IIIA030Response.xml") && ! f.getName().equals("IIIA330Response.xml")) {   continue;  }
 
 // during debugging it is helpful to know what file it is starting to work on
-//				System.out.println("starting file="+currentFile.getName());
+//                              System.out.println("starting file="+currentFile.getName());
 
                 try {
                     // load XML into a Response object

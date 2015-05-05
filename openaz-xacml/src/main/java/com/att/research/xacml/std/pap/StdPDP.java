@@ -46,7 +46,7 @@ import com.att.research.xacml.api.pap.PDPStatus;
 
 public class StdPDP extends StdPDPItemSetChangeNotifier implements PDP, Comparable<StdPDP>, Serializable {
     private static final long serialVersionUID = 1L;
-    private static Log	logger	= LogFactory.getLog(StdPDP.class);
+    private static Log  logger  = LogFactory.getLog(StdPDP.class);
 
     private String id;
 

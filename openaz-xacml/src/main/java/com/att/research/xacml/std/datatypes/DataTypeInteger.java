@@ -40,7 +40,7 @@ import com.att.research.xacml.api.XACML;
  *
  */
 public class DataTypeInteger extends DataTypeBase<BigInteger> {
-    private static final DataTypeInteger	singleInstance	= new DataTypeInteger();
+    private static final DataTypeInteger        singleInstance  = new DataTypeInteger();
 
     private DataTypeInteger() {
         super(XACML.ID_DATATYPE_INTEGER, BigInteger.class);
@@ -57,10 +57,10 @@ public class DataTypeInteger extends DataTypeBase<BigInteger> {
         } else if (source instanceof Integer) {
             return new BigInteger(source.toString());
         } else {
-            String stringValue	= this.convertToString(source);
-            BigInteger	intValue	= null;
+            String stringValue  = this.convertToString(source);
+            BigInteger  intValue        = null;
             try {
-                intValue	= new BigInteger(stringValue);
+                intValue        = new BigInteger(stringValue);
             } catch (NumberFormatException ex) {
                 throw new DataTypeException(this, "Failed to convert from \"" + source.getClass().getCanonicalName() + "\" with value \"" + stringValue + "\" to integer", ex);
             }

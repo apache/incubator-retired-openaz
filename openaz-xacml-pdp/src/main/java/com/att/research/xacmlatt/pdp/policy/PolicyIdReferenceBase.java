@@ -45,8 +45,8 @@ import com.att.research.xacmlatt.pdp.eval.MatchResult;
  *
  */
 public abstract class PolicyIdReferenceBase<T extends PolicyDef> extends PolicySetChild {
-    private IdReferenceMatch	idReferenceMatch;
-    private T					referencee;
+    private IdReferenceMatch    idReferenceMatch;
+    private T                                   referencee;
 
     @Override
     protected boolean validateComponent() {
@@ -101,7 +101,7 @@ public abstract class PolicyIdReferenceBase<T extends PolicyDef> extends PolicyS
     }
 
     public void setIdReferenceMatch(IdReferenceMatch idReferenceMatchIn) {
-        this.idReferenceMatch	= idReferenceMatchIn;
+        this.idReferenceMatch   = idReferenceMatchIn;
     }
 
     /**
@@ -114,12 +114,12 @@ public abstract class PolicyIdReferenceBase<T extends PolicyDef> extends PolicyS
     }
 
     public void setReferencee(T referenceeIn) {
-        this.referencee	= referenceeIn;
+        this.referencee = referenceeIn;
     }
 
     @Override
     public EvaluationResult evaluate(EvaluationContext evaluationContext) throws EvaluationException {
-        T thisReferencee	= this.ensureReferencee(evaluationContext);
+        T thisReferencee        = this.ensureReferencee(evaluationContext);
         if (thisReferencee == null) {
             return new EvaluationResult(Decision.INDETERMINATE, new StdStatus(StdStatusCode.STATUS_CODE_PROCESSING_ERROR, "Could not find referencee for " + this.getIdReferenceMatch().toString()));
         } else {
@@ -129,7 +129,7 @@ public abstract class PolicyIdReferenceBase<T extends PolicyDef> extends PolicyS
 
     @Override
     public MatchResult match(EvaluationContext evaluationContext) throws EvaluationException {
-        T thisReferencee	= this.ensureReferencee(evaluationContext);
+        T thisReferencee        = this.ensureReferencee(evaluationContext);
         if (thisReferencee == null) {
             return new MatchResult(MatchResult.MatchCode.INDETERMINATE, new StdStatus(StdStatusCode.STATUS_CODE_PROCESSING_ERROR, "Could not find referencee for " + this.getIdReferenceMatch().toString()));
         } else {

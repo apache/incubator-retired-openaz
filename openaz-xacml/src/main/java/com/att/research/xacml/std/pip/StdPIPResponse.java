@@ -53,7 +53,7 @@ import com.att.research.xacml.util.Wrapper;
  *
  */
 public class StdPIPResponse extends Wrapper<PIPResponse> implements PIPResponse {
-    public static final PIPResponse	PIP_RESPONSE_EMPTY	= new StdPIPResponse(StdStatus.STATUS_OK);
+    public static final PIPResponse     PIP_RESPONSE_EMPTY      = new StdPIPResponse(StdStatus.STATUS_OK);
 
     /**
      * Creates a new immutable <code>StdPIPResponse</code> that wraps the given {@link com.att.research.xacml.api.pip.PIPResponse}.
@@ -140,10 +140,10 @@ public class StdPIPResponse extends Wrapper<PIPResponse> implements PIPResponse 
         /*
          * See if all of the values match the requested data type
          */
-        boolean allMatch	= true;
+        boolean allMatch        = true;
         for (Iterator<AttributeValue<?>> iterAttributeValues = listAttributeValues.iterator() ; allMatch && iterAttributeValues.hasNext() ; ) {
-            AttributeValue<?> attributeValue	= iterAttributeValues.next();
-            allMatch	= attributeValue.getDataTypeId().equals(pipRequest.getDataTypeId());
+            AttributeValue<?> attributeValue    = iterAttributeValues.next();
+            allMatch    = attributeValue.getDataTypeId().equals(pipRequest.getDataTypeId());
         }
         if (allMatch) {
             return listAttributeValues;
@@ -156,9 +156,9 @@ public class StdPIPResponse extends Wrapper<PIPResponse> implements PIPResponse 
             return null;
         }
 
-        List<AttributeValue<?>> listAttributeValuesMatching	= new ArrayList<AttributeValue<?>>();
+        List<AttributeValue<?>> listAttributeValuesMatching     = new ArrayList<AttributeValue<?>>();
         for (Iterator<AttributeValue<?>> iterAttributeValues = listAttributeValues.iterator() ; iterAttributeValues.hasNext() ;) {
-            AttributeValue<?> attributeValue	= iterAttributeValues.next();
+            AttributeValue<?> attributeValue    = iterAttributeValues.next();
             if (attributeValue.getDataTypeId().equals(pipRequest.getDataTypeId())) {
                 listAttributeValuesMatching.add(attributeValue);
             }
@@ -195,13 +195,13 @@ public class StdPIPResponse extends Wrapper<PIPResponse> implements PIPResponse 
             /*
              * Get the one Attribute and verify that it matches the request, and that the data type of its values matches the request
              */
-            Attribute attributeResponse	= pipResponse.getAttributes().iterator().next();
+            Attribute attributeResponse = pipResponse.getAttributes().iterator().next();
             if (matches(pipRequest, attributeResponse)) {
-                Collection<AttributeValue<?>> attributeValues	= attributeResponse.getValues();
+                Collection<AttributeValue<?>> attributeValues   = attributeResponse.getValues();
                 if (attributeValues == null || attributeValues.size() == 0) {
                     return pipResponse;
                 } else {
-                    AttributeValue<?> attributeValueResponse	= attributeResponse.getValues().iterator().next();
+                    AttributeValue<?> attributeValueResponse    = attributeResponse.getValues().iterator().next();
                     if (attributeValueResponse.getDataTypeId().equals(pipRequest.getDataTypeId())) {
                         return pipResponse;
                     } else {
@@ -215,18 +215,18 @@ public class StdPIPResponse extends Wrapper<PIPResponse> implements PIPResponse 
             /*
              * Iterate over the Attributes and just get the ones that match and collapse any matching AttributeValues
              */
-            StdMutableAttribute	attributeMatch	= null;
-            Iterator<Attribute> iterAttributesResponse	= pipResponse.getAttributes().iterator();
+            StdMutableAttribute attributeMatch  = null;
+            Iterator<Attribute> iterAttributesResponse  = pipResponse.getAttributes().iterator();
             while (iterAttributesResponse.hasNext()) {
-                Attribute attributeResponse	= iterAttributesResponse.next();
+                Attribute attributeResponse     = iterAttributesResponse.next();
                 if (matches(pipRequest, attributeResponse)) {
                     /*
                      * Get subset of the matching attribute values
                      */
-                    Collection<AttributeValue<?>> listAttributeValuesMatch	= matchingValues(pipRequest, attributeResponse.getValues());
+                    Collection<AttributeValue<?>> listAttributeValuesMatch      = matchingValues(pipRequest, attributeResponse.getValues());
                     if (listAttributeValuesMatch != null && listAttributeValuesMatch.size() > 0) {
                         if (attributeMatch == null) {
-                            attributeMatch	= new StdMutableAttribute(pipRequest.getCategory(), pipRequest.getAttributeId(), listAttributeValuesMatch, pipRequest.getIssuer(), false);
+                            attributeMatch      = new StdMutableAttribute(pipRequest.getCategory(), pipRequest.getAttributeId(), listAttributeValuesMatch, pipRequest.getIssuer(), false);
                         } else {
                             attributeMatch.addValues(listAttributeValuesMatch);
                         }
@@ -247,7 +247,7 @@ public class StdPIPResponse extends Wrapper<PIPResponse> implements PIPResponse 
      * @return
      */
     private static List<Attribute> simplifyAttribute(Attribute attribute) {
-        List<Attribute> listAttributes	= new ArrayList<Attribute>();
+        List<Attribute> listAttributes  = new ArrayList<Attribute>();
         if (attribute.getValues() == null || attribute.getValues().size() <= 1) {
             listAttributes.add(attribute);
         } else {
@@ -269,11 +269,11 @@ public class StdPIPResponse extends Wrapper<PIPResponse> implements PIPResponse 
         if (listAttributes.size() <= 0) {
             return listAttributes;
         }
-        Map<PIPRequest, StdMutableAttribute> map	= new HashMap<PIPRequest, StdMutableAttribute>();
+        Map<PIPRequest, StdMutableAttribute> map        = new HashMap<PIPRequest, StdMutableAttribute>();
         for (Attribute attribute : listAttributes) {
-            PIPRequest pipRequest	= new StdPIPRequest(attribute);
+            PIPRequest pipRequest       = new StdPIPRequest(attribute);
             if (map.containsKey(pipRequest)) {
-                StdMutableAttribute mutableAttribute	= map.get(pipRequest);
+                StdMutableAttribute mutableAttribute    = map.get(pipRequest);
                 mutableAttribute.addValues(attribute.getValues());
             } else {
                 map.put(pipRequest, new StdMutableAttribute(attribute));
@@ -297,20 +297,20 @@ public class StdPIPResponse extends Wrapper<PIPResponse> implements PIPResponse 
      * @throws com.att.research.xacml.api.pip.PIPException if there is an error splitting the response
      */
     public static Map<PIPRequest,PIPResponse> splitResponse(PIPResponse pipResponse) throws PIPException {
-        Map<PIPRequest,PIPResponse> map	= new HashMap<PIPRequest,PIPResponse>();
+        Map<PIPRequest,PIPResponse> map = new HashMap<PIPRequest,PIPResponse>();
         if (!pipResponse.getStatus().isOk() || pipResponse.isSimple()) {
             map.put(new StdPIPRequest(pipResponse.getAttributes().iterator().next()), pipResponse);
         } else {
-            List<Attribute> listAllAttributesSimple	= new ArrayList<Attribute>();
+            List<Attribute> listAllAttributesSimple     = new ArrayList<Attribute>();
             for (Iterator<Attribute> iterAttributes = pipResponse.getAttributes().iterator() ; iterAttributes.hasNext() ; ) {
-                Attribute attribute	= iterAttributes.next();
-                List<Attribute> listAttributesSplit	= simplifyAttribute(attribute);
+                Attribute attribute     = iterAttributes.next();
+                List<Attribute> listAttributesSplit     = simplifyAttribute(attribute);
                 if (listAttributesSplit != null && listAttributesSplit.size() > 0) {
                     listAllAttributesSimple.addAll(listAttributesSplit);
                 }
             }
             if (listAllAttributesSimple.size() > 0) {
-                Collection<? extends Attribute> listAttributesCollapsed	= collapseAttributes(listAllAttributesSimple);
+                Collection<? extends Attribute> listAttributesCollapsed = collapseAttributes(listAllAttributesSimple);
                 for (Attribute attributeCollapsed : listAttributesCollapsed) {
                     map.put(new StdPIPRequest(attributeCollapsed), new StdPIPResponse(attributeCollapsed));
                 }
@@ -326,9 +326,9 @@ public class StdPIPResponse extends Wrapper<PIPResponse> implements PIPResponse 
 
     @Override
     public String toString() {
-        StringBuilder stringBuilder	= new StringBuilder("{");
+        StringBuilder stringBuilder     = new StringBuilder("{");
 
-        boolean needsComma	= false;
+        boolean needsComma      = false;
 
         if (this.getStatus() != null) {
             stringBuilder.append(this.getStatus().toString());

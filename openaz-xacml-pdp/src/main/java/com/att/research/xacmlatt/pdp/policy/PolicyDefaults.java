@@ -40,18 +40,18 @@ import com.att.research.xacml.api.XACML;
  *
  */
 public class PolicyDefaults {
-    private static URI		xpathVersionDefault;
+    private static URI          xpathVersionDefault;
 
     static {
         try {
-            xpathVersionDefault	= new URI(XACML.XPATHVERSION_2_0);
+            xpathVersionDefault = new URI(XACML.XPATHVERSION_2_0);
         } catch (Exception ex) {
 
         }
     }
 
-    private URI				xpathVersion;
-    private PolicyDefaults 	policyDefaultsParent;
+    private URI                         xpathVersion;
+    private PolicyDefaults      policyDefaultsParent;
 
     /**
      * Creates a new <code>PolicyDefaults</code> with the given <code>URI</code> for the XPath version and
@@ -61,8 +61,8 @@ public class PolicyDefaults {
      * @param policyDefaultsParentIn the <code>PolicyDefaults</code> object that is the parent of the new <code>PolicyDefaults</code>
      */
     public PolicyDefaults(URI xpathVersionIn, PolicyDefaults policyDefaultsParentIn) {
-        this.xpathVersion			= xpathVersionIn;
-        this.policyDefaultsParent	= policyDefaultsParentIn;
+        this.xpathVersion                       = xpathVersionIn;
+        this.policyDefaultsParent       = policyDefaultsParentIn;
     }
 
     /**
@@ -92,7 +92,7 @@ public class PolicyDefaults {
         /*
          * Try the parent hierarchy if there is one
          */
-        PolicyDefaults	policyDefaultsParentThis	= this.getPolicyDefaultsParent();
+        PolicyDefaults  policyDefaultsParentThis        = this.getPolicyDefaultsParent();
         if (policyDefaultsParentThis != null) {
             return policyDefaultsParentThis.getXPathVersion();
         }
@@ -105,14 +105,14 @@ public class PolicyDefaults {
 
     @Override
     public String toString() {
-        StringBuilder stringBuilder	= new StringBuilder("{");
+        StringBuilder stringBuilder     = new StringBuilder("{");
 
-        boolean	needsComma	= false;
+        boolean needsComma      = false;
         Object objectToDump;
         if ((objectToDump = this.xpathVersion) != null) {
             stringBuilder.append("xpathVersion=");
             stringBuilder.append(objectToDump.toString());
-            needsComma	= true;
+            needsComma  = true;
         }
         if ((objectToDump = this.getPolicyDefaultsParent()) != null) {
             if (needsComma) {
@@ -120,7 +120,7 @@ public class PolicyDefaults {
             }
             stringBuilder.append("policyDefaultsParent=");
             stringBuilder.append(objectToDump.toString());
-            needsComma	= true;
+            needsComma  = true;
         }
         stringBuilder.append('}');
         return stringBuilder.toString();

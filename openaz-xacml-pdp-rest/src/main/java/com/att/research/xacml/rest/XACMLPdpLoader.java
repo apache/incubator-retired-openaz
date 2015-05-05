@@ -74,7 +74,7 @@ import com.google.common.base.Splitter;
  *
  */
 public class XACMLPdpLoader {
-    private static final Log logger	= LogFactory.getLog(XACMLPdpLoader.class);
+    private static final Log logger     = LogFactory.getLog(XACMLPdpLoader.class);
 
     public static synchronized PDPEngine loadEngine(StdPDPStatus status, Properties policyProperties, Properties pipProperties) {
         logger.info("loadEngine: " + policyProperties + " "+ pipProperties);
@@ -100,8 +100,8 @@ public class XACMLPdpLoader {
             // Get our policy cache up-to-date
             //
             // Side effects of this include:
-            //	- downloading of policies from remote locations, and
-            //	- creating new "<PolicyId>.file" properties for files existing local
+            //  - downloading of policies from remote locations, and
+            //  - creating new "<PolicyId>.file" properties for files existing local
             //
             XACMLPdpLoader.cachePolicies(policyProperties);
             //
@@ -169,11 +169,11 @@ public class XACMLPdpLoader {
         //
         // Now load the PDP engine
         //
-        PDPEngineFactory factory	= null;
-        PDPEngine engine	= null;
+        PDPEngineFactory factory        = null;
+        PDPEngine engine        = null;
         try {
-            factory	= PDPEngineFactory.newInstance();
-            engine	= factory.newEngine();
+            factory     = PDPEngineFactory.newInstance();
+            engine      = factory.newEngine();
             logger.info("Loaded new PDP engine.");
             status.setStatus(Status.UP_TO_DATE);
         } catch (FactoryException e) {
@@ -317,9 +317,9 @@ public class XACMLPdpLoader {
     /**
      * Iterates the policies defined in the props object to ensure they are loaded locally.
      * Policies are searched for in the following order:
-     * 	- see if the current properties has a "&lt;PolicyID&gt;.file" entry and that file exists in the local directory
-     * 	- if not, see if the file exists in the local directory; if so create a ".file" property for it.
-     * 	- if not, get the "&lt;PolicyID&gt;.url" property and try to GET the policy from that location (and set the ".file" property)
+     *  - see if the current properties has a "&lt;PolicyID&gt;.file" entry and that file exists in the local directory
+     *  - if not, see if the file exists in the local directory; if so create a ".file" property for it.
+     *  - if not, get the "&lt;PolicyID&gt;.url" property and try to GET the policy from that location (and set the ".file" property)
      *
      *  If the ".file" property is created, then true is returned to tell the caller that the props object changed.
      *
@@ -344,7 +344,7 @@ public class XACMLPdpLoader {
                 boolean policyExists = false;
 
                 // First look for ".file" property and verify the file exists
-                String propLocation	= props.getProperty(policy + StdPolicyFinderFactory.PROP_FILE);
+                String propLocation     = props.getProperty(policy + StdPolicyFinderFactory.PROP_FILE);
                 if (propLocation != null) {
                     //
                     // Does it exist?
@@ -356,7 +356,7 @@ public class XACMLPdpLoader {
                 }
 
                 // If ".file" property does not exist, try looking for the local file anyway
-                //	(it might exist without having a ".file" property set for it)
+                //      (it might exist without having a ".file" property set for it)
                 if (policyExists == false) {
                     //
                     // Now construct the output file name
@@ -384,7 +384,7 @@ public class XACMLPdpLoader {
                         //
                         // There better be a URL to retrieve it
                         //
-                        propLocation	= props.getProperty(policy + StdPolicyFinderFactory.PROP_URL);
+                        propLocation    = props.getProperty(policy + StdPolicyFinderFactory.PROP_URL);
                         if (propLocation != null) {
                             //
                             // Get it
@@ -394,12 +394,12 @@ public class XACMLPdpLoader {
                                 //
                                 // Create the URL
                                 //
-                                url						= new URL(propLocation);
+                                url                                             = new URL(propLocation);
                                 logger.info("Pulling " + url.toString());
                                 //
                                 // Open the connection
                                 //
-                                URLConnection urlConnection	= url.openConnection();
+                                URLConnection urlConnection     = url.openConnection();
                                 urlConnection.setRequestProperty(XACMLRestProperties.PROP_PDP_HTTP_HEADER_ID, XACMLProperties.getProperty(XACMLRestProperties.PROP_PDP_ID));
                                 //
                                 // Copy it to disk
@@ -433,7 +433,7 @@ public class XACMLPdpLoader {
         return changed;
     }
 
-    public static synchronized Path	getPDPPolicyCache() throws PAPException {
+    public static synchronized Path     getPDPPolicyCache() throws PAPException {
         Path config = getPDPConfig();
         Path policyProperties = Paths.get(config.toAbsolutePath().toString(), "xacml.policy.properties");
         if (Files.notExists(policyProperties)) {
@@ -451,7 +451,7 @@ public class XACMLPdpLoader {
         return policyProperties;
     }
 
-    public static synchronized Path	getPIPConfig() throws PAPException {
+    public static synchronized Path     getPIPConfig() throws PAPException {
         Path config = getPDPConfig();
         Path pipConfigProperties = Paths.get(config.toAbsolutePath().toString(), "xacml.pip.properties");
         if (Files.notExists(pipConfigProperties)) {

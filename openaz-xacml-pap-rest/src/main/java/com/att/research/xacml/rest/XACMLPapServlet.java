@@ -74,7 +74,7 @@ initParams = {
 
 public class XACMLPapServlet extends HttpServlet implements StdItemSetChangeListener, Runnable {
     private static final long serialVersionUID = 1L;
-    private static final Log logger	= LogFactory.getLog(XACMLPapServlet.class);
+    private static final Log logger     = LogFactory.getLog(XACMLPapServlet.class);
 
     /*
      *
@@ -229,8 +229,8 @@ public class XACMLPapServlet extends HttpServlet implements StdItemSetChangeList
     /**
      *
      * Called by:
-     * 	- PDP nodes to register themselves with the PAP, and
-     * 	- Admin Console to make changes in the PDP Groups.
+     *  - PDP nodes to register themselves with the PAP, and
+     *  - Admin Console to make changes in the PDP Groups.
      *
      * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
      */
@@ -257,7 +257,7 @@ public class XACMLPapServlet extends HttpServlet implements StdItemSetChangeList
 
             //
             //  Request is from a PDP.
-            //	It is coming up and asking for its config
+            //  It is coming up and asking for its config
             //
 
             //
@@ -468,7 +468,7 @@ public class XACMLPapServlet extends HttpServlet implements StdItemSetChangeList
         }
     }
 
-    protected String	getPDPID(HttpServletRequest request) {
+    protected String    getPDPID(HttpServletRequest request) {
         String pdpURL = request.getHeader(XACMLRestProperties.PROP_PDP_HTTP_HEADER_ID);
         if (pdpURL == null || pdpURL.isEmpty()) {
             //
@@ -703,18 +703,18 @@ public class XACMLPapServlet extends HttpServlet implements StdItemSetChangeList
             String policyId = request.getParameter("policyId");
 
             if (policyId != null) {
-//				// retrieve a policy
-//				PDPPolicy policy = papEngine.getPDPPolicy(policyId);
+//                              // retrieve a policy
+//                              PDPPolicy policy = papEngine.getPDPPolicy(policyId);
 //
-//				// convert response object to JSON and include in the response
-//	            ObjectMapper mapper = new ObjectMapper();
-//	            mapper.writeValue(response.getOutputStream(),  pdp);
+//                              // convert response object to JSON and include in the response
+//                  ObjectMapper mapper = new ObjectMapper();
+//                  mapper.writeValue(response.getOutputStream(),  pdp);
 //
-//	        	logger.debug("GET group '" + group.getId() + "' req from '" + request.getRequestURL() + "'");
-//				response.setStatus(HttpServletResponse.SC_OK);
-//				response.setHeader("content-type", "application/json");
-//				response.getOutputStream().close();
-//				return;
+//                      logger.debug("GET group '" + group.getId() + "' req from '" + request.getRequestURL() + "'");
+//                              response.setStatus(HttpServletResponse.SC_OK);
+//                              response.setHeader("content-type", "application/json");
+//                              response.getOutputStream().close();
+//                              return;
                 response.sendError(HttpServletResponse.SC_BAD_REQUEST, "GET Policy not implemented");
 
             } else {
@@ -737,9 +737,9 @@ public class XACMLPapServlet extends HttpServlet implements StdItemSetChangeList
             // Currently there are no other GET calls from the AC.
             // The AC uses the "GET All Groups" operation to fill its local cache and uses that cache for all other GETs without calling the PAP.
             // Other GETs that could be called:
-            //				Specific Group	(groupId=<groupId>)
-            //				A Policy		(groupId=<groupId> policyId=<policyId>)
-            //				A PDP			(groupId=<groupId> pdpId=<pdpId>)
+            //                          Specific Group  (groupId=<groupId>)
+            //                          A Policy                (groupId=<groupId> policyId=<policyId>)
+            //                          A PDP                   (groupId=<groupId> pdpId=<pdpId>)
 
             //TODO - implement other GET operations if needed
 
@@ -768,7 +768,7 @@ public class XACMLPapServlet extends HttpServlet implements StdItemSetChangeList
             String groupName = request.getParameter("groupName");
             String groupDescription = request.getParameter("groupDescription");
             if (groupName != null && groupDescription != null) {
-                // Args:	      group=<groupId> groupName=<name> groupDescription=<description>            <= create a new group
+                // Args:              group=<groupId> groupName=<name> groupDescription=<description>            <= create a new group
                 String unescapedName = URLDecoder.decode(groupName, "UTF-8");
                 String unescapedDescription = URLDecoder.decode(groupDescription, "UTF-8");
                 try {
@@ -798,7 +798,7 @@ public class XACMLPapServlet extends HttpServlet implements StdItemSetChangeList
 
             // determine the operation needed based on the parameters in the request
             if (request.getParameter("policyId") != null) {
-                //	Args:        group=<groupId> policy=<policyId>		<= copy file
+                //      Args:        group=<groupId> policy=<policyId>          <= copy file
                 // copy a policy from the request contents into a file in the group's directory on this machine
                 String policyId = request.getParameter("policyId");
                 try {
@@ -1101,8 +1101,8 @@ public class XACMLPapServlet extends HttpServlet implements StdItemSetChangeList
      * The PDPs are contacted Sequentially, not in Parallel.
      *
      * If we did this in parallel using multiple threads we would simultaneously use
-     * 		- 1 thread and
-     * 		- 1 connection
+     *          - 1 thread and
+     *          - 1 connection
      * for EACH PDP.
      * This could become a resource problem since we already use multiple threads and connections for updating the PDPs
      * when user changes occur.
@@ -1307,7 +1307,7 @@ public class XACMLPapServlet extends HttpServlet implements StdItemSetChangeList
 
     //
     // Callback methods telling this servlet to notify PDPs of changes made by the PAP StdEngine
-    //	in the PDP group directories
+    //  in the PDP group directories
     //
 
     @Override
@@ -1362,7 +1362,7 @@ public class XACMLPapServlet extends HttpServlet implements StdItemSetChangeList
                     logger.debug("creating url for id '" + pdp.getId() + "'");
                 }
                 //TODO - currently always send both policies and pips.  Do we care enough to add code to allow sending just one or the other?
-                //TODO		(need to change "cache=", implying getting some input saying which to change)
+                //TODO          (need to change "cache=", implying getting some input saying which to change)
                 URL url = new URL(pdp.getId() + "?cache=all");
 
                 //
@@ -1373,7 +1373,7 @@ public class XACMLPapServlet extends HttpServlet implements StdItemSetChangeList
                 // Setup our method and headers
                 //
                 connection.setRequestMethod("PUT");
-                //			connection.setRequestProperty("Accept", "text/x-java-properties");
+                //                      connection.setRequestProperty("Accept", "text/x-java-properties");
                 connection.setRequestProperty("Content-Type", "text/x-java-properties");
                 //            connection.setUseCaches(false);
                 //
@@ -1384,13 +1384,13 @@ public class XACMLPapServlet extends HttpServlet implements StdItemSetChangeList
                 // So we need to handle this ourselves.
                 //
                 //TODO - is this needed for a PUT?  seems better to leave in for now?
-//	            connection.setInstanceFollowRedirects(false);
+//                  connection.setInstanceFollowRedirects(false);
                 //
                 // PLD - MUST be able to handle re-directs.
                 //
                 connection.setInstanceFollowRedirects(true);
                 connection.setDoOutput(true);
-                //			connection.setDoInput(true);
+                //                      connection.setDoInput(true);
                 try (OutputStream os = connection.getOutputStream()) {
 
                     PDPGroup group = papEngine.getPDPGroup(pdp);
@@ -1489,7 +1489,7 @@ public class XACMLPapServlet extends HttpServlet implements StdItemSetChangeList
                         logger.debug("creating url for id '" + acURL + "'");
                     }
 //TODO - currently always send both policies and pips.  Do we care enough to add code to allow sending just one or the other?
-//TODO		(need to change "cache=", implying getting some input saying which to change)
+//TODO          (need to change "cache=", implying getting some input saying which to change)
 
                     URL url = new URL(acURL );
 

@@ -59,7 +59,7 @@ import com.att.research.xacmlatt.pdp.policy.FunctionArgument;
  *
  * WARNING: This code is unfinished.  Initially we did not complete the implementation because we did not understand how to handle XML Namespaces
  * (from the &lt;Request&gt; or &lt;Policy&gt;).
- * 	Later we understood that any Namespaces used within this function must be explicitly listed in &lt;Content&gt; XML elemement passed to this function.
+ *      Later we understood that any Namespaces used within this function must be explicitly listed in &lt;Content&gt; XML elemement passed to this function.
  *  However, it is not clear that anyone needs this function.
  *  The only use anyone has mentioned is in a recursive operation which requires a loop counter of some kind, which we do not have implemented.
  *  Therefore we have chosen to leave this unimplemented for now.
@@ -67,7 +67,7 @@ import com.att.research.xacmlatt.pdp.policy.FunctionArgument;
  * In the first implementation of XACML we had separate files for each XACML Function.
  * This release combines multiple Functions in fewer files to minimize code duplication.
  * This file supports the following XACML codes:
- * 		access-permitted
+ *              access-permitted
  *
  *
  *
@@ -128,16 +128,16 @@ public class FunctionDefinitionAccessPermitted extends FunctionDefinitionBase<Bo
 //List<String> xmlAttrList = req.getRequestXMLAttributes();
 //String attrString = " ";
 //for (String attr : xmlAttrList) {
-//	attrString += " " + attr;
+//      attrString += " " + attr;
 //}
 //
-//		// add the Attributes XML element
-//		xmlContent = "<Attributes Category=\"" + attributesURI + "\" " + attrString + " >" + xmlContent + "</Attributes>";
+//              // add the Attributes XML element
+//              xmlContent = "<Attributes Category=\"" + attributesURI + "\" " + attrString + " >" + xmlContent + "</Attributes>";
 
 //java.util.Iterator<RequestAttributes> rait = req.getRequestAttributes();
 //while (rait.hasNext()) {
-//	RequestAttributes ra = rait.next();
-//	System.out.println(ra);
+//      RequestAttributes ra = rait.next();
+//      System.out.println(ra);
 //}
 
 
@@ -188,9 +188,9 @@ public class FunctionDefinitionAccessPermitted extends FunctionDefinitionBase<Bo
         }
 
         // Create a new Request by:
-        //		- copying the current request,
-        //		- Dropping the Attributes section identified by the attributesURI argument
-        //		- adding a new Attributes section identified by the attributesURI arg and with a Content section containing the xmlContent argument
+        //              - copying the current request,
+        //              - Dropping the Attributes section identified by the attributesURI argument
+        //              - adding a new Attributes section identified by the attributesURI arg and with a Content section containing the xmlContent argument
         Request originalRequest = evaluationContext.getRequest();
 
 //TODO - If this code is ever completed, the following variable will be used.  The annotation is to avoid warnings.
@@ -199,7 +199,7 @@ public class FunctionDefinitionAccessPermitted extends FunctionDefinitionBase<Bo
 
 
 
-//	???? nameingContext????
+//      ???? nameingContext????
 
         // Now create a new EvaluationContext matching the one passed to this method except for the Request
 //TODO

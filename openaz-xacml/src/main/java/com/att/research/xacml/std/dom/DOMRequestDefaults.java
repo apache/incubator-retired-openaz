@@ -48,7 +48,7 @@ import com.att.research.xacml.std.StdRequestDefaults;
  *
  */
 public class DOMRequestDefaults {
-    private static final Log logger	= LogFactory.getLog(DOMRequestDefaults.class);
+    private static final Log logger     = LogFactory.getLog(DOMRequestDefaults.class);
 
     protected DOMRequestDefaults() {
         super();
@@ -62,19 +62,19 @@ public class DOMRequestDefaults {
      * @throws DOMStructureException if the conversion cannot be made
      */
     public static RequestDefaults newInstance(Node nodeRequestDefaults) throws DOMStructureException {
-        Element	elementRequestDefaults			= DOMUtil.getElement(nodeRequestDefaults);
-        boolean bLenient						= DOMProperties.isLenient();
+        Element elementRequestDefaults                  = DOMUtil.getElement(nodeRequestDefaults);
+        boolean bLenient                                                = DOMProperties.isLenient();
 
-        URI uriXPathVersion						= null;
+        URI uriXPathVersion                                             = null;
 
-        NodeList children						= elementRequestDefaults.getChildNodes();
+        NodeList children                                               = elementRequestDefaults.getChildNodes();
         int numChildren;
         if (children != null && (numChildren = children.getLength()) > 0) {
             for (int i = 0 ; i < numChildren ; i++) {
-                Node child	= children.item(i);
+                Node child      = children.item(i);
                 if (DOMUtil.isElement(child)) {
                     if (DOMUtil.isInNamespace(child, XACML3.XMLNS) && XACML3.ELEMENT_XPATHVERSION.equals(child.getLocalName())) {
-                        uriXPathVersion	= DOMUtil.getURIContent(child);
+                        uriXPathVersion = DOMUtil.getURIContent(child);
                     } else {
                         if (!bLenient) {
                             throw DOMUtil.newUnexpectedElementException(child, nodeRequestDefaults);
@@ -87,14 +87,14 @@ public class DOMRequestDefaults {
     }
 
     public static boolean repair(Node nodeRequestDefaults) throws DOMStructureException {
-        Element	elementRequestDefaults	= DOMUtil.getElement(nodeRequestDefaults);
-        boolean result					= false;
+        Element elementRequestDefaults  = DOMUtil.getElement(nodeRequestDefaults);
+        boolean result                                  = false;
 
-        NodeList children						= elementRequestDefaults.getChildNodes();
+        NodeList children                                               = elementRequestDefaults.getChildNodes();
         int numChildren;
         if (children != null && (numChildren = children.getLength()) > 0) {
             for (int i = 0 ; i < numChildren ; i++) {
-                Node child	= children.item(i);
+                Node child      = children.item(i);
                 if (DOMUtil.isElement(child)) {
                     if (DOMUtil.isInNamespace(child, XACML3.XMLNS) && XACML3.ELEMENT_XPATHVERSION.equals(child.getLocalName())) {
                         try {
@@ -102,12 +102,12 @@ public class DOMRequestDefaults {
                         } catch (DOMStructureException ex) {
                             logger.warn("Deleting invalid XPathVersion " + child.getTextContent());
                             elementRequestDefaults.removeChild(child);
-                            result	= true;
+                            result      = true;
                         }
                     } else {
                         logger.warn("Unexpected element " + child.getNodeName());
                         elementRequestDefaults.removeChild(child);
-                        result	= true;
+                        result  = true;
                     }
                 }
             }

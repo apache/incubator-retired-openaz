@@ -1093,7 +1093,7 @@ public class FunctionDefinitionStringConversionTest {
         assertEquals(new XPathDayTimeDuration(1, 3, 10, 30, 23), resValue);
 
 
-        //		negative values in front is allowed
+        //              negative values in front is allowed
         arguments.clear();
         arguments.add(attrStringNeg1);
         res = fd.evaluate(null, arguments);
@@ -1110,7 +1110,7 @@ public class FunctionDefinitionStringConversionTest {
         assertEquals("urn:oasis:names:tc:xacml:1.0:status:syntax-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
 
 
-        //	omit parts that are 0
+        //      omit parts that are 0
         arguments.clear();
         arguments.add(attrStringNoDay);
         res = fd.evaluate(null, arguments);
@@ -1139,7 +1139,7 @@ public class FunctionDefinitionStringConversionTest {
         resValue = (XPathDayTimeDuration)res.getValue().getValue();
         assertEquals(new XPathDayTimeDuration(1, 3, 10, 30, 0), resValue);
 
-        //		P must always be present
+        //              P must always be present
         arguments.clear();
         arguments.add(attrStringNoP);
         res = fd.evaluate(null, arguments);
@@ -1147,7 +1147,7 @@ public class FunctionDefinitionStringConversionTest {
         assertEquals("function:dayTimeDuration-from-string Invalid ISO8601 duration string \"3DT10H30M\" at position 0", res.getStatus().getStatusMessage());
         assertEquals("urn:oasis:names:tc:xacml:1.0:status:syntax-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
 
-        //		seconds may contain decimal
+        //              seconds may contain decimal
         arguments.clear();
         arguments.add(attrStringSecondsDot);
         res = fd.evaluate(null, arguments);
@@ -1155,7 +1155,7 @@ public class FunctionDefinitionStringConversionTest {
         resValue = (XPathDayTimeDuration)res.getValue().getValue();
         assertEquals(new XPathDayTimeDuration(1, 3, 10, 30, 23.456), resValue);
 
-        //		T must be absent iff all time items are absent
+        //              T must be absent iff all time items are absent
         arguments.clear();
         arguments.add(attrStringMissingTOk);
         res = fd.evaluate(null, arguments);
@@ -1299,7 +1299,7 @@ public class FunctionDefinitionStringConversionTest {
         assertEquals(new XPathYearMonthDuration(1,1, 2), resValue);
 
 
-        //		negative values in front is allowed
+        //              negative values in front is allowed
         arguments.clear();
         arguments.add(attrStringNeg1);
         res = fd.evaluate(null, arguments);
@@ -1316,7 +1316,7 @@ public class FunctionDefinitionStringConversionTest {
         assertEquals("urn:oasis:names:tc:xacml:1.0:status:syntax-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
 
 
-        //	omit parts that are 0
+        //      omit parts that are 0
         arguments.clear();
         arguments.add(attrStringNoYear1);
         res = fd.evaluate(null, arguments);
@@ -1356,7 +1356,7 @@ public class FunctionDefinitionStringConversionTest {
         assertEquals("urn:oasis:names:tc:xacml:1.0:status:syntax-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
 
 
-        //		P must always be present
+        //              P must always be present
         arguments.clear();
         arguments.add(attrStringNoP);
         res = fd.evaluate(null, arguments);
@@ -1364,7 +1364,7 @@ public class FunctionDefinitionStringConversionTest {
         assertEquals("function:yearMonthDuration-from-string Invalid ISO8601 duration string \"1Y2M\" at position 0", res.getStatus().getStatusMessage());
         assertEquals("urn:oasis:names:tc:xacml:1.0:status:syntax-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
 
-        //		Canonical Form of output may not have more than 12 months, but input as string is ok?
+        //              Canonical Form of output may not have more than 12 months, but input as string is ok?
         arguments.clear();
         arguments.add(attrStringBigMonths);
         res = fd.evaluate(null, arguments);
@@ -1380,7 +1380,7 @@ public class FunctionDefinitionStringConversionTest {
         resValue = (XPathYearMonthDuration)res.getValue().getValue();
         assertEquals(new XPathYearMonthDuration(1, 0, 0), resValue);
 
-        //		T must be absent iff all time items are absent
+        //              T must be absent iff all time items are absent
         arguments.clear();
         arguments.add(attrStringMissingTOk);
         res = fd.evaluate(null, arguments);

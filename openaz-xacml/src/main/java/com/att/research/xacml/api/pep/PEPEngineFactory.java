@@ -42,8 +42,8 @@ import com.att.research.xacml.util.XACMLProperties;
  *
  */
 public abstract class PEPEngineFactory {
-    private static final String	FACTORYID	= XACMLProperties.PROP_PEPENGINEFACTORY;
-    private static final String	DEFAULT_FACTORY_CLASSNAME	= "com.att.research.xacml.std.pep.StdEngineFactory";
+    private static final String FACTORYID       = XACMLProperties.PROP_PEPENGINEFACTORY;
+    private static final String DEFAULT_FACTORY_CLASSNAME       = "com.att.research.xacml.std.pep.StdEngineFactory";
 
     /**
      * The constructor is protected to prevent instantiation of the class.

@@ -40,9 +40,9 @@ import com.att.research.xacml.util.ObjUtil;
  *
  */
 public class StdMutableStatus implements Status {
-    private StatusCode		statusCode;
-    private String			statusMessage;
-    private StatusDetail	statusDetail;
+    private StatusCode          statusCode;
+    private String                      statusMessage;
+    private StatusDetail        statusDetail;
 
     /**
      * Creates a new <code>StdMutableStatus</code> with the given {@link com.att.research.xacml.api.StatusCode}, <code>String</code> status message,
@@ -53,9 +53,9 @@ public class StdMutableStatus implements Status {
      * @param statusDetailIn the <code>StatusDetail</code> representing the XACML StatusDetail
      */
     public StdMutableStatus(StatusCode statusCodeIn, String statusMessageIn, StatusDetail statusDetailIn) {
-        this.statusCode		= statusCodeIn;
-        this.statusMessage	= statusMessageIn;
-        this.statusDetail	= statusDetailIn;
+        this.statusCode         = statusCodeIn;
+        this.statusMessage      = statusMessageIn;
+        this.statusDetail       = statusDetailIn;
     }
 
     /**
@@ -106,7 +106,7 @@ public class StdMutableStatus implements Status {
      * @param statusCodeIn the <code>StatusCode</code> representing the XACML StatusCode for the Status
      */
     public void setStatusCode(StatusCode statusCodeIn) {
-        this.statusCode	= statusCodeIn;
+        this.statusCode = statusCodeIn;
     }
 
     @Override
@@ -120,7 +120,7 @@ public class StdMutableStatus implements Status {
      * @param message the <code>String</code> representing the XACML StatusMessage for the Status
      */
     public void setStatusMessage(String message) {
-        this.statusMessage	= message;
+        this.statusMessage      = message;
     }
 
     @Override
@@ -134,7 +134,7 @@ public class StdMutableStatus implements Status {
      * @param statusDetailIn the <code>StatusDetail</code> representing the XACML StatusDetail for the Status
      */
     public void setStatusDetail(StatusDetail statusDetailIn) {
-        this.statusDetail	= statusDetailIn;
+        this.statusDetail       = statusDetailIn;
     }
 
     @Override
@@ -144,7 +144,7 @@ public class StdMutableStatus implements Status {
         } else if (obj == null || !(obj instanceof Status)) {
             return false;
         } else {
-            Status objStatus	= (Status)obj;
+            Status objStatus    = (Status)obj;
             return ObjUtil.equalsAllowNull(this.getStatusCode(), objStatus.getStatusCode()) &&
                    ObjUtil.equalsAllowNull(this.getStatusMessage(), objStatus.getStatusMessage()) &&
                    ObjUtil.equalsAllowNull(this.getStatusDetail(), objStatus.getStatusDetail());
@@ -153,20 +153,20 @@ public class StdMutableStatus implements Status {
 
     @Override
     public boolean isOk() {
-        StatusCode thisStatusCode	= this.getStatusCode();
+        StatusCode thisStatusCode       = this.getStatusCode();
         return (thisStatusCode == null || thisStatusCode.equals(StdStatusCode.STATUS_CODE_OK));
     }
 
     @Override
     public String toString() {
-        StringBuilder	stringBuilder	= new StringBuilder("{");
-        boolean			needsComma		= false;
-        Object			objectToDump;
+        StringBuilder   stringBuilder   = new StringBuilder("{");
+        boolean                 needsComma              = false;
+        Object                  objectToDump;
 
         if ((objectToDump = this.getStatusCode()) != null) {
             stringBuilder.append("statusCode=");
             stringBuilder.append(objectToDump.toString());
-            needsComma	= true;
+            needsComma  = true;
         }
         if ((objectToDump = this.getStatusMessage()) != null) {
             if (needsComma) {
@@ -174,7 +174,7 @@ public class StdMutableStatus implements Status {
             }
             stringBuilder.append("statusMessage=");
             stringBuilder.append((String)objectToDump);
-            needsComma	= true;
+            needsComma  = true;
         }
         if ((objectToDump = this.getStatusDetail()) != null) {
             if (needsComma) {
@@ -182,7 +182,7 @@ public class StdMutableStatus implements Status {
             }
             stringBuilder.append("statusDetail=");
             stringBuilder.append(objectToDump.toString());
-            needsComma	= true;
+            needsComma  = true;
         }
         stringBuilder.append('}');
         return stringBuilder.toString();

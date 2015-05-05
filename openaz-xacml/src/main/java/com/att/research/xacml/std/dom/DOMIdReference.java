@@ -50,7 +50,7 @@ import com.att.research.xacml.std.StdVersion;
  *
  */
 public class DOMIdReference extends StdIdReference {
-    private static Log logger	= LogFactory.getLog(DOMIdReference.class);
+    private static Log logger   = LogFactory.getLog(DOMIdReference.class);
     protected DOMIdReference(Identifier idReferenceIn, Version versionIn) {
         super(idReferenceIn, versionIn);
     }
@@ -63,16 +63,16 @@ public class DOMIdReference extends StdIdReference {
      * @throws DOMStructureException if the conversion cannot be made
      */
     public static IdReference newInstance(Node nodeIdReference) throws DOMStructureException {
-        Element	elementIdReference	= DOMUtil.getElement(nodeIdReference);
-        boolean bLenient			= DOMProperties.isLenient();
+        Element elementIdReference      = DOMUtil.getElement(nodeIdReference);
+        boolean bLenient                        = DOMProperties.isLenient();
 
-        Identifier idReference		= DOMUtil.getIdentifierContent(elementIdReference, !bLenient);
+        Identifier idReference          = DOMUtil.getIdentifierContent(elementIdReference, !bLenient);
 
-        String versionString			= DOMUtil.getStringAttribute(elementIdReference, XACML3.ATTRIBUTE_VERSION);
-        Version version					= null;
+        String versionString                    = DOMUtil.getStringAttribute(elementIdReference, XACML3.ATTRIBUTE_VERSION);
+        Version version                                 = null;
         if (versionString != null) {
             try {
-                version	= StdVersion.newInstance(versionString);
+                version = StdVersion.newInstance(versionString);
             } catch (ParseException ex) {
                 if (!bLenient) {
                     throw new DOMStructureException(nodeIdReference, "Invalid version \"" + versionString + "\" in \"" + DOMUtil.getNodeLabel(nodeIdReference) + "\"");
@@ -84,19 +84,19 @@ public class DOMIdReference extends StdIdReference {
     }
 
     public static boolean repair(Node nodeIdReference) throws DOMStructureException {
-        Element	elementIdReference	= DOMUtil.getElement(nodeIdReference);
-        boolean result				= false;
+        Element elementIdReference      = DOMUtil.getElement(nodeIdReference);
+        boolean result                          = false;
 
-        result						= DOMUtil.repairIdentifierContent(elementIdReference, logger) || result;
+        result                                          = DOMUtil.repairIdentifierContent(elementIdReference, logger) || result;
 
-        String versionString			= DOMUtil.getStringAttribute(elementIdReference, XACML3.ATTRIBUTE_VERSION);
+        String versionString                    = DOMUtil.getStringAttribute(elementIdReference, XACML3.ATTRIBUTE_VERSION);
         if (versionString != null) {
             try {
                 StdVersion.newInstance(versionString);
             } catch (ParseException ex) {
                 logger.warn("Deleting invalid Version string " + versionString , ex);
                 elementIdReference.removeAttribute(XACML3.ATTRIBUTE_VERSION);
-                result	= true;
+                result  = true;
             }
         }
 

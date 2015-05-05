@@ -45,9 +45,9 @@ import com.att.research.xacml.api.trace.Traceable;
  *
  */
 public class LoggingTraceEngine implements TraceEngine {
-    private static final LoggingTraceEngine loggingTraceEngine	= new LoggingTraceEngine();
+    private static final LoggingTraceEngine loggingTraceEngine  = new LoggingTraceEngine();
 
-    private Log logger	= LogFactory.getLog(this.getClass());
+    private Log logger  = LogFactory.getLog(this.getClass());
 
     protected LoggingTraceEngine() {
     }
@@ -75,14 +75,14 @@ public class LoggingTraceEngine implements TraceEngine {
 
     @Override
     public void trace(TraceEvent<?> traceEvent) {
-        String message	= traceEvent.getMessage();
-        Traceable cause	= traceEvent.getCause();
+        String message  = traceEvent.getMessage();
+        Traceable cause = traceEvent.getCause();
         this.logger.debug(
             traceEvent.getTimestamp().toString() + ": " +
             "\"" + (message == null ? "" : message) + "\"" +
             (cause == null ? "" : " from \"" + cause.getTraceId() + "\"")
         );
-        Object traceObject	= traceEvent.getValue();
+        Object traceObject      = traceEvent.getValue();
         if (traceObject != null) {
             this.logger.debug(traceObject);
         }

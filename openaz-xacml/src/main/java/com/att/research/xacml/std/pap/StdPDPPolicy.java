@@ -54,7 +54,7 @@ import com.google.common.collect.Lists;
 
 public class StdPDPPolicy implements PDPPolicy, Serializable {
     private static final long serialVersionUID = 1L;
-    private static Log	logger	= LogFactory.getLog(StdPDPPolicy.class);
+    private static Log  logger  = LogFactory.getLog(StdPDPPolicy.class);
 
     private String id = null;
 
@@ -64,7 +64,7 @@ public class StdPDPPolicy implements PDPPolicy, Serializable {
 
     private String description = null;
 
-    private int[]	version = null;
+    private int[]       version = null;
 
     private boolean isRoot = false;
 
@@ -126,7 +126,7 @@ public class StdPDPPolicy implements PDPPolicy, Serializable {
                 (
                     ! (rootElement instanceof PolicySetType) &&
                     ! (rootElement instanceof PolicyType)
-                )	) {
+                )       ) {
             logger.warn("No root policy element in URI: " + this.location.toString() + " : " + rootElement);
             this.isValid = false;
         } else {

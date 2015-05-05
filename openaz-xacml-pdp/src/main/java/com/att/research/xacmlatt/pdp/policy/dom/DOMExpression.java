@@ -54,13 +54,13 @@ import com.att.research.xacmlatt.pdp.policy.expressions.VariableReference;
  *
  */
 public abstract class DOMExpression extends Expression {
-    private static final Log logger	= LogFactory.getLog(DOMExpression.class);
+    private static final Log logger     = LogFactory.getLog(DOMExpression.class);
 
     protected DOMExpression() {
     }
 
     public static boolean isExpression(Node nodeExpression) {
-        String nodeName	= nodeExpression.getLocalName();
+        String nodeName = nodeExpression.getLocalName();
         return (XACML3.ELEMENT_APPLY.equals(nodeName) ||
                 XACML3.ELEMENT_ATTRIBUTEDESIGNATOR.equals(nodeName) ||
                 XACML3.ELEMENT_ATTRIBUTESELECTOR.equals(nodeName) ||
@@ -79,8 +79,8 @@ public abstract class DOMExpression extends Expression {
      * @throws DOMStructureException if there is an error parsing the <code>Node</code>
      */
     public static Expression newInstance(Node nodeExpression, Policy policy) throws DOMStructureException {
-        Element elementExpression	= DOMUtil.getElement(nodeExpression);
-        boolean bLenient			= DOMProperties.isLenient();
+        Element elementExpression       = DOMUtil.getElement(nodeExpression);
+        boolean bLenient                        = DOMProperties.isLenient();
 
         if (DOMUtil.isInNamespace(elementExpression, XACML3.XMLNS)) {
             if (elementExpression.getLocalName().equals(XACML3.ELEMENT_APPLY)) {
@@ -90,9 +90,9 @@ public abstract class DOMExpression extends Expression {
             } else if (elementExpression.getLocalName().equals(XACML3.ELEMENT_ATTRIBUTESELECTOR)) {
                 return DOMAttributeSelector.newInstance(elementExpression);
             } else if (elementExpression.getLocalName().equals(XACML3.ELEMENT_ATTRIBUTEVALUE)) {
-                AttributeValue<?> attributeValue	= null;
+                AttributeValue<?> attributeValue        = null;
                 try {
-                    attributeValue	= DOMAttributeValue.newInstance(elementExpression, null);
+                    attributeValue      = DOMAttributeValue.newInstance(elementExpression, null);
                 } catch (DOMStructureException ex) {
                     return new AttributeValueExpression(StdStatusCode.STATUS_CODE_SYNTAX_ERROR, ex.getMessage());
                 }
@@ -114,7 +114,7 @@ public abstract class DOMExpression extends Expression {
     }
 
     public static boolean repair(Node nodeExpression) throws DOMStructureException {
-        Element elementExpression	= DOMUtil.getElement(nodeExpression);
+        Element elementExpression       = DOMUtil.getElement(nodeExpression);
         if (DOMUtil.isInNamespace(elementExpression, XACML3.XMLNS)) {
             if (elementExpression.getLocalName().equals(XACML3.ELEMENT_APPLY)) {
                 return DOMApply.repair(elementExpression);

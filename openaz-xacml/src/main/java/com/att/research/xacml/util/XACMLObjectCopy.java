@@ -87,55 +87,55 @@ import oasis.names.tc.xacml._3_0.core.schema.wd_17.VariableReferenceType;
 
 public class XACMLObjectCopy {
 
-    public static PolicySetType	copy(PolicySetType policySet) {
+    public static PolicySetType copy(PolicySetType policySet) {
         return deepCopy(policySet);
     }
 
-    public static PolicyIssuerType	copy(PolicyIssuerType issuer) {
+    public static PolicyIssuerType      copy(PolicyIssuerType issuer) {
         return deepCopy(issuer);
     }
 
-    public static TargetType	copy(TargetType target) {
+    public static TargetType    copy(TargetType target) {
         return deepCopy(target);
     }
 
-    public static AnyOfType		copy(AnyOfType anyOf) {
+    public static AnyOfType             copy(AnyOfType anyOf) {
         return deepCopy(anyOf);
     }
 
-    public static AllOfType		copy(AllOfType allOf) {
+    public static AllOfType             copy(AllOfType allOf) {
         return deepCopy(allOf);
     }
 
-    public static MatchType		copy(MatchType match) {
+    public static MatchType             copy(MatchType match) {
         return deepCopy(match);
     }
 
-    public static IdReferenceType	copy(IdReferenceType ref) {
+    public static IdReferenceType       copy(IdReferenceType ref) {
         return deepCopy(ref);
     }
 
-    public static PolicyType		copy(PolicyType policy) {
+    public static PolicyType            copy(PolicyType policy) {
         return deepCopy(policy);
     }
 
-    public static CombinerParametersType	copy(CombinerParametersType params) {
+    public static CombinerParametersType        copy(CombinerParametersType params) {
         return deepCopy(params);
     }
 
-    public static CombinerParameterType	copy(CombinerParameterType param) {
+    public static CombinerParameterType copy(CombinerParameterType param) {
         return deepCopy(param);
     }
 
-    public static RuleCombinerParametersType	copy(RuleCombinerParametersType params) {
+    public static RuleCombinerParametersType    copy(RuleCombinerParametersType params) {
         return deepCopy(params);
     }
 
-    public static PolicyCombinerParametersType	copy(PolicyCombinerParametersType params) {
+    public static PolicyCombinerParametersType  copy(PolicyCombinerParametersType params) {
         return deepCopy(params);
     }
 
-    public static PolicySetCombinerParametersType	copy(PolicySetCombinerParametersType params) {
+    public static PolicySetCombinerParametersType       copy(PolicySetCombinerParametersType params) {
         return deepCopy(params);
     }
 
@@ -151,7 +151,7 @@ public class XACMLObjectCopy {
         return deepCopy(value);
     }
 
-    public static JAXBElement<?>	copy(JAXBElement<?> element) {
+    public static JAXBElement<?>        copy(JAXBElement<?> element) {
         return deepCopy(element);
     }
 
@@ -179,43 +179,43 @@ public class XACMLObjectCopy {
         return deepCopy(attributeValue);
     }
 
-    public static ObligationsType	copy(ObligationsType ob) {
+    public static ObligationsType       copy(ObligationsType ob) {
         return deepCopy(ob);
     }
 
-    public static AssociatedAdviceType		copy(AssociatedAdviceType advice) {
+    public static AssociatedAdviceType          copy(AssociatedAdviceType advice) {
         return deepCopy(advice);
     }
 
-    public static ObligationType	copy(ObligationType ob) {
+    public static ObligationType        copy(ObligationType ob) {
         return deepCopy(ob);
     }
 
-    public static AdviceType		copy(AdviceType advice) {
+    public static AdviceType            copy(AdviceType advice) {
         return deepCopy(advice);
     }
 
-    public static AttributeAssignmentType	copy(AttributeAssignmentType assign) {
+    public static AttributeAssignmentType       copy(AttributeAssignmentType assign) {
         return deepCopy(assign);
     }
 
-    public static ObligationExpressionsType	copy(ObligationExpressionsType expressions) {
+    public static ObligationExpressionsType     copy(ObligationExpressionsType expressions) {
         return deepCopy(expressions);
     }
 
-    public static AdviceExpressionsType	copy(AdviceExpressionsType expressions) {
+    public static AdviceExpressionsType copy(AdviceExpressionsType expressions) {
         return deepCopy(expressions);
     }
 
-    public static ObligationExpressionType	copy(ObligationExpressionType expression) {
+    public static ObligationExpressionType      copy(ObligationExpressionType expression) {
         return deepCopy(expression);
     }
 
-    public static AdviceExpressionType	copy(AdviceExpressionType expressions) {
+    public static AdviceExpressionType  copy(AdviceExpressionType expressions) {
         return deepCopy(expressions);
     }
 
-    public static AttributeAssignmentExpressionType	copy(AttributeAssignmentExpressionType expression) {
+    public static AttributeAssignmentExpressionType     copy(AttributeAssignmentExpressionType expression) {
         return deepCopy(expression);
     }
 
@@ -247,7 +247,7 @@ public class XACMLObjectCopy {
         return deepCopy(content);
     }
 
-    public static String	getContent(List<Object> content) {
+    public static String        getContent(List<Object> content) {
         StringBuffer buffer = new StringBuffer();
         for (Object obj : content) {
             buffer.append(obj.toString());
@@ -259,15 +259,15 @@ public class XACMLObjectCopy {
         return deepCopy(type);
     }
 
-    public static ResponseType	copy(ResponseType response) {
+    public static ResponseType  copy(ResponseType response) {
         return deepCopy(response);
     }
 
-    public static ResultType	copy(ResultType result) {
+    public static ResultType    copy(ResultType result) {
         return deepCopy(result);
     }
 
-    public static PolicyIdentifierListType	copy(PolicyIdentifierListType list) {
+    public static PolicyIdentifierListType      copy(PolicyIdentifierListType list) {
         return deepCopy(list);
     }
 
@@ -295,7 +295,7 @@ public class XACMLObjectCopy {
         return deepCopy(status);
     }
 
-    public static MissingAttributeDetailType	copy(MissingAttributeDetailType detail) {
+    public static MissingAttributeDetailType    copy(MissingAttributeDetailType detail) {
         return deepCopy(detail);
     }
 

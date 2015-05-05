@@ -44,7 +44,7 @@ import com.att.research.xacml.util.XACMLProperties;
 public class StdPIPFinderFactory extends PIPFinderFactory {
     private PIPFinder pipFinder;
 
-    private Log logger	= LogFactory.getLog(this.getClass());
+    private Log logger  = LogFactory.getLog(this.getClass());
 
     public StdPIPFinderFactory() {
     }
@@ -57,10 +57,10 @@ public class StdPIPFinderFactory extends PIPFinderFactory {
         if (pipFinder == null) {
             synchronized(this) {
                 if (pipFinder == null) {
-                    pipFinder					= new ConfigurableEngineFinder();
-                    Properties xacmlProperties	= null;
+                    pipFinder                                   = new ConfigurableEngineFinder();
+                    Properties xacmlProperties  = null;
                     try {
-                        xacmlProperties	= XACMLProperties.getProperties();
+                        xacmlProperties = XACMLProperties.getProperties();
                     } catch (Exception ex) {
                         this.logger.error("Exception getting XACML properties: " + ex.getMessage(), ex);
                         return null;
@@ -79,7 +79,7 @@ public class StdPIPFinderFactory extends PIPFinderFactory {
         if (pipFinder == null) {
             synchronized(this) {
                 if (pipFinder == null) {
-                    pipFinder					= new ConfigurableEngineFinder();
+                    pipFinder                                   = new ConfigurableEngineFinder();
                     ((ConfigurableEngineFinder)pipFinder).configure(properties);
                 }
             }

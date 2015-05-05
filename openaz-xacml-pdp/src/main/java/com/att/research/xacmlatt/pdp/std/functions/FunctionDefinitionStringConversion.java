@@ -51,32 +51,32 @@ import com.att.research.xacmlatt.pdp.policy.FunctionArgument;
  * In the first implementation of XACML we had separate files for each XACML Function.
  * This release combines multiple Functions in fewer files to minimize code duplication.
  * This file supports the following XACML codes:
- * 		boolean-from-string
- * 		string-from-boolean
- * 		integer-from-string
- * 		string-from-integer
- * 		double-from-string
- * 		string-from-double
- * 		time-from-string
- * 		string-from-time
- * 		date-from-string
- * 		string-from-date
- * 		dateTime-from-string
- * 		string-from-dateTime
- * 		anyURI-from-string
- * 		string-from-anyURI
- * 		dayTimeDuration-from-string
- * 		string-from-dayTimeDuration
- * 		yearMonthDuration-from-string
- * 		string-from-yearMonthDuration
- * 		x500Name-from-string
- * 		string-from-x500Name
- * 		rfc822Name-from-string
- * 		string-from-rfc822Name
- * 		ipAddress-from-string
- * 		string-from-ipAddress
- * 		dnsName-from-string
- * 		string-from-dnsName
+ *              boolean-from-string
+ *              string-from-boolean
+ *              integer-from-string
+ *              string-from-integer
+ *              double-from-string
+ *              string-from-double
+ *              time-from-string
+ *              string-from-time
+ *              date-from-string
+ *              string-from-date
+ *              dateTime-from-string
+ *              string-from-dateTime
+ *              anyURI-from-string
+ *              string-from-anyURI
+ *              dayTimeDuration-from-string
+ *              string-from-dayTimeDuration
+ *              yearMonthDuration-from-string
+ *              string-from-yearMonthDuration
+ *              x500Name-from-string
+ *              string-from-x500Name
+ *              rfc822Name-from-string
+ *              string-from-rfc822Name
+ *              ipAddress-from-string
+ *              string-from-ipAddress
+ *              dnsName-from-string
+ *              string-from-dnsName
  *
  *
  * @param <O> the java class for the data type of the function Output
@@ -90,8 +90,8 @@ public class FunctionDefinitionStringConversion<O,I> extends FunctionDefinitionH
 
     @Override
     public ExpressionResult evaluate(EvaluationContext evaluationContext, List<FunctionArgument> arguments) {
-        List<I> convertedArguments	= new ArrayList<I>();
-        Status status				= this.validateArguments(arguments, convertedArguments);
+        List<I> convertedArguments      = new ArrayList<I>();
+        Status status                           = this.validateArguments(arguments, convertedArguments);
 
         /*
          * If the function arguments are not correct, just return an error status immediately

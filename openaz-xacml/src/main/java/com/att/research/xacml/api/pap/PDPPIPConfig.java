@@ -50,16 +50,16 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 })
 public interface PDPPIPConfig {
 
-    public String				getId();
+    public String                               getId();
 
-    public String 				getName();
+    public String                               getName();
 
-    public String				getDescription();
+    public String                               getDescription();
 
-    public String 				getClassname();
+    public String                               getClassname();
 
-    public Map<String,String>	getConfiguration();
+    public Map<String,String>   getConfiguration();
 
-    public boolean				isConfigured();
+    public boolean                              isConfigured();
 
 }

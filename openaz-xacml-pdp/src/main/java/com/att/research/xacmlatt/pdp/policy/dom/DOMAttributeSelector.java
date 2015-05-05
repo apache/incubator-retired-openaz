@@ -49,7 +49,7 @@ import com.att.research.xacmlatt.pdp.policy.expressions.AttributeSelector;
  *
  */
 public class DOMAttributeSelector extends AttributeSelector {
-    private static Log logger	= LogFactory.getLog(DOMAttributeSelector.class);
+    private static Log logger   = LogFactory.getLog(DOMAttributeSelector.class);
 
     protected DOMAttributeSelector() {
     }
@@ -62,10 +62,10 @@ public class DOMAttributeSelector extends AttributeSelector {
      * @throws DOMStructureException if there is an error parsing the <code>Node</code>
      */
     public static AttributeSelector newInstance(Node nodeAttributeSelector) throws DOMStructureException {
-        Element elementAttributeSelector			= DOMUtil.getElement(nodeAttributeSelector);
-        boolean bLenient							= DOMProperties.isLenient();
+        Element elementAttributeSelector                        = DOMUtil.getElement(nodeAttributeSelector);
+        boolean bLenient                                                        = DOMProperties.isLenient();
 
-        DOMAttributeSelector domAttributeSelector	= new DOMAttributeSelector();
+        DOMAttributeSelector domAttributeSelector       = new DOMAttributeSelector();
 
         try {
             domAttributeSelector.setCategory(DOMUtil.getIdentifierAttribute(elementAttributeSelector, XACML3.ATTRIBUTE_CATEGORY, !bLenient));
@@ -77,7 +77,7 @@ public class DOMAttributeSelector extends AttributeSelector {
 
             domAttributeSelector.setPath(DOMUtil.getStringAttribute(elementAttributeSelector, XACML3.ATTRIBUTE_PATH, !bLenient));
             domAttributeSelector.setDataTypeId(DOMUtil.getIdentifierAttribute(elementAttributeSelector, XACML3.ATTRIBUTE_DATATYPE, !bLenient));
-            Boolean mustBePresent	= DOMUtil.getBooleanAttribute(elementAttributeSelector, XACML3.ATTRIBUTE_MUSTBEPRESENT, !bLenient);
+            Boolean mustBePresent       = DOMUtil.getBooleanAttribute(elementAttributeSelector, XACML3.ATTRIBUTE_MUSTBEPRESENT, !bLenient);
             if (mustBePresent != null) {
                 domAttributeSelector.setMustBePresent(mustBePresent);
             }
@@ -92,13 +92,13 @@ public class DOMAttributeSelector extends AttributeSelector {
     }
 
     public static boolean repair(Node nodeAttributeSelector) throws DOMStructureException {
-        Element elementAttributeSelector	= DOMUtil.getElement(nodeAttributeSelector);
-        boolean result						= false;
+        Element elementAttributeSelector        = DOMUtil.getElement(nodeAttributeSelector);
+        boolean result                                          = false;
 
-        result								= DOMUtil.repairIdentifierAttribute(elementAttributeSelector, XACML3.ATTRIBUTE_CATEGORY, logger) || result;
-        result								= DOMUtil.repairStringAttribute(elementAttributeSelector, XACML3.ATTRIBUTE_PATH, "/", logger) || result;
-        result								= DOMUtil.repairIdentifierAttribute(elementAttributeSelector, XACML3.ATTRIBUTE_DATATYPE, logger) || result;
-        result								= DOMUtil.repairBooleanAttribute(elementAttributeSelector, XACML3.ATTRIBUTE_MUSTBEPRESENT, false, logger) || result;
+        result                                                          = DOMUtil.repairIdentifierAttribute(elementAttributeSelector, XACML3.ATTRIBUTE_CATEGORY, logger) || result;
+        result                                                          = DOMUtil.repairStringAttribute(elementAttributeSelector, XACML3.ATTRIBUTE_PATH, "/", logger) || result;
+        result                                                          = DOMUtil.repairIdentifierAttribute(elementAttributeSelector, XACML3.ATTRIBUTE_DATATYPE, logger) || result;
+        result                                                          = DOMUtil.repairBooleanAttribute(elementAttributeSelector, XACML3.ATTRIBUTE_MUSTBEPRESENT, false, logger) || result;
 
         return result;
     }

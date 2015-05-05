@@ -49,7 +49,7 @@ public class NodeNamespaceContext extends ExtendedNamespaceContext {
     private Document document;
 
     public NodeNamespaceContext(Document documentIn) {
-        this.document	= documentIn;
+        this.document   = documentIn;
     }
 
     @Override

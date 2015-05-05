@@ -42,7 +42,7 @@ public class XPathYearMonthDuration extends ISO8601Duration implements Comparabl
 
     public XPathYearMonthDuration(int durationSignIn, int yearsIn, int monthsIn) {
         super(durationSignIn, yearsIn, monthsIn, 0, 0, 0, 0);
-        this.monthsDuration	= this.getDurationSign() * (this.getYears()*12 + this.getMonths());
+        this.monthsDuration     = this.getDurationSign() * (this.getYears()*12 + this.getMonths());
     }
 
     /**
@@ -61,9 +61,9 @@ public class XPathYearMonthDuration extends ISO8601Duration implements Comparabl
      * @return a new <code>XPathYearMonthDuration</code> in canonical format
      */
     public XPathYearMonthDuration getCanonical() {
-        int	monthsLeft	= Math.abs(this.getMonthsDuration());
-        int years		= monthsLeft / 12;
-        monthsLeft		-= years * 12;
+        int     monthsLeft      = Math.abs(this.getMonthsDuration());
+        int years               = monthsLeft / 12;
+        monthsLeft              -= years * 12;
         return new XPathYearMonthDuration(this.getDurationSign(), years, monthsLeft);
     }
 
@@ -94,7 +94,7 @@ public class XPathYearMonthDuration extends ISO8601Duration implements Comparabl
 
     @Override
     public String toString() {
-        StringBuilder stringBuilder	= new StringBuilder("{super=");
+        StringBuilder stringBuilder     = new StringBuilder("{super=");
         stringBuilder.append(super.toString());
         stringBuilder.append(",monthsDuration=");
         stringBuilder.append(this.getMonthsDuration());

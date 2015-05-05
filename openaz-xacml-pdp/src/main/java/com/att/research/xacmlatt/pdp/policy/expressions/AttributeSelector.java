@@ -72,26 +72,26 @@ import com.att.research.xacmlatt.pdp.policy.PolicyDefaults;
  *
  */
 public class AttributeSelector extends AttributeRetrievalBase {
-    private Identifier 		contextSelectorId;
-    private String			path;
+    private Identifier          contextSelectorId;
+    private String                      path;
     @SuppressWarnings("unused")
-    private DataType<?> 	dataType;
+    private DataType<?>         dataType;
 
     protected DataType<?> getDataType() {
-        Identifier dataTypeIdThis	= this.getDataTypeId();
+        Identifier dataTypeIdThis       = this.getDataTypeId();
         if (dataTypeIdThis == null) {
             return null;
         } else {
-            DataTypeFactory dataTypeFactory		= null;
+            DataTypeFactory dataTypeFactory             = null;
             try {
-                dataTypeFactory	= DataTypeFactory.newInstance();
+                dataTypeFactory = DataTypeFactory.newInstance();
                 if (dataTypeFactory == null) {
                     return null;
                 }
             } catch (FactoryException ex) {
                 return null;
             }
-            return (this.dataType	= dataTypeFactory.getDataType(dataTypeIdThis));
+            return (this.dataType       = dataTypeFactory.getDataType(dataTypeIdThis));
         }
     }
 
@@ -111,7 +111,7 @@ public class AttributeSelector extends AttributeRetrievalBase {
     }
 
     public void setContextSelectorId(Identifier identifier) {
-        this.contextSelectorId	= identifier;
+        this.contextSelectorId  = identifier;
     }
 
     public String getPath() {
@@ -119,7 +119,7 @@ public class AttributeSelector extends AttributeRetrievalBase {
     }
 
     public void setPath(String pathIn) {
-        this.path	= pathIn;
+        this.path       = pathIn;
     }
 
     @Override
@@ -142,19 +142,19 @@ public class AttributeSelector extends AttributeRetrievalBase {
      * @return
      */
     protected List<XPathExpression> getContextSelectorValues(RequestAttributes requestAttributes) {
-        Identifier thisContextSelectorId	= this.getContextSelectorId();
+        Identifier thisContextSelectorId        = this.getContextSelectorId();
         if (thisContextSelectorId == null) {
             return null;
         }
-        List<XPathExpression> listXPathExpressions	= null;
-        Iterator<Attribute> iterAttributes	= requestAttributes.getAttributes(thisContextSelectorId);
+        List<XPathExpression> listXPathExpressions      = null;
+        Iterator<Attribute> iterAttributes      = requestAttributes.getAttributes(thisContextSelectorId);
         if (iterAttributes != null) {
             while (iterAttributes.hasNext()) {
-                Attribute attribute	= iterAttributes.next();
-                Iterator<AttributeValue<XPathExpressionWrapper>> iterXPathExpressions	= attribute.findValues(DataTypes.DT_XPATHEXPRESSION);
+                Attribute attribute     = iterAttributes.next();
+                Iterator<AttributeValue<XPathExpressionWrapper>> iterXPathExpressions   = attribute.findValues(DataTypes.DT_XPATHEXPRESSION);
                 if (iterXPathExpressions != null && iterXPathExpressions.hasNext()) {
                     if (listXPathExpressions == null) {
-                        listXPathExpressions	= new ArrayList<XPathExpression>();
+                        listXPathExpressions    = new ArrayList<XPathExpression>();
                     }
                     listXPathExpressions.add(iterXPathExpressions.next().getValue());
                 }
@@ -172,20 +172,20 @@ public class AttributeSelector extends AttributeRetrievalBase {
         /*
          * Get the DataType for this AttributeSelector for converting the resulting nodes into AttributeValues
          */
-        DataType<?> thisDataType	= this.getDataType();
+        DataType<?> thisDataType        = this.getDataType();
 
         /*
          * Get the Request so we can find the XPathExpression to locate the root node and to find the Content element
          * of the requested category.
          */
-        Request request	= evaluationContext.getRequest();
+        Request request = evaluationContext.getRequest();
         assert(request != null);
 
         /*
          * Get the RequestAttributes objects for our Category.  If none are found, then we abort quickly with either
          * an empty or indeterminate result.
          */
-        Iterator<RequestAttributes> iterRequestAttributes	= request.getRequestAttributes(this.getCategory());
+        Iterator<RequestAttributes> iterRequestAttributes       = request.getRequestAttributes(this.getCategory());
         if (iterRequestAttributes == null || !iterRequestAttributes.hasNext()) {
             return this.getEmptyResult("No Attributes with Category " + this.getCategory().toString(), null);
         }
@@ -197,25 +197,25 @@ public class AttributeSelector extends AttributeRetrievalBase {
          * and use that to search the Content in that particular Attributes element.  If either an Attribute matching the context selector id
          * is not found or there is no Content, then that particular Attributes element is skipped.
          */
-        Bag bagAttributeValues						= new Bag();
-        StdStatus statusFirstError					= null;
+        Bag bagAttributeValues                                          = new Bag();
+        StdStatus statusFirstError                                      = null;
         while (iterRequestAttributes.hasNext()) {
-            RequestAttributes requestAttributes	= iterRequestAttributes.next();
+            RequestAttributes requestAttributes = iterRequestAttributes.next();
 
             /*
              * See if we have a Content element to query.
              */
-            Node nodeContentRoot	= requestAttributes.getContentRoot();
+            Node nodeContentRoot        = requestAttributes.getContentRoot();
             if (nodeContentRoot != null) {
-                List<Node> listNodesToQuery					= new ArrayList<Node>();
-                List<XPathExpression> listXPathExpressions	= this.getContextSelectorValues(requestAttributes);
+                List<Node> listNodesToQuery                                     = new ArrayList<Node>();
+                List<XPathExpression> listXPathExpressions      = this.getContextSelectorValues(requestAttributes);
                 if (listXPathExpressions == null) {
                     listNodesToQuery.add(nodeContentRoot);
                 } else {
-                    Iterator<XPathExpression> iterXPathExpressions	= listXPathExpressions.iterator();
+                    Iterator<XPathExpression> iterXPathExpressions      = listXPathExpressions.iterator();
                     while (iterXPathExpressions.hasNext()) {
-                        XPathExpression xpathExpression	= iterXPathExpressions.next();
-                        Node nodeContent	= requestAttributes.getContentNodeByXpathExpression(xpathExpression);
+                        XPathExpression xpathExpression = iterXPathExpressions.next();
+                        Node nodeContent        = requestAttributes.getContentNodeByXpathExpression(xpathExpression);
                         if (nodeContent != null) {
                             listNodesToQuery.add(nodeContent);
                         }
@@ -227,37 +227,37 @@ public class AttributeSelector extends AttributeRetrievalBase {
                  */
                 if (listNodesToQuery.size() > 0) {
                     for (Node nodeToQuery : listNodesToQuery) {
-                        NodeList nodeList	= null;
+                        NodeList nodeList       = null;
                         try {
-                            XPath xPath	= XPathFactory.newInstance().newXPath();
+                            XPath xPath = XPathFactory.newInstance().newXPath();
                             xPath.setNamespaceContext(new NodeNamespaceContext(nodeToQuery.getOwnerDocument()));
-                            XPathExpression xPathExpression	= xPath.compile(this.getPath());
-                            Node nodeToQueryDocumentRoot	= null;
+                            XPathExpression xPathExpression     = xPath.compile(this.getPath());
+                            Node nodeToQueryDocumentRoot        = null;
                             try {
-                                nodeToQueryDocumentRoot	= DOMUtil.getDirectDocumentChild(nodeToQuery);
+                                nodeToQueryDocumentRoot = DOMUtil.getDirectDocumentChild(nodeToQuery);
                             } catch (DOMStructureException ex) {
                                 return ExpressionResult.newError(new StdStatus(StdStatusCode.STATUS_CODE_PROCESSING_ERROR, "Exception processing context node: " + ex.getMessage()));
                             }
-                            nodeList	= (NodeList)xPathExpression.evaluate(nodeToQueryDocumentRoot, XPathConstants.NODESET);
+                            nodeList    = (NodeList)xPathExpression.evaluate(nodeToQueryDocumentRoot, XPathConstants.NODESET);
                         } catch (XPathExpressionException ex) {
                             if (statusFirstError == null) {
-                                statusFirstError	= new StdStatus(StdStatusCode.STATUS_CODE_PROCESSING_ERROR, "XPathExpressionException: " + ex.getMessage());
+                                statusFirstError        = new StdStatus(StdStatusCode.STATUS_CODE_PROCESSING_ERROR, "XPathExpressionException: " + ex.getMessage());
                             }
                         }
                         if (nodeList != null && nodeList.getLength() > 0) {
                             for (int i = 0 ; i < nodeList.getLength() ; i++) {
-                                AttributeValue<?> attributeValueNode	= null;
+                                AttributeValue<?> attributeValueNode    = null;
                                 try {
-                                    attributeValueNode	= thisDataType.createAttributeValue(nodeList.item(i));
+                                    attributeValueNode  = thisDataType.createAttributeValue(nodeList.item(i));
                                 } catch (DataTypeException ex) {
                                     if (statusFirstError == null) {
-                                        statusFirstError	= new StdStatus(StdStatusCode.STATUS_CODE_PROCESSING_ERROR, ex.getMessage());
+                                        statusFirstError        = new StdStatus(StdStatusCode.STATUS_CODE_PROCESSING_ERROR, ex.getMessage());
                                     }
                                 }
                                 if (attributeValueNode != null) {
                                     bagAttributeValues.add(attributeValueNode);
                                 } else if (statusFirstError == null) {
-                                    statusFirstError	= new StdStatus(StdStatusCode.STATUS_CODE_PROCESSING_ERROR, "Unable to convert node to " + this.getDataTypeId().toString());
+                                    statusFirstError    = new StdStatus(StdStatusCode.STATUS_CODE_PROCESSING_ERROR, "Unable to convert node to " + this.getDataTypeId().toString());
                                 }
                             }
                         }
@@ -280,7 +280,7 @@ public class AttributeSelector extends AttributeRetrievalBase {
 
     @Override
     public String toString() {
-        StringBuilder stringBuilder	= new StringBuilder("{");
+        StringBuilder stringBuilder     = new StringBuilder("{");
 
         stringBuilder.append("super=");
         stringBuilder.append(super.toString());

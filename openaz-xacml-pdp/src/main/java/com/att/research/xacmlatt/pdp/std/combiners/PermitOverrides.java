@@ -59,43 +59,43 @@ public class PermitOverrides<T extends com.att.research.xacmlatt.pdp.eval.Evalua
                                     List<CombiningElement<T>> elements,
                                     List<CombinerParameter> combinerParameters)
     throws EvaluationException {
-        boolean atLeastOneDeny					= false;
+        boolean atLeastOneDeny                                  = false;
 
-        EvaluationResult combinedResult			= new EvaluationResult(Decision.DENY);
+        EvaluationResult combinedResult                 = new EvaluationResult(Decision.DENY);
 
-        EvaluationResult firstIndeterminateD	= null;
-        EvaluationResult firstIndeterminateP	= null;
-        EvaluationResult firstIndeterminateDP	= null;
+        EvaluationResult firstIndeterminateD    = null;
+        EvaluationResult firstIndeterminateP    = null;
+        EvaluationResult firstIndeterminateDP   = null;
 
-        Iterator<CombiningElement<T>> iterElements	= elements.iterator();
+        Iterator<CombiningElement<T>> iterElements      = elements.iterator();
         while (iterElements.hasNext()) {
-            CombiningElement<T> combiningElement		= iterElements.next();
-            EvaluationResult evaluationResultElement	= combiningElement.evaluate(evaluationContext);
+            CombiningElement<T> combiningElement                = iterElements.next();
+            EvaluationResult evaluationResultElement    = combiningElement.evaluate(evaluationContext);
 
             assert(evaluationResultElement != null);
             switch(evaluationResultElement.getDecision()) {
             case DENY:
-                atLeastOneDeny	= true;
+                atLeastOneDeny  = true;
                 combinedResult.merge(evaluationResultElement);
                 break;
             case INDETERMINATE:
             case INDETERMINATE_DENYPERMIT:
                 if (firstIndeterminateDP == null) {
-                    firstIndeterminateDP	= evaluationResultElement;
+                    firstIndeterminateDP        = evaluationResultElement;
                 } else {
                     firstIndeterminateDP.merge(evaluationResultElement);
                 }
                 break;
             case INDETERMINATE_DENY:
                 if (firstIndeterminateD == null) {
-                    firstIndeterminateD		= evaluationResultElement;
+                    firstIndeterminateD         = evaluationResultElement;
                 } else {
                     firstIndeterminateD.merge(evaluationResultElement);
                 }
                 break;
             case INDETERMINATE_PERMIT:
                 if (firstIndeterminateP == null) {
-                    firstIndeterminateP		= evaluationResultElement;
+                    firstIndeterminateP         = evaluationResultElement;
                 } else {
                     firstIndeterminateP.merge(evaluationResultElement);
                 }

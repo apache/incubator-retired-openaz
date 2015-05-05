@@ -49,8 +49,8 @@ import com.att.research.xacmlatt.pdp.eval.EvaluationResult;
  * @param <T> the java class extending <code>Evaluatable</code> of the objects to be combined
  */
 public class CombiningElement<T extends Evaluatable> {
-    private T										evaluatable;
-    private List<CombinerParameter>	targetedCombinerParameters;
+    private T                                                                           evaluatable;
+    private List<CombinerParameter>     targetedCombinerParameters;
 
     /**
      * Creates a new <code>CombiningElement</code> with the given <code>Evaluatable</code> and <code>List</code> of
@@ -60,9 +60,9 @@ public class CombiningElement<T extends Evaluatable> {
      * @param targetedCombinerParametersIn the <code>List</code> of <code>TargetedCombinerParameter</code>s.
      */
     public CombiningElement(T evaluatableIn, Collection<CombinerParameter> targetedCombinerParametersIn) {
-        this.evaluatable	= evaluatableIn;
+        this.evaluatable        = evaluatableIn;
         if (targetedCombinerParametersIn != null) {
-            this.targetedCombinerParameters	= new ArrayList<CombinerParameter>();
+            this.targetedCombinerParameters     = new ArrayList<CombinerParameter>();
             this.targetedCombinerParameters.addAll(targetedCombinerParametersIn);
         }
     }

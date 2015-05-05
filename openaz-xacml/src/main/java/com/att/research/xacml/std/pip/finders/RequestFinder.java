@@ -59,7 +59,7 @@ import com.att.research.xacml.std.pip.engines.RequestEngine;
 public class RequestFinder extends WrappingFinder {
     private RequestEngine requestEngine;
     private EnvironmentEngine environmentEngine;
-    private Map<PIPRequest, PIPResponse>	mapCache	= new HashMap<PIPRequest,PIPResponse>();
+    private Map<PIPRequest, PIPResponse>        mapCache        = new HashMap<PIPRequest,PIPResponse>();
 
     protected RequestEngine getRequestEngine() {
         return this.requestEngine;
@@ -71,8 +71,8 @@ public class RequestFinder extends WrappingFinder {
 
     public RequestFinder(PIPFinder pipFinder, RequestEngine requestEngineIn) {
         super(pipFinder);
-        this.requestEngine	= requestEngineIn;
-        this.environmentEngine	= new EnvironmentEngine(new Date());
+        this.requestEngine      = requestEngineIn;
+        this.environmentEngine  = new EnvironmentEngine(new Date());
     }
 
     @Override
@@ -82,13 +82,13 @@ public class RequestFinder extends WrappingFinder {
             /*
              * First try the RequestEngine
              */
-            PIPResponse pipResponse				= null;
-            RequestEngine thisRequestEngine		= this.getRequestEngine();
-            Status status						= null;
+            PIPResponse pipResponse                             = null;
+            RequestEngine thisRequestEngine             = this.getRequestEngine();
+            Status status                                               = null;
             if (thisRequestEngine != null && thisRequestEngine != exclude) {
-                //tStart	= System.nanoTime();
-                pipResponse	= thisRequestEngine.getAttributes(pipRequest, (pipFinderRoot == null ? this : pipFinderRoot));
-                //tEnd	= System.nanoTime();
+                //tStart        = System.nanoTime();
+                pipResponse     = thisRequestEngine.getAttributes(pipRequest, (pipFinderRoot == null ? this : pipFinderRoot));
+                //tEnd  = System.nanoTime();
                 if (pipResponse.getStatus() == null || pipResponse.getStatus().isOk()) {
                     /*
                      * We know how the RequestEngine works.  It does not return multiple results
@@ -98,7 +98,7 @@ public class RequestFinder extends WrappingFinder {
                         return pipResponse;
                     }
                 } else {
-                    status	= pipResponse.getStatus();
+                    status      = pipResponse.getStatus();
                 }
             }
 
@@ -106,8 +106,8 @@ public class RequestFinder extends WrappingFinder {
              * Next try the EnvironmentEngine if no issuer has been specified
              */
             if (XACML3.ID_ATTRIBUTE_CATEGORY_ENVIRONMENT.equals(pipRequest.getCategory()) && (pipRequest.getIssuer() == null || pipRequest.getIssuer().length() == 0)) {
-                EnvironmentEngine thisEnvironmentEngine	= this.getEnvironmentEngine();
-                pipResponse	= thisEnvironmentEngine.getAttributes(pipRequest, this);
+                EnvironmentEngine thisEnvironmentEngine = this.getEnvironmentEngine();
+                pipResponse     = thisEnvironmentEngine.getAttributes(pipRequest, this);
                 if (pipResponse.getStatus() == null || pipResponse.getStatus().isOk()) {
                     /*
                      * We know how the EnvironmentEngine works.  It does not return multiple results
@@ -118,7 +118,7 @@ public class RequestFinder extends WrappingFinder {
                     }
                 } else {
                     if (status == null) {
-                        status	= pipResponse.getStatus();
+                        status  = pipResponse.getStatus();
                     }
                 }
             }
@@ -133,16 +133,16 @@ public class RequestFinder extends WrappingFinder {
             /*
              * Delegate to the wrapped Finder
              */
-            PIPFinder thisWrappedFinder	= this.getWrappedFinder();
+            PIPFinder thisWrappedFinder = this.getWrappedFinder();
             if (thisWrappedFinder != null) {
-                pipResponse	= thisWrappedFinder.getAttributes(pipRequest, exclude, (pipFinderRoot == null ? this : pipFinderRoot));
+                pipResponse     = thisWrappedFinder.getAttributes(pipRequest, exclude, (pipFinderRoot == null ? this : pipFinderRoot));
                 if (pipResponse != null) {
                     if (pipResponse.getStatus() == null || pipResponse.getStatus().isOk()) {
                         if (pipResponse.getAttributes().size() > 0) {
                             /*
                              * Cache all of the returned attributes
                              */
-                            Map<PIPRequest,PIPResponse> mapResponses	= StdPIPResponse.splitResponse(pipResponse);
+                            Map<PIPRequest,PIPResponse> mapResponses    = StdPIPResponse.splitResponse(pipResponse);
                             if (mapResponses != null && mapResponses.size() > 0) {
                                 for (PIPRequest pipRequestSplit : mapResponses.keySet()) {
                                     this.mapCache.put(pipRequestSplit, mapResponses.get(pipRequestSplit));
@@ -151,7 +151,7 @@ public class RequestFinder extends WrappingFinder {
                             return pipResponse;
                         }
                     } else if (status == null || status.isOk()) {
-                        status	= pipResponse.getStatus();
+                        status  = pipResponse.getStatus();
                     }
                 }
             }
@@ -173,7 +173,7 @@ public class RequestFinder extends WrappingFinder {
 
     @Override
     public Collection<PIPEngine> getPIPEngines() {
-        List<PIPEngine>	engines = new ArrayList<PIPEngine>();
+        List<PIPEngine> engines = new ArrayList<PIPEngine>();
         if (this.requestEngine != null) {
             engines.add(this.requestEngine);
         }

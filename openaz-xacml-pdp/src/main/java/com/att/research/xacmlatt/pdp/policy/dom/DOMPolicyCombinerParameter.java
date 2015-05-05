@@ -52,7 +52,7 @@ import com.att.research.xacmlatt.pdp.policy.TargetedCombinerParameter;
  *
  */
 public class DOMPolicyCombinerParameter extends TargetedCombinerParameter<Identifier, PolicySetChild> {
-    private static final Log logger	= LogFactory.getLog(DOMPolicyCombinerParameter.class);
+    private static final Log logger     = LogFactory.getLog(DOMPolicyCombinerParameter.class);
 
     protected DOMPolicyCombinerParameter() {
 
@@ -67,17 +67,17 @@ public class DOMPolicyCombinerParameter extends TargetedCombinerParameter<Identi
      * @throws DOMStructureException if there is an error parsing the <code>Node</code>
      */
     public static TargetedCombinerParameter<Identifier,PolicySetChild> newInstance(Node nodeCombinerParameter) throws DOMStructureException {
-        Element elementPolicyCombinerParameter					= DOMUtil.getElement(nodeCombinerParameter);
-        boolean bLenient										= DOMProperties.isLenient();
+        Element elementPolicyCombinerParameter                                  = DOMUtil.getElement(nodeCombinerParameter);
+        boolean bLenient                                                                                = DOMProperties.isLenient();
 
-        DOMPolicyCombinerParameter domPolicyCombinerParameter	= new DOMPolicyCombinerParameter();
+        DOMPolicyCombinerParameter domPolicyCombinerParameter   = new DOMPolicyCombinerParameter();
 
         try {
-            NodeList children	= elementPolicyCombinerParameter.getChildNodes();
+            NodeList children   = elementPolicyCombinerParameter.getChildNodes();
             int numChildren;
             if (children != null && (numChildren = children.getLength()) > 0) {
                 for (int i = 0 ; i < numChildren ; i++) {
-                    Node child	= children.item(i);
+                    Node child  = children.item(i);
                     if (DOMUtil.isElement(child)) {
                         if (DOMUtil.isInNamespace(child, XACML3.XMLNS) && XACML3.ELEMENT_ATTRIBUTEVALUE.equals(child.getLocalName())) {
                             domPolicyCombinerParameter.setAttributeValue(DOMAttributeValue.newInstance(child, null));
@@ -104,29 +104,29 @@ public class DOMPolicyCombinerParameter extends TargetedCombinerParameter<Identi
 
     }
     public static boolean repair(Node nodePolicyCombinerParameter) throws DOMStructureException {
-        Element elementPolicyCombinerParameter	= DOMUtil.getElement(nodePolicyCombinerParameter);
-        boolean result							= false;
+        Element elementPolicyCombinerParameter  = DOMUtil.getElement(nodePolicyCombinerParameter);
+        boolean result                                                  = false;
 
-        NodeList children			= elementPolicyCombinerParameter.getChildNodes();
+        NodeList children                       = elementPolicyCombinerParameter.getChildNodes();
         int numChildren;
-        boolean sawAttributeValue	= false;
+        boolean sawAttributeValue       = false;
         if (children != null && (numChildren = children.getLength()) > 0) {
             for (int i = 0 ; i < numChildren ; i++) {
-                Node child	= children.item(i);
+                Node child      = children.item(i);
                 if (DOMUtil.isElement(child)) {
                     if (DOMUtil.isInNamespace(child, XACML3.XMLNS) && XACML3.ELEMENT_ATTRIBUTEVALUE.equals(child.getLocalName())) {
                         if (sawAttributeValue) {
                             logger.warn("Unexpected element " + child.getNodeName());
                             elementPolicyCombinerParameter.removeChild(child);
-                            result	= true;
+                            result      = true;
                         } else {
-                            sawAttributeValue	= true;
-                            result				= DOMAttributeValue.repair(child) || result;
+                            sawAttributeValue   = true;
+                            result                              = DOMAttributeValue.repair(child) || result;
                         }
                     } else {
                         logger.warn("Unexpected element " + child.getNodeName());
                         elementPolicyCombinerParameter.removeChild(child);
-                        result	= true;
+                        result  = true;
                     }
                 }
             }
@@ -134,8 +134,8 @@ public class DOMPolicyCombinerParameter extends TargetedCombinerParameter<Identi
         if (!sawAttributeValue) {
             throw DOMUtil.newMissingElementException(nodePolicyCombinerParameter, XACML3.XMLNS, XACML3.ELEMENT_ATTRIBUTEVALUE);
         }
-        result	= DOMUtil.repairStringAttribute(elementPolicyCombinerParameter, XACML3.ATTRIBUTE_PARAMETERNAME, "parameter", logger) || result;
-        result	= DOMUtil.repairIdentifierAttribute(elementPolicyCombinerParameter, XACML3.ATTRIBUTE_POLICYIDREF, logger) || result;
+        result  = DOMUtil.repairStringAttribute(elementPolicyCombinerParameter, XACML3.ATTRIBUTE_PARAMETERNAME, "parameter", logger) || result;
+        result  = DOMUtil.repairIdentifierAttribute(elementPolicyCombinerParameter, XACML3.ATTRIBUTE_POLICYIDREF, logger) || result;
 
         return result;
     }

@@ -51,7 +51,7 @@ import com.att.research.xacmlatt.pdp.policy.PolicyFinderFactory;
  *
  */
 public class StdEvaluationContextFactory extends EvaluationContextFactory {
-    private Log logger					= LogFactory.getLog(this.getClass());
+    private Log logger                                  = LogFactory.getLog(this.getClass());
     private PolicyFinder policyFinder;
     private PIPFinder pipFinder;
     private TraceEngine traceEngine;
@@ -86,14 +86,14 @@ public class StdEvaluationContextFactory extends EvaluationContextFactory {
                             if (this.logger.isDebugEnabled()) {
                                 this.logger.debug("getting Policy finder using default properties");
                             }
-                            PolicyFinderFactory policyFinderFactory	= PolicyFinderFactory.newInstance();
-                            this.policyFinder	= policyFinderFactory.getPolicyFinder();
+                            PolicyFinderFactory policyFinderFactory     = PolicyFinderFactory.newInstance();
+                            this.policyFinder   = policyFinderFactory.getPolicyFinder();
                         } else {
                             if (this.logger.isDebugEnabled()) {
                                 this.logger.debug("getting Policy finder using properties: " + this.properties);
                             }
-                            PolicyFinderFactory policyFinderFactory	= PolicyFinderFactory.newInstance(this.properties);
-                            this.policyFinder	= policyFinderFactory.getPolicyFinder(this.properties);
+                            PolicyFinderFactory policyFinderFactory     = PolicyFinderFactory.newInstance(this.properties);
+                            this.policyFinder   = policyFinderFactory.getPolicyFinder(this.properties);
                         }
                     } catch (Exception ex) {
                         this.logger.error("Exception getting PolicyFinder: " + ex.getMessage(), ex);
@@ -113,14 +113,14 @@ public class StdEvaluationContextFactory extends EvaluationContextFactory {
                             if (this.logger.isDebugEnabled()) {
                                 this.logger.debug("getting PIP finder using default properties");
                             }
-                            PIPFinderFactory pipFinderFactory	= PIPFinderFactory.newInstance();
-                            this.pipFinder						= pipFinderFactory.getFinder();
+                            PIPFinderFactory pipFinderFactory   = PIPFinderFactory.newInstance();
+                            this.pipFinder                                              = pipFinderFactory.getFinder();
                         } else {
                             if (this.logger.isDebugEnabled()) {
                                 this.logger.debug("getting PIP finder using properties: " + this.properties);
                             }
-                            PIPFinderFactory pipFinderFactory	= PIPFinderFactory.newInstance(this.properties);
-                            this.pipFinder						= pipFinderFactory.getFinder(this.properties);
+                            PIPFinderFactory pipFinderFactory   = PIPFinderFactory.newInstance(this.properties);
+                            this.pipFinder                                              = pipFinderFactory.getFinder(this.properties);
                         }
                     } catch (Exception ex) {
                         this.logger.error("Exception getting PIPFinder: " + ex.toString(), ex);
@@ -137,11 +137,11 @@ public class StdEvaluationContextFactory extends EvaluationContextFactory {
                 if (this.traceEngine == null) {
                     try {
                         if (this.properties == null) {
-                            TraceEngineFactory traceEngineFactory	= TraceEngineFactory.newInstance();
-                            this.traceEngine	= traceEngineFactory.getTraceEngine();
+                            TraceEngineFactory traceEngineFactory       = TraceEngineFactory.newInstance();
+                            this.traceEngine    = traceEngineFactory.getTraceEngine();
                         } else {
-                            TraceEngineFactory traceEngineFactory	= TraceEngineFactory.newInstance(this.properties);
-                            this.traceEngine	= traceEngineFactory.getTraceEngine(this.properties);
+                            TraceEngineFactory traceEngineFactory       = TraceEngineFactory.newInstance(this.properties);
+                            this.traceEngine    = traceEngineFactory.getTraceEngine(this.properties);
                         }
                     } catch (Exception ex) {
                         this.logger.error("Exception getting TraceEngine: " + ex.toString(), ex);
@@ -170,12 +170,12 @@ public class StdEvaluationContextFactory extends EvaluationContextFactory {
 
     @Override
     public void setPolicyFinder(PolicyFinder policyFinderIn) {
-        this.policyFinder	= policyFinderIn;
+        this.policyFinder       = policyFinderIn;
     }
 
     @Override
     public void setPIPFinder(PIPFinder pipFinderIn) {
-        this.pipFinder		= pipFinderIn;
+        this.pipFinder          = pipFinderIn;
     }
 
 }

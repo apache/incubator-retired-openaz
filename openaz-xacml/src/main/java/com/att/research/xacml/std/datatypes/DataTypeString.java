@@ -38,7 +38,7 @@ import com.att.research.xacml.api.XACML;
  *
  */
 public class DataTypeString extends DataTypeBase<String> {
-    private static final DataTypeString	singleInstance	= new DataTypeString();
+    private static final DataTypeString singleInstance  = new DataTypeString();
 
     private DataTypeString() {
         super(XACML.ID_DATATYPE_STRING, String.class);

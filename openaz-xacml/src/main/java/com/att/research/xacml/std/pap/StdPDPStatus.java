@@ -45,7 +45,7 @@ public class StdPDPStatus implements Serializable, PDPStatus {
 
     private Status status = Status.UNKNOWN;
 
-    private Set<String>	loadErrors = new HashSet<String>();
+    private Set<String> loadErrors = new HashSet<String>();
 
     private Set<String> loadWarnings = new HashSet<String>();
 
@@ -55,15 +55,15 @@ public class StdPDPStatus implements Serializable, PDPStatus {
 
     private Set<PDPPolicy> failedPolicies = new HashSet<PDPPolicy>();
 
-    private Set<PDPPIPConfig>	loadedPIPConfigs = new HashSet<PDPPIPConfig>();
+    private Set<PDPPIPConfig>   loadedPIPConfigs = new HashSet<PDPPIPConfig>();
 
-    private Set<PDPPIPConfig>	failedPIPConfigs = new HashSet<PDPPIPConfig>();
+    private Set<PDPPIPConfig>   failedPIPConfigs = new HashSet<PDPPIPConfig>();
 
     public StdPDPStatus() {
     }
 
     public void set(StdPDPStatus newStatus) {
-        this.status				=	newStatus.status;
+        this.status                             =       newStatus.status;
         this.loadErrors.clear();
         this.loadErrors.addAll(newStatus.getLoadErrors());
         this.loadWarnings.clear();
@@ -152,7 +152,7 @@ public class StdPDPStatus implements Serializable, PDPStatus {
         return Collections.unmodifiableSet(this.failedPolicies);
     }
 
-    public void	setFailedPolicies(Set<PDPPolicy> policies) {
+    public void setFailedPolicies(Set<PDPPolicy> policies) {
         this.failedPolicies = policies;
     }
 

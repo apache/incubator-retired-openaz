@@ -51,19 +51,19 @@ import com.att.research.xacmlatt.pdp.policy.FunctionArgument;
  * In the first implementation of XACML we had separate files for each XACML Function.
  * This release combines multiple Functions in fewer files to minimize code duplication.
  * This file supports the following XACML codes:
- * 		dateTime-add-dayTimeDuration
- * 		dateTime-add-yearMonthDuration
- * 		dateTime-subtract-dayTimeDuration
- * 		dateTime-subtract-yearMonthDuration
- * 		date-add-yearMonthDuration
- * 		date-subtract-yearMonthDuration
+ *              dateTime-add-dayTimeDuration
+ *              dateTime-add-yearMonthDuration
+ *              dateTime-subtract-dayTimeDuration
+ *              dateTime-subtract-yearMonthDuration
+ *              date-add-yearMonthDuration
+ *              date-subtract-yearMonthDuration
  *
  *
  *
  * @param <I> the java class for the data type of the function Input arguments;
- * 		SPECIAL CASE: this applies ONLY to the 2nd argument.
+ *              SPECIAL CASE: this applies ONLY to the 2nd argument.
  * @param <O> the java class for the data type of the function Output;
- * 		SPECIAL CASE: this ALSO applies to the type of the 1st Input argument.
+ *              SPECIAL CASE: this ALSO applies to the type of the 1st Input argument.
  */
 public class FunctionDefinitionDateTimeArithmetic<O extends IDateTime<O>, I extends ISO8601Duration> extends FunctionDefinitionBase<O, I> {
 
@@ -104,7 +104,7 @@ public class FunctionDefinitionDateTimeArithmetic<O extends IDateTime<O>, I exte
         if ( ! convertedArgument0.isOk()) {
             return ExpressionResult.newError(getFunctionStatus(convertedArgument0.getStatus()));
         }
-        O idateOrig	= convertedArgument0.getValue();
+        O idateOrig     = convertedArgument0.getValue();
 
         // second argument is of input type
         functionArgument = arguments.get(1);
@@ -117,18 +117,18 @@ public class FunctionDefinitionDateTimeArithmetic<O extends IDateTime<O>, I exte
 
         // add/subtract the duration to the input argument
         //
-        O idateResult	= null;
+        O idateResult   = null;
         switch(this.operation) {
         case ADD:
-            idateResult	= idateOrig.add(duration);
+            idateResult = idateOrig.add(duration);
             break;
         case SUBTRACT:
-            idateResult	= idateOrig.sub(duration);
+            idateResult = idateOrig.sub(duration);
             break;
         }
-        ExpressionResult expressionResult	= null;
+        ExpressionResult expressionResult       = null;
         try {
-            expressionResult	= ExpressionResult.newSingle(this.getDataType().createAttributeValue(idateResult));
+            expressionResult    = ExpressionResult.newSingle(this.getDataType().createAttributeValue(idateResult));
         } catch (DataTypeException e) {
             String message = e.getMessage();
             if (e.getCause() != null) {

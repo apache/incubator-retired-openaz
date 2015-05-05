@@ -53,7 +53,7 @@ import java.util.Properties;
  *
  */
 public class StdEvaluationContext implements EvaluationContext {
-    private Log logger	= LogFactory.getLog(this.getClass());
+    private Log logger  = LogFactory.getLog(this.getClass());
     private Properties properties;
     private Request request;
     private RequestFinder requestFinder;
@@ -68,17 +68,17 @@ public class StdEvaluationContext implements EvaluationContext {
      * @param policyDef the <code>PolicyDef</code>
      */
     public StdEvaluationContext(Request requestIn, PolicyFinder policyFinderIn, PIPFinder pipFinder, TraceEngine traceEngineIn, Properties properties) {
-        this.properties		= properties;
-        this.request		= requestIn;
-        this.policyFinder	= policyFinderIn;
+        this.properties         = properties;
+        this.request            = requestIn;
+        this.policyFinder       = policyFinderIn;
         if (traceEngineIn != null) {
-            this.traceEngine	= traceEngineIn;
+            this.traceEngine    = traceEngineIn;
         } else {
             try {
                 if (this.properties == null) {
-                    this.traceEngine	= TraceEngineFactory.newInstance().getTraceEngine();
+                    this.traceEngine    = TraceEngineFactory.newInstance().getTraceEngine();
                 } else {
-                    this.traceEngine	= TraceEngineFactory.newInstance(this.properties).getTraceEngine(this.properties);
+                    this.traceEngine    = TraceEngineFactory.newInstance(this.properties).getTraceEngine(this.properties);
                 }
             } catch (FactoryException ex) {
                 this.logger.error("FactoryException creating TraceEngine: " + ex.toString(), ex);
@@ -86,12 +86,12 @@ public class StdEvaluationContext implements EvaluationContext {
         }
 
         if (pipFinder == null) {
-            this.requestFinder		= new RequestFinder(null, new RequestEngine(requestIn));
+            this.requestFinder          = new RequestFinder(null, new RequestEngine(requestIn));
         } else {
             if (pipFinder instanceof RequestFinder) {
-                this.requestFinder	= (RequestFinder)pipFinder;
+                this.requestFinder      = (RequestFinder)pipFinder;
             } else {
-                this.requestFinder	= new RequestFinder(pipFinder, new RequestEngine(requestIn));
+                this.requestFinder      = new RequestFinder(pipFinder, new RequestEngine(requestIn));
             }
         }
     }

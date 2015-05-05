@@ -39,8 +39,8 @@ import com.att.research.xacml.std.StdStatusCode;
  *
  */
 abstract class PolicyComponent {
-    private StatusCode	statusCode;
-    private String		statusMessage;
+    private StatusCode  statusCode;
+    private String              statusMessage;
 
     /**
      * Creates a new <code>PolicyComponent</code> with the given {@link com.att.research.xacml.api.StatusCode} and
@@ -50,8 +50,8 @@ abstract class PolicyComponent {
      * @param statusMessageIn the <code>String</code> detailed status message for the new <code>PolicyComponent</code>
      */
     public PolicyComponent(StatusCode statusCodeIn, String statusMessageIn) {
-        this.statusCode		= statusCodeIn;
-        this.statusMessage	= statusMessageIn;
+        this.statusCode         = statusCodeIn;
+        this.statusMessage      = statusMessageIn;
     }
 
     /**
@@ -97,8 +97,8 @@ abstract class PolicyComponent {
      * @param messageIn the <code>String</code> status message for this <code>PolicyComponent</code>
      */
     public void setStatus(StatusCode statusCodeIn, String messageIn) {
-        this.statusCode		= statusCodeIn;
-        this.statusMessage	= messageIn;
+        this.statusCode         = statusCodeIn;
+        this.statusMessage      = messageIn;
     }
 
     /**
@@ -139,13 +139,13 @@ abstract class PolicyComponent {
 
     @Override
     public String toString() {
-        StringBuilder stringBuilder	= new StringBuilder("{");
+        StringBuilder stringBuilder     = new StringBuilder("{");
         Object objectToDump;
-        boolean needsComma	= false;
+        boolean needsComma      = false;
         if ((objectToDump = this.getStatusCode()) != null) {
             stringBuilder.append("statusCode=");
             stringBuilder.append(objectToDump.toString());
-            needsComma	= true;
+            needsComma  = true;
         }
         if ((objectToDump = this.getStatusMessage()) != null) {
             if (needsComma) {
@@ -153,7 +153,7 @@ abstract class PolicyComponent {
             }
             stringBuilder.append("statusMessage=");
             stringBuilder.append((String)objectToDump);
-            needsComma	= true;
+            needsComma  = true;
         }
         stringBuilder.append('}');
         return stringBuilder.toString();

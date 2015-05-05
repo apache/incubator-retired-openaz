@@ -39,22 +39,22 @@ import com.att.research.xacml.api.SemanticString;
  *
  */
 public class RFC822Name implements Comparable<RFC822Name>, SemanticString {
-    private String	localName;
-    private String	domainName;
+    private String      localName;
+    private String      domainName;
 
     public RFC822Name(String localNameIn, String domainNameIn) {
         if (localNameIn == null || localNameIn.length() == 0 || domainNameIn == null || domainNameIn.length() == 0) {
             throw new IllegalArgumentException("Invalid RFC822Name");
         }
-        this.localName	= localNameIn;
-        this.domainName	= domainNameIn;
+        this.localName  = localNameIn;
+        this.domainName = domainNameIn;
     }
 
     public static RFC822Name newInstance(String rfc822NameString) throws ParseException {
         if (rfc822NameString == null) {
             return null;
         } else {
-            String[] parts	= rfc822NameString.split("[@]",-1);
+            String[] parts      = rfc822NameString.split("[@]",-1);
             if (parts == null || parts.length == 0) {
                 return null;
             } else if (parts.length == 1) {
@@ -107,7 +107,7 @@ public class RFC822Name implements Comparable<RFC822Name>, SemanticString {
             return false;
         }
 
-        String[] patternParts	= pattern.split("[@]",-1);
+        String[] patternParts   = pattern.split("[@]",-1);
         if (patternParts == null || patternParts.length == 0 || patternParts.length > 1) {
             return false;
         }
@@ -121,8 +121,8 @@ public class RFC822Name implements Comparable<RFC822Name>, SemanticString {
             }
         }
 
-        String thisDomainName	= this.getCanonicalDomainName();
-        String thatDomainName	= (patternParts.length == 0 ? patternParts[0] : patternParts[1]);
+        String thisDomainName   = this.getCanonicalDomainName();
+        String thatDomainName   = (patternParts.length == 0 ? patternParts[0] : patternParts[1]);
         if (thatDomainName == null) {
             return false;
         }
@@ -135,14 +135,14 @@ public class RFC822Name implements Comparable<RFC822Name>, SemanticString {
 
     @Override
     public String toString() {
-        StringBuilder stringBuilder	= new StringBuilder("{");
-        boolean needComma			= false;
+        StringBuilder stringBuilder     = new StringBuilder("{");
+        boolean needComma                       = false;
 
         String stringToDump;
         if ((stringToDump = this.getLocalName()) != null) {
             stringBuilder.append("localName=");
             stringBuilder.append(stringToDump);
-            needComma	= true;
+            needComma   = true;
         }
         if ((stringToDump = this.getDomainName()) != null) {
             if (needComma) {
@@ -150,7 +150,7 @@ public class RFC822Name implements Comparable<RFC822Name>, SemanticString {
             }
             stringBuilder.append("domainName=");
             stringBuilder.append(stringToDump);
-            needComma	= true;
+            needComma   = true;
         }
         stringBuilder.append('}');
         return stringBuilder.toString();

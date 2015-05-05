@@ -43,14 +43,14 @@ import com.att.research.xacml.api.SemanticString;
  *
  */
 public class ISO8601Time implements IDateTime<ISO8601Time>, Comparable<ISO8601Time>, SemanticString {
-    private static final int ARBITRARY_YEAR		= 1970;
-    private static final int ARBITRARY_MONTH	= 11;
-    private static final int ARBITRARY_DAY		= 15;
+    private static final int ARBITRARY_YEAR             = 1970;
+    private static final int ARBITRARY_MONTH    = 11;
+    private static final int ARBITRARY_DAY              = 15;
 
     private ISO8601DateTime dateTime;
 
     protected ISO8601Time(ISO8601DateTime iso8601DateTime) {
-        this.dateTime	= iso8601DateTime;
+        this.dateTime   = iso8601DateTime;
     }
 
     /**
@@ -64,7 +64,7 @@ public class ISO8601Time implements IDateTime<ISO8601Time>, Comparable<ISO8601Ti
      * @param millisecondIn the millisecond
      */
     public ISO8601Time(String timeZoneIn, int hourIn, int minuteIn, int secondIn, int millisecondIn) {
-        this.dateTime	= new ISO8601DateTime(timeZoneIn, ARBITRARY_YEAR, ARBITRARY_MONTH, ARBITRARY_DAY, hourIn, minuteIn, secondIn, millisecondIn);
+        this.dateTime   = new ISO8601DateTime(timeZoneIn, ARBITRARY_YEAR, ARBITRARY_MONTH, ARBITRARY_DAY, hourIn, minuteIn, secondIn, millisecondIn);
     }
 
     public ISO8601Time(int hourIn, int minuteIn, int secondIn, int millisecondIn) {
@@ -113,13 +113,13 @@ public class ISO8601Time implements IDateTime<ISO8601Time>, Comparable<ISO8601Ti
      * @return the <code>String</code> ISO8601 time representation of this <code>ISO8601Time</code>.
      */
     public String stringValue(boolean includeTimeZone) {
-        StringBuilder stringBuilder	= new StringBuilder();
+        StringBuilder stringBuilder     = new StringBuilder();
         stringBuilder.append(String.format("%02d", this.getHour()));
         stringBuilder.append(':');
         stringBuilder.append(String.format("%02d", this.getMinute()));
         stringBuilder.append(':');
         stringBuilder.append(String.format("%02d", this.getSecond()));
-        int ms	= this.getMillisecond();
+        int ms  = this.getMillisecond();
         if (ms > 0) {
             stringBuilder.append('.');
             stringBuilder.append(String.format("%03d", ms));
@@ -166,7 +166,7 @@ public class ISO8601Time implements IDateTime<ISO8601Time>, Comparable<ISO8601Ti
     }
 
     public static ISO8601Time fromDate(Date date) {
-        Calendar cal	= Calendar.getInstance();
+        Calendar cal    = Calendar.getInstance();
         cal.setTime(date);
         return ISO8601Time.fromCalendar(cal);
     }
@@ -189,16 +189,16 @@ public class ISO8601Time implements IDateTime<ISO8601Time>, Comparable<ISO8601Ti
         /*
          * Find the starting position by searching past any whitespace
          */
-        int			startPos	= ParseUtils.nextNonWhite(timeString, 0);
+        int                     startPos        = ParseUtils.nextNonWhite(timeString, 0);
 
         /*
          * Get the two digit hour of day
          */
-        int			hh			= ParseUtils.getTwoDigitValue(timeString, startPos);
+        int                     hh                      = ParseUtils.getTwoDigitValue(timeString, startPos);
         if (hh < 0 || hh >= 24) {
             throw new ParseException("Invalid hour of day", startPos);
         }
-        startPos				+= 2;
+        startPos                                += 2;
         if (startPos >= timeString.length()) {
             throw new ParseException("Invalid time string", startPos);
         } else if (timeString.charAt(startPos) != ':') {
@@ -209,11 +209,11 @@ public class ISO8601Time implements IDateTime<ISO8601Time>, Comparable<ISO8601Ti
         /*
          * Get the two-digit minute of hour
          */
-        int			mm			= ParseUtils.getTwoDigitValue(timeString, startPos);
+        int                     mm                      = ParseUtils.getTwoDigitValue(timeString, startPos);
         if (mm < 0 || mm >= 60) {
             throw new ParseException("Invalid minute of hour", startPos);
         }
-        startPos				+= 2;
+        startPos                                += 2;
         if (startPos >= timeString.length()) {
             throw new ParseException("Invalid time string", startPos);
         } else if (timeString.charAt(startPos) != ':') {
@@ -224,41 +224,41 @@ public class ISO8601Time implements IDateTime<ISO8601Time>, Comparable<ISO8601Ti
         /*
          * Get the two-digit second of minute
          */
-        int			ss			= ParseUtils.getTwoDigitValue(timeString, startPos);
+        int                     ss                      = ParseUtils.getTwoDigitValue(timeString, startPos);
         if (ss < 0 || ss >= 60) {
             throw new ParseException("Invalid second of minute", startPos);
         }
-        startPos				+= 2;
+        startPos                                += 2;
 
         /*
          * Now determine if we have a milliseconds portion
          */
-        int			ms			= 0;
+        int                     ms                      = 0;
         if (startPos < timeString.length()) {
             if (timeString.charAt(startPos) == '.') {
                 startPos++;
                 if ((ms = ParseUtils.getThreeDigitValue(timeString, startPos)) < 0 || ms >= 1000) {
                     throw new ParseException("Invalid milliseconds", startPos);
                 }
-                startPos	+= 3;
+                startPos        += 3;
             }
         }
 
         /*
          * Now determine if there is a timezone
          */
-        String timezone		= null;
+        String timezone         = null;
 
         if (startPos < timeString.length()) {
             switch(timeString.charAt(startPos)) {
             case 'Z':
-                timezone	= "GMT";
+                timezone        = "GMT";
                 startPos++;
                 break;
             case '-':
             case '+':
                 if (startPos+5 < timeString.length()) {
-                    timezone	= "GMT" + timeString.substring(startPos, startPos+6);
+                    timezone    = "GMT" + timeString.substring(startPos, startPos+6);
                 } else {
                     throw new ParseException("Invalid timezone", startPos);
                 }

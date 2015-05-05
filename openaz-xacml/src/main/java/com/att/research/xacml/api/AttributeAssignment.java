@@ -79,12 +79,12 @@ public interface AttributeAssignment {
      *
      * The implementation of the <code>AttributeAssignment</code> interface must override the <code>equals</code> method with the following semantics:
      *
-     * 		Two <code>AttributeAssignment</code>s (<code>a1</code> and <code>a2</code>) are equal if:
-     * 			{@code a1.getAttributeId().equals(a2.getAttributeId())} AND
-     * 			{@code a1.getCategory()>equals(a2.getCategory())} AND
-     * 			{@code a1.getIssuer() == null && @a2.getIssuer() == null} OR {@code a1.getIssuer().equals(a2.getIssuer())} AND
-     * 			{@code a1.getDataTypeId().equals(a2.getDataTypeId())} AND
-     * 			{@code a1.getAttributeValue().equals(a2.getAttributeValue())}
+     *          Two <code>AttributeAssignment</code>s (<code>a1</code> and <code>a2</code>) are equal if:
+     *                  {@code a1.getAttributeId().equals(a2.getAttributeId())} AND
+     *                  {@code a1.getCategory()>equals(a2.getCategory())} AND
+     *                  {@code a1.getIssuer() == null && @a2.getIssuer() == null} OR {@code a1.getIssuer().equals(a2.getIssuer())} AND
+     *                  {@code a1.getDataTypeId().equals(a2.getDataTypeId())} AND
+     *                  {@code a1.getAttributeValue().equals(a2.getAttributeValue())}
      */
     @Override
     boolean equals(Object obj);

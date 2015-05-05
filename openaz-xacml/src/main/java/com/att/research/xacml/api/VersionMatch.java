@@ -46,7 +46,7 @@ public interface VersionMatch {
     /**
      * Determines if the pattern in this <code>VersionMatch</code> matches the given <code>Version</code> based on the
      * given comparison code.  Comparison code values are:
-     * 	0 - match only if version numbers match the pattern
+     *  0 - match only if version numbers match the pattern
      * -1 - match if the version numbers <= the pattern
      *  1 - match if the version numbers >= the pattern
      *

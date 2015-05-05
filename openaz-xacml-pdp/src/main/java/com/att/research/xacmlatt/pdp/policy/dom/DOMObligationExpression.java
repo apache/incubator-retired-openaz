@@ -54,7 +54,7 @@ import com.att.research.xacmlatt.pdp.policy.RuleEffect;
  *
  */
 public class DOMObligationExpression extends ObligationExpression {
-    private static final Log logger	= LogFactory.getLog(DOMObligationExpression.class);
+    private static final Log logger     = LogFactory.getLog(DOMObligationExpression.class);
 
     protected DOMObligationExpression() {
     }
@@ -68,17 +68,17 @@ public class DOMObligationExpression extends ObligationExpression {
      * @throws DOMStructureException if there is an error parsing the <code>Node</code>
      */
     public static ObligationExpression newInstance(Node nodeObligationExpression, Policy policy) throws DOMStructureException {
-        Element elementObligationExpression	= DOMUtil.getElement(nodeObligationExpression);
-        boolean bLenient					= DOMProperties.isLenient();
+        Element elementObligationExpression     = DOMUtil.getElement(nodeObligationExpression);
+        boolean bLenient                                        = DOMProperties.isLenient();
 
-        DOMObligationExpression domObligationExpression	= new DOMObligationExpression();
+        DOMObligationExpression domObligationExpression = new DOMObligationExpression();
 
         try {
-            NodeList children	= elementObligationExpression.getChildNodes();
+            NodeList children   = elementObligationExpression.getChildNodes();
             int numChildren;
             if (children != null && (numChildren = children.getLength()) > 0) {
                 for (int i = 0 ; i < numChildren ; i++) {
-                    Node child	= children.item(i);
+                    Node child  = children.item(i);
                     if (DOMUtil.isElement(child)) {
                         if (DOMUtil.isInNamespace(child, XACML3.XMLNS) && XACML3.ELEMENT_ATTRIBUTEASSIGNMENTEXPRESSION.equals(child.getLocalName())) {
                             domObligationExpression.addAttributeAssignmentExpression(DOMAttributeAssignmentExpression.newInstance(child, policy));
@@ -91,8 +91,8 @@ public class DOMObligationExpression extends ObligationExpression {
 
             domObligationExpression.setObligationId(DOMUtil.getIdentifierAttribute(elementObligationExpression, XACML3.ATTRIBUTE_OBLIGATIONID, !bLenient));
 
-            String string			= DOMUtil.getStringAttribute(elementObligationExpression, XACML3.ATTRIBUTE_FULFILLON, !bLenient);
-            RuleEffect ruleEffectType	= RuleEffect.getRuleEffect(string);
+            String string                       = DOMUtil.getStringAttribute(elementObligationExpression, XACML3.ATTRIBUTE_FULFILLON, !bLenient);
+            RuleEffect ruleEffectType   = RuleEffect.getRuleEffect(string);
             if (ruleEffectType == null) {
                 if (!bLenient) {
                     throw new DOMStructureException(nodeObligationExpression, "Invalid EffectType \"" + string + "\" in \"" + DOMUtil.getNodeLabel(nodeObligationExpression) + "\"");
@@ -110,35 +110,35 @@ public class DOMObligationExpression extends ObligationExpression {
     }
 
     public static boolean repair(Node nodeObligationExpression) throws DOMStructureException {
-        Element elementObligationExpression	= DOMUtil.getElement(nodeObligationExpression);
-        boolean result						= false;
+        Element elementObligationExpression     = DOMUtil.getElement(nodeObligationExpression);
+        boolean result                                          = false;
 
-        NodeList children	= elementObligationExpression.getChildNodes();
+        NodeList children       = elementObligationExpression.getChildNodes();
         int numChildren;
         if (children != null && (numChildren = children.getLength()) > 0) {
             for (int i = 0 ; i < numChildren ; i++) {
-                Node child	= children.item(i);
+                Node child      = children.item(i);
                 if (DOMUtil.isElement(child)) {
                     if (DOMUtil.isInNamespace(child, XACML3.XMLNS) && XACML3.ELEMENT_ATTRIBUTEASSIGNMENTEXPRESSION.equals(child.getLocalName())) {
-                        result	= DOMAttributeAssignmentExpression.repair(child) || result;
+                        result  = DOMAttributeAssignmentExpression.repair(child) || result;
                     } else {
                         logger.warn("Unexpected element " + child.getNodeName());
                         elementObligationExpression.removeChild(child);
-                        result	= true;
+                        result  = true;
                     }
                 }
             }
         }
 
-        result					= DOMUtil.repairIdentifierAttribute(elementObligationExpression, XACML3.ATTRIBUTE_OBLIGATIONID, logger) || result;
-        result					= DOMUtil.repairStringAttribute(elementObligationExpression, XACML3.ATTRIBUTE_FULFILLON, RuleEffect.DENY.getName(), logger) || result;
+        result                                  = DOMUtil.repairIdentifierAttribute(elementObligationExpression, XACML3.ATTRIBUTE_OBLIGATIONID, logger) || result;
+        result                                  = DOMUtil.repairStringAttribute(elementObligationExpression, XACML3.ATTRIBUTE_FULFILLON, RuleEffect.DENY.getName(), logger) || result;
 
-        String string			= DOMUtil.getStringAttribute(elementObligationExpression, XACML3.ATTRIBUTE_FULFILLON);
-        RuleEffect ruleEffectType	= RuleEffect.getRuleEffect(string);
+        String string                   = DOMUtil.getStringAttribute(elementObligationExpression, XACML3.ATTRIBUTE_FULFILLON);
+        RuleEffect ruleEffectType       = RuleEffect.getRuleEffect(string);
         if (ruleEffectType == null) {
             logger.warn("Setting invalid RuleEffect " + string + " to " + RuleEffect.DENY.getName());
             elementObligationExpression.setAttribute(XACML3.ATTRIBUTE_FULFILLON, RuleEffect.DENY.getName());
-            result	= true;
+            result      = true;
         }
 
         return result;
@@ -154,16 +154,16 @@ public class DOMObligationExpression extends ObligationExpression {
      * @throws DOMStructureException if there is an error parsing the <code>Node</code>
      */
     public static List<ObligationExpression> newList(Node nodeObligationExpressions, Policy policy) throws DOMStructureException {
-        Element elementObligationExpressions	= DOMUtil.getElement(nodeObligationExpressions);
-        boolean bLenient						= DOMProperties.isLenient();
+        Element elementObligationExpressions    = DOMUtil.getElement(nodeObligationExpressions);
+        boolean bLenient                                                = DOMProperties.isLenient();
 
-        List<ObligationExpression> listObligationExpressions	= new ArrayList<ObligationExpression>();
+        List<ObligationExpression> listObligationExpressions    = new ArrayList<ObligationExpression>();
 
-        NodeList children	= elementObligationExpressions.getChildNodes();
+        NodeList children       = elementObligationExpressions.getChildNodes();
         int numChildren;
         if (children != null && (numChildren = children.getLength()) > 0) {
             for (int i = 0 ; i < numChildren ; i++) {
-                Node child	= children.item(i);
+                Node child      = children.item(i);
                 if (DOMUtil.isElement(child)) {
                     if (DOMUtil.isInNamespace(child, XACML3.XMLNS) && XACML3.ELEMENT_OBLIGATIONEXPRESSION.equals(child.getLocalName())) {
                         listObligationExpressions.add(DOMObligationExpression.newInstance(child, policy));
@@ -182,23 +182,23 @@ public class DOMObligationExpression extends ObligationExpression {
     }
 
     public static boolean repairList(Node nodeObligationExpressions) throws DOMStructureException {
-        Element elementObligationExpressions	= DOMUtil.getElement(nodeObligationExpressions);
-        boolean result							= false;
+        Element elementObligationExpressions    = DOMUtil.getElement(nodeObligationExpressions);
+        boolean result                                                  = false;
 
-        boolean sawObligationExpression			= false;
-        NodeList children	= elementObligationExpressions.getChildNodes();
+        boolean sawObligationExpression                 = false;
+        NodeList children       = elementObligationExpressions.getChildNodes();
         int numChildren;
         if (children != null && (numChildren = children.getLength()) > 0) {
             for (int i = 0 ; i < numChildren ; i++) {
-                Node child	= children.item(i);
+                Node child      = children.item(i);
                 if (DOMUtil.isElement(child)) {
                     if (DOMUtil.isInNamespace(child, XACML3.XMLNS) && XACML3.ELEMENT_OBLIGATIONEXPRESSION.equals(child.getLocalName())) {
-                        result					= DOMObligationExpression.repair(child) || result;
-                        sawObligationExpression	= true;
+                        result                                  = DOMObligationExpression.repair(child) || result;
+                        sawObligationExpression = true;
                     } else {
                         logger.warn("Unexpected element " + child.getNodeName());
                         elementObligationExpressions.removeChild(child);
-                        result	= true;
+                        result  = true;
                     }
                 }
             }

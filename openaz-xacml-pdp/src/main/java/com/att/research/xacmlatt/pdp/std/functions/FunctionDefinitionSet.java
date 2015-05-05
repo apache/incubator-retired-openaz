@@ -53,20 +53,20 @@ import com.att.research.xacmlatt.pdp.policy.FunctionArgument;
  * In the first implementation of XACML we had separate files for each XACML Function.
  * This release combines multiple Functions in fewer files to minimize code duplication.
  * This file supports the following XACML codes:
- * 		string-bag
- * 		boolean-bag
- * 		integer-bag
- * 		double-bag
- * 		time-bag
- * 		date-bag
- * 		dateTime-bag
- * 		anyURI-bag
- * 		hexBinary-bag
- * 		base64Binary-bag
- * 		dayTimeDuration-bag (version 1 and3)
- * 		yearMonthDuration-bag (version 1 and 3)
- * 		x500Name-bag
- * 		rfc822Name-bag
+ *              string-bag
+ *              boolean-bag
+ *              integer-bag
+ *              double-bag
+ *              time-bag
+ *              date-bag
+ *              dateTime-bag
+ *              anyURI-bag
+ *              hexBinary-bag
+ *              base64Binary-bag
+ *              dayTimeDuration-bag (version 1 and3)
+ *              yearMonthDuration-bag (version 1 and 3)
+ *              x500Name-bag
+ *              rfc822Name-bag
  *
  *
  *
@@ -221,8 +221,8 @@ public class FunctionDefinitionSet<O,I> extends FunctionDefinitionBase<O, I> {
         case SET_EQUALS:
             // we cannot do a direct one-to-one compare because the lists may contain duplicates.  Also they may not be ordered the same.
             // So we ask:
-            //		are all elements in list 1 in list 2 (ignoring duplicates)
-            //		are all elements in list 2 in list 1 (ignoring duplicates)
+            //          are all elements in list 1 in list 2 (ignoring duplicates)
+            //          are all elements in list 2 in list 1 (ignoring duplicates)
             for (AttributeValue<?> element : list1) {
                 if ( ! list2.contains(element)) {
                     return ER_FALSE;

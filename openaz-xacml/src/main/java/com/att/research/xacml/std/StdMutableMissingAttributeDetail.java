@@ -46,19 +46,19 @@ import com.att.research.xacml.util.ObjUtil;
  *
  */
 public class StdMutableMissingAttributeDetail implements MissingAttributeDetail {
-    private static final List<AttributeValue<?>> EMPTY_LIST	= Collections.unmodifiableList(new ArrayList<AttributeValue<?>>());
+    private static final List<AttributeValue<?>> EMPTY_LIST     = Collections.unmodifiableList(new ArrayList<AttributeValue<?>>());
 
     private Identifier category;
     private Identifier attributeId;
     private Identifier dataTypeId;
     private String issuer;
-    private List<AttributeValue<?>>	attributeValues;
+    private List<AttributeValue<?>>     attributeValues;
 
     /**
      * Creates a new empty <code>StdMutableMissingAttributeDetail</code>.
      */
     public StdMutableMissingAttributeDetail() {
-        this.attributeValues	= EMPTY_LIST;
+        this.attributeValues    = EMPTY_LIST;
     }
 
     /**
@@ -73,15 +73,15 @@ public class StdMutableMissingAttributeDetail implements MissingAttributeDetail 
      * @param attributeValuesIn the <code>Collection</code> of <code>AttributeValue</code>s representing the expected AttributeValues for the missing Attribute
      */
     public StdMutableMissingAttributeDetail(Identifier categoryIn, Identifier attributeIdIn, Identifier dataTypeIdIn, String issuerIn, Collection<AttributeValue<?>> attributeValuesIn)  {
-        this.category		= categoryIn;
-        this.attributeId	= attributeIdIn;
-        this.dataTypeId		= dataTypeIdIn;
-        this.issuer			= issuerIn;
+        this.category           = categoryIn;
+        this.attributeId        = attributeIdIn;
+        this.dataTypeId         = dataTypeIdIn;
+        this.issuer                     = issuerIn;
         if (attributeValuesIn != null && attributeValuesIn.size() > 0) {
-            this.attributeValues	= new ArrayList<AttributeValue<?>>();
+            this.attributeValues        = new ArrayList<AttributeValue<?>>();
             this.attributeValues.addAll(attributeValuesIn);
         } else {
-            this.attributeValues	= EMPTY_LIST;
+            this.attributeValues        = EMPTY_LIST;
         }
     }
 
@@ -135,7 +135,7 @@ public class StdMutableMissingAttributeDetail implements MissingAttributeDetail 
      * @param identifier the <code>Identifier</code> representing the XACML Category of the MissingAttributeDetail.
      */
     public void setCategory(Identifier identifier) {
-        this.category	= identifier;
+        this.category   = identifier;
     }
 
     @Override
@@ -149,7 +149,7 @@ public class StdMutableMissingAttributeDetail implements MissingAttributeDetail 
      * @param identifier the <code>Identifier</code> representing the XACML AttributeId of the MissingAttributeDetail.
      */
     public void setAttributeId(Identifier identifier) {
-        this.attributeId	= identifier;
+        this.attributeId        = identifier;
     }
 
     @Override
@@ -163,7 +163,7 @@ public class StdMutableMissingAttributeDetail implements MissingAttributeDetail 
      * @param identifier the <code>Identifier</code> representing the XACML AttributeId of the MissingAttributeDetail.
      */
     public void setDataTypeId(Identifier identifier) {
-        this.dataTypeId	= identifier;
+        this.dataTypeId = identifier;
     }
 
     @Override
@@ -172,7 +172,7 @@ public class StdMutableMissingAttributeDetail implements MissingAttributeDetail 
     }
 
     public void setIssuer(String issuerIn) {
-        this.issuer	= issuerIn;
+        this.issuer     = issuerIn;
     }
 
     @Override
@@ -187,7 +187,7 @@ public class StdMutableMissingAttributeDetail implements MissingAttributeDetail 
      */
     public void addAttributeValue(AttributeValue<?> attributeValue) {
         if (this.attributeValues == EMPTY_LIST) {
-            this.attributeValues	= new ArrayList<AttributeValue<?>>();
+            this.attributeValues        = new ArrayList<AttributeValue<?>>();
         }
         this.attributeValues.add(attributeValue);
     }
@@ -200,7 +200,7 @@ public class StdMutableMissingAttributeDetail implements MissingAttributeDetail 
     public void addAttributeValues(Collection<AttributeValue<?>> attributeValuesIn) {
         if (attributeValuesIn != null && attributeValuesIn.size() > 0) {
             if (this.attributeValues == EMPTY_LIST) {
-                this.attributeValues	= new ArrayList<AttributeValue<?>>();
+                this.attributeValues    = new ArrayList<AttributeValue<?>>();
             }
             this.attributeValues.addAll(attributeValuesIn);
         }
@@ -213,7 +213,7 @@ public class StdMutableMissingAttributeDetail implements MissingAttributeDetail 
      * @param attributeValuesIn the <code>Collection</code> of <code>AttributeValue</code>s to set in this <code>StdMutableMissingAttributeDetail</code>.
      */
     public void setAttributeValues(Collection<AttributeValue<?>> attributeValuesIn) {
-        this.attributeValues	= EMPTY_LIST;
+        this.attributeValues    = EMPTY_LIST;
         this.addAttributeValues(attributeValuesIn);
     }
 
@@ -224,7 +224,7 @@ public class StdMutableMissingAttributeDetail implements MissingAttributeDetail 
         } else if (obj == null || !(obj instanceof MissingAttributeDetail)) {
             return false;
         } else {
-            MissingAttributeDetail objMissingAttributeDetail	= (MissingAttributeDetail)obj;
+            MissingAttributeDetail objMissingAttributeDetail    = (MissingAttributeDetail)obj;
             return ObjUtil.equalsAllowNull(this.getCategory(), objMissingAttributeDetail.getCategory()) &&
                    ObjUtil.equalsAllowNull(this.getAttributeId(), objMissingAttributeDetail.getAttributeId()) &&
                    ObjUtil.equalsAllowNull(this.getDataTypeId(), objMissingAttributeDetail.getDataTypeId()) &&
@@ -235,14 +235,14 @@ public class StdMutableMissingAttributeDetail implements MissingAttributeDetail 
 
     @Override
     public String toString() {
-        StringBuilder	stringBuilder	= new StringBuilder("{");
-        boolean			needsComma		= false;
-        Object			objectToDump;
+        StringBuilder   stringBuilder   = new StringBuilder("{");
+        boolean                 needsComma              = false;
+        Object                  objectToDump;
 
         if ((objectToDump = this.getAttributeId()) != null) {
             stringBuilder.append("attributeId=");
             stringBuilder.append(objectToDump.toString());
-            needsComma	= true;
+            needsComma  = true;
         }
         if ((objectToDump = this.getCategory()) != null) {
             if (needsComma) {
@@ -250,7 +250,7 @@ public class StdMutableMissingAttributeDetail implements MissingAttributeDetail 
             }
             stringBuilder.append("category=");
             stringBuilder.append(objectToDump.toString());
-            needsComma	= true;
+            needsComma  = true;
         }
         if ((objectToDump = this.getDataTypeId()) != null) {
             if (needsComma) {
@@ -258,7 +258,7 @@ public class StdMutableMissingAttributeDetail implements MissingAttributeDetail 
             }
             stringBuilder.append("dataTypeId=");
             stringBuilder.append(objectToDump.toString());
-            needsComma	= true;
+            needsComma  = true;
         }
         if ((objectToDump = this.getIssuer()) != null) {
             if (needsComma) {
@@ -266,16 +266,16 @@ public class StdMutableMissingAttributeDetail implements MissingAttributeDetail 
             }
             stringBuilder.append("issuer=");
             stringBuilder.append((String)objectToDump);
-            needsComma	= true;
+            needsComma  = true;
         }
-        Collection<AttributeValue<?>> listAttributeValues	= this.getAttributeValues();
+        Collection<AttributeValue<?>> listAttributeValues       = this.getAttributeValues();
         if (listAttributeValues.size() > 0) {
             if (needsComma) {
                 stringBuilder.append(',');
             }
             stringBuilder.append("attributeValues=");
             stringBuilder.append(ListUtil.toString(listAttributeValues));
-            needsComma	= true;
+            needsComma  = true;
         }
         stringBuilder.append('}');
         return stringBuilder.toString();

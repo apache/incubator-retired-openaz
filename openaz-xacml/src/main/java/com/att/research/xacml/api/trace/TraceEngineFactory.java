@@ -43,8 +43,8 @@ import com.att.research.xacml.util.XACMLProperties;
  *
  */
 public abstract class TraceEngineFactory {
-    private static final String	FACTORYID					= XACMLProperties.PROP_TRACEENGINEFACTORY;
-    private static final String	DEFAULT_FACTORY_CLASSNAME	= "com.att.research.xacml.std.trace.NullTraceEngineFactory";
+    private static final String FACTORYID                                       = XACMLProperties.PROP_TRACEENGINEFACTORY;
+    private static final String DEFAULT_FACTORY_CLASSNAME       = "com.att.research.xacml.std.trace.NullTraceEngineFactory";
 
     protected Properties properties = null;
 

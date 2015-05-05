@@ -48,11 +48,11 @@ import com.att.research.xacmlatt.pdp.policy.Rule;
  *
  */
 public class StdCombiningAlgorithmFactory extends CombiningAlgorithmFactory {
-    private static Map<Identifier,CombiningAlgorithm<Rule>> 				mapRuleCombiningAlgorithms
+    private static Map<Identifier,CombiningAlgorithm<Rule>>                             mapRuleCombiningAlgorithms
         = new HashMap<Identifier,CombiningAlgorithm<Rule>>();
-    private static Map<Identifier,CombiningAlgorithm<PolicySetChild>> 		mapPolicyCombiningAlgorithms
+    private static Map<Identifier,CombiningAlgorithm<PolicySetChild>>           mapPolicyCombiningAlgorithms
         = new HashMap<Identifier,CombiningAlgorithm<PolicySetChild>>();
-    private static boolean needInit	= true;
+    private static boolean needInit     = true;
 
     protected static void registerRuleCombiningAlgorithm(CombiningAlgorithm<Rule> ruleCombiningAlgorithm) {
         mapRuleCombiningAlgorithms.put(ruleCombiningAlgorithm.getId(), ruleCombiningAlgorithm);
@@ -67,8 +67,8 @@ public class StdCombiningAlgorithmFactory extends CombiningAlgorithmFactory {
         if (needInit) {
             synchronized(mapRuleCombiningAlgorithms) {
                 if (needInit) {
-                    needInit	= false;
-                    Field[]	declaredFields	= StdCombiningAlgorithms.class.getFields();
+                    needInit    = false;
+                    Field[]     declaredFields  = StdCombiningAlgorithms.class.getFields();
                     for (Field field : declaredFields) {
                         if (Modifier.isStatic(field.getModifiers()) &&
                                 Modifier.isPublic(field.getModifiers()) &&

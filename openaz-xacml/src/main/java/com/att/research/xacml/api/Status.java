@@ -79,9 +79,9 @@ public interface Status {
      * Implementations of the <code>Status</code> interface must override the <code>equals</code> method with the following semantics:
      *
      * Two <code>Status</code> objects (<code>s1</code> and <code>s2</code>) are equal if:
-     * 		{@code s1.getStatusCode().equals(s2.getStatusCode())} AND
-     * 		{@code s1.getStatusMessage() == null && s2.getStatusMessage() == null} OR {@code s1.getStatusMessage().equals(s2.getStatusMessage())}
-     * 		{@code s1.getStatusDetail() == null && s2.getStatusDetail() == null} OR {@code s1.getStatusDetail().equals(s2.getStatusDetail())}
+     *          {@code s1.getStatusCode().equals(s2.getStatusCode())} AND
+     *          {@code s1.getStatusMessage() == null && s2.getStatusMessage() == null} OR {@code s1.getStatusMessage().equals(s2.getStatusMessage())}
+     *          {@code s1.getStatusDetail() == null && s2.getStatusDetail() == null} OR {@code s1.getStatusDetail().equals(s2.getStatusDetail())}
      */
     @Override
     boolean equals(Object obj);

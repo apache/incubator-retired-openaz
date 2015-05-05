@@ -64,14 +64,14 @@ public class JaxpMissingAttributeDetail extends StdMutableMissingAttributeDetail
         } else if (missingAttributeDetailType.getDataType() == null) {
             throw new IllegalArgumentException("Null dataTypeId for MissingAttributeDetailType");
         }
-        Identifier	categoryId	= new IdentifierImpl(missingAttributeDetailType.getCategory());
-        Identifier	attributeId	= new IdentifierImpl(missingAttributeDetailType.getAttributeId());
-        Identifier	dataTypeId	= new IdentifierImpl(missingAttributeDetailType.getDataType());
+        Identifier      categoryId      = new IdentifierImpl(missingAttributeDetailType.getCategory());
+        Identifier      attributeId     = new IdentifierImpl(missingAttributeDetailType.getAttributeId());
+        Identifier      dataTypeId      = new IdentifierImpl(missingAttributeDetailType.getDataType());
 
-        List<AttributeValue<?>>	attributeValues	= null;
+        List<AttributeValue<?>> attributeValues = null;
         if (missingAttributeDetailType.getAttributeValue() != null && missingAttributeDetailType.getAttributeValue().size() > 0) {
-            attributeValues	= new ArrayList<AttributeValue<?>>();
-            Iterator<AttributeValueType>	iterAttributeValueTypes	= missingAttributeDetailType.getAttributeValue().iterator();
+            attributeValues     = new ArrayList<AttributeValue<?>>();
+            Iterator<AttributeValueType>        iterAttributeValueTypes = missingAttributeDetailType.getAttributeValue().iterator();
             while (iterAttributeValueTypes.hasNext()) {
                 attributeValues.add(JaxpAttributeValue.newInstance(iterAttributeValueTypes.next()));
             }

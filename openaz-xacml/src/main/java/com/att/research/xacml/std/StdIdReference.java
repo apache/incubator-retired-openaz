@@ -40,8 +40,8 @@ import com.att.research.xacml.util.ObjUtil;
  *
  */
 public class StdIdReference implements IdReference {
-    private Identifier	id;
-    private Version		version;
+    private Identifier  id;
+    private Version             version;
 
     /**
      * Creates a new <code>StdIdReference</code> with the given {@link com.att.research.xacml.api.Identifier} representing the
@@ -51,8 +51,8 @@ public class StdIdReference implements IdReference {
      * @param versionIn the <code>Version</code> representing the PolicyVersion or PolicySetVersion.
      */
     public StdIdReference(Identifier idIn, Version versionIn) {
-        this.id			= idIn;
-        this.version	= versionIn;
+        this.id                 = idIn;
+        this.version    = versionIn;
     }
 
     /**
@@ -82,7 +82,7 @@ public class StdIdReference implements IdReference {
         } else if (obj == null || !(obj instanceof IdReference)) {
             return false;
         } else {
-            IdReference objIdReference	= (IdReference)obj;
+            IdReference objIdReference  = (IdReference)obj;
             return ObjUtil.equalsAllowNull(this.getId(), objIdReference.getId()) &&
                    ObjUtil.equalsAllowNull(this.getVersion(), objIdReference.getVersion());
         }
@@ -90,14 +90,14 @@ public class StdIdReference implements IdReference {
 
     @Override
     public String toString() {
-        StringBuilder	stringBuilder	= new StringBuilder("{");
-        boolean			needsComma		= false;
-        Object			objectToDump;
+        StringBuilder   stringBuilder   = new StringBuilder("{");
+        boolean                 needsComma              = false;
+        Object                  objectToDump;
 
         if ((objectToDump = this.getId()) != null) {
             stringBuilder.append("id=");
             stringBuilder.append(objectToDump.toString());
-            needsComma	= true;
+            needsComma  = true;
         }
         if ((objectToDump = this.getVersion()) != null) {
             if (needsComma) {
@@ -105,7 +105,7 @@ public class StdIdReference implements IdReference {
             }
             stringBuilder.append("version=");
             stringBuilder.append(objectToDump.toString());
-            needsComma	= true;
+            needsComma  = true;
         }
         stringBuilder.append('}');
         return stringBuilder.toString();

@@ -52,8 +52,8 @@ import com.att.research.xacmlatt.pdp.policy.PolicyIssuer;
  *
  */
 public class DOMPolicyIssuer extends PolicyIssuer {
-    private static Log 			logger							= LogFactory.getLog(DOMPolicyIssuer.class);
-    private static Identifier	identifierCategoryPolicyIssuer 	= new IdentifierImpl("urn:att:names:tc:xacml:3.0:policy-issuer");
+    private static Log                  logger                                                  = LogFactory.getLog(DOMPolicyIssuer.class);
+    private static Identifier   identifierCategoryPolicyIssuer  = new IdentifierImpl("urn:att:names:tc:xacml:3.0:policy-issuer");
 
     protected DOMPolicyIssuer() {
         super();
@@ -67,20 +67,20 @@ public class DOMPolicyIssuer extends PolicyIssuer {
      * @throws DOMStructureException if the conversion is not possible
      */
     public static PolicyIssuer newInstance(Node nodePolicyIssuer) throws DOMStructureException {
-        Element elementPolicyIssuer		= DOMUtil.getElement(nodePolicyIssuer);
-        boolean bLenient				= DOMProperties.isLenient();
+        Element elementPolicyIssuer             = DOMUtil.getElement(nodePolicyIssuer);
+        boolean bLenient                                = DOMProperties.isLenient();
 
-        DOMPolicyIssuer domPolicyIssuer	= new DOMPolicyIssuer();
+        DOMPolicyIssuer domPolicyIssuer = new DOMPolicyIssuer();
 
         try {
-            NodeList children	= elementPolicyIssuer.getChildNodes();
+            NodeList children   = elementPolicyIssuer.getChildNodes();
             int numChildren;
             if (children != null && (numChildren = children.getLength()) > 0) {
                 for (int i = 0 ; i < numChildren ; i++) {
-                    Node child	= children.item(i);
+                    Node child  = children.item(i);
                     if (DOMUtil.isElement(child)) {
                         if (DOMUtil.isInNamespace(child, XACML3.XMLNS)) {
-                            String childName	= child.getLocalName();
+                            String childName    = child.getLocalName();
                             if (XACML3.ELEMENT_CONTENT.equals(childName)) {
                                 if (domPolicyIssuer.getContent() != null && !bLenient) {
                                     throw DOMUtil.newUnexpectedElementException(child, nodePolicyIssuer);
@@ -106,32 +106,32 @@ public class DOMPolicyIssuer extends PolicyIssuer {
     }
 
     public static boolean repair(Node nodePolicyIssuer) throws DOMStructureException {
-        Element elementPolicyIssuer		= DOMUtil.getElement(nodePolicyIssuer);
-        boolean result					= false;
+        Element elementPolicyIssuer             = DOMUtil.getElement(nodePolicyIssuer);
+        boolean result                                  = false;
 
-        boolean sawContent				= false;
-        NodeList children	= elementPolicyIssuer.getChildNodes();
+        boolean sawContent                              = false;
+        NodeList children       = elementPolicyIssuer.getChildNodes();
         int numChildren;
         if (children != null && (numChildren = children.getLength()) > 0) {
             for (int i = 0 ; i < numChildren ; i++) {
-                Node child	= children.item(i);
+                Node child      = children.item(i);
                 if (DOMUtil.isElement(child)) {
                     if (DOMUtil.isInNamespace(child, XACML3.XMLNS)) {
-                        String childName	= child.getLocalName();
+                        String childName        = child.getLocalName();
                         if (XACML3.ELEMENT_CONTENT.equals(childName)) {
                             if (sawContent) {
                                 logger.warn("Unexpected element " + child.getNodeName());
                                 elementPolicyIssuer.removeChild(child);
-                                result	= true;
+                                result  = true;
                             } else {
-                                sawContent	= true;
+                                sawContent      = true;
                             }
                         } else if (XACML3.ELEMENT_ATTRIBUTE.equals(childName)) {
-                            result	= DOMAttribute.repair(child) || result;
+                            result      = DOMAttribute.repair(child) || result;
                         } else {
                             logger.warn("Unexpected element " + child.getNodeName());
                             elementPolicyIssuer.removeChild(child);
-                            result	= true;
+                            result      = true;
                         }
                     }
                 }

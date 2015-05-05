@@ -48,7 +48,7 @@ public class FunctionArgumentAttributeValue implements FunctionArgument {
      * @param attributeValueIn the <code>AttributeValue</code> for the new <code>FunctionArgumentAttributeValue</code>.
      */
     public FunctionArgumentAttributeValue(AttributeValue<?> attributeValueIn) {
-        this.attributeValue	= attributeValueIn;
+        this.attributeValue     = attributeValueIn;
     }
 
     @Override

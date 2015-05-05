@@ -39,8 +39,8 @@ import com.att.research.xacml.std.StdStatusCode;
  *
  */
 public class CombinerParameter extends PolicyComponent {
-    private String 				name;
-    private AttributeValue<?>	attributeValue;
+    private String                              name;
+    private AttributeValue<?>   attributeValue;
 
     @Override
     protected boolean validateComponent() {
@@ -67,8 +67,8 @@ public class CombinerParameter extends PolicyComponent {
      */
     public CombinerParameter(String nameIn, AttributeValue<?> attributeValueIn, StatusCode statusCodeIn, String statusMessageIn) {
         super(statusCodeIn, statusMessageIn);
-        this.name			= nameIn;
-        this.attributeValue	= attributeValueIn;
+        this.name                       = nameIn;
+        this.attributeValue     = attributeValueIn;
     }
 
     /**
@@ -101,8 +101,8 @@ public class CombinerParameter extends PolicyComponent {
      */
     public CombinerParameter(String nameIn, AttributeValue<?> attributeValueIn) {
         super();
-        this.name			= nameIn;
-        this.attributeValue	= attributeValueIn;
+        this.name                       = nameIn;
+        this.attributeValue     = attributeValueIn;
     }
 
     public CombinerParameter() {
@@ -124,7 +124,7 @@ public class CombinerParameter extends PolicyComponent {
      * @param nameIn the <code>String</code> name for this <code>CombinerParameter</code>.
      */
     public void setName(String nameIn) {
-        this.name	= nameIn;
+        this.name       = nameIn;
     }
 
     /**
@@ -142,12 +142,12 @@ public class CombinerParameter extends PolicyComponent {
      * @param attributeValueIn the <code>AttributeValue</code> for this <code>CombinerParameter</code>>
      */
     public void setAttributeValue(AttributeValue<?> attributeValueIn) {
-        this.attributeValue	= attributeValueIn;
+        this.attributeValue     = attributeValueIn;
     }
 
     @Override
     public String toString() {
-        StringBuilder stringBuilder	= new StringBuilder("{");
+        StringBuilder stringBuilder     = new StringBuilder("{");
         stringBuilder.append("super=");
         stringBuilder.append(super.toString());
 

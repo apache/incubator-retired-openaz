@@ -52,22 +52,22 @@ import com.att.research.xacmlatt.pdp.policy.FunctionArgument;
  * In the first implementation of XACML we had separate files for each XACML Function.
  * This release combines multiple Functions in fewer files to minimize code duplication.
  * This file supports the following XACML codes:
- * 		string-is-in
- * 		boolean-is-in
- * 		integer-is-in
- * 		double-is-in
- * 		time-is-in
- * 		date-is-in
- * 		dateTime-is-in
- * 		anyURI-is-in
- * 		hexBinary-is-in
- * 		base64Binary-is-in
- * 		dayTimeDuration-is-in (version 1 and3)
- * 		yearMonthDuration-is-in (version 1 and 3)
- * 		x500Name-is-in
- * 		rfc822Name-is-in
- * 		ipAddress-is-in
- * 		dnsName-is-in
+ *              string-is-in
+ *              boolean-is-in
+ *              integer-is-in
+ *              double-is-in
+ *              time-is-in
+ *              date-is-in
+ *              dateTime-is-in
+ *              anyURI-is-in
+ *              hexBinary-is-in
+ *              base64Binary-is-in
+ *              dayTimeDuration-is-in (version 1 and3)
+ *              yearMonthDuration-is-in (version 1 and 3)
+ *              x500Name-is-in
+ *              rfc822Name-is-in
+ *              ipAddress-is-in
+ *              dnsName-is-in
  *
  *
  *
@@ -116,7 +116,7 @@ public class FunctionDefinitionBagIsIn<I> extends FunctionDefinitionBase<Boolean
         // This one wants the AttributeValue itself.
         // We use the ConvertedArgument constructor to validate that the argument is ok, then use the AttributeValue
         // from the FunctionArgument.
-        AttributeValue<?> attributeValueElement	= elementArgument.getValue();
+        AttributeValue<?> attributeValueElement = elementArgument.getValue();
 
         // now get the bag
         FunctionArgument bagArgument = arguments.get(1);
@@ -128,9 +128,9 @@ public class FunctionDefinitionBagIsIn<I> extends FunctionDefinitionBase<Boolean
 
         Bag bag = convertedBagArgument.getBag();
 
-        Iterator<AttributeValue<?>> iterBagContents	= bag.getAttributeValues();
+        Iterator<AttributeValue<?>> iterBagContents     = bag.getAttributeValues();
         while (iterBagContents.hasNext()) {
-            AttributeValue<?> attributeValueBagContents	= iterBagContents.next();
+            AttributeValue<?> attributeValueBagContents = iterBagContents.next();
 
             /*
              * Should we be checking the type of the bag contents and returning an error if the bag contents are not of the

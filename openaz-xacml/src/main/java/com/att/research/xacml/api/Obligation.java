@@ -59,9 +59,9 @@ public interface Obligation {
      *
      * Implementations of the <code>Obligation</code> interface must override the <code>equals</code> method with the following semantics:
      *
-     * 		Two <code>Obligation</code>s (<code>o1</code> and <code>o2</code>) are equal if:
-     * 			{@code o1.getId().equals(o2.getId())} AND
-     * 			{@code o1.getAttributeAssignments()} is pairwise equal to {@code o2.getAttributeAssignments()}
+     *          Two <code>Obligation</code>s (<code>o1</code> and <code>o2</code>) are equal if:
+     *                  {@code o1.getId().equals(o2.getId())} AND
+     *                  {@code o1.getAttributeAssignments()} is pairwise equal to {@code o2.getAttributeAssignments()}
      */
     @Override
     boolean equals(Object obj);

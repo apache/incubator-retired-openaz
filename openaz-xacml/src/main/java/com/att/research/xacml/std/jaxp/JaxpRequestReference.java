@@ -53,8 +53,8 @@ public class JaxpRequestReference extends StdMutableRequestReference {
         } else if (requestReferenceType.getAttributesReference() == null || requestReferenceType.getAttributesReference().size() == 0) {
             throw new IllegalArgumentException("No AttributesReferenceTypes in RequestReferenceType");
         }
-        JaxpRequestReference	jaxpRequestReference	= new JaxpRequestReference();
-        Iterator<AttributesReferenceType>	iterAttributesReferenceTypes	= requestReferenceType.getAttributesReference().iterator();
+        JaxpRequestReference    jaxpRequestReference    = new JaxpRequestReference();
+        Iterator<AttributesReferenceType>       iterAttributesReferenceTypes    = requestReferenceType.getAttributesReference().iterator();
         while (iterAttributesReferenceTypes.hasNext()) {
             jaxpRequestReference.add(JaxpRequestAttributesReference.newInstances(iterAttributesReferenceTypes.next()));
         }

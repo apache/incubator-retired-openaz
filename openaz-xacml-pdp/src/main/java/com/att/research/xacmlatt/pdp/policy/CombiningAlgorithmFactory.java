@@ -43,8 +43,8 @@ import com.att.research.xacmlatt.pdp.util.ATTPDPProperties;
  *
  */
 public abstract class CombiningAlgorithmFactory {
-    private static final String	FACTORYID					= ATTPDPProperties.PROP_COMBININGALGORITHMFACTORY;
-    private static final String DEFAULT_FACTORY_CLASSNAME	= "com.att.research.xacmlatt.pdp.std.StdCombiningAlgorithmFactory";
+    private static final String FACTORYID                                       = ATTPDPProperties.PROP_COMBININGALGORITHMFACTORY;
+    private static final String DEFAULT_FACTORY_CLASSNAME       = "com.att.research.xacmlatt.pdp.std.StdCombiningAlgorithmFactory";
 
     protected CombiningAlgorithmFactory() {
     }

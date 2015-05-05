@@ -55,7 +55,7 @@ public class StringNamespaceContext extends ExtendedNamespaceContext {
         private String namespace;
 
 // if we make this a first-class object, do not let people create it without args
-//		private Namespace(){}
+//              private Namespace(){}
 
         /**
          * Create a new Namespace with only a namespaceURI

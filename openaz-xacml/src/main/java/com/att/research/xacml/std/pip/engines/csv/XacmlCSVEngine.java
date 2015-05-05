@@ -68,35 +68,35 @@ import com.att.research.xacml.util.FactoryException;
 /**
  * CSVPIPEngine implements the {@link com.att.research.xacml.api.pip.PIPFinder} interface to find attributes
  * loaded from a text file containing the following fields:
- * 	category-id,attribute-id,datatype-id,issuer,value
+ *      category-id,attribute-id,datatype-id,issuer,value
  *
  */
 public class XacmlCSVEngine implements ConfigurableEngine {
-    public static final String PROP_DESCRIPTION	= ".description";
-    public static final String PROP_FILE		= ".file";
+    public static final String PROP_DESCRIPTION = ".description";
+    public static final String PROP_FILE                = ".file";
 
-    private static final Log logger	= LogFactory.getLog(XacmlCSVEngine.class);
+    private static final Log logger     = LogFactory.getLog(XacmlCSVEngine.class);
 
     private String name;
     private String description;
-    private Map<String,PIPResponse> cache	= new HashMap<String,PIPResponse>();
-    private List<Attribute> listAttributes	= new ArrayList<Attribute>();
+    private Map<String,PIPResponse> cache       = new HashMap<String,PIPResponse>();
+    private List<Attribute> listAttributes      = new ArrayList<Attribute>();
     private DataTypeFactory dataTypeFactory;
 
     protected DataTypeFactory getDataTypeFactory() throws FactoryException {
         if (this.dataTypeFactory == null) {
-            this.dataTypeFactory	= DataTypeFactory.newInstance();
+            this.dataTypeFactory        = DataTypeFactory.newInstance();
         }
         return this.dataTypeFactory;
     }
 
     protected static String generateKey(PIPRequest pipRequest) {
-        StringBuilder stringBuilder	= new StringBuilder(pipRequest.getCategory().toString());
+        StringBuilder stringBuilder     = new StringBuilder(pipRequest.getCategory().toString());
         stringBuilder.append('+');
         stringBuilder.append(pipRequest.getAttributeId().toString());
         stringBuilder.append('+');
         stringBuilder.append(pipRequest.getDataTypeId().toString());
-        String issuer	= pipRequest.getIssuer();
+        String issuer   = pipRequest.getIssuer();
         if (issuer != null) {
             stringBuilder.append('+');
             stringBuilder.append(issuer);
@@ -105,26 +105,26 @@ public class XacmlCSVEngine implements ConfigurableEngine {
     }
 
     protected void store(String[] fields) throws FactoryException {
-        DataTypeFactory thisDataTypeFactory	= this.getDataTypeFactory();
-        Identifier identifierCategory		= new IdentifierImpl(fields[0]);
-        Identifier identifierAttribute		= new IdentifierImpl(fields[1]);
-        Identifier identifierDataType		= new IdentifierImpl(fields[2]);
-        String issuer						= (fields.length == 5 ? fields[3] : null);
-        String value						= fields[fields.length - 1];
+        DataTypeFactory thisDataTypeFactory     = this.getDataTypeFactory();
+        Identifier identifierCategory           = new IdentifierImpl(fields[0]);
+        Identifier identifierAttribute          = new IdentifierImpl(fields[1]);
+        Identifier identifierDataType           = new IdentifierImpl(fields[2]);
+        String issuer                                           = (fields.length == 5 ? fields[3] : null);
+        String value                                            = fields[fields.length - 1];
 
-        DataType<?> dataType				= thisDataTypeFactory.getDataType(identifierDataType);
+        DataType<?> dataType                            = thisDataTypeFactory.getDataType(identifierDataType);
         if (dataType == null) {
             logger.error("Unknown data type " + identifierDataType.stringValue());
             return;
         }
 
-        AttributeValue<?> attributeValue	= null;
+        AttributeValue<?> attributeValue        = null;
         try {
-            attributeValue	= dataType.createAttributeValue(value);
+            attributeValue      = dataType.createAttributeValue(value);
         } catch (DataTypeException ex) {
             throw new FactoryException("DataTypeException creating AttributeValue", ex);
         }
-        Attribute attribute					= new StdMutableAttribute(identifierCategory, identifierAttribute, attributeValue, issuer, false);
+        Attribute attribute                                     = new StdMutableAttribute(identifierCategory, identifierAttribute, attributeValue, issuer, false);
         this.listAttributes.add(attribute);
     }
 
@@ -140,11 +140,11 @@ public class XacmlCSVEngine implements ConfigurableEngine {
                 throw new IOException("Attributes file " + fileAttributes.getAbsolutePath() + " is not readable.");
             }
 
-            try (BufferedReader bufferedReader	= new BufferedReader(new InputStreamReader(new FileInputStream(fileAttributes)))) {
+            try (BufferedReader bufferedReader  = new BufferedReader(new InputStreamReader(new FileInputStream(fileAttributes)))) {
                 String line;
                 while ((line = bufferedReader.readLine()) != null) {
                     if (line.length() > 0) {
-                        String[] fields	= line.split("[|]",-1);
+                        String[] fields = line.split("[|]",-1);
                         if (fields.length < 4) {
                             logger.warn("Not enough fields in record \"" + line + "\"");
                             continue;
@@ -158,14 +158,14 @@ public class XacmlCSVEngine implements ConfigurableEngine {
     }
 
     protected Attribute findAttribute(PIPRequest pipRequest) {
-        Attribute attributeResult			= null;
-        Iterator<Attribute> iterAttributes	= this.listAttributes.iterator();
+        Attribute attributeResult                       = null;
+        Iterator<Attribute> iterAttributes      = this.listAttributes.iterator();
         while ((attributeResult == null) && iterAttributes.hasNext()) {
-            Attribute attributeTest	= iterAttributes.next();
+            Attribute attributeTest     = iterAttributes.next();
             if (pipRequest.getCategory().equals(attributeTest.getCategory()) &&
                     pipRequest.getAttributeId().equals(attributeTest.getAttributeId()) &&
                     (pipRequest.getIssuer() == null || pipRequest.getIssuer().equals(attributeTest.getIssuer()))) {
-                attributeResult	= attributeTest;
+                attributeResult = attributeTest;
             }
         }
         return attributeResult;
@@ -173,25 +173,25 @@ public class XacmlCSVEngine implements ConfigurableEngine {
 
     @Override
     public PIPResponse getAttributes(PIPRequest pipRequest, PIPFinder pipFinder) throws PIPException {
-        String pipRequestKey	= generateKey(pipRequest);
-        PIPResponse pipResponse	= this.cache.get(pipRequestKey);
+        String pipRequestKey    = generateKey(pipRequest);
+        PIPResponse pipResponse = this.cache.get(pipRequestKey);
         if (pipResponse == null) {
-            Attribute attributeMatch	= this.findAttribute(pipRequest);
+            Attribute attributeMatch    = this.findAttribute(pipRequest);
             if (attributeMatch != null) {
                 /*
                  * Iterate through the values and only return the ones that match the requested data type
                  */
-                List<AttributeValue<?>> matchingValues	= new ArrayList<AttributeValue<?>>();
-                Iterator<AttributeValue<?>> iterAttributeValues	= attributeMatch.getValues().iterator();
+                List<AttributeValue<?>> matchingValues  = new ArrayList<AttributeValue<?>>();
+                Iterator<AttributeValue<?>> iterAttributeValues = attributeMatch.getValues().iterator();
                 while (iterAttributeValues.hasNext()) {
-                    AttributeValue<?> attributeValue	= iterAttributeValues.next();
+                    AttributeValue<?> attributeValue    = iterAttributeValues.next();
                     if (pipRequest.getDataTypeId().equals(attributeValue.getDataTypeId())) {
                         matchingValues.add(attributeValue);
                     }
                 }
                 if (matchingValues.size() > 0) {
-                    Attribute attributeResponse	= new StdMutableAttribute(attributeMatch.getCategory(), attributeMatch.getAttributeId(), matchingValues, attributeMatch.getIssuer(), attributeMatch.getIncludeInResults());
-                    pipResponse					= new StdPIPResponse(attributeResponse);
+                    Attribute attributeResponse = new StdMutableAttribute(attributeMatch.getCategory(), attributeMatch.getAttributeId(), matchingValues, attributeMatch.getIssuer(), attributeMatch.getIncludeInResults());
+                    pipResponse                                 = new StdPIPResponse(attributeResponse);
                     this.cache.put(pipRequestKey, pipResponse);
                 }
             }
@@ -215,12 +215,12 @@ public class XacmlCSVEngine implements ConfigurableEngine {
 
     @Override
     public void configure(String id, Properties properties) throws PIPException {
-        this.name	= id;
-        this.description	= properties.getProperty(id + PROP_DESCRIPTION);
+        this.name       = id;
+        this.description        = properties.getProperty(id + PROP_DESCRIPTION);
         if (this.description == null) {
-            this.description	= "PIPEngine for the Conformance tests that loads attributes from a CSV file";
+            this.description    = "PIPEngine for the Conformance tests that loads attributes from a CSV file";
         }
-        String pipFile		= properties.getProperty(id + PROP_FILE);
+        String pipFile          = properties.getProperty(id + PROP_FILE);
         if (pipFile != null) {
             try {
                 this.loadAttributes(new File(pipFile));

@@ -38,7 +38,7 @@ package com.att.research.xacml.util;
  * @param <T> the Class of the wrapped object
  */
 public class Wrapper<T> {
-    private T	wrappedObject;
+    private T   wrappedObject;
 
     /**
      * Gets the <code>T</code> wrapped object.
@@ -55,7 +55,7 @@ public class Wrapper<T> {
      * @param wrappedObjectIn the <code>T</code> wrapped object.
      */
     public Wrapper(T wrappedObjectIn) {
-        this.wrappedObject	= wrappedObjectIn;
+        this.wrappedObject      = wrappedObjectIn;
     }
 
     @Override

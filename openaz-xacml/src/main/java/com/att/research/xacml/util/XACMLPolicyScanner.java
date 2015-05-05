@@ -347,7 +347,7 @@ public class XACMLPolicyScanner {
 
     }
 
-    private static final Log logger				= LogFactory.getLog(XACMLPolicyScanner.class);
+    private static final Log logger                             = LogFactory.getLog(XACMLPolicyScanner.class);
     private Object policyObject = null;
     private Callback callback = null;
 
@@ -774,7 +774,7 @@ public class XACMLPolicyScanner {
      * @return - The version string from the file (uninterpreted)
      * @throws java.io.IOException
      */
-    public static String	getVersion(Path policy) throws IOException {
+    public static String        getVersion(Path policy) throws IOException {
         Object data = null;
         try (InputStream is = Files.newInputStream(policy)) {
             data = XACMLPolicyScanner.readPolicy(is);
@@ -795,7 +795,7 @@ public class XACMLPolicyScanner {
      * @param data - Either a PolicySet or Policy XACML type object.
      * @return - The integer version value. -1 if it doesn't exist or was un-parsable.
      */
-    public static String	getVersion(Object data) {
+    public static String        getVersion(Object data) {
         String version = null;
         try {
             if (data instanceof PolicySetType) {

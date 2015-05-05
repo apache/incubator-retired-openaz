@@ -57,14 +57,14 @@ public class PIPException extends Exception {
 
     public PIPException(PIPEngine pipEngineIn, PIPRequest pipRequestIn, String message, Throwable cause) {
         this(message, cause);
-        this.pipEngine	= pipEngineIn;
-        this.pipRequest	= pipRequestIn;
+        this.pipEngine  = pipEngineIn;
+        this.pipRequest = pipRequestIn;
     }
 
     public PIPException(PIPEngine pipEngineIn, PIPRequest pipRequestIn, String message) {
         this(message);
-        this.pipEngine	= pipEngineIn;
-        this.pipRequest	= pipRequestIn;
+        this.pipEngine  = pipEngineIn;
+        this.pipRequest = pipRequestIn;
     }
 
     /**

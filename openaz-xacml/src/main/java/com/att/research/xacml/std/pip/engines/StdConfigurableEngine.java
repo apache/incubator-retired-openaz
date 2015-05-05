@@ -43,10 +43,10 @@ import com.google.common.cache.CacheBuilder;
  *
  */
 public abstract class StdConfigurableEngine implements ConfigurableEngine {
-    public static final String PROP_NAME			= "name";
-    public static final String PROP_DESCRIPTION		= "description";
-    public static final String PROP_ISSUER			= "issuer";
-    public static final String PROP_CACHESPEC		= "cacheSpec";
+    public static final String PROP_NAME                        = "name";
+    public static final String PROP_DESCRIPTION         = "description";
+    public static final String PROP_ISSUER                      = "issuer";
+    public static final String PROP_CACHESPEC           = "cacheSpec";
 
     private String name;
     private String description;
@@ -62,7 +62,7 @@ public abstract class StdConfigurableEngine implements ConfigurableEngine {
     }
 
     public void setName(String nameIn) {
-        this.name	= nameIn;
+        this.name       = nameIn;
     }
 
     @Override
@@ -71,7 +71,7 @@ public abstract class StdConfigurableEngine implements ConfigurableEngine {
     }
 
     public void setDescription(String descriptionIn) {
-        this.description	= descriptionIn;
+        this.description        = descriptionIn;
     }
 
     public String getIssuer() {
@@ -79,7 +79,7 @@ public abstract class StdConfigurableEngine implements ConfigurableEngine {
     }
 
     public void setIssuer(String issuerIn) {
-        this.issuer	= issuerIn;
+        this.issuer     = issuerIn;
     }
 
     public Cache<String, PIPResponse> getCache() {
@@ -99,7 +99,7 @@ public abstract class StdConfigurableEngine implements ConfigurableEngine {
          * Configure the cache IF it is defined
          */
         if (properties.getProperty(id + "." + PROP_CACHESPEC) != null) {
-            this.cache	= CacheBuilder.from(properties.getProperty(id + "." + PROP_CACHESPEC)).build();
+            this.cache  = CacheBuilder.from(properties.getProperty(id + "." + PROP_CACHESPEC)).build();
         }
     }
 

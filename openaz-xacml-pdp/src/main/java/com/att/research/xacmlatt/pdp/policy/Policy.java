@@ -53,11 +53,11 @@ import com.att.research.xacmlatt.pdp.eval.MatchResult;
  *
  */
 public class Policy extends PolicyDef {
-    private TargetedCombinerParameterMap<String,Rule>		ruleCombinerParameters	= new TargetedCombinerParameterMap<String,Rule>();
-    private VariableMap										variableMap				= new VariableMap();
-    private List<Rule>										rules					= new ArrayList<Rule>();
-    private List<CombiningElement<Rule>>					combiningRules;
-    private CombiningAlgorithm<Rule>						ruleCombiningAlgorithm;
+    private TargetedCombinerParameterMap<String,Rule>           ruleCombinerParameters  = new TargetedCombinerParameterMap<String,Rule>();
+    private VariableMap                                                                         variableMap                             = new VariableMap();
+    private List<Rule>                                                                          rules                                   = new ArrayList<Rule>();
+    private List<CombiningElement<Rule>>                                        combiningRules;
+    private CombiningAlgorithm<Rule>                                            ruleCombiningAlgorithm;
 
     @Override
     protected boolean validateComponent() {
@@ -80,10 +80,10 @@ public class Policy extends PolicyDef {
      */
     protected List<CombiningElement<Rule>> getCombiningRules() {
         if (this.combiningRules == null) {
-            this.combiningRules			= new ArrayList<CombiningElement<Rule>>();
-            Iterator<Rule> iterRules	= this.getRules();
+            this.combiningRules                 = new ArrayList<CombiningElement<Rule>>();
+            Iterator<Rule> iterRules    = this.getRules();
             while (iterRules.hasNext()) {
-                Rule rule	= iterRules.next();
+                Rule rule       = iterRules.next();
                 this.combiningRules.add(new CombiningElement<Rule>(rule, this.ruleCombinerParameters.getCombinerParameters(rule)));
             }
         }
@@ -251,7 +251,7 @@ public class Policy extends PolicyDef {
      * @param ruleCombiningAlgorithmIn the <code>CombiningAlgorithm</code> for <code>Rule</code>s for this <code>Policy</code>
      */
     public void setRuleCombiningAlgorithm(CombiningAlgorithm<Rule> ruleCombiningAlgorithmIn) {
-        this.ruleCombiningAlgorithm	= ruleCombiningAlgorithmIn;
+        this.ruleCombiningAlgorithm     = ruleCombiningAlgorithmIn;
     }
 
     @Override
@@ -266,7 +266,7 @@ public class Policy extends PolicyDef {
         /*
          * See if we match
          */
-        MatchResult thisMatchResult	= this.match(evaluationContext);
+        MatchResult thisMatchResult     = this.match(evaluationContext);
         assert(thisMatchResult != null);
         if (evaluationContext.isTracing()) {
             evaluationContext.trace(new StdTraceEvent<MatchResult>("Match", this, thisMatchResult));
@@ -283,14 +283,14 @@ public class Policy extends PolicyDef {
         /*
          * Get the combining elements
          */
-        List<CombiningElement<Rule>> ruleCombiningElements	= this.getCombiningRules();
+        List<CombiningElement<Rule>> ruleCombiningElements      = this.getCombiningRules();
         assert(ruleCombiningElements != null);
 
         /*
          * Run the combining algorithm
          */
         assert(this.getRuleCombiningAlgorithm() != null);
-        EvaluationResult evaluationResultCombined	= this.getRuleCombiningAlgorithm().combine(evaluationContext, ruleCombiningElements, this.getCombinerParameterList());
+        EvaluationResult evaluationResultCombined       = this.getRuleCombiningAlgorithm().combine(evaluationContext, ruleCombiningElements, this.getCombinerParameterList());
         assert(evaluationResultCombined != null);
 
         if (evaluationResultCombined.getDecision() == Decision.DENY || evaluationResultCombined.getDecision() == Decision.PERMIT) {
@@ -311,7 +311,7 @@ public class Policy extends PolicyDef {
 
     @Override
     public String toString() {
-        StringBuilder stringBuilder	= new StringBuilder("{");
+        StringBuilder stringBuilder     = new StringBuilder("{");
         stringBuilder.append("super=");
         stringBuilder.append(super.toString());
 

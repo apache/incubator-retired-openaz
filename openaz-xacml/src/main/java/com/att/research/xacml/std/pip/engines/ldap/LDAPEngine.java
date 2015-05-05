@@ -66,24 +66,24 @@ import com.google.common.cache.Cache;
  *
  */
 public class LDAPEngine extends StdConfigurableEngine {
-    public static final String PROP_RESOLVERS			= "resolvers";
-    public static final String PROP_RESOLVER			= "resolver";
-    public static final String PROP_LDAP_SCOPE			= "scope";
+    public static final String PROP_RESOLVERS                   = "resolvers";
+    public static final String PROP_RESOLVER                    = "resolver";
+    public static final String PROP_LDAP_SCOPE                  = "scope";
 
-    private static final String LDAP_SCOPE_SUBTREE		= "subtree";
-    private static final String LDAP_SCOPE_OBJECT		= "object";
-    private static final String LDAP_SCOPE_ONELEVEL		= "onelevel";
-    private static final String DEFAULT_CONTEXT_FACTORY	= "com.sun.jndi.ldap.LdapCtxFactory";
-    private static final String DEFAULT_SCOPE			= LDAP_SCOPE_SUBTREE;
+    private static final String LDAP_SCOPE_SUBTREE              = "subtree";
+    private static final String LDAP_SCOPE_OBJECT               = "object";
+    private static final String LDAP_SCOPE_ONELEVEL             = "onelevel";
+    private static final String DEFAULT_CONTEXT_FACTORY = "com.sun.jndi.ldap.LdapCtxFactory";
+    private static final String DEFAULT_SCOPE                   = LDAP_SCOPE_SUBTREE;
 
-    private Log logger									= LogFactory.getLog(this.getClass());
-    private Hashtable<Object,Object> ldapEnvironment	= new Hashtable<Object,Object>();
-    private List<LDAPResolver> ldapResolvers 			= new ArrayList<LDAPResolver>();
+    private Log logger                                                                  = LogFactory.getLog(this.getClass());
+    private Hashtable<Object,Object> ldapEnvironment    = new Hashtable<Object,Object>();
+    private List<LDAPResolver> ldapResolvers                    = new ArrayList<LDAPResolver>();
     private int ldapScope;
 
     /*
      * In addition, we pull the following standard LDAP properties from the configuration
-     * 	Context.AUTHORITATIVE: boolean
+     *  Context.AUTHORITATIVE: boolean
      *  Context.BATCHSIZE: integer
      *  Context.DNSURL: String
      *  Context.INITIAL_CONTEXT_FACTORY: String
@@ -103,7 +103,7 @@ public class LDAPEngine extends StdConfigurableEngine {
     }
 
     private boolean configureStringProperty(String propertyPrefix, String property, Properties properties, String defaultValue) {
-        String propertyValue	= properties.getProperty(propertyPrefix + property, defaultValue);
+        String propertyValue    = properties.getProperty(propertyPrefix + property, defaultValue);
         if (propertyValue != null) {
             this.ldapEnvironment.put(property, propertyValue);
             return true;
@@ -113,7 +113,7 @@ public class LDAPEngine extends StdConfigurableEngine {
     }
 
     private boolean configureIntegerProperty(String propertyPrefix, String property, Properties properties, Integer defaultValue) {
-        String propertyValue	= properties.getProperty(propertyPrefix + property);
+        String propertyValue    = properties.getProperty(propertyPrefix + property);
         if (propertyValue == null) {
             if (defaultValue != null) {
                 this.ldapEnvironment.put(property, defaultValue);
@@ -138,7 +138,7 @@ public class LDAPEngine extends StdConfigurableEngine {
          * Handle the standard properties
          */
         super.configure(id, properties);
-        String propertyPrefix	= id + ".";
+        String propertyPrefix   = id + ".";
 
         /*
          * Configure the LDAP environment: I think the only required property is the provider_url
@@ -160,16 +160,16 @@ public class LDAPEngine extends StdConfigurableEngine {
         this.configureStringProperty(propertyPrefix, Context.STATE_FACTORIES, properties, null);
         this.configureStringProperty(propertyPrefix, Context.URL_PKG_PREFIXES, properties, null);
 
-        String ldapScopeValue	= properties.getProperty(propertyPrefix + PROP_LDAP_SCOPE, DEFAULT_SCOPE);
+        String ldapScopeValue   = properties.getProperty(propertyPrefix + PROP_LDAP_SCOPE, DEFAULT_SCOPE);
         if (LDAP_SCOPE_SUBTREE.equals(ldapScopeValue)) {
-            this.ldapScope	= SearchControls.SUBTREE_SCOPE;
+            this.ldapScope      = SearchControls.SUBTREE_SCOPE;
         } else if (LDAP_SCOPE_OBJECT.equals(ldapScopeValue)) {
-            this.ldapScope	= SearchControls.OBJECT_SCOPE;
+            this.ldapScope      = SearchControls.OBJECT_SCOPE;
         } else if (LDAP_SCOPE_ONELEVEL.equals(ldapScopeValue)) {
-            this.ldapScope	= SearchControls.ONELEVEL_SCOPE;
+            this.ldapScope      = SearchControls.ONELEVEL_SCOPE;
         } else {
             this.logger.warn("Invalid LDAP Scope value '" + ldapScopeValue + "'; using " + DEFAULT_SCOPE);
-            this.ldapScope	= SearchControls.SUBTREE_SCOPE;
+            this.ldapScope      = SearchControls.SUBTREE_SCOPE;
         }
 
         /*
@@ -187,19 +187,19 @@ public class LDAPEngine extends StdConfigurableEngine {
             /*
              * Get the LDAPResolver for this LDAPEngine
              */
-            String resolverClassName	= properties.getProperty(propertyPrefix + PROP_RESOLVER + "." + resolver + ".classname");
+            String resolverClassName    = properties.getProperty(propertyPrefix + PROP_RESOLVER + "." + resolver + ".classname");
             if (resolverClassName == null) {
                 throw new PIPException("Invalid configuration for " + this.getClass().getName() + ": No " + propertyPrefix + PROP_RESOLVER + "." + resolver + ".classname");
             }
 
-            LDAPResolver ldapResolverNew	= null;
+            LDAPResolver ldapResolverNew        = null;
             try {
-                Class<?> classResolver	= Class.forName(resolverClassName);
+                Class<?> classResolver  = Class.forName(resolverClassName);
                 if (!LDAPResolver.class.isAssignableFrom(classResolver)) {
                     this.logger.error("LDAPResolver class " + resolverClassName + " does not implement " + LDAPResolver.class.getCanonicalName());
                     throw new PIPException("LDAPResolver class " + resolverClassName + " does not implement " + LDAPResolver.class.getCanonicalName());
                 }
-                ldapResolverNew	= LDAPResolver.class.cast(classResolver.newInstance());
+                ldapResolverNew = LDAPResolver.class.cast(classResolver.newInstance());
             } catch (Exception ex) {
                 this.logger.error("Exception instantiating LDAPResolver for class '" + resolverClassName + "': " + ex.getMessage(), ex);
                 throw new PIPException("Exception instantiating LDAPResolver for class '" + resolverClassName + "'", ex);
@@ -221,7 +221,7 @@ public class LDAPEngine extends StdConfigurableEngine {
             throw new IllegalStateException(this.getClass().getCanonicalName() + " is not configured");
         }
 
-        StdMutablePIPResponse mutablePIPResponse	= new StdMutablePIPResponse();
+        StdMutablePIPResponse mutablePIPResponse        = new StdMutablePIPResponse();
         for (LDAPResolver ldapResolver : this.ldapResolvers) {
             this.getAttributes(pipRequest, pipFinder, mutablePIPResponse, ldapResolver);
         }
@@ -243,7 +243,7 @@ public class LDAPEngine extends StdConfigurableEngine {
         /*
          * Check with the resolver to get the base string
          */
-        String stringBase	= ldapResolver.getBase(this, pipRequest, pipFinder);
+        String stringBase       = ldapResolver.getBase(this, pipRequest, pipFinder);
         if (stringBase == null) {
             this.logger.warn(this.getName() + " does not handle " + pipRequest.toString());
             return;
@@ -252,15 +252,15 @@ public class LDAPEngine extends StdConfigurableEngine {
         /*
          * Get the filter string
          */
-        String stringFilter	= ldapResolver.getFilterString(this, pipRequest, pipFinder);
+        String stringFilter     = ldapResolver.getFilterString(this, pipRequest, pipFinder);
 
         /*
          * Check the cache
          */
         Cache<String, PIPResponse> cache = this.getCache();
-        String cacheKey		= stringBase + "::" + (stringFilter == null ? "" : stringFilter);
+        String cacheKey         = stringBase + "::" + (stringFilter == null ? "" : stringFilter);
         if (cache != null) {
-            PIPResponse pipResponse	= cache.getIfPresent(cacheKey);
+            PIPResponse pipResponse     = cache.getIfPresent(cacheKey);
             if (pipResponse != null) {
                 if (this.logger.isDebugEnabled()) {
                     this.logger.debug("Returning cached response: " + pipResponse);
@@ -272,27 +272,27 @@ public class LDAPEngine extends StdConfigurableEngine {
         /*
          * Not in the cache, so set up the LDAP query session
          */
-        DirContext dirContext	= null;
+        DirContext dirContext   = null;
         PIPResponse pipResponse = null;
         try {
             /*
              * Create the DirContext
              */
-            dirContext	= new InitialDirContext(this.ldapEnvironment);
+            dirContext  = new InitialDirContext(this.ldapEnvironment);
 
             /*
              * Set up the search controls
              */
-            SearchControls searchControls	= new SearchControls();
+            SearchControls searchControls       = new SearchControls();
             searchControls.setSearchScope(this.ldapScope);
 
             /*
              * Do the search
              */
-            NamingEnumeration<SearchResult> namingEnumeration	= dirContext.search(stringBase, stringFilter, searchControls);
+            NamingEnumeration<SearchResult> namingEnumeration   = dirContext.search(stringBase, stringFilter, searchControls);
             if (namingEnumeration != null && namingEnumeration.hasMore()) {
                 while (namingEnumeration.hasMore()) {
-                    List<Attribute> listAttributes	= ldapResolver.decodeResult(namingEnumeration.next());
+                    List<Attribute> listAttributes      = ldapResolver.decodeResult(namingEnumeration.next());
                     if (listAttributes != null && listAttributes.size() > 0) {
                         mutablePIPResponse.addAttributes(listAttributes);
                     }

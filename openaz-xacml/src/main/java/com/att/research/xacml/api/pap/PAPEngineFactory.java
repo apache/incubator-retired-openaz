@@ -37,8 +37,8 @@ import com.att.research.xacml.util.FactoryFinder;
 import com.att.research.xacml.util.XACMLProperties;
 
 public abstract class PAPEngineFactory {
-    private static final String	FACTORYID	= XACMLProperties.PROP_PAP_PAPENGINEFACTORY;
-    private static final String	DEFAULT_FACTORY_CLASSNAME	= "com.att.research.xacml.std.pap.StdEngineFactory";
+    private static final String FACTORYID       = XACMLProperties.PROP_PAP_PAPENGINEFACTORY;
+    private static final String DEFAULT_FACTORY_CLASSNAME       = "com.att.research.xacml.std.pap.StdEngineFactory";
 
     /**
      * The constructor is protected to prevent instantiation of the class.

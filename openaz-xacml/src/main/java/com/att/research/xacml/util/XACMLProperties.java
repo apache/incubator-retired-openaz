@@ -50,34 +50,34 @@ import com.google.common.base.Splitter;
  *
  */
 public class XACMLProperties {
-    private static final Log logger	= LogFactory.getLog(XACMLProperties.class);
+    private static final Log logger     = LogFactory.getLog(XACMLProperties.class);
 
-    public static final String	XACML_PROPERTIES_NAME	= "xacml.properties";
-    public static final String	XACML_PROPERTIES_FILE	= System.getProperty("java.home") + File.separator + "lib" + File.separator + XACML_PROPERTIES_NAME;
+    public static final String  XACML_PROPERTIES_NAME   = "xacml.properties";
+    public static final String  XACML_PROPERTIES_FILE   = System.getProperty("java.home") + File.separator + "lib" + File.separator + XACML_PROPERTIES_NAME;
 
-    public static final String	PROP_DATATYPEFACTORY	= "xacml.dataTypeFactory";
-    public static final String	PROP_PDPENGINEFACTORY	= "xacml.pdpEngineFactory";
-    public static final String	PROP_PEPENGINEFACTORY	= "xacml.pepEngineFactory";
-    public static final String	PROP_PIPFINDERFACTORY	= "xacml.pipFinderFactory";
-    public static final String	PROP_TRACEENGINEFACTORY	= "xacml.traceEngineFactory";
+    public static final String  PROP_DATATYPEFACTORY    = "xacml.dataTypeFactory";
+    public static final String  PROP_PDPENGINEFACTORY   = "xacml.pdpEngineFactory";
+    public static final String  PROP_PEPENGINEFACTORY   = "xacml.pepEngineFactory";
+    public static final String  PROP_PIPFINDERFACTORY   = "xacml.pipFinderFactory";
+    public static final String  PROP_TRACEENGINEFACTORY = "xacml.traceEngineFactory";
 
-    public static final String	PROP_ROOTPOLICIES		= "xacml.rootPolicies";
-    public static final String	PROP_REFERENCEDPOLICIES	= "xacml.referencedPolicies";
+    public static final String  PROP_ROOTPOLICIES               = "xacml.rootPolicies";
+    public static final String  PROP_REFERENCEDPOLICIES = "xacml.referencedPolicies";
 
-    public static final String	PROP_PDP_BEHAVIOR		= "xacml.pdp.behavior";
-    public static final String	PROP_PIP_ENGINES		= "xacml.pip.engines";
+    public static final String  PROP_PDP_BEHAVIOR               = "xacml.pdp.behavior";
+    public static final String  PROP_PIP_ENGINES                = "xacml.pip.engines";
 
     // Alternative types of PAP Engine
-    public static final String 	PROP_PAP_PAPENGINEFACTORY 	= "xacml.PAP.papEngineFactory";
-    public static final String 	PROP_AC_PAPENGINEFACTORY 	= "xacml.AC.papEngineFactory";
+    public static final String  PROP_PAP_PAPENGINEFACTORY       = "xacml.PAP.papEngineFactory";
+    public static final String  PROP_AC_PAPENGINEFACTORY        = "xacml.AC.papEngineFactory";
 
-    private static volatile Properties	properties	= new Properties();
-    private static boolean 		needCache		= true;
+    private static volatile Properties  properties      = new Properties();
+    private static boolean              needCache               = true;
 
     private static File getPropertiesFile() {
-        String propertiesFileName	= System.getProperty(XACML_PROPERTIES_NAME);
+        String propertiesFileName       = System.getProperty(XACML_PROPERTIES_NAME);
         if (propertiesFileName == null) {
-            propertiesFileName	= XACML_PROPERTIES_FILE;
+            propertiesFileName  = XACML_PROPERTIES_FILE;
         }
         return new File(propertiesFileName);
     }
@@ -89,7 +89,7 @@ public class XACMLProperties {
         if (needCache) {
             synchronized(properties) {
                 if (needCache) {
-                    File fileProperties	= getPropertiesFile();
+                    File fileProperties = getPropertiesFile();
                     if (fileProperties.exists() && fileProperties.canRead()) {
                         if (logger.isDebugEnabled()) {
                             logger.debug("Loading properties from " + fileProperties.getAbsolutePath());
@@ -100,7 +100,7 @@ public class XACMLProperties {
                     } else {
                         logger.warn("Properties file " + fileProperties.getAbsolutePath() + " cannot be read.");
                     }
-                    needCache	= false;
+                    needCache   = false;
                 }
             }
         }
@@ -115,12 +115,12 @@ public class XACMLProperties {
     }
 
     public static String getProperty(String propertyName, String defaultValue) {
-        String value	= System.getProperty(propertyName);
+        String value    = System.getProperty(propertyName);
         if (value == null) {
-            Properties properties	= null;
+            Properties properties       = null;
             try {
-                properties	= getProperties();
-                value	= properties.getProperty(propertyName);
+                properties      = getProperties();
+                value   = properties.getProperty(propertyName);
             } catch (Exception ex) {
             }
         }
@@ -205,7 +205,7 @@ public class XACMLProperties {
     }
 
     /**
-     * 	Used only when we want just xacml.rootPolicies and xacml.referencedPolicies without any ".url" entries.
+     *  Used only when we want just xacml.rootPolicies and xacml.referencedPolicies without any ".url" entries.
      *
      * @return
      * @throws Exception
@@ -214,7 +214,7 @@ public class XACMLProperties {
         return getPolicyProperties(XACMLProperties.getPolicyProperties(), false);
     }
 
-    public static Set<String>	getRootPolicyIDs(Properties props) {
+    public static Set<String>   getRootPolicyIDs(Properties props) {
         Set<String> ids = new HashSet<String>();
         String roots = props.getProperty(XACMLProperties.PROP_ROOTPOLICIES);
         if (roots == null) {
@@ -227,7 +227,7 @@ public class XACMLProperties {
         return ids;
     }
 
-    public static Set<String>	getReferencedPolicyIDs(Properties props) {
+    public static Set<String>   getReferencedPolicyIDs(Properties props) {
         Set<String> ids = new HashSet<String>();
         String refs = props.getProperty(XACMLProperties.PROP_REFERENCEDPOLICIES);
         if (refs == null) {
@@ -240,7 +240,7 @@ public class XACMLProperties {
         return ids;
     }
 
-    public static Set<String>	getPolicyIDs(Properties props) {
+    public static Set<String>   getPolicyIDs(Properties props) {
         Set<String> ids = XACMLProperties.getRootPolicyIDs(props);
         ids.addAll(XACMLProperties.getReferencedPolicyIDs(props));
         return ids;

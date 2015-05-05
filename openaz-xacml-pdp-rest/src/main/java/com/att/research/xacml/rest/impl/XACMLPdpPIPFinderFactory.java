@@ -44,7 +44,7 @@ import com.att.research.xacml.util.XACMLProperties;
 public class XACMLPdpPIPFinderFactory extends PIPFinderFactory {
     private ConfigurableEngineFinder pipFinder;
 
-    private static Log logger	= LogFactory.getLog(XACMLPdpPIPFinderFactory.class);
+    private static Log logger   = LogFactory.getLog(XACMLPdpPIPFinderFactory.class);
 
     public XACMLPdpPIPFinderFactory() {
     }
@@ -60,10 +60,10 @@ public class XACMLPdpPIPFinderFactory extends PIPFinderFactory {
                     if (logger.isDebugEnabled()) {
                         logger.debug("Creating default configurable engine finder");
                     }
-                    pipFinder					= new ConfigurableEngineFinder();
-                    Properties xacmlProperties	= null;
+                    pipFinder                                   = new ConfigurableEngineFinder();
+                    Properties xacmlProperties  = null;
                     try {
-                        xacmlProperties	= XACMLProperties.getProperties();
+                        xacmlProperties = XACMLProperties.getProperties();
                     } catch (Exception ex) {
                         logger.error("Exception getting XACML properties: " + ex.getMessage(), ex);
                         return null;
@@ -85,7 +85,7 @@ public class XACMLPdpPIPFinderFactory extends PIPFinderFactory {
                     if (logger.isDebugEnabled()) {
                         logger.debug("Creating configurable engine finder using: " + properties);
                     }
-                    pipFinder					= new ConfigurableEngineFinder();
+                    pipFinder                                   = new ConfigurableEngineFinder();
                     ((ConfigurableEngineFinder)pipFinder).configure(properties);
                 }
             }

@@ -45,8 +45,8 @@ public enum RuleEffect {
     private String name;
     private Decision decision;
     private RuleEffect(String nameIn, Decision decisionIn) {
-        this.name		= nameIn;
-        this.decision	= decisionIn;
+        this.name               = nameIn;
+        this.decision   = decisionIn;
     }
 
     public String getName() {

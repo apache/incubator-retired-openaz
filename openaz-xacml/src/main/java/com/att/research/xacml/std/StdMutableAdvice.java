@@ -46,7 +46,7 @@ import com.att.research.xacml.util.ObjUtil;
  *
  */
 public class StdMutableAdvice implements Advice {
-    private static final List<AttributeAssignment> EMPTY_ATTRIBUTE_ASSIGNMENTS	= Collections.unmodifiableList(new ArrayList<AttributeAssignment>());
+    private static final List<AttributeAssignment> EMPTY_ATTRIBUTE_ASSIGNMENTS  = Collections.unmodifiableList(new ArrayList<AttributeAssignment>());
 
     private Identifier id;
     private List<AttributeAssignment> attributeAssignments;
@@ -55,7 +55,7 @@ public class StdMutableAdvice implements Advice {
      * Creates a new empty <code>StdMutableAdvice</code>.
      */
     public StdMutableAdvice() {
-        this.attributeAssignments	= EMPTY_ATTRIBUTE_ASSIGNMENTS;
+        this.attributeAssignments       = EMPTY_ATTRIBUTE_ASSIGNMENTS;
     }
 
     /**
@@ -68,7 +68,7 @@ public class StdMutableAdvice implements Advice {
      */
     public StdMutableAdvice(Identifier idIn, Collection<AttributeAssignment> attributeAssignmentsIn) {
         this();
-        this.id	= idIn;
+        this.id = idIn;
         this.attributeAssignments = new ArrayList<AttributeAssignment>();
         if (attributeAssignmentsIn != null) {
             this.addAttributeAssignments(attributeAssignmentsIn);
@@ -106,7 +106,7 @@ public class StdMutableAdvice implements Advice {
      * @param identifier the <code>Identifier</code> representing the XACML AdviceId of the Advice represented by this <code>StdMutableAdvice</code>.
      */
     public void setId(Identifier identifier) {
-        this.id	= identifier;
+        this.id = identifier;
     }
 
     @Override
@@ -121,7 +121,7 @@ public class StdMutableAdvice implements Advice {
      */
     public void addAttributeAssignment(AttributeAssignment attributeAssignment) {
         if (this.attributeAssignments == EMPTY_ATTRIBUTE_ASSIGNMENTS) {
-            this.attributeAssignments	= new ArrayList<AttributeAssignment>();
+            this.attributeAssignments   = new ArrayList<AttributeAssignment>();
         }
         this.attributeAssignments.add(attributeAssignment);
     }
@@ -134,7 +134,7 @@ public class StdMutableAdvice implements Advice {
     public void addAttributeAssignments(Collection<AttributeAssignment> listAttributeAssignments) {
         if (listAttributeAssignments != null && listAttributeAssignments.size() > 0) {
             if (this.attributeAssignments == EMPTY_ATTRIBUTE_ASSIGNMENTS) {
-                this.attributeAssignments	= new ArrayList<AttributeAssignment>();
+                this.attributeAssignments       = new ArrayList<AttributeAssignment>();
             }
             this.attributeAssignments.addAll(listAttributeAssignments);
         }
@@ -147,7 +147,7 @@ public class StdMutableAdvice implements Advice {
      * @param listAttributeAssignments the <code>Collection</code> of <code>AttributeAssignment</code>s to set in this <code>StdMutableAdvice</code>.
      */
     public void setAttributeAssignments(Collection<AttributeAssignment> listAttributeAssignments) {
-        this.attributeAssignments	= EMPTY_ATTRIBUTE_ASSIGNMENTS;
+        this.attributeAssignments       = EMPTY_ATTRIBUTE_ASSIGNMENTS;
         this.addAttributeAssignments(listAttributeAssignments);
     }
 
@@ -158,7 +158,7 @@ public class StdMutableAdvice implements Advice {
         } else if (obj == null || !(obj instanceof Advice)) {
             return false;
         } else {
-            Advice adviceObj	= (Advice)obj;
+            Advice adviceObj    = (Advice)obj;
             return (ObjUtil.equalsAllowNull(this.getId(), adviceObj.getId()) &&
                     ListUtil.equalsAllowNulls(this.getAttributeAssignments(), adviceObj.getAttributeAssignments()));
         }
@@ -166,13 +166,13 @@ public class StdMutableAdvice implements Advice {
 
     @Override
     public String toString() {
-        StringBuilder	stringBuilder	= new StringBuilder("{");
-        boolean			needsComma		= false;
-        Identifier		identifier		= this.getId();
+        StringBuilder   stringBuilder   = new StringBuilder("{");
+        boolean                 needsComma              = false;
+        Identifier              identifier              = this.getId();
         if (identifier != null) {
             stringBuilder.append("id=");
             stringBuilder.append(identifier.toString());
-            needsComma	= true;
+            needsComma  = true;
         }
         if (this.attributeAssignments.size() > 0) {
             if (needsComma) {

@@ -51,7 +51,7 @@ import com.att.research.xacml.util.FactoryException;
  *
  */
 public class StdEngine implements PEPEngine {
-    private Log	logger	= LogFactory.getLog(this.getClass());
+    private Log logger  = LogFactory.getLog(this.getClass());
 
     protected Properties properties = null;
 
@@ -67,27 +67,27 @@ public class StdEngine implements PEPEngine {
         /*
          * Get the PDP engine factory
          */
-        PDPEngineFactory pdpEngineFactory	= null;
+        PDPEngineFactory pdpEngineFactory       = null;
         try {
-            pdpEngineFactory	= PDPEngineFactory.newInstance();
+            pdpEngineFactory    = PDPEngineFactory.newInstance();
         } catch (FactoryException ex) {
             this.logger.error("FactoryException creating the PDPEngineFactory", ex);
             throw new PEPException("FactoryException creating the PDPEngineFactory", ex);
         }
         assert(pdpEngineFactory != null);
 
-        PDPEngine pdpEngine	= null;
+        PDPEngine pdpEngine     = null;
         try {
-            pdpEngine	= pdpEngineFactory.newEngine();
+            pdpEngine   = pdpEngineFactory.newEngine();
         } catch (FactoryException ex) {
             this.logger.error("PDPException creating the PDPEngine", ex);
             throw new PEPException("PDPException creating the PDPEngine", ex);
         }
         assert(pdpEngine != null);
 
-        Response response	= null;
+        Response response       = null;
         try {
-            response	= pdpEngine.decide(pepRequest);
+            response    = pdpEngine.decide(pepRequest);
         } catch (PDPException ex) {
             this.logger.error("PDPException deciding on Request", ex);
             throw new PEPException("PDPException deciding on Request", ex);

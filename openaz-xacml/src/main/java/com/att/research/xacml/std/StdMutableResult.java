@@ -50,28 +50,28 @@ import com.att.research.xacml.util.ObjUtil;
  *
  */
 public class StdMutableResult implements Result {
-    private static final List<Obligation> EMPTY_OBLIGATION_LIST		= Collections.unmodifiableList(new ArrayList<Obligation>());
-    private static final List<Advice> EMPTY_ADVICE_LIST				= Collections.unmodifiableList(new ArrayList<Advice>());
-    private static final List<AttributeCategory> EMPTY_ATTRIBUTES	= Collections.unmodifiableList(new ArrayList<AttributeCategory>());
-    private static final List<IdReference> EMPTY_REFERENCES			= Collections.unmodifiableList(new ArrayList<IdReference>());
+    private static final List<Obligation> EMPTY_OBLIGATION_LIST         = Collections.unmodifiableList(new ArrayList<Obligation>());
+    private static final List<Advice> EMPTY_ADVICE_LIST                         = Collections.unmodifiableList(new ArrayList<Advice>());
+    private static final List<AttributeCategory> EMPTY_ATTRIBUTES       = Collections.unmodifiableList(new ArrayList<AttributeCategory>());
+    private static final List<IdReference> EMPTY_REFERENCES                     = Collections.unmodifiableList(new ArrayList<IdReference>());
 
     private Decision decision;
     private Status status;
-    private List<Obligation> obligations			= new ArrayList<Obligation>();
-    private List<Advice> associatedAdvice			= new ArrayList<Advice>();
-    private List<AttributeCategory>	attributes		= new ArrayList<AttributeCategory>();
-    private List<IdReference> policyIdentifiers		= new ArrayList<IdReference>();
-    private List<IdReference> policySetIdentifiers	= new ArrayList<IdReference>();
+    private List<Obligation> obligations                        = new ArrayList<Obligation>();
+    private List<Advice> associatedAdvice                       = new ArrayList<Advice>();
+    private List<AttributeCategory>     attributes              = new ArrayList<AttributeCategory>();
+    private List<IdReference> policyIdentifiers         = new ArrayList<IdReference>();
+    private List<IdReference> policySetIdentifiers      = new ArrayList<IdReference>();
 
     /**
      * Creates a new empty <code>StdMutableResult</code>.
      */
     public StdMutableResult() {
-        this.obligations			= EMPTY_OBLIGATION_LIST;
-        this.associatedAdvice		= EMPTY_ADVICE_LIST;
-        this.attributes				= EMPTY_ATTRIBUTES;
-        this.policyIdentifiers		= EMPTY_REFERENCES;
-        this.policySetIdentifiers	= EMPTY_REFERENCES;
+        this.obligations                        = EMPTY_OBLIGATION_LIST;
+        this.associatedAdvice           = EMPTY_ADVICE_LIST;
+        this.attributes                         = EMPTY_ATTRIBUTES;
+        this.policyIdentifiers          = EMPTY_REFERENCES;
+        this.policySetIdentifiers       = EMPTY_REFERENCES;
     }
 
     public StdMutableResult(Result resultCopy) {
@@ -91,8 +91,8 @@ public class StdMutableResult implements Result {
      */
     public StdMutableResult(Decision decisionIn, Status statusIn) {
         this();
-        this.status		= statusIn;
-        this.decision	= decisionIn;
+        this.status             = statusIn;
+        this.decision   = decisionIn;
     }
 
     /**
@@ -151,7 +151,7 @@ public class StdMutableResult implements Result {
      * @param decisionIn the <code>Decision</code> for this <code>StdMutableResult</code>.
      */
     public void setDecision(Decision decisionIn) {
-        this.decision	= decisionIn;
+        this.decision   = decisionIn;
     }
 
     @Override
@@ -165,7 +165,7 @@ public class StdMutableResult implements Result {
      * @param statusIn the <code>Status</code> for this <code>StdMutableResult</code>.
      */
     public void setStatus(Status statusIn) {
-        this.status	= statusIn;
+        this.status     = statusIn;
     }
 
     @Override
@@ -180,7 +180,7 @@ public class StdMutableResult implements Result {
      */
     public void addObligation(Obligation obligation) {
         if (this.obligations == EMPTY_OBLIGATION_LIST) {
-            this.obligations	= new ArrayList<Obligation>();
+            this.obligations    = new ArrayList<Obligation>();
         }
         this.obligations.add(obligation);
     }
@@ -193,7 +193,7 @@ public class StdMutableResult implements Result {
     public void addObligations(Collection<Obligation> obligationsIn) {
         if (obligationsIn != null && obligationsIn.size() > 0) {
             if (this.obligations == EMPTY_OBLIGATION_LIST) {
-                this.obligations	= new ArrayList<Obligation>();
+                this.obligations        = new ArrayList<Obligation>();
             }
             this.obligations.addAll(obligationsIn);
         }
@@ -206,7 +206,7 @@ public class StdMutableResult implements Result {
      * @param obligationsIn the <code>Collection</code> of <code>Obligation</code>s to set in this <code>StdMutableResult</code>.
      */
     public void setObligations(Collection<Obligation> obligationsIn) {
-        this.obligations	= EMPTY_OBLIGATION_LIST;
+        this.obligations        = EMPTY_OBLIGATION_LIST;
         this.addObligations(obligationsIn);
     }
 
@@ -222,7 +222,7 @@ public class StdMutableResult implements Result {
      */
     public void addAdvice(Advice advice) {
         if (this.associatedAdvice == EMPTY_ADVICE_LIST) {
-            this.associatedAdvice	= new ArrayList<Advice>();
+            this.associatedAdvice       = new ArrayList<Advice>();
         }
         this.associatedAdvice.add(advice);
     }
@@ -235,7 +235,7 @@ public class StdMutableResult implements Result {
     public void addAdvice(Collection<Advice> adviceIn) {
         if (adviceIn != null && adviceIn.size() > 0) {
             if (this.associatedAdvice == EMPTY_ADVICE_LIST) {
-                this.associatedAdvice	= new ArrayList<Advice>();
+                this.associatedAdvice   = new ArrayList<Advice>();
             }
             this.associatedAdvice.addAll(adviceIn);
         }
@@ -247,7 +247,7 @@ public class StdMutableResult implements Result {
      * @param adviceIn the <code>Collection</code> of <code>Advice</code> objects to set in this <code>StdMutableResult</code>.
      */
     public void setAdvice(Collection<Advice> adviceIn) {
-        this.associatedAdvice	= EMPTY_ADVICE_LIST;
+        this.associatedAdvice   = EMPTY_ADVICE_LIST;
         this.addAdvice(adviceIn);
     }
 
@@ -263,7 +263,7 @@ public class StdMutableResult implements Result {
      */
     public void addAttributeCategory(AttributeCategory attribute) {
         if (this.attributes == EMPTY_ATTRIBUTES) {
-            this.attributes	= new ArrayList<AttributeCategory>();
+            this.attributes     = new ArrayList<AttributeCategory>();
         }
         this.attributes.add(attribute);
     }
@@ -276,7 +276,7 @@ public class StdMutableResult implements Result {
     public void addAttributeCategories(Collection<AttributeCategory> listAttributeCategories) {
         if (listAttributeCategories != null && listAttributeCategories.size() > 0) {
             if (this.attributes == EMPTY_ATTRIBUTES) {
-                this.attributes	= new ArrayList<AttributeCategory>();
+                this.attributes = new ArrayList<AttributeCategory>();
             }
             this.attributes.addAll(listAttributeCategories);
         }
@@ -289,7 +289,7 @@ public class StdMutableResult implements Result {
      * @param listAttributeCategories the <code>Collection</code> of <code>AttributeCategory</code>s to set in this <code>StdMutableResult</code>
      */
     public void setAttributeCategories(Collection<AttributeCategory> listAttributeCategories) {
-        this.attributes	= EMPTY_ATTRIBUTES;
+        this.attributes = EMPTY_ATTRIBUTES;
         this.addAttributeCategories(listAttributeCategories);
     }
 
@@ -305,7 +305,7 @@ public class StdMutableResult implements Result {
      */
     public void addPolicyIdentifier(IdReference policyIdentifier) {
         if (this.policyIdentifiers == EMPTY_REFERENCES) {
-            this.policyIdentifiers	= new ArrayList<IdReference>();
+            this.policyIdentifiers      = new ArrayList<IdReference>();
         }
         this.policyIdentifiers.add(policyIdentifier);
     }
@@ -318,7 +318,7 @@ public class StdMutableResult implements Result {
     public void addPolicyIdentifiers(Collection<IdReference> policyIdentifierList) {
         if (policyIdentifierList != null && policyIdentifierList.size() > 0) {
             if (this.policyIdentifiers == EMPTY_REFERENCES) {
-                this.policyIdentifiers	= new ArrayList<IdReference>();
+                this.policyIdentifiers  = new ArrayList<IdReference>();
             }
             this.policyIdentifiers.addAll(policyIdentifierList);
         }
@@ -331,7 +331,7 @@ public class StdMutableResult implements Result {
      * @param policyIdentifierList the <code>Collection</code> of <code>IdReference</code>s representing PolicyIds to set in this <code>StdMutableResult</code>
      */
     public void setPolicyIdentifiers(Collection<IdReference> policyIdentifierList) {
-        this.policyIdentifiers	= EMPTY_REFERENCES;
+        this.policyIdentifiers  = EMPTY_REFERENCES;
         this.addPolicyIdentifiers(policyIdentifierList);
     }
 
@@ -347,7 +347,7 @@ public class StdMutableResult implements Result {
      */
     public void addPolicySetIdentifier(IdReference policyIdentifier) {
         if (this.policySetIdentifiers == EMPTY_REFERENCES) {
-            this.policySetIdentifiers	= new ArrayList<IdReference>();
+            this.policySetIdentifiers   = new ArrayList<IdReference>();
         }
         this.policySetIdentifiers.add(policyIdentifier);
     }
@@ -360,7 +360,7 @@ public class StdMutableResult implements Result {
     public void addPolicySetIdentifiers(Collection<IdReference> policyIdentifierList) {
         if (policyIdentifierList != null && policyIdentifierList.size() > 0) {
             if (this.policySetIdentifiers == EMPTY_REFERENCES) {
-                this.policySetIdentifiers	= new ArrayList<IdReference>();
+                this.policySetIdentifiers       = new ArrayList<IdReference>();
             }
             this.policySetIdentifiers.addAll(policyIdentifierList);
         }
@@ -373,7 +373,7 @@ public class StdMutableResult implements Result {
      * @param policyIdentifierList the <code>Collection</code> of <code>IdReference</code>s representing PolicySetIds to set in this <code>StdMutableResult</code>
      */
     public void setPolicySetIdentifiers(Collection<IdReference> policyIdentifierList) {
-        this.policySetIdentifiers	= EMPTY_REFERENCES;
+        this.policySetIdentifiers       = EMPTY_REFERENCES;
         this.addPolicySetIdentifiers(policyIdentifierList);
     }
 
@@ -384,7 +384,7 @@ public class StdMutableResult implements Result {
         } else if (obj == null || !(obj instanceof Result)) {
             return false;
         } else {
-            Result objResult	= (Result)obj;
+            Result objResult    = (Result)obj;
             return ObjUtil.equalsAllowNull(this.getDecision(), objResult.getDecision()) &&
                    ObjUtil.equalsAllowNull(this.getStatus(), objResult.getStatus()) &&
                    ListUtil.equalsAllowNulls(this.getObligations(), objResult.getObligations()) &&
@@ -397,12 +397,12 @@ public class StdMutableResult implements Result {
 
     @Override
     public String toString() {
-        StringBuilder	stringBuilder	= new StringBuilder("{");
-        boolean			needsComma		= false;
-        Object			toDump;
+        StringBuilder   stringBuilder   = new StringBuilder("{");
+        boolean                 needsComma              = false;
+        Object                  toDump;
         if ((toDump = this.getDecision()) != null) {
             stringBuilder.append("decision=" + toDump.toString());
-            needsComma	= true;
+            needsComma  = true;
         }
         if ((toDump = this.getStatus()) != null) {
             if (needsComma) {
@@ -410,7 +410,7 @@ public class StdMutableResult implements Result {
             }
             stringBuilder.append("status=");
             stringBuilder.append(toDump.toString());
-            needsComma	= true;
+            needsComma  = true;
         }
         Collection<?> listToDump;
         if ((listToDump = this.obligations).size() > 0) {
@@ -419,7 +419,7 @@ public class StdMutableResult implements Result {
             }
             stringBuilder.append("obligations=");
             stringBuilder.append(ListUtil.toString(listToDump));
-            needsComma	= true;
+            needsComma  = true;
         }
         if ((listToDump = this.associatedAdvice).size() > 0) {
             if (needsComma) {
@@ -427,7 +427,7 @@ public class StdMutableResult implements Result {
             }
             stringBuilder.append("associatedAdvice=");
             stringBuilder.append(ListUtil.toString(listToDump));
-            needsComma	= true;
+            needsComma  = true;
         }
         if ((listToDump = this.attributes).size() > 0) {
             if (needsComma) {
@@ -435,7 +435,7 @@ public class StdMutableResult implements Result {
             }
             stringBuilder.append("attributeCategories=");
             stringBuilder.append(ListUtil.toString(listToDump));
-            needsComma	= true;
+            needsComma  = true;
         }
         if ((listToDump = this.policyIdentifiers).size() > 0) {
             if (needsComma) {
@@ -443,7 +443,7 @@ public class StdMutableResult implements Result {
             }
             stringBuilder.append("policyIdentifiers=");
             stringBuilder.append(ListUtil.toString(listToDump));
-            needsComma	= true;
+            needsComma  = true;
         }
         if ((listToDump = this.policySetIdentifiers).size() > 0) {
             if (needsComma) {
@@ -451,7 +451,7 @@ public class StdMutableResult implements Result {
             }
             stringBuilder.append("policySetIdentifiers=");
             stringBuilder.append(ListUtil.toString(listToDump));
-            needsComma	= true;
+            needsComma  = true;
         }
         stringBuilder.append("}");
         return stringBuilder.toString();

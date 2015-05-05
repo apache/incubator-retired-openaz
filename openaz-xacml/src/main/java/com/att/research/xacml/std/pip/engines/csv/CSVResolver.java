@@ -69,7 +69,7 @@ public interface CSVResolver extends ConfigurableResolver {
      * @return
      * @throws com.att.research.xacml.api.pip.PIPException
      */
-    Map<Integer, List<AttributeValue<?>>>	getColumnParameterValues(PIPEngine engine, PIPRequest request, PIPFinder finder) throws PIPException;
+    Map<Integer, List<AttributeValue<?>>>       getColumnParameterValues(PIPEngine engine, PIPRequest request, PIPFinder finder) throws PIPException;
 
     /**
      * Parses the CSV line and returns array of attributes.
@@ -78,6 +78,6 @@ public interface CSVResolver extends ConfigurableResolver {
      * @return list of attributes
      * @throws com.att.research.xacml.api.pip.PIPException
      */
-    List<Attribute>	decodeResult(String[] line)  throws PIPException;
+    List<Attribute>     decodeResult(String[] line)  throws PIPException;
 
 }

@@ -127,15 +127,15 @@ import com.fasterxml.jackson.databind.SerializationFeature;
  *
  */
 public class JSONResponse {
-    private static final Log logger	= LogFactory.getLog(JSONResponse.class);
+    private static final Log logger     = LogFactory.getLog(JSONResponse.class);
 
 
     /*
      * Map of Data Type Identifiers used to map the Identifier into the shorthand name of that DataType.
      * This is loaded the first time a Request is processed.
      * Loading is done using Reflection.
-     * 	key = full name of the Identifier as a String
-     * 	value = shorthand version of that name
+     *  key = full name of the Identifier as a String
+     *  value = shorthand version of that name
      *
      * (Note difference in structure and usage from JSON Request.)
      */
@@ -148,8 +148,8 @@ public class JSONResponse {
      * This is loaded the first time a Request is processed.
      * Loading is done using Reflection.
      * The map contains keys for both the short form and the long form of each DataType.  For example both of the following are in the table:
-     * 		http://www.w3.org/2001/XMLSchema#base64Binary = http://www.w3.org/2001/XMLSchema#base64Binary
-     * 										 base64Binary = http://www.w3.org/2001/XMLSchema#base64Binary
+     *          http://www.w3.org/2001/XMLSchema#base64Binary = http://www.w3.org/2001/XMLSchema#base64Binary
+     *                                                                           base64Binary = http://www.w3.org/2001/XMLSchema#base64Binary
      *
      * (Note difference in structure and usage from JSONResponse.)
      */
@@ -180,7 +180,7 @@ public class JSONResponse {
      * This is done once the first time a Request is processed.
      */
     private static void initOutputShorthandMap() throws JSONStructureException {
-        Field[] declaredFields	= XACML3.class.getDeclaredFields();
+        Field[] declaredFields  = XACML3.class.getDeclaredFields();
         outputShorthandMap = new HashMap<String, String>();
         for (Field field : declaredFields) {
             if (Modifier.isStatic(field.getModifiers()) &&
@@ -219,7 +219,7 @@ public class JSONResponse {
      * This is done once the first time a Request is processed.
      */
     private static void initShorthandMap() throws JSONStructureException {
-        Field[] declaredFields	= XACML3.class.getDeclaredFields();
+        Field[] declaredFields  = XACML3.class.getDeclaredFields();
         shorthandMap = new HashMap<String, Identifier>();
         for (Field field : declaredFields) {
             if (Modifier.isStatic(field.getModifiers()) &&
@@ -757,9 +757,9 @@ public class JSONResponse {
                     if (detailObject != null) {
                         StdMutableStatusDetail statusDetail = new StdMutableStatusDetail();
 //TODO - PROBLEM: The JSON spec says only that the status Detail is raw XML rather than a JSON object.  Therefore we cannot discriminate what is inside the string we just got.
-//TODO			Fortunately there is only one thing it can be: a MissingAttributeDetail.
-//TODO			Unfortunately the MissingAttributeDetail contains multiple optional elements including 0 or more values, which makes it non-trivial to parse the XML representation.
-//TODO			Unfortunately the JSON spec does not say how the XML is formatted (with/without whitespace, etc).
+//TODO                  Fortunately there is only one thing it can be: a MissingAttributeDetail.
+//TODO                  Unfortunately the MissingAttributeDetail contains multiple optional elements including 0 or more values, which makes it non-trivial to parse the XML representation.
+//TODO                  Unfortunately the JSON spec does not say how the XML is formatted (with/without whitespace, etc).
                         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
                         dbf.setNamespaceAware(true);
                         DocumentBuilder db;
@@ -784,7 +784,7 @@ public class JSONResponse {
                         // need to add a root element so that the MissingAttributeDetail elements are findable
                         unescapedContent = "<ROOT>" + unescapedContent + "</ROOT>";
 
-//				    	logger.info("Escaped content: \n" + unescapedContent);
+//                                      logger.info("Escaped content: \n" + unescapedContent);
                         try (InputStream bis = new ByteArrayInputStream(unescapedContent.getBytes("UTF-8"))) {
                             doc = db.parse(bis);
                         } catch (Exception ex) {
@@ -794,9 +794,9 @@ public class JSONResponse {
 
                         //ASSUME that this can only be an array of MissingAttributeDetail.  Example:
                         // <MissingAttributeDetail
-                        //			Category="urn:oasis:names:tc:xacml:3.0:attribute-category:resource"
-                        //			AttributeId="urn:att:xacml:resource:application:motsid"
-                        //			DataType="http://www.w3.org/2001/XMLSchema#integer">
+                        //                      Category="urn:oasis:names:tc:xacml:3.0:attribute-category:resource"
+                        //                      AttributeId="urn:att:xacml:resource:application:motsid"
+                        //                      DataType="http://www.w3.org/2001/XMLSchema#integer">
                         //      <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#integer">56</AttributeValue>
                         // </MissingAttributeDetail>"
                         Element docElement = doc.getDocumentElement();
@@ -896,7 +896,7 @@ public class JSONResponse {
 
                 // may have Category (a.k.a Attributes)
 //TODO - POSSIBLE NAME CHANGE - XML core calls this "Attributes", but name in JSON standard is questionable.
-//TODO 		The variables here are named "Attributes" because that is the internal name in our objects (based on the Core spec).
+//TODO          The variables here are named "Attributes" because that is the internal name in our objects (based on the Core spec).
                 Object attributesObject = resultMap.remove("Category");
                 if (attributesObject != null) {
                     if ( ! (attributesObject instanceof List)) {
@@ -938,10 +938,10 @@ public class JSONResponse {
 
                                 // optional IncludeInResult
 //TODO - Odd situation!!: We are reading a string representing a Result which includes Attributes.
-//TODO		In this case, what does it mean if "IncludeInResult=false"?
-//TODO		The Attribute is obviously included in this Result because it is in the file/string we are reading.
-//TODO		Our choice: Always include the Attribute.  If the IncludeInResult is included in the input, set it's value in the object as directed.
-//TODO		This may cause mismatches between a Result read in and a new text generated from the internal Result object.
+//TODO          In this case, what does it mean if "IncludeInResult=false"?
+//TODO          The Attribute is obviously included in this Result because it is in the file/string we are reading.
+//TODO          Our choice: Always include the Attribute.  If the IncludeInResult is included in the input, set it's value in the object as directed.
+//TODO          This may cause mismatches between a Result read in and a new text generated from the internal Result object.
                                 Object includeInResultObject = attributeMap.remove("IncludeInResult");
                                 // the fact that the attribute is in the input means this should be true
                                 stdMutableAttribute.setIncludeInResults(true);
@@ -1069,9 +1069,9 @@ public class JSONResponse {
 
 
         // all done
-//		return new StdRequest(stdMutableRequest);
+//              return new StdRequest(stdMutableRequest);
 
-//		throw new JSONStructureException("JSONResponse load string and load from file not implemented");
+//              throw new JSONStructureException("JSONResponse load string and load from file not implemented");
     }
 
 
@@ -1217,8 +1217,8 @@ public class JSONResponse {
                 /*
                  * StatusDetail - special information
                  * The XACML 3.0 core spec says that the StatusDetail field depends on the StatusCode:
-                 * 		StatusCode == missing-attribute  => may have StatusDetail which is a list of MissingAttributeDetail structures
-                 * 		StatusCode == anything else  => no StatusDetail allowed
+                 *              StatusCode == missing-attribute  => may have StatusDetail which is a list of MissingAttributeDetail structures
+                 *              StatusCode == anything else  => no StatusDetail allowed
                  * This greatly simplifies handling the StatusDetail because the MissingAttributeDetail structure is well-defined.
                  * Thus the statement in the specs (both core and RESTful/JSON) that this can contain arbitrary XML is not correct.
                  */
@@ -1430,11 +1430,11 @@ public class JSONResponse {
 // The JSON and XML spec both imply that we can return Content here, but they do not say so explicitly and give no indication of when to include/not-include it
 // Also we should be able to return the xml:Id associated with this attribute, but that does not seem to be available in the AttributeCategory object
 // Note: Our choice is to not include these.
-//		There is a question of when they would be included (since IncludeInResult is only on the individual Attribute (singular) objects, not the Attributes),
-//		and the Content can be quite lengthy and should not be included by default.
-//		We could potentially return these only when at least one of the Attribute components has IncludeInResult=true.
-//		However the focus seems to be on returning the individual Attribute objects so the caller can see what the response is referring to, and the Attributes (plural)
-//		container is just re-used from the Request object without understanding that the Result should be different or explicitly stating in the Spec what to do with those fields.
+//              There is a question of when they would be included (since IncludeInResult is only on the individual Attribute (singular) objects, not the Attributes),
+//              and the Content can be quite lengthy and should not be included by default.
+//              We could potentially return these only when at least one of the Attribute components has IncludeInResult=true.
+//              However the focus seems to be on returning the individual Attribute objects so the caller can see what the response is referring to, and the Attributes (plural)
+//              container is just re-used from the Request object without understanding that the Result should be different or explicitly stating in the Spec what to do with those fields.
 
                     Collection<Attribute> attrs = entity.getAttributes();
                     if (attrs != null) {
@@ -1450,7 +1450,7 @@ public class JSONResponse {
 
                             HashMap<String, Object> theAttribute = new HashMap<String, Object>();
 //TODO - no need to put this in Result because, by definition, if it is in the result then this must be true?  Since it is optional we do not want to add to length of JSON output
-//							theAttribute.put("IncludeInResult", true);
+//                                                      theAttribute.put("IncludeInResult", true);
 
                             if (attribute.getAttributeId() == null) {
                                 throw new JSONStructureException("Attribute must have AttributeId");
@@ -1511,7 +1511,7 @@ public class JSONResponse {
                                                 // That DataType would have been the same for each one (e.g. String) so there should never be a case where
                                                 // there are multiple different types here.
                                                 // NOTE THAT IF THIS CHANGES and we want to allow mixed types, just replace this throws with
-                                                //			mixedTypes = true;
+                                                //                      mixedTypes = true;
                                                 throw new JSONStructureException("Mixed DataTypes in Attribute values, '" + attrValue.getDataTypeId().stringValue() +
                                                                                  "' in list of '" + inferredDataTypeId.stringValue() + "'");
                                             }
@@ -1554,8 +1554,8 @@ public class JSONResponse {
             // PolicyIdentifier
             //
             // (These seem to be handled differently from the XML version where multiple PolicyIdRef and PolicySetIdRef items can be jumbled together in any order.
-            //	In the XACML JSON spec (5.2.10) it says that the PolicyIdReference and PolicySetIdReference are separate groups
-            //	where each group is a list of IdReferences.)
+            //  In the XACML JSON spec (5.2.10) it says that the PolicyIdReference and PolicySetIdReference are separate groups
+            //  where each group is a list of IdReferences.)
             //
             //
 
@@ -1621,7 +1621,7 @@ public class JSONResponse {
         //
         ObjectMapper mapper = new ObjectMapper().setVisibility(PropertyAccessor.FIELD, Visibility.ANY);
         mapper.configure(SerializationFeature.INDENT_OUTPUT, prettyPrint);
-        try (		OutputStreamWriter osw = new OutputStreamWriter(outputStream)) {
+        try (           OutputStreamWriter osw = new OutputStreamWriter(outputStream)) {
             json = mapper.writeValueAsString(theWholeResponse);
 
             osw.write(json);

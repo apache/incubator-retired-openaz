@@ -51,7 +51,7 @@ import com.att.research.xacmlatt.pdp.eval.EvaluationException;
  *
  */
 public class AdviceExpression extends PolicyComponent {
-    private List<AttributeAssignmentExpression>	listAttributeAssignmentExpressions	= new ArrayList<AttributeAssignmentExpression>();
+    private List<AttributeAssignmentExpression> listAttributeAssignmentExpressions      = new ArrayList<AttributeAssignmentExpression>();
     private Identifier adviceId;
     private RuleEffect appliesTo;
 
@@ -75,8 +75,8 @@ public class AdviceExpression extends PolicyComponent {
     }
 
     public AdviceExpression(Identifier adviceIdIn, RuleEffect ruleEffectIn, Collection<AttributeAssignmentExpression> attributeAssignmentExpressions) {
-        this.adviceId	= adviceIdIn;
-        this.appliesTo	= ruleEffectIn;
+        this.adviceId   = adviceIdIn;
+        this.appliesTo  = ruleEffectIn;
         if (attributeAssignmentExpressions != null) {
             this.listAttributeAssignmentExpressions.addAll(attributeAssignmentExpressions);
         }
@@ -87,7 +87,7 @@ public class AdviceExpression extends PolicyComponent {
     }
 
     public void setAdviceId(Identifier identifier) {
-        this.adviceId	= identifier;
+        this.adviceId   = identifier;
     }
 
     public RuleEffect getAppliesTo() {
@@ -95,7 +95,7 @@ public class AdviceExpression extends PolicyComponent {
     }
 
     public void setAppliesTo(RuleEffect ruleEffect) {
-        this.appliesTo	= ruleEffect;
+        this.appliesTo  = ruleEffect;
     }
 
     public Iterator<AttributeAssignmentExpression> getAttributeAssignmentExpressions() {
@@ -131,13 +131,13 @@ public class AdviceExpression extends PolicyComponent {
             return null;
         }
 
-        List<AttributeAssignment> attributeAssignments	= new ArrayList<AttributeAssignment>();
-        Iterator<AttributeAssignmentExpression> iterAttributeAssignmentExpressions	= this.getAttributeAssignmentExpressions();
+        List<AttributeAssignment> attributeAssignments  = new ArrayList<AttributeAssignment>();
+        Iterator<AttributeAssignmentExpression> iterAttributeAssignmentExpressions      = this.getAttributeAssignmentExpressions();
         if (iterAttributeAssignmentExpressions != null) {
             while (iterAttributeAssignmentExpressions.hasNext()) {
-                AttributeAssignmentResult attributeAssignmentResult	= iterAttributeAssignmentExpressions.next().evaluate(evaluationContext, policyDefaults);
+                AttributeAssignmentResult attributeAssignmentResult     = iterAttributeAssignmentExpressions.next().evaluate(evaluationContext, policyDefaults);
                 if (attributeAssignmentResult.isOk() && attributeAssignmentResult.getNumAttributeAssignments() > 0) {
-                    Iterator<AttributeAssignment> iterAttributeAssignments	= attributeAssignmentResult.getAttributeAssignments();
+                    Iterator<AttributeAssignment> iterAttributeAssignments      = attributeAssignmentResult.getAttributeAssignments();
                     while (iterAttributeAssignments.hasNext()) {
                         attributeAssignments.add(iterAttributeAssignments.next());
                     }
@@ -159,16 +159,16 @@ public class AdviceExpression extends PolicyComponent {
      * @throws com.att.research.xacmlatt.pdp.eval.EvaluationException
      */
     public static List<Advice> evaluate(EvaluationContext evaluationContext, PolicyDefaults policyDefaults, Decision decision, Collection<AdviceExpression> listAdviceExpressions) throws EvaluationException {
-        List<Advice> listAdvices	= new ArrayList<Advice>();
-        Iterator<AdviceExpression> iterAdviceExpressions	= listAdviceExpressions.iterator();
+        List<Advice> listAdvices        = new ArrayList<Advice>();
+        Iterator<AdviceExpression> iterAdviceExpressions        = listAdviceExpressions.iterator();
         while (iterAdviceExpressions.hasNext()) {
-            AdviceExpression adviceExpression	= iterAdviceExpressions.next();
+            AdviceExpression adviceExpression   = iterAdviceExpressions.next();
             adviceExpression.validateComponent();
             if ( ! adviceExpression.isOk()) {
                 throw new EvaluationException(adviceExpression.getStatusMessage());
             }
             if (decision == null || adviceExpression.getAppliesTo().getDecision().equals(decision)) {
-                Advice advice	= adviceExpression.evaluate(evaluationContext, policyDefaults);
+                Advice advice   = adviceExpression.evaluate(evaluationContext, policyDefaults);
                 if (advice != null) {
                     listAdvices.add(advice);
                 }
@@ -193,7 +193,7 @@ public class AdviceExpression extends PolicyComponent {
 
     @Override
     public String toString() {
-        StringBuilder stringBuilder	= new StringBuilder("{");
+        StringBuilder stringBuilder     = new StringBuilder("{");
 
         stringBuilder.append("super=");
         stringBuilder.append(super.toString());

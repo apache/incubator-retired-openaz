@@ -68,9 +68,9 @@ import com.att.research.xacmlatt.pdp.policy.FunctionArgument;
  * In the first implementation of XACML we had separate files for each XACML Function.
  * This release combines multiple Functions in fewer files to minimize code duplication.
  * This file supports the following XACML codes:
- * 		xpath-node-count
- * 		xpath-node-equals
- * 		xpath-node-match
+ *              xpath-node-count
+ *              xpath-node-equals
+ *              xpath-node-match
  *
  *
  * @param <O> the java class for the data type of the function Output
@@ -91,7 +91,7 @@ public class FunctionDefinitionXPath<O> extends FunctionDefinitionHomogeneousSim
 
 
     // result variables used by all functions
-    AttributeValue<String>	result;
+    AttributeValue<String>      result;
 
 
     /**
@@ -113,8 +113,8 @@ public class FunctionDefinitionXPath<O> extends FunctionDefinitionHomogeneousSim
 
         List<NodeList> nodeListList = new ArrayList<NodeList>();
 
-        List<XPathExpressionWrapper> convertedArguments	= new ArrayList<XPathExpressionWrapper>();
-        Status status				= this.validateArguments(arguments, convertedArguments);
+        List<XPathExpressionWrapper> convertedArguments = new ArrayList<XPathExpressionWrapper>();
+        Status status                           = this.validateArguments(arguments, convertedArguments);
 
         /*
          * If the function arguments are not correct, just return an error status immediately
@@ -140,7 +140,7 @@ public class FunctionDefinitionXPath<O> extends FunctionDefinitionHomogeneousSim
             if (functionArgument.isBag()) {
                 return ExpressionResult.newError(new StdStatus(StdStatusCode.STATUS_CODE_PROCESSING_ERROR, this.getShortFunctionId() + " Got bag at index " + i));
             }
-            AttributeValue<?> attributeValueFunctionArgument	= functionArgument.getValue();
+            AttributeValue<?> attributeValueFunctionArgument    = functionArgument.getValue();
             if (attributeValueFunctionArgument == null) {
                 return ExpressionResult.newError(new StdStatus(StdStatusCode.STATUS_CODE_PROCESSING_ERROR, this.getShortFunctionId() + " Got null value at index " + i));
             }

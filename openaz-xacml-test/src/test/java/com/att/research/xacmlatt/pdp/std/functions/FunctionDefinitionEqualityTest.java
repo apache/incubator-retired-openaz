@@ -69,15 +69,15 @@ import com.att.research.xacmlatt.pdp.std.StdFunctions;
  * In the first implementation of XACML we had separate files for each XACML Function.
  * This release combines multiple Functions in fewer files to minimize code duplication.
  * This file supports the following XACML codes:
- * 		string-equal
- * 		boolean-equal
- * 		integer-equal
- * 		double-equal
- * 		date-equal
- * 		time-equal
- * 		dateTime-equal
- * 		dayTimeDuration-equal
- * 		yearMonthDuration-equal
+ *              string-equal
+ *              boolean-equal
+ *              integer-equal
+ *              double-equal
+ *              date-equal
+ *              time-equal
+ *              dateTime-equal
+ *              dayTimeDuration-equal
+ *              yearMonthDuration-equal
  *
  * Each of these is put into a separate test method just to keep things organized.
  *

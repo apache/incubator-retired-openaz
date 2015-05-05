@@ -44,18 +44,18 @@ import com.att.research.xacml.api.SemanticString;
  *
  */
 public class ISO8601Date implements IDateTime<ISO8601Date>, Comparable<ISO8601Date>, SemanticString {
-    private ISO8601DateTime	dateTime;
+    private ISO8601DateTime     dateTime;
 
     protected ISO8601Date(ISO8601DateTime iso8601DateTime) {
-        this.dateTime	= iso8601DateTime;
+        this.dateTime   = iso8601DateTime;
     }
 
     public ISO8601Date(String timeZone, int yearIn, int monthIn, int dayIn) {
-        this.dateTime	= new ISO8601DateTime(timeZone, yearIn, monthIn, dayIn, 0, 0, 0, 0);
+        this.dateTime   = new ISO8601DateTime(timeZone, yearIn, monthIn, dayIn, 0, 0, 0, 0);
     }
 
     public ISO8601Date(TimeZone timeZone, int yearIn, int monthIn, int dayIn) {
-        this.dateTime	= new ISO8601DateTime(timeZone, yearIn, monthIn, dayIn, 0, 0, 0, 0);
+        this.dateTime   = new ISO8601DateTime(timeZone, yearIn, monthIn, dayIn, 0, 0, 0, 0);
     }
 
     public ISO8601Date(ISO8601TimeZone timeZone, int yearIn, int monthIn, int dayIn) {
@@ -105,7 +105,7 @@ public class ISO8601Date implements IDateTime<ISO8601Date>, Comparable<ISO8601Da
         } else if (obj == null || !(obj instanceof ISO8601Date)) {
             return false;
         } else {
-            ISO8601Date iso8601Date	= (ISO8601Date)obj;
+            ISO8601Date iso8601Date     = (ISO8601Date)obj;
             return this.dateTime.equals(iso8601Date.dateTime);
         }
     }
@@ -117,7 +117,7 @@ public class ISO8601Date implements IDateTime<ISO8601Date>, Comparable<ISO8601Da
      * @return the <code>String</code> representation of the ISO8601 date represented by this <code>ISO8601Date</code> object.
      */
     public String stringValue(boolean includeTimeZone) {
-        StringBuilder	stringBuilder	= new StringBuilder();
+        StringBuilder   stringBuilder   = new StringBuilder();
         stringBuilder.append(String.format("%d-%02d-%02d", this.dateTime.getYear(), this.dateTime.getMonth(), this.dateTime.getDay()));
         if (includeTimeZone && this.dateTime.getHasTimeZone()) {
             stringBuilder.append(this.dateTime.getTimeZone());
@@ -143,67 +143,67 @@ public class ISO8601Date implements IDateTime<ISO8601Date>, Comparable<ISO8601Da
     public static ISO8601Date fromCalendar(Calendar calendar) {
         int year;
         if (calendar.get(Calendar.ERA) == GregorianCalendar.BC) {
-            year	= 1 - calendar.get(Calendar.YEAR);
+            year        = 1 - calendar.get(Calendar.YEAR);
         } else {
-            year	= calendar.get(Calendar.YEAR);
+            year        = calendar.get(Calendar.YEAR);
         }
         return new ISO8601Date(calendar.getTimeZone(), year, calendar.get(Calendar.MONTH)+1, calendar.get(Calendar.DAY_OF_MONTH));
     }
 
     public static ISO8601Date fromDate(Date date) {
-        Calendar cal	= Calendar.getInstance();
+        Calendar cal    = Calendar.getInstance();
         cal.setTime(date);
         return ISO8601Date.fromCalendar(cal);
     }
 
     public static ISO8601Date fromISO8601DateString(String strDate) throws ParseException {
-        int	startPos	= ParseUtils.nextNonWhite(strDate, 0);
+        int     startPos        = ParseUtils.nextNonWhite(strDate, 0);
 
-        ParseUtils.ParseValue<Integer> parseValue	= ParseUtils.getSignedValue(strDate, startPos);
+        ParseUtils.ParseValue<Integer> parseValue       = ParseUtils.getSignedValue(strDate, startPos);
         if (parseValue == null) {
             throw new ParseException("Invalid year", startPos);
         }
-        int year		= parseValue.getValue();
+        int year                = parseValue.getValue();
         if (parseValue.getNextPos() < 4) {
             throw new ParseException("Invalid year (must be at least 4 digits)", startPos);
         }
-        startPos		+= parseValue.getNextPos();
+        startPos                += parseValue.getNextPos();
         if (startPos >= strDate.length() || strDate.charAt(startPos) != '-') {
             throw new ParseException("Invalid date", startPos);
         }
         startPos++;
 
-        int month		= ParseUtils.getTwoDigitValue(strDate,  startPos);
+        int month               = ParseUtils.getTwoDigitValue(strDate,  startPos);
         if (month < 0 || month > 12) {
             throw new ParseException("Invalid month", startPos);
         }
-        startPos		+= 2;
+        startPos                += 2;
         if (startPos >= strDate.length() || strDate.charAt(startPos) != '-') {
             throw new ParseException("Invalid date", startPos);
         }
         startPos++;
 
-        int day			= ParseUtils.getTwoDigitValue(strDate, startPos);
+        int day                 = ParseUtils.getTwoDigitValue(strDate, startPos);
         if (day < 1 || day > 31) {
             throw new ParseException("Invalid day", startPos);
         }
-        startPos		+= 2;
+        startPos                += 2;
 
         /*
          * Now determine if there is a timezone
          */
-        String timezone		= null;
+        String timezone         = null;
 
         if (startPos < strDate.length()) {
             switch(strDate.charAt(startPos)) {
             case 'Z':
-                timezone	= "GMT";
+                timezone        = "GMT";
                 startPos++;
                 break;
             case '-':
             case '+':
                 if (startPos+5 < strDate.length()) {
-                    timezone	= "GMT" + strDate.substring(startPos, startPos+6);
+                    timezone    = "GMT" + strDate.substring(startPos, startPos+6);
                 } else {
                     throw new ParseException("Invalid timezone", startPos);
                 }

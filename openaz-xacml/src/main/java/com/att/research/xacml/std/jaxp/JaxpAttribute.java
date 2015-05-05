@@ -62,9 +62,9 @@ public class JaxpAttribute extends StdMutableAttribute {
         } else if (attributeType.getAttributeValue() == null) {
             throw new IllegalArgumentException("Null attributeValue in AttributeType");
         }
-        Identifier						attributeId				= new IdentifierImpl(attributeType.getAttributeId());
-        List<AttributeValue<?>>			values					= new ArrayList<AttributeValue<?>>();
-        Iterator<AttributeValueType>	iterAttributeValueTypes	= attributeType.getAttributeValue().iterator();
+        Identifier                                              attributeId                             = new IdentifierImpl(attributeType.getAttributeId());
+        List<AttributeValue<?>>                 values                                  = new ArrayList<AttributeValue<?>>();
+        Iterator<AttributeValueType>    iterAttributeValueTypes = attributeType.getAttributeValue().iterator();
         while (iterAttributeValueTypes.hasNext()) {
             values.add(JaxpAttributeValue.newInstance(iterAttributeValueTypes.next()));
         }

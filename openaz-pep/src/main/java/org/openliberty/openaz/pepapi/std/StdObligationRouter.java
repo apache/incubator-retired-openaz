@@ -63,8 +63,8 @@ public final class StdObligationRouter implements ObligationRouter {
     /**
      * Handles runtime obligations and routes to appropriate policy enforcement points as required.
      *
-     * @param obligationMap	a <code>Map</code> of <code>Obligation</code>s keyed by Obligation ID.
-     * @throws org.openliberty.openaz.pepapi.UnhandleableObligationException	if an Obligation cannot be handled/routed.
+     * @param obligationMap     a <code>Map</code> of <code>Obligation</code>s keyed by Obligation ID.
+     * @throws org.openliberty.openaz.pepapi.UnhandleableObligationException    if an Obligation cannot be handled/routed.
      */
     @Override
     public void routeObligations(Map<String, Obligation> obligationMap) {

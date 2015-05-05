@@ -75,16 +75,16 @@ public class FunctionDefinitionXPathTest {
                              + " xmlns=\"urn:oasis:names:tc:xacml:3.0:core:schema:wd-17\""
                              + " xmlns:md=\"http://www.medico.com/schemas/record\""
                              + " xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">"
-                             + "	<Attributes Category=\"urn:oasis:names:tc:xacml:1.0:subject-category:access-subject\">"
-                             + "		<Attribute IncludeInResult=\"false\" AttributeId=\"urn:oasis:names:tc:xacml:1.0:subject:subject-id\">"
-                             + "			<AttributeValue DataType=\"http://www.w3.org/2001/XMLSchema#string\">Julius Hibbert</AttributeValue>"
-                             + "		</Attribute>"
-                             + "		<Attribute IncludeInResult=\"false\" AttributeId=\"urn:oasis:names:tc:xacml:2.0:conformance-test:test-attr\">"
-                             + "			<AttributeValue DataType=\"http://www.w3.org/2001/XMLSchema#string\">   This  is IT!  </AttributeValue>"
-                             + "		</Attribute>"
-                             + "		<Attribute IncludeInResult=\"false\" AttributeId=\"urn:oasis:names:tc:xacml:2.0:conformance-test:test-attr\">"
-                             + "			<AttributeValue DataType=\"http://www.w3.org/2001/XMLSchema#string\">   This  is IT!  </AttributeValue>"
-                             + "		</Attribute>"
+                             + "        <Attributes Category=\"urn:oasis:names:tc:xacml:1.0:subject-category:access-subject\">"
+                             + "                <Attribute IncludeInResult=\"false\" AttributeId=\"urn:oasis:names:tc:xacml:1.0:subject:subject-id\">"
+                             + "                        <AttributeValue DataType=\"http://www.w3.org/2001/XMLSchema#string\">Julius Hibbert</AttributeValue>"
+                             + "                </Attribute>"
+                             + "                <Attribute IncludeInResult=\"false\" AttributeId=\"urn:oasis:names:tc:xacml:2.0:conformance-test:test-attr\">"
+                             + "                        <AttributeValue DataType=\"http://www.w3.org/2001/XMLSchema#string\">   This  is IT!  </AttributeValue>"
+                             + "                </Attribute>"
+                             + "                <Attribute IncludeInResult=\"false\" AttributeId=\"urn:oasis:names:tc:xacml:2.0:conformance-test:test-attr\">"
+                             + "                        <AttributeValue DataType=\"http://www.w3.org/2001/XMLSchema#string\">   This  is IT!  </AttributeValue>"
+                             + "                </Attribute>"
                              + "</Attributes>";
 
     String reqStrResourceStart =   "<Attributes Category=\"urn:oasis:names:tc:xacml:3.0:attribute-category:resource\">";
@@ -125,7 +125,7 @@ public class FunctionDefinitionXPathTest {
         "<md:malignancy type=\"yes\"/>" +
         "</Content>";
     String reqStrResourceEnd = "    <Attribute IncludeInResult=\"false\" AttributeId=\"urn:oasis:names:tc:xacml:1.0:resource:resource-id\">"
-                               + "		<AttributeValue DataType=\"http://www.w3.org/2001/XMLSchema#anyURI\">http://medico.com/record/patient/BartSimpson</AttributeValue>"
+                               + "              <AttributeValue DataType=\"http://www.w3.org/2001/XMLSchema#anyURI\">http://medico.com/record/patient/BartSimpson</AttributeValue>"
                                + "  </Attribute>"
                                + "</Attributes> ";
     String reqStrActionStart =   "<Attributes Category=\"urn:oasis:names:tc:xacml:3.0:attribute-category:action\">";
@@ -1122,7 +1122,7 @@ public class FunctionDefinitionXPathTest {
     //
     // DEPRECATED versions that use String arguments rather than XPATHEXPRESSIONs
     // are NOT supported due to ambiguity in the semantics between 2.0 (<Request> is root and has only one <Content> in resources)
-    //	and 3.0 (<Content> is root and there are multiple <Content> sections in any category)
+    //  and 3.0 (<Content> is root and there are multiple <Content> sections in any category)
     //
 
 

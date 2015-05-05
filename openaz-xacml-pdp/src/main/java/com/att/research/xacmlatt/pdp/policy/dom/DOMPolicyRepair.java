@@ -52,22 +52,22 @@ import com.att.research.xacml.std.dom.DOMUtil;
  *
  */
 public class DOMPolicyRepair {
-    private static final String	DEFAULT_VERSION	= "1.0";
+    private static final String DEFAULT_VERSION = "1.0";
 
     public static void main(String[] args) {
-        InputStream	inputStream		= System.in;
-        OutputStream outputStream	= System.out;
+        InputStream     inputStream             = System.in;
+        OutputStream outputStream       = System.out;
 
         for (int i = 0 ; i < args.length ; ) {
             if (args[i].equals("-i")) {
                 if (i+1 < args.length) {
                     try {
-                        inputStream	= new FileInputStream(args[i+1]);
+                        inputStream     = new FileInputStream(args[i+1]);
                     } catch (IOException ex) {
                         System.err.println("IOException opening \"" + args[i+1] + "\" for reading.");
                         System.exit(1);
                     }
-                    i	+= 2;
+                    i   += 2;
                 } else {
                     i++;
                 }
@@ -80,7 +80,7 @@ public class DOMPolicyRepair {
                         ex.printStackTrace(System.err);
                         System.exit(1);;
                     }
-                    i	+= 2;
+                    i   += 2;
                 } else {
                     i++;
                 }
@@ -93,12 +93,12 @@ public class DOMPolicyRepair {
         /*
          * Get the XML Parser for the input file
          */
-        DocumentBuilderFactory documentBuilderFactory	= DocumentBuilderFactory.newInstance();
+        DocumentBuilderFactory documentBuilderFactory   = DocumentBuilderFactory.newInstance();
         documentBuilderFactory.setNamespaceAware(true);
         try {
-            DocumentBuilder documentBuilder				= documentBuilderFactory.newDocumentBuilder();
-            Document documentInput						= documentBuilder.parse(inputStream);
-            Element elementRoot							= DOMUtil.getFirstChildElement(documentInput);
+            DocumentBuilder documentBuilder                             = documentBuilderFactory.newDocumentBuilder();
+            Document documentInput                                              = documentBuilder.parse(inputStream);
+            Element elementRoot                                                 = DOMUtil.getFirstChildElement(documentInput);
             if (elementRoot == null) {
                 System.err.println("No root element");
                 System.exit(1);
@@ -110,7 +110,7 @@ public class DOMPolicyRepair {
             /*
              * Make sure there is a Version attribute
              */
-            Node nodeVersion	= DOMUtil.getAttribute(elementRoot, XACML3.ATTRIBUTE_VERSION);
+            Node nodeVersion    = DOMUtil.getAttribute(elementRoot, XACML3.ATTRIBUTE_VERSION);
             if (nodeVersion == null) {
                 System.out.println("Adding Version attribute with value \"" + DEFAULT_VERSION + "\"");
                 elementRoot.setAttribute(XACML3.ATTRIBUTE_VERSION, DEFAULT_VERSION);
@@ -119,7 +119,7 @@ public class DOMPolicyRepair {
             /*
              * Write out the updated document
              */
-            String newDocument	= DOMUtil.toString(documentInput);
+            String newDocument  = DOMUtil.toString(documentInput);
             outputStream.write(newDocument.getBytes());
         } catch (Exception ex) {
             ex.printStackTrace(System.err);

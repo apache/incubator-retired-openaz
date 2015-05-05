@@ -45,7 +45,7 @@ import com.att.research.xacml.util.ListUtil;
  *
  */
 public class StdMutableResponse implements Response {
-    private static final List<Result>	EMPTY_LIST	= Collections.unmodifiableList(new ArrayList<Result>());
+    private static final List<Result>   EMPTY_LIST      = Collections.unmodifiableList(new ArrayList<Result>());
 
     private List<Result> results;
 
@@ -53,7 +53,7 @@ public class StdMutableResponse implements Response {
      * Creates a new <code>StdMutableResponse</code> with no {@link com.att.research.xacml.api.Result}s.
      */
     public StdMutableResponse() {
-        this.results	= EMPTY_LIST;
+        this.results    = EMPTY_LIST;
     }
 
     /**
@@ -63,10 +63,10 @@ public class StdMutableResponse implements Response {
      */
     public StdMutableResponse(Result resultIn) {
         if (resultIn != null) {
-            this.results	= new ArrayList<Result>();
+            this.results        = new ArrayList<Result>();
             this.results.add(resultIn);
         } else {
-            this.results	= EMPTY_LIST;
+            this.results        = EMPTY_LIST;
         }
     }
 
@@ -78,10 +78,10 @@ public class StdMutableResponse implements Response {
      */
     public StdMutableResponse(Collection<Result> listResults) {
         if (listResults != null && listResults.size() > 0) {
-            this.results	= new ArrayList<Result>();
+            this.results        = new ArrayList<Result>();
             this.results.addAll(listResults);
         } else {
-            this.results	= EMPTY_LIST;
+            this.results        = EMPTY_LIST;
         }
     }
 
@@ -116,7 +116,7 @@ public class StdMutableResponse implements Response {
      */
     public void add(Result result) {
         if (this.results == EMPTY_LIST) {
-            this.results	= new ArrayList<Result>();
+            this.results        = new ArrayList<Result>();
         }
         this.results.add(result);
     }
@@ -128,15 +128,15 @@ public class StdMutableResponse implements Response {
         } else if (obj == null || !(obj instanceof Response)) {
             return false;
         } else {
-            Response objResponse	= (Response)obj;
+            Response objResponse        = (Response)obj;
             return ListUtil.equalsAllowNulls(this.getResults(), objResponse.getResults());
         }
     }
 
     @Override
     public String toString() {
-        StringBuilder	stringBuilder	= new StringBuilder("{");
-        Collection<Result> listResults	= this.getResults();
+        StringBuilder   stringBuilder   = new StringBuilder("{");
+        Collection<Result> listResults  = this.getResults();
         if (listResults.size() > 0) {
             stringBuilder.append("results=");
             stringBuilder.append(ListUtil.toString(listResults));

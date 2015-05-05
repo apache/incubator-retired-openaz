@@ -46,14 +46,14 @@ import com.att.research.xacmlatt.pdp.eval.EvaluationException;
  *
  */
 public class Condition extends PolicyComponent {
-    private static final Status						STATUS_PE_RETURNED_BAG			= new StdStatus(StdStatusCode.STATUS_CODE_PROCESSING_ERROR, "Condition Expression returned a bag");
-    private static final ExpressionResultBoolean	ERB_RETURNED_BAG				= new ExpressionResultBoolean(STATUS_PE_RETURNED_BAG);
-    private static final Status 					STATUS_PE_RETURNED_NULL			= new StdStatus(StdStatusCode.STATUS_CODE_PROCESSING_ERROR, "Null value from Condition Expression");
-    private static final ExpressionResultBoolean	ERB_RETURNED_NULL				= new ExpressionResultBoolean(STATUS_PE_RETURNED_NULL);
-    private static final Status 					STATUS_PE_RETURNED_NON_BOOLEAN	= new StdStatus(StdStatusCode.STATUS_CODE_PROCESSING_ERROR, "Non-boolean value from Condition Expression");
-    private static final ExpressionResultBoolean	ERB_RETURNED_NON_BOOLEAN		= new ExpressionResultBoolean(STATUS_PE_RETURNED_NON_BOOLEAN);
-    private static final Status						STATUS_PE_INVALID_BOOLEAN		= new StdStatus(StdStatusCode.STATUS_CODE_PROCESSING_ERROR, "Invalid Boolean value");
-    private static final ExpressionResultBoolean	ERB_INVALID_BOOLEAN				= new ExpressionResultBoolean(STATUS_PE_INVALID_BOOLEAN);
+    private static final Status                                         STATUS_PE_RETURNED_BAG                  = new StdStatus(StdStatusCode.STATUS_CODE_PROCESSING_ERROR, "Condition Expression returned a bag");
+    private static final ExpressionResultBoolean        ERB_RETURNED_BAG                                = new ExpressionResultBoolean(STATUS_PE_RETURNED_BAG);
+    private static final Status                                         STATUS_PE_RETURNED_NULL                 = new StdStatus(StdStatusCode.STATUS_CODE_PROCESSING_ERROR, "Null value from Condition Expression");
+    private static final ExpressionResultBoolean        ERB_RETURNED_NULL                               = new ExpressionResultBoolean(STATUS_PE_RETURNED_NULL);
+    private static final Status                                         STATUS_PE_RETURNED_NON_BOOLEAN  = new StdStatus(StdStatusCode.STATUS_CODE_PROCESSING_ERROR, "Non-boolean value from Condition Expression");
+    private static final ExpressionResultBoolean        ERB_RETURNED_NON_BOOLEAN                = new ExpressionResultBoolean(STATUS_PE_RETURNED_NON_BOOLEAN);
+    private static final Status                                         STATUS_PE_INVALID_BOOLEAN               = new StdStatus(StdStatusCode.STATUS_CODE_PROCESSING_ERROR, "Invalid Boolean value");
+    private static final ExpressionResultBoolean        ERB_INVALID_BOOLEAN                             = new ExpressionResultBoolean(STATUS_PE_INVALID_BOOLEAN);
 
     private Expression expression;
 
@@ -90,7 +90,7 @@ public class Condition extends PolicyComponent {
      * @param expressionIn the <code>Expression</code> for the <code>Condition</code>
      */
     public Condition(Expression expressionIn) {
-        this.expression	= expressionIn;
+        this.expression = expressionIn;
     }
 
     public Expression getExpression() {
@@ -98,7 +98,7 @@ public class Condition extends PolicyComponent {
     }
 
     public void setExpression(Expression expressionIn) {
-        this.expression	= expressionIn;
+        this.expression = expressionIn;
     }
 
     @Override
@@ -128,7 +128,7 @@ public class Condition extends PolicyComponent {
         /*
          * Evaluate the expression
          */
-        ExpressionResult expressionResult	= this.getExpression().evaluate(evaluationContext, policyDefaults);
+        ExpressionResult expressionResult       = this.getExpression().evaluate(evaluationContext, policyDefaults);
         assert(expressionResult != null);
 
         if (!expressionResult.isOk()) {
@@ -141,7 +141,7 @@ public class Condition extends PolicyComponent {
         if (expressionResult.isBag()) {
             return ERB_RETURNED_BAG;
         }
-        AttributeValue<?> attributeValueResult	= expressionResult.getValue();
+        AttributeValue<?> attributeValueResult  = expressionResult.getValue();
         if (attributeValueResult == null) {
             return ERB_RETURNED_NULL;
         } else if (!DataTypes.DT_BOOLEAN.getId().equals(attributeValueResult.getDataTypeId())) {
@@ -151,9 +151,9 @@ public class Condition extends PolicyComponent {
         /*
          * Otherwise it is a valid condition evaluation
          */
-        Boolean	booleanValue	= null;
+        Boolean booleanValue    = null;
         try {
-            booleanValue	= DataTypes.DT_BOOLEAN.convert(attributeValueResult.getValue());
+            booleanValue        = DataTypes.DT_BOOLEAN.convert(attributeValueResult.getValue());
         } catch (DataTypeException ex) {
             return new ExpressionResultBoolean(new StdStatus(StdStatusCode.STATUS_CODE_PROCESSING_ERROR, ex.getMessage()));
         }

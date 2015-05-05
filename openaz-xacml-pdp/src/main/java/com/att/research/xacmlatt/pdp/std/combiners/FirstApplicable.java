@@ -59,10 +59,10 @@ public class FirstApplicable<T extends com.att.research.xacmlatt.pdp.eval.Evalua
                                     List<CombiningElement<T>> elements,
                                     List<CombinerParameter> combinerParameters)
     throws EvaluationException {
-        Iterator<CombiningElement<T>> iterElements	= elements.iterator();
+        Iterator<CombiningElement<T>> iterElements      = elements.iterator();
         while (iterElements.hasNext()) {
-            CombiningElement<T> combiningElement		= iterElements.next();
-            EvaluationResult evaluationResultElement	= combiningElement.evaluate(evaluationContext);
+            CombiningElement<T> combiningElement                = iterElements.next();
+            EvaluationResult evaluationResultElement    = combiningElement.evaluate(evaluationContext);
 
             assert(evaluationResultElement != null);
             if (evaluationResultElement.getDecision() != Decision.NOTAPPLICABLE) {

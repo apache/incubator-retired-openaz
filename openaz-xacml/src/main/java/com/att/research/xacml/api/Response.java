@@ -52,8 +52,8 @@ public interface Response {
      *
      * Implementations of this interface must override the <code>equals</code> method with the following semantics:
      *
-     * 		Two <code>Response</code>s (<code>r1</code> and <code>r2</code>) are equal if:
-     * 			{@code r1.getResults()} is pairwise equal to {@code r2.getResults()}
+     *          Two <code>Response</code>s (<code>r1</code> and <code>r2</code>) are equal if:
+     *                  {@code r1.getResults()} is pairwise equal to {@code r2.getResults()}
      */
     @Override
     boolean equals(Object obj);

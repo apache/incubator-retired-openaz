@@ -47,18 +47,18 @@ import java.net.URI;
 import java.util.*;
 
 public class RequestParser {
-    private static Log logger	= LogFactory.getLog(RequestParser.class);
+    private static Log logger   = LogFactory.getLog(RequestParser.class);
 
     //
     // Create our data type factory object. We could make this static
     //
-    protected static DataTypeFactory dataTypeFactory		= null;
+    protected static DataTypeFactory dataTypeFactory            = null;
     protected static synchronized DataTypeFactory getDataTypeFactory() {
         try {
             if (dataTypeFactory != null) {
                 return dataTypeFactory;
             }
-            dataTypeFactory	= DataTypeFactory.newInstance();
+            dataTypeFactory     = DataTypeFactory.newInstance();
             if (dataTypeFactory == null) {
                 logger.error("Could not create data type factory");
             }
@@ -68,11 +68,11 @@ public class RequestParser {
         return dataTypeFactory;
     }
 
-    public static Request	parseRequest(Object obj) throws IllegalArgumentException, IllegalAccessException, DataTypeException {
+    public static Request       parseRequest(Object obj) throws IllegalArgumentException, IllegalAccessException, DataTypeException {
         //
         // Our returned object
         //
-        StdMutableRequest stdMutableRequest	= new StdMutableRequest();
+        StdMutableRequest stdMutableRequest     = new StdMutableRequest();
         //
         // Our collection of attribute values
         //
@@ -196,7 +196,7 @@ public class RequestParser {
         //
         // Create our attribute
         //
-        StdMutableAttribute mutableAttribute	= new StdMutableAttribute();
+        StdMutableAttribute mutableAttribute    = new StdMutableAttribute();
         mutableAttribute.setCategory(category);
         mutableAttribute.setAttributeId(attributeId);
         mutableAttribute.setIncludeInResults(includeInResults);
@@ -243,7 +243,7 @@ public class RequestParser {
         }
     }
 
-    public static Collection<AttributeValue<?>>	extractValues(String datatype, Field field, Object object) throws IllegalArgumentException, IllegalAccessException, DataTypeException {
+    public static Collection<AttributeValue<?>> extractValues(String datatype, Field field, Object object) throws IllegalArgumentException, IllegalAccessException, DataTypeException {
         //
         // Synchronize?
         //
@@ -357,7 +357,7 @@ public class RequestParser {
         } else {
             datatypeId = new IdentifierImpl(datatype);
         }
-        DataType<?> dataTypeExtended	= getDataTypeFactory().getDataType(datatypeId);
+        DataType<?> dataTypeExtended    = getDataTypeFactory().getDataType(datatypeId);
         if (dataTypeExtended == null) {
             logger.error("DataType factory does not know datatype: " + datatype);
             return null;

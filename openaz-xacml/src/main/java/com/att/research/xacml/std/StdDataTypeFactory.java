@@ -44,8 +44,8 @@ import com.att.research.xacml.std.datatypes.DataTypes;
  *
  */
 public class StdDataTypeFactory extends DataTypeFactory {
-    private static final Map<Identifier,DataType<?>> mapIdentifiersToDataTypes	= new HashMap<Identifier,DataType<?>>();
-    private static boolean mapNeedsInit												= true;
+    private static final Map<Identifier,DataType<?>> mapIdentifiersToDataTypes  = new HashMap<Identifier,DataType<?>>();
+    private static boolean mapNeedsInit                                                                                         = true;
 
     private static void registerDataType(DataType<?> dataType) {
         if (dataType != null && dataType.getId() != null) {
@@ -74,7 +74,7 @@ public class StdDataTypeFactory extends DataTypeFactory {
                     registerDataType(DataTypes.DT_X500NAME);
                     registerDataType(DataTypes.DT_XPATHEXPRESSION);
                     registerDataType(DataTypes.DT_YEARMONTHDURATION);
-                    mapNeedsInit	= false;
+                    mapNeedsInit        = false;
                 }
             }
         }

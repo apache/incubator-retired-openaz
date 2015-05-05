@@ -44,8 +44,8 @@ public class ParseUtils {
         private int nextPos;
 
         public ParseValue(T v, int n) {
-            this.value		= v;
-            this.nextPos	= n;
+            this.value          = v;
+            this.nextPos        = n;
         }
 
         public T getValue() {
@@ -94,14 +94,14 @@ public class ParseUtils {
     }
 
     static ParseValue<Integer> getSignedValue(String fromString, int startPos) {
-        int sign	= 1;
-        int value	= 0;
-        int i		= startPos;
+        int sign        = 1;
+        int value       = 0;
+        int i           = startPos;
         if (i >= fromString.length()) {
             return null;
         }
         if (fromString.charAt(i) == '-') {
-            sign	= -1;
+            sign        = -1;
             i++;
         }
         if (i >= fromString.length() || !Character.isDigit(fromString.charAt(i))) {
@@ -109,7 +109,7 @@ public class ParseUtils {
         }
         char charAt;
         while (i < fromString.length() && Character.isDigit((charAt = fromString.charAt(i)))) {
-            value	= value*10 + Character.digit(charAt, 10);
+            value       = value*10 + Character.digit(charAt, 10);
             i++;
         }
         return new ParseValue<Integer>(sign * value, i);

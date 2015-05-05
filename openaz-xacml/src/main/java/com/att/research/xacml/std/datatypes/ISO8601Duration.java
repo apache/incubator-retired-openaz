@@ -57,14 +57,14 @@ public class ISO8601Duration implements SemanticString {
     }
 
     private static class DurationChunk {
-        private char	chunkName;
-        private double	chunkValue;
-        private int		length;
+        private char    chunkName;
+        private double  chunkValue;
+        private int             length;
 
         public DurationChunk(char name, double value, int lengthIn) {
-            this.chunkName	= name;
-            this.chunkValue	= value;
-            this.length		= lengthIn;
+            this.chunkName      = name;
+            this.chunkValue     = value;
+            this.length         = lengthIn;
         }
 
         public char getChunkName() {
@@ -87,10 +87,10 @@ public class ISO8601Duration implements SemanticString {
             if (duration == null || startPos >= duration.length()) {
                 return null;
             }
-            int		curPos		= startPos;
-            int		endPos		= duration.length();
-            int		dotCount	= 0;
-            char	charAt;
+            int         curPos          = startPos;
+            int         endPos          = duration.length();
+            int         dotCount        = 0;
+            char        charAt;
             while (curPos < endPos && ((charAt = duration.charAt(curPos)) == '.' || Character.isDigit(charAt))) {
                 if (charAt == '.') {
                     dotCount++;
@@ -98,10 +98,10 @@ public class ISO8601Duration implements SemanticString {
                 curPos++;
             }
             if (curPos < endPos && dotCount <= 1) {
-                char	chunkName	= duration.charAt(curPos);
-                Double	dvalue		= null;
+                char    chunkName       = duration.charAt(curPos);
+                Double  dvalue          = null;
                 try {
-                    dvalue	= Double.parseDouble(duration.substring(startPos, curPos));
+                    dvalue      = Double.parseDouble(duration.substring(startPos, curPos));
                 } catch (NumberFormatException ex) {
                     throw new ParseException("Invalid chunk \"" + duration + "\" at position " + startPos, startPos);
                 }
@@ -113,14 +113,14 @@ public class ISO8601Duration implements SemanticString {
         }
     }
 
-    private int		durationSign	= 1;
-    private int		years;
-    private int 	months;
-    private int 	days;
-    private int 	hours;
-    private int 	minutes;
-    private int		seconds;
-    private int 	millis;
+    private int         durationSign    = 1;
+    private int         years;
+    private int         months;
+    private int         days;
+    private int         hours;
+    private int         minutes;
+    private int         seconds;
+    private int         millis;
 
     /**
      * Creates a duration with the given values.
@@ -134,14 +134,14 @@ public class ISO8601Duration implements SemanticString {
      * @param secondsIn the number of fractional seconds
      */
     public ISO8601Duration(int durationSignIn, int yearsIn, int monthsIn, int daysIn, int hoursIn, int minutesIn, double secondsIn) {
-        this.durationSign	= durationSignIn;
-        this.years			= yearsIn;
-        this.months			= monthsIn;
-        this.days			= daysIn;
-        this.hours			= hoursIn;
-        this.minutes		= minutesIn;
-        this.seconds		= (int) Math.floor(secondsIn);
-        this.millis			= (int) Math.floor(((secondsIn * 1000) - (this.seconds * 1000)));
+        this.durationSign       = durationSignIn;
+        this.years                      = yearsIn;
+        this.months                     = monthsIn;
+        this.days                       = daysIn;
+        this.hours                      = hoursIn;
+        this.minutes            = minutesIn;
+        this.seconds            = (int) Math.floor(secondsIn);
+        this.millis                     = (int) Math.floor(((secondsIn * 1000) - (this.seconds * 1000)));
     }
 
     /**
@@ -154,20 +154,20 @@ public class ISO8601Duration implements SemanticString {
         if (iso8601DurationString == null || iso8601DurationString.length() == 0) {
             return null;
         }
-        int	curPos			= 0;
-        int endPos			= iso8601DurationString.length();
+        int     curPos                  = 0;
+        int endPos                      = iso8601DurationString.length();
 
-        int	durationSign	= 1;
-        int years			= 0;
-        int	months			= 0;
-        int days			= 0;
-        int hours			= 0;
-        int minutes			= 0;
-        double fractionalSeconds		= 0.0;
+        int     durationSign    = 1;
+        int years                       = 0;
+        int     months                  = 0;
+        int days                        = 0;
+        int hours                       = 0;
+        int minutes                     = 0;
+        double fractionalSeconds                = 0.0;
 
 
         if (iso8601DurationString.charAt(curPos) == '-') {
-            durationSign	= -1;
+            durationSign        = -1;
             curPos++;
         }
         if (iso8601DurationString.charAt(curPos) != 'P') {
@@ -179,8 +179,8 @@ public class ISO8601Duration implements SemanticString {
             throw new ParseException("Invalid ISO8601 duration string \"" + iso8601DurationString + "\": No duration components following P", curPos);
         }
 
-        int lastChunkOrder	= 0;
-        boolean sawT		= false;
+        int lastChunkOrder      = 0;
+        boolean sawT            = false;
         while (curPos < endPos) {
             /*
              * Look for the Time divider character
@@ -189,22 +189,22 @@ public class ISO8601Duration implements SemanticString {
                 if (sawT) {
                     throw new ParseException("Invalid ISO8601 duration string \"" + iso8601DurationString + "\" at position " + curPos + ": saw multiple T separators", curPos);
                 } else {
-                    sawT	= true;
+                    sawT        = true;
                 }
                 curPos++;
             } else {
-                DurationChunk	durationChunk	= DurationChunk.nextChunk(iso8601DurationString, curPos);
+                DurationChunk   durationChunk   = DurationChunk.nextChunk(iso8601DurationString, curPos);
 
                 /*
                  * Check for unknown chunks or out of order chunks
                  */
-                int			chunkOrder		= getChunkOrder(sawT, durationChunk.getChunkName());
+                int                     chunkOrder              = getChunkOrder(sawT, durationChunk.getChunkName());
                 if (chunkOrder <= 0) {
                     throw new ParseException("Invalid ISO8601 duration string \"" + iso8601DurationString + "\" at position " + curPos + ": invalid component", curPos);
                 } else if (chunkOrder <= lastChunkOrder) {
                     throw new ParseException("Invalid ISO8601 duration string \"" + iso8601DurationString + "\" at position " + curPos + ": out of order component", curPos);
                 }
-                lastChunkOrder	= chunkOrder;
+                lastChunkOrder  = chunkOrder;
 
                 /*
                  * Check for correct value type
@@ -218,23 +218,23 @@ public class ISO8601Duration implements SemanticString {
                  */
                 switch(durationChunk.getChunkName()) {
                 case 'Y':
-                    years	= durationChunk.getIntValue();
+                    years       = durationChunk.getIntValue();
                     break;
                 case 'M':
                     if (!sawT) {
-                        months	= durationChunk.getIntValue();
+                        months  = durationChunk.getIntValue();
                     } else {
-                        minutes	= durationChunk.getIntValue();
+                        minutes = durationChunk.getIntValue();
                     }
                     break;
                 case 'D':
-                    days	= durationChunk.getIntValue();
+                    days        = durationChunk.getIntValue();
                     break;
                 case 'H':
-                    hours	= durationChunk.getIntValue();
+                    hours       = durationChunk.getIntValue();
                     break;
                 case 'S':
-                    fractionalSeconds	= durationChunk.getChunkValue();
+                    fractionalSeconds   = durationChunk.getChunkValue();
                     break;
                 default:
                     assert(false);
@@ -244,7 +244,7 @@ public class ISO8601Duration implements SemanticString {
                 /*
                  * Advance the current position
                  */
-                curPos	+= durationChunk.getLength();
+                curPos  += durationChunk.getLength();
             }
         }
 
@@ -292,7 +292,7 @@ public class ISO8601Duration implements SemanticString {
         } else if (obj == this) {
             return true;
         } else {
-            ISO8601Duration	iso8601Duration	= (ISO8601Duration)obj;
+            ISO8601Duration     iso8601Duration = (ISO8601Duration)obj;
             return (this.getDurationSign() == iso8601Duration.getDurationSign() &&
                     this.getYears() == iso8601Duration.getYears() &&
                     this.getMonths() == iso8601Duration.getMonths() &&
@@ -308,27 +308,27 @@ public class ISO8601Duration implements SemanticString {
 
     @Override
     public String stringValue() {
-        StringBuilder stringBuilder	= new StringBuilder();
+        StringBuilder stringBuilder     = new StringBuilder();
         if (this.getDurationSign() < 0) {
             stringBuilder.append("-P");
         } else {
             stringBuilder.append("P");
         }
-        boolean		sawOne	= false;
+        boolean         sawOne  = false;
         if (this.getYears() > 0) {
             stringBuilder.append(this.getYears());
             stringBuilder.append('Y');
-            sawOne	= true;
+            sawOne      = true;
         }
         if (this.getMonths() > 0) {
             stringBuilder.append(this.getMonths());
             stringBuilder.append('M');
-            sawOne	= true;
+            sawOne      = true;
         }
         if (this.getDays() > 0) {
             stringBuilder.append(this.getDays());
             stringBuilder.append('D');
-            sawOne	= true;
+            sawOne      = true;
         }
         if (this.getHours() > 0 || this.getMinutes() > 0 || this.getSeconds() > 0 || this.getMillis() > 0) {
             stringBuilder.append('T');
@@ -340,7 +340,7 @@ public class ISO8601Duration implements SemanticString {
                 stringBuilder.append(this.getMinutes());
                 stringBuilder.append('M');
             }
-            double	dSeconds	= this.getFractionalSecs();
+            double      dSeconds        = this.getFractionalSecs();
             if (dSeconds > 0) {
                 if (dSeconds == Math.floor(dSeconds)) {
                     stringBuilder.append((int)dSeconds);

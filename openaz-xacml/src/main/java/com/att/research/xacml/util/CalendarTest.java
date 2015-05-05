@@ -33,8 +33,8 @@ public class CalendarTest {
         private int calId;
 
         public CField(String fieldNameIn, int calIdIn) {
-            this.fieldName	= fieldNameIn;
-            this.calId		= calIdIn;
+            this.fieldName      = fieldNameIn;
+            this.calId          = calIdIn;
         }
 
         public String getFieldName() {
@@ -46,7 +46,7 @@ public class CalendarTest {
         }
     }
 
-    private static CField[] calFields	= {
+    private static CField[] calFields   = {
         new CField("Era", Calendar.ERA),
         new CField("TimeZone", Calendar.ZONE_OFFSET),
         new CField("Year", Calendar.YEAR),
@@ -63,20 +63,20 @@ public class CalendarTest {
         System.out.println("Current Date=" + calendar.getTime());
         System.out.println("Current TimeZone=" + calendar.getTimeZone());
         System.out.print("Fields=");
-        boolean needsComma	= false;
+        boolean needsComma      = false;
         for (CField cfield: calFields) {
             if (needsComma) {
                 System.out.print(",");
             }
             System.out.print(cfield.getFieldName() + "=" + calendar.get(cfield.getCalId()));
-            needsComma	= true;
+            needsComma  = true;
         }
         System.out.println();
 
     }
 
     public static void main(String[] args) {
-        Calendar calendar	= Calendar.getInstance();
+        Calendar calendar       = Calendar.getInstance();
         calendar.setLenient(false);
 
         System.out.println("Current Time");

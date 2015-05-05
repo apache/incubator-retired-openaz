@@ -47,7 +47,7 @@ import com.att.research.xacml.rest.XACMLPdpServlet.PutRequest;
 import com.att.research.xacml.util.XACMLProperties;
 
 public class XACMLPdpRegisterThread implements Runnable {
-    private static final Log logger	= LogFactory.getLog(XACMLPdpRegisterThread.class);
+    private static final Log logger     = LogFactory.getLog(XACMLPdpRegisterThread.class);
 
     public volatile boolean isRunning = false;
 

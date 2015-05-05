@@ -42,7 +42,7 @@ public class StdSinglePIPResponse extends StdMutablePIPResponse {
 
     public StdSinglePIPResponse(Attribute attribute) {
         super(attribute);
-        this.singleAttribute	= attribute;
+        this.singleAttribute    = attribute;
     }
 
     public Attribute getSingleAttribute() {

@@ -48,7 +48,7 @@ import com.att.research.xacmlatt.pdp.policy.expressions.AttributeDesignator;
  *
  */
 public class DOMAttributeDesignator extends AttributeDesignator {
-    private static final Log logger	= LogFactory.getLog(DOMAttributeDesignator.class);
+    private static final Log logger     = LogFactory.getLog(DOMAttributeDesignator.class);
 
     protected DOMAttributeDesignator() {
     }
@@ -62,10 +62,10 @@ public class DOMAttributeDesignator extends AttributeDesignator {
      * @throws DOMStructureException if there is an error parsing the <code>Node</code>
      */
     public static AttributeDesignator newInstance(Node nodeAttributeDesignator) throws DOMStructureException {
-        Element elementAttributeDesignator				= DOMUtil.getElement(nodeAttributeDesignator);
-        boolean bLenient								= DOMProperties.isLenient();
+        Element elementAttributeDesignator                              = DOMUtil.getElement(nodeAttributeDesignator);
+        boolean bLenient                                                                = DOMProperties.isLenient();
 
-        DOMAttributeDesignator domAttributeDesignator	= new DOMAttributeDesignator();
+        DOMAttributeDesignator domAttributeDesignator   = new DOMAttributeDesignator();
 
         try {
             domAttributeDesignator.setCategory(DOMUtil.getIdentifierAttribute(elementAttributeDesignator, XACML3.ATTRIBUTE_CATEGORY, !bLenient));
@@ -76,7 +76,7 @@ public class DOMAttributeDesignator extends AttributeDesignator {
             if ((string = DOMUtil.getStringAttribute(elementAttributeDesignator, XACML3.ATTRIBUTE_ISSUER)) != null) {
                 domAttributeDesignator.setIssuer(string);
             }
-            Boolean mustBePresent	= DOMUtil.getBooleanAttribute(elementAttributeDesignator, XACML3.ATTRIBUTE_MUSTBEPRESENT, !bLenient);
+            Boolean mustBePresent       = DOMUtil.getBooleanAttribute(elementAttributeDesignator, XACML3.ATTRIBUTE_MUSTBEPRESENT, !bLenient);
             if (mustBePresent != null) {
                 domAttributeDesignator.setMustBePresent(mustBePresent);
             }
@@ -91,13 +91,13 @@ public class DOMAttributeDesignator extends AttributeDesignator {
     }
 
     public static boolean repair(Node nodeAttributeDesignator) throws DOMStructureException {
-        Element elementAttributeDesignator	= DOMUtil.getElement(nodeAttributeDesignator);
-        boolean result						= false;
+        Element elementAttributeDesignator      = DOMUtil.getElement(nodeAttributeDesignator);
+        boolean result                                          = false;
 
-        result								= DOMUtil.repairIdentifierAttribute(elementAttributeDesignator, XACML3.ATTRIBUTE_CATEGORY, logger) || result;
-        result								= DOMUtil.repairIdentifierAttribute(elementAttributeDesignator, XACML3.ATTRIBUTE_ATTRIBUTEID, logger) || result;
-        result								= DOMUtil.repairIdentifierAttribute(elementAttributeDesignator, XACML3.ATTRIBUTE_DATATYPE, logger) || result;
-        result								= DOMUtil.repairBooleanAttribute(elementAttributeDesignator, XACML3.ATTRIBUTE_MUSTBEPRESENT, false, logger) || result;
+        result                                                          = DOMUtil.repairIdentifierAttribute(elementAttributeDesignator, XACML3.ATTRIBUTE_CATEGORY, logger) || result;
+        result                                                          = DOMUtil.repairIdentifierAttribute(elementAttributeDesignator, XACML3.ATTRIBUTE_ATTRIBUTEID, logger) || result;
+        result                                                          = DOMUtil.repairIdentifierAttribute(elementAttributeDesignator, XACML3.ATTRIBUTE_DATATYPE, logger) || result;
+        result                                                          = DOMUtil.repairBooleanAttribute(elementAttributeDesignator, XACML3.ATTRIBUTE_MUSTBEPRESENT, false, logger) || result;
 
         return result;
     }

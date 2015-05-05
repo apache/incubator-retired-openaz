@@ -96,7 +96,7 @@ import com.att.research.xacml.std.json.JSONStructureException;
  *
  */
 public class DOMResponse {
-    private static final Log logger	= LogFactory.getLog(DOMResponse.class);
+    private static final Log logger     = LogFactory.getLog(DOMResponse.class);
 
     protected DOMResponse() {
     }
@@ -111,21 +111,21 @@ public class DOMResponse {
      * @throws DOMStructureException if the conversion cannot be made
      */
     public static Response newInstance(Node nodeResponse) throws DOMStructureException {
-        Element	elementResponse		= DOMUtil.getElement(nodeResponse);
-        boolean bLenient			= DOMProperties.isLenient();
+        Element elementResponse         = DOMUtil.getElement(nodeResponse);
+        boolean bLenient                        = DOMProperties.isLenient();
 
-        StdMutableResponse mutableResponse		= new StdMutableResponse();
+        StdMutableResponse mutableResponse              = new StdMutableResponse();
 
-        NodeList children			= elementResponse.getChildNodes();
+        NodeList children                       = elementResponse.getChildNodes();
         int numChildren;
-        boolean sawResult			= false;
+        boolean sawResult                       = false;
         if (children != null && (numChildren = children.getLength()) > 0) {
             for (int i = 0 ; i < numChildren ; i++) {
-                Node child	= children.item(i);
+                Node child      = children.item(i);
                 if (DOMUtil.isElement(child)) {
                     if (DOMUtil.isInNamespace(child, XACML3.XMLNS)&& XACML3.ELEMENT_RESULT.equals(child.getLocalName())) {
                         mutableResponse.add(DOMResult.newInstance(child));
-                        sawResult	= true;
+                        sawResult       = true;
                     } else {
                         if (!bLenient) {
                             throw DOMUtil.newUnexpectedElementException(child, nodeResponse);
@@ -149,23 +149,23 @@ public class DOMResponse {
      * @throws DOMStructureException
      */
     public static boolean repair(Node nodeResponse) throws DOMStructureException {
-        Element	elementResponse		= DOMUtil.getElement(nodeResponse);
-        boolean result				= false;
+        Element elementResponse         = DOMUtil.getElement(nodeResponse);
+        boolean result                          = false;
 
-        NodeList children			= elementResponse.getChildNodes();
+        NodeList children                       = elementResponse.getChildNodes();
         int numChildren;
-        boolean sawResult			= false;
+        boolean sawResult                       = false;
         if (children != null && (numChildren = children.getLength()) > 0) {
             for (int i = 0 ; i < numChildren ; i++) {
-                Node child	= children.item(i);
+                Node child      = children.item(i);
                 if (DOMUtil.isElement(child)) {
                     if (DOMUtil.isInNamespace(child, XACML3.XMLNS)&& XACML3.ELEMENT_RESULT.equals(child.getLocalName())) {
-                        result	= DOMResult.repair(child) || result;
-                        sawResult	= true;
+                        result  = DOMResult.repair(child) || result;
+                        sawResult       = true;
                     } else {
                         logger.warn("Unexpected element " + child.getNodeName());
                         elementResponse.removeChild(child);
-                        result	= true;
+                        result  = true;
                     }
                 }
             }
@@ -250,7 +250,7 @@ public class DOMResponse {
         /*
          * Get the DocumentBuilderFactory
          */
-        DocumentBuilderFactory documentBuilderFactory	= DocumentBuilderFactory.newInstance();
+        DocumentBuilderFactory documentBuilderFactory   = DocumentBuilderFactory.newInstance();
         if (documentBuilderFactory == null) {
             throw new DOMStructureException("No XML DocumentBuilderFactory configured");
         }
@@ -259,9 +259,9 @@ public class DOMResponse {
         /*
          * Get the DocumentBuilder
          */
-        DocumentBuilder documentBuilder	= null;
+        DocumentBuilder documentBuilder = null;
         try {
-            documentBuilder	= documentBuilderFactory.newDocumentBuilder();
+            documentBuilder     = documentBuilderFactory.newDocumentBuilder();
         } catch (Exception ex) {
             throw new DOMStructureException("Exception creating DocumentBuilder: " + ex.getMessage(), ex);
         }
@@ -269,15 +269,15 @@ public class DOMResponse {
         /*
          * Parse the XML file
          */
-        Document document	= null;
-        Response request	= null;
+        Document document       = null;
+        Response request        = null;
         try {
-            document	= documentBuilder.parse(is);
+            document    = documentBuilder.parse(is);
             if (document == null) {
                 throw new Exception("Null document returned");
             }
 
-            Node rootNode	= document.getFirstChild();
+            Node rootNode       = document.getFirstChild();
             while (rootNode != null && rootNode.getNodeType() != Node.ELEMENT_NODE) {
                 rootNode = rootNode.getNextSibling();
             }
@@ -287,7 +287,7 @@ public class DOMResponse {
 
             if (DOMUtil.isInNamespace(rootNode, XACML3.XMLNS)) {
                 if (XACML3.ELEMENT_RESPONSE.equals(rootNode.getLocalName())) {
-                    request	= DOMResponse.newInstance(rootNode);
+                    request     = DOMResponse.newInstance(rootNode);
                     if (request == null) {
                         throw new DOMStructureException("Failed to parse Response");
                     }
@@ -837,10 +837,10 @@ public class DOMResponse {
      */
     public static void main(String[] args) {
         if (args.length > 0) {
-            DocumentBuilderFactory	documentBuilderFactory	= DocumentBuilderFactory.newInstance();
+            DocumentBuilderFactory      documentBuilderFactory  = DocumentBuilderFactory.newInstance();
             documentBuilderFactory.setNamespaceAware(true);
             for (String xmlFileName: args) {
-                File	fileXml	= new File(xmlFileName);
+                File    fileXml = new File(xmlFileName);
                 if (!fileXml.exists()) {
                     System.err.println("Input file \"" + fileXml.getAbsolutePath() + "\" does not exist.");
                     continue;
@@ -850,25 +850,25 @@ public class DOMResponse {
                 }
                 System.out.println(fileXml.getAbsolutePath() + ":");
                 try {
-                    DocumentBuilder	documentBuilder	= documentBuilderFactory.newDocumentBuilder();
+                    DocumentBuilder     documentBuilder = documentBuilderFactory.newDocumentBuilder();
                     assert(documentBuilder.isNamespaceAware());
-                    Document documentResponse		= documentBuilder.parse(fileXml);
+                    Document documentResponse           = documentBuilder.parse(fileXml);
                     assert(documentResponse != null);
 
-                    NodeList children				= documentResponse.getChildNodes();
+                    NodeList children                           = documentResponse.getChildNodes();
                     if (children == null || children.getLength() == 0) {
                         System.err.println("No Responses found in \"" + fileXml.getAbsolutePath() + "\"");
                         continue;
                     } else if (children.getLength() > 1) {
                         System.err.println("Multiple Responses found in \"" + fileXml.getAbsolutePath() + "\"");
                     }
-                    Node nodeResponse				= children.item(0);
+                    Node nodeResponse                           = children.item(0);
                     if (!nodeResponse.getLocalName().equals(XACML3.ELEMENT_RESPONSE)) {
                         System.err.println("\"" + fileXml.getAbsolutePath() + "\" is not a Response");
                         continue;
                     }
 
-                    Response domResponse			= DOMResponse.newInstance(nodeResponse);
+                    Response domResponse                        = DOMResponse.newInstance(nodeResponse);
                     System.out.println(domResponse.toString());
                     System.out.println();
                 } catch (Exception ex) {

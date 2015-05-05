@@ -45,8 +45,8 @@ public class StdPolicyFinderResult<T extends PolicyDef> implements PolicyFinderR
     private T policyDef;
 
     public StdPolicyFinderResult(Status statusIn, T policyDefIn) {
-        this.status	= (statusIn == null ? StdStatus.STATUS_OK : statusIn);
-        this.policyDef	= policyDefIn;
+        this.status     = (statusIn == null ? StdStatus.STATUS_OK : statusIn);
+        this.policyDef  = policyDefIn;
     }
 
     public StdPolicyFinderResult(Status statusIn) {

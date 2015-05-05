@@ -39,8 +39,8 @@ import com.att.research.xacml.api.SemanticString;
  *
  */
 public class RFC2396DomainName implements SemanticString {
-    private String		domainName;
-    private PortRange	portRange;
+    private String              domainName;
+    private PortRange   portRange;
 
     public static boolean isValidTopLabel(String topLabel) {
         if (topLabel == null || topLabel.length() == 0) {
@@ -52,7 +52,7 @@ public class RFC2396DomainName implements SemanticString {
         }
         if (topLabel.length() > 1) {
             for (int i = 1 ; i < topLabel.length() - 1 ; i++) {
-                char	c	= topLabel.charAt(i);
+                char    c       = topLabel.charAt(i);
                 if (!(Character.isLetterOrDigit(c) || c == '-')) {
                     return false;
                 }
@@ -74,7 +74,7 @@ public class RFC2396DomainName implements SemanticString {
         }
         if (domainLabel.length() > 1) {
             for (int i = 1 ; i < domainLabel.length() - 1 ; i++) {
-                char	c	= domainLabel.charAt(i);
+                char    c       = domainLabel.charAt(i);
                 if (!(Character.isLetterOrDigit(c) || c == '-')) {
                     return false;
                 }
@@ -90,7 +90,7 @@ public class RFC2396DomainName implements SemanticString {
         if (hostName == null || hostName.length() == 0) {
             return false;
         }
-        String[]	labels	= hostName.split("[.]",-1);
+        String[]        labels  = hostName.split("[.]",-1);
         if (labels == null || labels.length == 0) {
             return false;
         }
@@ -117,8 +117,8 @@ public class RFC2396DomainName implements SemanticString {
         if (!isValidHostName(domainNameIn)) {
             throw new IllegalArgumentException("Invalid RFC2396 domain name");
         }
-        this.domainName	= domainNameIn;
-        this.portRange	= portRangeIn;
+        this.domainName = domainNameIn;
+        this.portRange  = portRangeIn;
     }
 
     /**
@@ -136,20 +136,20 @@ public class RFC2396DomainName implements SemanticString {
         /*
          * Break the string up into its name and port range parts
          */
-        int	colonPos	= rfc2396DomainNameString.indexOf(':');
-        String hostName	= (colonPos < 0 ? rfc2396DomainNameString : rfc2396DomainNameString.substring(0, colonPos));
+        int     colonPos        = rfc2396DomainNameString.indexOf(':');
+        String hostName = (colonPos < 0 ? rfc2396DomainNameString : rfc2396DomainNameString.substring(0, colonPos));
         if (!isValidHostName(hostName)) {
             throw new ParseException("Invalid RFC 2396 host name \"" + hostName + "\"", 0);
         }
 
-        PortRange	portRange	= null;
+        PortRange       portRange       = null;
         if (colonPos >= 0) {
             if (colonPos + 1 >= rfc2396DomainNameString.length()) {
                 throw new ParseException("Invalid RFC 2396 port range \"" + rfc2396DomainNameString + "\": no port numbers", colonPos);
             }
-            String	stringPortRange	= rfc2396DomainNameString.substring(colonPos+1);
+            String      stringPortRange = rfc2396DomainNameString.substring(colonPos+1);
             try {
-                portRange	= PortRange.newInstance(stringPortRange);
+                portRange       = PortRange.newInstance(stringPortRange);
             } catch (ParseException ex) {
                 throw new ParseException("Invalid RFC 2396 port range \"" + stringPortRange + "\"", colonPos);
             }
@@ -168,7 +168,7 @@ public class RFC2396DomainName implements SemanticString {
 
     @Override
     public String stringValue() {
-        StringBuilder	stringBuilder	= new StringBuilder();
+        StringBuilder   stringBuilder   = new StringBuilder();
         if (this.getDomainName() != null) {
             stringBuilder.append(this.getDomainName());
         }
@@ -181,7 +181,7 @@ public class RFC2396DomainName implements SemanticString {
 
     @Override
     public int hashCode() {
-        int hc	= (this.getDomainName() == null ? 0 : this.getDomainName().hashCode());
+        int hc  = (this.getDomainName() == null ? 0 : this.getDomainName().hashCode());
         return hc + (this.getPortRange() == null ? 0 : this.getPortRange().hashCode());
     }
 
@@ -192,7 +192,7 @@ public class RFC2396DomainName implements SemanticString {
         } else if (obj == this) {
             return true;
         } else {
-            RFC2396DomainName	rfc2396DomainName	= (RFC2396DomainName)obj;
+            RFC2396DomainName   rfc2396DomainName       = (RFC2396DomainName)obj;
             if (this.getDomainName() == null) {
                 if (rfc2396DomainName.getDomainName() != null) {
                     return false;
@@ -212,13 +212,13 @@ public class RFC2396DomainName implements SemanticString {
 
     @Override
     public String toString() {
-        StringBuilder stringBuilder	= new StringBuilder("{");
-        boolean needComma			= false;
+        StringBuilder stringBuilder     = new StringBuilder("{");
+        boolean needComma                       = false;
 
         if (this.getDomainName() != null) {
             stringBuilder.append("domainName=");
             stringBuilder.append(this.getDomainName());
-            needComma	= true;
+            needComma   = true;
         }
         if (this.getPortRange() != null) {
             if (needComma) {
@@ -226,7 +226,7 @@ public class RFC2396DomainName implements SemanticString {
             }
             stringBuilder.append("portRange=");
             stringBuilder.append(this.getPortRange().toString());
-            needComma	= true;
+            needComma   = true;
         }
         stringBuilder.append('}');
         return stringBuilder.toString();

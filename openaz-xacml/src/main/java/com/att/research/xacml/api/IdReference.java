@@ -56,9 +56,9 @@ public interface IdReference {
      *
      * Implementations of the <code>IdReference</code> interface must override the <code>equals</code> method with the following semantics:
      *
-     * 		Two <code>IdReference</code>s (<code>i1</code> and <code>i2</code>) are equal if:
-     * 			{@code i1.getId().equals(i2.getId())} AND
-     * 			{@code i1.getVersion().equals(i2.getVersion())}
+     *          Two <code>IdReference</code>s (<code>i1</code> and <code>i2</code>) are equal if:
+     *                  {@code i1.getId().equals(i2.getId())} AND
+     *                  {@code i1.getVersion().equals(i2.getVersion())}
      */
     @Override
     boolean equals(Object obj);

@@ -50,7 +50,7 @@ import com.att.research.xacmlatt.pdp.policy.expressions.Apply;
  *
  */
 public class DOMApply extends Apply {
-    private static final Log logger	= LogFactory.getLog(DOMApply.class);
+    private static final Log logger     = LogFactory.getLog(DOMApply.class);
 
     protected DOMApply() {
     }
@@ -64,19 +64,19 @@ public class DOMApply extends Apply {
      * @throws DOMStructureException if there is an error parsing the <code>Node</code>
      */
     public static Apply newInstance(Node nodeApply, Policy policy) throws DOMStructureException {
-        Element elementApply	= DOMUtil.getElement(nodeApply);
-        boolean bLenient		= DOMProperties.isLenient();
+        Element elementApply    = DOMUtil.getElement(nodeApply);
+        boolean bLenient                = DOMProperties.isLenient();
 
-        DOMApply domApply		= new DOMApply();
+        DOMApply domApply               = new DOMApply();
 
         try {
-            NodeList children	= nodeApply.getChildNodes();
+            NodeList children   = nodeApply.getChildNodes();
             if (children != null) {
-                int numChildren	= children.getLength();
+                int numChildren = children.getLength();
                 for (int i = 0 ; i < numChildren ; i++) {
-                    Node child	= children.item(i);
+                    Node child  = children.item(i);
                     if (child.getNodeType() == Node.ELEMENT_NODE && XACML3.XMLNS.equals(child.getNamespaceURI())) {
-                        String childName	= child.getLocalName();
+                        String childName        = child.getLocalName();
                         if (XACML3.ELEMENT_DESCRIPTION.equals(childName)) {
                             domApply.setDescription(child.getTextContent());
                         } else if (DOMExpression.isExpression(child)) {
@@ -100,29 +100,29 @@ public class DOMApply extends Apply {
     }
 
     public static boolean repair(Node nodeApply) throws DOMStructureException {
-        Element elementApply	= DOMUtil.getElement(nodeApply);
-        boolean result			= false;
+        Element elementApply    = DOMUtil.getElement(nodeApply);
+        boolean result                  = false;
 
-        NodeList children	= nodeApply.getChildNodes();
+        NodeList children       = nodeApply.getChildNodes();
         if (children != null) {
-            int numChildren	= children.getLength();
+            int numChildren     = children.getLength();
             for (int i = 0 ; i < numChildren ; i++) {
-                Node child	= children.item(i);
+                Node child      = children.item(i);
                 if (child.getNodeType() == Node.ELEMENT_NODE && XACML3.XMLNS.equals(child.getNamespaceURI())) {
-                    String childName	= child.getLocalName();
+                    String childName    = child.getLocalName();
                     if (XACML3.ELEMENT_DESCRIPTION.equals(childName)) {
                     } else if (DOMExpression.isExpression(child)) {
-                        result	= DOMExpression.repair(child) || result;
+                        result  = DOMExpression.repair(child) || result;
                     } else {
                         logger.warn("Unexpected element " + child.getNodeName());
                         elementApply.removeChild(child);
-                        result	= true;
+                        result  = true;
                     }
                 }
             }
         }
 
-        result					= DOMUtil.repairIdentifierAttribute(elementApply, XACML3.ATTRIBUTE_FUNCTIONID, XACML3.ID_FUNCTION_STRING_EQUAL, logger) || result;
+        result                                  = DOMUtil.repairIdentifierAttribute(elementApply, XACML3.ATTRIBUTE_FUNCTIONID, XACML3.ID_FUNCTION_STRING_EQUAL, logger) || result;
 
         return result;
     }

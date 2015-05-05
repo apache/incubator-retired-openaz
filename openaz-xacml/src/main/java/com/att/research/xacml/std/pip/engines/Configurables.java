@@ -50,12 +50,12 @@ import com.att.research.xacml.std.pip.StdPIPRequest;
  */
 public class Configurables {
 
-    public static final String PROP_ID				= "id";
-    public static final String PROP_DATATYPE		= "datatype";
-    public static final String PROP_CATEGORY		= "category";
-    public static final String PROP_ISSUER			= "issuer";
+    public static final String PROP_ID                          = "id";
+    public static final String PROP_DATATYPE            = "datatype";
+    public static final String PROP_CATEGORY            = "category";
+    public static final String PROP_ISSUER                      = "issuer";
 
-    private static Log logger		= LogFactory.getLog(Configurables.class);
+    private static Log logger           = LogFactory.getLog(Configurables.class);
 
     public static List<PIPRequest> getPIPRequestList(String prefix, String name, Properties properties, String defaultIssuer) throws PIPException {
         String idxProp = properties.getProperty(prefix + "." + name);
@@ -171,14 +171,14 @@ public class Configurables {
 
 
     public static PIPRequest getPIPRequest(String idPrefix, Properties properties, String defaultIssuer) throws PIPException {
-        String stringProp	= idPrefix + "." + PROP_ID;
-        String attributeId	= properties.getProperty(stringProp);
-        stringProp			= idPrefix + "." + PROP_DATATYPE;
-        String dataTypeId	= properties.getProperty(stringProp);
-        stringProp			= idPrefix + "." + PROP_CATEGORY;
-        String categoryId	= properties.getProperty(stringProp);
-        stringProp			= idPrefix + "." + PROP_ISSUER;
-        String issuer		= properties.getProperty(stringProp);
+        String stringProp       = idPrefix + "." + PROP_ID;
+        String attributeId      = properties.getProperty(stringProp);
+        stringProp                      = idPrefix + "." + PROP_DATATYPE;
+        String dataTypeId       = properties.getProperty(stringProp);
+        stringProp                      = idPrefix + "." + PROP_CATEGORY;
+        String categoryId       = properties.getProperty(stringProp);
+        stringProp                      = idPrefix + "." + PROP_ISSUER;
+        String issuer           = properties.getProperty(stringProp);
 
         if (issuer == null) {
             issuer = defaultIssuer;

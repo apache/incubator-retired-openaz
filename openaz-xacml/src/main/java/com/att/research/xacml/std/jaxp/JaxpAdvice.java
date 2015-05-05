@@ -60,11 +60,11 @@ public class JaxpAdvice extends StdMutableAdvice {
         } else if (obligationType.getAdviceId() == null) {
             throw new IllegalArgumentException("Null obligationId for AdviceType");
         }
-        Identifier						obligationId			= new IdentifierImpl(obligationType.getAdviceId());
-        List<AttributeAssignment>	attributeAssignments	= null;
+        Identifier                                              obligationId                    = new IdentifierImpl(obligationType.getAdviceId());
+        List<AttributeAssignment>       attributeAssignments    = null;
         if (obligationType.getAttributeAssignment() != null && obligationType.getAttributeAssignment().size() > 0) {
-            attributeAssignments	= new ArrayList<AttributeAssignment>();
-            Iterator<AttributeAssignmentType>	iterAttributeAssignmentTypes	= obligationType.getAttributeAssignment().iterator();
+            attributeAssignments        = new ArrayList<AttributeAssignment>();
+            Iterator<AttributeAssignmentType>   iterAttributeAssignmentTypes    = obligationType.getAttributeAssignment().iterator();
             while (iterAttributeAssignmentTypes.hasNext()) {
                 attributeAssignments.add(JaxpAttributeAssignment.newInstance(iterAttributeAssignmentTypes.next()));
             }

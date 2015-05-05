@@ -53,8 +53,8 @@ import org.apache.commons.logging.LogFactory;
  *
  */
 public class ConformanceTestSet {
-    private static final Log logger						= LogFactory.getLog(ConformanceTestSet.class);
-    private List<ConformanceTest> listConformanceTests	= new ArrayList<ConformanceTest>();
+    private static final Log logger                                             = LogFactory.getLog(ConformanceTestSet.class);
+    private List<ConformanceTest> listConformanceTests  = new ArrayList<ConformanceTest>();
 
     protected List<ConformanceTest> getListConformanceTests() {
         return this.listConformanceTests;
@@ -69,8 +69,8 @@ public class ConformanceTestSet {
     }
 
     private static String getTestName(File file) {
-        String fileName	= file.getName();
-        int itemPos		= fileName.indexOf("Policy");
+        String fileName = file.getName();
+        int itemPos             = fileName.indexOf("Policy");
         if (itemPos >= 0) {
             return getTestName(fileName, itemPos);
         } else if ((itemPos = fileName.indexOf("Request")) >= 0) {
@@ -85,7 +85,7 @@ public class ConformanceTestSet {
     }
 
     public static ConformanceTestSet loadDirectory(File fileDir) throws IOException {
-        final Map<String,ConformanceTest> mapConformanceTests	= new HashMap<String,ConformanceTest>();
+        final Map<String,ConformanceTest> mapConformanceTests   = new HashMap<String,ConformanceTest>();
 
         Files.walkFileTree(fileDir.toPath(), new FileVisitor<Path>() {
             @Override
@@ -96,15 +96,15 @@ public class ConformanceTestSet {
 
             @Override
             public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
-                File fileVisited	= file.toFile();
-                String fileName		= fileVisited.getName();
+                File fileVisited        = file.toFile();
+                String fileName         = fileVisited.getName();
                 if (fileName.endsWith(".xml") || fileName.endsWith(".properties")) {
-                    String testName	= getTestName(fileVisited);
+                    String testName     = getTestName(fileVisited);
                     if (testName != null) {
-                        ConformanceTest conformanceTest	= mapConformanceTests.get(testName);
+                        ConformanceTest conformanceTest = mapConformanceTests.get(testName);
                         if (conformanceTest == null) {
                             logger.info("Added test " + testName);
-                            conformanceTest	= new ConformanceTest(testName);
+                            conformanceTest     = new ConformanceTest(testName);
                             mapConformanceTests.put(testName, conformanceTest);
                         }
                         if (fileName.endsWith("Policy.xml")) {
@@ -122,7 +122,7 @@ public class ConformanceTestSet {
             }
 
             @Override
-            public FileVisitResult visitFileFailed(Path file, IOException exc) 	throws IOException {
+            public FileVisitResult visitFileFailed(Path file, IOException exc)  throws IOException {
                 logger.warn("Skipped " + file.getFileName());
                 return FileVisitResult.CONTINUE;
             }
@@ -136,14 +136,14 @@ public class ConformanceTestSet {
         /*
          * Sort the keyset and pull out the tests that have the required components
          */
-        List<String> listTestNames	= new ArrayList<String>();
+        List<String> listTestNames      = new ArrayList<String>();
         listTestNames.addAll(mapConformanceTests.keySet());
         Collections.sort(listTestNames);
 
-        ConformanceTestSet conformanceTestSet	= new ConformanceTestSet();
-        Iterator<String> iterTestNames	= listTestNames.iterator();
+        ConformanceTestSet conformanceTestSet   = new ConformanceTestSet();
+        Iterator<String> iterTestNames  = listTestNames.iterator();
         while (iterTestNames.hasNext()) {
-            ConformanceTest	conformanceTest	= mapConformanceTests.get(iterTestNames.next());
+            ConformanceTest     conformanceTest = mapConformanceTests.get(iterTestNames.next());
             if (conformanceTest.isComplete()) {
                 conformanceTestSet.addConformanceTest(conformanceTest);
                 logger.debug("Added conformance test " + conformanceTest.getTestName());
@@ -171,8 +171,8 @@ public class ConformanceTestSet {
     public static void main(String[] args) {
         for (String dir : args) {
             try {
-                ConformanceTestSet conformanceTestSet			= ConformanceTestSet.loadDirectory(new File(dir));
-                Iterator<ConformanceTest> iterConformanceTests	= conformanceTestSet.getConformanceTests();
+                ConformanceTestSet conformanceTestSet                   = ConformanceTestSet.loadDirectory(new File(dir));
+                Iterator<ConformanceTest> iterConformanceTests  = conformanceTestSet.getConformanceTests();
                 if (iterConformanceTests == null) {
                     System.out.println("No tests found in " + dir);
                 } else {

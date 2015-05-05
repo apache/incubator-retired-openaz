@@ -52,12 +52,12 @@ import com.att.research.xacmlatt.pdp.policy.FunctionArgument;
  * In the first implementation of XACML we had separate files for each XACML Function.
  * This release combines multiple Functions in fewer files to minimize code duplication.
  * This file supports the following XACML codes:
- * 		string-regexp-match
- * 		anyURI-regexp-match
- * 		x500Name-regexp-match
- * 		rfc822Name-regexp-match (in sub-class {@link com.att.research.xacmlatt.pdp.policy.FunctionDefinition.FunctionDefinitionRegexpMatchRFC822} )
- * 		ipAddress-regexp-match
- * 		dnsName-regexp-match
+ *              string-regexp-match
+ *              anyURI-regexp-match
+ *              x500Name-regexp-match
+ *              rfc822Name-regexp-match (in sub-class {@link com.att.research.xacmlatt.pdp.policy.FunctionDefinition.FunctionDefinitionRegexpMatchRFC822} )
+ *              ipAddress-regexp-match
+ *              dnsName-regexp-match
  *
  *
  *
@@ -94,7 +94,7 @@ public class FunctionDefinitionRegexpMatch<I> extends FunctionDefinitionBase<Boo
         }
 
         // String regexpValue = (String)regexpArgument.getValue().getValue();
-        String regexpValue	= convertedArgument.getValue();
+        String regexpValue      = convertedArgument.getValue();
 
 
         // now get the element to match
