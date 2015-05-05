@@ -29,14 +29,12 @@ import java.util.Set;
 public interface ObligationStore {
 
     /**
-     *
      * @param oHandlerClass
      * @return
      */
     public Set<Obligation> getHandlerObligations(Class<?> oHandlerClass);
 
     /**
-     *
      * @param oHandlerClass
      * @param obligationId
      * @return

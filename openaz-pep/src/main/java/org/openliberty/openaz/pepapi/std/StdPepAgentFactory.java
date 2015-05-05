@@ -27,7 +27,6 @@ import org.openliberty.openaz.pepapi.*;
 import java.util.List;
 import java.util.Properties;
 
-
 public class StdPepAgentFactory implements PepAgentFactory {
 
     private volatile PepAgent pepAgent;
@@ -48,7 +47,7 @@ public class StdPepAgentFactory implements PepAgentFactory {
         this.xacmlProperties = properties;
         this.pepConfig = new StdPepConfig(properties);
         try {
-            //FIXME: Error when invoking newInstance() with properties.
+            // FIXME: Error when invoking newInstance() with properties.
             pdpEngineFactory = PDPEngineFactory.newInstance();
         } catch (FactoryException e) {
             throw new PepException(e);
@@ -57,9 +56,9 @@ public class StdPepAgentFactory implements PepAgentFactory {
 
     @Override
     public PepAgent getPepAgent() {
-        if(pepAgent == null) {
-            synchronized(this) {
-                if(this.pepAgent == null) {
+        if (pepAgent == null) {
+            synchronized (this) {
+                if (this.pepAgent == null) {
                     StdPepAgent pa = new StdPepAgent();
                     pa.setPepConfig(pepConfig);
                     pa.setXacmlProperties(xacmlProperties);

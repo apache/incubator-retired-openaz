@@ -47,6 +47,12 @@ import com.att.research.xacml.std.StdStatusCode;
 import com.att.research.xacml.std.dom.DOMStructureException;
 import com.att.research.xacml.util.FactoryException;
 import com.att.research.xacml.util.XACMLProperties;
+import com.att.research.xacmlatt.pdp.policy.Policy;
+import com.att.research.xacmlatt.pdp.policy.PolicyDef;
+import com.att.research.xacmlatt.pdp.policy.PolicyFinder;
+import com.att.research.xacmlatt.pdp.policy.PolicyFinderFactory;
+import com.att.research.xacmlatt.pdp.policy.dom.DOMPolicyDef;
+import com.att.research.xacmlatt.pdp.std.StdPolicyFinder;
 import com.google.common.base.Splitter;
 
 public class XACMLPdpPolicyFinderFactory extends PolicyFinderFactory {

@@ -21,7 +21,8 @@
 package org.openliberty.openaz.pepapi;
 
 /**
- * Interface that abstracts an object that can be matched. Concrete implementations provide a match() function.
+ * Interface that abstracts an object that can be matched. Concrete implementations provide a match()
+ * function.
  *
  * @param <T>
  */

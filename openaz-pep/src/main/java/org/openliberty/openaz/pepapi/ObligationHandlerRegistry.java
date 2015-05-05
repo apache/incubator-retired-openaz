@@ -20,12 +20,10 @@
 
 package org.openliberty.openaz.pepapi;
 
-
 import java.util.Map;
 
 /**
  * Abstraction for a Obligation Handler registration mechanism. Subclasses provide specific implementations.
- *
  */
 public interface ObligationHandlerRegistry {
 

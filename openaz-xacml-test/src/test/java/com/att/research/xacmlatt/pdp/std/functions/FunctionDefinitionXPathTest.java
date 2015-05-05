@@ -47,6 +47,11 @@ import com.att.research.xacml.std.StdStatus;
 import com.att.research.xacml.std.datatypes.DataTypes;
 import com.att.research.xacml.std.datatypes.XPathExpressionWrapper;
 import com.att.research.xacml.std.dom.DOMRequest;
+import com.att.research.xacmlatt.pdp.policy.ExpressionResult;
+import com.att.research.xacmlatt.pdp.policy.FunctionArgument;
+import com.att.research.xacmlatt.pdp.policy.FunctionArgumentAttributeValue;
+import com.att.research.xacmlatt.pdp.std.StdEvaluationContext;
+import com.att.research.xacmlatt.pdp.std.StdFunctions;
 
 /**
  * Test of PDP Functions (See XACML core spec section A.3) TO RUN - use jUnit In Eclipse select this file or

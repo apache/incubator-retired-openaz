@@ -28,7 +28,6 @@ import java.util.Map;
 public interface Advice {
 
     /**
-     *
      * @return
      */
     public String getId();

@@ -28,7 +28,6 @@ import org.openliberty.openaz.pepapi.PepConfig;
 import org.openliberty.openaz.pepapi.PepResponse;
 import org.openliberty.openaz.pepapi.PepResponseFactory;
 
-
 final class StdPepResponseFactory implements PepResponseFactory {
 
     private static final Log logger = LogFactory.getLog(StdPepResponseFactory.class);

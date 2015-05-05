@@ -58,14 +58,16 @@ final class MultiRequest implements PepRequest {
 
     private RequestReference sharedRequestReference;
 
-    static MultiRequest newInstance(PepConfig pepConfig, MapperRegistry mapperRegistry, List<?> associations, Object[] sharedRequestObjects) {
+    static MultiRequest newInstance(PepConfig pepConfig, MapperRegistry mapperRegistry, List<?> associations,
+                                    Object[] sharedRequestObjects) {
         MultiRequest m = new MultiRequest(pepConfig, mapperRegistry, associations, sharedRequestObjects);
         m.mapSharedRequestObjects();
         m.mapAssociations();
         return m;
     }
 
-    private MultiRequest(PepConfig pepConfig, MapperRegistry mapperRegistry, List<?> associations, Object[] sharedRequestObjects) {
+    private MultiRequest(PepConfig pepConfig, MapperRegistry mapperRegistry, List<?> associations,
+                         Object[] sharedRequestObjects) {
         this.pepRequestAttributesMapByCategory = new HashMap<Identifier, PepRequestAttributes>();
         this.sharedRequestObjects = sharedRequestObjects;
         this.associations = associations;
@@ -77,41 +79,44 @@ final class MultiRequest implements PepRequest {
     }
 
     private void mapSharedRequestObjects() {
-        if(sharedRequestObjects == null) {
+        if (sharedRequestObjects == null) {
             throw new IllegalArgumentException("One or more arguments are null");
         }
-        for(Object o: sharedRequestObjects) {
-            if(o == null) {
+        for (Object o : sharedRequestObjects) {
+            if (o == null) {
                 throw new IllegalArgumentException("One or more arguments are null");
             }
             ObjectMapper mapper = mapperRegistry.getMapper(o.getClass());
-            if(mapper == null) {
+            if (mapper == null) {
                 throw new IllegalArgumentException("No mappers found for class: " + o.getClass().getName());
             }
             mapper.map(o, this);
         }
-        //Collect
+        // Collect
         sharedRequestReference = currentRequestReference;
     }
 
     private void mapAssociations() {
-        if(associations == null) {
+        if (associations == null) {
             throw new IllegalArgumentException("One or more arguments are null");
         }
-        for(Object association: associations) {
-            if(association == null) {
+        for (Object association : associations) {
+            if (association == null) {
                 throw new IllegalArgumentException("One or more arguments are null");
             }
 
-            //Prepare
+            // Prepare
             pepRequestAttributesMapByCategory.clear();
-            currentRequestReference = new StdMutableRequestReference(sharedRequestReference.getAttributesReferences());
+            currentRequestReference = new StdMutableRequestReference(
+                                                                     sharedRequestReference
+                                                                         .getAttributesReferences());
             wrappedRequest.add(currentRequestReference);
 
-            //Map
+            // Map
             ObjectMapper mapper = mapperRegistry.getMapper(association.getClass());
-            if(mapper == null) {
-                throw new IllegalArgumentException("No mappers found for class: " + association.getClass().getName());
+            if (mapper == null) {
+                throw new IllegalArgumentException("No mappers found for class: "
+                                                   + association.getClass().getName());
             }
             mapper.map(association, this);
         }
@@ -120,7 +125,7 @@ final class MultiRequest implements PepRequest {
     @Override
     public PepRequestAttributes getPepRequestAttributes(Identifier categoryIdentifier) {
         PepRequestAttributes pepRequestAttributes = pepRequestAttributesMapByCategory.get(categoryIdentifier);
-        if(pepRequestAttributes == null) {
+        if (pepRequestAttributes == null) {
             String xmlId = generateRequestAttributesXmlId();
             StdPepRequestAttributes p = new StdPepRequestAttributes(xmlId, categoryIdentifier);
             p.setIssuer(pepConfig.getIssuer());

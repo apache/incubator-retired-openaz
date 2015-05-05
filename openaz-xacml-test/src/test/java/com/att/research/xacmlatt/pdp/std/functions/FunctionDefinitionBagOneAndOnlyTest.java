@@ -24,15 +24,20 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
-import java.math.BigInteger;
 
 import org.junit.Test;
 
 import com.att.research.xacml.api.XACML3;
 import com.att.research.xacml.std.StdAttributeValue;
 import com.att.research.xacml.std.datatypes.DataTypes;
+import com.att.research.xacmlatt.pdp.policy.Bag;
+import com.att.research.xacmlatt.pdp.policy.ExpressionResult;
+import com.att.research.xacmlatt.pdp.policy.FunctionArgument;
+import com.att.research.xacmlatt.pdp.policy.FunctionArgumentBag;
+import com.att.research.xacmlatt.pdp.std.StdFunctions;
 
 /**
  * Test of PDP Functions (See XACML core spec section A.3) TO RUN - use jUnit In Eclipse select this file or

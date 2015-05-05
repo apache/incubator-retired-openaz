@@ -27,7 +27,6 @@ import java.util.List;
 public interface PepRequestFactory {
 
     /**
-     *
      * @return
      * @throws org.openliberty.openaz.pepapi.PepException, if no ObjectMappers found.
      * @throws IllegalArgumentException,, if any argument is null.
@@ -35,7 +34,6 @@ public interface PepRequestFactory {
     public PepRequest newPepRequest(Object[] objects);
 
     /**
-     *
      * @param associations
      * @param objects
      * @return

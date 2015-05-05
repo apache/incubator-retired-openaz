@@ -27,8 +27,6 @@ import java.util.Date;
 
 /**
  * Container class that maps attributes to predefined XACML Resource category.
- *
- *
  */
 public final class Resource extends CategoryContainer {
 
@@ -115,7 +113,8 @@ public final class Resource extends CategoryContainer {
     }
 
     /**
-     * Creates a new Resource instance containing a single default attribute with the given <code>java.util.Date</code> value.
+     * Creates a new Resource instance containing a single default attribute with the given
+     * <code>java.util.Date</code> value.
      *
      * @param resourceIdValue
      * @return
@@ -135,7 +134,6 @@ public final class Resource extends CategoryContainer {
     public Object getResourceIdValue() {
         return resourceIdValue;
     }
-
 
     @Override
     public String toString() {

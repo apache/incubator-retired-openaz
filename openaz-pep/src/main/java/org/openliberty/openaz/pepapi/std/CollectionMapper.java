@@ -26,7 +26,6 @@ import org.openliberty.openaz.pepapi.*;
 
 import java.util.Collection;
 
-
 public final class CollectionMapper implements ObjectMapper {
 
     private static final Log logger = LogFactory.getLog(CollectionMapper.class);
@@ -43,9 +42,9 @@ public final class CollectionMapper implements ObjectMapper {
     @Override
     public void map(Object o, PepRequest pepRequest) {
         Collection<?> collection = (Collection<?>)o;
-        for(Object item: collection) {
+        for (Object item : collection) {
             ObjectMapper mapper = mapperRegistry.getMapper(item.getClass());
-            if(mapper != null) {
+            if (mapper != null) {
                 mapper.map(item, pepRequest);
             } else {
                 logger.error("Can't map an Object of class: " + item.getClass().getName());

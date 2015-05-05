@@ -31,7 +31,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
-
 final class StdPepRequest implements PepRequest {
 
     private static final String REQUEST_ATTR_ID_PREFIX = "attributes";
@@ -50,14 +49,14 @@ final class StdPepRequest implements PepRequest {
 
     private final AtomicInteger idCounter;
 
-    static StdPepRequest newInstance(PepConfig pepConfig, MapperRegistry mapperRegistry, Object[] requestObjects) {
+    static StdPepRequest newInstance(PepConfig pepConfig, MapperRegistry mapperRegistry,
+                                     Object[] requestObjects) {
         StdPepRequest stdPepRequest = new StdPepRequest(pepConfig, mapperRegistry, requestObjects);
         stdPepRequest.map();
         return stdPepRequest;
     }
 
     /**
-     *
      * @return
      */
     private String generateRequestAttributesXmlId() {
@@ -76,7 +75,7 @@ final class StdPepRequest implements PepRequest {
     @Override
     public PepRequestAttributes getPepRequestAttributes(Identifier categoryIdentifier) {
         PepRequestAttributes pepRequestAttributes = pepRequestAttributesMapByCategory.get(categoryIdentifier);
-        if(pepRequestAttributes == null) {
+        if (pepRequestAttributes == null) {
             String xmlId = generateRequestAttributesXmlId();
             StdPepRequestAttributes p = new StdPepRequestAttributes(xmlId, categoryIdentifier);
             p.setIssuer(pepConfig.getIssuer());
@@ -88,15 +87,15 @@ final class StdPepRequest implements PepRequest {
     }
 
     private void map() {
-        if(requestObjects == null) {
+        if (requestObjects == null) {
             throw new IllegalArgumentException("One or more arguments are null");
         }
-        for(Object o: requestObjects) {
-            if(o == null) {
+        for (Object o : requestObjects) {
+            if (o == null) {
                 throw new IllegalArgumentException("One or more arguments are null");
             }
             ObjectMapper mapper = mapperRegistry.getMapper(o.getClass());
-            if(mapper == null) {
+            if (mapper == null) {
                 throw new IllegalArgumentException("No mappers found for class: " + o.getClass().getName());
             }
             mapper.map(o, this);

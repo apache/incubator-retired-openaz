@@ -39,6 +39,10 @@ import java.util.Map;
 
 import com.att.research.xacml.api.Identifier;
 import com.att.research.xacml.std.IdentifierImpl;
+import com.att.research.xacmlatt.pdp.policy.FunctionDefinition;
+import com.att.research.xacmlatt.pdp.policy.FunctionDefinitionFactory;
+import com.att.research.xacmlatt.pdp.std.StdFunctions;
+import com.att.research.xacmlatt.pdp.std.functions.FunctionDefinitionBagOneAndOnly;
 
 public class CustomFunctionDefinitionFactory extends FunctionDefinitionFactory {
     private static Map<Identifier, FunctionDefinition> mapFunctionDefinitions = new HashMap<Identifier, FunctionDefinition>();

@@ -29,7 +29,6 @@ import org.openliberty.openaz.pepapi.PepRequestFactory;
 
 import java.util.List;
 
-
 final class StdPepRequestFactory implements PepRequestFactory {
 
     private static final Log logger = LogFactory.getLog(StdPepRequestFactory.class);
@@ -39,7 +38,6 @@ final class StdPepRequestFactory implements PepRequestFactory {
     private final MapperRegistry mapperRegistry;
 
     /**
-     *
      * @param pepConfig
      */
     StdPepRequestFactory(PepConfig pepConfig, MapperRegistry mapperRegistry) {

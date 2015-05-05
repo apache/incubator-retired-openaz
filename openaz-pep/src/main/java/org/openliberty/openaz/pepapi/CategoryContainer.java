@@ -31,8 +31,6 @@ import java.util.Map.Entry;
 
 /**
  * Abstraction for an attribute container of a specific XACML category.
- *
- *
  */
 public class CategoryContainer {
 
@@ -146,10 +144,10 @@ public class CategoryContainer {
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
-        for(Entry<String, Object[]> e: attributeMap.entrySet()) {
+        for (Entry<String, Object[]> e : attributeMap.entrySet()) {
             builder.append("Attribute Id: " + e.getKey());
             builder.append(", Attribute Values: ");
-            for(Object o: e.getValue()) {
+            for (Object o : e.getValue()) {
                 builder.append(o.toString() + ", ");
             }
             builder.append("\n");

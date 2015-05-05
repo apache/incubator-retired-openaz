@@ -20,7 +20,6 @@
 
 package org.openliberty.openaz.pepapi;
 
-
 /**
  *
  *
@@ -28,7 +27,6 @@ package org.openliberty.openaz.pepapi;
 public interface ObligationStoreAware {
 
     /**
-     *
      * @param oStore
      */
     public void setObligationStore(ObligationStore oStore);

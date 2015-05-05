@@ -20,7 +20,6 @@
 
 package org.openliberty.openaz.pepapi.std;
 
-
 import org.openliberty.openaz.pepapi.Action;
 
 /**
@@ -34,7 +33,7 @@ public class ActionMapper extends CategoryContainerMapper {
 
     @Override
     protected String resolveAttributeId(String attributeId) {
-        if(attributeId.equals(Action.ACTION_ID_KEY)) {
+        if (attributeId.equals(Action.ACTION_ID_KEY)) {
             return getPepConfig().getDefaultActionId();
         }
         return attributeId;

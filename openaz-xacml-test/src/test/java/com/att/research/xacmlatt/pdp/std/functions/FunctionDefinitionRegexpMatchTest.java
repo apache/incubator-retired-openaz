@@ -38,6 +38,10 @@ import com.att.research.xacml.std.datatypes.DataTypes;
 import com.att.research.xacml.std.datatypes.IPAddress;
 import com.att.research.xacml.std.datatypes.RFC2396DomainName;
 import com.att.research.xacml.std.datatypes.RFC822Name;
+import com.att.research.xacmlatt.pdp.policy.ExpressionResult;
+import com.att.research.xacmlatt.pdp.policy.FunctionArgument;
+import com.att.research.xacmlatt.pdp.policy.FunctionArgumentAttributeValue;
+import com.att.research.xacmlatt.pdp.std.StdFunctions;
 
 /**
  * Test of PDP Functions (See XACML core spec section A.3) TO RUN - use jUnit In Eclipse select this file or

@@ -20,15 +20,11 @@
 
 package com.att.research.xacmlatt.pdp.std.functions;
 
-import com.att.research.xacml.api.Request;
-import com.att.research.xacml.api.XACML3;
-import com.att.research.xacml.std.StdMutableRequest;
-import com.att.research.xacml.std.datatypes.DataTypes;
-import com.att.research.xacml.std.dom.DOMRequest;
-import org.junit.Ignore;
-import org.junit.Test;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
-import javax.xml.namespace.NamespaceContext;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -36,7 +32,21 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import static org.junit.Assert.*;
+import javax.xml.namespace.NamespaceContext;
+
+import org.junit.Ignore;
+import org.junit.Test;
+
+import com.att.research.xacml.api.Request;
+import com.att.research.xacml.api.XACML3;
+import com.att.research.xacml.std.StdMutableRequest;
+import com.att.research.xacml.std.datatypes.DataTypes;
+import com.att.research.xacml.std.dom.DOMRequest;
+import com.att.research.xacmlatt.pdp.policy.ExpressionResult;
+import com.att.research.xacmlatt.pdp.policy.FunctionArgument;
+import com.att.research.xacmlatt.pdp.policy.FunctionArgumentAttributeValue;
+import com.att.research.xacmlatt.pdp.std.StdEvaluationContext;
+import com.att.research.xacmlatt.pdp.std.StdFunctions;
 
 /**
  * Test of PDP Functions (See XACML core spec section A.3) TO RUN - use jUnit In Eclipse select this file or

@@ -34,7 +34,6 @@ import org.openliberty.openaz.pepapi.std.test.mapper.Document;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class TestMapper {
 
     @SuppressWarnings("unused")
@@ -81,12 +80,12 @@ public class TestMapper {
 
         Action action = Action.newInstance("write");
         Document doc = new Document(2, "OnBoarding Document", "XYZ Corporation", "Jim Doe");
-        PepResponse response = getPepAgent().decide(subject,  action, doc);
+        PepResponse response = getPepAgent().decide(subject, action, doc);
         Assert.assertNotNull(response);
         Assert.assertEquals(false, response.allowed());
     }
 
-    @Test(expected=PepException.class)
+    @Test(expected = PepException.class)
     public void testMix() {
         Subject subject = Subject.newInstance("John Smith");
         subject.addAttribute("urn:oasis:names:tc:xacml:1.0:subject:role-id", "ROLE_DOCUMENT_WRITER");

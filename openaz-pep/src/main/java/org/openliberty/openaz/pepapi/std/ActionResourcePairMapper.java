@@ -20,7 +20,6 @@
 
 package org.openliberty.openaz.pepapi.std;
 
-
 import org.openliberty.openaz.pepapi.*;
 
 public final class ActionResourcePairMapper implements ObjectMapper {

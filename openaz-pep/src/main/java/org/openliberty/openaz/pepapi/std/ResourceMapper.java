@@ -20,7 +20,6 @@
 
 package org.openliberty.openaz.pepapi.std;
 
-
 import org.openliberty.openaz.pepapi.Resource;
 
 /**
@@ -34,7 +33,7 @@ public class ResourceMapper extends CategoryContainerMapper {
 
     @Override
     protected String resolveAttributeId(String attributeId) {
-        if(attributeId.equals(Resource.RESOURCE_ID_KEY)) {
+        if (attributeId.equals(Resource.RESOURCE_ID_KEY)) {
             return getPepConfig().getDefaultResourceId();
         }
         return attributeId;

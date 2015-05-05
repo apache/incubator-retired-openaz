@@ -37,7 +37,8 @@ public class ClientMapper implements ObjectMapper {
     @Override
     public void map(Object o, PepRequest pepRequest) {
         Client c = (Client)o;
-        PepRequestAttributes resAttributes = pepRequest.getPepRequestAttributes(XACML3.ID_ATTRIBUTE_CATEGORY_RESOURCE);
+        PepRequestAttributes resAttributes = pepRequest
+            .getPepRequestAttributes(XACML3.ID_ATTRIBUTE_CATEGORY_RESOURCE);
         resAttributes.addAttribute("jpmc:client:name", c.getName());
         resAttributes.addAttribute("jpmc:client:country-of-domicile", c.getCountryOfDomicile());
     }

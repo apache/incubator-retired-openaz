@@ -22,8 +22,6 @@ package org.openliberty.openaz.pepapi;
 
 /**
  * Runtime Exception thrown when the framework cannot find a registered handler to deal with the obligation.
- *
- *
  */
 @SuppressWarnings("serial")
 public class UnhandleableObligationException extends RuntimeException {

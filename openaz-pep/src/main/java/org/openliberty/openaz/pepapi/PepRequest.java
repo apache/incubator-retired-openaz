@@ -29,15 +29,14 @@ import com.att.research.xacml.api.Request;
 public interface PepRequest {
 
     /**
-     * Returns a PepRequestAttributes instance that represents the attribute category identified
-     * by the categoryIdentfier parameter.
+     * Returns a PepRequestAttributes instance that represents the attribute category identified by the
+     * categoryIdentfier parameter.
      *
      * @param categoryIdentifier an identifier for a category
      */
     public PepRequestAttributes getPepRequestAttributes(Identifier categoryIdentifier);
 
     /**
-     *
      * @return
      */
     public Request getWrappedRequest();

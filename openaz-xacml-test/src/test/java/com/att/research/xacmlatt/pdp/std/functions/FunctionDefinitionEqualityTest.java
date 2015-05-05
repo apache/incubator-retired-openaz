@@ -55,6 +55,10 @@ import com.att.research.xacml.std.datatypes.HexBinary;
 import com.att.research.xacml.std.datatypes.RFC822Name;
 import com.att.research.xacml.std.datatypes.XPathDayTimeDuration;
 import com.att.research.xacml.std.datatypes.XPathYearMonthDuration;
+import com.att.research.xacmlatt.pdp.policy.ExpressionResult;
+import com.att.research.xacmlatt.pdp.policy.FunctionArgument;
+import com.att.research.xacmlatt.pdp.policy.FunctionArgumentAttributeValue;
+import com.att.research.xacmlatt.pdp.std.StdFunctions;
 
 /**
  * Test FunctionDefinitionEquality, all of its super-classes, and all XACML functions supported by that class.

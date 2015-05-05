@@ -25,7 +25,6 @@ import org.openliberty.openaz.pepapi.PepResponse;
 
 import java.util.concurrent.Callable;
 
-
 public class AzInvoker implements Callable<String> {
 
     private final PepAgent pepAgent;
@@ -40,8 +39,8 @@ public class AzInvoker implements Callable<String> {
 
     private final HasResult handler;
 
-    public AzInvoker(PepAgent pepAgent, Object subject, Object action,
-                     Object resource, HasResult handler, long sleepDuration) {
+    public AzInvoker(PepAgent pepAgent, Object subject, Object action, Object resource, HasResult handler,
+                     long sleepDuration) {
         this.pepAgent = pepAgent;
         this.subject = subject;
         this.action = action;
@@ -50,15 +49,16 @@ public class AzInvoker implements Callable<String> {
         this.sleepDuration = sleepDuration;
     }
 
-    private String invoke()throws InterruptedException {
+    private String invoke() throws InterruptedException {
         PepResponse response = pepAgent.decide(subject, action, resource);
-        if(response != null) {
+        if (response != null) {
             response.allowed();
         }
         Thread.sleep(this.sleepDuration);
         return handler.getResult();
     }
 
+    @Override
     public String call() throws Exception {
         return invoke();
     }

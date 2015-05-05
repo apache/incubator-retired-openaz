@@ -43,6 +43,10 @@ import org.junit.Test;
 import com.att.research.xacml.api.Status;
 import com.att.research.xacml.api.XACML3;
 import com.att.research.xacml.std.datatypes.DataTypes;
+import com.att.research.xacmlatt.pdp.policy.Bag;
+import com.att.research.xacmlatt.pdp.policy.FunctionArgument;
+import com.att.research.xacmlatt.pdp.policy.FunctionArgumentAttributeValue;
+import com.att.research.xacmlatt.pdp.policy.FunctionArgumentBag;
 
 /**
  * FunctionDefinitionHomogeneousSimple is an abstract class, so we have to test it by creating a sub-class.

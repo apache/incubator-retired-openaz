@@ -32,6 +32,10 @@ import org.junit.Test;
 
 import com.att.research.xacml.api.XACML3;
 import com.att.research.xacml.std.datatypes.DataTypes;
+import com.att.research.xacmlatt.pdp.policy.ExpressionResult;
+import com.att.research.xacmlatt.pdp.policy.FunctionArgument;
+import com.att.research.xacmlatt.pdp.policy.FunctionArgumentAttributeValue;
+import com.att.research.xacmlatt.pdp.std.StdFunctions;
 
 /**
  * Test of PDP Functions (See XACML core spec section A.3) TO RUN - use jUnit In Eclipse select this file or
@@ -46,7 +50,7 @@ public class FunctionDefinitionStringNormalizeTest {
 
     @Test
     public void testString_normalize_space() {
-        String initialString = "  First and last are whitespace         ";
+        String initialString = "  First and last are whitespace        ";
         FunctionArgumentAttributeValue attr1 = null;
         try {
             attr1 = new FunctionArgumentAttributeValue(
@@ -72,7 +76,6 @@ public class FunctionDefinitionStringNormalizeTest {
         ExpressionResult res = fd.evaluate(null, arguments);
         assertTrue(res.isOk());
         String resValue = (String)res.getValue().getValue();
-        assertEquals(initialString.length() - 4, resValue.length());
         assertTrue(initialString.trim().equals(resValue));
     }
 

@@ -42,6 +42,10 @@ import org.junit.Test;
 
 import com.att.research.xacml.api.XACML3;
 import com.att.research.xacml.std.datatypes.DataTypes;
+import com.att.research.xacmlatt.pdp.policy.ExpressionResult;
+import com.att.research.xacmlatt.pdp.policy.FunctionArgument;
+import com.att.research.xacmlatt.pdp.policy.FunctionArgumentAttributeValue;
+import com.att.research.xacmlatt.pdp.std.StdFunctions;
 
 /**
  * Only one function to test here. Code copy/pasted from FunctionDefinitionEqualityTest TO RUN - use jUnit In

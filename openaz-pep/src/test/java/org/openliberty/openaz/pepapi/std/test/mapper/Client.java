@@ -34,6 +34,7 @@ public class Client {
     public String getName() {
         return name;
     }
+
     public String getCountryOfDomicile() {
         return countryOfDomicile;
     }

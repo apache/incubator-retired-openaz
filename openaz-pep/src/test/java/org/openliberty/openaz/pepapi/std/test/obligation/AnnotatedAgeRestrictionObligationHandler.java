@@ -39,16 +39,16 @@ public class AnnotatedAgeRestrictionObligationHandler implements ObligationStore
     private ObligationStore obligationStore;
 
     public String enforce() {
-        Obligation ageOblg = obligationStore.getHandlerObligationById(
-                                 this.getClass(),
-                                 "urn:oasis:names:tc:xacml:2.0:obligation:age-restriction");
+        Obligation ageOblg = obligationStore
+            .getHandlerObligationById(this.getClass(),
+                                      "urn:oasis:names:tc:xacml:2.0:obligation:age-restriction");
         String value = null;
         Assert.assertEquals("urn:oasis:names:tc:xacml:2.0:obligation:age-restriction", ageOblg.getId());
         log.info(ageOblg.getId());
-        //Enforcement Logic
+        // Enforcement Logic
         Map<String, Object[]> attributeMap = ageOblg.getAttributeMap();
         Object[] values = attributeMap.get("urn:oasis:names:tc:xacml:1.0:subject:age");
-        if(values != null) {
+        if (values != null) {
             value = (String)values[0];
         }
         return value;

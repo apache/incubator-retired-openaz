@@ -38,23 +38,23 @@ public class AnnotatedAccessRestrictionObligationHandler implements ObligationSt
     private ObligationStore obligationStore;
 
     public void enforce() {
-        Obligation accessGroupOblg = obligationStore.getHandlerObligationById(
-                                         this.getClass(),
-                                         "urn:oasis:names:tc:xacml:2.0:obligation:access-restriction");
+        Obligation accessGroupOblg = obligationStore
+            .getHandlerObligationById(this.getClass(),
+                                      "urn:oasis:names:tc:xacml:2.0:obligation:access-restriction");
         Assert.assertEquals("urn:oasis:names:tc:xacml:2.0:obligation:access-restriction",
                             accessGroupOblg.getId());
         log.info(accessGroupOblg.getId());
-        for(Entry<String, Object[]> e: accessGroupOblg.getAttributeMap().entrySet()) {
-            if(e.getKey().equals("urn:oasis:names:tc:xacml:1.0:subject:subject-id")) {
+        for (Entry<String, Object[]> e : accessGroupOblg.getAttributeMap().entrySet()) {
+            if (e.getKey().equals("urn:oasis:names:tc:xacml:1.0:subject:subject-id")) {
                 Assert.assertNotNull(e.getValue());
             }
-            if(e.getKey().equals("urn:oasis:names:tc:xacml:1.0:resource:resource-access-group")) {
+            if (e.getKey().equals("urn:oasis:names:tc:xacml:1.0:resource:resource-access-group")) {
                 Object[] values = e.getValue();
                 Assert.assertNotNull(values);
                 Assert.assertEquals(3, values.length);
             }
         }
-        //Enforcement Logic
+        // Enforcement Logic
     }
 
     @Override

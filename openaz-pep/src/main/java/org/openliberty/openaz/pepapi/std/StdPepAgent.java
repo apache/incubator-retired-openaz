@@ -40,7 +40,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
-
 final class StdPepAgent implements PepAgent {
 
     @SuppressWarnings("unused")
@@ -65,10 +64,10 @@ final class StdPepAgent implements PepAgent {
     }
 
     final void initialize() {
-        assert(pdpEngineFactory != null);
+        assert (pdpEngineFactory != null);
 
-        //Instantiate PDPEngine
-        if(pdpEngine == null) {
+        // Instantiate PDPEngine
+        if (pdpEngine == null) {
             try {
                 pdpEngine = pdpEngineFactory.newEngine(xacmlProperties);
             } catch (FactoryException e) {
@@ -77,25 +76,27 @@ final class StdPepAgent implements PepAgent {
         }
 
         List<ObjectMapper> objectMappers = new ArrayList<ObjectMapper>();
-        for(String mapperClassName: pepConfig.getMapperClassNames()) {
-            Class<? extends ObjectMapper> clazz = (Class<? extends ObjectMapper>)PepUtils.loadClass(mapperClassName);
+        for (String mapperClassName : pepConfig.getMapperClassNames()) {
+            Class<? extends ObjectMapper> clazz = (Class<? extends ObjectMapper>)PepUtils
+                .loadClass(mapperClassName);
             objectMappers.add(PepUtils.instantiateClass(clazz));
         }
         MapperRegistry mapperRegistry = StdMapperRegistry.newInstance(pepConfig, objectMappers);
 
         ObligationRouter oRouter = null;
-        if(!obligationHandlers.isEmpty()) {
-            ObligationHandlerRegistry oHandlerRegistry = StdObligationHandlerRegistry.newInstance(obligationHandlers);
+        if (!obligationHandlers.isEmpty()) {
+            ObligationHandlerRegistry oHandlerRegistry = StdObligationHandlerRegistry
+                .newInstance(obligationHandlers);
             ThreadLocalObligationStore oStore = ThreadLocalObligationStore.newInstance();
-            for(ObligationStoreAware oHandler: obligationHandlers) {
+            for (ObligationStoreAware oHandler : obligationHandlers) {
                 oHandler.setObligationStore(oStore);
             }
             oRouter = StdObligationRouter.newInstance(oHandlerRegistry, oStore);
         }
 
-        //Instantiate PepRequestFactory
+        // Instantiate PepRequestFactory
         pepRequestFactory = new StdPepRequestFactory(pepConfig, mapperRegistry);
-        //Instantiate PepResponseFactory
+        // Instantiate PepResponseFactory
         pepResponseFactory = new StdPepResponseFactory(pepConfig, oRouter);
     }
 
@@ -105,9 +106,9 @@ final class StdPepAgent implements PepAgent {
     }
 
     @Override
-    public PepResponse simpleDecide(String subjectId, String actionId,
-                                    String resourceId) {
-        return decide(Subject.newInstance(subjectId), Action.newInstance(actionId), Resource.newInstance(resourceId));
+    public PepResponse simpleDecide(String subjectId, String actionId, String resourceId) {
+        return decide(Subject.newInstance(subjectId), Action.newInstance(actionId),
+                      Resource.newInstance(resourceId));
     }
 
     @Override
@@ -119,8 +120,8 @@ final class StdPepAgent implements PepAgent {
         List<PepResponse> pepResponses = new ArrayList<PepResponse>();
         Request request = pepRequest.getWrappedRequest();
 
-        //Log request
-        if(logger.isDebugEnabled()) {
+        // Log request
+        if (logger.isDebugEnabled()) {
             logRequest(request);
         }
 
@@ -132,12 +133,12 @@ final class StdPepAgent implements PepAgent {
             throw new PepException(e);
         }
 
-        //Log the response
-        if(logger.isDebugEnabled()) {
+        // Log the response
+        if (logger.isDebugEnabled()) {
             logResponse(response);
         }
 
-        for(Result result: response.getResults()) {
+        for (Result result : response.getResults()) {
             pepResponses.add(pepResponseFactory.newPepResponse(result));
         }
         return pepResponses;
@@ -153,7 +154,7 @@ final class StdPepAgent implements PepAgent {
         } catch (JSONStructureException e) {
             logger.debug("Error printing XACML request in JSON", e);
         } finally {
-            if(out != null) {
+            if (out != null) {
                 try {
                     out.close();
                 } catch (IOException e) {
@@ -173,7 +174,7 @@ final class StdPepAgent implements PepAgent {
         } catch (JSONStructureException e) {
             logger.debug("Error printing XACML response in JSON", e);
         } finally {
-            if(out != null) {
+            if (out != null) {
                 try {
                     out.close();
                 } catch (IOException e) {
@@ -204,7 +205,7 @@ final class StdPepAgent implements PepAgent {
     }
 
     void setObligationHandlers(List<ObligationStoreAware> obligationHandlers) {
-        if(obligationHandlers != null) {
+        if (obligationHandlers != null) {
             this.obligationHandlers = new ArrayList<ObligationStoreAware>();
             this.obligationHandlers.addAll(obligationHandlers);
         }

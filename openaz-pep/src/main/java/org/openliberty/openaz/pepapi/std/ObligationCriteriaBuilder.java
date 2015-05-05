@@ -20,11 +20,8 @@
 
 package org.openliberty.openaz.pepapi.std;
 
-
-
 import java.util.HashSet;
 import java.util.Set;
-
 
 public final class ObligationCriteriaBuilder {
 
@@ -35,8 +32,7 @@ public final class ObligationCriteriaBuilder {
         return this;
     }
 
-    public ObligationCriteriaBuilder matchAttributeWithAnyGivenValue(String attributeId,
-            String... values) {
+    public ObligationCriteriaBuilder matchAttributeWithAnyGivenValue(String attributeId, String... values) {
         criteria.add(new ObligationAttributeCriterion(attributeId, values));
         return this;
     }

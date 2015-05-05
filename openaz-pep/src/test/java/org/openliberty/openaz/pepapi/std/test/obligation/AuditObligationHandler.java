@@ -38,9 +38,8 @@ public class AuditObligationHandler implements ObligationHandler {
     public void enforce() {
         Set<Obligation> auditOblgSet = obligationStore.getHandlerObligations(this.getClass());
         Assert.assertEquals(true, auditOblgSet.size() == 1);
-        Obligation auditOblg = obligationStore.getHandlerObligationById(
-                                   this.getClass(),
-                                   "urn:oasis:names:tc:xacml:2.0:obligation:audit");
+        Obligation auditOblg = obligationStore
+            .getHandlerObligationById(this.getClass(), "urn:oasis:names:tc:xacml:2.0:obligation:audit");
         Assert.assertNotNull(auditOblg);
         log.info(auditOblg.getId());
     }

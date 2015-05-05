@@ -62,6 +62,9 @@ import com.att.research.xacml.std.pap.StdPDPPolicy;
 import com.att.research.xacml.std.pap.StdPDPStatus;
 import com.att.research.xacml.util.FactoryException;
 import com.att.research.xacml.util.XACMLProperties;
+import com.att.research.xacmlatt.pdp.policy.PolicyDef;
+import com.att.research.xacmlatt.pdp.policy.dom.DOMPolicyDef;
+import com.att.research.xacmlatt.pdp.std.StdPolicyFinderFactory;
 import com.google.common.base.Splitter;
 
 /**

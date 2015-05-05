@@ -38,6 +38,8 @@ import org.junit.Test;
 
 import com.att.research.xacml.api.Identifier;
 import com.att.research.xacml.api.XACML3;
+import com.att.research.xacmlatt.pdp.policy.FunctionDefinition;
+import com.att.research.xacmlatt.pdp.std.StdFunctions;
 
 /**
  * Test functions in the abstract FunctionDefinitionSimpleTest class. Functions are tested by creating

@@ -20,11 +20,8 @@
 
 package org.openliberty.openaz.pepapi;
 
-
 /**
  * A convenient abstraction for an action - resource pair.
- *
- *
  */
 public final class ActionResourcePair {
 
@@ -35,8 +32,8 @@ public final class ActionResourcePair {
     /**
      * Creates a new action - resource pair
      *
-     * @param action    an Object representing the action being performed.
-     * @param resource  an Object representing the resource on which the action is being performed.
+     * @param action an Object representing the action being performed.
+     * @param resource an Object representing the resource on which the action is being performed.
      */
     public ActionResourcePair(Object action, Object resource) {
         this.resource = resource;
@@ -66,8 +63,7 @@ public final class ActionResourcePair {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((action == null) ? 0 : action.hashCode());
-        result = prime * result
-                 + ((resource == null) ? 0 : resource.hashCode());
+        result = prime * result + ((resource == null) ? 0 : resource.hashCode());
         return result;
     }
 
@@ -82,7 +78,7 @@ public final class ActionResourcePair {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        ActionResourcePair other = (ActionResourcePair) obj;
+        ActionResourcePair other = (ActionResourcePair)obj;
         if (action == null) {
             if (other.action != null)
                 return false;

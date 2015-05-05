@@ -34,8 +34,8 @@ public class RedactionObligationHandler implements ObligationHandler {
 
     public void enforce() {
         Set<Obligation> obligationSet = obligationStore.getHandlerObligations(this.getClass());
-        if(obligationSet.size() == 1) {
-            for(Obligation obligation: obligationSet) {
+        if (obligationSet.size() == 1) {
+            for (Obligation obligation : obligationSet) {
                 Assert.assertEquals("urn:oasis:names:tc:xacml:2.0:obligation:obligation-2",
                                     obligation.getId());
             }

@@ -28,7 +28,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-
 public final class StdMapperRegistry implements MapperRegistry {
 
     private static final Log logger = LogFactory.getLog(StdMapperRegistry.class);
@@ -38,7 +37,7 @@ public final class StdMapperRegistry implements MapperRegistry {
     private PepConfig pepConfig;
 
     private StdMapperRegistry(PepConfig pepConfig) {
-        //Register defaults.
+        // Register defaults.
         this.pepConfig = pepConfig;
         map = new HashMap<Class<?>, ObjectMapper>();
         registerMapper(new CollectionMapper());
@@ -57,7 +56,7 @@ public final class StdMapperRegistry implements MapperRegistry {
 
     public static MapperRegistry newInstance(PepConfig pepConfig, List<ObjectMapper> mappers) {
         MapperRegistry mapperRegistry = newInstance(pepConfig);
-        if(mappers != null) {
+        if (mappers != null) {
             mapperRegistry.registerMappers(mappers);
         }
         return mapperRegistry;
@@ -72,7 +71,7 @@ public final class StdMapperRegistry implements MapperRegistry {
 
     @Override
     public void registerMappers(Iterable<? extends ObjectMapper> mappers) {
-        for(ObjectMapper mapper: mappers) {
+        for (ObjectMapper mapper : mappers) {
             registerMapper(mapper);
         }
     }
@@ -81,19 +80,19 @@ public final class StdMapperRegistry implements MapperRegistry {
     public ObjectMapper getMapper(Class<?> clazz) {
         ObjectMapper mapper = null;
         Class<?> c = clazz;
-        while(mapper == null && !c.equals(Object.class)) {
+        while (mapper == null && !c.equals(Object.class)) {
             mapper = getClassMapper(c);
             c = c.getSuperclass();
         }
 
-        //Handle Arrays.
-        if(mapper == null) {
-            if(clazz.isArray()) {
+        // Handle Arrays.
+        if (mapper == null) {
+            if (clazz.isArray()) {
                 mapper = getMapper(Object[].class);
             }
         }
 
-        if(mapper != null) {
+        if (mapper != null) {
             logger.debug("Mapper :" + mapper.getClass().getName() + " found for class: " + clazz);
             return mapper;
         } else {
@@ -103,12 +102,12 @@ public final class StdMapperRegistry implements MapperRegistry {
 
     private ObjectMapper getClassMapper(Class<?> clazz) {
         ObjectMapper mapper = map.get(clazz);
-        if(mapper == null) {
+        if (mapper == null) {
             Class<?>[] interfaces = clazz.getInterfaces();
-            if(interfaces != null && interfaces.length > 0) {
-                for(Class<?> inf: interfaces) {
+            if (interfaces != null && interfaces.length > 0) {
+                for (Class<?> inf : interfaces) {
                     mapper = map.get(inf);
-                    if(mapper != null) {
+                    if (mapper != null) {
                         break;
                     }
                 }

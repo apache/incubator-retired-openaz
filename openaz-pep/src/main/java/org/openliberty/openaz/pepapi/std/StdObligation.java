@@ -28,7 +28,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-
 final class StdObligation implements Obligation {
 
     private com.att.research.xacml.api.Obligation wrappedObligation;
@@ -38,10 +37,11 @@ final class StdObligation implements Obligation {
     }
 
     /**
-    * Return the Id for this Obligation.
-    *
-    * @return a string containing the Id of this Obligation
-    */
+     * Return the Id for this Obligation.
+     *
+     * @return a string containing the Id of this Obligation
+     */
+    @Override
     public String getId() {
         return wrappedObligation.getId().stringValue();
     }
@@ -49,10 +49,10 @@ final class StdObligation implements Obligation {
     @Override
     public Map<String, Object[]> getAttributeMap() {
         Map<String, List<Object>> map = new HashMap<String, List<Object>>();
-        for(AttributeAssignment a: wrappedObligation.getAttributeAssignments()) {
+        for (AttributeAssignment a : wrappedObligation.getAttributeAssignments()) {
             String attributeId = a.getAttributeId().stringValue();
             List<Object> values = map.get(attributeId);
-            if(values == null) {
+            if (values == null) {
                 values = new ArrayList<Object>();
                 map.put(attributeId, values);
             }
@@ -60,7 +60,7 @@ final class StdObligation implements Obligation {
         }
 
         Map<String, Object[]> attributeMap = new HashMap<String, Object[]>();
-        for(Map.Entry<String, List<Object>> e: map.entrySet()) {
+        for (Map.Entry<String, List<Object>> e : map.entrySet()) {
             attributeMap.put(e.getKey(), e.getValue().toArray(new Object[1]));
         }
         return attributeMap;

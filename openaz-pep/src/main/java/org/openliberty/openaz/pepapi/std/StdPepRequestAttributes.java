@@ -36,7 +36,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-
 final class StdPepRequestAttributes implements PepRequestAttributes {
 
     private static final Log log = LogFactory.getLog(StdPepRequestAttributes.class);
@@ -49,7 +48,7 @@ final class StdPepRequestAttributes implements PepRequestAttributes {
 
     private StdMutableRequestAttributes wrappedRequestAttributes;
 
-    //Internal map to hold mutable attributes as StdMutableRequestAttributes
+    // Internal map to hold mutable attributes as StdMutableRequestAttributes
     // does not return a mutable view of Attributes.
     private Map<Identifier, StdMutableAttribute> attributeMapById;
 
@@ -57,7 +56,7 @@ final class StdPepRequestAttributes implements PepRequestAttributes {
         this.id = id;
         this.categoryIdentifier = categoryIdentifier;
         this.attributeMapById = new HashMap<Identifier, StdMutableAttribute>();
-        this.wrappedRequestAttributes =  new StdMutableRequestAttributes();
+        this.wrappedRequestAttributes = new StdMutableRequestAttributes();
         this.wrappedRequestAttributes.setCategory(categoryIdentifier);
         this.wrappedRequestAttributes.setXmlId(id);
     }
@@ -103,22 +102,22 @@ final class StdPepRequestAttributes implements PepRequestAttributes {
     }
 
     private <T> void addAttribute(String name, T[] values, Identifier dataTypeId) {
-        if(values == null) {
+        if (values == null) {
             throw new IllegalArgumentException("Null attribute value provided for attribute: " + name);
         }
         Identifier attributeId = new IdentifierImpl(name);
         StdMutableAttribute mutableAttribute = attributeMapById.get(attributeId);
-        if(mutableAttribute == null) {
+        if (mutableAttribute == null) {
             mutableAttribute = new StdMutableAttribute();
             mutableAttribute.setAttributeId(new IdentifierImpl(name));
             mutableAttribute.setCategory(categoryIdentifier);
             mutableAttribute.setIncludeInResults(false);
-            mutableAttribute.setIssuer(issuer == null?"":issuer);
+            mutableAttribute.setIssuer(issuer == null ? "" : issuer);
             attributeMapById.put(attributeId, mutableAttribute);
             wrappedRequestAttributes.add(mutableAttribute);
         }
-        for(T value: values) {
-            if(value != null) {
+        for (T value : values) {
+            if (value != null) {
                 mutableAttribute.addValue(new StdAttributeValue<T>(dataTypeId, value));
             }
         }

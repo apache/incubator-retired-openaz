@@ -28,16 +28,15 @@ import org.openliberty.openaz.pepapi.ObligationStore;
 import java.util.HashSet;
 import java.util.Set;
 
-
 public class CatchAllObligationHandler implements ObligationHandler {
 
     private ObligationStore obligationStore;
 
     public void enforce() {
         Set<Obligation> obligationSet = obligationStore.getHandlerObligations(this.getClass());
-        if(obligationSet.size() == 2) {
+        if (obligationSet.size() == 2) {
             Set<String> obligationIds = new HashSet<String>();
-            for(Obligation oblg: obligationSet) {
+            for (Obligation oblg : obligationSet) {
                 obligationIds.add(oblg.getId());
             }
             Assert.assertTrue(obligationIds.contains("urn:oasis:names:tc:xacml:2.0:obligation:obligation-1"));

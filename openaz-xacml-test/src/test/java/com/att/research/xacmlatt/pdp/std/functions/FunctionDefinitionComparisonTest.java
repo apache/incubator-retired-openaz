@@ -47,6 +47,10 @@ import com.att.research.xacml.std.datatypes.DataTypes;
 import com.att.research.xacml.std.datatypes.ISO8601Date;
 import com.att.research.xacml.std.datatypes.ISO8601DateTime;
 import com.att.research.xacml.std.datatypes.ISO8601Time;
+import com.att.research.xacmlatt.pdp.policy.ExpressionResult;
+import com.att.research.xacmlatt.pdp.policy.FunctionArgument;
+import com.att.research.xacmlatt.pdp.policy.FunctionArgumentAttributeValue;
+import com.att.research.xacmlatt.pdp.std.StdFunctions;
 
 /**
  * Test FunctionDefinitionComparison TO RUN - use jUnit In Eclipse select this file or the enclosing

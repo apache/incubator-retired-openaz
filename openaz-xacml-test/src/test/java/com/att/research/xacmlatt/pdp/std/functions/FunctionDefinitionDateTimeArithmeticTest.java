@@ -38,6 +38,10 @@ import com.att.research.xacml.std.datatypes.ISO8601Time;
 import com.att.research.xacml.std.datatypes.ISO8601TimeZone;
 import com.att.research.xacml.std.datatypes.XPathDayTimeDuration;
 import com.att.research.xacml.std.datatypes.XPathYearMonthDuration;
+import com.att.research.xacmlatt.pdp.policy.ExpressionResult;
+import com.att.research.xacmlatt.pdp.policy.FunctionArgument;
+import com.att.research.xacmlatt.pdp.policy.FunctionArgumentAttributeValue;
+import com.att.research.xacmlatt.pdp.std.StdFunctions;
 
 /**
  * Test of PDP Functions (See XACML core spec section A.3) TO RUN - use jUnit In Eclipse select this file or
