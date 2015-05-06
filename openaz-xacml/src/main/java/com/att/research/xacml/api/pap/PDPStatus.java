@@ -46,7 +46,7 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 })
 public interface PDPStatus {
 
-    public enum Status {
+    enum Status {
         UP_TO_DATE,
         OUT_OF_SYNCH,
         LOAD_ERRORS,
@@ -57,26 +57,26 @@ public interface PDPStatus {
         CANNOT_CONNECT
     }
 
-    public Status getStatus();
+    Status getStatus();
 
-    public Set<String> getLoadErrors();
+    Set<String> getLoadErrors();
 
-    public Set<String> getLoadWarnings();
+    Set<String> getLoadWarnings();
 
-    public Set<PDPPolicy> getLoadedPolicies();
+    Set<PDPPolicy> getLoadedPolicies();
 
-    public Set<PDPPolicy> getLoadedRootPolicies();
+    Set<PDPPolicy> getLoadedRootPolicies();
 
-    public Set<PDPPolicy> getFailedPolicies();
+    Set<PDPPolicy> getFailedPolicies();
 
-    public boolean policiesOK();
+    boolean policiesOK();
 
-    public Set<PDPPIPConfig> getLoadedPipConfigs();
+    Set<PDPPIPConfig> getLoadedPipConfigs();
 
-    public Set<PDPPIPConfig> getFailedPipConfigs();
+    Set<PDPPIPConfig> getFailedPipConfigs();
 
-    public boolean pipConfigOK();
+    boolean pipConfigOK();
 
-    public boolean isOk();
+    boolean isOk();
 
 }

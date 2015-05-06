@@ -58,7 +58,7 @@ public class ListUtil {
 
     public static <T> boolean equalsAllowNulls(Iterator<T> iterator1, Iterator<T> iterator2) {
         if (iterator1 == null || !iterator1.hasNext()) {
-            return (iterator2 == null || !iterator2.hasNext());
+            return iterator2 == null || !iterator2.hasNext();
         } else if (iterator2 == null || !iterator2.hasNext()) {
             return false;
         } else {

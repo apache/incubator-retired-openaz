@@ -41,7 +41,7 @@ public interface TraceEngine {
      *
      * @param traceEvent the <code>TraceEvent</code> to process
      */
-    public void trace(TraceEvent<?> traceEvent);
+    void trace(TraceEvent<?> traceEvent);
 
     /**
      * Returns true if this <code>TraceEngine</code> would actually process a {@link TraceEvent}. This is
@@ -49,5 +49,5 @@ public interface TraceEngine {
      *
      * @return true if this <code>TraceEngine</code> would perform an action on a <code>TraceEvent</code>.
      */
-    public boolean isTracing();
+    boolean isTracing();
 }

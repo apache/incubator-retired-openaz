@@ -50,7 +50,7 @@ public class StringUtils {
      *         <code>Iterator</code> is null (or empty if allowEmptyLists is false)
      */
     public static String toString(Iterator<?> iterObjects, boolean allowEmptyLists) {
-        if (iterObjects == null || (!allowEmptyLists && !iterObjects.hasNext())) {
+        if (iterObjects == null || !allowEmptyLists && !iterObjects.hasNext()) {
             return null;
         } else {
             StringBuilder stringBuilder = new StringBuilder("[");

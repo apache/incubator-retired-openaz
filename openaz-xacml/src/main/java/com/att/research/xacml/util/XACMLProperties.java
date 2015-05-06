@@ -123,16 +123,18 @@ public class XACMLProperties {
             try {
                 properties = getProperties();
                 value = properties.getProperty(propertyName);
-            } catch (Exception ex) {
+            } catch (IOException ex) {
+                logger.debug("Error getting property: " + propertyName, ex);
             }
         }
-        return (value == null ? defaultValue : value);
+        return value == null ? defaultValue : value;
     }
 
     public static void setProperty(String propertyName, String propertyValue) {
         try {
             getProperties().setProperty(propertyName, propertyValue);
-        } catch (Exception ex) {
+        } catch (IOException ex) {
+            logger.debug("Error setting property: " + propertyName, ex);
         }
     }
 

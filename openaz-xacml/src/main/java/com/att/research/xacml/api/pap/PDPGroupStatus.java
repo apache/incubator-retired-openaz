@@ -46,7 +46,7 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 })
 public interface PDPGroupStatus {
 
-    public enum Status {
+    enum Status {
         OK,
         OUT_OF_SYNCH,
         LOAD_ERRORS,
@@ -56,35 +56,35 @@ public interface PDPGroupStatus {
 
     Status getStatus();
 
-    public Set<String> getLoadErrors();
+    Set<String> getLoadErrors();
 
-    public Set<String> getLoadWarnings();
+    Set<String> getLoadWarnings();
 
-    public Set<PDPPolicy> getLoadedPolicies();
+    Set<PDPPolicy> getLoadedPolicies();
 
-    public Set<PDPPolicy> getFailedPolicies();
+    Set<PDPPolicy> getFailedPolicies();
 
-    public boolean policiesOK();
+    boolean policiesOK();
 
-    public Set<PDPPIPConfig> getLoadedPipConfigs();
+    Set<PDPPIPConfig> getLoadedPipConfigs();
 
-    public Set<PDPPIPConfig> getFailedPipConfigs();
+    Set<PDPPIPConfig> getFailedPipConfigs();
 
-    public boolean pipConfigOK();
+    boolean pipConfigOK();
 
-    public Set<PDP> getInSynchPDPs();
+    Set<PDP> getInSynchPDPs();
 
-    public Set<PDP> getOutOfSynchPDPs();
+    Set<PDP> getOutOfSynchPDPs();
 
-    public Set<PDP> getFailedPDPs();
+    Set<PDP> getFailedPDPs();
 
-    public Set<PDP> getUpdatingPDPs();
+    Set<PDP> getUpdatingPDPs();
 
-    public Set<PDP> getLastUpdateFailedPDPs();
+    Set<PDP> getLastUpdateFailedPDPs();
 
-    public Set<PDP> getUnknownStatusPDPs();
+    Set<PDP> getUnknownStatusPDPs();
 
-    public boolean pdpsOK();
+    boolean pdpsOK();
 
-    public boolean isGroupOk();
+    boolean isGroupOk();
 }

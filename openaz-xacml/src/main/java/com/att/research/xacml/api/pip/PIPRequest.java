@@ -42,21 +42,21 @@ public interface PIPRequest {
      *
      * @return the <code>Identifier</code> for the category of the attributes to retrieve
      */
-    public Identifier getCategory();
+    Identifier getCategory();
 
     /**
      * Gets the <code>Identifier</code> of the attributes to retrieve.
      *
      * @return the <code>Identifier</code> of the attributes to retrieve.
      */
-    public Identifier getAttributeId();
+    Identifier getAttributeId();
 
     /**
      * Gets the <code>Identifier</code> of the requested data type for attribute values.
      *
      * @return the <code>Identifier</code> of the requested data type for attribute values
      */
-    public Identifier getDataTypeId();
+    Identifier getDataTypeId();
 
     /**
      * Gets the <code>String</code> issuer identifier for the attributes to retrieve.
@@ -64,6 +64,6 @@ public interface PIPRequest {
      * @return the <code>String</code> issuer identifier for the attributes to retrieve or null if there is no
      *         requirement to match the issuer.
      */
-    public String getIssuer();
+    String getIssuer();
 
 }

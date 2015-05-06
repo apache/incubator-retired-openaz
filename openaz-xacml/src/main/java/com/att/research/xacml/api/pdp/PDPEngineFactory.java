@@ -53,18 +53,16 @@ public abstract class PDPEngineFactory {
         String defaultDecisionString = XACMLProperties.getProperty(XACMLProperties.PROP_PDP_BEHAVIOR);
         if (defaultDecisionString != null && defaultDecisionString.length() > 0) {
             return Decision.get(defaultDecisionString);
-        } else {
-            return null;
         }
+        return null;
     }
 
     protected static Decision getConfiguredDefaultBehavior(Properties properties) {
         String defaultDecisionString = properties.getProperty(XACMLProperties.PROP_PDP_BEHAVIOR);
         if (defaultDecisionString != null && defaultDecisionString.length() > 0) {
             return Decision.get(defaultDecisionString);
-        } else {
-            return null;
         }
+        return null;
     }
 
     /**

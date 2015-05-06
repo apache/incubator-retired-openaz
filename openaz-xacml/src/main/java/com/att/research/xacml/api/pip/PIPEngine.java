@@ -43,28 +43,28 @@ public interface PIPEngine {
      *
      * @return the <code>String</code> name of this <code>PIPEngine</code>>
      */
-    public String getName();
+    String getName();
 
     /**
      * Gets the <code>String</code> description of this <code>PIPEngine</code>.
      *
      * @return the <code>String</code> description of this <code>PIPEngine</code>.
      */
-    public String getDescription();
+    String getDescription();
 
     /**
      * Returns a list of PIPRequests required by the Engine to return an attribute(s).
      *
      * @return Collection of required attributes
      */
-    public Collection<PIPRequest> attributesRequired();
+    Collection<PIPRequest> attributesRequired();
 
     /**
      * Returns a list of PIPRequest objects that the Engine can return.
      *
      * @return Collection of provided attributes
      */
-    public Collection<PIPRequest> attributesProvided();
+    Collection<PIPRequest> attributesProvided();
 
     /**
      * Retrieves <code>Attribute</code>s that match the given
@@ -79,5 +79,5 @@ public interface PIPEngine {
      * @return a {@link com.att.research.xacml.pip.PIPResponse} with the results of the request
      * @throws PIPException if there is an error retrieving the <code>Attribute</code>s.
      */
-    public PIPResponse getAttributes(PIPRequest pipRequest, PIPFinder pipFinder) throws PIPException;
+    PIPResponse getAttributes(PIPRequest pipRequest, PIPFinder pipFinder) throws PIPException;
 }

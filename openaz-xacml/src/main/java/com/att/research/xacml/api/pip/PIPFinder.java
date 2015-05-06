@@ -51,7 +51,7 @@ public interface PIPFinder {
      * @return a {@link com.att.research.xacml.pip.PIPResponse} with the results of the request
      * @throws PIPException if there is an error retrieving the <code>Attribute</code>s.
      */
-    public PIPResponse getAttributes(PIPRequest pipRequest, PIPEngine exclude) throws PIPException;
+    PIPResponse getAttributes(PIPRequest pipRequest, PIPEngine exclude) throws PIPException;
 
     /**
      * Retrieves <code>Attribute</code>s that match the given
@@ -67,7 +67,7 @@ public interface PIPFinder {
      * @return a {@link com.att.research.xacml.pip.PIPResponse} with the results of the request
      * @throws PIPException if there is an error retrieving the <code>Attribute</code>s.
      */
-    public PIPResponse getMatchingAttributes(PIPRequest pipRequest, PIPEngine exclude) throws PIPException;
+    PIPResponse getMatchingAttributes(PIPRequest pipRequest, PIPEngine exclude) throws PIPException;
 
     /**
      * Retrieves <code>Attribute</code>s that based on the given <code>PIPRequest</code> as above. If the
@@ -81,7 +81,7 @@ public interface PIPFinder {
      * @return
      * @throws PIPException
      */
-    public PIPResponse getAttributes(PIPRequest pipRequest, PIPEngine exclude, PIPFinder pipFinderParent)
+    PIPResponse getAttributes(PIPRequest pipRequest, PIPEngine exclude, PIPFinder pipFinderParent)
         throws PIPException;
 
     /**
@@ -96,8 +96,8 @@ public interface PIPFinder {
      * @return
      * @throws PIPException
      */
-    public PIPResponse getMatchingAttributes(PIPRequest pipRequest, PIPEngine exclude,
+    PIPResponse getMatchingAttributes(PIPRequest pipRequest, PIPEngine exclude,
                                              PIPFinder pipFinderParent) throws PIPException;
 
-    public Collection<PIPEngine> getPIPEngines();
+    Collection<PIPEngine> getPIPEngines();
 }

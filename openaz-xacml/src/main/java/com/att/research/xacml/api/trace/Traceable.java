@@ -44,7 +44,7 @@ public interface Traceable {
      *
      * @return the <code>String</code> identifier for the object that caused the <code>TraceEvent</code>.
      */
-    public String getTraceId();
+    String getTraceId();
 
     /**
      * Gets the <code>Traceable</code> that caused the evaluation method on this <code>Traceable</code> to be
@@ -53,5 +53,5 @@ public interface Traceable {
      * @return the <code>Traceable</code> that caused the evaluation method on this <code>Traceable</code> to
      *         be called.
      */
-    public Traceable getCause();
+    Traceable getCause();
 }

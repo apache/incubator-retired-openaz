@@ -216,39 +216,49 @@ public class StdPDPStatus implements Serializable, PDPStatus {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + (failedPIPConfigs.hashCode());
-        result = prime * result + (failedPolicies.hashCode());
-        result = prime * result + (loadErrors.hashCode());
-        result = prime * result + (loadWarnings.hashCode());
-        result = prime * result + (loadedPIPConfigs.hashCode());
-        result = prime * result + (loadedPolicies.hashCode());
-        result = prime * result + (status.hashCode());
+        result = prime * result + failedPIPConfigs.hashCode();
+        result = prime * result + failedPolicies.hashCode();
+        result = prime * result + loadErrors.hashCode();
+        result = prime * result + loadWarnings.hashCode();
+        result = prime * result + loadedPIPConfigs.hashCode();
+        result = prime * result + loadedPolicies.hashCode();
+        result = prime * result + status.hashCode();
         return result;
     }
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj)
+        if (this == obj) {
             return true;
-        if (obj == null)
+        }
+        if (obj == null) {
             return false;
-        if (getClass() != obj.getClass())
+        }
+        if (getClass() != obj.getClass()) {
             return false;
+        }
         StdPDPStatus other = (StdPDPStatus)obj;
-        if (!failedPIPConfigs.equals(other.failedPIPConfigs))
+        if (!failedPIPConfigs.equals(other.failedPIPConfigs)) {
             return false;
-        if (!failedPolicies.equals(other.failedPolicies))
+        }
+        if (!failedPolicies.equals(other.failedPolicies)) {
             return false;
-        if (!loadErrors.equals(other.loadErrors))
+        }
+        if (!loadErrors.equals(other.loadErrors)) {
             return false;
-        if (!loadWarnings.equals(other.loadWarnings))
+        }
+        if (!loadWarnings.equals(other.loadWarnings)) {
             return false;
-        if (!loadedPIPConfigs.equals(other.loadedPIPConfigs))
+        }
+        if (!loadedPIPConfigs.equals(other.loadedPIPConfigs)) {
             return false;
-        if (!loadedPolicies.equals(other.loadedPolicies))
+        }
+        if (!loadedPolicies.equals(other.loadedPolicies)) {
             return false;
-        if (status != other.status)
+        }
+        if (status != other.status) {
             return false;
+        }
         return true;
     }
 

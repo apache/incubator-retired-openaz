@@ -226,8 +226,6 @@ public class XACMLRepair {
                     this.outputFileOrDirectory.delete();
                 }
             }
-        } else {
-
         }
     }
 
@@ -279,7 +277,6 @@ public class XACMLRepair {
             System.err.println("Exception: " + ex.getMessage());
             ex.printStackTrace(System.err);
             System.exit(1);
-            ;
         }
         System.exit(0);
     }

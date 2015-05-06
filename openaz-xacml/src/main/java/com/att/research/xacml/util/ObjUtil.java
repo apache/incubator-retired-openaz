@@ -56,10 +56,9 @@ public class ObjUtil {
      */
     public static <T> boolean equalsAllowNull(T obj1, T obj2) {
         if (obj1 == null) {
-            return (obj2 == null);
-        } else {
-            return obj1.equals(obj2);
+            return obj2 == null;
         }
+        return obj1.equals(obj2);
     }
 
     /**
@@ -78,7 +77,7 @@ public class ObjUtil {
      */
     public static boolean xmlEqualsAllowNull(Node node1, Node node2) {
         if (node1 == null) {
-            return (node2 == null);
+            return node2 == null;
         } else if (node2 == null) {
             return false;
         }

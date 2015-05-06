@@ -48,10 +48,8 @@ import oasis.names.tc.xacml._3_0.core.schema.wd_17.AdviceExpressionType;
 import oasis.names.tc.xacml._3_0.core.schema.wd_17.ApplyType;
 import oasis.names.tc.xacml._3_0.core.schema.wd_17.AttributeDesignatorType;
 import oasis.names.tc.xacml._3_0.core.schema.wd_17.AttributeSelectorType;
-import oasis.names.tc.xacml._3_0.core.schema.wd_17.AttributeValueType;
 import oasis.names.tc.xacml._3_0.core.schema.wd_17.ConditionType;
 import oasis.names.tc.xacml._3_0.core.schema.wd_17.EffectType;
-import oasis.names.tc.xacml._3_0.core.schema.wd_17.FunctionType;
 import oasis.names.tc.xacml._3_0.core.schema.wd_17.ObligationExpressionType;
 import oasis.names.tc.xacml._3_0.core.schema.wd_17.PolicyType;
 import oasis.names.tc.xacml._3_0.core.schema.wd_17.RuleType;
@@ -149,7 +147,7 @@ public class XACMLPolicyAggregator extends SimpleCallback {
             // Are there any actual values in it?
             //
             Object val = value.getValue();
-            if (val == null || (val instanceof Collection && ((Collection<?>)val).isEmpty())) {
+            if (val == null || val instanceof Collection && ((Collection<?>)val).isEmpty()) {
                 if (logger.isDebugEnabled()) {
                     logger.debug("No actual attribute values: " + attribute.getAttributeId() + " "
                                  + value.getDataTypeId());
@@ -267,14 +265,14 @@ public class XACMLPolicyAggregator extends SimpleCallback {
                                                                                      Collections.emptyList()),
                                                       designator.getIssuer(), false);
             this.onAttribute(parent, container, attribute);
-        } else if (obj instanceof AttributeValueType) {
-            /*
+        } /* else if (obj instanceof AttributeValueType) {
+            
              * Highly unlikely that we would get this at the top level of a condition or variable
              * AttributeValueType value = (AttributeValueType) obj;
              * System.out.println("AttributeValueType datatype=" + value.getDataType());
              * System.out.println("AttributeValueType content=" + value.getContent());
-             */
-        } else if (obj instanceof VariableReferenceType) {
+             
+        } */ else if (obj instanceof VariableReferenceType) {
             if (this.variableReferences == null) {
                 this.variableReferences = new ArrayList<VariableReferenceType>();
             }
@@ -286,12 +284,11 @@ public class XACMLPolicyAggregator extends SimpleCallback {
                     this.evaluteExpression(element.getValue(), parent, container);
                 }
             }
-        } else if (obj instanceof FunctionType) {
-            /*
+        } /*else if (obj instanceof FunctionType) {
+            
              * Highly unlikely that we would get this at the top level of a condition or variable FunctionType
              * function = (FunctionType) obj; System.out.println("FunctionType=" + function.getFunctionId());
-             */
-        } else if (obj instanceof AttributeSelectorType) {
+        } */ else if (obj instanceof AttributeSelectorType) {
             AttributeSelectorType selector = (AttributeSelectorType)obj;
             StdAttribute attribute = new StdAttribute(
                                                       new IdentifierImpl(selector.getCategory()),

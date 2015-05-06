@@ -41,37 +41,37 @@ public interface PDPGroup {
      * file. The ID does not need to be unique forever. It just needs to distinguish this group from other
      * groups that currently exist.
      */
-    public String getId();
+    String getId();
 
-    public boolean isDefaultGroup();
+    boolean isDefaultGroup();
 
     /*
      * The name is a free-form string that is user input.
      */
-    public String getName();
+    String getName();
 
-    public void setName(String name);
+    void setName(String name);
 
-    public String getDescription();
+    String getDescription();
 
-    public void setDescription(String description);
+    void setDescription(String description);
 
-    public PDPGroupStatus getStatus();
+    PDPGroupStatus getStatus();
 
-    public Set<PDP> getPdps();
+    Set<PDP> getPdps();
 
-    public Set<PDPPolicy> getPolicies();
+    Set<PDPPolicy> getPolicies();
 
-    public PDPPolicy getPolicy(String id);
+    PDPPolicy getPolicy(String id);
 
-    public Properties getPolicyProperties();
+    Properties getPolicyProperties();
 
-    public Set<PDPPIPConfig> getPipConfigs();
+    Set<PDPPIPConfig> getPipConfigs();
 
-    public PDPPIPConfig getPipConfig(String id);
+    PDPPIPConfig getPipConfig(String id);
 
-    public Properties getPipConfigProperties();
+    Properties getPipConfigProperties();
 
-    public void repair();
+    void repair();
 
 }

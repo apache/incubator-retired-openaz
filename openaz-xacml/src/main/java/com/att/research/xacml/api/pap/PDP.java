@@ -46,19 +46,19 @@ import java.util.Set;
 })
 public interface PDP {
 
-    public String getId();
+    String getId();
 
-    public String getName();
+    String getName();
 
-    public void setName(String name);
+    void setName(String name);
 
-    public String getDescription();
+    String getDescription();
 
-    public void setDescription(String description);
+    void setDescription(String description);
 
-    public PDPStatus getStatus();
+    PDPStatus getStatus();
 
-    public Set<PDPPolicy> getPolicies();
+    Set<PDPPolicy> getPolicies();
 
-    public Set<PDPPIPConfig> getPipConfigs();
+    Set<PDPPIPConfig> getPipConfigs();
 }

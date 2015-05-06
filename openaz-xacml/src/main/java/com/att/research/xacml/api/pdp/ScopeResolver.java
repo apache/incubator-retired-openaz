@@ -48,6 +48,6 @@ public interface ScopeResolver {
      * @return a {@link com.att.research.xacml.api.pdp.ScopeResolverResult} with the results of the request
      * @throws ScopeResolverException if there is an error resolving the resource identifier to a scope.
      */
-    public ScopeResolverResult resolveScope(Attribute attributeResourceId, ScopeQualifier scopeQualifier)
+    ScopeResolverResult resolveScope(Attribute attributeResourceId, ScopeQualifier scopeQualifier)
         throws ScopeResolverException;
 }

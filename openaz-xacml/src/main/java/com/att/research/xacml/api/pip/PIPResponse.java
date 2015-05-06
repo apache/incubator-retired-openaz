@@ -45,7 +45,7 @@ public interface PIPResponse {
      *
      * @return the <code>Status</code> of the request to retrieve attributes from a <code>PIPEngine</code>
      */
-    public Status getStatus();
+    Status getStatus();
 
     /**
      * Gets the <code>Collection</code> of {@link com.att.research.xacml.api.Attribute}s returned from a
@@ -55,7 +55,7 @@ public interface PIPResponse {
      * @return The <code>Collection</code> of <code>Attribute</code>s returned or an empty list if none are
      *         found
      */
-    public Collection<Attribute> getAttributes();
+    Collection<Attribute> getAttributes();
 
     /**
      * Determines if this <code>PIPResponse</code> is simple or not. A simple <code>PIPResponse</code>
@@ -64,5 +64,5 @@ public interface PIPResponse {
      *
      * @return true if this <code>PIPResponse</code> is simple, else false.
      */
-    public boolean isSimple();
+    boolean isSimple();
 }
