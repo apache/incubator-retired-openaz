@@ -23,8 +23,6 @@ package org.openliberty.openaz.pepapi.std;
 import com.att.research.xacml.api.Identifier;
 import com.att.research.xacml.api.Request;
 import com.att.research.xacml.std.StdMutableRequest;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.openliberty.openaz.pepapi.*;
 
 import java.util.HashMap;
@@ -34,8 +32,6 @@ import java.util.concurrent.atomic.AtomicInteger;
 final class StdPepRequest implements PepRequest {
 
     private static final String REQUEST_ATTR_ID_PREFIX = "attributes";
-
-    private static final Log logger = LogFactory.getLog(StdPepRequest.class);
 
     private final StdMutableRequest wrappedRequest;
 

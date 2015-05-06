@@ -49,7 +49,7 @@ public class XACMLPdpPIPFinderFactory extends PIPFinderFactory {
     public XACMLPdpPIPFinderFactory() {
     }
 
-    public XACMLPdpPIPFinderFactory(Properties properties) {
+    public XACMLPdpPIPFinderFactory(Properties properties) { //NOPMD
     }
 
     @Override

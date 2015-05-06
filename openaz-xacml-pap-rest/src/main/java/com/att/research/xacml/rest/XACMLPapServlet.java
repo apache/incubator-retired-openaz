@@ -399,7 +399,7 @@ public class XACMLPapServlet extends HttpServlet implements StdItemSetChangeList
                                  + request.getLocalAddr();
                 logger.info(message);
                 if (request.getRemoteHost().equals("localhost")
-                    || request.getRemoteHost().equals("127.0.0.1")
+                    || request.getRemoteHost().equals("127.0.0.1") //NOPMD
                     || request.getRemoteHost().equals(request.getLocalAddr())) {
                     //
                     // Return status information - basically all the groups
@@ -503,7 +503,7 @@ public class XACMLPapServlet extends HttpServlet implements StdItemSetChangeList
                 //
                 return true;
             }
-        } catch (Exception e) {
+        } catch (Exception e) { //NOPMD
             // we get here if the PDP did not include either xacml.rootPolicies or xacml.pip.engines,
             // or if there are policies that do not have a corresponding ".url" property.
             // Either of these cases means that the PDP is not up-to-date, so just drop-through to return
@@ -933,7 +933,7 @@ public class XACMLPapServlet extends HttpServlet implements StdItemSetChangeList
                 String json = null;
                 // read the inputStream into a buffer (trick found online scans entire input looking for
                 // end-of-file)
-                java.util.Scanner scanner = new java.util.Scanner(request.getInputStream());
+                Scanner scanner = new Scanner(request.getInputStream());
                 scanner.useDelimiter("\\A");
                 json = scanner.hasNext() ? scanner.next() : "";
                 scanner.close();
@@ -989,7 +989,7 @@ public class XACMLPapServlet extends HttpServlet implements StdItemSetChangeList
                 String json = null;
                 // read the inputStream into a buffer (trick found online scans entire input looking for
                 // end-of-file)
-                java.util.Scanner scanner = new java.util.Scanner(request.getInputStream());
+                Scanner scanner = new Scanner(request.getInputStream());
                 scanner.useDelimiter("\\A");
                 json = scanner.hasNext() ? scanner.next() : "";
                 scanner.close();

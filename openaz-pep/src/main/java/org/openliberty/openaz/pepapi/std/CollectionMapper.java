@@ -32,7 +32,7 @@ public final class CollectionMapper implements ObjectMapper {
 
     private MapperRegistry mapperRegistry;
 
-    private PepConfig pepConfig;
+    private PepConfig pepConfig; //NOPMD
 
     @Override
     public Class<?> getMappedClass() {

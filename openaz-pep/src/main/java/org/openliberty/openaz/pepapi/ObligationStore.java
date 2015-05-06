@@ -32,13 +32,13 @@ public interface ObligationStore {
      * @param oHandlerClass
      * @return
      */
-    public Set<Obligation> getHandlerObligations(Class<?> oHandlerClass);
+    Set<Obligation> getHandlerObligations(Class<?> oHandlerClass);
 
     /**
      * @param oHandlerClass
      * @param obligationId
      * @return
      */
-    public Obligation getHandlerObligationById(Class<?> oHandlerClass, String obligationId);
+    Obligation getHandlerObligationById(Class<?> oHandlerClass, String obligationId);
 
 }

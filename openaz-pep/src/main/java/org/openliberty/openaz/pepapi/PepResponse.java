@@ -38,7 +38,7 @@ public interface PepResponse {
      * @throws PepException if the {@link PepResponseBehavior} configured in the {@link PepResponseFactory}
      *             indicates that for the response should be thrown
      */
-    public boolean allowed() throws PepException;
+    boolean allowed() throws PepException;
 
     /**
      * Return the set of {@link org.openliberty.openaz.pepapi.Obligation}s associated with the current result
@@ -48,7 +48,7 @@ public interface PepResponse {
      * @throws PepException
      * @see org.openliberty.openaz.pepapi.Obligation#getId()
      */
-    public Map<String, Obligation> getObligations() throws PepException;
+    Map<String, Obligation> getObligations() throws PepException;
 
     /**
      * Return the set of {@link org.openliberty.openaz.pepapi.Advice}s associated with the current result
@@ -58,7 +58,7 @@ public interface PepResponse {
      * @throws PepException
      * @see org.openliberty.openaz.pepapi.Advice#getId()
      */
-    public Map<String, Advice> getAdvices() throws PepException;
+    Map<String, Advice> getAdvices() throws PepException;
 
     /**
      * Return the object association that is tied to the current result. The association is the same object
@@ -68,21 +68,21 @@ public interface PepResponse {
      * @return an object that was used as the action-resource in the PepRequest
      * @throws PepException
      */
-    public Object getAssociation() throws PepException;
+    Object getAssociation() throws PepException;
 
     /**
      * @return
      */
-    public Collection<Attribute> getAttributes();
+    Collection<Attribute> getAttributes();
 
     /**
      * @return
      */
-    public Map<Identifier, Collection<Attribute>> getAttributesByCategory();
+    Map<Identifier, Collection<Attribute>> getAttributesByCategory();
 
     /**
      * @return
      */
-    public Result getWrappedResult();
+    Result getWrappedResult();
 
 }

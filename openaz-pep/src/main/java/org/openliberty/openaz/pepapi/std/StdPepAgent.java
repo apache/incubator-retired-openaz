@@ -42,7 +42,6 @@ import java.util.Properties;
 
 final class StdPepAgent implements PepAgent {
 
-    @SuppressWarnings("unused")
     private static final Log logger = LogFactory.getLog(StdPepAgent.class);
 
     private Properties xacmlProperties;
@@ -63,8 +62,8 @@ final class StdPepAgent implements PepAgent {
         obligationHandlers = new ArrayList<ObligationStoreAware>();
     }
 
-    final void initialize() {
-        assert (pdpEngineFactory != null);
+    void initialize() {
+        assert pdpEngineFactory != null;
 
         // Instantiate PDPEngine
         if (pdpEngine == null) {
@@ -116,7 +115,7 @@ final class StdPepAgent implements PepAgent {
         return decide(pepRequestFactory.newBulkPepRequest(actionResourcePairs, objects));
     }
 
-    private List<PepResponse> decide(PepRequest pepRequest) {
+    private List<PepResponse> decide(PepRequest pepRequest) { //NOPMD
         List<PepResponse> pepResponses = new ArrayList<PepResponse>();
         Request request = pepRequest.getWrappedRequest();
 

@@ -47,7 +47,7 @@ public final class ObligationCriteriaBuilder {
         return this;
     }
 
-    public final ObligationCriteria build() {
+    public ObligationCriteria build() {
         return new ObligationCriteria(criteria);
     }
 }

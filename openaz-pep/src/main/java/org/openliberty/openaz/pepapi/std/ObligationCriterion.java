@@ -24,6 +24,6 @@ import org.openliberty.openaz.pepapi.Obligation;
 
 public interface ObligationCriterion {
 
-    public boolean match(Obligation obligation);
+    boolean match(Obligation obligation);
 
 }

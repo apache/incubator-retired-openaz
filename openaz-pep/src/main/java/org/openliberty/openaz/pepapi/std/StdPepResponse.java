@@ -20,13 +20,15 @@
 
 package org.openliberty.openaz.pepapi.std;
 
-import com.att.research.xacml.api.*;
-import com.att.research.xacml.api.Attribute;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.openliberty.openaz.pepapi.Advice;
-import org.openliberty.openaz.pepapi.Obligation;
 import org.openliberty.openaz.pepapi.*;
+
+import com.att.research.xacml.api.Attribute;
+import com.att.research.xacml.api.AttributeCategory;
+import com.att.research.xacml.api.Identifier;
+import com.att.research.xacml.api.Result;
+import com.att.research.xacml.api.Status;
 
 import java.util.ArrayList;
 import java.util.Collection;

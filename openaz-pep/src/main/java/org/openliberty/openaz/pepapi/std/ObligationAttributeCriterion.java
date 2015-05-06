@@ -46,28 +46,30 @@ public final class ObligationAttributeCriterion implements ObligationCriterion {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + ((id == null) ? 0 : id.hashCode());
-        result = prime * result + ((valueSet == null) ? 0 : valueSet.hashCode());
+        result = prime * result + (id == null ? 0 : id.hashCode());
+        result = prime * result + (valueSet == null ? 0 : valueSet.hashCode());
         return result;
     }
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj)
+        if (this == obj) {
             return true;
-        if (obj == null)
+        }
+        if (obj == null) {
             return false;
-        if (getClass() != obj.getClass())
+        }
+        if (getClass() != obj.getClass()) {
             return false;
+        }
         ObligationAttributeCriterion other = (ObligationAttributeCriterion)obj;
-        if (id == null) {
-            if (other.id != null)
-                return false;
-        } else if (!id.equals(other.id))
+        if (id == null && other.id != null) {
             return false;
-        if (valueSet == null) {
-            if (other.valueSet != null)
-                return false;
+        } else if (!id.equals(other.id)) {
+            return false;
+        }
+        if (valueSet == null && other.valueSet != null) {
+            return false;
         } else if (!valueSet.equals(other.valueSet))
             return false;
         return true;

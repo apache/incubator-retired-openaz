@@ -59,7 +59,7 @@ public interface PepAgent {
      *             "Indeterminate" or "Not Applicable" decisions.
      * @throws IllegalArgumentException if any of the arguments are null
      */
-    public PepResponse simpleDecide(String subjectId, String actionId, String resourceId);
+    PepResponse simpleDecide(String subjectId, String actionId, String resourceId);
 
     /**
      * Returns an authorization decision for the given collection of Domain Objects each with it's own
@@ -74,7 +74,7 @@ public interface PepAgent {
      *             "Indeterminate" or "Not Applicable" decisions.
      * @throws IllegalArgumentException if any of the arguments are null
      */
-    public PepResponse decide(Object... objects);
+    PepResponse decide(Object... objects);
 
     /**
      * Returns a PepResponse instance representing a collection of decisions, each of which corresponds to an
@@ -89,6 +89,6 @@ public interface PepAgent {
      *             "Indeterminate" or "Not Applicable" decisions.
      * @throws IllegalArgumentException if any of the arguments are null
      */
-    public List<PepResponse> bulkDecide(List<?> associations, Object... objects);
+    List<PepResponse> bulkDecide(List<?> associations, Object... objects);
 
 }

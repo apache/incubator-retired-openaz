@@ -72,7 +72,7 @@ public final class StdPepConfig implements PepConfig {
         resourceIdURI = XACML3.ID_RESOURCE_RESOURCE_ID.stringValue();
         indeterminateBehavior = PepResponseBehavior.THROW_EXCEPTION;
         notApplicableBehavior = PepResponseBehavior.RETURN_NO;
-        mapperClassNames = Collections.EMPTY_LIST;
+        mapperClassNames = Collections.emptyList();
     }
 
     public StdPepConfig(Properties properties) {
@@ -116,7 +116,7 @@ public final class StdPepConfig implements PepConfig {
 
         String mapperClassNameString = properties.getProperty(PEP_MAPPER_CLASSES);
         if (!StringUtils.isEmpty(mapperClassNameString)) {
-            List mapperClassNames = new ArrayList<String>();
+            List<String> mapperClassNames = new ArrayList<String>();
             for (String className : Splitter.on(",").omitEmptyStrings().trimResults()
                 .split(mapperClassNameString)) {
                 mapperClassNames.add(className);

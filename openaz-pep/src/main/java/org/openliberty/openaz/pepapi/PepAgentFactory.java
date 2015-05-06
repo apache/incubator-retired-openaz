@@ -31,5 +31,5 @@ public interface PepAgentFactory {
      *
      * @return
      */
-    public PepAgent getPepAgent();
+    PepAgent getPepAgent();
 }

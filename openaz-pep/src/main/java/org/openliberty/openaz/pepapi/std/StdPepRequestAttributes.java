@@ -27,8 +27,6 @@ import com.att.research.xacml.std.IdentifierImpl;
 import com.att.research.xacml.std.StdAttributeValue;
 import com.att.research.xacml.std.StdMutableAttribute;
 import com.att.research.xacml.std.StdMutableRequestAttributes;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.openliberty.openaz.pepapi.PepRequestAttributes;
 
 import java.net.URI;
@@ -37,8 +35,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 final class StdPepRequestAttributes implements PepRequestAttributes {
-
-    private static final Log log = LogFactory.getLog(StdPepRequestAttributes.class);
 
     private final String id;
 
@@ -101,7 +97,7 @@ final class StdPepRequestAttributes implements PepRequestAttributes {
         addAttribute(name, values, XACML3.ID_DATATYPE_ANYURI);
     }
 
-    private <T> void addAttribute(String name, T[] values, Identifier dataTypeId) {
+    private <T> void addAttribute(String name, T[] values, Identifier dataTypeId) { //NOPMD
         if (values == null) {
             throw new IllegalArgumentException("Null attribute value provided for attribute: " + name);
         }

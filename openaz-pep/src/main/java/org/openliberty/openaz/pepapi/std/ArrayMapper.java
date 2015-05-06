@@ -28,7 +28,7 @@ public final class ArrayMapper implements ObjectMapper {
 
     private static final Log logger = LogFactory.getLog(ArrayMapper.class);
 
-    private PepConfig pepConfig;
+    private PepConfig pepConfig; //NOPMD
 
     private MapperRegistry mapperRegistry;
 

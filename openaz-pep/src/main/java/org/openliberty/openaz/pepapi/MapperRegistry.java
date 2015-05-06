@@ -30,14 +30,14 @@ public interface MapperRegistry {
      *
      * @param mapper
      */
-    public void registerMapper(ObjectMapper mapper);
+    void registerMapper(ObjectMapper mapper);
 
     /**
      * Registers the provided ObjectMapper instances
      *
      * @param mappers
      */
-    public void registerMappers(Iterable<? extends ObjectMapper> mappers);
+    void registerMappers(Iterable<? extends ObjectMapper> mappers);
 
     /**
      * Returns the ObjectMapper instance registered for the given Class.
@@ -46,6 +46,6 @@ public interface MapperRegistry {
      * @return an ObjectMapper instance
      * @throws org.openliberty.openaz.pepapi.PepException if no ObjectMapper could be found for class clazz;
      */
-    public ObjectMapper getMapper(Class<?> clazz);
+    ObjectMapper getMapper(Class<?> clazz);
 
 }

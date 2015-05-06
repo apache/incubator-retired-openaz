@@ -58,6 +58,6 @@ import com.att.research.xacml.api.Result;
  */
 public interface PepResponseFactory {
 
-    public PepResponse newPepResponse(Result result);
+    PepResponse newPepResponse(Result result);
 
 }

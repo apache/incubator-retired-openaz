@@ -33,6 +33,6 @@ public interface PostDecisionHandler {
      * @param request
      * @throws org.openliberty.openaz.pepapi.PepException
      */
-    public void postDecide(PepRequest request, PepResponse response) throws PepException;
+    void postDecide(PepRequest request, PepResponse response) throws PepException;
 
 }

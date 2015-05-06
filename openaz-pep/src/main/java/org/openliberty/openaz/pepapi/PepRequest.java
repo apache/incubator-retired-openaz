@@ -34,11 +34,11 @@ public interface PepRequest {
      *
      * @param categoryIdentifier an identifier for a category
      */
-    public PepRequestAttributes getPepRequestAttributes(Identifier categoryIdentifier);
+    PepRequestAttributes getPepRequestAttributes(Identifier categoryIdentifier);
 
     /**
      * @return
      */
-    public Request getWrappedRequest();
+    Request getWrappedRequest();
 
 }

@@ -42,7 +42,7 @@ public interface Obligation {
      *
      * @return a string containing the Id of this Obligation
      */
-    public String getId();
+    String getId();
 
     /**
      * Returns a Map of Obligation Attribute name,object-value-array pairs, indexed by name, where name is the
@@ -52,6 +52,6 @@ public interface Obligation {
      * 
      * @return a Map of String (AttributeId name), Object array (Attribute values) pairs
      */
-    public Map<String, Object[]> getAttributeMap();
+    Map<String, Object[]> getAttributeMap();
 
 }

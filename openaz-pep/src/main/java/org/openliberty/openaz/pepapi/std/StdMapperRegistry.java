@@ -86,10 +86,8 @@ public final class StdMapperRegistry implements MapperRegistry {
         }
 
         // Handle Arrays.
-        if (mapper == null) {
-            if (clazz.isArray()) {
-                mapper = getMapper(Object[].class);
-            }
+        if (mapper == null && clazz.isArray()) {
+            mapper = getMapper(Object[].class);
         }
 
         if (mapper != null) {

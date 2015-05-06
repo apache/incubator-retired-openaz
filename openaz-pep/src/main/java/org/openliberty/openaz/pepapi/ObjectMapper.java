@@ -36,7 +36,7 @@ public interface ObjectMapper {
      *
      * @return a Class object
      */
-    public Class<?> getMappedClass();
+    Class<?> getMappedClass();
 
     /**
      * Maps Object properties to attributes
@@ -44,15 +44,15 @@ public interface ObjectMapper {
      * @param o - an instance of the domain object to be mapped
      * @param pepRequest - the current Request Context
      */
-    public void map(Object o, PepRequest pepRequest);
+    void map(Object o, PepRequest pepRequest);
 
     /**
      * @param mapperRegistry
      */
-    public void setMapperRegistry(MapperRegistry mapperRegistry);
+    void setMapperRegistry(MapperRegistry mapperRegistry);
 
     /**
      * @param pepConfig
      */
-    public void setPepConfig(PepConfig pepConfig);
+    void setPepConfig(PepConfig pepConfig);
 }

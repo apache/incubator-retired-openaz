@@ -32,6 +32,6 @@ public interface ObligationHandlerRegistry {
      *
      * @return
      */
-    public Map<Class<?>, Matchable<Obligation>> getRegisteredHandlerMap();
+    Map<Class<?>, Matchable<Obligation>> getRegisteredHandlerMap();
 
 }

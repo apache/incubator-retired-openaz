@@ -34,6 +34,6 @@ public interface Matchable<T> {
      * @param t
      * @return a <code>boolean</code> value
      */
-    public boolean match(T t);
+    boolean match(T t);
 
 }

@@ -199,7 +199,7 @@ public class XACMLPdpRegisterThread implements Runnable {
                         InputStream is = null;
                         try {
                             is = connection.getInputStream();
-                        } catch (Exception e1) {
+                        } catch (Exception e1) { //NOPMD
                             // ignore this
                         }
                         if (is != null) {

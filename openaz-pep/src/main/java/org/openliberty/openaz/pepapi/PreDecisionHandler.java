@@ -33,5 +33,5 @@ public interface PreDecisionHandler {
      * @param request
      * @throws org.openliberty.openaz.pepapi.PepException
      */
-    public void preDecide(PepRequest request) throws PepException;
+    void preDecide(PepRequest request) throws PepException;
 }

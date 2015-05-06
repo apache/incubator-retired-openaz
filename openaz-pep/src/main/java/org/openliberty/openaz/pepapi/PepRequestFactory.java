@@ -31,7 +31,7 @@ public interface PepRequestFactory {
      * @throws org.openliberty.openaz.pepapi.PepException, if no ObjectMappers found.
      * @throws IllegalArgumentException,, if any argument is null.
      */
-    public PepRequest newPepRequest(Object[] objects);
+    PepRequest newPepRequest(Object[] objects);
 
     /**
      * @param associations
@@ -40,6 +40,6 @@ public interface PepRequestFactory {
      * @throws org.openliberty.openaz.pepapi.PepException, if ObjectMappers are not found.
      * @throws IllegalArgumentException,, if the arguments are null.
      */
-    public PepRequest newBulkPepRequest(List<?> associations, Object[] objects);
+    PepRequest newBulkPepRequest(List<?> associations, Object[] objects);
 
 }

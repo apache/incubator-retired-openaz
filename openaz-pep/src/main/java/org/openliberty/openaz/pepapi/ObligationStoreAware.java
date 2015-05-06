@@ -29,6 +29,6 @@ public interface ObligationStoreAware {
     /**
      * @param oStore
      */
-    public void setObligationStore(ObligationStore oStore);
+    void setObligationStore(ObligationStore oStore);
 
 }

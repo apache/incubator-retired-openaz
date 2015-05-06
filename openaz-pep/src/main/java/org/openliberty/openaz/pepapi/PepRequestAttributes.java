@@ -37,14 +37,14 @@ public interface PepRequestAttributes {
      *
      * @return Identifier
      */
-    public Identifier getCategory();
+    Identifier getCategory();
 
     /**
      * Returns an id representing the xml:id
      *
      * @return Identifier
      */
-    public String getId();
+    String getId();
 
     /**
      * Creates and adds an attribute with the name as the AttributeId, Date array elements as
@@ -55,7 +55,7 @@ public interface PepRequestAttributes {
      * @param values a Date array to be used as AttributeValue(s)
      * @throws IllegalArgumentException if the array is null
      */
-    public void addAttribute(String name, Date... values);
+    void addAttribute(String name, Date... values);
 
     /**
      * Creates and adds an attribute with the name as the AttributeId, String array elements as
@@ -66,7 +66,7 @@ public interface PepRequestAttributes {
      * @param values a String array to be used as AttributeValue(s)
      * @throws IllegalArgumentException if the array is null
      */
-    public void addAttribute(String name, String... values);
+    void addAttribute(String name, String... values);
 
     /**
      * Creates and adds an attribute with the name as the AttributeId, Integer array elements as
@@ -77,7 +77,7 @@ public interface PepRequestAttributes {
      * @param values an Integer array to be used as AttributeValue(s)
      * @throws IllegalArgumentException if the array is null
      */
-    public void addAttribute(String name, Integer... values);
+    void addAttribute(String name, Integer... values);
 
     /**
      * Creates and adds an attribute with the name as the AttributeId, Boolean array elements as
@@ -88,7 +88,7 @@ public interface PepRequestAttributes {
      * @param values a Boolean array to be used as AttributeValue(s)
      * @throws IllegalArgumentException if the array is null
      */
-    public void addAttribute(String name, Boolean... values);
+    void addAttribute(String name, Boolean... values);
 
     /**
      * Creates and adds an attribute with the name as the AttributeId, Long array elements as
@@ -99,7 +99,7 @@ public interface PepRequestAttributes {
      * @param values a Long array to be used as AttributeValue(s)
      * @throws IllegalArgumentException if the array is null
      */
-    public void addAttribute(String name, Long... values);
+    void addAttribute(String name, Long... values);
 
     /**
      * Creates and adds an attribute with the name as the AttributeId, Double array elements as
@@ -110,7 +110,7 @@ public interface PepRequestAttributes {
      * @param values a Double array to be used as AttributeValue(s)
      * @throws IllegalArgumentException if the array is null
      */
-    public void addAttribute(String name, Double... values);
+    void addAttribute(String name, Double... values);
 
     /**
      * Creates and adds an attribute with the name as the AttributeId, URI array elements as AttributeValue(s)
@@ -121,11 +121,11 @@ public interface PepRequestAttributes {
      * @param values a URI array to be used as AttributeValue(s
      * @throws IllegalArgumentException if the array is null
      */
-    public void addAttribute(String name, URI... values);
+    void addAttribute(String name, URI... values);
 
     /**
      * @return
      */
-    public RequestAttributes getWrappedRequestAttributes();
+    RequestAttributes getWrappedRequestAttributes();
 
 }
