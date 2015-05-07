@@ -37,5 +37,5 @@ package com.att.research.xacmlatt.pdp.eval;
  * {@link com.att.research.xacmlatt.pdp.eval.EvaluationResult}.
  */
 public interface Evaluatable {
-    public EvaluationResult evaluate(EvaluationContext evaluationContext) throws EvaluationException;
+    EvaluationResult evaluate(EvaluationContext evaluationContext) throws EvaluationException;
 }

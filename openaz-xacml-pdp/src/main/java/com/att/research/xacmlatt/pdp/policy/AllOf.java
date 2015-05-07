@@ -103,12 +103,12 @@ public class AllOf extends PolicyComponent implements Matchable {
             return new MatchResult(new StdStatus(this.getStatusCode(), this.getStatusMessage()));
         }
         Iterator<Match> iterMatches = this.getMatches();
-        assert (iterMatches != null && iterMatches.hasNext());
+        assert iterMatches != null && iterMatches.hasNext();
 
         MatchResult matchResultFallThrough = MatchResult.MM_MATCH;
         while (iterMatches.hasNext()) {
             MatchResult matchResultMatch = iterMatches.next().match(evaluationContext);
-            assert (matchResultMatch != null);
+            assert matchResultMatch != null;
             switch (matchResultMatch.getMatchCode()) {
             case INDETERMINATE:
                 if (matchResultFallThrough.getMatchCode() != MatchResult.MatchCode.INDETERMINATE) {

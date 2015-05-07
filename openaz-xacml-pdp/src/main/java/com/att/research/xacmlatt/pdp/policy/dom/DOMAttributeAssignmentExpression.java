@@ -86,7 +86,6 @@ public class DOMAttributeAssignmentExpression extends AttributeAssignmentExpress
             domAttributeAssignmentExpression.setAttributeId(DOMUtil
                 .getIdentifierAttribute(elementAttributeAssignmentExpression, XACML3.ATTRIBUTE_ATTRIBUTEID,
                                         !bLenient));
-            ;
             if ((identifier = DOMUtil.getIdentifierAttribute(elementAttributeAssignmentExpression,
                                                              XACML3.ATTRIBUTE_CATEGORY)) != null) {
                 domAttributeAssignmentExpression.setCategory(identifier);

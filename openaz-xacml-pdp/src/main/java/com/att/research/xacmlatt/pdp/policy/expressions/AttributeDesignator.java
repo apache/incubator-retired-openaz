@@ -173,7 +173,7 @@ public class AttributeDesignator extends AttributeRetrievalBase {
          * Set up the PIPRequest representing this
          */
         PIPRequest pipRequest = this.getPIPRequest();
-        assert (pipRequest != null);
+        assert pipRequest != null;
 
         /*
          * Query the evaluation context for results
@@ -184,7 +184,7 @@ public class AttributeDesignator extends AttributeRetrievalBase {
         } catch (PIPException ex) {
             throw new EvaluationException("PIPException getting Attributes", ex);
         }
-        assert (pipResponse != null);
+        assert pipResponse != null;
 
         /*
          * See if the request was successful

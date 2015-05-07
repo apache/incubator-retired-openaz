@@ -104,9 +104,6 @@ public class AdviceExpression extends PolicyComponent {
 
     public void setAttributeAssignmentExpressions(Collection<AttributeAssignmentExpression> attributeAssignmentExpressions) {
         this.clearAttributeAssignmentExpressionList();
-        if (attributeAssignmentExpressions != null) {
-
-        }
     }
 
     public void addAttributeAssignmentExpression(AttributeAssignmentExpression attributeAssignmentExpression) {

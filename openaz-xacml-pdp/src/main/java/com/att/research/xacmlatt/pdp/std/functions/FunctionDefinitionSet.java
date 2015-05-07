@@ -82,8 +82,8 @@ public class FunctionDefinitionSet<O, I> extends FunctionDefinitionBase<O, I> {
      */
     public FunctionDefinitionSet(Identifier idIn, DataType<O> dataTypeIn, DataType<I> dataTypeArgsIn,
                                  OPERATION opIn) {
-        super(idIn, dataTypeIn, dataTypeArgsIn, ((opIn == OPERATION.INTERSECTION || opIn == OPERATION.UNION)
-            ? true : false));
+        super(idIn, dataTypeIn, dataTypeArgsIn, opIn == OPERATION.INTERSECTION || opIn == OPERATION.UNION
+            ? true : false);
         operation = opIn;
     }
 

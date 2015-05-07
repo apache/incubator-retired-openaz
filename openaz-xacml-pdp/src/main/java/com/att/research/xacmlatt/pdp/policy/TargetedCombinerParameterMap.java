@@ -84,23 +84,22 @@ public class TargetedCombinerParameterMap<T, U> {
      *             resolved
      */
     protected void ensureMap() throws IllegalStateException {
-        if (this.mapTargetToCombinerParameters == null) {
-            if (this.targetedCombinerParameters != null && this.targetedCombinerParameters.size() > 0) {
-                this.mapTargetToCombinerParameters = new HashMap<U, List<CombinerParameter>>();
-                for (TargetedCombinerParameter<T, U> targetedCombinerParameter : this.targetedCombinerParameters) {
-                    U target = this.resolve(targetedCombinerParameter);
-                    if (target == null) {
-                        throw new IllegalStateException("Unresolved TargetCombinerParameter \""
-                                                        + targetedCombinerParameter.toString() + "\"");
-                    }
-                    List<CombinerParameter> listCombinerParameters = this.mapTargetToCombinerParameters
-                        .get(target);
-                    if (listCombinerParameters == null) {
-                        listCombinerParameters = new ArrayList<CombinerParameter>();
-                        this.mapTargetToCombinerParameters.put(target, listCombinerParameters);
-                    }
-                    listCombinerParameters.add(targetedCombinerParameter);
+        if (this.mapTargetToCombinerParameters == null
+            && this.targetedCombinerParameters != null && this.targetedCombinerParameters.size() > 0) {
+            this.mapTargetToCombinerParameters = new HashMap<U, List<CombinerParameter>>();
+            for (TargetedCombinerParameter<T, U> targetedCombinerParameter : this.targetedCombinerParameters) {
+                U target = this.resolve(targetedCombinerParameter);
+                if (target == null) {
+                    throw new IllegalStateException("Unresolved TargetCombinerParameter \""
+                        + targetedCombinerParameter.toString() + "\"");
                 }
+                List<CombinerParameter> listCombinerParameters = this.mapTargetToCombinerParameters
+                    .get(target);
+                if (listCombinerParameters == null) {
+                    listCombinerParameters = new ArrayList<CombinerParameter>();
+                    this.mapTargetToCombinerParameters.put(target, listCombinerParameters);
+                }
+                listCombinerParameters.add(targetedCombinerParameter);
             }
         }
     }

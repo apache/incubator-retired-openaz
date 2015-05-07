@@ -171,7 +171,7 @@ public abstract class ExpressionResult implements FunctionArgument {
      */
     @Override
     public boolean isOk() {
-        return (this.getStatus() == null || this.getStatus().isOk());
+        return this.getStatus() == null || this.getStatus().isOk();
     }
 
     /**

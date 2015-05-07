@@ -68,7 +68,7 @@ public class LegacyPermitOverridesPolicy extends CombiningAlgorithmBase<PolicySe
             CombiningElement<PolicySetChild> combiningElement = iterElements.next();
             EvaluationResult evaluationResultElement = combiningElement.evaluate(evaluationContext);
 
-            assert (evaluationResultElement != null);
+            assert evaluationResultElement != null;
             switch (evaluationResultElement.getDecision()) {
             case DENY:
                 atLeastOneDeny = true;

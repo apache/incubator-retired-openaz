@@ -143,8 +143,8 @@ public abstract class FunctionDefinitionHomogeneousSimple<O, I> extends Function
         /*
          * See if we have to validate the number of arguments
          */
-        if ((listFunctionArguments == null && this.numArgs > 0)
-            || (listFunctionArguments != null && this.numArgs != listFunctionArguments.size())) {
+        if (listFunctionArguments == null && this.numArgs > 0
+            || listFunctionArguments != null && this.numArgs != listFunctionArguments.size()) {
             return new StdStatus(StdStatusCode.STATUS_CODE_PROCESSING_ERROR,
                                  "Expected " + this.numArgs + " arguments, got "
                                      + ((listFunctionArguments == null) ? 0 : listFunctionArguments.size()));

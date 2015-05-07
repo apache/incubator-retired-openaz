@@ -65,7 +65,7 @@ public class DenyUnlessPermit<T extends com.att.research.xacmlatt.pdp.eval.Evalu
             CombiningElement<T> combiningElement = iterElements.next();
             EvaluationResult evaluationResultElement = combiningElement.evaluate(evaluationContext);
 
-            assert (evaluationResultElement != null);
+            assert evaluationResultElement != null;
             switch (evaluationResultElement.getDecision()) {
             case DENY:
                 combinedResult.merge(evaluationResultElement);

@@ -62,7 +62,7 @@ public class FirstApplicable<T extends com.att.research.xacmlatt.pdp.eval.Evalua
             CombiningElement<T> combiningElement = iterElements.next();
             EvaluationResult evaluationResultElement = combiningElement.evaluate(evaluationContext);
 
-            assert (evaluationResultElement != null);
+            assert evaluationResultElement != null;
             if (evaluationResultElement.getDecision() != Decision.NOTAPPLICABLE) {
                 return evaluationResultElement;
             }

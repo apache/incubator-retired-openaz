@@ -105,7 +105,7 @@ public class FunctionDefinitionBagOneAndOnly<I> extends FunctionDefinitionBase<I
 
         // get the single value from the bag
         AttributeValue<?> attributeValueOneAndOnly = bag.getAttributeValues().next();
-        assert (attributeValueOneAndOnly != null);
+        assert attributeValueOneAndOnly != null;
 
         // make sure it has the right type
         //

@@ -70,7 +70,7 @@ public class LegacyPermitOverridesRule extends CombiningAlgorithmBase<Rule> {
             CombiningElement<Rule> combiningElement = iterElements.next();
             EvaluationResult evaluationResultElement = combiningElement.evaluate(evaluationContext);
 
-            assert (evaluationResultElement != null);
+            assert evaluationResultElement != null;
             switch (evaluationResultElement.getDecision()) {
             case DENY:
                 atLeastOneDeny = true;

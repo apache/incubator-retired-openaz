@@ -112,7 +112,8 @@ public class DOMApply extends Apply {
                 Node child = children.item(i);
                 if (child.getNodeType() == Node.ELEMENT_NODE && XACML3.XMLNS.equals(child.getNamespaceURI())) {
                     String childName = child.getLocalName();
-                    if (XACML3.ELEMENT_DESCRIPTION.equals(childName)) {
+                    if (XACML3.ELEMENT_DESCRIPTION.equals(childName)) { //NOPMD
+                        // TODO
                     } else if (DOMExpression.isExpression(child)) {
                         result = DOMExpression.repair(child) || result;
                     } else {

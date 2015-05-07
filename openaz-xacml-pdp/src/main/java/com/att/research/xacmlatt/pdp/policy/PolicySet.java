@@ -205,7 +205,7 @@ public class PolicySet extends PolicyDef {
          * See if we match
          */
         MatchResult thisMatchResult = this.match(evaluationContext);
-        assert (thisMatchResult != null);
+        assert thisMatchResult != null;
         if (evaluationContext.isTracing()) {
             evaluationContext.trace(new StdTraceEvent<MatchResult>("Match", this, thisMatchResult));
         }
@@ -222,15 +222,15 @@ public class PolicySet extends PolicyDef {
          * Get the combining elements
          */
         List<CombiningElement<PolicySetChild>> listCombiningElements = this.getCombiningPolicies();
-        assert (listCombiningElements != null);
+        assert listCombiningElements != null;
 
         /*
          * Run the PolicyCombiningAlgorithm
          */
-        assert (this.getPolicyCombiningAlgorithm() != null);
+        assert this.getPolicyCombiningAlgorithm() != null;
         EvaluationResult evaluationResultCombined = this.getPolicyCombiningAlgorithm()
             .combine(evaluationContext, listCombiningElements, getCombinerParameterList());
-        assert (evaluationResultCombined != null);
+        assert evaluationResultCombined != null;
 
         if (evaluationResultCombined.getDecision() == Decision.DENY
             || evaluationResultCombined.getDecision() == Decision.PERMIT) {

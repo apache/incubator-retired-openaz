@@ -116,52 +116,51 @@ public class DOMPolicy {
 
                 for (int i = 0; i < numChildren; i++) {
                     Node child = children.item(i);
-                    if (DOMUtil.isElement(child)) {
-                        if (DOMUtil.isInNamespace(child, XACML3.XMLNS)) {
-                            String childName = child.getLocalName();
-                            if (XACML3.ELEMENT_DESCRIPTION.equals(childName)) {
-                                if (domPolicy.getDescription() != null && !bLenient) {
-                                    throw DOMUtil.newUnexpectedElementException(child, nodePolicy);
-                                }
-                                domPolicy.setDescription(child.getTextContent());
-                            } else if (XACML3.ELEMENT_POLICYISSUER.equals(childName)) {
-                                if (domPolicy.getPolicyIssuer() != null && !bLenient) {
-                                    throw DOMUtil.newUnexpectedElementException(child, nodePolicy);
-                                }
-                                domPolicy.setPolicyIssuer(DOMPolicyIssuer.newInstance(child));
-                            } else if (XACML3.ELEMENT_POLICYDEFAULTS.equals(childName)) {
-                            } else if (XACML3.ELEMENT_TARGET.equals(childName)) {
-                                if (domPolicy.getTarget() != null && !bLenient) {
-                                    throw DOMUtil.newUnexpectedElementException(child, nodePolicy);
-                                }
-                                domPolicy.setTarget(DOMTarget.newInstance(child));
-                            } else if (XACML3.ELEMENT_COMBINERPARAMETERS.equals(childName)) {
-                                domPolicy.addCombinerParameters(DOMCombinerParameter.newList(child));
-                            } else if (XACML3.ELEMENT_RULECOMBINERPARAMETERS.equals(childName)) {
-                                domPolicy.addRuleCombinerParameter(DOMRuleCombinerParameters
-                                    .newInstance(child));
-                            } else if (XACML3.ELEMENT_VARIABLEDEFINITION.equals(childName)) {
-                                domPolicy.addVariableDefinition(DOMVariableDefinition.newInstance(child,
-                                                                                                  domPolicy));
-                            } else if (XACML3.ELEMENT_RULE.equals(childName)) {
-                                domPolicy.addRule(DOMRule.newInstance(child, domPolicy));
-                            } else if (XACML3.ELEMENT_OBLIGATIONEXPRESSIONS.equals(childName)) {
-                                if ((iterator = domPolicy.getObligationExpressions()) != null
-                                    && iterator.hasNext() && !bLenient) {
-                                    throw DOMUtil.newUnexpectedElementException(child, nodePolicy);
-                                }
-                                domPolicy
-                                    .setObligationExpressions(DOMObligationExpression.newList(child,
-                                                                                              domPolicy));
-                            } else if (XACML3.ELEMENT_ADVICEEXPRESSIONS.equals(childName)) {
-                                if ((iterator = domPolicy.getAdviceExpressions()) != null
-                                    && iterator.hasNext() && !bLenient) {
-                                    throw DOMUtil.newUnexpectedElementException(child, nodePolicy);
-                                }
-                                domPolicy.setAdviceExpressions(DOMAdviceExpression.newList(child, domPolicy));
-                            } else if (!bLenient) {
+                    if (DOMUtil.isElement(child) && DOMUtil.isInNamespace(child, XACML3.XMLNS)) {
+                        String childName = child.getLocalName();
+                        if (XACML3.ELEMENT_DESCRIPTION.equals(childName)) {
+                            if (domPolicy.getDescription() != null && !bLenient) {
                                 throw DOMUtil.newUnexpectedElementException(child, nodePolicy);
                             }
+                            domPolicy.setDescription(child.getTextContent());
+                        } else if (XACML3.ELEMENT_POLICYISSUER.equals(childName)) {
+                            if (domPolicy.getPolicyIssuer() != null && !bLenient) {
+                                throw DOMUtil.newUnexpectedElementException(child, nodePolicy);
+                            }
+                            domPolicy.setPolicyIssuer(DOMPolicyIssuer.newInstance(child));
+                        } else if (XACML3.ELEMENT_POLICYDEFAULTS.equals(childName)) { //NOPMD
+                            // TODO
+                        } else if (XACML3.ELEMENT_TARGET.equals(childName)) {
+                            if (domPolicy.getTarget() != null && !bLenient) {
+                                throw DOMUtil.newUnexpectedElementException(child, nodePolicy);
+                            }
+                            domPolicy.setTarget(DOMTarget.newInstance(child));
+                        } else if (XACML3.ELEMENT_COMBINERPARAMETERS.equals(childName)) {
+                            domPolicy.addCombinerParameters(DOMCombinerParameter.newList(child));
+                        } else if (XACML3.ELEMENT_RULECOMBINERPARAMETERS.equals(childName)) {
+                            domPolicy.addRuleCombinerParameter(DOMRuleCombinerParameters
+                                                               .newInstance(child));
+                        } else if (XACML3.ELEMENT_VARIABLEDEFINITION.equals(childName)) {
+                            domPolicy.addVariableDefinition(DOMVariableDefinition.newInstance(child,
+                                                                                              domPolicy));
+                        } else if (XACML3.ELEMENT_RULE.equals(childName)) {
+                            domPolicy.addRule(DOMRule.newInstance(child, domPolicy));
+                        } else if (XACML3.ELEMENT_OBLIGATIONEXPRESSIONS.equals(childName)) {
+                            if ((iterator = domPolicy.getObligationExpressions()) != null
+                                && iterator.hasNext() && !bLenient) {
+                                throw DOMUtil.newUnexpectedElementException(child, nodePolicy);
+                            }
+                            domPolicy
+                            .setObligationExpressions(DOMObligationExpression.newList(child,
+                                                                                      domPolicy));
+                        } else if (XACML3.ELEMENT_ADVICEEXPRESSIONS.equals(childName)) {
+                            if ((iterator = domPolicy.getAdviceExpressions()) != null
+                                && iterator.hasNext() && !bLenient) {
+                                throw DOMUtil.newUnexpectedElementException(child, nodePolicy);
+                            }
+                            domPolicy.setAdviceExpressions(DOMAdviceExpression.newList(child, domPolicy));
+                        } else if (!bLenient) {
+                            throw DOMUtil.newUnexpectedElementException(child, nodePolicy);
                         }
                     }
                 }
@@ -219,75 +218,73 @@ public class DOMPolicy {
         if (children != null && (numChildren = children.getLength()) > 0) {
             for (int i = 0; i < numChildren; i++) {
                 Node child = children.item(i);
-                if (DOMUtil.isElement(child)) {
-                    if (DOMUtil.isInNamespace(child, XACML3.XMLNS)) {
-                        String childName = child.getLocalName();
-                        if (XACML3.ELEMENT_DESCRIPTION.equals(childName)) {
-                            if (sawDescription) {
-                                logger.warn("Unexpected element " + child.getNodeName());
-                                elementPolicy.removeChild(child);
-                                result = true;
-                            } else {
-                                sawDescription = true;
-                            }
-                        } else if (XACML3.ELEMENT_POLICYISSUER.equals(childName)) {
-                            if (sawIssuer) {
-                                logger.warn("Unexpected element " + child.getNodeName());
-                                elementPolicy.removeChild(child);
-                                result = true;
-                            } else {
-                                sawDescription = true;
-                                result = DOMPolicyIssuer.repair(child) || result;
-                            }
-                        } else if (XACML3.ELEMENT_POLICYDEFAULTS.equals(childName)) {
-                            if (sawPolicyDefaults) {
-                                logger.warn("Unexpected element " + child.getNodeName());
-                                elementPolicy.removeChild(child);
-                                result = true;
-                            } else {
-                                sawPolicyDefaults = true;
-                                result = DOMPolicyDefaults.repair(child) || result;
-                            }
-                        } else if (XACML3.ELEMENT_TARGET.equals(childName)) {
-                            if (sawTarget) {
-                                logger.warn("Unexpected element " + child.getNodeName());
-                                elementPolicy.removeChild(child);
-                                result = true;
-                            } else {
-                                sawTarget = true;
-                                result = DOMTarget.repair(child) || result;
-                            }
-                        } else if (XACML3.ELEMENT_COMBINERPARAMETERS.equals(childName)) {
-                            result = DOMCombinerParameter.repair(child) || result;
-                        } else if (XACML3.ELEMENT_RULECOMBINERPARAMETERS.equals(childName)) {
-                            result = DOMRuleCombinerParameters.repair(child) || result;
-                        } else if (XACML3.ELEMENT_VARIABLEDEFINITION.equals(childName)) {
-                            result = DOMVariableDefinition.repair(child) || result;
-                        } else if (XACML3.ELEMENT_RULE.equals(childName)) {
-                            result = DOMRule.repair(child) || result;
-                        } else if (XACML3.ELEMENT_OBLIGATIONEXPRESSIONS.equals(childName)) {
-                            if (sawObligationExprs) {
-                                logger.warn("Unexpected element " + child.getNodeName());
-                                elementPolicy.removeChild(child);
-                                result = true;
-                            } else {
-                                sawObligationExprs = true;
-                                result = DOMObligationExpression.repairList(child) || result;
-                            }
-                        } else if (XACML3.ELEMENT_ADVICEEXPRESSIONS.equals(childName)) {
-                            if (sawAdviceExprs) {
-                                logger.warn("Unexpected element " + child.getNodeName());
-                                elementPolicy.removeChild(child);
-                                result = true;
-                            } else {
-                                sawAdviceExprs = true;
-                                result = DOMAdviceExpression.repairList(child) || result;
-                            }
-                        } else {
+                if (DOMUtil.isElement(child) && DOMUtil.isInNamespace(child, XACML3.XMLNS)) {
+                    String childName = child.getLocalName();
+                    if (XACML3.ELEMENT_DESCRIPTION.equals(childName)) {
+                        if (sawDescription) {
                             logger.warn("Unexpected element " + child.getNodeName());
                             elementPolicy.removeChild(child);
                             result = true;
+                        } else {
+                            sawDescription = true;
                         }
+                    } else if (XACML3.ELEMENT_POLICYISSUER.equals(childName)) {
+                        if (sawIssuer) {
+                            logger.warn("Unexpected element " + child.getNodeName());
+                            elementPolicy.removeChild(child);
+                            result = true;
+                        } else {
+                            sawDescription = true;
+                            result = DOMPolicyIssuer.repair(child) || result;
+                        }
+                    } else if (XACML3.ELEMENT_POLICYDEFAULTS.equals(childName)) {
+                        if (sawPolicyDefaults) {
+                            logger.warn("Unexpected element " + child.getNodeName());
+                            elementPolicy.removeChild(child);
+                            result = true;
+                        } else {
+                            sawPolicyDefaults = true;
+                            result = DOMPolicyDefaults.repair(child) || result;
+                        }
+                    } else if (XACML3.ELEMENT_TARGET.equals(childName)) {
+                        if (sawTarget) {
+                            logger.warn("Unexpected element " + child.getNodeName());
+                            elementPolicy.removeChild(child);
+                            result = true;
+                        } else {
+                            sawTarget = true;
+                            result = DOMTarget.repair(child) || result;
+                        }
+                    } else if (XACML3.ELEMENT_COMBINERPARAMETERS.equals(childName)) {
+                        result = DOMCombinerParameter.repair(child) || result;
+                    } else if (XACML3.ELEMENT_RULECOMBINERPARAMETERS.equals(childName)) {
+                        result = DOMRuleCombinerParameters.repair(child) || result;
+                    } else if (XACML3.ELEMENT_VARIABLEDEFINITION.equals(childName)) {
+                        result = DOMVariableDefinition.repair(child) || result;
+                    } else if (XACML3.ELEMENT_RULE.equals(childName)) {
+                        result = DOMRule.repair(child) || result;
+                    } else if (XACML3.ELEMENT_OBLIGATIONEXPRESSIONS.equals(childName)) {
+                        if (sawObligationExprs) {
+                            logger.warn("Unexpected element " + child.getNodeName());
+                            elementPolicy.removeChild(child);
+                            result = true;
+                        } else {
+                            sawObligationExprs = true;
+                            result = DOMObligationExpression.repairList(child) || result;
+                        }
+                    } else if (XACML3.ELEMENT_ADVICEEXPRESSIONS.equals(childName)) {
+                        if (sawAdviceExprs) {
+                            logger.warn("Unexpected element " + child.getNodeName());
+                            elementPolicy.removeChild(child);
+                            result = true;
+                        } else {
+                            sawAdviceExprs = true;
+                            result = DOMAdviceExpression.repairList(child) || result;
+                        }
+                    } else {
+                        logger.warn("Unexpected element " + child.getNodeName());
+                        elementPolicy.removeChild(child);
+                        result = true;
                     }
                 }
             }

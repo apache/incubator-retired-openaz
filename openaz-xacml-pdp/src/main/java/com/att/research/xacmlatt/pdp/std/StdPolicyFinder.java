@@ -158,11 +158,9 @@ public class StdPolicyFinder implements PolicyFinder {
                 bestVersion = match.getVersion();
             } else {
                 Version matchVersion = match.getVersion();
-                if (matchVersion != null) {
-                    if (matchVersion.compareTo(bestVersion) > 0) {
-                        bestMatch = match;
-                        bestVersion = matchVersion;
-                    }
+                if (matchVersion != null && matchVersion.compareTo(bestVersion) > 0) {
+                    bestMatch = match;
+                    bestVersion = matchVersion;
                 }
             }
         }
@@ -201,8 +199,8 @@ public class StdPolicyFinder implements PolicyFinder {
             if (inputStream != null) {
                 try {
                     inputStream.close();
-                } catch (Exception ex) {
-
+                } catch (Exception ex) { //NOPMD
+                    // TODO
                 }
             }
         }

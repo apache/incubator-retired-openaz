@@ -51,7 +51,7 @@ public interface CombiningAlgorithm<T extends Evaluatable> {
      *
      * @return the <code>Identifier</code> for this <code>CombiningAlgorithm</code>
      */
-    public Identifier getId();
+    Identifier getId();
 
     /**
      * Evaluates as many of the <code>CombiningElement</code>s supplied with the given
@@ -67,6 +67,6 @@ public interface CombiningAlgorithm<T extends Evaluatable> {
      * @throws com.att.research.xacmlatt.pdp.eval.EvaluationException if there is an error in the
      *             <code>evaluate</code> method of any of the <code>CombiningElement</code>s
      */
-    public EvaluationResult combine(EvaluationContext evaluationContext, List<CombiningElement<T>> elements,
+    EvaluationResult combine(EvaluationContext evaluationContext, List<CombiningElement<T>> elements,
                                     List<CombinerParameter> combinerParameters) throws EvaluationException;
 }

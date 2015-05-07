@@ -119,7 +119,7 @@ public class AnyOf extends PolicyComponent implements Matchable {
         MatchResult matchResultFallThrough = MatchResult.MM_NOMATCH;
         while (iterAllOfs.hasNext()) {
             MatchResult matchResultAllOf = iterAllOfs.next().match(evaluationContext);
-            assert (matchResultAllOf != null);
+            assert matchResultAllOf != null;
             switch (matchResultAllOf.getMatchCode()) {
             case INDETERMINATE:
                 /*

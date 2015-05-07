@@ -216,12 +216,14 @@ public class XACMLPdpPolicyFinderFactory extends PolicyFinderFactory {
         //
         // Force using any properties that were passed upon construction
         //
-        return new StdPolicyFinder(this.rootPolicies, this.referencedPolicies, this.properties);
+        // TODO properties are not used in StdPolicyFinder
+        return new StdPolicyFinder(this.rootPolicies, this.referencedPolicies);
     }
 
     @Override
     public PolicyFinder getPolicyFinder(Properties properties) throws FactoryException {
-        return new StdPolicyFinder(this.rootPolicies, this.referencedPolicies, properties);
+        // TODO properties are not used in StdPolicyFinder
+        return new StdPolicyFinder(this.rootPolicies, this.referencedPolicies);
     }
 
 }

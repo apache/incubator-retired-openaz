@@ -60,10 +60,10 @@ public abstract class DOMExpression extends Expression {
 
     public static boolean isExpression(Node nodeExpression) {
         String nodeName = nodeExpression.getLocalName();
-        return (XACML3.ELEMENT_APPLY.equals(nodeName) || XACML3.ELEMENT_ATTRIBUTEDESIGNATOR.equals(nodeName)
+        return XACML3.ELEMENT_APPLY.equals(nodeName) || XACML3.ELEMENT_ATTRIBUTEDESIGNATOR.equals(nodeName)
                 || XACML3.ELEMENT_ATTRIBUTESELECTOR.equals(nodeName)
                 || XACML3.ELEMENT_ATTRIBUTEVALUE.equals(nodeName) || XACML3.ELEMENT_FUNCTION.equals(nodeName) || XACML3.ELEMENT_VARIABLEREFERENCE
-            .equals(nodeName));
+            .equals(nodeName);
     }
 
     /**

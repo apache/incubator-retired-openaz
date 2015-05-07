@@ -78,8 +78,8 @@ public class StdCombiningAlgorithmFactory extends CombiningAlgorithmFactory {
                                     registerPolicyCombiningAlgorithm((CombiningAlgorithm<PolicySetChild>)field
                                         .get(null));
                                 }
-                            } catch (IllegalAccessException ex) {
-
+                            } catch (IllegalAccessException ex) { // NOPMD
+                                // TODO
                             }
                         }
                     }

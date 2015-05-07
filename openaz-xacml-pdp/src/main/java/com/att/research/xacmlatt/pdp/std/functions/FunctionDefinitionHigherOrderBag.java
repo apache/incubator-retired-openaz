@@ -167,15 +167,13 @@ public class FunctionDefinitionHigherOrderBag<O, I> extends FunctionDefinitionBa
                                             + "'"));
         }
         // in all cases except MAP, the predicate must return True/False
-        if (operation != OPERATION.MAP) {
-            if (!predicate.getDataTypeId().equals(DataTypes.DT_BOOLEAN.getId())) {
-                return ExpressionResult
-                    .newError(new StdStatus(StdStatusCode.STATUS_CODE_PROCESSING_ERROR,
-                                            this.getShortFunctionId()
-                                                + " Predicate Function must return boolean, but '"
-                                                + predicate.getId() + "' returns '"
-                                                + this.getShortDataTypeId(predicate.getDataTypeId())));
-            }
+        if (operation != OPERATION.MAP && !predicate.getDataTypeId().equals(DataTypes.DT_BOOLEAN.getId())) {
+            return ExpressionResult
+                .newError(new StdStatus(StdStatusCode.STATUS_CODE_PROCESSING_ERROR,
+                                        this.getShortFunctionId()
+                                            + " Predicate Function must return boolean, but '"
+                                            + predicate.getId() + "' returns '"
+                                            + this.getShortDataTypeId(predicate.getDataTypeId())));
         }
 
         // The remaining arguments may be either bags or primitive types.

@@ -94,15 +94,15 @@ public class FunctionDefinitionStringFunctions<O, I> extends FunctionDefinitionB
     public ExpressionResult evaluate(EvaluationContext evaluationContext, List<FunctionArgument> arguments) {
 
         if (arguments == null
-            || (operation == OPERATION.CONCATENATE && arguments.size() < 2)
-            || (operation == OPERATION.SUBSTRING && arguments.size() != 3)
-            || (operation != OPERATION.SUBSTRING && operation != OPERATION.CONCATENATE && arguments.size() != 2)) {
+            || operation == OPERATION.CONCATENATE && arguments.size() < 2
+            || operation == OPERATION.SUBSTRING && arguments.size() != 3
+            || operation != OPERATION.SUBSTRING && operation != OPERATION.CONCATENATE && arguments.size() != 2) {
             return ExpressionResult.newError(new StdStatus(StdStatusCode.STATUS_CODE_PROCESSING_ERROR,
                                                            this.getShortFunctionId()
                                                                + " Expected "
-                                                               + ((operation == OPERATION.SUBSTRING)
-                                                                   ? 3 : (operation == OPERATION.CONCATENATE
-                                                                       ? "2 or more " : 2))
+                                                               + (operation == OPERATION.SUBSTRING
+                                                                   ? 3 : operation == OPERATION.CONCATENATE
+                                                                       ? "2 or more " : 2)
                                                                + " arguments, got "
                                                                + ((arguments == null) ? "null" : arguments
                                                                    .size())));

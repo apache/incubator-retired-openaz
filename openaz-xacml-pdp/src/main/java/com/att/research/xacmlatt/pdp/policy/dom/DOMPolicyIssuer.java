@@ -79,20 +79,18 @@ public class DOMPolicyIssuer extends PolicyIssuer {
             if (children != null && (numChildren = children.getLength()) > 0) {
                 for (int i = 0; i < numChildren; i++) {
                     Node child = children.item(i);
-                    if (DOMUtil.isElement(child)) {
-                        if (DOMUtil.isInNamespace(child, XACML3.XMLNS)) {
-                            String childName = child.getLocalName();
-                            if (XACML3.ELEMENT_CONTENT.equals(childName)) {
-                                if (domPolicyIssuer.getContent() != null && !bLenient) {
-                                    throw DOMUtil.newUnexpectedElementException(child, nodePolicyIssuer);
-                                }
-                                domPolicyIssuer.setContent(child);
-                            } else if (XACML3.ELEMENT_ATTRIBUTE.equals(childName)) {
-                                domPolicyIssuer.add(DOMAttribute.newInstance(identifierCategoryPolicyIssuer,
-                                                                             child));
-                            } else if (!bLenient) {
+                    if (DOMUtil.isElement(child) && DOMUtil.isInNamespace(child, XACML3.XMLNS)) {
+                        String childName = child.getLocalName();
+                        if (XACML3.ELEMENT_CONTENT.equals(childName)) {
+                            if (domPolicyIssuer.getContent() != null && !bLenient) {
                                 throw DOMUtil.newUnexpectedElementException(child, nodePolicyIssuer);
                             }
+                            domPolicyIssuer.setContent(child);
+                        } else if (XACML3.ELEMENT_ATTRIBUTE.equals(childName)) {
+                            domPolicyIssuer.add(DOMAttribute.newInstance(identifierCategoryPolicyIssuer,
+                                                                         child));
+                        } else if (!bLenient) {
+                            throw DOMUtil.newUnexpectedElementException(child, nodePolicyIssuer);
                         }
                     }
                 }
@@ -117,24 +115,22 @@ public class DOMPolicyIssuer extends PolicyIssuer {
         if (children != null && (numChildren = children.getLength()) > 0) {
             for (int i = 0; i < numChildren; i++) {
                 Node child = children.item(i);
-                if (DOMUtil.isElement(child)) {
-                    if (DOMUtil.isInNamespace(child, XACML3.XMLNS)) {
-                        String childName = child.getLocalName();
-                        if (XACML3.ELEMENT_CONTENT.equals(childName)) {
-                            if (sawContent) {
-                                logger.warn("Unexpected element " + child.getNodeName());
-                                elementPolicyIssuer.removeChild(child);
-                                result = true;
-                            } else {
-                                sawContent = true;
-                            }
-                        } else if (XACML3.ELEMENT_ATTRIBUTE.equals(childName)) {
-                            result = DOMAttribute.repair(child) || result;
-                        } else {
+                if (DOMUtil.isElement(child) && DOMUtil.isInNamespace(child, XACML3.XMLNS)) {
+                    String childName = child.getLocalName();
+                    if (XACML3.ELEMENT_CONTENT.equals(childName)) {
+                        if (sawContent) {
                             logger.warn("Unexpected element " + child.getNodeName());
                             elementPolicyIssuer.removeChild(child);
                             result = true;
+                        } else {
+                            sawContent = true;
                         }
+                    } else if (XACML3.ELEMENT_ATTRIBUTE.equals(childName)) {
+                        result = DOMAttribute.repair(child) || result;
+                    } else {
+                        logger.warn("Unexpected element " + child.getNodeName());
+                        elementPolicyIssuer.removeChild(child);
+                        result = true;
                     }
                 }
             }

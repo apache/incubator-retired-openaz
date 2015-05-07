@@ -78,7 +78,6 @@ public class DOMPolicyRepair {
                         System.err.println("IOException opening \"" + args[i + 1] + "\" for writing.");
                         ex.printStackTrace(System.err);
                         System.exit(1);
-                        ;
                     }
                     i += 2;
                 } else {

@@ -128,7 +128,8 @@ public class DOMPolicySet {
                                     throw DOMUtil.newUnexpectedElementException(child, nodePolicySet);
                                 }
                                 domPolicySet.setPolicyIssuer(DOMPolicyIssuer.newInstance(child));
-                            } else if (XACML3.ELEMENT_POLICYSETDEFAULTS.equals(childName)) {
+                            } else if (XACML3.ELEMENT_POLICYSETDEFAULTS.equals(childName)) { //NOPMD
+                                // TODO
                             } else if (XACML3.ELEMENT_TARGET.equals(childName)) {
                                 if (domPolicySet.getTarget() != null && !bLenient) {
                                     throw DOMUtil.newUnexpectedElementException(child, nodePolicySet);

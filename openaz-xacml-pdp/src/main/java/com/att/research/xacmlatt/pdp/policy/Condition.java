@@ -144,7 +144,7 @@ public class Condition extends PolicyComponent {
          * Evaluate the expression
          */
         ExpressionResult expressionResult = this.getExpression().evaluate(evaluationContext, policyDefaults);
-        assert (expressionResult != null);
+        assert expressionResult != null;
 
         if (!expressionResult.isOk()) {
             return new ExpressionResultBoolean(expressionResult.getStatus());

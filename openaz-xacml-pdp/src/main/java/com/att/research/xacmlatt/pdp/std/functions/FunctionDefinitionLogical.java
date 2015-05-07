@@ -192,7 +192,7 @@ public class FunctionDefinitionLogical extends FunctionDefinitionHomogeneousSimp
                     if (!argument.isOk()) {
                         return ExpressionResult.newError(getFunctionStatus(argument.getStatus()));
                     }
-                    if ((argument.getValue()) == true) {
+                    if (argument.getValue()) {
                         trueArgumentsSeen++;
                         if (trueArgumentsSeen >= argumentCountNeeded) {
                             return ER_TRUE;

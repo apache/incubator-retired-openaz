@@ -237,7 +237,7 @@ public class ATTPDPEngine implements PDPEngine, Traceable {
                 }
             }
 
-            assert (resultIndividualDecision != null);
+            assert resultIndividualDecision != null;
             if (traceEngineThis.isTracing()) {
                 traceEngineThis.trace(new StdTraceEvent<Result>("Individual Result", this,
                                                                 resultIndividualDecision));

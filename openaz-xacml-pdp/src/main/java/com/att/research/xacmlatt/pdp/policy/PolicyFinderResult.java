@@ -45,12 +45,12 @@ public interface PolicyFinderResult<T extends PolicyDef> {
      *
      * @return the <code>Status</code> of the method call
      */
-    public Status getStatus();
+    Status getStatus();
 
     /**
      * Gets the {@link PolicyDef} returned by the method if the status is OK.
      *
      * @return the <code>T</code> returned by the method if the status is OK.
      */
-    public T getPolicyDef();
+    T getPolicyDef();
 }

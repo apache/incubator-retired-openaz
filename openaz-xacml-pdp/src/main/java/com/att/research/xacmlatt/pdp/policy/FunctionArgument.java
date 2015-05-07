@@ -44,7 +44,7 @@ public interface FunctionArgument {
      *
      * @return the <code>Status</code> from the evaluation of this <code>FunctionArgument</code>>
      */
-    public Status getStatus();
+    Status getStatus();
 
     /**
      * Determines if this <code>FunctionArgument</code> is OK and can have its <code>AttributeValue</code> or
@@ -52,14 +52,14 @@ public interface FunctionArgument {
      *
      * @return true if this <code>FunctionArgument</code> is OK, otherwise false.
      */
-    public boolean isOk();
+    boolean isOk();
 
     /**
      * Determines if this <code>FunctionArgument</code> represents a bag of values.
      *
      * @return true if this <code>FunctionArgument</code> represents a bag of values, else false.
      */
-    public boolean isBag();
+    boolean isBag();
 
     /**
      * Gets the single <code>AttributeValue</code> representing the value of this
@@ -69,7 +69,7 @@ public interface FunctionArgument {
      * @return the single <code>AttributeValue</code> representing the value of this
      *         <code>FunctionArgument</code>.
      */
-    public AttributeValue<?> getValue();
+    AttributeValue<?> getValue();
 
     /**
      * Gets the {@link Bag} value for this <code>FunctionArgument</code> if the argument represents a
@@ -77,6 +77,6 @@ public interface FunctionArgument {
      *
      * @return the <code>Bag</code> value for this <code>FunctionArgument</code>.
      */
-    public Bag getBag();
+    Bag getBag();
 
 }

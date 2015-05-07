@@ -66,8 +66,8 @@ public class StdFunctionDefinitionFactory extends FunctionDefinitionFactory {
                             && Modifier.isPublic(field.getModifiers())) {
                             try {
                                 register((FunctionDefinition)(field.get(null)));
-                            } catch (IllegalAccessException ex) {
-
+                            } catch (IllegalAccessException ex) { //NOPMD
+                                // TODO
                             }
                         }
                     }

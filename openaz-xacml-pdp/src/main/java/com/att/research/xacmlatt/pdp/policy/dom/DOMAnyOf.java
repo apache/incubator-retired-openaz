@@ -75,7 +75,7 @@ public class DOMAnyOf extends AnyOf {
                     Node child = children.item(i);
                     if (DOMUtil.isElement(child)) {
                         if (DOMUtil.isInNamespace(child, XACML3.XMLNS)
-                            && (XACML3.ELEMENT_ALLOF.equals(child.getLocalName()))) {
+                            && XACML3.ELEMENT_ALLOF.equals(child.getLocalName())) {
                             domAnyOf.addAllOf(DOMAllOf.newInstance(child));
                         } else if (!bLenient) {
                             throw DOMUtil.newUnexpectedElementException(child, nodeAnyOf);
@@ -104,7 +104,7 @@ public class DOMAnyOf extends AnyOf {
                 Node child = children.item(i);
                 if (DOMUtil.isElement(child)) {
                     if (DOMUtil.isInNamespace(child, XACML3.XMLNS)
-                        && (XACML3.ELEMENT_ALLOF.equals(child.getLocalName()))) {
+                        && XACML3.ELEMENT_ALLOF.equals(child.getLocalName())) {
                         result = DOMAllOf.repair(child) || result;
                     } else {
                         logger.warn("Unexpected element " + child.getNodeName());

@@ -76,7 +76,7 @@ public class AttributeAssignmentResult {
     }
 
     public boolean isOk() {
-        return (this.getStatus() == null || this.getStatus().isOk());
+        return this.getStatus() == null || this.getStatus().isOk();
     }
 
     public Iterator<AttributeAssignment> getAttributeAssignments() {

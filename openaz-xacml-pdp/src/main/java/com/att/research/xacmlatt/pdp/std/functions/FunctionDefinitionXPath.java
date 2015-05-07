@@ -171,7 +171,7 @@ public class FunctionDefinitionXPath<O> extends
                     if (operation == OPERATION.COUNT) {
                         return ExpressionResult
                             .newSingle(new StdAttributeValue<BigInteger>(XACML.ID_DATATYPE_INTEGER,
-                                                                         new BigInteger("0")));
+                                                                         BigInteger.ZERO));
                     } else {
                         return ER_FALSE;
                     }

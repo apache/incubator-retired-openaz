@@ -180,7 +180,7 @@ public class AttributeSelector extends AttributeRetrievalBase {
          * element of the requested category.
          */
         Request request = evaluationContext.getRequest();
-        assert (request != null);
+        assert request != null;
 
         /*
          * Get the RequestAttributes objects for our Category. If none are found, then we abort quickly with

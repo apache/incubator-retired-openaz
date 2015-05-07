@@ -209,7 +209,7 @@ public class Rule extends PolicyComponent implements Matchable, Evaluatable, Tra
         if (thisCondition != null) {
             ExpressionResultBoolean expressionResultCondition = thisCondition
                 .evaluate(evaluationContext, this.getPolicy().getPolicyDefaults());
-            assert (expressionResultCondition != null);
+            assert expressionResultCondition != null;
 
             if (evaluationContext.isTracing()) {
                 evaluationContext

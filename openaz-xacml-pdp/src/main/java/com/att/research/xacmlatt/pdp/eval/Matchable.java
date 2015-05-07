@@ -45,5 +45,5 @@ public interface Matchable {
      *         given <code>EvaluationContext</code>.
      * @throws EvaluationException if there is an error testing the match.
      */
-    public MatchResult match(EvaluationContext evaluationContext) throws EvaluationException;
+    MatchResult match(EvaluationContext evaluationContext) throws EvaluationException;
 }

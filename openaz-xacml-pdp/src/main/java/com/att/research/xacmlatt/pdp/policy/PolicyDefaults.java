@@ -44,7 +44,7 @@ public class PolicyDefaults {
     static {
         try {
             xpathVersionDefault = new URI(XACML.XPATHVERSION_2_0);
-        } catch (Exception ex) {
+        } catch (Exception ex) { //NOPMD
 
         }
     }

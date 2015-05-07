@@ -45,7 +45,7 @@ public interface FunctionDefinition {
      *
      * @return the <code>Identifier</code> for this <code>FunctionDefinition</code>.
      */
-    public Identifier getId();
+    Identifier getId();
 
     /**
      * Returns the <code>Identifier</code> for the data type returned by this function if
@@ -55,14 +55,14 @@ public interface FunctionDefinition {
      * @return the <code>Identifier</code> for the XACML data type this <code>FunctionDefinition</code>
      *         returns
      */
-    public Identifier getDataTypeId();
+    Identifier getDataTypeId();
 
     /**
      * Determines if this <code>FunctionDefinition</code> returns a bag of values or a single value.
      *
      * @return true if this <code>FunctionDefinition</code> returns a bag, else false
      */
-    public boolean returnsBag();
+    boolean returnsBag();
 
     /**
      * Evaluates this <code>FunctionDefinition</code> on the given <code>List</code> of
@@ -73,5 +73,5 @@ public interface FunctionDefinition {
      * @param arguments the <code>List</code> of <code>FunctionArgument</code>s for the evaluation
      * @return an {@link ExpressionResult} with the results of the call
      */
-    public ExpressionResult evaluate(EvaluationContext evaluationContext, List<FunctionArgument> arguments);
+    ExpressionResult evaluate(EvaluationContext evaluationContext, List<FunctionArgument> arguments);
 }

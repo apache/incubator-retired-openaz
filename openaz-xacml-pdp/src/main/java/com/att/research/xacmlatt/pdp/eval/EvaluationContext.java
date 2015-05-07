@@ -54,7 +54,7 @@ public interface EvaluationContext extends PIPFinder, TraceEngine {
      * @return the <code>Request</code> provided to the <code>ATTPDPEngine</code>'s <code>decide</code>
      *         method.
      */
-    public Request getRequest();
+    Request getRequest();
 
     /**
      * Gets the root {@link com.att.research.xacmlatt.pdp.policy.PolicyDef} from the policy store configured
@@ -62,7 +62,7 @@ public interface EvaluationContext extends PIPFinder, TraceEngine {
      *
      * @return a <code>PolicyFinderResult</code> with the root <code>PolicyDef</code>
      */
-    public abstract PolicyFinderResult<PolicyDef> getRootPolicyDef();
+    PolicyFinderResult<PolicyDef> getRootPolicyDef();
 
     /**
      * Gets the {@link com.att.research.xacmlatt.pdp.policy.Policy} that matches the given
@@ -72,7 +72,7 @@ public interface EvaluationContext extends PIPFinder, TraceEngine {
      * @return a <code>PolicyFinderResult</code> with the <code>Policy</code> matching the given
      *         <code>IdReferenceMatch</code>
      */
-    public abstract PolicyFinderResult<Policy> getPolicy(IdReferenceMatch idReferenceMatch);
+    PolicyFinderResult<Policy> getPolicy(IdReferenceMatch idReferenceMatch);
 
     /**
      * Gets the {@link com.att.research.xacmlatt.pdp.policy.PolicySet} that matches the given
@@ -82,7 +82,7 @@ public interface EvaluationContext extends PIPFinder, TraceEngine {
      * @return a <code>PolicyFinderResult</code> with the <code>PolicySet</code> matching the given
      *         <code>IdReferenceMatch</code>.
      */
-    public abstract PolicyFinderResult<PolicySet> getPolicySet(IdReferenceMatch idReferenceMatch);
+    PolicyFinderResult<PolicySet> getPolicySet(IdReferenceMatch idReferenceMatch);
 
     /**
      * Gets the {@link com.att.research.xacml.api.pip.PIPResponse} containing
@@ -94,5 +94,5 @@ public interface EvaluationContext extends PIPFinder, TraceEngine {
      *         <code>Attribute</code>s
      * @throws EvaluationException if there is an error retrieving the <code>Attribute</code>s
      */
-    public PIPResponse getAttributes(PIPRequest pipRequest) throws PIPException;
+    PIPResponse getAttributes(PIPRequest pipRequest) throws PIPException;
 }

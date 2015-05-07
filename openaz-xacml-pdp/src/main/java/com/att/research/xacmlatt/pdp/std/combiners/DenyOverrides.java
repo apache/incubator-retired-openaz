@@ -70,7 +70,7 @@ public class DenyOverrides<T extends com.att.research.xacmlatt.pdp.eval.Evaluata
             CombiningElement<T> combiningElement = iterElements.next();
             EvaluationResult evaluationResultElement = combiningElement.evaluate(evaluationContext);
 
-            assert (evaluationResultElement != null);
+            assert evaluationResultElement != null;
             switch (evaluationResultElement.getDecision()) {
             case DENY:
                 return evaluationResultElement;

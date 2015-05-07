@@ -164,7 +164,7 @@ public class FunctionDefinitionArithmetic<T extends Number> extends FunctionDefi
                 break;
             case DIVIDE:
                 if (this.getDataType() == DataTypes.DT_INTEGER) {
-                    if (((BigInteger)convertedArguments.get(1)).equals(new BigInteger("0"))) {
+                    if (((BigInteger)convertedArguments.get(1)).equals(BigInteger.ZERO)) {
                         return ExpressionResult
                             .newError(new StdStatus(StdStatusCode.STATUS_CODE_PROCESSING_ERROR,
                                                     this.getShortFunctionId() + " Divide by 0 error: "
@@ -194,7 +194,7 @@ public class FunctionDefinitionArithmetic<T extends Number> extends FunctionDefi
                 }
                 break;
             case MOD:
-                if (((BigInteger)convertedArguments.get(1)).equals(new BigInteger("0"))) {
+                if (((BigInteger)convertedArguments.get(1)).equals(BigInteger.ZERO)) {
                     return ExpressionResult
                         .newError(new StdStatus(StdStatusCode.STATUS_CODE_PROCESSING_ERROR,
                                                 this.getShortFunctionId() + " Divide by 0 error: "

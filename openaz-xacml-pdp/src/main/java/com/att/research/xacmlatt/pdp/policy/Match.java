@@ -134,7 +134,7 @@ public class Match extends PolicyComponent implements Matchable {
         listArguments.add(arg2);
 
         ExpressionResult expressionResult = functionDefinition.evaluate(evaluationContext, listArguments);
-        assert (expressionResult != null);
+        assert expressionResult != null;
         if (!expressionResult.isOk()) {
             return new MatchResult(expressionResult.getStatus());
         }
@@ -165,18 +165,18 @@ public class Match extends PolicyComponent implements Matchable {
         }
 
         FunctionDefinition functionDefinitionMatch = this.getFunctionDefinition();
-        assert (functionDefinitionMatch != null);
+        assert functionDefinitionMatch != null;
 
         AttributeValue<?> attributeValue = this.getAttributeValue();
-        assert (attributeValue != null);
+        assert attributeValue != null;
         FunctionArgument functionArgument1 = new FunctionArgumentAttributeValue(attributeValue);
 
         AttributeRetrievalBase attributeRetrievalBase = this.getAttributeRetrievalBase();
-        assert (attributeRetrievalBase != null);
+        assert attributeRetrievalBase != null;
 
         ExpressionResult expressionResult = attributeRetrievalBase.evaluate(evaluationContext,
                                                                             this.getPolicyDefaults());
-        assert (expressionResult != null);
+        assert expressionResult != null;
         if (!expressionResult.isOk()) {
             return new MatchResult(expressionResult.getStatus());
         }
