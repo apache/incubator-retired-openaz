@@ -18,7 +18,7 @@
  *
  */
 
-package org.openliberty.openaz.pepapi;
+package org.apache.openaz.pepapi;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

@@ -28,7 +28,7 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacmlatt.pdp.std.functions;
+package org.apache.openaz.xacml.pdp.std.functions;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -44,21 +44,21 @@ import java.util.List;
 
 import javax.security.auth.x500.X500Principal;
 
+import org.apache.openaz.xacml.api.XACML1;
+import org.apache.openaz.xacml.api.XACML3;
+import org.apache.openaz.xacml.pdp.policy.ExpressionResult;
+import org.apache.openaz.xacml.pdp.policy.FunctionArgument;
+import org.apache.openaz.xacml.pdp.policy.FunctionArgumentAttributeValue;
+import org.apache.openaz.xacml.pdp.std.StdFunctions;
+import org.apache.openaz.xacml.pdp.std.functions.FunctionDefinitionEquality;
+import org.apache.openaz.xacml.std.datatypes.Base64Binary;
+import org.apache.openaz.xacml.std.datatypes.DataTypeRFC822Name;
+import org.apache.openaz.xacml.std.datatypes.DataTypes;
+import org.apache.openaz.xacml.std.datatypes.HexBinary;
+import org.apache.openaz.xacml.std.datatypes.RFC822Name;
+import org.apache.openaz.xacml.std.datatypes.XPathDayTimeDuration;
+import org.apache.openaz.xacml.std.datatypes.XPathYearMonthDuration;
 import org.junit.Test;
-
-import com.att.research.xacml.api.XACML1;
-import com.att.research.xacml.api.XACML3;
-import com.att.research.xacml.std.datatypes.Base64Binary;
-import com.att.research.xacml.std.datatypes.DataTypeRFC822Name;
-import com.att.research.xacml.std.datatypes.DataTypes;
-import com.att.research.xacml.std.datatypes.HexBinary;
-import com.att.research.xacml.std.datatypes.RFC822Name;
-import com.att.research.xacml.std.datatypes.XPathDayTimeDuration;
-import com.att.research.xacml.std.datatypes.XPathYearMonthDuration;
-import com.att.research.xacmlatt.pdp.policy.ExpressionResult;
-import com.att.research.xacmlatt.pdp.policy.FunctionArgument;
-import com.att.research.xacmlatt.pdp.policy.FunctionArgumentAttributeValue;
-import com.att.research.xacmlatt.pdp.std.StdFunctions;
 
 /**
  * Test FunctionDefinitionEquality, all of its super-classes, and all XACML functions supported by that class.

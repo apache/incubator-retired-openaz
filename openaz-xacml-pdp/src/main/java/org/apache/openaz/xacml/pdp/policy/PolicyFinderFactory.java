@@ -28,13 +28,13 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacmlatt.pdp.policy;
+package org.apache.openaz.xacml.pdp.policy;
 
 import java.util.Properties;
 
-import com.att.research.xacml.util.FactoryException;
-import com.att.research.xacml.util.FactoryFinder;
-import com.att.research.xacmlatt.pdp.util.ATTPDPProperties;
+import org.apache.openaz.xacml.pdp.util.OpenAZPDPProperties;
+import org.apache.openaz.xacml.util.FactoryException;
+import org.apache.openaz.xacml.util.FactoryFinder;
 
 /**
  * PolicyFinderFactory provides methods for loading XACML 3.0 policies and policy sets that are used
@@ -42,8 +42,8 @@ import com.att.research.xacmlatt.pdp.util.ATTPDPProperties;
  *
  */
 public abstract class PolicyFinderFactory {
-    private static final String	FACTORYID					= ATTPDPProperties.PROP_POLICYFINDERFACTORY;
-    private static final String DEFAULT_FACTORY_CLASSNAME	= "com.att.research.xacmlatt.pdp.std.StdPolicyFinderFactory";
+    private static final String	FACTORYID					= OpenAZPDPProperties.PROP_POLICYFINDERFACTORY;
+    private static final String DEFAULT_FACTORY_CLASSNAME	= "org.apache.openaz.xacml.pdp.std.StdPolicyFinderFactory";
 
     protected PolicyFinderFactory() {
     }

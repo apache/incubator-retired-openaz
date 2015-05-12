@@ -28,19 +28,20 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacml.std.annotations;
+package org.apache.openaz.xacml.std.annotations;
 
-import com.att.research.xacml.api.*;
-import com.att.research.xacml.std.*;
-import com.att.research.xacml.std.datatypes.*;
-import com.att.research.xacml.util.AttributeUtils;
-import com.att.research.xacml.util.FactoryException;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.openaz.xacml.api.*;
+import org.apache.openaz.xacml.std.*;
+import org.apache.openaz.xacml.std.datatypes.*;
+import org.apache.openaz.xacml.util.AttributeUtils;
+import org.apache.openaz.xacml.util.FactoryException;
 import org.w3c.dom.Node;
 import org.w3c.dom.xpath.XPathExpression;
 
 import javax.security.auth.x500.X500Principal;
+
 import java.lang.reflect.Array;
 import java.lang.reflect.Field;
 import java.net.URI;

@@ -18,15 +18,15 @@
  *
  */
 
-package org.openliberty.openaz.pepapi.std;
+package org.apache.openaz.pepapi.std;
 
-import com.att.research.xacml.api.*;
-import com.att.research.xacml.api.Attribute;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.openliberty.openaz.pepapi.Advice;
-import org.openliberty.openaz.pepapi.Obligation;
-import org.openliberty.openaz.pepapi.*;
+import org.apache.openaz.pepapi.*;
+import org.apache.openaz.pepapi.Advice;
+import org.apache.openaz.pepapi.Obligation;
+import org.apache.openaz.xacml.api.*;
+import org.apache.openaz.xacml.api.Attribute;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -84,7 +84,7 @@ final class StdPepResponse implements PepResponse {
     @Override
     public Map<String, Obligation> getObligations() throws PepException {
         Map<String, Obligation> obligationMap = new HashMap<String, Obligation>();
-        for(com.att.research.xacml.api.Obligation wrappedObligation: wrappedResult.getObligations()) {
+        for(org.apache.openaz.xacml.api.Obligation wrappedObligation: wrappedResult.getObligations()) {
             Obligation obligation = new StdObligation(wrappedObligation);
             obligationMap.put(obligation.getId(), obligation);
         }
@@ -94,7 +94,7 @@ final class StdPepResponse implements PepResponse {
     @Override
     public Map<String, Advice> getAdvices() throws PepException {
         Map<String, Advice> adviceMap = new HashMap<String, Advice>();
-        for(com.att.research.xacml.api.Advice wrappedAdvice: wrappedResult.getAssociatedAdvice()) {
+        for(org.apache.openaz.xacml.api.Advice wrappedAdvice: wrappedResult.getAssociatedAdvice()) {
             Advice advice = new StdAdvice(wrappedAdvice);
             adviceMap.put(advice.getId(), advice);
         }

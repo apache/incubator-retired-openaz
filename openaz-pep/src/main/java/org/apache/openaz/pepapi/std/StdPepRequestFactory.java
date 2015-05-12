@@ -18,14 +18,14 @@
  *
  */
 
-package org.openliberty.openaz.pepapi.std;
+package org.apache.openaz.pepapi.std;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.openliberty.openaz.pepapi.MapperRegistry;
-import org.openliberty.openaz.pepapi.PepConfig;
-import org.openliberty.openaz.pepapi.PepRequest;
-import org.openliberty.openaz.pepapi.PepRequestFactory;
+import org.apache.openaz.pepapi.MapperRegistry;
+import org.apache.openaz.pepapi.PepConfig;
+import org.apache.openaz.pepapi.PepRequest;
+import org.apache.openaz.pepapi.PepRequestFactory;
 
 import java.util.List;
 

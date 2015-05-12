@@ -28,7 +28,7 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacml.util;
+package org.apache.openaz.xacml.util;
 
 public class FactoryException extends Exception {
     private static final long serialVersionUID = -6575223164395937720L;

@@ -28,9 +28,10 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacmlatt.pdp.std.json;
+package org.apache.openaz.xacml.pdp.std.json;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import java.text.ParseException;
@@ -40,34 +41,36 @@ import java.util.Collection;
 import java.util.List;
 import java.math.BigInteger;
 
+import org.apache.openaz.xacml.api.Attribute;
+import org.apache.openaz.xacml.api.AttributeValue;
+import org.apache.openaz.xacml.api.Decision;
+import org.apache.openaz.xacml.api.Identifier;
+import org.apache.openaz.xacml.api.XACML3;
+import org.apache.openaz.xacml.std.IdentifierImpl;
+import org.apache.openaz.xacml.std.StdAttribute;
+import org.apache.openaz.xacml.std.StdAttributeCategory;
+import org.apache.openaz.xacml.std.StdAttributeValue;
+import org.apache.openaz.xacml.std.StdIdReference;
+import org.apache.openaz.xacml.std.StdMutableAdvice;
+import org.apache.openaz.xacml.std.StdMutableAttribute;
+import org.apache.openaz.xacml.std.StdMutableAttributeAssignment;
+import org.apache.openaz.xacml.std.StdMutableMissingAttributeDetail;
+import org.apache.openaz.xacml.std.StdMutableObligation;
+import org.apache.openaz.xacml.std.StdMutableResponse;
+import org.apache.openaz.xacml.std.StdMutableResult;
+import org.apache.openaz.xacml.std.StdMutableStatus;
+import org.apache.openaz.xacml.std.StdMutableStatusDetail;
+import org.apache.openaz.xacml.std.StdStatusCode;
+import org.apache.openaz.xacml.std.StdVersion;
+import org.apache.openaz.xacml.std.datatypes.DataTypes;
+import org.apache.openaz.xacml.std.datatypes.StringNamespaceContext;
+import org.apache.openaz.xacml.std.datatypes.XPathExpressionWrapper;
+import org.apache.openaz.xacml.std.json.JSONResponse;
+import org.apache.openaz.xacml.std.json.JSONStructureException;
 import org.junit.Test;
 
-import com.att.research.xacml.api.Attribute;
-import com.att.research.xacml.api.AttributeValue;
-import com.att.research.xacml.api.Decision;
-import com.att.research.xacml.api.Identifier;
-import com.att.research.xacml.api.XACML3;
-import com.att.research.xacml.std.IdentifierImpl;
-import com.att.research.xacml.std.StdAttribute;
-import com.att.research.xacml.std.StdAttributeCategory;
-import com.att.research.xacml.std.StdAttributeValue;
-import com.att.research.xacml.std.StdIdReference;
-import com.att.research.xacml.std.StdMutableAdvice;
-import com.att.research.xacml.std.StdMutableAttribute;
-import com.att.research.xacml.std.StdMutableAttributeAssignment;
-import com.att.research.xacml.std.StdMutableMissingAttributeDetail;
-import com.att.research.xacml.std.StdMutableObligation;
-import com.att.research.xacml.std.StdMutableResponse;
-import com.att.research.xacml.std.StdMutableResult;
-import com.att.research.xacml.std.StdMutableStatus;
-import com.att.research.xacml.std.StdMutableStatusDetail;
-import com.att.research.xacml.std.StdStatusCode;
-import com.att.research.xacml.std.StdVersion;
-import com.att.research.xacml.std.datatypes.DataTypes;
-import com.att.research.xacml.std.datatypes.StringNamespaceContext;
-import com.att.research.xacml.std.datatypes.XPathExpressionWrapper;
-import com.att.research.xacml.std.json.JSONResponse;
-import com.att.research.xacml.std.json.JSONStructureException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
  * Test JSON Responses
@@ -405,8 +408,16 @@ public class ResponseTest {
         try {
             jsonResponse = JSONResponse.toString(response, false);
             System.out.println(jsonResponse);
+            
+            String expectedJson = "{\"Response\":[{\"Status\":{\"StatusCode\":{\"Value\":\"urn:oasis:names:tc:xacml:1.0:status:missing-attribute\"},\"StatusMessage\":\"some status message\",\"StatusDetail\":\"<MissingAttributeDetail Category=\\\\\\\"urn:oasis:names:tc:xacml:3.0:attribute-category:action\\\\\\\" AttributeId=\\\\\\\"urn:oasis:names:tc:xacml:2.0:action:purpose\\\\\\\" DataType=\\\\\\\"http://www.w3.org/2001/XMLSchema#string\\\\\\\" Issuer=\\\\\\\"an Issuer\\\\\\\"><AttributeValue DataType=\\\\\\\"http://www.w3.org/2001/XMLSchema#string\\\\\\\">doh</AttributeValue><AttributeValue DataType=\\\\\\\"http://www.w3.org/2001/XMLSchema#integer\\\\\\\">5432</AttributeValue><AttributeValue DataType=\\\\\\\"http://www.w3.org/2001/XMLSchema#string\\\\\\\">meh</AttributeValue></MissingAttributeDetail>\"},\"Decision\":\"Indeterminate\"},{\"Status\":{\"StatusCode\":{\"Value\":\"urn:oasis:names:tc:xacml:1.0:status:ok\"}},\"Obligations\":[{\"Id\":\"urn:oasis:names:tc:xacml:1.0:action:implied-action\",\"AttributeAssignment\":[{\"Issuer\":\"obligation-issuer1\",\"Value\":\"Bart\",\"Category\":\"urn:oasis:names:tc:xacml:3.0:attribute-category:resource\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#string\",\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject\"},{\"Issuer\":\"obligation-issuer2\",\"Value\":\"Ned\",\"Category\":\"urn:oasis:names:tc:xacml:3.0:attribute-category:resource\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#string\",\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject\"}]},{\"Id\":\"urn:oasis:names:tc:xacml:1.0:subject-category:intermediary-subject\",\"AttributeAssignment\":[{\"Issuer\":\"obligation-issuer3\",\"Value\":\"Maggie\",\"Category\":\"urn:oasis:names:tc:xacml:3.0:attribute-category:resource\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#string\",\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject\"},{\"Issuer\":\"obligation-issuer4\",\"Value\":\"Homer\",\"Category\":\"urn:oasis:names:tc:xacml:3.0:attribute-category:resource\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#string\",\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject\"}]}],\"Decision\":\"Deny\",\"AssociatedAdvice\":[{\"Id\":\"urn:oasis:names:tc:xacml:1.0:action:implied-action\",\"AttributeAssignment\":[{\"Issuer\":\"advice-issuer1\",\"Value\":\"Apu\",\"Category\":\"urn:oasis:names:tc:xacml:3.0:attribute-category:resource\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#string\",\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject\"},{\"Issuer\":\"advice-issuerNoCategory\",\"Value\":\"Crusty\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#string\",\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject\"}]}]},{\"Status\":{\"StatusCode\":{\"StatusCode\":{\"StatusCode\":{\"StatusCode\":{\"Value\":\"childChildChildStatusCode\"},\"Value\":\"childChildStatusCode\"},\"Value\":\"child1StatusCode\"},\"Value\":\"urn:oasis:names:tc:xacml:1.0:status:ok\"}},\"Category\":[{\"CategoryId\":\"firstCategory\",\"Attribute\":[{\"Issuer\":\"AIssue\",\"Value\":\"Apu\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#string\",\"AttributeId\":\"attrIdent1\"},{\"Issuer\":\"CIssue\",\"Value\":765.432,\"DataType\":\"http://www.w3.org/2001/XMLSchema#double\",\"AttributeId\":\"attrIdent3\"},{\"Issuer\":\"DIssue\",\"Value\":true,\"DataType\":\"http://www.w3.org/2001/XMLSchema#boolean\",\"AttributeId\":\"attrIdent4\"},{\"Issuer\":\"EIssue\",\"Value\":4567,\"DataType\":\"http://www.w3.org/2001/XMLSchema#integer\",\"AttributeId\":\"attrIdent5\"},{\"Value\":4567,\"DataType\":\"http://www.w3.org/2001/XMLSchema#integer\",\"AttributeId\":\"attrNoIssuer\"}]},{\"CategoryId\":\"secondCategory\",\"Attribute\":[{\"Issuer\":\"AIssue2\",\"Value\":\"Apu2\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#string\",\"AttributeId\":\"attrIdent12\"},{\"Issuer\":\"CIssue2\",\"Value\":\"Der2\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#string\",\"AttributeId\":\"attrIdent32\"}]}],\"Decision\":\"Permit\",\"PolicyIdentifier\":{\"PolicyIdReference\":[{\"Id\":\"idRef1\",\"Version\":\"1.2.3\"},{\"Id\":\"idRef2_NoVersion\"}],\"PolicySetIdReference\":[{\"Id\":\"idSetRef1\",\"Version\":\"4.5.6.7.8.9.0\"},{\"Id\":\"idSetRef2_NoVersion\"}]}}]}";
+
+            ObjectMapper mapper = new ObjectMapper();
+            JsonNode tree = mapper.readTree(jsonResponse);
+            JsonNode treeExpected = mapper.readTree(expectedJson);
+            assertTrue(tree.equals(treeExpected));
+            
 //System.out.println(JSONResponse.toString(response, true));
-            assertEquals("{\"Response\":[{\"Status\":{\"StatusCode\":{\"Value\":\"urn:oasis:names:tc:xacml:1.0:status:missing-attribute\"},\"StatusMessage\":\"some status message\",\"StatusDetail\":\"<MissingAttributeDetail Category=\\\\\\\"urn:oasis:names:tc:xacml:3.0:attribute-category:action\\\\\\\" AttributeId=\\\\\\\"urn:oasis:names:tc:xacml:2.0:action:purpose\\\\\\\" DataType=\\\\\\\"http://www.w3.org/2001/XMLSchema#string\\\\\\\" Issuer=\\\\\\\"an Issuer\\\\\\\"><AttributeValue DataType=\\\\\\\"http://www.w3.org/2001/XMLSchema#string\\\\\\\">doh</AttributeValue><AttributeValue DataType=\\\\\\\"http://www.w3.org/2001/XMLSchema#integer\\\\\\\">5432</AttributeValue><AttributeValue DataType=\\\\\\\"http://www.w3.org/2001/XMLSchema#string\\\\\\\">meh</AttributeValue></MissingAttributeDetail>\"},\"Decision\":\"Indeterminate\"},{\"Status\":{\"StatusCode\":{\"Value\":\"urn:oasis:names:tc:xacml:1.0:status:ok\"}},\"Obligations\":[{\"Id\":\"urn:oasis:names:tc:xacml:1.0:action:implied-action\",\"AttributeAssignment\":[{\"Issuer\":\"obligation-issuer1\",\"Value\":\"Bart\",\"Category\":\"urn:oasis:names:tc:xacml:3.0:attribute-category:resource\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#string\",\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject\"},{\"Issuer\":\"obligation-issuer2\",\"Value\":\"Ned\",\"Category\":\"urn:oasis:names:tc:xacml:3.0:attribute-category:resource\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#string\",\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject\"}]},{\"Id\":\"urn:oasis:names:tc:xacml:1.0:subject-category:intermediary-subject\",\"AttributeAssignment\":[{\"Issuer\":\"obligation-issuer3\",\"Value\":\"Maggie\",\"Category\":\"urn:oasis:names:tc:xacml:3.0:attribute-category:resource\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#string\",\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject\"},{\"Issuer\":\"obligation-issuer4\",\"Value\":\"Homer\",\"Category\":\"urn:oasis:names:tc:xacml:3.0:attribute-category:resource\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#string\",\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject\"}]}],\"Decision\":\"Deny\",\"AssociatedAdvice\":[{\"Id\":\"urn:oasis:names:tc:xacml:1.0:action:implied-action\",\"AttributeAssignment\":[{\"Issuer\":\"advice-issuer1\",\"Value\":\"Apu\",\"Category\":\"urn:oasis:names:tc:xacml:3.0:attribute-category:resource\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#string\",\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject\"},{\"Issuer\":\"advice-issuerNoCategory\",\"Value\":\"Crusty\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#string\",\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject\"}]}]},{\"Status\":{\"StatusCode\":{\"StatusCode\":{\"StatusCode\":{\"StatusCode\":{\"Value\":\"childChildChildStatusCode\"},\"Value\":\"childChildStatusCode\"},\"Value\":\"child1StatusCode\"},\"Value\":\"urn:oasis:names:tc:xacml:1.0:status:ok\"}},\"Category\":[{\"CategoryId\":\"firstCategory\",\"Attribute\":[{\"Issuer\":\"AIssue\",\"Value\":\"Apu\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#string\",\"AttributeId\":\"attrIdent1\"},{\"Issuer\":\"CIssue\",\"Value\":765.432,\"DataType\":\"http://www.w3.org/2001/XMLSchema#double\",\"AttributeId\":\"attrIdent3\"},{\"Issuer\":\"DIssue\",\"Value\":true,\"DataType\":\"http://www.w3.org/2001/XMLSchema#boolean\",\"AttributeId\":\"attrIdent4\"},{\"Issuer\":\"EIssue\",\"Value\":4567,\"DataType\":\"http://www.w3.org/2001/XMLSchema#integer\",\"AttributeId\":\"attrIdent5\"},{\"Value\":4567,\"DataType\":\"http://www.w3.org/2001/XMLSchema#integer\",\"AttributeId\":\"attrNoIssuer\"}]},{\"CategoryId\":\"secondCategory\",\"Attribute\":[{\"Issuer\":\"AIssue2\",\"Value\":\"Apu2\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#string\",\"AttributeId\":\"attrIdent12\"},{\"Issuer\":\"CIssue2\",\"Value\":\"Der2\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#string\",\"AttributeId\":\"attrIdent32\"}]}],\"Decision\":\"Permit\",\"PolicyIdentifier\":{\"PolicyIdReference\":[{\"Id\":\"idRef1\",\"Version\":\"1.2.3\"},{\"Id\":\"idRef2_NoVersion\"}],\"PolicySetIdReference\":[{\"Id\":\"idSetRef1\",\"Version\":\"4.5.6.7.8.9.0\"},{\"Id\":\"idSetRef2_NoVersion\"}]}}]}", jsonResponse);
+//            assertEquals("{\"Response\":[{\"Status\":{\"StatusCode\":{\"Value\":\"urn:oasis:names:tc:xacml:1.0:status:missing-attribute\"},\"StatusMessage\":\"some status message\",\"StatusDetail\":\"<MissingAttributeDetail Category=\\\\\\\"urn:oasis:names:tc:xacml:3.0:attribute-category:action\\\\\\\" AttributeId=\\\\\\\"urn:oasis:names:tc:xacml:2.0:action:purpose\\\\\\\" DataType=\\\\\\\"http://www.w3.org/2001/XMLSchema#string\\\\\\\" Issuer=\\\\\\\"an Issuer\\\\\\\"><AttributeValue DataType=\\\\\\\"http://www.w3.org/2001/XMLSchema#string\\\\\\\">doh</AttributeValue><AttributeValue DataType=\\\\\\\"http://www.w3.org/2001/XMLSchema#integer\\\\\\\">5432</AttributeValue><AttributeValue DataType=\\\\\\\"http://www.w3.org/2001/XMLSchema#string\\\\\\\">meh</AttributeValue></MissingAttributeDetail>\"},\"Decision\":\"Indeterminate\"},{\"Status\":{\"StatusCode\":{\"Value\":\"urn:oasis:names:tc:xacml:1.0:status:ok\"}},\"Obligations\":[{\"Id\":\"urn:oasis:names:tc:xacml:1.0:action:implied-action\",\"AttributeAssignment\":[{\"Issuer\":\"obligation-issuer1\",\"Value\":\"Bart\",\"Category\":\"urn:oasis:names:tc:xacml:3.0:attribute-category:resource\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#string\",\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject\"},{\"Issuer\":\"obligation-issuer2\",\"Value\":\"Ned\",\"Category\":\"urn:oasis:names:tc:xacml:3.0:attribute-category:resource\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#string\",\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject\"}]},{\"Id\":\"urn:oasis:names:tc:xacml:1.0:subject-category:intermediary-subject\",\"AttributeAssignment\":[{\"Issuer\":\"obligation-issuer3\",\"Value\":\"Maggie\",\"Category\":\"urn:oasis:names:tc:xacml:3.0:attribute-category:resource\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#string\",\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject\"},{\"Issuer\":\"obligation-issuer4\",\"Value\":\"Homer\",\"Category\":\"urn:oasis:names:tc:xacml:3.0:attribute-category:resource\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#string\",\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject\"}]}],\"Decision\":\"Deny\",\"AssociatedAdvice\":[{\"Id\":\"urn:oasis:names:tc:xacml:1.0:action:implied-action\",\"AttributeAssignment\":[{\"Issuer\":\"advice-issuer1\",\"Value\":\"Apu\",\"Category\":\"urn:oasis:names:tc:xacml:3.0:attribute-category:resource\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#string\",\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject\"},{\"Issuer\":\"advice-issuerNoCategory\",\"Value\":\"Crusty\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#string\",\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject\"}]}]},{\"Status\":{\"StatusCode\":{\"StatusCode\":{\"StatusCode\":{\"StatusCode\":{\"Value\":\"childChildChildStatusCode\"},\"Value\":\"childChildStatusCode\"},\"Value\":\"child1StatusCode\"},\"Value\":\"urn:oasis:names:tc:xacml:1.0:status:ok\"}},\"Category\":[{\"CategoryId\":\"firstCategory\",\"Attribute\":[{\"Issuer\":\"AIssue\",\"Value\":\"Apu\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#string\",\"AttributeId\":\"attrIdent1\"},{\"Issuer\":\"CIssue\",\"Value\":765.432,\"DataType\":\"http://www.w3.org/2001/XMLSchema#double\",\"AttributeId\":\"attrIdent3\"},{\"Issuer\":\"DIssue\",\"Value\":true,\"DataType\":\"http://www.w3.org/2001/XMLSchema#boolean\",\"AttributeId\":\"attrIdent4\"},{\"Issuer\":\"EIssue\",\"Value\":4567,\"DataType\":\"http://www.w3.org/2001/XMLSchema#integer\",\"AttributeId\":\"attrIdent5\"},{\"Value\":4567,\"DataType\":\"http://www.w3.org/2001/XMLSchema#integer\",\"AttributeId\":\"attrNoIssuer\"}]},{\"CategoryId\":\"secondCategory\",\"Attribute\":[{\"Issuer\":\"AIssue2\",\"Value\":\"Apu2\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#string\",\"AttributeId\":\"attrIdent12\"},{\"Issuer\":\"CIssue2\",\"Value\":\"Der2\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#string\",\"AttributeId\":\"attrIdent32\"}]}],\"Decision\":\"Permit\",\"PolicyIdentifier\":{\"PolicyIdReference\":[{\"Id\":\"idRef1\",\"Version\":\"1.2.3\"},{\"Id\":\"idRef2_NoVersion\"}],\"PolicySetIdReference\":[{\"Id\":\"idSetRef1\",\"Version\":\"4.5.6.7.8.9.0\"},{\"Id\":\"idSetRef2_NoVersion\"}]}}]}", jsonResponse);
         } catch (Exception e) {
             fail("operation failed, e="+e);
         }
@@ -870,7 +881,12 @@ public class ResponseTest {
         response.add(result);
         try {
             jsonResponse = JSONResponse.toString(response, false);
-            assertEquals("{\"Response\":[{\"Status\":{\"StatusCode\":{\"Value\":\"urn:oasis:names:tc:xacml:1.0:status:missing-attribute\"},\"StatusDetail\":\"<MissingAttributeDetail Category=\\\\\\\"urn:oasis:names:tc:xacml:1.0:action\\\\\\\" AttributeId=\\\\\\\"mad\\\\\\\" DataType=\\\\\\\"http://www.w3.org/2001/XMLSchema#string\\\\\\\"></MissingAttributeDetail>\"},\"Decision\":\"Indeterminate\"}]}", jsonResponse);
+            String expectedJson = "{\"Response\":[{\"Status\":{\"StatusCode\":{\"Value\":\"urn:oasis:names:tc:xacml:1.0:status:missing-attribute\"},\"StatusDetail\":\"<MissingAttributeDetail Category=\\\\\\\"urn:oasis:names:tc:xacml:1.0:action\\\\\\\" AttributeId=\\\\\\\"mad\\\\\\\" DataType=\\\\\\\"http://www.w3.org/2001/XMLSchema#string\\\\\\\"></MissingAttributeDetail>\"},\"Decision\":\"Indeterminate\"}]}";
+            ObjectMapper mapper = new ObjectMapper();
+            JsonNode tree = mapper.readTree(jsonResponse);
+            JsonNode treeExpected = mapper.readTree(expectedJson);
+            assertTrue(tree.equals(treeExpected));
+//            assertEquals("{\"Response\":[{\"Status\":{\"StatusCode\":{\"Value\":\"urn:oasis:names:tc:xacml:1.0:status:missing-attribute\"},\"StatusDetail\":\"<MissingAttributeDetail Category=\\\\\\\"urn:oasis:names:tc:xacml:1.0:action\\\\\\\" AttributeId=\\\\\\\"mad\\\\\\\" DataType=\\\\\\\"http://www.w3.org/2001/XMLSchema#string\\\\\\\"></MissingAttributeDetail>\"},\"Decision\":\"Indeterminate\"}]}", jsonResponse);
         } catch (Exception e) {
             fail("operation failed, e="+e);
         }
@@ -893,7 +909,12 @@ public class ResponseTest {
         response.add(result);
         try {
             jsonResponse = JSONResponse.toString(response, false);
-            assertEquals("{\"Response\":[{\"Status\":{\"StatusCode\":{\"Value\":\"urn:oasis:names:tc:xacml:1.0:status:missing-attribute\"},\"StatusDetail\":\"<MissingAttributeDetail Category=\\\\\\\"urn:oasis:names:tc:xacml:1.0:action\\\\\\\" AttributeId=\\\\\\\"mad\\\\\\\" DataType=\\\\\\\"http://www.w3.org/2001/XMLSchema#string\\\\\\\"><AttributeValue DataType=\\\\\\\"http://www.w3.org/2001/XMLSchema#string\\\\\\\">meh</AttributeValue></MissingAttributeDetail>\"},\"Decision\":\"Indeterminate\"}]}", jsonResponse);
+            String expectedJson = "{\"Response\":[{\"Status\":{\"StatusCode\":{\"Value\":\"urn:oasis:names:tc:xacml:1.0:status:missing-attribute\"},\"StatusDetail\":\"<MissingAttributeDetail Category=\\\\\\\"urn:oasis:names:tc:xacml:1.0:action\\\\\\\" AttributeId=\\\\\\\"mad\\\\\\\" DataType=\\\\\\\"http://www.w3.org/2001/XMLSchema#string\\\\\\\"><AttributeValue DataType=\\\\\\\"http://www.w3.org/2001/XMLSchema#string\\\\\\\">meh</AttributeValue></MissingAttributeDetail>\"},\"Decision\":\"Indeterminate\"}]}";
+            ObjectMapper mapper = new ObjectMapper();
+            JsonNode tree = mapper.readTree(jsonResponse);
+            JsonNode treeExpected = mapper.readTree(expectedJson);
+            assertTrue(tree.equals(treeExpected));
+//            assertEquals("{\"Response\":[{\"Status\":{\"StatusCode\":{\"Value\":\"urn:oasis:names:tc:xacml:1.0:status:missing-attribute\"},\"StatusDetail\":\"<MissingAttributeDetail Category=\\\\\\\"urn:oasis:names:tc:xacml:1.0:action\\\\\\\" AttributeId=\\\\\\\"mad\\\\\\\" DataType=\\\\\\\"http://www.w3.org/2001/XMLSchema#string\\\\\\\"><AttributeValue DataType=\\\\\\\"http://www.w3.org/2001/XMLSchema#string\\\\\\\">meh</AttributeValue></MissingAttributeDetail>\"},\"Decision\":\"Indeterminate\"}]}", jsonResponse);
         } catch (Exception e) {
             fail("operation failed, e="+e);
         }
@@ -917,7 +938,12 @@ public class ResponseTest {
         response.add(result);
         try {
             jsonResponse = JSONResponse.toString(response, false);
-            assertEquals("{\"Response\":[{\"Status\":{\"StatusCode\":{\"Value\":\"urn:oasis:names:tc:xacml:1.0:status:missing-attribute\"},\"StatusDetail\":\"<MissingAttributeDetail Category=\\\\\\\"urn:oasis:names:tc:xacml:1.0:action\\\\\\\" AttributeId=\\\\\\\"mad\\\\\\\" DataType=\\\\\\\"http://www.w3.org/2001/XMLSchema#string\\\\\\\"><AttributeValue DataType=\\\\\\\"http://www.w3.org/2001/XMLSchema#string\\\\\\\">meh</AttributeValue><AttributeValue DataType=\\\\\\\"http://www.w3.org/2001/XMLSchema#string\\\\\\\">nu?</AttributeValue></MissingAttributeDetail>\"},\"Decision\":\"Indeterminate\"}]}", jsonResponse);
+            String expectedJson = "{\"Response\":[{\"Status\":{\"StatusCode\":{\"Value\":\"urn:oasis:names:tc:xacml:1.0:status:missing-attribute\"},\"StatusDetail\":\"<MissingAttributeDetail Category=\\\\\\\"urn:oasis:names:tc:xacml:1.0:action\\\\\\\" AttributeId=\\\\\\\"mad\\\\\\\" DataType=\\\\\\\"http://www.w3.org/2001/XMLSchema#string\\\\\\\"><AttributeValue DataType=\\\\\\\"http://www.w3.org/2001/XMLSchema#string\\\\\\\">meh</AttributeValue><AttributeValue DataType=\\\\\\\"http://www.w3.org/2001/XMLSchema#string\\\\\\\">nu?</AttributeValue></MissingAttributeDetail>\"},\"Decision\":\"Indeterminate\"}]}";
+            ObjectMapper mapper = new ObjectMapper();
+            JsonNode tree = mapper.readTree(jsonResponse);
+            JsonNode treeExpected = mapper.readTree(expectedJson);
+            assertTrue(tree.equals(treeExpected));
+//            assertEquals("{\"Response\":[{\"Status\":{\"StatusCode\":{\"Value\":\"urn:oasis:names:tc:xacml:1.0:status:missing-attribute\"},\"StatusDetail\":\"<MissingAttributeDetail Category=\\\\\\\"urn:oasis:names:tc:xacml:1.0:action\\\\\\\" AttributeId=\\\\\\\"mad\\\\\\\" DataType=\\\\\\\"http://www.w3.org/2001/XMLSchema#string\\\\\\\"><AttributeValue DataType=\\\\\\\"http://www.w3.org/2001/XMLSchema#string\\\\\\\">meh</AttributeValue><AttributeValue DataType=\\\\\\\"http://www.w3.org/2001/XMLSchema#string\\\\\\\">nu?</AttributeValue></MissingAttributeDetail>\"},\"Decision\":\"Indeterminate\"}]}", jsonResponse);
         } catch (Exception e) {
             fail("operation failed, e="+e);
         }
@@ -940,13 +966,30 @@ public class ResponseTest {
         result.setDecision(Decision.INDETERMINATE);
         response.add(result);
         try {
+//            System.out.println(JSONResponse.toString(response, true));
             jsonResponse = JSONResponse.toString(response, false);
+            /*
+             * 
+             * PLD - chnaged this to integer, why was this a string?
+             */
+            String expectedJson = "{\"Response\":[{\"Status\":{\"StatusCode\":{\"Value\":\"urn:oasis:names:tc:xacml:1.0:status:missing-attribute\"},\"StatusDetail\":\"<MissingAttributeDetail Category=\\\\\\\"urn:oasis:names:tc:xacml:1.0:action\\\\\\\" AttributeId=\\\\\\\"mad\\\\\\\" DataType=\\\\\\\"http://www.w3.org/2001/XMLSchema#integer\\\\\\\"><AttributeValue DataType=\\\\\\\"http://www.w3.org/2001/XMLSchema#integer\\\\\\\">1111</AttributeValue></MissingAttributeDetail>\"},\"Decision\":\"Indeterminate\"}]}";
+            ObjectMapper mapper = new ObjectMapper();
+            JsonNode tree = mapper.readTree(jsonResponse);
+            JsonNode treeExpected = mapper.readTree(expectedJson);
+            
+            System.out.println("Tree");
+            System.out.println(tree);
+            System.out.println(treeExpected);
+            System.out.println("Done");
+            
+            assertTrue(tree.equals(treeExpected));
 //			assertEquals("{\"Response\":[{\"Status\":{\"StatusCode\":{\"Value\":\"urn:oasis:names:tc:xacml:1.0:status:missing-attribute\"},\"StatusDetail\":\"<MissingAttributeDetail Category=\\\\\\\"urn:oasis:names:tc:xacml:1.0:action\\\\\\\" AttributeId=\\\\\\\"mad\\\\\\\" DataType=\\\\\\\"http://www.w3.org/2001/XMLSchema#string\\\\\\\"><AttributeValue DataType=\\\\\\\"http://www.w3.org/2001/XMLSchema#integer\\\\\\\">1111</AttributeValue></MissingAttributeDetail>\"},\"Decision\":\"Indeterminate\"}]}", jsonResponse);
         } catch (Exception e) {
             java.io.StringWriter sw = new java.io.StringWriter();
             java.io.PrintWriter pw = new java.io.PrintWriter(sw);
             e.printStackTrace(pw);
-
+            
+//            System.err.println(jsonResponse);
 
             fail("operation failed, e="+e + sw.toString());
         }
@@ -970,7 +1013,12 @@ public class ResponseTest {
         response.add(result);
         try {
             jsonResponse = JSONResponse.toString(response, false);
-            assertEquals("{\"Response\":[{\"Status\":{\"StatusCode\":{\"Value\":\"urn:oasis:names:tc:xacml:1.0:status:missing-attribute\"},\"StatusDetail\":\"<MissingAttributeDetail Category=\\\\\\\"urn:oasis:names:tc:xacml:1.0:action\\\\\\\" AttributeId=\\\\\\\"mad\\\\\\\" DataType=\\\\\\\"http://www.w3.org/2001/XMLSchema#string\\\\\\\"><AttributeValue DataType=\\\\\\\"http://www.w3.org/2001/XMLSchema#integer\\\\\\\">1111</AttributeValue><AttributeValue DataType=\\\\\\\"http://www.w3.org/2001/XMLSchema#integer\\\\\\\">2222</AttributeValue></MissingAttributeDetail>\"},\"Decision\":\"Indeterminate\"}]}", jsonResponse);
+            String expectedJson = "{\"Response\":[{\"Status\":{\"StatusCode\":{\"Value\":\"urn:oasis:names:tc:xacml:1.0:status:missing-attribute\"},\"StatusDetail\":\"<MissingAttributeDetail Category=\\\\\\\"urn:oasis:names:tc:xacml:1.0:action\\\\\\\" AttributeId=\\\\\\\"mad\\\\\\\" DataType=\\\\\\\"http://www.w3.org/2001/XMLSchema#string\\\\\\\"><AttributeValue DataType=\\\\\\\"http://www.w3.org/2001/XMLSchema#integer\\\\\\\">1111</AttributeValue><AttributeValue DataType=\\\\\\\"http://www.w3.org/2001/XMLSchema#integer\\\\\\\">2222</AttributeValue></MissingAttributeDetail>\"},\"Decision\":\"Indeterminate\"}]}";
+            ObjectMapper mapper = new ObjectMapper();
+            JsonNode tree = mapper.readTree(jsonResponse);
+            JsonNode treeExpected = mapper.readTree(expectedJson);
+            assertTrue(tree.equals(treeExpected));
+//            assertEquals("{\"Response\":[{\"Status\":{\"StatusCode\":{\"Value\":\"urn:oasis:names:tc:xacml:1.0:status:missing-attribute\"},\"StatusDetail\":\"<MissingAttributeDetail Category=\\\\\\\"urn:oasis:names:tc:xacml:1.0:action\\\\\\\" AttributeId=\\\\\\\"mad\\\\\\\" DataType=\\\\\\\"http://www.w3.org/2001/XMLSchema#string\\\\\\\"><AttributeValue DataType=\\\\\\\"http://www.w3.org/2001/XMLSchema#integer\\\\\\\">1111</AttributeValue><AttributeValue DataType=\\\\\\\"http://www.w3.org/2001/XMLSchema#integer\\\\\\\">2222</AttributeValue></MissingAttributeDetail>\"},\"Decision\":\"Indeterminate\"}]}", jsonResponse);
         } catch (Exception e) {
             fail("operation failed, e="+e);
         }
@@ -1101,7 +1149,12 @@ public class ResponseTest {
         response.add(result);
         try {
             jsonResponse = JSONResponse.toString(response, false);
-            assertEquals("{\"Response\":[{\"Status\":{\"StatusCode\":{\"StatusCode\":{\"Value\":\"child1StatusCode\"},\"Value\":\"urn:oasis:names:tc:xacml:1.0:status:ok\"},\"StatusMessage\":\"I'm ok, you're ok\"},\"Decision\":\"Permit\"}]}", jsonResponse);
+            String expectedJson = "{\"Response\":[{\"Status\":{\"StatusCode\":{\"StatusCode\":{\"Value\":\"child1StatusCode\"},\"Value\":\"urn:oasis:names:tc:xacml:1.0:status:ok\"},\"StatusMessage\":\"I'm ok, you're ok\"},\"Decision\":\"Permit\"}]}";
+            ObjectMapper mapper = new ObjectMapper();
+            JsonNode tree = mapper.readTree(jsonResponse);
+            JsonNode treeExpected = mapper.readTree(expectedJson);
+            assertTrue(tree.equals(treeExpected));
+//           assertEquals("{\"Response\":[{\"Status\":{\"StatusCode\":{\"StatusCode\":{\"Value\":\"child1StatusCode\"},\"Value\":\"urn:oasis:names:tc:xacml:1.0:status:ok\"},\"StatusMessage\":\"I'm ok, you're ok\"},\"Decision\":\"Permit\"}]}", jsonResponse);
         } catch (Exception e) {
             fail("operation failed, e="+e);
         }
@@ -1119,7 +1172,12 @@ public class ResponseTest {
         response.add(result);
         try {
             jsonResponse = JSONResponse.toString(response, false);
-            assertEquals("{\"Response\":[{\"Status\":{\"StatusCode\":{\"StatusCode\":{\"StatusCode\":{\"StatusCode\":{\"Value\":\"childChildChildStatusCode\"},\"Value\":\"childChildStatusCode\"},\"Value\":\"child1StatusCode\"},\"Value\":\"urn:oasis:names:tc:xacml:1.0:status:ok\"},\"StatusMessage\":\"I'm ok, you're ok\"},\"Decision\":\"Permit\"}]}", jsonResponse);
+            String expectedJson = "{\"Response\":[{\"Status\":{\"StatusCode\":{\"StatusCode\":{\"StatusCode\":{\"StatusCode\":{\"Value\":\"childChildChildStatusCode\"},\"Value\":\"childChildStatusCode\"},\"Value\":\"child1StatusCode\"},\"Value\":\"urn:oasis:names:tc:xacml:1.0:status:ok\"},\"StatusMessage\":\"I'm ok, you're ok\"},\"Decision\":\"Permit\"}]}";
+            ObjectMapper mapper = new ObjectMapper();
+            JsonNode tree = mapper.readTree(jsonResponse);
+            JsonNode treeExpected = mapper.readTree(expectedJson);
+            assertTrue(tree.equals(treeExpected));
+//            assertEquals("{\"Response\":[{\"Status\":{\"StatusCode\":{\"StatusCode\":{\"StatusCode\":{\"StatusCode\":{\"Value\":\"childChildChildStatusCode\"},\"Value\":\"childChildStatusCode\"},\"Value\":\"child1StatusCode\"},\"Value\":\"urn:oasis:names:tc:xacml:1.0:status:ok\"},\"StatusMessage\":\"I'm ok, you're ok\"},\"Decision\":\"Permit\"}]}", jsonResponse);
         } catch (Exception e) {
             fail("operation failed, e="+e);
         }
@@ -1154,7 +1212,12 @@ public class ResponseTest {
         response.add(result);
         try {
             jsonResponse = JSONResponse.toString(response, false);
-            assertEquals("{\"Response\":[{\"Obligations\":[{\"Id\":\"urn:oasis:names:tc:xacml:1.0:action:implied-action\"}],\"Decision\":\"Permit\"}]}", jsonResponse);
+            String expectedJson = "{\"Response\":[{\"Obligations\":[{\"Id\":\"urn:oasis:names:tc:xacml:1.0:action:implied-action\"}],\"Decision\":\"Permit\"}]}";
+            ObjectMapper mapper = new ObjectMapper();
+            JsonNode tree = mapper.readTree(jsonResponse);
+            JsonNode treeExpected = mapper.readTree(expectedJson);
+            assertTrue(tree.equals(treeExpected));
+//            assertEquals("{\"Response\":[{\"Obligations\":[{\"Id\":\"urn:oasis:names:tc:xacml:1.0:action:implied-action\"}],\"Decision\":\"Permit\"}]}", jsonResponse);
         } catch (Exception e) {
             fail("operation failed, e="+e);
         }
@@ -1192,7 +1255,12 @@ public class ResponseTest {
         response.add(result);
         try {
             jsonResponse = JSONResponse.toString(response, false);
-            assertEquals("{\"Response\":[{\"Obligations\":[{\"Id\":\"urn:oasis:names:tc:xacml:1.0:action:implied-action\",\"AttributeAssignment\":[{\"Issuer\":\"obligation-issuer1\",\"Value\":\"Bart\",\"Category\":\"urn:oasis:names:tc:xacml:3.0:attribute-category:resource\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#string\",\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject\"}]}],\"Decision\":\"Permit\"}]}", jsonResponse);
+            String expectedJson = "{\"Response\":[{\"Obligations\":[{\"Id\":\"urn:oasis:names:tc:xacml:1.0:action:implied-action\",\"AttributeAssignment\":[{\"Issuer\":\"obligation-issuer1\",\"Value\":\"Bart\",\"Category\":\"urn:oasis:names:tc:xacml:3.0:attribute-category:resource\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#string\",\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject\"}]}],\"Decision\":\"Permit\"}]}";
+            ObjectMapper mapper = new ObjectMapper();
+            JsonNode tree = mapper.readTree(jsonResponse);
+            JsonNode treeExpected = mapper.readTree(expectedJson);
+            assertTrue(tree.equals(treeExpected));
+//            assertEquals("{\"Response\":[{\"Obligations\":[{\"Id\":\"urn:oasis:names:tc:xacml:1.0:action:implied-action\",\"AttributeAssignment\":[{\"Issuer\":\"obligation-issuer1\",\"Value\":\"Bart\",\"Category\":\"urn:oasis:names:tc:xacml:3.0:attribute-category:resource\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#string\",\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject\"}]}],\"Decision\":\"Permit\"}]}", jsonResponse);
         } catch (Exception e) {
             fail("operation failed, e="+e);
         }
@@ -1213,7 +1281,12 @@ public class ResponseTest {
         response.add(result);
         try {
             jsonResponse = JSONResponse.toString(response, false);
-            assertEquals("{\"Response\":[{\"Obligations\":[{\"Id\":\"urn:oasis:names:tc:xacml:1.0:action:implied-action\",\"AttributeAssignment\":[{\"Issuer\":\"obligation-issuer1\",\"Value\":\"Bart\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#string\",\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject\"}]}],\"Decision\":\"Permit\"}]}", jsonResponse);
+            String expectedJson = "{\"Response\":[{\"Obligations\":[{\"Id\":\"urn:oasis:names:tc:xacml:1.0:action:implied-action\",\"AttributeAssignment\":[{\"Issuer\":\"obligation-issuer1\",\"Value\":\"Bart\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#string\",\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject\"}]}],\"Decision\":\"Permit\"}]}";
+            ObjectMapper mapper = new ObjectMapper();
+            JsonNode tree = mapper.readTree(jsonResponse);
+            JsonNode treeExpected = mapper.readTree(expectedJson);
+            assertTrue(tree.equals(treeExpected));
+//            assertEquals("{\"Response\":[{\"Obligations\":[{\"Id\":\"urn:oasis:names:tc:xacml:1.0:action:implied-action\",\"AttributeAssignment\":[{\"Issuer\":\"obligation-issuer1\",\"Value\":\"Bart\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#string\",\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject\"}]}],\"Decision\":\"Permit\"}]}", jsonResponse);
         } catch (Exception e) {
             fail("operation failed, e="+e);
         }
@@ -1255,7 +1328,12 @@ public class ResponseTest {
         response.add(result);
         try {
             jsonResponse = JSONResponse.toString(response, false);
-            assertEquals("{\"Response\":[{\"Obligations\":[{\"Id\":\"urn:oasis:names:tc:xacml:1.0:action:implied-action\",\"AttributeAssignment\":[{\"Issuer\":\"obligation-issuer1\",\"Value\":\"\",\"Category\":\"urn:oasis:names:tc:xacml:3.0:attribute-category:resource\",\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject\"}]}],\"Decision\":\"Permit\"}]}", jsonResponse);
+            String expectedJson = "{\"Response\":[{\"Obligations\":[{\"Id\":\"urn:oasis:names:tc:xacml:1.0:action:implied-action\",\"AttributeAssignment\":[{\"Issuer\":\"obligation-issuer1\",\"Value\":\"\",\"Category\":\"urn:oasis:names:tc:xacml:3.0:attribute-category:resource\",\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject\"}]}],\"Decision\":\"Permit\"}]}";
+            ObjectMapper mapper = new ObjectMapper();
+            JsonNode tree = mapper.readTree(jsonResponse);
+            JsonNode treeExpected = mapper.readTree(expectedJson);
+            assertTrue(tree.equals(treeExpected));
+//            assertEquals("{\"Response\":[{\"Obligations\":[{\"Id\":\"urn:oasis:names:tc:xacml:1.0:action:implied-action\",\"AttributeAssignment\":[{\"Issuer\":\"obligation-issuer1\",\"Value\":\"\",\"Category\":\"urn:oasis:names:tc:xacml:3.0:attribute-category:resource\",\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject\"}]}],\"Decision\":\"Permit\"}]}", jsonResponse);
         } catch (Exception e) {
             fail("operation failed, e="+e);
         }
@@ -1275,7 +1353,12 @@ public class ResponseTest {
         response.add(result);
         try {
             jsonResponse = JSONResponse.toString(response, false);
-            assertEquals("{\"Response\":[{\"Obligations\":[{\"Id\":\"urn:oasis:names:tc:xacml:1.0:action:implied-action\",\"AttributeAssignment\":[{\"Issuer\":\"obligation-issuer1\",\"Value\":\"Bart\",\"Category\":\"urn:oasis:names:tc:xacml:3.0:attribute-category:resource\",\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject\"}]}],\"Decision\":\"Permit\"}]}", jsonResponse);
+            String expectedJson = "{\"Response\":[{\"Obligations\":[{\"Id\":\"urn:oasis:names:tc:xacml:1.0:action:implied-action\",\"AttributeAssignment\":[{\"Issuer\":\"obligation-issuer1\",\"Value\":\"Bart\",\"Category\":\"urn:oasis:names:tc:xacml:3.0:attribute-category:resource\",\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject\"}]}],\"Decision\":\"Permit\"}]}";
+            ObjectMapper mapper = new ObjectMapper();
+            JsonNode tree = mapper.readTree(jsonResponse);
+            JsonNode treeExpected = mapper.readTree(expectedJson);
+            assertTrue(tree.equals(treeExpected));
+//            assertEquals("{\"Response\":[{\"Obligations\":[{\"Id\":\"urn:oasis:names:tc:xacml:1.0:action:implied-action\",\"AttributeAssignment\":[{\"Issuer\":\"obligation-issuer1\",\"Value\":\"Bart\",\"Category\":\"urn:oasis:names:tc:xacml:3.0:attribute-category:resource\",\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject\"}]}],\"Decision\":\"Permit\"}]}", jsonResponse);
         } catch (Exception e) {
             fail("operation failed, e="+e);
         }
@@ -1295,7 +1378,12 @@ public class ResponseTest {
         response.add(result);
         try {
             jsonResponse = JSONResponse.toString(response, false);
-            assertEquals("{\"Response\":[{\"Obligations\":[{\"Id\":\"urn:oasis:names:tc:xacml:1.0:action:implied-action\",\"AttributeAssignment\":[{\"Value\":\"Bart\",\"Category\":\"urn:oasis:names:tc:xacml:3.0:attribute-category:resource\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#string\",\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject\"}]}],\"Decision\":\"Permit\"}]}", jsonResponse);
+            String expectedJson = "{\"Response\":[{\"Obligations\":[{\"Id\":\"urn:oasis:names:tc:xacml:1.0:action:implied-action\",\"AttributeAssignment\":[{\"Value\":\"Bart\",\"Category\":\"urn:oasis:names:tc:xacml:3.0:attribute-category:resource\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#string\",\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject\"}]}],\"Decision\":\"Permit\"}]}";
+            ObjectMapper mapper = new ObjectMapper();
+            JsonNode tree = mapper.readTree(jsonResponse);
+            JsonNode treeExpected = mapper.readTree(expectedJson);
+            assertTrue(tree.equals(treeExpected));
+//            assertEquals("{\"Response\":[{\"Obligations\":[{\"Id\":\"urn:oasis:names:tc:xacml:1.0:action:implied-action\",\"AttributeAssignment\":[{\"Value\":\"Bart\",\"Category\":\"urn:oasis:names:tc:xacml:3.0:attribute-category:resource\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#string\",\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject\"}]}],\"Decision\":\"Permit\"}]}", jsonResponse);
         } catch (Exception e) {
             fail("operation failed, e="+e);
         }
@@ -1315,7 +1403,12 @@ public class ResponseTest {
         response.add(result);
         try {
             jsonResponse = JSONResponse.toString(response, false);
-            assertEquals("{\"Response\":[{\"Obligations\":[{\"Id\":\"urn:oasis:names:tc:xacml:1.0:action:implied-action\",\"AttributeAssignment\":[{\"Value\":1111,\"Category\":\"urn:oasis:names:tc:xacml:3.0:attribute-category:resource\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#integer\",\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject\"}]}],\"Decision\":\"Permit\"}]}", jsonResponse);
+            String expectedJson = "{\"Response\":[{\"Obligations\":[{\"Id\":\"urn:oasis:names:tc:xacml:1.0:action:implied-action\",\"AttributeAssignment\":[{\"Value\":1111,\"Category\":\"urn:oasis:names:tc:xacml:3.0:attribute-category:resource\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#integer\",\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject\"}]}],\"Decision\":\"Permit\"}]}";
+            ObjectMapper mapper = new ObjectMapper();
+            JsonNode tree = mapper.readTree(jsonResponse);
+            JsonNode treeExpected = mapper.readTree(expectedJson);
+            assertTrue(tree.equals(treeExpected));
+//            assertEquals("{\"Response\":[{\"Obligations\":[{\"Id\":\"urn:oasis:names:tc:xacml:1.0:action:implied-action\",\"AttributeAssignment\":[{\"Value\":1111,\"Category\":\"urn:oasis:names:tc:xacml:3.0:attribute-category:resource\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#integer\",\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject\"}]}],\"Decision\":\"Permit\"}]}", jsonResponse);
         } catch (Exception e) {
             fail("operation failed, e="+e);
         }
@@ -1336,7 +1429,12 @@ public class ResponseTest {
         response.add(result);
         try {
             jsonResponse = JSONResponse.toString(response, false);
-            assertEquals("{\"Response\":[{\"Obligations\":[{\"Id\":\"urn:oasis:names:tc:xacml:1.0:action:implied-action\",\"AttributeAssignment\":[{\"Value\":{\"Namespaces\":[{\"Namespace\":\"referenceForMD\",\"Prefix\":\"md\"},{\"Namespace\":\"defaultURI\"}],\"XPathCategory\":\"SimpleXPathCategory\",\"XPath\":\"//md:record\"},\"Category\":\"urn:oasis:names:tc:xacml:3.0:attribute-category:resource\",\"DataType\":\"urn:oasis:names:tc:xacml:3.0:data-type:xpathExpression\",\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject\"}]}],\"Decision\":\"Permit\"}]}", jsonResponse);
+            String expectedJson = "{\"Response\":[{\"Obligations\":[{\"Id\":\"urn:oasis:names:tc:xacml:1.0:action:implied-action\",\"AttributeAssignment\":[{\"Value\":{\"Namespaces\":[{\"Namespace\":\"referenceForMD\",\"Prefix\":\"md\"},{\"Namespace\":\"defaultURI\"}],\"XPathCategory\":\"SimpleXPathCategory\",\"XPath\":\"//md:record\"},\"Category\":\"urn:oasis:names:tc:xacml:3.0:attribute-category:resource\",\"DataType\":\"urn:oasis:names:tc:xacml:3.0:data-type:xpathExpression\",\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject\"}]}],\"Decision\":\"Permit\"}]}";
+            ObjectMapper mapper = new ObjectMapper();
+            JsonNode tree = mapper.readTree(jsonResponse);
+            JsonNode treeExpected = mapper.readTree(expectedJson);
+            assertTrue(tree.equals(treeExpected));
+//            assertEquals("{\"Response\":[{\"Obligations\":[{\"Id\":\"urn:oasis:names:tc:xacml:1.0:action:implied-action\",\"AttributeAssignment\":[{\"Value\":{\"Namespaces\":[{\"Namespace\":\"referenceForMD\",\"Prefix\":\"md\"},{\"Namespace\":\"defaultURI\"}],\"XPathCategory\":\"SimpleXPathCategory\",\"XPath\":\"//md:record\"},\"Category\":\"urn:oasis:names:tc:xacml:3.0:attribute-category:resource\",\"DataType\":\"urn:oasis:names:tc:xacml:3.0:data-type:xpathExpression\",\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject\"}]}],\"Decision\":\"Permit\"}]}", jsonResponse);
         } catch (Exception e) {
             fail("operation failed, e="+e);
         }
@@ -1382,7 +1480,12 @@ public class ResponseTest {
         response.add(result);
         try {
             jsonResponse = JSONResponse.toString(response, false);
-            assertEquals("{\"Response\":[{\"Obligations\":[{\"Id\":\"urn:oasis:names:tc:xacml:1.0:action:implied-action\",\"AttributeAssignment\":[{\"Issuer\":\"obligation-issuer1\",\"Value\":\"Bart\",\"Category\":\"urn:oasis:names:tc:xacml:3.0:attribute-category:resource\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#string\",\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject\"},{\"Issuer\":\"obligation-issuer1\",\"Value\":\"Lisa\",\"Category\":\"urn:oasis:names:tc:xacml:3.0:attribute-category:resource\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#string\",\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject\"},{\"Issuer\":\"obligation-issuer1\",\"Value\":\"Maggie\",\"Category\":\"urn:oasis:names:tc:xacml:3.0:attribute-category:resource\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#string\",\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject\"}]}],\"Decision\":\"Permit\"}]}", jsonResponse);
+            String expectedJson = "{\"Response\":[{\"Obligations\":[{\"Id\":\"urn:oasis:names:tc:xacml:1.0:action:implied-action\",\"AttributeAssignment\":[{\"Issuer\":\"obligation-issuer1\",\"Value\":\"Bart\",\"Category\":\"urn:oasis:names:tc:xacml:3.0:attribute-category:resource\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#string\",\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject\"},{\"Issuer\":\"obligation-issuer1\",\"Value\":\"Lisa\",\"Category\":\"urn:oasis:names:tc:xacml:3.0:attribute-category:resource\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#string\",\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject\"},{\"Issuer\":\"obligation-issuer1\",\"Value\":\"Maggie\",\"Category\":\"urn:oasis:names:tc:xacml:3.0:attribute-category:resource\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#string\",\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject\"}]}],\"Decision\":\"Permit\"}]}";
+            ObjectMapper mapper = new ObjectMapper();
+            JsonNode tree = mapper.readTree(jsonResponse);
+            JsonNode treeExpected = mapper.readTree(expectedJson);
+            assertTrue(tree.equals(treeExpected));
+//            assertEquals("{\"Response\":[{\"Obligations\":[{\"Id\":\"urn:oasis:names:tc:xacml:1.0:action:implied-action\",\"AttributeAssignment\":[{\"Issuer\":\"obligation-issuer1\",\"Value\":\"Bart\",\"Category\":\"urn:oasis:names:tc:xacml:3.0:attribute-category:resource\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#string\",\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject\"},{\"Issuer\":\"obligation-issuer1\",\"Value\":\"Lisa\",\"Category\":\"urn:oasis:names:tc:xacml:3.0:attribute-category:resource\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#string\",\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject\"},{\"Issuer\":\"obligation-issuer1\",\"Value\":\"Maggie\",\"Category\":\"urn:oasis:names:tc:xacml:3.0:attribute-category:resource\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#string\",\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject\"}]}],\"Decision\":\"Permit\"}]}", jsonResponse);
         } catch (Exception e) {
             fail("operation failed, e="+e);
         }
@@ -1413,7 +1516,12 @@ public class ResponseTest {
         response.add(result);
         try {
             jsonResponse = JSONResponse.toString(response, false);
-            assertEquals("{\"Response\":[{\"Obligations\":[{\"Id\":\"urn:oasis:names:tc:xacml:1.0:action:implied-action\",\"AttributeAssignment\":[{\"Issuer\":\"obligation-issuer1\",\"Value\":1111,\"Category\":\"urn:oasis:names:tc:xacml:3.0:attribute-category:resource\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#integer\",\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject\"},{\"Issuer\":\"obligation-issuer1\",\"Value\":2222,\"Category\":\"urn:oasis:names:tc:xacml:3.0:attribute-category:resource\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#integer\",\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject\"},{\"Issuer\":\"obligation-issuer1\",\"Value\":3333,\"Category\":\"urn:oasis:names:tc:xacml:3.0:attribute-category:resource\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#integer\",\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject\"}]}],\"Decision\":\"Permit\"}]}", jsonResponse);
+            String expectedJson = "{\"Response\":[{\"Obligations\":[{\"Id\":\"urn:oasis:names:tc:xacml:1.0:action:implied-action\",\"AttributeAssignment\":[{\"Issuer\":\"obligation-issuer1\",\"Value\":1111,\"Category\":\"urn:oasis:names:tc:xacml:3.0:attribute-category:resource\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#integer\",\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject\"},{\"Issuer\":\"obligation-issuer1\",\"Value\":2222,\"Category\":\"urn:oasis:names:tc:xacml:3.0:attribute-category:resource\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#integer\",\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject\"},{\"Issuer\":\"obligation-issuer1\",\"Value\":3333,\"Category\":\"urn:oasis:names:tc:xacml:3.0:attribute-category:resource\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#integer\",\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject\"}]}],\"Decision\":\"Permit\"}]}";
+            ObjectMapper mapper = new ObjectMapper();
+            JsonNode tree = mapper.readTree(jsonResponse);
+            JsonNode treeExpected = mapper.readTree(expectedJson);
+            assertTrue(tree.equals(treeExpected));
+//            assertEquals("{\"Response\":[{\"Obligations\":[{\"Id\":\"urn:oasis:names:tc:xacml:1.0:action:implied-action\",\"AttributeAssignment\":[{\"Issuer\":\"obligation-issuer1\",\"Value\":1111,\"Category\":\"urn:oasis:names:tc:xacml:3.0:attribute-category:resource\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#integer\",\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject\"},{\"Issuer\":\"obligation-issuer1\",\"Value\":2222,\"Category\":\"urn:oasis:names:tc:xacml:3.0:attribute-category:resource\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#integer\",\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject\"},{\"Issuer\":\"obligation-issuer1\",\"Value\":3333,\"Category\":\"urn:oasis:names:tc:xacml:3.0:attribute-category:resource\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#integer\",\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject\"}]}],\"Decision\":\"Permit\"}]}", jsonResponse);
         } catch (Exception e) {
             fail("operation failed, e="+e);
         }
@@ -1439,7 +1547,12 @@ public class ResponseTest {
         response.add(result);
         try {
             jsonResponse = JSONResponse.toString(response, false);
-            assertEquals("{\"Response\":[{\"Obligations\":[{\"Id\":\"urn:oasis:names:tc:xacml:1.0:action:implied-action\",\"AttributeAssignment\":[{\"Value\":{\"Namespaces\":[{\"Namespace\":\"referenceForMD\",\"Prefix\":\"md\"},{\"Namespace\":\"defaultURI\"}],\"XPathCategory\":\"SimpleXPathCategory\",\"XPath\":\"//md:record\"},\"Category\":\"urn:oasis:names:tc:xacml:3.0:attribute-category:resource\",\"DataType\":\"urn:oasis:names:tc:xacml:3.0:data-type:xpathExpression\",\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject\"},{\"Value\":{\"Namespaces\":[{\"Namespace\":\"referenceForMD\",\"Prefix\":\"md\"},{\"Namespace\":\"defaultURI\"}],\"XPathCategory\":\"SimpleXPathCategory\",\"XPath\":\"//md:hospital\"},\"Category\":\"urn:oasis:names:tc:xacml:3.0:attribute-category:resource\",\"DataType\":\"urn:oasis:names:tc:xacml:3.0:data-type:xpathExpression\",\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject\"}]}],\"Decision\":\"Permit\"}]}", jsonResponse);
+            String expectedJson = "{\"Response\":[{\"Obligations\":[{\"Id\":\"urn:oasis:names:tc:xacml:1.0:action:implied-action\",\"AttributeAssignment\":[{\"Value\":{\"Namespaces\":[{\"Namespace\":\"referenceForMD\",\"Prefix\":\"md\"},{\"Namespace\":\"defaultURI\"}],\"XPathCategory\":\"SimpleXPathCategory\",\"XPath\":\"//md:record\"},\"Category\":\"urn:oasis:names:tc:xacml:3.0:attribute-category:resource\",\"DataType\":\"urn:oasis:names:tc:xacml:3.0:data-type:xpathExpression\",\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject\"},{\"Value\":{\"Namespaces\":[{\"Namespace\":\"referenceForMD\",\"Prefix\":\"md\"},{\"Namespace\":\"defaultURI\"}],\"XPathCategory\":\"SimpleXPathCategory\",\"XPath\":\"//md:hospital\"},\"Category\":\"urn:oasis:names:tc:xacml:3.0:attribute-category:resource\",\"DataType\":\"urn:oasis:names:tc:xacml:3.0:data-type:xpathExpression\",\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject\"}]}],\"Decision\":\"Permit\"}]}";
+            ObjectMapper mapper = new ObjectMapper();
+            JsonNode tree = mapper.readTree(jsonResponse);
+            JsonNode treeExpected = mapper.readTree(expectedJson);
+            assertTrue(tree.equals(treeExpected));
+//            assertEquals("{\"Response\":[{\"Obligations\":[{\"Id\":\"urn:oasis:names:tc:xacml:1.0:action:implied-action\",\"AttributeAssignment\":[{\"Value\":{\"Namespaces\":[{\"Namespace\":\"referenceForMD\",\"Prefix\":\"md\"},{\"Namespace\":\"defaultURI\"}],\"XPathCategory\":\"SimpleXPathCategory\",\"XPath\":\"//md:record\"},\"Category\":\"urn:oasis:names:tc:xacml:3.0:attribute-category:resource\",\"DataType\":\"urn:oasis:names:tc:xacml:3.0:data-type:xpathExpression\",\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject\"},{\"Value\":{\"Namespaces\":[{\"Namespace\":\"referenceForMD\",\"Prefix\":\"md\"},{\"Namespace\":\"defaultURI\"}],\"XPathCategory\":\"SimpleXPathCategory\",\"XPath\":\"//md:hospital\"},\"Category\":\"urn:oasis:names:tc:xacml:3.0:attribute-category:resource\",\"DataType\":\"urn:oasis:names:tc:xacml:3.0:data-type:xpathExpression\",\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject\"}]}],\"Decision\":\"Permit\"}]}", jsonResponse);
         } catch (Exception e) {
             fail("operation failed, e="+e);
         }
@@ -1475,7 +1588,12 @@ public class ResponseTest {
         response.add(result);
         try {
             jsonResponse = JSONResponse.toString(response, false);
-            assertEquals("{\"Response\":[{\"Decision\":\"Permit\",\"AssociatedAdvice\":[{\"Id\":\"urn:oasis:names:tc:xacml:1.0:action:implied-action\"}]}]}", jsonResponse);
+            String expectedJson = "{\"Response\":[{\"Decision\":\"Permit\",\"AssociatedAdvice\":[{\"Id\":\"urn:oasis:names:tc:xacml:1.0:action:implied-action\"}]}]}";
+            ObjectMapper mapper = new ObjectMapper();
+            JsonNode tree = mapper.readTree(jsonResponse);
+            JsonNode treeExpected = mapper.readTree(expectedJson);
+            assertTrue(tree.equals(treeExpected));
+//            assertEquals("{\"Response\":[{\"Decision\":\"Permit\",\"AssociatedAdvice\":[{\"Id\":\"urn:oasis:names:tc:xacml:1.0:action:implied-action\"}]}]}", jsonResponse);
         } catch (Exception e) {
             fail("operation failed, e="+e);
         }
@@ -1513,7 +1631,12 @@ public class ResponseTest {
         response.add(result);
         try {
             jsonResponse = JSONResponse.toString(response, false);
-            assertEquals("{\"Response\":[{\"Decision\":\"Permit\",\"AssociatedAdvice\":[{\"Id\":\"urn:oasis:names:tc:xacml:1.0:action:implied-action\",\"AttributeAssignment\":[{\"Issuer\":\"Advice-issuer1\",\"Value\":\"Bart\",\"Category\":\"urn:oasis:names:tc:xacml:3.0:attribute-category:resource\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#string\",\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject\"}]}]}]}", jsonResponse);
+            String expectedJson = "{\"Response\":[{\"Decision\":\"Permit\",\"AssociatedAdvice\":[{\"Id\":\"urn:oasis:names:tc:xacml:1.0:action:implied-action\",\"AttributeAssignment\":[{\"Issuer\":\"Advice-issuer1\",\"Value\":\"Bart\",\"Category\":\"urn:oasis:names:tc:xacml:3.0:attribute-category:resource\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#string\",\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject\"}]}]}]}";
+            ObjectMapper mapper = new ObjectMapper();
+            JsonNode tree = mapper.readTree(jsonResponse);
+            JsonNode treeExpected = mapper.readTree(expectedJson);
+            assertTrue(tree.equals(treeExpected));
+//            assertEquals("{\"Response\":[{\"Decision\":\"Permit\",\"AssociatedAdvice\":[{\"Id\":\"urn:oasis:names:tc:xacml:1.0:action:implied-action\",\"AttributeAssignment\":[{\"Issuer\":\"Advice-issuer1\",\"Value\":\"Bart\",\"Category\":\"urn:oasis:names:tc:xacml:3.0:attribute-category:resource\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#string\",\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject\"}]}]}]}", jsonResponse);
         } catch (Exception e) {
             fail("operation failed, e="+e);
         }
@@ -1534,7 +1657,12 @@ public class ResponseTest {
         response.add(result);
         try {
             jsonResponse = JSONResponse.toString(response, false);
-            assertEquals("{\"Response\":[{\"Decision\":\"Permit\",\"AssociatedAdvice\":[{\"Id\":\"urn:oasis:names:tc:xacml:1.0:action:implied-action\",\"AttributeAssignment\":[{\"Issuer\":\"Advice-issuer1\",\"Value\":\"Bart\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#string\",\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject\"}]}]}]}", jsonResponse);
+            String expectedJson = "{\"Response\":[{\"Decision\":\"Permit\",\"AssociatedAdvice\":[{\"Id\":\"urn:oasis:names:tc:xacml:1.0:action:implied-action\",\"AttributeAssignment\":[{\"Issuer\":\"Advice-issuer1\",\"Value\":\"Bart\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#string\",\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject\"}]}]}]}";
+            ObjectMapper mapper = new ObjectMapper();
+            JsonNode tree = mapper.readTree(jsonResponse);
+            JsonNode treeExpected = mapper.readTree(expectedJson);
+            assertTrue(tree.equals(treeExpected));
+//            assertEquals("{\"Response\":[{\"Decision\":\"Permit\",\"AssociatedAdvice\":[{\"Id\":\"urn:oasis:names:tc:xacml:1.0:action:implied-action\",\"AttributeAssignment\":[{\"Issuer\":\"Advice-issuer1\",\"Value\":\"Bart\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#string\",\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject\"}]}]}]}", jsonResponse);
         } catch (Exception e) {
             fail("operation failed, e="+e);
         }
@@ -1576,7 +1704,12 @@ public class ResponseTest {
         response.add(result);
         try {
             jsonResponse = JSONResponse.toString(response, false);
-            assertEquals("{\"Response\":[{\"Decision\":\"Permit\",\"AssociatedAdvice\":[{\"Id\":\"urn:oasis:names:tc:xacml:1.0:action:implied-action\",\"AttributeAssignment\":[{\"Issuer\":\"Advice-issuer1\",\"Value\":\"\",\"Category\":\"urn:oasis:names:tc:xacml:3.0:attribute-category:resource\",\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject\"}]}]}]}", jsonResponse);
+            String expectedJson = "{\"Response\":[{\"Decision\":\"Permit\",\"AssociatedAdvice\":[{\"Id\":\"urn:oasis:names:tc:xacml:1.0:action:implied-action\",\"AttributeAssignment\":[{\"Issuer\":\"Advice-issuer1\",\"Value\":\"\",\"Category\":\"urn:oasis:names:tc:xacml:3.0:attribute-category:resource\",\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject\"}]}]}]}";
+            ObjectMapper mapper = new ObjectMapper();
+            JsonNode tree = mapper.readTree(jsonResponse);
+            JsonNode treeExpected = mapper.readTree(expectedJson);
+            assertTrue(tree.equals(treeExpected));
+//            assertEquals("{\"Response\":[{\"Decision\":\"Permit\",\"AssociatedAdvice\":[{\"Id\":\"urn:oasis:names:tc:xacml:1.0:action:implied-action\",\"AttributeAssignment\":[{\"Issuer\":\"Advice-issuer1\",\"Value\":\"\",\"Category\":\"urn:oasis:names:tc:xacml:3.0:attribute-category:resource\",\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject\"}]}]}]}", jsonResponse);
         } catch (Exception e) {
             fail("operation failed, e="+e);
         }
@@ -1596,7 +1729,12 @@ public class ResponseTest {
         response.add(result);
         try {
             jsonResponse = JSONResponse.toString(response, false);
-            assertEquals("{\"Response\":[{\"Decision\":\"Permit\",\"AssociatedAdvice\":[{\"Id\":\"urn:oasis:names:tc:xacml:1.0:action:implied-action\",\"AttributeAssignment\":[{\"Issuer\":\"Advice-issuer1\",\"Value\":\"Bart\",\"Category\":\"urn:oasis:names:tc:xacml:3.0:attribute-category:resource\",\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject\"}]}]}]}", jsonResponse);
+            String expectedJson = "{\"Response\":[{\"Decision\":\"Permit\",\"AssociatedAdvice\":[{\"Id\":\"urn:oasis:names:tc:xacml:1.0:action:implied-action\",\"AttributeAssignment\":[{\"Issuer\":\"Advice-issuer1\",\"Value\":\"Bart\",\"Category\":\"urn:oasis:names:tc:xacml:3.0:attribute-category:resource\",\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject\"}]}]}]}";
+            ObjectMapper mapper = new ObjectMapper();
+            JsonNode tree = mapper.readTree(jsonResponse);
+            JsonNode treeExpected = mapper.readTree(expectedJson);
+            assertTrue(tree.equals(treeExpected));
+//            assertEquals("{\"Response\":[{\"Decision\":\"Permit\",\"AssociatedAdvice\":[{\"Id\":\"urn:oasis:names:tc:xacml:1.0:action:implied-action\",\"AttributeAssignment\":[{\"Issuer\":\"Advice-issuer1\",\"Value\":\"Bart\",\"Category\":\"urn:oasis:names:tc:xacml:3.0:attribute-category:resource\",\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject\"}]}]}]}", jsonResponse);
         } catch (Exception e) {
             fail("operation failed, e="+e);
         }
@@ -1616,7 +1754,12 @@ public class ResponseTest {
         response.add(result);
         try {
             jsonResponse = JSONResponse.toString(response, false);
-            assertEquals("{\"Response\":[{\"Decision\":\"Permit\",\"AssociatedAdvice\":[{\"Id\":\"urn:oasis:names:tc:xacml:1.0:action:implied-action\",\"AttributeAssignment\":[{\"Value\":\"Bart\",\"Category\":\"urn:oasis:names:tc:xacml:3.0:attribute-category:resource\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#string\",\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject\"}]}]}]}", jsonResponse);
+            String expectedJson = "{\"Response\":[{\"Decision\":\"Permit\",\"AssociatedAdvice\":[{\"Id\":\"urn:oasis:names:tc:xacml:1.0:action:implied-action\",\"AttributeAssignment\":[{\"Value\":\"Bart\",\"Category\":\"urn:oasis:names:tc:xacml:3.0:attribute-category:resource\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#string\",\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject\"}]}]}]}";
+            ObjectMapper mapper = new ObjectMapper();
+            JsonNode tree = mapper.readTree(jsonResponse);
+            JsonNode treeExpected = mapper.readTree(expectedJson);
+            assertTrue(tree.equals(treeExpected));
+//            assertEquals("{\"Response\":[{\"Decision\":\"Permit\",\"AssociatedAdvice\":[{\"Id\":\"urn:oasis:names:tc:xacml:1.0:action:implied-action\",\"AttributeAssignment\":[{\"Value\":\"Bart\",\"Category\":\"urn:oasis:names:tc:xacml:3.0:attribute-category:resource\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#string\",\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject\"}]}]}]}", jsonResponse);
         } catch (Exception e) {
             fail("operation failed, e="+e);
         }
@@ -1636,7 +1779,12 @@ public class ResponseTest {
         response.add(result);
         try {
             jsonResponse = JSONResponse.toString(response, false);
-            assertEquals("{\"Response\":[{\"Decision\":\"Permit\",\"AssociatedAdvice\":[{\"Id\":\"urn:oasis:names:tc:xacml:1.0:action:implied-action\",\"AttributeAssignment\":[{\"Value\":1111,\"Category\":\"urn:oasis:names:tc:xacml:3.0:attribute-category:resource\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#integer\",\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject\"}]}]}]}", jsonResponse);
+            String expectedJson = "{\"Response\":[{\"Decision\":\"Permit\",\"AssociatedAdvice\":[{\"Id\":\"urn:oasis:names:tc:xacml:1.0:action:implied-action\",\"AttributeAssignment\":[{\"Value\":1111,\"Category\":\"urn:oasis:names:tc:xacml:3.0:attribute-category:resource\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#integer\",\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject\"}]}]}]}";
+            ObjectMapper mapper = new ObjectMapper();
+            JsonNode tree = mapper.readTree(jsonResponse);
+            JsonNode treeExpected = mapper.readTree(expectedJson);
+            assertTrue(tree.equals(treeExpected));
+//            assertEquals("{\"Response\":[{\"Decision\":\"Permit\",\"AssociatedAdvice\":[{\"Id\":\"urn:oasis:names:tc:xacml:1.0:action:implied-action\",\"AttributeAssignment\":[{\"Value\":1111,\"Category\":\"urn:oasis:names:tc:xacml:3.0:attribute-category:resource\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#integer\",\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject\"}]}]}]}", jsonResponse);
         } catch (Exception e) {
             fail("operation failed, e="+e);
         }
@@ -1657,7 +1805,12 @@ public class ResponseTest {
         response.add(result);
         try {
             jsonResponse = JSONResponse.toString(response, false);
-            assertEquals("{\"Response\":[{\"Decision\":\"Permit\",\"AssociatedAdvice\":[{\"Id\":\"urn:oasis:names:tc:xacml:1.0:action:implied-action\",\"AttributeAssignment\":[{\"Value\":{\"Namespaces\":[{\"Namespace\":\"referenceForMD\",\"Prefix\":\"md\"},{\"Namespace\":\"defaultURI\"}],\"XPathCategory\":\"SimpleXPathCategory\",\"XPath\":\"//md:record\"},\"Category\":\"urn:oasis:names:tc:xacml:3.0:attribute-category:resource\",\"DataType\":\"urn:oasis:names:tc:xacml:3.0:data-type:xpathExpression\",\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject\"}]}]}]}", jsonResponse);
+            String expectedJson = "{\"Response\":[{\"Decision\":\"Permit\",\"AssociatedAdvice\":[{\"Id\":\"urn:oasis:names:tc:xacml:1.0:action:implied-action\",\"AttributeAssignment\":[{\"Value\":{\"Namespaces\":[{\"Namespace\":\"referenceForMD\",\"Prefix\":\"md\"},{\"Namespace\":\"defaultURI\"}],\"XPathCategory\":\"SimpleXPathCategory\",\"XPath\":\"//md:record\"},\"Category\":\"urn:oasis:names:tc:xacml:3.0:attribute-category:resource\",\"DataType\":\"urn:oasis:names:tc:xacml:3.0:data-type:xpathExpression\",\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject\"}]}]}]}";
+            ObjectMapper mapper = new ObjectMapper();
+            JsonNode tree = mapper.readTree(jsonResponse);
+            JsonNode treeExpected = mapper.readTree(expectedJson);
+            assertTrue(tree.equals(treeExpected));
+//            assertEquals("{\"Response\":[{\"Decision\":\"Permit\",\"AssociatedAdvice\":[{\"Id\":\"urn:oasis:names:tc:xacml:1.0:action:implied-action\",\"AttributeAssignment\":[{\"Value\":{\"Namespaces\":[{\"Namespace\":\"referenceForMD\",\"Prefix\":\"md\"},{\"Namespace\":\"defaultURI\"}],\"XPathCategory\":\"SimpleXPathCategory\",\"XPath\":\"//md:record\"},\"Category\":\"urn:oasis:names:tc:xacml:3.0:attribute-category:resource\",\"DataType\":\"urn:oasis:names:tc:xacml:3.0:data-type:xpathExpression\",\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject\"}]}]}]}", jsonResponse);
         } catch (Exception e) {
             fail("operation failed, e="+e);
         }
@@ -1702,7 +1855,12 @@ public class ResponseTest {
         response.add(result);
         try {
             jsonResponse = JSONResponse.toString(response, false);
-            assertEquals("{\"Response\":[{\"Decision\":\"Permit\",\"AssociatedAdvice\":[{\"Id\":\"urn:oasis:names:tc:xacml:1.0:action:implied-action\",\"AttributeAssignment\":[{\"Issuer\":\"Advice-issuer1\",\"Value\":\"Bart\",\"Category\":\"urn:oasis:names:tc:xacml:3.0:attribute-category:resource\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#string\",\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject\"},{\"Issuer\":\"Advice-issuer1\",\"Value\":\"Lisa\",\"Category\":\"urn:oasis:names:tc:xacml:3.0:attribute-category:resource\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#string\",\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject\"},{\"Issuer\":\"Advice-issuer1\",\"Value\":\"Maggie\",\"Category\":\"urn:oasis:names:tc:xacml:3.0:attribute-category:resource\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#string\",\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject\"}]}]}]}", jsonResponse);
+            String expectedJson = "{\"Response\":[{\"Decision\":\"Permit\",\"AssociatedAdvice\":[{\"Id\":\"urn:oasis:names:tc:xacml:1.0:action:implied-action\",\"AttributeAssignment\":[{\"Issuer\":\"Advice-issuer1\",\"Value\":\"Bart\",\"Category\":\"urn:oasis:names:tc:xacml:3.0:attribute-category:resource\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#string\",\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject\"},{\"Issuer\":\"Advice-issuer1\",\"Value\":\"Lisa\",\"Category\":\"urn:oasis:names:tc:xacml:3.0:attribute-category:resource\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#string\",\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject\"},{\"Issuer\":\"Advice-issuer1\",\"Value\":\"Maggie\",\"Category\":\"urn:oasis:names:tc:xacml:3.0:attribute-category:resource\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#string\",\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject\"}]}]}]}";
+            ObjectMapper mapper = new ObjectMapper();
+            JsonNode tree = mapper.readTree(jsonResponse);
+            JsonNode treeExpected = mapper.readTree(expectedJson);
+            assertTrue(tree.equals(treeExpected));
+//            assertEquals("{\"Response\":[{\"Decision\":\"Permit\",\"AssociatedAdvice\":[{\"Id\":\"urn:oasis:names:tc:xacml:1.0:action:implied-action\",\"AttributeAssignment\":[{\"Issuer\":\"Advice-issuer1\",\"Value\":\"Bart\",\"Category\":\"urn:oasis:names:tc:xacml:3.0:attribute-category:resource\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#string\",\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject\"},{\"Issuer\":\"Advice-issuer1\",\"Value\":\"Lisa\",\"Category\":\"urn:oasis:names:tc:xacml:3.0:attribute-category:resource\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#string\",\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject\"},{\"Issuer\":\"Advice-issuer1\",\"Value\":\"Maggie\",\"Category\":\"urn:oasis:names:tc:xacml:3.0:attribute-category:resource\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#string\",\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject\"}]}]}]}", jsonResponse);
         } catch (Exception e) {
             fail("operation failed, e="+e);
         }
@@ -1733,7 +1891,12 @@ public class ResponseTest {
         response.add(result);
         try {
             jsonResponse = JSONResponse.toString(response, false);
-            assertEquals("{\"Response\":[{\"Decision\":\"Permit\",\"AssociatedAdvice\":[{\"Id\":\"urn:oasis:names:tc:xacml:1.0:action:implied-action\",\"AttributeAssignment\":[{\"Issuer\":\"Advice-issuer1\",\"Value\":1111,\"Category\":\"urn:oasis:names:tc:xacml:3.0:attribute-category:resource\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#integer\",\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject\"},{\"Issuer\":\"Advice-issuer1\",\"Value\":2222,\"Category\":\"urn:oasis:names:tc:xacml:3.0:attribute-category:resource\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#integer\",\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject\"},{\"Issuer\":\"Advice-issuer1\",\"Value\":3333,\"Category\":\"urn:oasis:names:tc:xacml:3.0:attribute-category:resource\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#integer\",\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject\"}]}]}]}", jsonResponse);
+            String expectedJson = "{\"Response\":[{\"Decision\":\"Permit\",\"AssociatedAdvice\":[{\"Id\":\"urn:oasis:names:tc:xacml:1.0:action:implied-action\",\"AttributeAssignment\":[{\"Issuer\":\"Advice-issuer1\",\"Value\":1111,\"Category\":\"urn:oasis:names:tc:xacml:3.0:attribute-category:resource\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#integer\",\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject\"},{\"Issuer\":\"Advice-issuer1\",\"Value\":2222,\"Category\":\"urn:oasis:names:tc:xacml:3.0:attribute-category:resource\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#integer\",\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject\"},{\"Issuer\":\"Advice-issuer1\",\"Value\":3333,\"Category\":\"urn:oasis:names:tc:xacml:3.0:attribute-category:resource\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#integer\",\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject\"}]}]}]}";
+            ObjectMapper mapper = new ObjectMapper();
+            JsonNode tree = mapper.readTree(jsonResponse);
+            JsonNode treeExpected = mapper.readTree(expectedJson);
+            assertTrue(tree.equals(treeExpected));
+//            assertEquals("{\"Response\":[{\"Decision\":\"Permit\",\"AssociatedAdvice\":[{\"Id\":\"urn:oasis:names:tc:xacml:1.0:action:implied-action\",\"AttributeAssignment\":[{\"Issuer\":\"Advice-issuer1\",\"Value\":1111,\"Category\":\"urn:oasis:names:tc:xacml:3.0:attribute-category:resource\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#integer\",\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject\"},{\"Issuer\":\"Advice-issuer1\",\"Value\":2222,\"Category\":\"urn:oasis:names:tc:xacml:3.0:attribute-category:resource\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#integer\",\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject\"},{\"Issuer\":\"Advice-issuer1\",\"Value\":3333,\"Category\":\"urn:oasis:names:tc:xacml:3.0:attribute-category:resource\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#integer\",\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject\"}]}]}]}", jsonResponse);
         } catch (Exception e) {
             fail("operation failed, e="+e);
         }
@@ -1759,20 +1922,16 @@ public class ResponseTest {
         response.add(result);
         try {
             jsonResponse = JSONResponse.toString(response, false);
-            assertEquals("{\"Response\":[{\"Decision\":\"Permit\",\"AssociatedAdvice\":[{\"Id\":\"urn:oasis:names:tc:xacml:1.0:action:implied-action\",\"AttributeAssignment\":[{\"Value\":{\"Namespaces\":[{\"Namespace\":\"referenceForMD\",\"Prefix\":\"md\"},{\"Namespace\":\"defaultURI\"}],\"XPathCategory\":\"SimpleXPathCategory\",\"XPath\":\"//md:record\"},\"Category\":\"urn:oasis:names:tc:xacml:3.0:attribute-category:resource\",\"DataType\":\"urn:oasis:names:tc:xacml:3.0:data-type:xpathExpression\",\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject\"},{\"Value\":{\"Namespaces\":[{\"Namespace\":\"referenceForMD\",\"Prefix\":\"md\"},{\"Namespace\":\"defaultURI\"}],\"XPathCategory\":\"SimpleXPathCategory\",\"XPath\":\"//md:hospital\"},\"Category\":\"urn:oasis:names:tc:xacml:3.0:attribute-category:resource\",\"DataType\":\"urn:oasis:names:tc:xacml:3.0:data-type:xpathExpression\",\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject\"}]}]}]}", jsonResponse);
+            String expectedJson = "{\"Response\":[{\"Decision\":\"Permit\",\"AssociatedAdvice\":[{\"Id\":\"urn:oasis:names:tc:xacml:1.0:action:implied-action\",\"AttributeAssignment\":[{\"Value\":{\"Namespaces\":[{\"Namespace\":\"referenceForMD\",\"Prefix\":\"md\"},{\"Namespace\":\"defaultURI\"}],\"XPathCategory\":\"SimpleXPathCategory\",\"XPath\":\"//md:record\"},\"Category\":\"urn:oasis:names:tc:xacml:3.0:attribute-category:resource\",\"DataType\":\"urn:oasis:names:tc:xacml:3.0:data-type:xpathExpression\",\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject\"},{\"Value\":{\"Namespaces\":[{\"Namespace\":\"referenceForMD\",\"Prefix\":\"md\"},{\"Namespace\":\"defaultURI\"}],\"XPathCategory\":\"SimpleXPathCategory\",\"XPath\":\"//md:hospital\"},\"Category\":\"urn:oasis:names:tc:xacml:3.0:attribute-category:resource\",\"DataType\":\"urn:oasis:names:tc:xacml:3.0:data-type:xpathExpression\",\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject\"}]}]}]}";
+            ObjectMapper mapper = new ObjectMapper();
+            JsonNode tree = mapper.readTree(jsonResponse);
+            JsonNode treeExpected = mapper.readTree(expectedJson);
+            assertTrue(tree.equals(treeExpected));
+//            assertEquals("{\"Response\":[{\"Decision\":\"Permit\",\"AssociatedAdvice\":[{\"Id\":\"urn:oasis:names:tc:xacml:1.0:action:implied-action\",\"AttributeAssignment\":[{\"Value\":{\"Namespaces\":[{\"Namespace\":\"referenceForMD\",\"Prefix\":\"md\"},{\"Namespace\":\"defaultURI\"}],\"XPathCategory\":\"SimpleXPathCategory\",\"XPath\":\"//md:record\"},\"Category\":\"urn:oasis:names:tc:xacml:3.0:attribute-category:resource\",\"DataType\":\"urn:oasis:names:tc:xacml:3.0:data-type:xpathExpression\",\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject\"},{\"Value\":{\"Namespaces\":[{\"Namespace\":\"referenceForMD\",\"Prefix\":\"md\"},{\"Namespace\":\"defaultURI\"}],\"XPathCategory\":\"SimpleXPathCategory\",\"XPath\":\"//md:hospital\"},\"Category\":\"urn:oasis:names:tc:xacml:3.0:attribute-category:resource\",\"DataType\":\"urn:oasis:names:tc:xacml:3.0:data-type:xpathExpression\",\"AttributeId\":\"urn:oasis:names:tc:xacml:1.0:subject\"}]}]}]}", jsonResponse);
         } catch (Exception e) {
             fail("operation failed, e="+e);
         }
     }
-
-
-
-
-
-
-
-
-
 
     // Attributes tests
     @Test
@@ -1803,7 +1962,12 @@ public class ResponseTest {
         response.add(result);
         try {
             jsonResponse = JSONResponse.toString(response, false);
-            assertEquals("{\"Response\":[{\"Category\":[{\"CategoryId\":\"firstCategory\",\"Attribute\":[]}],\"Decision\":\"Permit\"}]}", jsonResponse);
+            String expectedJson = "{\"Response\":[{\"Category\":[{\"CategoryId\":\"firstCategory\",\"Attribute\":[]}],\"Decision\":\"Permit\"}]}";
+            ObjectMapper mapper = new ObjectMapper();
+            JsonNode tree = mapper.readTree(jsonResponse);
+            JsonNode treeExpected = mapper.readTree(expectedJson);
+            assertTrue(tree.equals(treeExpected));
+//            assertEquals("{\"Response\":[{\"Category\":[{\"CategoryId\":\"firstCategory\",\"Attribute\":[]}],\"Decision\":\"Permit\"}]}", jsonResponse);
         } catch (Exception e) {
             fail("operation failed, e="+e);
         }
@@ -1820,7 +1984,12 @@ public class ResponseTest {
         response.add(result);
         try {
             jsonResponse = JSONResponse.toString(response, false);
-            assertEquals("{\"Response\":[{\"Category\":[{\"CategoryId\":\"firstCategory\",\"Attribute\":[{\"Issuer\":\"AIssue\",\"Value\":\"Apu\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#string\",\"AttributeId\":\"attrIdent1\"}]}],\"Decision\":\"Permit\"}]}", jsonResponse);
+            String expectedJson = "{\"Response\":[{\"Category\":[{\"CategoryId\":\"firstCategory\",\"Attribute\":[{\"Issuer\":\"AIssue\",\"Value\":\"Apu\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#string\",\"AttributeId\":\"attrIdent1\"}]}],\"Decision\":\"Permit\"}]}";
+            ObjectMapper mapper = new ObjectMapper();
+            JsonNode tree = mapper.readTree(jsonResponse);
+            JsonNode treeExpected = mapper.readTree(expectedJson);
+            assertTrue(tree.equals(treeExpected));
+//            assertEquals("{\"Response\":[{\"Category\":[{\"CategoryId\":\"firstCategory\",\"Attribute\":[{\"Issuer\":\"AIssue\",\"Value\":\"Apu\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#string\",\"AttributeId\":\"attrIdent1\"}]}],\"Decision\":\"Permit\"}]}", jsonResponse);
         } catch (Exception e) {
             fail("operation failed, e="+e);
         }
@@ -1840,7 +2009,12 @@ public class ResponseTest {
         response.add(result);
         try {
             jsonResponse = JSONResponse.toString(response, false);
-            assertEquals("{\"Response\":[{\"Category\":[{\"CategoryId\":\"firstCategory\",\"Attribute\":[{\"Issuer\":\"AIssue\",\"Value\":\"Apu\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#string\",\"AttributeId\":\"attrIdent1\"},{\"Issuer\":\"BIssue\",\"Value\":\"P10Y4M\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#yearMonthDuration\",\"AttributeId\":\"attrIdent2\"},{\"Issuer\":\"CIssue\",\"Value\":765.432,\"DataType\":\"http://www.w3.org/2001/XMLSchema#double\",\"AttributeId\":\"attrIdent3\"},{\"Issuer\":\"DIssue\",\"Value\":true,\"DataType\":\"http://www.w3.org/2001/XMLSchema#boolean\",\"AttributeId\":\"attrIdent4\"},{\"Issuer\":\"EIssue\",\"Value\":4567,\"DataType\":\"http://www.w3.org/2001/XMLSchema#integer\",\"AttributeId\":\"attrIdent5\"}]}],\"Decision\":\"Permit\"}]}", jsonResponse);
+            String expectedJson = "{\"Response\":[{\"Category\":[{\"CategoryId\":\"firstCategory\",\"Attribute\":[{\"Issuer\":\"AIssue\",\"Value\":\"Apu\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#string\",\"AttributeId\":\"attrIdent1\"},{\"Issuer\":\"BIssue\",\"Value\":\"P10Y4M\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#yearMonthDuration\",\"AttributeId\":\"attrIdent2\"},{\"Issuer\":\"CIssue\",\"Value\":765.432,\"DataType\":\"http://www.w3.org/2001/XMLSchema#double\",\"AttributeId\":\"attrIdent3\"},{\"Issuer\":\"DIssue\",\"Value\":true,\"DataType\":\"http://www.w3.org/2001/XMLSchema#boolean\",\"AttributeId\":\"attrIdent4\"},{\"Issuer\":\"EIssue\",\"Value\":4567,\"DataType\":\"http://www.w3.org/2001/XMLSchema#integer\",\"AttributeId\":\"attrIdent5\"}]}],\"Decision\":\"Permit\"}]}";
+            ObjectMapper mapper = new ObjectMapper();
+            JsonNode tree = mapper.readTree(jsonResponse);
+            JsonNode treeExpected = mapper.readTree(expectedJson);
+            assertTrue(tree.equals(treeExpected));
+//            assertEquals("{\"Response\":[{\"Category\":[{\"CategoryId\":\"firstCategory\",\"Attribute\":[{\"Issuer\":\"AIssue\",\"Value\":\"Apu\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#string\",\"AttributeId\":\"attrIdent1\"},{\"Issuer\":\"BIssue\",\"Value\":\"P10Y4M\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#yearMonthDuration\",\"AttributeId\":\"attrIdent2\"},{\"Issuer\":\"CIssue\",\"Value\":765.432,\"DataType\":\"http://www.w3.org/2001/XMLSchema#double\",\"AttributeId\":\"attrIdent3\"},{\"Issuer\":\"DIssue\",\"Value\":true,\"DataType\":\"http://www.w3.org/2001/XMLSchema#boolean\",\"AttributeId\":\"attrIdent4\"},{\"Issuer\":\"EIssue\",\"Value\":4567,\"DataType\":\"http://www.w3.org/2001/XMLSchema#integer\",\"AttributeId\":\"attrIdent5\"}]}],\"Decision\":\"Permit\"}]}", jsonResponse);
         } catch (Exception e) {
             fail("operation failed, e="+e);
         }
@@ -1908,7 +2082,12 @@ public class ResponseTest {
         response.add(result);
         try {
             jsonResponse = JSONResponse.toString(response, false);
-            assertEquals("{\"Response\":[{\"Category\":[{\"CategoryId\":\"firstCategory\",\"Attribute\":[{\"Value\":\"Apu\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#string\",\"AttributeId\":\"attrIdent1\"}]}],\"Decision\":\"Permit\"}]}", jsonResponse);
+            String expectedJson = "{\"Response\":[{\"Category\":[{\"CategoryId\":\"firstCategory\",\"Attribute\":[{\"Value\":\"Apu\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#string\",\"AttributeId\":\"attrIdent1\"}]}],\"Decision\":\"Permit\"}]}";
+            ObjectMapper mapper = new ObjectMapper();
+            JsonNode tree = mapper.readTree(jsonResponse);
+            JsonNode treeExpected = mapper.readTree(expectedJson);
+            assertTrue(tree.equals(treeExpected));
+//            assertEquals("{\"Response\":[{\"Category\":[{\"CategoryId\":\"firstCategory\",\"Attribute\":[{\"Value\":\"Apu\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#string\",\"AttributeId\":\"attrIdent1\"}]}],\"Decision\":\"Permit\"}]}", jsonResponse);
         } catch (Exception e) {
             fail("operation failed, e="+e);
         }
@@ -1924,7 +2103,12 @@ public class ResponseTest {
         response.add(result);
         try {
             jsonResponse = JSONResponse.toString(response, false);
-            assertEquals("{\"Response\":[{\"Category\":[{\"CategoryId\":\"firstCategory\",\"Attribute\":[{\"Issuer\":\"AIssue\",\"Value\":\"Apu\",\"AttributeId\":\"attrIdent1\"}]}],\"Decision\":\"Permit\"}]}", jsonResponse);
+            String expectedJson = "{\"Response\":[{\"Category\":[{\"CategoryId\":\"firstCategory\",\"Attribute\":[{\"Issuer\":\"AIssue\",\"Value\":\"Apu\",\"AttributeId\":\"attrIdent1\"}]}],\"Decision\":\"Permit\"}]}";
+            ObjectMapper mapper = new ObjectMapper();
+            JsonNode tree = mapper.readTree(jsonResponse);
+            JsonNode treeExpected = mapper.readTree(expectedJson);
+            assertTrue(tree.equals(treeExpected));
+//            assertEquals("{\"Response\":[{\"Category\":[{\"CategoryId\":\"firstCategory\",\"Attribute\":[{\"Issuer\":\"AIssue\",\"Value\":\"Apu\",\"AttributeId\":\"attrIdent1\"}]}],\"Decision\":\"Permit\"}]}", jsonResponse);
         } catch (Exception e) {
             fail("operation failed, e="+e);
         }
@@ -1943,7 +2127,12 @@ public class ResponseTest {
         response.add(result);
         try {
             jsonResponse = JSONResponse.toString(response, false);
-            assertEquals("{\"Response\":[{\"Category\":[{\"CategoryId\":\"firstCategory\",\"Attribute\":[{\"Issuer\":\"AIssue\",\"Value\":\"Apu\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#string\",\"AttributeId\":\"attrIdent1\"},{\"Issuer\":\"BIssue\",\"Value\":\"Bart\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#string\",\"AttributeId\":\"attrIdent1\"},{\"Issuer\":\"CIssue\",\"Value\":\"Simpson\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#string\",\"AttributeId\":\"attrIdent1\"}]}],\"Decision\":\"Permit\"}]}", jsonResponse);
+            String expectedJson = "{\"Response\":[{\"Category\":[{\"CategoryId\":\"firstCategory\",\"Attribute\":[{\"Issuer\":\"AIssue\",\"Value\":\"Apu\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#string\",\"AttributeId\":\"attrIdent1\"},{\"Issuer\":\"BIssue\",\"Value\":\"Bart\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#string\",\"AttributeId\":\"attrIdent1\"},{\"Issuer\":\"CIssue\",\"Value\":\"Simpson\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#string\",\"AttributeId\":\"attrIdent1\"}]}],\"Decision\":\"Permit\"}]}";
+            ObjectMapper mapper = new ObjectMapper();
+            JsonNode tree = mapper.readTree(jsonResponse);
+            JsonNode treeExpected = mapper.readTree(expectedJson);
+            assertTrue(tree.equals(treeExpected));
+//            assertEquals("{\"Response\":[{\"Category\":[{\"CategoryId\":\"firstCategory\",\"Attribute\":[{\"Issuer\":\"AIssue\",\"Value\":\"Apu\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#string\",\"AttributeId\":\"attrIdent1\"},{\"Issuer\":\"BIssue\",\"Value\":\"Bart\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#string\",\"AttributeId\":\"attrIdent1\"},{\"Issuer\":\"CIssue\",\"Value\":\"Simpson\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#string\",\"AttributeId\":\"attrIdent1\"}]}],\"Decision\":\"Permit\"}]}", jsonResponse);
         } catch (Exception e) {
             fail("operation failed, e="+e);
         }
@@ -1962,7 +2151,12 @@ public class ResponseTest {
         response.add(result);
         try {
             jsonResponse = JSONResponse.toString(response, false);
-            assertEquals("{\"Response\":[{\"Category\":[{\"CategoryId\":\"firstCategory\",\"Attribute\":[{\"Issuer\":\"AIssue\",\"Value\":\"Apu\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#string\",\"AttributeId\":\"attrIdent1\"},{\"Issuer\":\"AIssue\",\"Value\":\"Bart\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#string\",\"AttributeId\":\"attrIdent1\"},{\"Issuer\":\"AIssue\",\"Value\":\"Simpson\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#string\",\"AttributeId\":\"attrIdent1\"}]}],\"Decision\":\"Permit\"}]}", jsonResponse);
+            String expectedJson = "{\"Response\":[{\"Category\":[{\"CategoryId\":\"firstCategory\",\"Attribute\":[{\"Issuer\":\"AIssue\",\"Value\":\"Apu\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#string\",\"AttributeId\":\"attrIdent1\"},{\"Issuer\":\"AIssue\",\"Value\":\"Bart\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#string\",\"AttributeId\":\"attrIdent1\"},{\"Issuer\":\"AIssue\",\"Value\":\"Simpson\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#string\",\"AttributeId\":\"attrIdent1\"}]}],\"Decision\":\"Permit\"}]}";
+            ObjectMapper mapper = new ObjectMapper();
+            JsonNode tree = mapper.readTree(jsonResponse);
+            JsonNode treeExpected = mapper.readTree(expectedJson);
+            assertTrue(tree.equals(treeExpected));
+//            assertEquals("{\"Response\":[{\"Category\":[{\"CategoryId\":\"firstCategory\",\"Attribute\":[{\"Issuer\":\"AIssue\",\"Value\":\"Apu\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#string\",\"AttributeId\":\"attrIdent1\"},{\"Issuer\":\"AIssue\",\"Value\":\"Bart\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#string\",\"AttributeId\":\"attrIdent1\"},{\"Issuer\":\"AIssue\",\"Value\":\"Simpson\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#string\",\"AttributeId\":\"attrIdent1\"}]}],\"Decision\":\"Permit\"}]}", jsonResponse);
         } catch (Exception e) {
             fail("operation failed, e="+e);
         }
@@ -1983,7 +2177,12 @@ public class ResponseTest {
         response.add(result);
         try {
             jsonResponse = JSONResponse.toString(response, false);
-            assertEquals("{\"Response\":[{\"Category\":[{\"CategoryId\":\"firstCategory\",\"Attribute\":[{\"Issuer\":\"AIssue\",\"Value\":\"Apu\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#string\",\"AttributeId\":\"attrIdent1\"},{\"Issuer\":\"AIssue\",\"Value\":\"P10Y4M\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#yearMonthDuration\",\"AttributeId\":\"attrIdent1\"},{\"Issuer\":\"AIssue\",\"Value\":765.432,\"DataType\":\"http://www.w3.org/2001/XMLSchema#double\",\"AttributeId\":\"attrIdent1\"},{\"Issuer\":\"AIssue\",\"Value\":true,\"DataType\":\"http://www.w3.org/2001/XMLSchema#boolean\",\"AttributeId\":\"attrIdent1\"},{\"Issuer\":\"AIssue\",\"Value\":4567,\"DataType\":\"http://www.w3.org/2001/XMLSchema#integer\",\"AttributeId\":\"attrIdent1\"},{\"Issuer\":\"AIssue\",\"Value\":4567,\"DataType\":\"http://www.w3.org/2001/XMLSchema#integer\",\"AttributeId\":\"attrIdent1\"}]}],\"Decision\":\"Permit\"}]}", jsonResponse);
+            String expectedJson = "{\"Response\":[{\"Category\":[{\"CategoryId\":\"firstCategory\",\"Attribute\":[{\"Issuer\":\"AIssue\",\"Value\":\"Apu\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#string\",\"AttributeId\":\"attrIdent1\"},{\"Issuer\":\"AIssue\",\"Value\":\"P10Y4M\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#yearMonthDuration\",\"AttributeId\":\"attrIdent1\"},{\"Issuer\":\"AIssue\",\"Value\":765.432,\"DataType\":\"http://www.w3.org/2001/XMLSchema#double\",\"AttributeId\":\"attrIdent1\"},{\"Issuer\":\"AIssue\",\"Value\":true,\"DataType\":\"http://www.w3.org/2001/XMLSchema#boolean\",\"AttributeId\":\"attrIdent1\"},{\"Issuer\":\"AIssue\",\"Value\":4567,\"DataType\":\"http://www.w3.org/2001/XMLSchema#integer\",\"AttributeId\":\"attrIdent1\"},{\"Issuer\":\"AIssue\",\"Value\":4567,\"DataType\":\"http://www.w3.org/2001/XMLSchema#integer\",\"AttributeId\":\"attrIdent1\"}]}],\"Decision\":\"Permit\"}]}";
+            ObjectMapper mapper = new ObjectMapper();
+            JsonNode tree = mapper.readTree(jsonResponse);
+            JsonNode treeExpected = mapper.readTree(expectedJson);
+            assertTrue(tree.equals(treeExpected));
+//            assertEquals("{\"Response\":[{\"Category\":[{\"CategoryId\":\"firstCategory\",\"Attribute\":[{\"Issuer\":\"AIssue\",\"Value\":\"Apu\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#string\",\"AttributeId\":\"attrIdent1\"},{\"Issuer\":\"AIssue\",\"Value\":\"P10Y4M\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#yearMonthDuration\",\"AttributeId\":\"attrIdent1\"},{\"Issuer\":\"AIssue\",\"Value\":765.432,\"DataType\":\"http://www.w3.org/2001/XMLSchema#double\",\"AttributeId\":\"attrIdent1\"},{\"Issuer\":\"AIssue\",\"Value\":true,\"DataType\":\"http://www.w3.org/2001/XMLSchema#boolean\",\"AttributeId\":\"attrIdent1\"},{\"Issuer\":\"AIssue\",\"Value\":4567,\"DataType\":\"http://www.w3.org/2001/XMLSchema#integer\",\"AttributeId\":\"attrIdent1\"},{\"Issuer\":\"AIssue\",\"Value\":4567,\"DataType\":\"http://www.w3.org/2001/XMLSchema#integer\",\"AttributeId\":\"attrIdent1\"}]}],\"Decision\":\"Permit\"}]}", jsonResponse);
         } catch (Exception e) {
             fail("operation failed, e="+e);
         }
@@ -2004,7 +2203,12 @@ public class ResponseTest {
         response.add(result);
         try {
             jsonResponse = JSONResponse.toString(response, false);
-            assertEquals("{\"Response\":[{\"Category\":[{\"CategoryId\":\"firstCategory\",\"Attribute\":[{\"Issuer\":\"AIssue\",\"Value\":\"Apu\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#string\",\"AttributeId\":\"attrIdent1\"},{\"Issuer\":\"BIssue\",\"Value\":\"P10Y4M\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#yearMonthDuration\",\"AttributeId\":\"attrIdent1\"},{\"Issuer\":\"CIssue\",\"Value\":765.432,\"DataType\":\"http://www.w3.org/2001/XMLSchema#double\",\"AttributeId\":\"attrIdent1\"},{\"Issuer\":\"DIssue\",\"Value\":true,\"DataType\":\"http://www.w3.org/2001/XMLSchema#boolean\",\"AttributeId\":\"attrIdent1\"},{\"Issuer\":\"EIssue\",\"Value\":4567,\"DataType\":\"http://www.w3.org/2001/XMLSchema#integer\",\"AttributeId\":\"attrIdent1\"},{\"Value\":4567,\"DataType\":\"http://www.w3.org/2001/XMLSchema#integer\",\"AttributeId\":\"attrIdent1\"}]}],\"Decision\":\"Permit\"}]}", jsonResponse);
+            String expectedJson = "{\"Response\":[{\"Category\":[{\"CategoryId\":\"firstCategory\",\"Attribute\":[{\"Issuer\":\"AIssue\",\"Value\":\"Apu\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#string\",\"AttributeId\":\"attrIdent1\"},{\"Issuer\":\"BIssue\",\"Value\":\"P10Y4M\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#yearMonthDuration\",\"AttributeId\":\"attrIdent1\"},{\"Issuer\":\"CIssue\",\"Value\":765.432,\"DataType\":\"http://www.w3.org/2001/XMLSchema#double\",\"AttributeId\":\"attrIdent1\"},{\"Issuer\":\"DIssue\",\"Value\":true,\"DataType\":\"http://www.w3.org/2001/XMLSchema#boolean\",\"AttributeId\":\"attrIdent1\"},{\"Issuer\":\"EIssue\",\"Value\":4567,\"DataType\":\"http://www.w3.org/2001/XMLSchema#integer\",\"AttributeId\":\"attrIdent1\"},{\"Value\":4567,\"DataType\":\"http://www.w3.org/2001/XMLSchema#integer\",\"AttributeId\":\"attrIdent1\"}]}],\"Decision\":\"Permit\"}]}";
+            ObjectMapper mapper = new ObjectMapper();
+            JsonNode tree = mapper.readTree(jsonResponse);
+            JsonNode treeExpected = mapper.readTree(expectedJson);
+            assertTrue(tree.equals(treeExpected));
+//            assertEquals("{\"Response\":[{\"Category\":[{\"CategoryId\":\"firstCategory\",\"Attribute\":[{\"Issuer\":\"AIssue\",\"Value\":\"Apu\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#string\",\"AttributeId\":\"attrIdent1\"},{\"Issuer\":\"BIssue\",\"Value\":\"P10Y4M\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#yearMonthDuration\",\"AttributeId\":\"attrIdent1\"},{\"Issuer\":\"CIssue\",\"Value\":765.432,\"DataType\":\"http://www.w3.org/2001/XMLSchema#double\",\"AttributeId\":\"attrIdent1\"},{\"Issuer\":\"DIssue\",\"Value\":true,\"DataType\":\"http://www.w3.org/2001/XMLSchema#boolean\",\"AttributeId\":\"attrIdent1\"},{\"Issuer\":\"EIssue\",\"Value\":4567,\"DataType\":\"http://www.w3.org/2001/XMLSchema#integer\",\"AttributeId\":\"attrIdent1\"},{\"Value\":4567,\"DataType\":\"http://www.w3.org/2001/XMLSchema#integer\",\"AttributeId\":\"attrIdent1\"}]}],\"Decision\":\"Permit\"}]}", jsonResponse);
         } catch (Exception e) {
             fail("operation failed, e="+e);
         }
@@ -2024,7 +2228,12 @@ public class ResponseTest {
         response.add(result);
         try {
             jsonResponse = JSONResponse.toString(response, false);
-            assertEquals("{\"Response\":[{\"Category\":[{\"CategoryId\":\"firstCategory\",\"Attribute\":[{\"Issuer\":\"AIssue\",\"Value\":\"Apu\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#string\",\"AttributeId\":\"attrIdent1\"},{\"Issuer\":\"BIssue\",\"Value\":\"AIssue\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#yearMonthDuration\",\"AttributeId\":\"attrIdent2\"},{\"Issuer\":\"AIssue\",\"Value\":765.432,\"DataType\":\"http://www.w3.org/2001/XMLSchema#double\",\"AttributeId\":\"attrIdent3\"},{\"Issuer\":\"AIssue\",\"Value\":true,\"DataType\":\"http://www.w3.org/2001/XMLSchema#boolean\",\"AttributeId\":\"attrIdent4\"},{\"Issuer\":\"AIssue\",\"Value\":4567,\"DataType\":\"http://www.w3.org/2001/XMLSchema#integer\",\"AttributeId\":\"attrIdent5\"}]}],\"Decision\":\"Permit\"}]}", jsonResponse);
+            String expectedJson = "{\"Response\":[{\"Category\":[{\"CategoryId\":\"firstCategory\",\"Attribute\":[{\"Issuer\":\"AIssue\",\"Value\":\"Apu\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#string\",\"AttributeId\":\"attrIdent1\"},{\"Issuer\":\"BIssue\",\"Value\":\"AIssue\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#yearMonthDuration\",\"AttributeId\":\"attrIdent2\"},{\"Issuer\":\"AIssue\",\"Value\":765.432,\"DataType\":\"http://www.w3.org/2001/XMLSchema#double\",\"AttributeId\":\"attrIdent3\"},{\"Issuer\":\"AIssue\",\"Value\":true,\"DataType\":\"http://www.w3.org/2001/XMLSchema#boolean\",\"AttributeId\":\"attrIdent4\"},{\"Issuer\":\"AIssue\",\"Value\":4567,\"DataType\":\"http://www.w3.org/2001/XMLSchema#integer\",\"AttributeId\":\"attrIdent5\"}]}],\"Decision\":\"Permit\"}]}";
+            ObjectMapper mapper = new ObjectMapper();
+            JsonNode tree = mapper.readTree(jsonResponse);
+            JsonNode treeExpected = mapper.readTree(expectedJson);
+            assertTrue(tree.equals(treeExpected));
+//            assertEquals("{\"Response\":[{\"Category\":[{\"CategoryId\":\"firstCategory\",\"Attribute\":[{\"Issuer\":\"AIssue\",\"Value\":\"Apu\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#string\",\"AttributeId\":\"attrIdent1\"},{\"Issuer\":\"BIssue\",\"Value\":\"AIssue\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#yearMonthDuration\",\"AttributeId\":\"attrIdent2\"},{\"Issuer\":\"AIssue\",\"Value\":765.432,\"DataType\":\"http://www.w3.org/2001/XMLSchema#double\",\"AttributeId\":\"attrIdent3\"},{\"Issuer\":\"AIssue\",\"Value\":true,\"DataType\":\"http://www.w3.org/2001/XMLSchema#boolean\",\"AttributeId\":\"attrIdent4\"},{\"Issuer\":\"AIssue\",\"Value\":4567,\"DataType\":\"http://www.w3.org/2001/XMLSchema#integer\",\"AttributeId\":\"attrIdent5\"}]}],\"Decision\":\"Permit\"}]}", jsonResponse);
         } catch (Exception e) {
             fail("operation failed, e="+e);
         }
@@ -2041,7 +2250,12 @@ public class ResponseTest {
         response.add(result);
         try {
             jsonResponse = JSONResponse.toString(response, false);
-            assertEquals("{\"Response\":[{\"Category\":[{\"CategoryId\":\"firstCategory\",\"Attribute\":[{\"Issuer\":\"AIssue\",\"Value\":{\"Namespaces\":[{\"Namespace\":\"referenceForMD\",\"Prefix\":\"md\"},{\"Namespace\":\"defaultURI\"}],\"XPathCategory\":\"xpathCategory\",\"XPath\":\"//md:record\"},\"DataType\":\"urn:oasis:names:tc:xacml:3.0:data-type:xpathExpression\",\"AttributeId\":\"attrIdent1\"}]}],\"Decision\":\"Permit\"}]}", jsonResponse);
+            String expectedJson = "{\"Response\":[{\"Category\":[{\"CategoryId\":\"firstCategory\",\"Attribute\":[{\"Issuer\":\"AIssue\",\"Value\":{\"Namespaces\":[{\"Namespace\":\"referenceForMD\",\"Prefix\":\"md\"},{\"Namespace\":\"defaultURI\"}],\"XPathCategory\":\"xpathCategory\",\"XPath\":\"//md:record\"},\"DataType\":\"urn:oasis:names:tc:xacml:3.0:data-type:xpathExpression\",\"AttributeId\":\"attrIdent1\"}]}],\"Decision\":\"Permit\"}]}";
+            ObjectMapper mapper = new ObjectMapper();
+            JsonNode tree = mapper.readTree(jsonResponse);
+            JsonNode treeExpected = mapper.readTree(expectedJson);
+            assertTrue(tree.equals(treeExpected));
+//            assertEquals("{\"Response\":[{\"Category\":[{\"CategoryId\":\"firstCategory\",\"Attribute\":[{\"Issuer\":\"AIssue\",\"Value\":{\"Namespaces\":[{\"Namespace\":\"referenceForMD\",\"Prefix\":\"md\"},{\"Namespace\":\"defaultURI\"}],\"XPathCategory\":\"xpathCategory\",\"XPath\":\"//md:record\"},\"DataType\":\"urn:oasis:names:tc:xacml:3.0:data-type:xpathExpression\",\"AttributeId\":\"attrIdent1\"}]}],\"Decision\":\"Permit\"}]}", jsonResponse);
         } catch (Exception e) {
             fail("operation failed, e="+e);
         }
@@ -2070,7 +2284,12 @@ public class ResponseTest {
         response.add(result);
         try {
             jsonResponse = JSONResponse.toString(response, false);
-            assertEquals("{\"Response\":[{\"Category\":[{\"CategoryId\":\"firstCategory\",\"Attribute\":[{\"Issuer\":\"AIssue\",\"Value\":\"Apu\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#string\",\"AttributeId\":\"attrIdent1\"},{\"Issuer\":\"CIssue\",\"Value\":765.432,\"DataType\":\"http://www.w3.org/2001/XMLSchema#double\",\"AttributeId\":\"attrIdent3\"},{\"Issuer\":\"DIssue\",\"Value\":true,\"DataType\":\"http://www.w3.org/2001/XMLSchema#boolean\",\"AttributeId\":\"attrIdent4\"},{\"Issuer\":\"EIssue\",\"Value\":4567,\"DataType\":\"http://www.w3.org/2001/XMLSchema#integer\",\"AttributeId\":\"attrIdent5\"},{\"Value\":4567,\"DataType\":\"http://www.w3.org/2001/XMLSchema#integer\",\"AttributeId\":\"attrNoIssuer\"}]},{\"CategoryId\":\"secondCategory\",\"Attribute\":[{\"Issuer\":\"AIssue2\",\"Value\":\"Apu2\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#string\",\"AttributeId\":\"attrIdent12\"},{\"Issuer\":\"CIssue2\",\"Value\":\"Der2\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#string\",\"AttributeId\":\"attrIdent32\"}]}],\"Decision\":\"Permit\"}]}", jsonResponse);
+            String expectedJson = "{\"Response\":[{\"Category\":[{\"CategoryId\":\"firstCategory\",\"Attribute\":[{\"Issuer\":\"AIssue\",\"Value\":\"Apu\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#string\",\"AttributeId\":\"attrIdent1\"},{\"Issuer\":\"CIssue\",\"Value\":765.432,\"DataType\":\"http://www.w3.org/2001/XMLSchema#double\",\"AttributeId\":\"attrIdent3\"},{\"Issuer\":\"DIssue\",\"Value\":true,\"DataType\":\"http://www.w3.org/2001/XMLSchema#boolean\",\"AttributeId\":\"attrIdent4\"},{\"Issuer\":\"EIssue\",\"Value\":4567,\"DataType\":\"http://www.w3.org/2001/XMLSchema#integer\",\"AttributeId\":\"attrIdent5\"},{\"Value\":4567,\"DataType\":\"http://www.w3.org/2001/XMLSchema#integer\",\"AttributeId\":\"attrNoIssuer\"}]},{\"CategoryId\":\"secondCategory\",\"Attribute\":[{\"Issuer\":\"AIssue2\",\"Value\":\"Apu2\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#string\",\"AttributeId\":\"attrIdent12\"},{\"Issuer\":\"CIssue2\",\"Value\":\"Der2\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#string\",\"AttributeId\":\"attrIdent32\"}]}],\"Decision\":\"Permit\"}]}";
+            ObjectMapper mapper = new ObjectMapper();
+            JsonNode tree = mapper.readTree(jsonResponse);
+            JsonNode treeExpected = mapper.readTree(expectedJson);
+            assertTrue(tree.equals(treeExpected));
+//            assertEquals("{\"Response\":[{\"Category\":[{\"CategoryId\":\"firstCategory\",\"Attribute\":[{\"Issuer\":\"AIssue\",\"Value\":\"Apu\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#string\",\"AttributeId\":\"attrIdent1\"},{\"Issuer\":\"CIssue\",\"Value\":765.432,\"DataType\":\"http://www.w3.org/2001/XMLSchema#double\",\"AttributeId\":\"attrIdent3\"},{\"Issuer\":\"DIssue\",\"Value\":true,\"DataType\":\"http://www.w3.org/2001/XMLSchema#boolean\",\"AttributeId\":\"attrIdent4\"},{\"Issuer\":\"EIssue\",\"Value\":4567,\"DataType\":\"http://www.w3.org/2001/XMLSchema#integer\",\"AttributeId\":\"attrIdent5\"},{\"Value\":4567,\"DataType\":\"http://www.w3.org/2001/XMLSchema#integer\",\"AttributeId\":\"attrNoIssuer\"}]},{\"CategoryId\":\"secondCategory\",\"Attribute\":[{\"Issuer\":\"AIssue2\",\"Value\":\"Apu2\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#string\",\"AttributeId\":\"attrIdent12\"},{\"Issuer\":\"CIssue2\",\"Value\":\"Der2\",\"DataType\":\"http://www.w3.org/2001/XMLSchema#string\",\"AttributeId\":\"attrIdent32\"}]}],\"Decision\":\"Permit\"}]}", jsonResponse);
         } catch (Exception e) {
             fail("operation failed, e="+e);
         }
@@ -2094,7 +2313,12 @@ public class ResponseTest {
         response.add(result);
         try {
             jsonResponse = JSONResponse.toString(response, false);
-            assertEquals("{\"Response\":[{\"Category\":[{\"CategoryId\":\"firstCategory\",\"Attribute\":[{\"Issuer\":\"AIssue\",\"Value\":[\"Apu\",\"Bart\",\"Homer\",\"Ned\"],\"DataType\":\"http://www.w3.org/2001/XMLSchema#string\",\"AttributeId\":\"attrIdent1\"}]}],\"Decision\":\"Permit\"}]}", jsonResponse);
+            String expectedJson = "{\"Response\":[{\"Category\":[{\"CategoryId\":\"firstCategory\",\"Attribute\":[{\"Issuer\":\"AIssue\",\"Value\":[\"Apu\",\"Bart\",\"Homer\",\"Ned\"],\"DataType\":\"http://www.w3.org/2001/XMLSchema#string\",\"AttributeId\":\"attrIdent1\"}]}],\"Decision\":\"Permit\"}]}";
+            ObjectMapper mapper = new ObjectMapper();
+            JsonNode tree = mapper.readTree(jsonResponse);
+            JsonNode treeExpected = mapper.readTree(expectedJson);
+            assertTrue(tree.equals(treeExpected));
+//            assertEquals("{\"Response\":[{\"Category\":[{\"CategoryId\":\"firstCategory\",\"Attribute\":[{\"Issuer\":\"AIssue\",\"Value\":[\"Apu\",\"Bart\",\"Homer\",\"Ned\"],\"DataType\":\"http://www.w3.org/2001/XMLSchema#string\",\"AttributeId\":\"attrIdent1\"}]}],\"Decision\":\"Permit\"}]}", jsonResponse);
         } catch (Exception e) {
             fail("operation failed, e="+e);
         }
@@ -2116,7 +2340,12 @@ public class ResponseTest {
         response.add(result);
         try {
             jsonResponse = JSONResponse.toString(response, false);
-            assertEquals("{\"Response\":[{\"Category\":[{\"CategoryId\":\"firstCategory\",\"Attribute\":[{\"Issuer\":\"AIssue\",\"Value\":[4567,765.432,4567],\"DataType\":\"http://www.w3.org/2001/XMLSchema#double\",\"AttributeId\":\"attrIdent1\"}]}],\"Decision\":\"Permit\"}]}", jsonResponse);
+            String expectedJson = "{\"Response\":[{\"Category\":[{\"CategoryId\":\"firstCategory\",\"Attribute\":[{\"Issuer\":\"AIssue\",\"Value\":[4567,765.432,4567],\"DataType\":\"http://www.w3.org/2001/XMLSchema#double\",\"AttributeId\":\"attrIdent1\"}]}],\"Decision\":\"Permit\"}]}";
+            ObjectMapper mapper = new ObjectMapper();
+            JsonNode tree = mapper.readTree(jsonResponse);
+            JsonNode treeExpected = mapper.readTree(expectedJson);
+            assertTrue(tree.equals(treeExpected));
+//            assertEquals("{\"Response\":[{\"Category\":[{\"CategoryId\":\"firstCategory\",\"Attribute\":[{\"Issuer\":\"AIssue\",\"Value\":[4567,765.432,4567],\"DataType\":\"http://www.w3.org/2001/XMLSchema#double\",\"AttributeId\":\"attrIdent1\"}]}],\"Decision\":\"Permit\"}]}", jsonResponse);
         } catch (Exception e) {
             fail("operation failed, e="+e);
         }
@@ -2182,7 +2411,12 @@ public class ResponseTest {
         response.add(result);
         try {
             jsonResponse = JSONResponse.toString(response, false);
-            assertEquals("{\"Response\":[{\"Decision\":\"Permit\",\"PolicyIdentifier\":{\"PolicyIdReference\":[{\"Id\":\"idRef1\",\"Version\":\"1.2.3\"},{\"Id\":\"idRef2_NoVersion\"}],\"PolicySetIdReference\":[{\"Id\":\"idSetRef1\",\"Version\":\"4.5.6.7.8.9.0\"},{\"Id\":\"idSetRef2_NoVersion\"}]}}]}", jsonResponse);
+            String expectedJson = "{\"Response\":[{\"Decision\":\"Permit\",\"PolicyIdentifier\":{\"PolicyIdReference\":[{\"Id\":\"idRef1\",\"Version\":\"1.2.3\"},{\"Id\":\"idRef2_NoVersion\"}],\"PolicySetIdReference\":[{\"Id\":\"idSetRef1\",\"Version\":\"4.5.6.7.8.9.0\"},{\"Id\":\"idSetRef2_NoVersion\"}]}}]}";
+            ObjectMapper mapper = new ObjectMapper();
+            JsonNode tree = mapper.readTree(jsonResponse);
+            JsonNode treeExpected = mapper.readTree(expectedJson);
+            assertTrue(tree.equals(treeExpected));
+//            assertEquals("{\"Response\":[{\"Decision\":\"Permit\",\"PolicyIdentifier\":{\"PolicyIdReference\":[{\"Id\":\"idRef1\",\"Version\":\"1.2.3\"},{\"Id\":\"idRef2_NoVersion\"}],\"PolicySetIdReference\":[{\"Id\":\"idSetRef1\",\"Version\":\"4.5.6.7.8.9.0\"},{\"Id\":\"idSetRef2_NoVersion\"}]}}]}", jsonResponse);
         } catch (Exception e) {
             fail("operation failed, e="+e);
         }
@@ -2233,7 +2467,12 @@ public class ResponseTest {
         response.add(result);
         try {
             jsonResponse = JSONResponse.toString(response, false);
-            assertEquals("{\"Response\":[{\"Decision\":\"Permit\",\"PolicyIdentifier\":{\"PolicyIdReference\":[{\"Id\":\"idRef1\",\"Version\":\"1.2.3\"}]}}]}", jsonResponse);
+            String expectedJson = "{\"Response\":[{\"Decision\":\"Permit\",\"PolicyIdentifier\":{\"PolicyIdReference\":[{\"Id\":\"idRef1\",\"Version\":\"1.2.3\"}]}}]}";
+            ObjectMapper mapper = new ObjectMapper();
+            JsonNode tree = mapper.readTree(jsonResponse);
+            JsonNode treeExpected = mapper.readTree(expectedJson);
+            assertTrue(tree.equals(treeExpected));
+//            assertEquals("{\"Response\":[{\"Decision\":\"Permit\",\"PolicyIdentifier\":{\"PolicyIdReference\":[{\"Id\":\"idRef1\",\"Version\":\"1.2.3\"}]}}]}", jsonResponse);
         } catch (Exception e) {
             fail("operation failed, e="+e);
         }
@@ -2253,7 +2492,12 @@ public class ResponseTest {
         response.add(result);
         try {
             jsonResponse = JSONResponse.toString(response, false);
-            assertEquals("{\"Response\":[{\"Decision\":\"Permit\",\"PolicyIdentifier\":{\"PolicySetIdReference\":[{\"Id\":\"idSetRef1\",\"Version\":\"4.5.6.7.8.9.0\"}]}}]}", jsonResponse);
+            String expectedJson = "{\"Response\":[{\"Decision\":\"Permit\",\"PolicyIdentifier\":{\"PolicySetIdReference\":[{\"Id\":\"idSetRef1\",\"Version\":\"4.5.6.7.8.9.0\"}]}}]}";
+            ObjectMapper mapper = new ObjectMapper();
+            JsonNode tree = mapper.readTree(jsonResponse);
+            JsonNode treeExpected = mapper.readTree(expectedJson);
+            assertTrue(tree.equals(treeExpected));
+//            assertEquals("{\"Response\":[{\"Decision\":\"Permit\",\"PolicyIdentifier\":{\"PolicySetIdReference\":[{\"Id\":\"idSetRef1\",\"Version\":\"4.5.6.7.8.9.0\"}]}}]}", jsonResponse);
         } catch (Exception e) {
             fail("operation failed, e="+e);
         }
@@ -2276,7 +2520,12 @@ public class ResponseTest {
         response.add(result);
         try {
             jsonResponse = JSONResponse.toString(response, false);
-            assertEquals("{\"Response\":[{\"Decision\":\"Permit\",\"PolicyIdentifier\":{\"PolicyIdReference\":[{\"Id\":\"idRef1\"},{\"Id\":\"idRef2_NoVersion\"}],\"PolicySetIdReference\":[{\"Id\":\"idSetRef1\"},{\"Id\":\"idSetRef2_NoVersion\"}]}}]}", jsonResponse);
+            String expectedJson = "{\"Response\":[{\"Decision\":\"Permit\",\"PolicyIdentifier\":{\"PolicyIdReference\":[{\"Id\":\"idRef1\"},{\"Id\":\"idRef2_NoVersion\"}],\"PolicySetIdReference\":[{\"Id\":\"idSetRef1\"},{\"Id\":\"idSetRef2_NoVersion\"}]}}]}";
+            ObjectMapper mapper = new ObjectMapper();
+            JsonNode tree = mapper.readTree(jsonResponse);
+            JsonNode treeExpected = mapper.readTree(expectedJson);
+            assertTrue(tree.equals(treeExpected));
+//            assertEquals("{\"Response\":[{\"Decision\":\"Permit\",\"PolicyIdentifier\":{\"PolicyIdReference\":[{\"Id\":\"idRef1\"},{\"Id\":\"idRef2_NoVersion\"}],\"PolicySetIdReference\":[{\"Id\":\"idSetRef1\"},{\"Id\":\"idSetRef2_NoVersion\"}]}}]}", jsonResponse);
         } catch (Exception e) {
             fail("operation failed, e="+e);
         }

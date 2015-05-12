@@ -28,26 +28,25 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacmlatt.pdp.std;
+package org.apache.openaz.xacml.pdp.std;
 
 import java.util.Properties;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-
-import com.att.research.xacml.api.Request;
-import com.att.research.xacml.api.pip.PIPFinder;
-import com.att.research.xacml.api.pip.PIPFinderFactory;
-import com.att.research.xacml.api.trace.TraceEngine;
-import com.att.research.xacml.api.trace.TraceEngineFactory;
-import com.att.research.xacmlatt.pdp.eval.EvaluationContext;
-import com.att.research.xacmlatt.pdp.eval.EvaluationContextFactory;
-import com.att.research.xacmlatt.pdp.policy.PolicyFinder;
-import com.att.research.xacmlatt.pdp.policy.PolicyFinderFactory;
+import org.apache.openaz.xacml.api.Request;
+import org.apache.openaz.xacml.api.pip.PIPFinder;
+import org.apache.openaz.xacml.api.pip.PIPFinderFactory;
+import org.apache.openaz.xacml.api.trace.TraceEngine;
+import org.apache.openaz.xacml.api.trace.TraceEngineFactory;
+import org.apache.openaz.xacml.pdp.eval.EvaluationContext;
+import org.apache.openaz.xacml.pdp.eval.EvaluationContextFactory;
+import org.apache.openaz.xacml.pdp.policy.PolicyFinder;
+import org.apache.openaz.xacml.pdp.policy.PolicyFinderFactory;
 
 /**
- * StdEvaluationContextFactory extends {@link com.att.research.xacmlatt.pdp.eval.EvaluationContextFactory} to implement
- * the <code>getEvaluationContext</code> method with a standard {@link com.att.research.xacmlatt.pdp.eval.EvaluationContext}.
+ * StdEvaluationContextFactory extends {@link org.apache.openaz.xacml.pdp.eval.EvaluationContextFactory} to implement
+ * the <code>getEvaluationContext</code> method with a standard {@link org.apache.openaz.xacml.pdp.eval.EvaluationContext}.
  *
  */
 public class StdEvaluationContextFactory extends EvaluationContextFactory {

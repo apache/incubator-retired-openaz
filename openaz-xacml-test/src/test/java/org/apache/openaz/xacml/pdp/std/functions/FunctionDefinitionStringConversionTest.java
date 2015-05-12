@@ -18,7 +18,7 @@
  *
  */
 
-package com.att.research.xacmlatt.pdp.std.functions;
+package org.apache.openaz.xacml.pdp.std.functions;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -35,26 +35,26 @@ import java.util.List;
 
 import javax.security.auth.x500.X500Principal;
 
+import org.apache.openaz.xacml.api.XACML3;
+import org.apache.openaz.xacml.pdp.policy.ExpressionResult;
+import org.apache.openaz.xacml.pdp.policy.FunctionArgument;
+import org.apache.openaz.xacml.pdp.policy.FunctionArgumentAttributeValue;
+import org.apache.openaz.xacml.pdp.std.StdFunctions;
+import org.apache.openaz.xacml.pdp.std.functions.FunctionDefinitionStringConversion;
+import org.apache.openaz.xacml.std.datatypes.DataTypes;
+import org.apache.openaz.xacml.std.datatypes.IPAddress;
+import org.apache.openaz.xacml.std.datatypes.IPv4Address;
+import org.apache.openaz.xacml.std.datatypes.IPv6Address;
+import org.apache.openaz.xacml.std.datatypes.ISO8601Date;
+import org.apache.openaz.xacml.std.datatypes.ISO8601DateTime;
+import org.apache.openaz.xacml.std.datatypes.ISO8601Time;
+import org.apache.openaz.xacml.std.datatypes.ISO8601TimeZone;
+import org.apache.openaz.xacml.std.datatypes.PortRange;
+import org.apache.openaz.xacml.std.datatypes.RFC2396DomainName;
+import org.apache.openaz.xacml.std.datatypes.RFC822Name;
+import org.apache.openaz.xacml.std.datatypes.XPathDayTimeDuration;
+import org.apache.openaz.xacml.std.datatypes.XPathYearMonthDuration;
 import org.junit.Test;
-
-import com.att.research.xacml.api.XACML3;
-import com.att.research.xacml.std.datatypes.DataTypes;
-import com.att.research.xacml.std.datatypes.IPAddress;
-import com.att.research.xacml.std.datatypes.IPv4Address;
-import com.att.research.xacml.std.datatypes.IPv6Address;
-import com.att.research.xacml.std.datatypes.ISO8601Date;
-import com.att.research.xacml.std.datatypes.ISO8601DateTime;
-import com.att.research.xacml.std.datatypes.ISO8601Time;
-import com.att.research.xacml.std.datatypes.ISO8601TimeZone;
-import com.att.research.xacml.std.datatypes.PortRange;
-import com.att.research.xacml.std.datatypes.RFC2396DomainName;
-import com.att.research.xacml.std.datatypes.RFC822Name;
-import com.att.research.xacml.std.datatypes.XPathDayTimeDuration;
-import com.att.research.xacml.std.datatypes.XPathYearMonthDuration;
-import com.att.research.xacmlatt.pdp.policy.ExpressionResult;
-import com.att.research.xacmlatt.pdp.policy.FunctionArgument;
-import com.att.research.xacmlatt.pdp.policy.FunctionArgumentAttributeValue;
-import com.att.research.xacmlatt.pdp.std.StdFunctions;
 
 /**
  * Tests for converting objects to/from Strings.

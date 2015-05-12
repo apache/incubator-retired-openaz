@@ -28,10 +28,10 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacmlatt.pdp.policy;
+package org.apache.openaz.xacml.pdp.policy;
 
-import com.att.research.xacml.api.StatusCode;
-import com.att.research.xacml.std.StdStatusCode;
+import org.apache.openaz.xacml.api.StatusCode;
+import org.apache.openaz.xacml.std.StdStatusCode;
 
 /**
  * PolicyComponent is the base class for all pieces of a XACML Policy or PolicySet that could potentially have errors associated
@@ -43,7 +43,7 @@ abstract class PolicyComponent {
     private String		statusMessage;
 
     /**
-     * Creates a new <code>PolicyComponent</code> with the given {@link com.att.research.xacml.api.StatusCode} and
+     * Creates a new <code>PolicyComponent</code> with the given {@link org.apache.openaz.xacml.api.StatusCode} and
      * <code>String</code> detailed message.  If the <code>StatusCode</code> is null, a default OK status code is used.
      *
      * @param statusCodeIn the <code>StatusCode</code> for the new <code>PolicyComponent</code>

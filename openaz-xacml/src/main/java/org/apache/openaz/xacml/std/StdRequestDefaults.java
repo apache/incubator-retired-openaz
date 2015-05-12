@@ -28,16 +28,16 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacml.std;
+package org.apache.openaz.xacml.std;
 
 import java.net.URI;
 
-import com.att.research.xacml.api.RequestDefaults;
-import com.att.research.xacml.api.XACML;
-import com.att.research.xacml.util.ObjUtil;
+import org.apache.openaz.xacml.api.RequestDefaults;
+import org.apache.openaz.xacml.api.XACML;
+import org.apache.openaz.xacml.util.ObjUtil;
 
 /**
- * Immutable implementation of the {@link com.att.research.xacml.api.RequestDefaults} interface for the XACML RequestDefaults element.
+ * Immutable implementation of the {@link org.apache.openaz.xacml.api.RequestDefaults} interface for the XACML RequestDefaults element.
  *
  */
 public class StdRequestDefaults implements RequestDefaults {

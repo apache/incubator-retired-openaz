@@ -29,9 +29,9 @@
  *                     All Rights Reserved
  */
 
-package com.att.research.xacml.api;
+package org.apache.openaz.xacml.api;
 
-import com.att.research.xacml.std.IdentifierImpl;
+import org.apache.openaz.xacml.std.IdentifierImpl;
 
 /**
  * XACML defines a number of constants useful in processing XACML documents.

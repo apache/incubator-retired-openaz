@@ -28,30 +28,30 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacmlatt.pdp.policy;
+package org.apache.openaz.xacml.pdp.policy;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import com.att.research.xacml.api.AttributeValue;
-import com.att.research.xacml.api.DataTypeException;
-import com.att.research.xacml.api.Identifier;
-import com.att.research.xacml.api.StatusCode;
-import com.att.research.xacml.api.XACML;
-import com.att.research.xacml.std.StdStatus;
-import com.att.research.xacml.std.StdStatusCode;
-import com.att.research.xacml.std.datatypes.DataTypes;
-import com.att.research.xacml.util.FactoryException;
-import com.att.research.xacmlatt.pdp.eval.EvaluationContext;
-import com.att.research.xacmlatt.pdp.eval.EvaluationException;
-import com.att.research.xacmlatt.pdp.eval.MatchResult;
-import com.att.research.xacmlatt.pdp.eval.Matchable;
-import com.att.research.xacmlatt.pdp.policy.expressions.AttributeRetrievalBase;
+import org.apache.openaz.xacml.api.AttributeValue;
+import org.apache.openaz.xacml.api.DataTypeException;
+import org.apache.openaz.xacml.api.Identifier;
+import org.apache.openaz.xacml.api.StatusCode;
+import org.apache.openaz.xacml.api.XACML;
+import org.apache.openaz.xacml.pdp.eval.EvaluationContext;
+import org.apache.openaz.xacml.pdp.eval.EvaluationException;
+import org.apache.openaz.xacml.pdp.eval.MatchResult;
+import org.apache.openaz.xacml.pdp.eval.Matchable;
+import org.apache.openaz.xacml.pdp.policy.expressions.AttributeRetrievalBase;
+import org.apache.openaz.xacml.std.StdStatus;
+import org.apache.openaz.xacml.std.StdStatusCode;
+import org.apache.openaz.xacml.std.datatypes.DataTypes;
+import org.apache.openaz.xacml.util.FactoryException;
 
 /**
- * Match extends {@link com.att.research.xacmlatt.pdp.policy.PolicyComponent} and implements the
- * {@link com.att.research.xacmlatt.pdp.eval.Matchable} interface to represent a XACML Match element.
+ * Match extends {@link org.apache.openaz.xacml.pdp.policy.PolicyComponent} and implements the
+ * {@link org.apache.openaz.xacml.pdp.eval.Matchable} interface to represent a XACML Match element.
  *
  */
 public class Match extends PolicyComponent implements Matchable {

@@ -28,17 +28,17 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacmlatt.pdp.std;
+package org.apache.openaz.xacml.pdp.std;
 
-import com.att.research.xacml.api.Status;
-import com.att.research.xacml.std.StdStatus;
-import com.att.research.xacmlatt.pdp.policy.PolicyDef;
-import com.att.research.xacmlatt.pdp.policy.PolicyFinderResult;
+import org.apache.openaz.xacml.api.Status;
+import org.apache.openaz.xacml.pdp.policy.PolicyDef;
+import org.apache.openaz.xacml.pdp.policy.PolicyFinderResult;
+import org.apache.openaz.xacml.std.StdStatus;
 
 /**
- * StdPolicyFinderResult implements the {@link com.att.research.xacmlatt.pdp.policy.PolicyFinderResult} interface.
+ * StdPolicyFinderResult implements the {@link org.apache.openaz.xacml.pdp.policy.PolicyFinderResult} interface.
  *
- * @param <T> the java class extending {@link com.att.research.xacmlatt.pdp.policy.PolicyDef} held by the <code>StdPolicyFinderResult</code>
+ * @param <T> the java class extending {@link org.apache.openaz.xacml.pdp.policy.PolicyDef} held by the <code>StdPolicyFinderResult</code>
  */
 public class StdPolicyFinderResult<T extends PolicyDef> implements PolicyFinderResult<T> {
     private Status status;

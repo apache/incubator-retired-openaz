@@ -28,7 +28,7 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacml.api;
+package org.apache.openaz.xacml.api;
 
 import java.util.Collection;
 
@@ -39,24 +39,24 @@ import java.util.Collection;
  */
 public interface Result {
     /**
-     * Gets the {@link com.att.research.xacml.api.Decision} associated with this <code>Result</code>.
+     * Gets the {@link org.apache.openaz.xacml.api.Decision} associated with this <code>Result</code>.
      *
      * @return the <code>Decision</code> associated with this <code>Result</code>.
      */
     public Decision getDecision();
 
     /**
-     * Gets the {@link com.att.research.xacml.api.Status} associated with this <code>Result</code>.
+     * Gets the {@link org.apache.openaz.xacml.api.Status} associated with this <code>Result</code>.
      *
      * @return the <code>Status</code> associated with this <code>Result</code>
      */
     public Status getStatus();
 
     /**
-     * Gets the <code>Collection</code> of {@link com.att.research.xacml.api.Obligation}s int this <code>Result</code>.  If there
+     * Gets the <code>Collection</code> of {@link org.apache.openaz.xacml.api.Obligation}s int this <code>Result</code>.  If there
      * are no <code>Obligation</code>s this method must return an empty <code>Collection</code>.
      *
-     * @return the <code>Collection</code> of {@link com.att.research.xacml.api.Obligation}s <code>Result</code>.
+     * @return the <code>Collection</code> of {@link org.apache.openaz.xacml.api.Obligation}s <code>Result</code>.
      */
     public Collection<Obligation> getObligations();
 
@@ -69,7 +69,7 @@ public interface Result {
     public Collection<Advice> getAssociatedAdvice();
 
     /**
-     * Gets the <code>Collection</code> of {@link com.att.research.xacml.api.AttributeCategory} objects in this <code>Result</code>.  If there
+     * Gets the <code>Collection</code> of {@link org.apache.openaz.xacml.api.AttributeCategory} objects in this <code>Result</code>.  If there
      * are no <code>AttributeCategory</code> objects this method must return an empty <code>Collection</code>.
      *
      * @return the <code>Collection</code> of <code>AttributeCategory</code> objects in this <code>Result</code>.
@@ -77,7 +77,7 @@ public interface Result {
     public Collection<AttributeCategory> getAttributes();
 
     /**
-     * Gets the <code>Collection</code> of {@link com.att.research.xacml.api.IdReference} objects referring to XACML 3.0 Policies
+     * Gets the <code>Collection</code> of {@link org.apache.openaz.xacml.api.IdReference} objects referring to XACML 3.0 Policies
      * that are in this <code>Result</code>.
      *
      * @return the <code>Collection</code> of Policy <code>IdReference</code>s in this <code>Result</code>.
@@ -85,7 +85,7 @@ public interface Result {
     public Collection<IdReference> getPolicyIdentifiers();
 
     /**
-     * Gets the <code>Collection</code> of {@link com.att.research.xacml.api.IdReference} objects referring to XACML 3.0 PolicySets
+     * Gets the <code>Collection</code> of {@link org.apache.openaz.xacml.api.IdReference} objects referring to XACML 3.0 PolicySets
      * that are in this <code>Result</code>.
      *
      * @return the <code>Collection</code> of PolicySet <code>IdReference</code>s in this <code>Result</code>.

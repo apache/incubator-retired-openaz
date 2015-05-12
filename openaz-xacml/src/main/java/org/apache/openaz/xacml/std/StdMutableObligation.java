@@ -28,21 +28,21 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacml.std;
+package org.apache.openaz.xacml.std;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
-import com.att.research.xacml.api.AttributeAssignment;
-import com.att.research.xacml.api.Identifier;
-import com.att.research.xacml.api.Obligation;
-import com.att.research.xacml.util.ListUtil;
-import com.att.research.xacml.util.ObjUtil;
+import org.apache.openaz.xacml.api.AttributeAssignment;
+import org.apache.openaz.xacml.api.Identifier;
+import org.apache.openaz.xacml.api.Obligation;
+import org.apache.openaz.xacml.util.ListUtil;
+import org.apache.openaz.xacml.util.ObjUtil;
 
 /**
- * Mutable implementation of the {@link com.att.research.xacml.api.Obligation} interface for XACML Obligation elements.
+ * Mutable implementation of the {@link org.apache.openaz.xacml.api.Obligation} interface for XACML Obligation elements.
  *
  */
 public class StdMutableObligation implements Obligation {
@@ -59,8 +59,8 @@ public class StdMutableObligation implements Obligation {
     }
 
     /**
-     * Creates a new <code>StdMutableObligation</code> with the given {@link com.att.research.xacml.api.Identifier} representing the XACML ObligationId
-     * and the given <code>Collection</code> of {@link com.att.research.xacml.api.AttributeAssignment}s representing the XACML AttributeAssignments for
+     * Creates a new <code>StdMutableObligation</code> with the given {@link org.apache.openaz.xacml.api.Identifier} representing the XACML ObligationId
+     * and the given <code>Collection</code> of {@link org.apache.openaz.xacml.api.AttributeAssignment}s representing the XACML AttributeAssignments for
      * the Obligation.
      *
      * @param idIn the <code>Identifier</code> representing the XACML ObligationId
@@ -77,7 +77,7 @@ public class StdMutableObligation implements Obligation {
     }
 
     /**
-     * Creates a new <code>StdMutableObligation</code> with the given {@link com.att.research.xacml.api.Identifier} representing the XACML ObligationId.
+     * Creates a new <code>StdMutableObligation</code> with the given {@link org.apache.openaz.xacml.api.Identifier} representing the XACML ObligationId.
      *
      * @param idIn the <code>Identifier</code> representing the XACML ObligationId
      */
@@ -91,7 +91,7 @@ public class StdMutableObligation implements Obligation {
     }
 
     /**
-     * Sets the {@link com.att.research.xacml.api.Identifier} representing the XACML ObligationId for the Obligation represented by this
+     * Sets the {@link org.apache.openaz.xacml.api.Identifier} representing the XACML ObligationId for the Obligation represented by this
      * <code>StdMutableObligation</code>.
      *
      * @param identifier the <code>Identifier</code> representing the XACML ObligationId for the Obligation represented by this
@@ -119,7 +119,7 @@ public class StdMutableObligation implements Obligation {
     }
 
     /**
-     * Adds a copy of the given <code>Collection</code> of {@link com.att.research.xacml.api.AttributeAssignment}s to this
+     * Adds a copy of the given <code>Collection</code> of {@link org.apache.openaz.xacml.api.AttributeAssignment}s to this
      * <code>StdMutableObligation</code>.
      *
      * @param attributeAssignmentsIn the <code>Collection</code> of <code>AttributeAssignment</code>s to add to this <code>StdMutableObligation</code>.
@@ -130,7 +130,7 @@ public class StdMutableObligation implements Obligation {
     }
 
     /**
-     * Sets the {@link com.att.research.xacml.api.AttributeAssignment}s in this <code>StdMutableObligation</code> to a copy of the
+     * Sets the {@link org.apache.openaz.xacml.api.AttributeAssignment}s in this <code>StdMutableObligation</code> to a copy of the
      * given <code>Collection</code>.
      *
      * @param attributeAssignmentsIn the <code>Collection</code> of <code>AttributeAssignment</code>s to set in this <code>StdMutableObligation</code>.

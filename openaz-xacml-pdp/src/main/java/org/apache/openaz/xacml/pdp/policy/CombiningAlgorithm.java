@@ -28,15 +28,15 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacmlatt.pdp.policy;
+package org.apache.openaz.xacml.pdp.policy;
 
 import java.util.List;
 
-import com.att.research.xacml.api.Identifier;
-import com.att.research.xacmlatt.pdp.eval.Evaluatable;
-import com.att.research.xacmlatt.pdp.eval.EvaluationContext;
-import com.att.research.xacmlatt.pdp.eval.EvaluationException;
-import com.att.research.xacmlatt.pdp.eval.EvaluationResult;
+import org.apache.openaz.xacml.api.Identifier;
+import org.apache.openaz.xacml.pdp.eval.Evaluatable;
+import org.apache.openaz.xacml.pdp.eval.EvaluationContext;
+import org.apache.openaz.xacml.pdp.eval.EvaluationException;
+import org.apache.openaz.xacml.pdp.eval.EvaluationResult;
 
 /**
  * CombiningAlgorithm is the interface for objects that implement XACML combining algorithms for rules, policies, and policy sets.
@@ -47,7 +47,7 @@ import com.att.research.xacmlatt.pdp.eval.EvaluationResult;
  */
 public interface CombiningAlgorithm<T extends Evaluatable> {
     /**
-     * Gets the {@link com.att.research.xacml.api.Identifier} for this <code>CombiningAlgorithm</code>.
+     * Gets the {@link org.apache.openaz.xacml.api.Identifier} for this <code>CombiningAlgorithm</code>.
      *
      * @return the <code>Identifier</code> for this <code>CombiningAlgorithm</code>
      */
@@ -61,7 +61,7 @@ public interface CombiningAlgorithm<T extends Evaluatable> {
      * @param elements the <code>List</code> of <code>CombiningElement</code>s to evaluate
      * @param combinerParameters the <code>List</code> of <code>CombinerParameter</code>s to apply to the combining algorithm
      * @return the combined <code>EvaluationResult</code>
-     * @throws com.att.research.xacmlatt.pdp.eval.EvaluationException if there is an error in the <code>evaluate</code> method of any of the <code>CombiningElement</code>s
+     * @throws org.apache.openaz.xacml.pdp.eval.EvaluationException if there is an error in the <code>evaluate</code> method of any of the <code>CombiningElement</code>s
      */
     public EvaluationResult combine(EvaluationContext evaluationContext, List<CombiningElement<T>> elements, List<CombinerParameter> combinerParameters) throws EvaluationException;
 }

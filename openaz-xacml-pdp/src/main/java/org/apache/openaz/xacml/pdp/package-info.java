@@ -29,7 +29,7 @@
  *                     All Rights Reserved
  */
 
-package com.att.research.xacmlatt.pdp;
+package org.apache.openaz.xacml.pdp;
 
 /**
  * com.att.research.xacmlatt.pdp contains a reference implementation of the {@link com.att.research.xacml.pdp.PDPEngine} interface

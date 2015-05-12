@@ -28,15 +28,15 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacml.std.trace;
+package org.apache.openaz.xacml.std.trace;
 
 import java.util.Date;
 
-import com.att.research.xacml.api.trace.TraceEvent;
-import com.att.research.xacml.api.trace.Traceable;
+import org.apache.openaz.xacml.api.trace.TraceEvent;
+import org.apache.openaz.xacml.api.trace.Traceable;
 
 /**
- * Immutable implementation of the {@link com.att.research.xacml.api.trace.TraceEvent} interface.
+ * Immutable implementation of the {@link org.apache.openaz.xacml.api.trace.TraceEvent} interface.
  *
  *
  * @param <T>

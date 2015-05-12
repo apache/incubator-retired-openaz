@@ -28,16 +28,16 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacml.std;
+package org.apache.openaz.xacml.std;
 
 import java.text.ParseException;
 
-import com.att.research.xacml.api.Version;
-import com.att.research.xacml.api.VersionMatch;
-import com.att.research.xacml.util.ObjUtil;
+import org.apache.openaz.xacml.api.Version;
+import org.apache.openaz.xacml.api.VersionMatch;
+import org.apache.openaz.xacml.util.ObjUtil;
 
 /**
- * StdVersionMatch implements {@link com.att.research.xacml.api.VersionMatch} as an array of integers.
+ * StdVersionMatch implements {@link org.apache.openaz.xacml.api.VersionMatch} as an array of integers.
  *
  */
 public class StdVersionMatch implements VersionMatch {

@@ -28,7 +28,7 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacmlatt.pdp.std;
+package org.apache.openaz.xacml.pdp.std;
 
 import java.io.File;
 import java.io.IOException;
@@ -44,30 +44,30 @@ import java.util.UUID;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.openaz.xacml.pdp.policy.CombiningAlgorithm;
+import org.apache.openaz.xacml.pdp.policy.CombiningAlgorithmFactory;
+import org.apache.openaz.xacml.pdp.policy.Policy;
+import org.apache.openaz.xacml.pdp.policy.PolicyDef;
+import org.apache.openaz.xacml.pdp.policy.PolicyFinder;
+import org.apache.openaz.xacml.pdp.policy.PolicyFinderFactory;
+import org.apache.openaz.xacml.pdp.policy.PolicySet;
+import org.apache.openaz.xacml.pdp.policy.PolicySetChild;
+import org.apache.openaz.xacml.pdp.policy.Target;
+import org.apache.openaz.xacml.pdp.policy.dom.DOMPolicyDef;
+import org.apache.openaz.xacml.pdp.util.OpenAZPDPProperties;
+import org.apache.openaz.xacml.std.IdentifierImpl;
+import org.apache.openaz.xacml.std.StdStatusCode;
+import org.apache.openaz.xacml.std.StdVersion;
+import org.apache.openaz.xacml.std.dom.DOMStructureException;
+import org.apache.openaz.xacml.util.FactoryException;
+import org.apache.openaz.xacml.util.XACMLProperties;
 
-import com.att.research.xacml.std.IdentifierImpl;
-import com.att.research.xacml.std.StdStatusCode;
-import com.att.research.xacml.std.StdVersion;
-import com.att.research.xacml.std.dom.DOMStructureException;
-import com.att.research.xacml.util.FactoryException;
-import com.att.research.xacml.util.XACMLProperties;
-import com.att.research.xacmlatt.pdp.policy.CombiningAlgorithm;
-import com.att.research.xacmlatt.pdp.policy.CombiningAlgorithmFactory;
-import com.att.research.xacmlatt.pdp.policy.Policy;
-import com.att.research.xacmlatt.pdp.policy.PolicyDef;
-import com.att.research.xacmlatt.pdp.policy.PolicyFinder;
-import com.att.research.xacmlatt.pdp.policy.PolicyFinderFactory;
-import com.att.research.xacmlatt.pdp.policy.PolicySet;
-import com.att.research.xacmlatt.pdp.policy.PolicySetChild;
-import com.att.research.xacmlatt.pdp.policy.Target;
-import com.att.research.xacmlatt.pdp.policy.dom.DOMPolicyDef;
-import com.att.research.xacmlatt.pdp.util.ATTPDPProperties;
 import com.google.common.base.Splitter;
 
 /**
- * StdPolicyFinderFactory extends {@link com.att.research.xacmlatt.pdp.policy.PolicyFinderFactory} with the
+ * StdPolicyFinderFactory extends {@link org.apache.openaz.xacml.pdp.policy.PolicyFinderFactory} with the
  * <code>getPolicyFinder</code> method to get a single instance of the {@link StdPolicyFinder}.  The
- * root {@link com.att.research.xacmlatt.pdp.policy.PolicyDef} is loaded from a file whose name is specified as a system property or
+ * root {@link org.apache.openaz.xacml.pdp.policy.PolicyDef} is loaded from a file whose name is specified as a system property or
  * in the $java.home/lib/xacml.properties property set.
  *
  */
@@ -176,7 +176,7 @@ public class StdPolicyFinderFactory extends PolicyFinderFactory {
             //
             // Check for property that combines root policies into one policyset
             //
-            String combiningAlgorithm = properties.getProperty(ATTPDPProperties.PROP_POLICYFINDERFACTORY_COMBINEROOTPOLICIES);
+            String combiningAlgorithm = properties.getProperty(OpenAZPDPProperties.PROP_POLICYFINDERFACTORY_COMBINEROOTPOLICIES);
             if (combiningAlgorithm != null) {
                 try {
                     logger.info("Combining root policies with " + combiningAlgorithm);

@@ -28,21 +28,24 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacml.rest;
+package org.apache.openaz.xacml.rest;
 
 
-import com.att.research.xacml.api.pap.*;
-import com.att.research.xacml.std.pap.StdPDP;
-import com.att.research.xacml.std.pap.StdPDPGroup;
-import com.att.research.xacml.std.pap.StdPDPItemSetChangeNotifier.StdItemSetChangeListener;
-import com.att.research.xacml.std.pap.StdPDPStatus;
-import com.att.research.xacml.util.FactoryException;
-import com.att.research.xacml.util.XACMLProperties;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.base.Splitter;
+
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.openaz.xacml.api.pap.*;
+import org.apache.openaz.xacml.rest.XACMLRest;
+import org.apache.openaz.xacml.rest.XACMLRestProperties;
+import org.apache.openaz.xacml.std.pap.StdPDP;
+import org.apache.openaz.xacml.std.pap.StdPDPGroup;
+import org.apache.openaz.xacml.std.pap.StdPDPStatus;
+import org.apache.openaz.xacml.std.pap.StdPDPItemSetChangeNotifier.StdItemSetChangeListener;
+import org.apache.openaz.xacml.util.FactoryException;
+import org.apache.openaz.xacml.util.XACMLProperties;
 
 import javax.servlet.Servlet;
 import javax.servlet.ServletConfig;
@@ -52,6 +55,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;

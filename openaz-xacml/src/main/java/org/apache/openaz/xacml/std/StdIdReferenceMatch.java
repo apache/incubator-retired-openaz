@@ -28,15 +28,15 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacml.std;
+package org.apache.openaz.xacml.std;
 
-import com.att.research.xacml.api.IdReferenceMatch;
-import com.att.research.xacml.api.Identifier;
-import com.att.research.xacml.api.VersionMatch;
-import com.att.research.xacml.util.ObjUtil;
+import org.apache.openaz.xacml.api.IdReferenceMatch;
+import org.apache.openaz.xacml.api.Identifier;
+import org.apache.openaz.xacml.api.VersionMatch;
+import org.apache.openaz.xacml.util.ObjUtil;
 
 /**
- * Immutable implementation of the {@link com.att.research.xacml.api.IdReferenceMatch} interface.
+ * Immutable implementation of the {@link org.apache.openaz.xacml.api.IdReferenceMatch} interface.
  *
  */
 public class StdIdReferenceMatch implements IdReferenceMatch {
@@ -46,8 +46,8 @@ public class StdIdReferenceMatch implements IdReferenceMatch {
     private VersionMatch	latestVersion;
 
     /**
-     * Creates a new <code>StdIdReferenceMatch</code> with the given {@link com.att.research.xacml.api.Identifier} representing the PolicyId or PolicySetId
-     * to match, and the given set of {@link com.att.research.xacml.api.VersionMatch} objects specifying which XACML Versions are acceptable.
+     * Creates a new <code>StdIdReferenceMatch</code> with the given {@link org.apache.openaz.xacml.api.Identifier} representing the PolicyId or PolicySetId
+     * to match, and the given set of {@link org.apache.openaz.xacml.api.VersionMatch} objects specifying which XACML Versions are acceptable.
      *
      * @param idIn the <code>Identifier</code> representing the PolicyId or PolicySetId.
      * @param versionIn the <code>VersionMatch</code> for an exact match against the current Version of a Policy or PolicySet (may be null)

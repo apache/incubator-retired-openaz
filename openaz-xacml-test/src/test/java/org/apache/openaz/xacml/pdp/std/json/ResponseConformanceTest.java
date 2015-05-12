@@ -28,7 +28,7 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacmlatt.pdp.std.json;
+package org.apache.openaz.xacml.pdp.std.json;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
@@ -38,18 +38,17 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import org.apache.openaz.xacml.api.Advice;
+import org.apache.openaz.xacml.api.Attribute;
+import org.apache.openaz.xacml.api.AttributeCategory;
+import org.apache.openaz.xacml.api.IdReference;
+import org.apache.openaz.xacml.api.Obligation;
+import org.apache.openaz.xacml.api.Response;
+import org.apache.openaz.xacml.api.Result;
+import org.apache.openaz.xacml.std.dom.DOMResponse;
+import org.apache.openaz.xacml.std.json.JSONResponse;
+import org.apache.openaz.xacml.util.ListUtil;
 import org.junit.Test;
-
-import com.att.research.xacml.api.Advice;
-import com.att.research.xacml.api.Attribute;
-import com.att.research.xacml.api.AttributeCategory;
-import com.att.research.xacml.api.IdReference;
-import com.att.research.xacml.api.Obligation;
-import com.att.research.xacml.api.Response;
-import com.att.research.xacml.api.Result;
-import com.att.research.xacml.std.dom.DOMResponse;
-import com.att.research.xacml.std.json.JSONResponse;
-import com.att.research.xacml.util.ListUtil;
 /**
  * Test JSON Response convert to object - Conformance tests
  *

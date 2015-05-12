@@ -18,7 +18,7 @@
  *
  */
 
-package com.att.research.xacmlatt.pdp.std.functions;
+package org.apache.openaz.xacml.pdp.std.functions;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -31,17 +31,17 @@ import java.util.List;
 
 import javax.security.auth.x500.X500Principal;
 
+import org.apache.openaz.xacml.api.XACML3;
+import org.apache.openaz.xacml.pdp.policy.ExpressionResult;
+import org.apache.openaz.xacml.pdp.policy.FunctionArgument;
+import org.apache.openaz.xacml.pdp.policy.FunctionArgumentAttributeValue;
+import org.apache.openaz.xacml.pdp.std.StdFunctions;
+import org.apache.openaz.xacml.pdp.std.functions.FunctionDefinitionRegexpMatch;
+import org.apache.openaz.xacml.std.datatypes.DataTypes;
+import org.apache.openaz.xacml.std.datatypes.IPAddress;
+import org.apache.openaz.xacml.std.datatypes.RFC2396DomainName;
+import org.apache.openaz.xacml.std.datatypes.RFC822Name;
 import org.junit.Test;
-
-import com.att.research.xacml.api.XACML3;
-import com.att.research.xacml.std.datatypes.DataTypes;
-import com.att.research.xacml.std.datatypes.IPAddress;
-import com.att.research.xacml.std.datatypes.RFC2396DomainName;
-import com.att.research.xacml.std.datatypes.RFC822Name;
-import com.att.research.xacmlatt.pdp.policy.ExpressionResult;
-import com.att.research.xacmlatt.pdp.policy.FunctionArgument;
-import com.att.research.xacmlatt.pdp.policy.FunctionArgumentAttributeValue;
-import com.att.research.xacmlatt.pdp.std.StdFunctions;
 
 /**
  * Test of PDP Functions (See XACML core spec section A.3)

@@ -28,7 +28,7 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacmlatt.pdp.test.custom;
+package org.apache.openaz.xacml.pdp.test.custom;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -57,22 +57,21 @@ import org.apache.commons.cli.Option;
 import org.apache.commons.cli.ParseException;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-
-import com.att.research.xacml.api.AttributeValue;
-import com.att.research.xacml.api.DataType;
-import com.att.research.xacml.api.DataTypeException;
-import com.att.research.xacml.api.Request;
-import com.att.research.xacml.api.RequestAttributes;
-import com.att.research.xacml.api.XACML3;
-import com.att.research.xacml.api.pep.PEPException;
-import com.att.research.xacml.std.IdentifierImpl;
-import com.att.research.xacml.std.StdMutableAttribute;
-import com.att.research.xacml.std.StdMutableRequest;
-import com.att.research.xacml.std.StdMutableRequestAttributes;
-import com.att.research.xacml.std.dom.DOMStructureException;
-import com.att.research.xacml.std.json.JSONStructureException;
-import com.att.research.xacml.util.FactoryException;
-import com.att.research.xacmlatt.pdp.test.TestBase;
+import org.apache.openaz.xacml.api.AttributeValue;
+import org.apache.openaz.xacml.api.DataType;
+import org.apache.openaz.xacml.api.DataTypeException;
+import org.apache.openaz.xacml.api.Request;
+import org.apache.openaz.xacml.api.RequestAttributes;
+import org.apache.openaz.xacml.api.XACML3;
+import org.apache.openaz.xacml.api.pep.PEPException;
+import org.apache.openaz.xacml.pdp.test.TestBase;
+import org.apache.openaz.xacml.std.IdentifierImpl;
+import org.apache.openaz.xacml.std.StdMutableAttribute;
+import org.apache.openaz.xacml.std.StdMutableRequest;
+import org.apache.openaz.xacml.std.StdMutableRequestAttributes;
+import org.apache.openaz.xacml.std.dom.DOMStructureException;
+import org.apache.openaz.xacml.std.json.JSONStructureException;
+import org.apache.openaz.xacml.util.FactoryException;
 
 /**
  * TestCustom is an application that tests the extensibility and configurability of the AT&T XACML API.

@@ -28,12 +28,12 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacml.api.pip;
+package org.apache.openaz.xacml.api.pip;
 
 import java.util.Collection;
 
 /**
- * PIPEngine is the interface that objects implement that do look-up of {@link com.att.research.xacml.api.Attribute}s.
+ * PIPEngine is the interface that objects implement that do look-up of {@link org.apache.openaz.xacml.api.Attribute}s.
  *
  */
 public interface PIPEngine {
@@ -66,8 +66,8 @@ public interface PIPEngine {
     public Collection<PIPRequest>	attributesProvided();
 
     /**
-     * Retrieves <code>Attribute</code>s that match the given {@link com.att.research.xacml.api.pip.PIPRequest}.
-     * The {@link com.att.research.xacml.api.pip.PIPResponse} may contain multiple <code>Attribute</code>s and they
+     * Retrieves <code>Attribute</code>s that match the given {@link org.apache.openaz.xacml.api.pip.PIPRequest}.
+     * The {@link org.apache.openaz.xacml.api.pip.PIPResponse} may contain multiple <code>Attribute</code>s and they
      * do not need to match the <code>PIPRequest</code>.  In this way, a <code>PIPEngine</code> may compute multiple
      * related <code>Attribute</code>s at once.
      *

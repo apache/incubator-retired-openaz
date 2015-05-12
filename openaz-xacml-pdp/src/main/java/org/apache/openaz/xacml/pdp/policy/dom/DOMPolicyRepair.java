@@ -28,7 +28,7 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacmlatt.pdp.policy.dom;
+package org.apache.openaz.xacml.pdp.policy.dom;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -39,12 +39,11 @@ import java.io.OutputStream;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
+import org.apache.openaz.xacml.api.XACML3;
+import org.apache.openaz.xacml.std.dom.DOMUtil;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
-
-import com.att.research.xacml.api.XACML3;
-import com.att.research.xacml.std.dom.DOMUtil;
 
 /**
  * DOMPolicyRepair is an application for reading a XACML Policy or PolicySet document and ensuring it has the required attributes and then writing

@@ -28,7 +28,7 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacml.std.datatypes;
+package org.apache.openaz.xacml.std.datatypes;
 
 /**
  * ParseUtils provides a number of static methods that are useful in parsing <code>String</code> objects into

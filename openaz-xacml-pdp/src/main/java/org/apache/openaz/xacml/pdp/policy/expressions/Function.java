@@ -28,25 +28,25 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacmlatt.pdp.policy.expressions;
+package org.apache.openaz.xacml.pdp.policy.expressions;
 
 import java.net.URI;
 
-import com.att.research.xacml.api.AttributeValue;
-import com.att.research.xacml.api.DataTypeException;
-import com.att.research.xacml.api.Identifier;
-import com.att.research.xacml.api.StatusCode;
-import com.att.research.xacml.std.StdStatus;
-import com.att.research.xacml.std.StdStatusCode;
-import com.att.research.xacml.std.datatypes.DataTypes;
-import com.att.research.xacmlatt.pdp.eval.EvaluationContext;
-import com.att.research.xacmlatt.pdp.eval.EvaluationException;
-import com.att.research.xacmlatt.pdp.policy.Expression;
-import com.att.research.xacmlatt.pdp.policy.ExpressionResult;
-import com.att.research.xacmlatt.pdp.policy.PolicyDefaults;
+import org.apache.openaz.xacml.api.AttributeValue;
+import org.apache.openaz.xacml.api.DataTypeException;
+import org.apache.openaz.xacml.api.Identifier;
+import org.apache.openaz.xacml.api.StatusCode;
+import org.apache.openaz.xacml.pdp.eval.EvaluationContext;
+import org.apache.openaz.xacml.pdp.eval.EvaluationException;
+import org.apache.openaz.xacml.pdp.policy.Expression;
+import org.apache.openaz.xacml.pdp.policy.ExpressionResult;
+import org.apache.openaz.xacml.pdp.policy.PolicyDefaults;
+import org.apache.openaz.xacml.std.StdStatus;
+import org.apache.openaz.xacml.std.StdStatusCode;
+import org.apache.openaz.xacml.std.datatypes.DataTypes;
 
 /**
- * Function extends {@link com.att.research.xacmlatt.pdp.policy.Expression} to implement the XACML Function element.
+ * Function extends {@link org.apache.openaz.xacml.pdp.policy.Expression} to implement the XACML Function element.
  *
  */
 public class Function extends Expression {

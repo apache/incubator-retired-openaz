@@ -28,21 +28,20 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacmlatt.pdp.policy;
+package org.apache.openaz.xacml.pdp.policy;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
+import org.apache.openaz.xacml.api.Attribute;
+import org.apache.openaz.xacml.api.StatusCode;
+import org.apache.openaz.xacml.std.StdStatusCode;
 import org.w3c.dom.Node;
 
-import com.att.research.xacml.api.Attribute;
-import com.att.research.xacml.api.StatusCode;
-import com.att.research.xacml.std.StdStatusCode;
-
 /**
- * PolicyIssuer extends {@link com.att.research.xacmlatt.pdp.policy.PolicyComponent} to represent the XACML 3.0
+ * PolicyIssuer extends {@link org.apache.openaz.xacml.pdp.policy.PolicyComponent} to represent the XACML 3.0
  * PolicyIssuer element in Policies and PolicySets.
  *
  */

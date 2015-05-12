@@ -28,23 +28,23 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacmlatt.pdp.std;
+package org.apache.openaz.xacml.pdp.std;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.att.research.xacml.api.Identifier;
-import com.att.research.xacmlatt.pdp.policy.CombiningAlgorithm;
-import com.att.research.xacmlatt.pdp.policy.CombiningAlgorithmFactory;
-import com.att.research.xacmlatt.pdp.policy.PolicySetChild;
-import com.att.research.xacmlatt.pdp.policy.Rule;
+import org.apache.openaz.xacml.api.Identifier;
+import org.apache.openaz.xacml.pdp.policy.CombiningAlgorithm;
+import org.apache.openaz.xacml.pdp.policy.CombiningAlgorithmFactory;
+import org.apache.openaz.xacml.pdp.policy.PolicySetChild;
+import org.apache.openaz.xacml.pdp.policy.Rule;
 
 /**
- * StdCombiningAlgorithmFactory extends {@link com.att.research.xacmlatt.pdp.policy.CombiningAlgorithmFactory} to implement
- * a mapping from {@link com.att.research.xacml.api.Identifier}s to
- * the standard {@link com.att.research.xacmlatt.pdp.policy.CombiningAlgorithm} implementations.
+ * StdCombiningAlgorithmFactory extends {@link org.apache.openaz.xacml.pdp.policy.CombiningAlgorithmFactory} to implement
+ * a mapping from {@link org.apache.openaz.xacml.api.Identifier}s to
+ * the standard {@link org.apache.openaz.xacml.pdp.policy.CombiningAlgorithm} implementations.
  *
  */
 public class StdCombiningAlgorithmFactory extends CombiningAlgorithmFactory {

@@ -33,4 +33,4 @@
  * Interfaces for objects that implement policy evaluation tracing.
  *
  */
-package com.att.research.xacml.api.trace;
+package org.apache.openaz.xacml.api.trace;

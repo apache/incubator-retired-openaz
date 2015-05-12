@@ -28,16 +28,17 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacml.std.pap;
+package org.apache.openaz.xacml.std.pap;
 
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.att.research.xacml.api.pap.PDP;
-import com.att.research.xacml.api.pap.PDPGroupStatus;
-import com.att.research.xacml.api.pap.PDPPIPConfig;
-import com.att.research.xacml.api.pap.PDPPolicy;
+import org.apache.openaz.xacml.api.pap.PDP;
+import org.apache.openaz.xacml.api.pap.PDPGroupStatus;
+import org.apache.openaz.xacml.api.pap.PDPPIPConfig;
+import org.apache.openaz.xacml.api.pap.PDPPolicy;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class StdPDPGroupStatus implements PDPGroupStatus {

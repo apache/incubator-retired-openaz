@@ -33,4 +33,4 @@
  *
  *
  */
-package com.att.research.xacml.std.pap;
+package org.apache.openaz.xacml.std.pap;

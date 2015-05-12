@@ -29,7 +29,7 @@
  *                     All Rights Reserved
  */
 
-package com.att.research.xacml.api;
+package org.apache.openaz.xacml.api;
 
 import java.util.Collection;
 import java.util.Iterator;
@@ -41,7 +41,7 @@ import java.util.Iterator;
 public interface Request {
 
     /**
-     * Gets the {@link com.att.research.xacml.api.RequestDefaults} representing the XACML RequestDefaults for this <code>Request</code>.
+     * Gets the {@link org.apache.openaz.xacml.api.RequestDefaults} representing the XACML RequestDefaults for this <code>Request</code>.
      *
      * @return the <code>RequestDefaults</code> representing the XACML RequestDefaults for this <code>Request</code>.
      */
@@ -63,7 +63,7 @@ public interface Request {
     public boolean getCombinedDecision();
 
     /**
-     * Gets the <code>Collection</code> of {@link com.att.research.xacml.api.RequestAttributes} representing XACML Attributes elements for
+     * Gets the <code>Collection</code> of {@link org.apache.openaz.xacml.api.RequestAttributes} representing XACML Attributes elements for
      * this <code>Request</code>.  The <code>Collection</code> should not be modified.  Implementations are free to use unmodifiable lists
      * to enforce this.
      *
@@ -73,16 +73,16 @@ public interface Request {
     public Collection<RequestAttributes> getRequestAttributes();
 
     /**
-     * Gets the <code>Collection</code> of {@link com.att.research.xacml.api.RequestAttributes} representing XACML Attributes elements for
-     * this <code>Request</code> that contain {@link com.att.research.xacml.api.Attribute}s where <code>getIncludeInResults</code> is true.
+     * Gets the <code>Collection</code> of {@link org.apache.openaz.xacml.api.RequestAttributes} representing XACML Attributes elements for
+     * this <code>Request</code> that contain {@link org.apache.openaz.xacml.api.Attribute}s where <code>getIncludeInResults</code> is true.
      *
      * @return a <code>Collection</code> of <code>RequestAttributes</code> containing one or more <code>Attribute</code>s to include in results.
      */
     public Collection<AttributeCategory> getRequestAttributesIncludedInResult();
 
     /**
-     * Gets an <code>Iterator</code> over all of the {@link com.att.research.xacml.api.RequestAttributes} objects
-     * found in this <code>Request</code> with the given {@link com.att.research.xacml.api.Identifier} representing a XACML Category.
+     * Gets an <code>Iterator</code> over all of the {@link org.apache.openaz.xacml.api.RequestAttributes} objects
+     * found in this <code>Request</code> with the given {@link org.apache.openaz.xacml.api.Identifier} representing a XACML Category.
      *
      * @param category the <code>Identifier</code> representing the XACML Category of the <code>ReqestAttributes</code> to retrieve.
      * @return an <code>Iterator</code> over all of the <code>RequestAttributes</code> whose Category matches the given <code>Identifier</code>
@@ -98,7 +98,7 @@ public interface Request {
     public RequestAttributes getRequestAttributesByXmlId(String xmlId);
 
     /**
-     * Gets the <code>Collection</code> of {@link com.att.research.xacml.api.RequestReference}s representing XACML MultiRequest elements in this <code>Request</code>.
+     * Gets the <code>Collection</code> of {@link org.apache.openaz.xacml.api.RequestReference}s representing XACML MultiRequest elements in this <code>Request</code>.
      *
      * @return the <code>Collection</code> of <code>RequestAttributes</code> representing XACML MultiRequest elements in this <code>Request</code>.
      */

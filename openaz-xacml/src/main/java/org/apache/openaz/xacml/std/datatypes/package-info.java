@@ -29,7 +29,7 @@
  *                     All Rights Reserved
  */
 
-package com.att.research.xacml.std.datatypes;
+package org.apache.openaz.xacml.std.datatypes;
 
 /**
  * com.att.research.xacml.std.datatypes contains implementations of the {@link com.att.research.xacml.api.DataType} interface

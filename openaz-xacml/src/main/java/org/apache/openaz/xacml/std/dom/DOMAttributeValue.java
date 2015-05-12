@@ -28,26 +28,25 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacml.std.dom;
+package org.apache.openaz.xacml.std.dom;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.openaz.xacml.api.AttributeValue;
+import org.apache.openaz.xacml.api.DataType;
+import org.apache.openaz.xacml.api.DataTypeException;
+import org.apache.openaz.xacml.api.DataTypeFactory;
+import org.apache.openaz.xacml.api.Identifier;
+import org.apache.openaz.xacml.api.XACML;
+import org.apache.openaz.xacml.api.XACML3;
+import org.apache.openaz.xacml.std.StdAttributeValue;
+import org.apache.openaz.xacml.std.datatypes.DataTypes;
+import org.apache.openaz.xacml.util.FactoryException;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
-import com.att.research.xacml.api.AttributeValue;
-import com.att.research.xacml.api.DataType;
-import com.att.research.xacml.api.DataTypeException;
-import com.att.research.xacml.api.DataTypeFactory;
-import com.att.research.xacml.api.Identifier;
-import com.att.research.xacml.api.XACML;
-import com.att.research.xacml.api.XACML3;
-import com.att.research.xacml.std.StdAttributeValue;
-import com.att.research.xacml.std.datatypes.DataTypes;
-import com.att.research.xacml.util.FactoryException;
-
 /**
- * DOMAttributeValue extends {@link com.att.research.xacml.std.StdAttributeValue} with methods for creation from DOM elements.
+ * DOMAttributeValue extends {@link org.apache.openaz.xacml.std.StdAttributeValue} with methods for creation from DOM elements.
  *
  *
  * @param <T> the Java type implementing the value for the Attribute

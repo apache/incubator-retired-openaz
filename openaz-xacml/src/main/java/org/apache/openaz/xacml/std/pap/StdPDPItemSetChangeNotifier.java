@@ -28,13 +28,13 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacml.std.pap;
+package org.apache.openaz.xacml.std.pap;
 
 import java.util.Collection;
 import java.util.LinkedList;
 
-import com.att.research.xacml.api.pap.PDP;
-import com.att.research.xacml.api.pap.PDPGroup;
+import org.apache.openaz.xacml.api.pap.PDP;
+import org.apache.openaz.xacml.api.pap.PDPGroup;
 
 public class StdPDPItemSetChangeNotifier {
 

@@ -28,7 +28,7 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacmlatt.pdp.std;
+package org.apache.openaz.xacml.pdp.std;
 
 import java.io.InputStream;
 import java.net.MalformedURLException;
@@ -44,25 +44,24 @@ import java.util.Properties;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-
-import com.att.research.xacml.api.IdReferenceMatch;
-import com.att.research.xacml.api.Identifier;
-import com.att.research.xacml.api.Version;
-import com.att.research.xacml.std.StdStatus;
-import com.att.research.xacml.std.StdStatusCode;
-import com.att.research.xacmlatt.pdp.eval.EvaluationContext;
-import com.att.research.xacmlatt.pdp.eval.EvaluationException;
-import com.att.research.xacmlatt.pdp.eval.MatchResult;
-import com.att.research.xacmlatt.pdp.policy.Policy;
-import com.att.research.xacmlatt.pdp.policy.PolicyDef;
-import com.att.research.xacmlatt.pdp.policy.PolicyFinder;
-import com.att.research.xacmlatt.pdp.policy.PolicyFinderResult;
-import com.att.research.xacmlatt.pdp.policy.PolicySet;
-import com.att.research.xacmlatt.pdp.policy.PolicySetChild;
-import com.att.research.xacmlatt.pdp.policy.dom.DOMPolicyDef;
+import org.apache.openaz.xacml.api.IdReferenceMatch;
+import org.apache.openaz.xacml.api.Identifier;
+import org.apache.openaz.xacml.api.Version;
+import org.apache.openaz.xacml.pdp.eval.EvaluationContext;
+import org.apache.openaz.xacml.pdp.eval.EvaluationException;
+import org.apache.openaz.xacml.pdp.eval.MatchResult;
+import org.apache.openaz.xacml.pdp.policy.Policy;
+import org.apache.openaz.xacml.pdp.policy.PolicyDef;
+import org.apache.openaz.xacml.pdp.policy.PolicyFinder;
+import org.apache.openaz.xacml.pdp.policy.PolicyFinderResult;
+import org.apache.openaz.xacml.pdp.policy.PolicySet;
+import org.apache.openaz.xacml.pdp.policy.PolicySetChild;
+import org.apache.openaz.xacml.pdp.policy.dom.DOMPolicyDef;
+import org.apache.openaz.xacml.std.StdStatus;
+import org.apache.openaz.xacml.std.StdStatusCode;
 
 /**
- * StdPolicyFinder implements the {@link com.att.research.xacmlatt.pdp.policy.PolicyFinder} interface to look up policies
+ * StdPolicyFinder implements the {@link org.apache.openaz.xacml.pdp.policy.PolicyFinder} interface to look up policies
  * by their internal ID or an externally visible ID.
  *
  */
@@ -189,7 +188,7 @@ public class StdPolicyFinder implements PolicyFinder {
     }
 
     /**
-     * Looks up the given {@link com.att.research.xacml.api.Identifier} in the map first.  If not found, and the <code>Identifier</code> contains
+     * Looks up the given {@link org.apache.openaz.xacml.api.Identifier} in the map first.  If not found, and the <code>Identifier</code> contains
      * a URL, then attempts to retrieve the document from the URL and caches it.
      *
      * @param idReferenceMatch the <code>IdReferenceMatch</code> to look up
@@ -232,7 +231,7 @@ public class StdPolicyFinder implements PolicyFinder {
     }
 
     /**
-     * Looks up the given {@link com.att.research.xacml.api.Identifier} in the map first.  If not found, and the <code>Identifier</code> contains
+     * Looks up the given {@link org.apache.openaz.xacml.api.Identifier} in the map first.  If not found, and the <code>Identifier</code> contains
      * a URL, then attempts to retrieve the document from the URL and caches it.
      *
      * @param idReferenceMatch the <code>IdReferenceMatch</code> to look up

@@ -28,24 +28,23 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacmlatt.pdp.policy.dom;
+package org.apache.openaz.xacml.pdp.policy.dom;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.openaz.xacml.api.Identifier;
+import org.apache.openaz.xacml.api.XACML3;
+import org.apache.openaz.xacml.pdp.policy.AttributeAssignmentExpression;
+import org.apache.openaz.xacml.pdp.policy.Policy;
+import org.apache.openaz.xacml.std.StdStatusCode;
+import org.apache.openaz.xacml.std.dom.DOMProperties;
+import org.apache.openaz.xacml.std.dom.DOMStructureException;
+import org.apache.openaz.xacml.std.dom.DOMUtil;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
-import com.att.research.xacml.api.Identifier;
-import com.att.research.xacml.api.XACML3;
-import com.att.research.xacml.std.StdStatusCode;
-import com.att.research.xacml.std.dom.DOMProperties;
-import com.att.research.xacml.std.dom.DOMStructureException;
-import com.att.research.xacml.std.dom.DOMUtil;
-import com.att.research.xacmlatt.pdp.policy.AttributeAssignmentExpression;
-import com.att.research.xacmlatt.pdp.policy.Policy;
-
 /**
- * DOMAttributeAssignmentExpression extends {@link com.att.research.xacmlatt.pdp.policy.AttributeAssignmentExpression} with
+ * DOMAttributeAssignmentExpression extends {@link org.apache.openaz.xacml.pdp.policy.AttributeAssignmentExpression} with
  * methods for creation from {@link org.w3c.dom.Node}s.
  *
  */

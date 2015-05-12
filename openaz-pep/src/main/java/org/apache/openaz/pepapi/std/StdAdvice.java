@@ -18,10 +18,10 @@
  *
  */
 
-package org.openliberty.openaz.pepapi.std;
+package org.apache.openaz.pepapi.std;
 
-import com.att.research.xacml.api.AttributeAssignment;
-import org.openliberty.openaz.pepapi.Advice;
+import org.apache.openaz.pepapi.Advice;
+import org.apache.openaz.xacml.api.AttributeAssignment;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -31,9 +31,9 @@ import java.util.Map;
 
 final class StdAdvice implements Advice {
 
-    private com.att.research.xacml.api.Advice wrappedAdvice;
+    private org.apache.openaz.xacml.api.Advice wrappedAdvice;
 
-    StdAdvice(com.att.research.xacml.api.Advice advice) {
+    StdAdvice(org.apache.openaz.xacml.api.Advice advice) {
         this.wrappedAdvice = advice;
     }
 

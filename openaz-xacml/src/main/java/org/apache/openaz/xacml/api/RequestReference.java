@@ -28,7 +28,7 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacml.api;
+package org.apache.openaz.xacml.api;
 
 import java.util.Collection;
 
@@ -39,7 +39,7 @@ import java.util.Collection;
  */
 public interface RequestReference {
     /**
-     * Gets the <code>Collection</code> of {@link com.att.research.xacml.api.RequestAttributesReference}s contained
+     * Gets the <code>Collection</code> of {@link org.apache.openaz.xacml.api.RequestAttributesReference}s contained
      * in this <code>RequestReference</code>.  If there are no <code>RequestAttributesReference}s this method must return an empty <code>Collection</code>.
      *
      * @return the <code>Collection</code> of <code>RequestAttributesReference</code>s contained in this <code>RequestReference</code>.

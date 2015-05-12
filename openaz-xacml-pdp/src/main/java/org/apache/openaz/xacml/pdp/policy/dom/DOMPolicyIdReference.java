@@ -28,19 +28,18 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacmlatt.pdp.policy.dom;
+package org.apache.openaz.xacml.pdp.policy.dom;
 
+import org.apache.openaz.xacml.pdp.policy.PolicyIdReference;
+import org.apache.openaz.xacml.pdp.policy.PolicySet;
+import org.apache.openaz.xacml.std.StdStatusCode;
+import org.apache.openaz.xacml.std.dom.DOMIdReferenceMatch;
+import org.apache.openaz.xacml.std.dom.DOMProperties;
+import org.apache.openaz.xacml.std.dom.DOMStructureException;
 import org.w3c.dom.Node;
 
-import com.att.research.xacml.std.StdStatusCode;
-import com.att.research.xacml.std.dom.DOMIdReferenceMatch;
-import com.att.research.xacml.std.dom.DOMProperties;
-import com.att.research.xacml.std.dom.DOMStructureException;
-import com.att.research.xacmlatt.pdp.policy.PolicyIdReference;
-import com.att.research.xacmlatt.pdp.policy.PolicySet;
-
 /**
- * DOMPolicyIdReference extends {@link com.att.research.xacmlatt.pdp.policy.PolicyIdReference} with methods for creation
+ * DOMPolicyIdReference extends {@link org.apache.openaz.xacml.pdp.policy.PolicyIdReference} with methods for creation
  * from DOM {@link org.w3c.dom.Node}s.
  *
  */

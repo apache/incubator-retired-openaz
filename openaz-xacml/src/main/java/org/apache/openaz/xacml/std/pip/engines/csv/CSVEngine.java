@@ -28,7 +28,7 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacml.std.pip.engines.csv;
+package org.apache.openaz.xacml.std.pip.engines.csv;
 
 import java.io.File;
 import java.io.FileReader;
@@ -43,25 +43,25 @@ import java.util.Set;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.openaz.xacml.api.Attribute;
+import org.apache.openaz.xacml.api.AttributeValue;
+import org.apache.openaz.xacml.api.DataType;
+import org.apache.openaz.xacml.api.DataTypeException;
+import org.apache.openaz.xacml.api.DataTypeFactory;
+import org.apache.openaz.xacml.api.pip.PIPException;
+import org.apache.openaz.xacml.api.pip.PIPFinder;
+import org.apache.openaz.xacml.api.pip.PIPRequest;
+import org.apache.openaz.xacml.api.pip.PIPResponse;
+import org.apache.openaz.xacml.std.StdStatus;
+import org.apache.openaz.xacml.std.StdStatusCode;
+import org.apache.openaz.xacml.std.pip.StdMutablePIPResponse;
+import org.apache.openaz.xacml.std.pip.StdPIPResponse;
+import org.apache.openaz.xacml.std.pip.engines.StdConfigurableEngine;
+import org.apache.openaz.xacml.util.AttributeUtils;
+import org.apache.openaz.xacml.util.FactoryException;
 
 import au.com.bytecode.opencsv.CSVReader;
 
-import com.att.research.xacml.api.Attribute;
-import com.att.research.xacml.api.AttributeValue;
-import com.att.research.xacml.api.DataType;
-import com.att.research.xacml.api.DataTypeException;
-import com.att.research.xacml.api.DataTypeFactory;
-import com.att.research.xacml.api.pip.PIPException;
-import com.att.research.xacml.api.pip.PIPFinder;
-import com.att.research.xacml.api.pip.PIPRequest;
-import com.att.research.xacml.api.pip.PIPResponse;
-import com.att.research.xacml.std.StdStatus;
-import com.att.research.xacml.std.StdStatusCode;
-import com.att.research.xacml.std.pip.StdMutablePIPResponse;
-import com.att.research.xacml.std.pip.StdPIPResponse;
-import com.att.research.xacml.std.pip.engines.StdConfigurableEngine;
-import com.att.research.xacml.util.AttributeUtils;
-import com.att.research.xacml.util.FactoryException;
 import com.google.common.base.Splitter;
 
 public class CSVEngine extends StdConfigurableEngine {
@@ -124,7 +124,7 @@ public class CSVEngine extends StdConfigurableEngine {
      *
      * @param id
      * @param properties
-     * @throws com.att.research.xacml.api.pip.PIPException
+     * @throws org.apache.openaz.xacml.api.pip.PIPException
      */
     private void readCSVFileConfiguration(String id, Properties properties) throws PIPException {
 
@@ -241,12 +241,12 @@ public class CSVEngine extends StdConfigurableEngine {
     }
 
     /**
-     * Creates a new {@link com.att.research.xacml.std.pip.engines.csv.CSVResolver} by looking up the "classname"
+     * Creates a new {@link org.apache.openaz.xacml.std.pip.engines.csv.CSVResolver} by looking up the "classname"
      * property for the given <code>String</code> resolver ID and then calling its <code>configure</code> method.
      *
      * @param resolverId the <code>String</code> identifier of the resolver to configure
      * @param properties the <code>Properties</code> to search for the "classname" and any resolver-specific properties
-     * @throws com.att.research.xacml.api.pip.PIPException if there is an error creating the <code>CSVResolver</code>.
+     * @throws org.apache.openaz.xacml.api.pip.PIPException if there is an error creating the <code>CSVResolver</code>.
      */
     protected void createResolver(String resolverId, Properties properties) throws PIPException {
         String propPrefix	= resolverId + ".";

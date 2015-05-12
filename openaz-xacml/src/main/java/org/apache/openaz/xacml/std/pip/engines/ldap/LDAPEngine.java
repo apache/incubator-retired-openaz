@@ -28,7 +28,7 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacml.std.pip.engines.ldap;
+package org.apache.openaz.xacml.std.pip.engines.ldap;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -48,20 +48,20 @@ import javax.naming.directory.SearchResult;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.openaz.xacml.api.Attribute;
+import org.apache.openaz.xacml.api.pip.PIPException;
+import org.apache.openaz.xacml.api.pip.PIPFinder;
+import org.apache.openaz.xacml.api.pip.PIPRequest;
+import org.apache.openaz.xacml.api.pip.PIPResponse;
+import org.apache.openaz.xacml.std.pip.StdMutablePIPResponse;
+import org.apache.openaz.xacml.std.pip.StdPIPResponse;
+import org.apache.openaz.xacml.std.pip.engines.StdConfigurableEngine;
 
-import com.att.research.xacml.api.Attribute;
-import com.att.research.xacml.api.pip.PIPException;
-import com.att.research.xacml.api.pip.PIPFinder;
-import com.att.research.xacml.api.pip.PIPRequest;
-import com.att.research.xacml.api.pip.PIPResponse;
-import com.att.research.xacml.std.pip.StdMutablePIPResponse;
-import com.att.research.xacml.std.pip.StdPIPResponse;
-import com.att.research.xacml.std.pip.engines.StdConfigurableEngine;
 import com.google.common.base.Splitter;
 import com.google.common.cache.Cache;
 
 /**
- * LDAPEngine extends {@link com.att.research.xacml.std.pip.engines.StdConfigurableEngine} to implement a generic PIP for accessing
+ * LDAPEngine extends {@link org.apache.openaz.xacml.std.pip.engines.StdConfigurableEngine} to implement a generic PIP for accessing
  * data from and LDAP server, including a configurable cache to avoid repeat queries.
  *
  */

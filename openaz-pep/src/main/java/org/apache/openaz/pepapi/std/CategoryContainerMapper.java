@@ -18,12 +18,12 @@
  *
  */
 
-package org.openliberty.openaz.pepapi.std;
+package org.apache.openaz.pepapi.std;
 
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.openliberty.openaz.pepapi.*;
+import org.apache.openaz.pepapi.*;
 
 import java.net.URI;
 import java.util.Date;

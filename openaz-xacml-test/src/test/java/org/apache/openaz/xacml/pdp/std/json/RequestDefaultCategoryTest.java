@@ -28,16 +28,15 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacmlatt.pdp.std.json;
+package org.apache.openaz.xacml.pdp.std.json;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
+import org.apache.openaz.xacml.api.Request;
+import org.apache.openaz.xacml.std.json.JSONRequest;
+import org.apache.openaz.xacml.std.json.JSONStructureException;
 import org.junit.Test;
-
-import com.att.research.xacml.api.Request;
-import com.att.research.xacml.std.json.JSONRequest;
-import com.att.research.xacml.std.json.JSONStructureException;
 /**
  * Test JSON Request convert to object - Default Category object tests
  *

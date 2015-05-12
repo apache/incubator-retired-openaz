@@ -28,7 +28,7 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacmlatt.pdp.test.conformance;
+package org.apache.openaz.xacml.pdp.test.conformance;
 
 import java.io.File;
 

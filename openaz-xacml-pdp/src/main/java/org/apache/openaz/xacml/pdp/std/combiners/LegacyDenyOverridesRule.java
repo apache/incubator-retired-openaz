@@ -28,26 +28,26 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacmlatt.pdp.std.combiners;
+package org.apache.openaz.xacml.pdp.std.combiners;
 
 import java.util.Iterator;
 import java.util.List;
 
-import com.att.research.xacml.api.Decision;
-import com.att.research.xacml.api.Identifier;
-import com.att.research.xacmlatt.pdp.eval.EvaluationContext;
-import com.att.research.xacmlatt.pdp.eval.EvaluationException;
-import com.att.research.xacmlatt.pdp.eval.EvaluationResult;
-import com.att.research.xacmlatt.pdp.policy.CombinerParameter;
-import com.att.research.xacmlatt.pdp.policy.CombiningElement;
-import com.att.research.xacmlatt.pdp.policy.Rule;
-import com.att.research.xacmlatt.pdp.policy.RuleEffect;
+import org.apache.openaz.xacml.api.Decision;
+import org.apache.openaz.xacml.api.Identifier;
+import org.apache.openaz.xacml.pdp.eval.EvaluationContext;
+import org.apache.openaz.xacml.pdp.eval.EvaluationException;
+import org.apache.openaz.xacml.pdp.eval.EvaluationResult;
+import org.apache.openaz.xacml.pdp.policy.CombinerParameter;
+import org.apache.openaz.xacml.pdp.policy.CombiningElement;
+import org.apache.openaz.xacml.pdp.policy.Rule;
+import org.apache.openaz.xacml.pdp.policy.RuleEffect;
 
 /**
  * DenyOverrides implements the XACML 1.0 "deny-overrides" combining algorithm for rules.
  *
  *
- * @param <T> the java class for the {@link com.att.research.xacmlatt.pdp.eval.Evaluatable}
+ * @param <T> the java class for the {@link org.apache.openaz.xacml.pdp.eval.Evaluatable}
  * @param <U> the java class for the identifier
  */
 public class LegacyDenyOverridesRule extends CombiningAlgorithmBase<Rule> {

@@ -29,7 +29,7 @@
  *                     All Rights Reserved
  */
 
-package com.att.research.xacmlatt.pdp.std;
+package org.apache.openaz.xacml.pdp.std;
 
 /**
  * com.att.research.xacmlatt.pdp.std contains classes that provide reference implementations of various extensible components

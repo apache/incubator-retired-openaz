@@ -28,24 +28,23 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacml.std.datatypes;
+package org.apache.openaz.xacml.std.datatypes;
 
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
+import org.apache.openaz.xacml.api.AttributeValue;
+import org.apache.openaz.xacml.api.DataType;
+import org.apache.openaz.xacml.api.DataTypeException;
+import org.apache.openaz.xacml.api.Identifier;
+import org.apache.openaz.xacml.api.XACML3;
+import org.apache.openaz.xacml.std.StdAttributeValue;
+import org.apache.openaz.xacml.std.dom.DOMUtil;
 import org.w3c.dom.Node;
 
-import com.att.research.xacml.api.AttributeValue;
-import com.att.research.xacml.api.DataType;
-import com.att.research.xacml.api.DataTypeException;
-import com.att.research.xacml.api.Identifier;
-import com.att.research.xacml.api.XACML3;
-import com.att.research.xacml.std.StdAttributeValue;
-import com.att.research.xacml.std.dom.DOMUtil;
-
 /**
- * DataTypeBase provides common implementation components of the {@link com.att.research.xacml.api.DataType} interface
+ * DataTypeBase provides common implementation components of the {@link org.apache.openaz.xacml.api.DataType} interface
  * that is used by the specific instance implementations.
  *
  *

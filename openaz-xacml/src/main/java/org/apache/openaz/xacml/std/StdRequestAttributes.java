@@ -28,7 +28,7 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacml.std;
+package org.apache.openaz.xacml.std;
 
 import java.util.Collection;
 
@@ -38,16 +38,15 @@ import javax.xml.xpath.XPathExpressionException;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.openaz.xacml.api.Attribute;
+import org.apache.openaz.xacml.api.Identifier;
+import org.apache.openaz.xacml.api.RequestAttributes;
+import org.apache.openaz.xacml.util.ObjUtil;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import com.att.research.xacml.api.Attribute;
-import com.att.research.xacml.api.Identifier;
-import com.att.research.xacml.api.RequestAttributes;
-import com.att.research.xacml.util.ObjUtil;
-
 /**
- * Immutable implementation of the {@link com.att.research.xacml.api.RequestAttributes} interface.
+ * Immutable implementation of the {@link org.apache.openaz.xacml.api.RequestAttributes} interface.
  *
  */
 public class StdRequestAttributes extends StdAttributeCategory implements RequestAttributes {
@@ -57,8 +56,8 @@ public class StdRequestAttributes extends StdAttributeCategory implements Reques
     private String xmlId;
 
     /**
-     * Creates a new <code>StdRequestAttributes</code> with the given {@link com.att.research.xacml.api.Identifier} representing its XACML Category,
-     * the given <code>Collection</code> of {@link com.att.research.xacml.api.Attribute}s, the given {@link org.w3c.dom.Node} representing the XACML Content element
+     * Creates a new <code>StdRequestAttributes</code> with the given {@link org.apache.openaz.xacml.api.Identifier} representing its XACML Category,
+     * the given <code>Collection</code> of {@link org.apache.openaz.xacml.api.Attribute}s, the given {@link org.w3c.dom.Node} representing the XACML Content element
      * and the given <code>String</code> as the optional xml:Id.
      *
      * @param identifierCategory the <code>Identifier</code> representing the XACML Category for the new <code>StdRequestAttributes</code>
@@ -73,7 +72,7 @@ public class StdRequestAttributes extends StdAttributeCategory implements Reques
     }
 
     /**
-     * Creates a new <code>StdRequestAttributes</code> by copying the given {@link com.att.research.xacml.api.RequestAttributes}.
+     * Creates a new <code>StdRequestAttributes</code> by copying the given {@link org.apache.openaz.xacml.api.RequestAttributes}.
      *
      * @param requestAttributes the <code>RequestAttributes</code> to copy
      */

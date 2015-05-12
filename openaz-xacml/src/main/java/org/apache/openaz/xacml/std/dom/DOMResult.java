@@ -28,22 +28,21 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacml.std.dom;
+package org.apache.openaz.xacml.std.dom;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.openaz.xacml.api.Decision;
+import org.apache.openaz.xacml.api.Result;
+import org.apache.openaz.xacml.api.XACML3;
+import org.apache.openaz.xacml.std.StdMutableResult;
+import org.apache.openaz.xacml.std.StdResult;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import com.att.research.xacml.api.Decision;
-import com.att.research.xacml.api.Result;
-import com.att.research.xacml.api.XACML3;
-import com.att.research.xacml.std.StdMutableResult;
-import com.att.research.xacml.std.StdResult;
-
 /**
- * DOMResult extends {@link com.att.research.xacml.std.StdMutableResult} with methods for creation from
+ * DOMResult extends {@link org.apache.openaz.xacml.std.StdMutableResult} with methods for creation from
  * DOM {@link org.w3c.dom.Node}s.
  *
  */

@@ -29,7 +29,7 @@
  *                     All Rights Reserved
  */
 
-package com.att.research.xacml;
+package org.apache.openaz.xacml;
 
 /**
  * Provides base interfaces and standard implementation classes for applications using the "eXtensible Access Control Markup Language (XACML) Version 3.0"

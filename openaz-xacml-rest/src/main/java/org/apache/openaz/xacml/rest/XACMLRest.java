@@ -28,7 +28,7 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacml.rest;
+package org.apache.openaz.xacml.rest;
 
 import java.io.IOException;
 import java.util.Enumeration;
@@ -41,8 +41,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-
-import com.att.research.xacml.util.XACMLProperties;
+import org.apache.openaz.xacml.util.XACMLProperties;
 
 /**
  * This static class is used by both the PDP and PAP servlet's. It contains some common

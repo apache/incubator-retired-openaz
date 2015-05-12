@@ -28,7 +28,7 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacml.std.dom;
+package org.apache.openaz.xacml.std.dom;
 
 import org.w3c.dom.Node;
 

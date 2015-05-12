@@ -28,7 +28,7 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacml.std.datatypes;
+package org.apache.openaz.xacml.std.datatypes;
 
 /**
  * IDateTime is the minimal interface an object needs to support in order to be used in XACML functions that expect a Date, DateTime, or Time.

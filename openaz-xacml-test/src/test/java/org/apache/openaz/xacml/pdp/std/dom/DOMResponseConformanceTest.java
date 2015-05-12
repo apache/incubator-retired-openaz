@@ -28,7 +28,7 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacmlatt.pdp.std.dom;
+package org.apache.openaz.xacml.pdp.std.dom;
 
 import static org.junit.Assert.fail;
 
@@ -38,10 +38,9 @@ import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.openaz.xacml.api.Response;
+import org.apache.openaz.xacml.std.dom.DOMResponse;
 import org.junit.Test;
-
-import com.att.research.xacml.api.Response;
-import com.att.research.xacml.std.dom.DOMResponse;
 
 /**
  * Tests for handling the XML version of the XACML Response object.

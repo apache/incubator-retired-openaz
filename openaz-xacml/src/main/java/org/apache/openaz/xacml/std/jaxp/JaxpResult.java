@@ -28,11 +28,15 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacml.std.jaxp;
+package org.apache.openaz.xacml.std.jaxp;
 
 import java.util.Iterator;
 
 import javax.xml.bind.JAXBElement;
+
+import org.apache.openaz.xacml.api.Decision;
+import org.apache.openaz.xacml.api.XACML3;
+import org.apache.openaz.xacml.std.StdMutableResult;
 
 import oasis.names.tc.xacml._3_0.core.schema.wd_17.AdviceType;
 import oasis.names.tc.xacml._3_0.core.schema.wd_17.AttributesType;
@@ -40,12 +44,8 @@ import oasis.names.tc.xacml._3_0.core.schema.wd_17.IdReferenceType;
 import oasis.names.tc.xacml._3_0.core.schema.wd_17.ObligationType;
 import oasis.names.tc.xacml._3_0.core.schema.wd_17.ResultType;
 
-import com.att.research.xacml.api.Decision;
-import com.att.research.xacml.api.XACML3;
-import com.att.research.xacml.std.StdMutableResult;
-
 /**
- * JaxpResult extends {@link com.att.research.xacml.std.StdMutableResult} with methods for creation
+ * JaxpResult extends {@link org.apache.openaz.xacml.std.StdMutableResult} with methods for creation
  * from JAXP elements.
  *
  */

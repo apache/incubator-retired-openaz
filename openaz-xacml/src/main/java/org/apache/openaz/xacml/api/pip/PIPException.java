@@ -28,11 +28,11 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacml.api.pip;
+package org.apache.openaz.xacml.api.pip;
 
 /**
  * PIPException extends <code>Exception</code> to represent errors that can occur as a result of querying a
- * {@link PIPEngine} for {@link com.att.research.xacml.api.Attribute}s.
+ * {@link PIPEngine} for {@link org.apache.openaz.xacml.api.Attribute}s.
  *
  */
 public class PIPException extends Exception {

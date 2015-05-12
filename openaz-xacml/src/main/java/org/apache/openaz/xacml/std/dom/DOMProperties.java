@@ -28,12 +28,12 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacml.std.dom;
+package org.apache.openaz.xacml.std.dom;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import com.att.research.xacml.util.XACMLProperties;
+import org.apache.openaz.xacml.util.XACMLProperties;
 
 /**
  * DOMProperties contains utilities for determining the properties for parsing XACML documents with a DOM parser.

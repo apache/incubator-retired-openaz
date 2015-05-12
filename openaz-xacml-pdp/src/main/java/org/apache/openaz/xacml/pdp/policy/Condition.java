@@ -28,20 +28,20 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacmlatt.pdp.policy;
+package org.apache.openaz.xacml.pdp.policy;
 
-import com.att.research.xacml.api.AttributeValue;
-import com.att.research.xacml.api.DataTypeException;
-import com.att.research.xacml.api.Status;
-import com.att.research.xacml.api.StatusCode;
-import com.att.research.xacml.std.StdStatus;
-import com.att.research.xacml.std.StdStatusCode;
-import com.att.research.xacml.std.datatypes.DataTypes;
-import com.att.research.xacmlatt.pdp.eval.EvaluationContext;
-import com.att.research.xacmlatt.pdp.eval.EvaluationException;
+import org.apache.openaz.xacml.api.AttributeValue;
+import org.apache.openaz.xacml.api.DataTypeException;
+import org.apache.openaz.xacml.api.Status;
+import org.apache.openaz.xacml.api.StatusCode;
+import org.apache.openaz.xacml.pdp.eval.EvaluationContext;
+import org.apache.openaz.xacml.pdp.eval.EvaluationException;
+import org.apache.openaz.xacml.std.StdStatus;
+import org.apache.openaz.xacml.std.StdStatusCode;
+import org.apache.openaz.xacml.std.datatypes.DataTypes;
 
 /**
- * Condition extends {@link com.att.research.xacmlatt.pdp.policy.PolicyComponent} to represent the XACML Condition element
+ * Condition extends {@link org.apache.openaz.xacml.pdp.policy.PolicyComponent} to represent the XACML Condition element
  * in a XACML Rule.
  *
  */
@@ -58,7 +58,7 @@ public class Condition extends PolicyComponent {
     private Expression expression;
 
     /**
-     * Creates a <code>Condition</code> with the given {@link com.att.research.xacml.api.StatusCode} and <code>String</code>
+     * Creates a <code>Condition</code> with the given {@link org.apache.openaz.xacml.api.StatusCode} and <code>String</code>
      * status message.
      *
      * @param statusCodeIn the <code>StatusCode</code> for the <code>Condition</code>
@@ -84,7 +84,7 @@ public class Condition extends PolicyComponent {
     }
 
     /**
-     * Creates a new <code>Condition</code> with the given {@link com.att.research.xacmlatt.pdp.policy.Expression} and a default
+     * Creates a new <code>Condition</code> with the given {@link org.apache.openaz.xacml.pdp.policy.Expression} and a default
      * OK <code>StatusCode</code>.
      *
      * @param expressionIn the <code>Expression</code> for the <code>Condition</code>
@@ -113,12 +113,12 @@ public class Condition extends PolicyComponent {
     }
 
     /**
-     * Evaluates the <code>Expression</code> in this <code>Condition</code> in the given {@link com.att.research.xacmlatt.pdp.eval.EvaluationContext}.
+     * Evaluates the <code>Expression</code> in this <code>Condition</code> in the given {@link org.apache.openaz.xacml.pdp.eval.EvaluationContext}.
      * and validates that the result is a boolean.
      *
      * @param evaluationContext the <code>EvaluationContext</code> in which to evaluate this <code>Expression</code>
      * @param policyDefaults the {@link com.att.research.xacml.pdp.policy.PolicyDefaults} to use in evaluating this <code>Expression</code>
-     * @return a {@link com.att.research.xacmlatt.pdp.policy.ExpressionResult}
+     * @return a {@link org.apache.openaz.xacml.pdp.policy.ExpressionResult}
      */
     public ExpressionResultBoolean evaluate(EvaluationContext evaluationContext, PolicyDefaults policyDefaults) throws EvaluationException {
         if (!this.validate()) {

@@ -28,7 +28,7 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacmlatt.pdp.test.policy;
+package org.apache.openaz.xacml.pdp.test.policy;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -65,20 +65,19 @@ import org.apache.commons.cli.Option;
 import org.apache.commons.cli.ParseException;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-
-import com.att.research.xacml.api.AttributeValue;
-import com.att.research.xacml.api.DataType;
-import com.att.research.xacml.api.DataTypeException;
-import com.att.research.xacml.api.DataTypeFactory;
-import com.att.research.xacml.api.Identifier;
-import com.att.research.xacml.api.XACML3;
-import com.att.research.xacml.std.IdentifierImpl;
-import com.att.research.xacml.util.FactoryException;
-import com.att.research.xacml.util.XACMLObjectCopy;
-import com.att.research.xacml.util.XACMLPolicyAggregator;
-import com.att.research.xacml.util.XACMLPolicyScanner;
-import com.att.research.xacml.util.XACMLProperties;
-import com.att.research.xacmlatt.pdp.test.TestBase;
+import org.apache.openaz.xacml.api.AttributeValue;
+import org.apache.openaz.xacml.api.DataType;
+import org.apache.openaz.xacml.api.DataTypeException;
+import org.apache.openaz.xacml.api.DataTypeFactory;
+import org.apache.openaz.xacml.api.Identifier;
+import org.apache.openaz.xacml.api.XACML3;
+import org.apache.openaz.xacml.pdp.test.TestBase;
+import org.apache.openaz.xacml.std.IdentifierImpl;
+import org.apache.openaz.xacml.util.FactoryException;
+import org.apache.openaz.xacml.util.XACMLObjectCopy;
+import org.apache.openaz.xacml.util.XACMLPolicyAggregator;
+import org.apache.openaz.xacml.util.XACMLPolicyScanner;
+import org.apache.openaz.xacml.util.XACMLProperties;
 
 
 /**

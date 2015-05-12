@@ -29,25 +29,24 @@
  *                     All Rights Reserved
  */
 
-package com.att.research.xacmlatt.pdp.policy.dom;
+package org.apache.openaz.xacml.pdp.policy.dom;
 
 import java.net.URI;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.openaz.xacml.api.XACML;
+import org.apache.openaz.xacml.api.XACML3;
+import org.apache.openaz.xacml.pdp.policy.PolicyDefaults;
+import org.apache.openaz.xacml.std.dom.DOMProperties;
+import org.apache.openaz.xacml.std.dom.DOMStructureException;
+import org.apache.openaz.xacml.std.dom.DOMUtil;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import com.att.research.xacml.api.XACML;
-import com.att.research.xacml.api.XACML3;
-import com.att.research.xacml.std.dom.DOMProperties;
-import com.att.research.xacml.std.dom.DOMStructureException;
-import com.att.research.xacml.std.dom.DOMUtil;
-import com.att.research.xacmlatt.pdp.policy.PolicyDefaults;
-
 /**
- * DOMPolicyDefaults extends {@link com.att.research.xacmlatt.pdp.policy.PolicyDefaults} with methods for creation from
+ * DOMPolicyDefaults extends {@link org.apache.openaz.xacml.pdp.policy.PolicyDefaults} with methods for creation from
  * DOM {@org.w3c.dom.Node}s.
  *
  */

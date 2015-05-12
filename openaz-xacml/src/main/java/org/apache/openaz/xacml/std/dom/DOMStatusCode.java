@@ -28,18 +28,17 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacml.std.dom;
+package org.apache.openaz.xacml.std.dom;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.openaz.xacml.api.Identifier;
+import org.apache.openaz.xacml.api.StatusCode;
+import org.apache.openaz.xacml.api.XACML3;
+import org.apache.openaz.xacml.std.StdStatusCode;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-
-import com.att.research.xacml.api.Identifier;
-import com.att.research.xacml.api.StatusCode;
-import com.att.research.xacml.api.XACML3;
-import com.att.research.xacml.std.StdStatusCode;
 
 /**
  * DOMStatusCode extends {@link com.att.research.xacml.comomon.std.StdStatusCode} with methods for creation from

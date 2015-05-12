@@ -28,15 +28,15 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacml.std;
+package org.apache.openaz.xacml.std;
 
 import java.text.ParseException;
 import java.util.Arrays;
 
-import com.att.research.xacml.api.Version;
+import org.apache.openaz.xacml.api.Version;
 
 /**
- * StdVersion implements the {@link com.att.research.xacml.api.Version} interface to represent XACML version identifiers.
+ * StdVersion implements the {@link org.apache.openaz.xacml.api.Version} interface to represent XACML version identifiers.
  *
  */
 public class StdVersion implements Version {

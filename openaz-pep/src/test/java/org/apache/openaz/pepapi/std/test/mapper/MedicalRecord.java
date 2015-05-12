@@ -18,7 +18,7 @@
  *
  */
 
-package org.openliberty.openaz.pepapi.std.test.mapper;
+package org.apache.openaz.pepapi.std.test.mapper;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -28,27 +28,27 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacmlatt.pdp.std;
+package org.apache.openaz.xacml.pdp.std;
 
-import com.att.research.xacml.api.IdReferenceMatch;
-import com.att.research.xacml.api.Request;
-import com.att.research.xacml.api.pip.*;
-import com.att.research.xacml.api.trace.TraceEngine;
-import com.att.research.xacml.api.trace.TraceEngineFactory;
-import com.att.research.xacml.api.trace.TraceEvent;
-import com.att.research.xacml.std.pip.engines.RequestEngine;
-import com.att.research.xacml.std.pip.finders.RequestFinder;
-import com.att.research.xacml.util.FactoryException;
-import com.att.research.xacmlatt.pdp.eval.EvaluationContext;
-import com.att.research.xacmlatt.pdp.policy.*;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.openaz.xacml.api.IdReferenceMatch;
+import org.apache.openaz.xacml.api.Request;
+import org.apache.openaz.xacml.api.pip.*;
+import org.apache.openaz.xacml.api.trace.TraceEngine;
+import org.apache.openaz.xacml.api.trace.TraceEngineFactory;
+import org.apache.openaz.xacml.api.trace.TraceEvent;
+import org.apache.openaz.xacml.pdp.eval.EvaluationContext;
+import org.apache.openaz.xacml.pdp.policy.*;
+import org.apache.openaz.xacml.std.pip.engines.RequestEngine;
+import org.apache.openaz.xacml.std.pip.finders.RequestFinder;
+import org.apache.openaz.xacml.util.FactoryException;
 
 import java.util.Collection;
 import java.util.Properties;
 
 /**
- * StdEvaluationContext implements the {@link com.att.research.xacmlatt.pdp.eval.EvaluationContext} interface using
+ * StdEvaluationContext implements the {@link org.apache.openaz.xacml.pdp.eval.EvaluationContext} interface using
  * default factories to load the XACML policies, and get the PIP engines.
  *
  */
@@ -61,8 +61,8 @@ public class StdEvaluationContext implements EvaluationContext {
     private TraceEngine traceEngine;
 
     /**
-     * Creates a new <code>StdEvaluationContext</code> with the given {@link com.att.research.xacml.api.Request} and
-     * {@link com.att.research.xacmlatt.pdp.policy.PolicyDef}.
+     * Creates a new <code>StdEvaluationContext</code> with the given {@link org.apache.openaz.xacml.api.Request} and
+     * {@link org.apache.openaz.xacml.pdp.policy.PolicyDef}.
      *
      * @param requestIn the <code>Request</code>
      * @param policyDef the <code>PolicyDef</code>

@@ -28,25 +28,24 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacml.std.dom;
+package org.apache.openaz.xacml.std.dom;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.openaz.xacml.api.Attribute;
+import org.apache.openaz.xacml.api.AttributeCategory;
+import org.apache.openaz.xacml.api.Identifier;
+import org.apache.openaz.xacml.api.XACML3;
+import org.apache.openaz.xacml.std.StdAttributeCategory;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import com.att.research.xacml.api.Attribute;
-import com.att.research.xacml.api.AttributeCategory;
-import com.att.research.xacml.api.Identifier;
-import com.att.research.xacml.api.XACML3;
-import com.att.research.xacml.std.StdAttributeCategory;
-
 /**
- * DOMAttributeCategory extends {@link com.att.research.xacml.std.StdAttributeCategory} with methods for creation
+ * DOMAttributeCategory extends {@link org.apache.openaz.xacml.std.StdAttributeCategory} with methods for creation
  * from DOM {@link org.w3c.dom.Node}s.
  *
  */

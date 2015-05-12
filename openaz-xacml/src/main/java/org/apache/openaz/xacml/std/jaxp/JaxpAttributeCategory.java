@@ -28,23 +28,23 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacml.std.jaxp;
+package org.apache.openaz.xacml.std.jaxp;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import org.apache.openaz.xacml.api.Attribute;
+import org.apache.openaz.xacml.api.AttributeCategory;
+import org.apache.openaz.xacml.api.Identifier;
+import org.apache.openaz.xacml.std.IdentifierImpl;
+import org.apache.openaz.xacml.std.StdAttributeCategory;
+
 import oasis.names.tc.xacml._3_0.core.schema.wd_17.AttributeType;
 import oasis.names.tc.xacml._3_0.core.schema.wd_17.AttributesType;
 
-import com.att.research.xacml.api.Attribute;
-import com.att.research.xacml.api.AttributeCategory;
-import com.att.research.xacml.api.Identifier;
-import com.att.research.xacml.std.IdentifierImpl;
-import com.att.research.xacml.std.StdAttributeCategory;
-
 /**
- * JaxpAttributeCategory extends {@link com.att.research.xacml.std.StdAttributeCategory} with methods for creation from
+ * JaxpAttributeCategory extends {@link org.apache.openaz.xacml.std.StdAttributeCategory} with methods for creation from
  * JAXP elements.
  *
  */

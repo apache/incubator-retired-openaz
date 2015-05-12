@@ -29,7 +29,7 @@
  *                     All Rights Reserved
  */
 
-package com.att.research.xacmlatt.pdp.policy.expressions;
+package org.apache.openaz.xacml.pdp.policy.expressions;
 
 /**
  * com.att.research.xacmlatt.pdp.policy.expressions contains class definitions that represent specific XACML elements sub-typed from

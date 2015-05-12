@@ -28,19 +28,19 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacmlatt.pdp.std.functions;
+package org.apache.openaz.xacml.pdp.std.functions;
 
 import java.util.List;
 
-import com.att.research.xacml.api.DataType;
-import com.att.research.xacml.api.Identifier;
-import com.att.research.xacmlatt.pdp.eval.EvaluationContext;
-import com.att.research.xacmlatt.pdp.policy.Bag;
-import com.att.research.xacmlatt.pdp.policy.ExpressionResult;
-import com.att.research.xacmlatt.pdp.policy.FunctionArgument;
+import org.apache.openaz.xacml.api.DataType;
+import org.apache.openaz.xacml.api.Identifier;
+import org.apache.openaz.xacml.pdp.eval.EvaluationContext;
+import org.apache.openaz.xacml.pdp.policy.Bag;
+import org.apache.openaz.xacml.pdp.policy.ExpressionResult;
+import org.apache.openaz.xacml.pdp.policy.FunctionArgument;
 
 /**
- * FunctionDefinitionBag implements {@link com.att.research.xacmlatt.pdp.policy.FunctionDefinition} to
+ * FunctionDefinitionBag implements {@link org.apache.openaz.xacml.pdp.policy.FunctionDefinition} to
  * implement the XACML 'type'-bag predicates as functions taking 0, 1 or multiple arguments of the same data type and returning a <code>Bag</code>.
  *
  * In the first implementation of XACML we had separate files for each XACML Function.
@@ -82,11 +82,11 @@ public class FunctionDefinitionBag<I> extends FunctionDefinitionBase<I, I> {
     }
 
     /**
-     * Evaluates this <code>FunctionDefinition</code> on the given <code>List</code> of{@link com.att.research.xacmlatt.pdp.policy.FunctionArgument}s.
+     * Evaluates this <code>FunctionDefinition</code> on the given <code>List</code> of{@link org.apache.openaz.xacml.pdp.policy.FunctionArgument}s.
      *
-     * @param evaluationContext the {@link com.att.research.xacmlatt.pdp.eval.EvaluationContext} to use in the evaluation
+     * @param evaluationContext the {@link org.apache.openaz.xacml.pdp.eval.EvaluationContext} to use in the evaluation
      * @param arguments the <code>List</code> of <code>FunctionArgument</code>s for the evaluation
-     * @return an {@link com.att.research.xacmlatt.pdp.policy.ExpressionResult} with the results of the call
+     * @return an {@link org.apache.openaz.xacml.pdp.policy.ExpressionResult} with the results of the call
      */
     @Override
     public ExpressionResult evaluate(EvaluationContext evaluationContext, List<FunctionArgument> arguments) {

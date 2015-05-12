@@ -28,20 +28,20 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacml.std.jaxp;
+package org.apache.openaz.xacml.std.jaxp;
 
 import java.text.ParseException;
 
+import org.apache.openaz.xacml.api.Identifier;
+import org.apache.openaz.xacml.api.VersionMatch;
+import org.apache.openaz.xacml.std.IdentifierImpl;
+import org.apache.openaz.xacml.std.StdIdReferenceMatch;
+import org.apache.openaz.xacml.std.StdVersionMatch;
+
 import oasis.names.tc.xacml._3_0.core.schema.wd_17.IdReferenceType;
 
-import com.att.research.xacml.api.Identifier;
-import com.att.research.xacml.api.VersionMatch;
-import com.att.research.xacml.std.IdentifierImpl;
-import com.att.research.xacml.std.StdIdReferenceMatch;
-import com.att.research.xacml.std.StdVersionMatch;
-
 /**
- * JaxpIdReferenceMatch extends {@link com.att.research.xacml.std.StdIdReferenceMatch} with methods for creation
+ * JaxpIdReferenceMatch extends {@link org.apache.openaz.xacml.std.StdIdReferenceMatch} with methods for creation
  * from JAXP elements.
  *
  */

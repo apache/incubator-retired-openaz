@@ -28,10 +28,10 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacml.api.pep;
+package org.apache.openaz.xacml.api.pep;
 
 /**
- * PEPException extends <code>Exception</code> to implement exceptions thrown by {@link PEPEngine} and {@link com.att.research.xacml.api.pep.PEPEngineFactory}
+ * PEPException extends <code>Exception</code> to implement exceptions thrown by {@link PEPEngine} and {@link org.apache.openaz.xacml.api.pep.PEPEngineFactory}
  * classes.
  *
  */

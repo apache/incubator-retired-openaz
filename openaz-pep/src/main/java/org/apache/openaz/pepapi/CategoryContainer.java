@@ -18,9 +18,7 @@
  *
  */
 
-package org.openliberty.openaz.pepapi;
-
-import com.att.research.xacml.api.Identifier;
+package org.apache.openaz.pepapi;
 
 import java.net.URI;
 import java.util.Collections;
@@ -28,6 +26,8 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
+
+import org.apache.openaz.xacml.api.Identifier;
 
 /**
  * Abstraction for an attribute container of a specific XACML category.

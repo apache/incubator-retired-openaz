@@ -18,15 +18,15 @@
  *
  */
 
-package org.openliberty.openaz.pepapi.std;
+package org.apache.openaz.pepapi.std;
 
-import com.att.research.xacml.api.Identifier;
-import com.att.research.xacml.api.Request;
-import com.att.research.xacml.api.RequestReference;
-import com.att.research.xacml.std.StdMutableRequest;
-import com.att.research.xacml.std.StdMutableRequestReference;
-import com.att.research.xacml.std.StdRequestAttributesReference;
-import org.openliberty.openaz.pepapi.*;
+import org.apache.openaz.pepapi.*;
+import org.apache.openaz.xacml.api.Identifier;
+import org.apache.openaz.xacml.api.Request;
+import org.apache.openaz.xacml.api.RequestReference;
+import org.apache.openaz.xacml.std.StdMutableRequest;
+import org.apache.openaz.xacml.std.StdMutableRequestReference;
+import org.apache.openaz.xacml.std.StdRequestAttributesReference;
 
 import java.util.HashMap;
 import java.util.List;

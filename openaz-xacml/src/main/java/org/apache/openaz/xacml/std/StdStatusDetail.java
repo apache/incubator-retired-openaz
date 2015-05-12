@@ -28,21 +28,21 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacml.std;
+package org.apache.openaz.xacml.std;
 
 import java.util.Collection;
 
-import com.att.research.xacml.api.MissingAttributeDetail;
-import com.att.research.xacml.api.StatusDetail;
-import com.att.research.xacml.util.Wrapper;
+import org.apache.openaz.xacml.api.MissingAttributeDetail;
+import org.apache.openaz.xacml.api.StatusDetail;
+import org.apache.openaz.xacml.util.Wrapper;
 
 /**
- * Immutable implementation of the {@link com.att.research.xacml.api.StatusDetail} interface.
+ * Immutable implementation of the {@link org.apache.openaz.xacml.api.StatusDetail} interface.
  *
  */
 public class StdStatusDetail extends Wrapper<StatusDetail> implements StatusDetail {
     /**
-     * Creates a new immutable <code>StdStatusDetail</code> that wraps the given {@link com.att.research.xacml.api.StatusDetail}.
+     * Creates a new immutable <code>StdStatusDetail</code> that wraps the given {@link org.apache.openaz.xacml.api.StatusDetail}.
      * The caller agrees not to modify the given <code>StatusDetail</code> as long as the new <code>StdStatusDetail</code> refers to it.
      *
      * @param statusDetail the <code>StatusDetail</code> to wrap
@@ -68,7 +68,7 @@ public class StdStatusDetail extends Wrapper<StatusDetail> implements StatusDeta
     }
 
     /**
-     * Creates a new immutable <code>StdStatusDetail</code> with the given {@link com.att.research.xacml.api.MissingAttributeDetail}.
+     * Creates a new immutable <code>StdStatusDetail</code> with the given {@link org.apache.openaz.xacml.api.MissingAttributeDetail}.
      *
      * @param missingAttributeDetail the <code>MissingAttributeDetail</code> for the new <code>StdStatusDetail</code>
      */
@@ -77,7 +77,7 @@ public class StdStatusDetail extends Wrapper<StatusDetail> implements StatusDeta
     }
 
     /**
-     * Creates a new <code>StdStatusDetail that is a copy of the given {@link com.att.research.xacml.api.StatusDetail}.
+     * Creates a new <code>StdStatusDetail that is a copy of the given {@link org.apache.openaz.xacml.api.StatusDetail}.
      *
      * @param statusDetail the <code>StatusDetail</code> to copy
      * @return a new <code>StdStatusDetail</code> that is a copy of the given <code>StatusDetail</code>.

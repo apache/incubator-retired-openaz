@@ -28,10 +28,10 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacmlatt.pdp.test.conformance;
+package org.apache.openaz.xacml.pdp.test.conformance;
 
-import com.att.research.xacml.api.Request;
-import com.att.research.xacml.api.Response;
+import org.apache.openaz.xacml.api.Request;
+import org.apache.openaz.xacml.api.Response;
 
 /**
  * ConformanceTestResult holds all of the objects for a single conformance test run.

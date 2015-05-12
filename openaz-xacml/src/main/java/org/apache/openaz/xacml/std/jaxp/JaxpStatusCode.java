@@ -28,17 +28,17 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacml.std.jaxp;
+package org.apache.openaz.xacml.std.jaxp;
+
+import org.apache.openaz.xacml.api.Identifier;
+import org.apache.openaz.xacml.api.StatusCode;
+import org.apache.openaz.xacml.std.IdentifierImpl;
+import org.apache.openaz.xacml.std.StdStatusCode;
 
 import oasis.names.tc.xacml._3_0.core.schema.wd_17.StatusCodeType;
 
-import com.att.research.xacml.api.Identifier;
-import com.att.research.xacml.api.StatusCode;
-import com.att.research.xacml.std.IdentifierImpl;
-import com.att.research.xacml.std.StdStatusCode;
-
 /**
- * JaxpStatusCode extends {@link com.att.research.xacml.std.StdStatusCode} with static methods
+ * JaxpStatusCode extends {@link org.apache.openaz.xacml.std.StdStatusCode} with static methods
  * for creating a <code>StatusCode</code> object by parsing JAXP elements based on the XACML 3.0 schema.
  *
  */

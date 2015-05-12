@@ -18,10 +18,10 @@
  *
  */
 
-package org.openliberty.openaz.pepapi.std;
+package org.apache.openaz.pepapi.std;
 
 
-import org.openliberty.openaz.pepapi.Action;
+import org.apache.openaz.pepapi.Action;
 
 /**
  * Created by ajith on 12/11/14.

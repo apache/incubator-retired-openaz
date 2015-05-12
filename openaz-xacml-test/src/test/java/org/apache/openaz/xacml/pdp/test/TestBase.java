@@ -28,7 +28,7 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacmlatt.pdp.test;
+package org.apache.openaz.xacml.pdp.test;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
@@ -60,34 +60,34 @@ import org.apache.commons.io.IOUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.http.entity.ContentType;
+import org.apache.openaz.xacml.api.AttributeValue;
+import org.apache.openaz.xacml.api.DataType;
+import org.apache.openaz.xacml.api.DataTypeException;
+import org.apache.openaz.xacml.api.DataTypeFactory;
+import org.apache.openaz.xacml.api.Decision;
+import org.apache.openaz.xacml.api.Identifier;
+import org.apache.openaz.xacml.api.Request;
+import org.apache.openaz.xacml.api.RequestAttributes;
+import org.apache.openaz.xacml.api.Response;
+import org.apache.openaz.xacml.api.Result;
+import org.apache.openaz.xacml.api.pdp.PDPEngine;
+import org.apache.openaz.xacml.api.pdp.PDPEngineFactory;
+import org.apache.openaz.xacml.api.pdp.PDPException;
+import org.apache.openaz.xacml.api.pep.PEPException;
+import org.apache.openaz.xacml.std.IdentifierImpl;
+import org.apache.openaz.xacml.std.StdAttributeValue;
+import org.apache.openaz.xacml.std.StdMutableAttribute;
+import org.apache.openaz.xacml.std.StdMutableRequest;
+import org.apache.openaz.xacml.std.StdMutableRequestAttributes;
+import org.apache.openaz.xacml.std.dom.DOMRequest;
+import org.apache.openaz.xacml.std.dom.DOMResponse;
+import org.apache.openaz.xacml.std.dom.DOMStructureException;
+import org.apache.openaz.xacml.std.json.JSONRequest;
+import org.apache.openaz.xacml.std.json.JSONResponse;
+import org.apache.openaz.xacml.std.json.JSONStructureException;
+import org.apache.openaz.xacml.util.FactoryException;
+import org.apache.openaz.xacml.util.XACMLProperties;
 
-import com.att.research.xacml.api.AttributeValue;
-import com.att.research.xacml.api.DataType;
-import com.att.research.xacml.api.DataTypeException;
-import com.att.research.xacml.api.DataTypeFactory;
-import com.att.research.xacml.api.Decision;
-import com.att.research.xacml.api.Identifier;
-import com.att.research.xacml.api.Request;
-import com.att.research.xacml.api.RequestAttributes;
-import com.att.research.xacml.api.Response;
-import com.att.research.xacml.api.Result;
-import com.att.research.xacml.api.pdp.PDPEngine;
-import com.att.research.xacml.api.pdp.PDPEngineFactory;
-import com.att.research.xacml.api.pdp.PDPException;
-import com.att.research.xacml.api.pep.PEPException;
-import com.att.research.xacml.std.IdentifierImpl;
-import com.att.research.xacml.std.StdAttributeValue;
-import com.att.research.xacml.std.StdMutableAttribute;
-import com.att.research.xacml.std.StdMutableRequest;
-import com.att.research.xacml.std.StdMutableRequestAttributes;
-import com.att.research.xacml.std.dom.DOMRequest;
-import com.att.research.xacml.std.dom.DOMResponse;
-import com.att.research.xacml.std.dom.DOMStructureException;
-import com.att.research.xacml.std.json.JSONRequest;
-import com.att.research.xacml.std.json.JSONResponse;
-import com.att.research.xacml.std.json.JSONStructureException;
-import com.att.research.xacml.util.FactoryException;
-import com.att.research.xacml.util.XACMLProperties;
 import com.google.common.base.Splitter;
 import com.google.common.collect.Lists;
 
@@ -253,7 +253,7 @@ public class TestBase extends SimpleFileVisitor<Path> {
      * @param args - command line arguments
      * @throws org.apache.commons.cli.ParseException
      * @throws java.net.MalformedURLException
-     * @throws com.att.research.xacmlatt.pdp.test.TestBase.HelpException
+     * @throws org.apache.openaz.xacml.pdp.test.TestBase.HelpException
      */
     protected void parseCommands(String[] args) throws ParseException, MalformedURLException, HelpException {
         //
@@ -305,7 +305,7 @@ public class TestBase extends SimpleFileVisitor<Path> {
     /**
      * Using the command line options that were parsed, configures our test instance.
      *
-     * @throws com.att.research.xacml.util.FactoryException
+     * @throws org.apache.openaz.xacml.util.FactoryException
      */
     protected void configure() throws FactoryException {
         //
@@ -430,7 +430,7 @@ public class TestBase extends SimpleFileVisitor<Path> {
      * requests directory issue each request to the PDP engine.
      *
      * @throws java.io.IOException
-     * @throws com.att.research.xacml.util.FactoryException
+     * @throws org.apache.openaz.xacml.util.FactoryException
      *
      */
     public void run() throws IOException, FactoryException {
@@ -610,9 +610,9 @@ public class TestBase extends SimpleFileVisitor<Path> {
      * @param file - Request file. Eg. Request-01-Permit.json
      * @param group - This is the parsed out string of the request file that defines if it is a Permit/Deny/Generate etc.
      * @return
-     * @throws com.att.research.xacml.std.json.JSONStructureException
-     * @throws com.att.research.xacml.std.dom.DOMStructureException
-     * @throws com.att.research.xacml.api.pep.PEPException
+     * @throws org.apache.openaz.xacml.std.json.JSONStructureException
+     * @throws org.apache.openaz.xacml.std.dom.DOMStructureException
+     * @throws org.apache.openaz.xacml.api.pep.PEPException
      */
     protected Request generateRequest(Path file, String group) throws JSONStructureException, DOMStructureException, PEPException {
         //

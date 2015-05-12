@@ -28,33 +28,33 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacmlatt.pdp.policy;
+package org.apache.openaz.xacml.pdp.policy;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
-import com.att.research.xacml.api.Advice;
-import com.att.research.xacml.api.Decision;
-import com.att.research.xacml.api.Obligation;
-import com.att.research.xacml.api.Result;
-import com.att.research.xacml.api.StatusCode;
-import com.att.research.xacml.api.trace.Traceable;
-import com.att.research.xacml.std.StdStatus;
-import com.att.research.xacml.std.StdStatusCode;
-import com.att.research.xacml.std.trace.StdTraceEvent;
-import com.att.research.xacml.util.StringUtils;
-import com.att.research.xacmlatt.pdp.eval.Evaluatable;
-import com.att.research.xacmlatt.pdp.eval.EvaluationContext;
-import com.att.research.xacmlatt.pdp.eval.EvaluationException;
-import com.att.research.xacmlatt.pdp.eval.EvaluationResult;
-import com.att.research.xacmlatt.pdp.eval.MatchResult;
-import com.att.research.xacmlatt.pdp.eval.Matchable;
+import org.apache.openaz.xacml.api.Advice;
+import org.apache.openaz.xacml.api.Decision;
+import org.apache.openaz.xacml.api.Obligation;
+import org.apache.openaz.xacml.api.Result;
+import org.apache.openaz.xacml.api.StatusCode;
+import org.apache.openaz.xacml.api.trace.Traceable;
+import org.apache.openaz.xacml.pdp.eval.Evaluatable;
+import org.apache.openaz.xacml.pdp.eval.EvaluationContext;
+import org.apache.openaz.xacml.pdp.eval.EvaluationException;
+import org.apache.openaz.xacml.pdp.eval.EvaluationResult;
+import org.apache.openaz.xacml.pdp.eval.MatchResult;
+import org.apache.openaz.xacml.pdp.eval.Matchable;
+import org.apache.openaz.xacml.std.StdStatus;
+import org.apache.openaz.xacml.std.StdStatusCode;
+import org.apache.openaz.xacml.std.trace.StdTraceEvent;
+import org.apache.openaz.xacml.util.StringUtils;
 
 /**
- * Rule extends {@link com.att.research.xacmlatt.pdp.policy.PolicyComponent} to represent a XACML Rule within a Policy.  It implements
- * {@link com.att.research.xacmlatt.pdp.eval.Matchable} and {@link com.att.research.xacmlatt.pdp.eval.Evaluatable} for matching and evaluation
+ * Rule extends {@link org.apache.openaz.xacml.pdp.policy.PolicyComponent} to represent a XACML Rule within a Policy.  It implements
+ * {@link org.apache.openaz.xacml.pdp.eval.Matchable} and {@link org.apache.openaz.xacml.pdp.eval.Evaluatable} for matching and evaluation
  * a request.
  *
  */

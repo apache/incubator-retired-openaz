@@ -28,7 +28,7 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacml.std.pip.finders;
+package org.apache.openaz.xacml.std.pip.finders;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -38,20 +38,20 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import com.att.research.xacml.api.Status;
-import com.att.research.xacml.api.pip.PIPEngine;
-import com.att.research.xacml.api.pip.PIPException;
-import com.att.research.xacml.api.pip.PIPFinder;
-import com.att.research.xacml.api.pip.PIPRequest;
-import com.att.research.xacml.api.pip.PIPResponse;
-import com.att.research.xacml.std.StdStatus;
-import com.att.research.xacml.std.StdStatusCode;
-import com.att.research.xacml.std.pip.StdMutablePIPResponse;
-import com.att.research.xacml.std.pip.StdPIPResponse;
+import org.apache.openaz.xacml.api.Status;
+import org.apache.openaz.xacml.api.pip.PIPEngine;
+import org.apache.openaz.xacml.api.pip.PIPException;
+import org.apache.openaz.xacml.api.pip.PIPFinder;
+import org.apache.openaz.xacml.api.pip.PIPRequest;
+import org.apache.openaz.xacml.api.pip.PIPResponse;
+import org.apache.openaz.xacml.std.StdStatus;
+import org.apache.openaz.xacml.std.StdStatusCode;
+import org.apache.openaz.xacml.std.pip.StdMutablePIPResponse;
+import org.apache.openaz.xacml.std.pip.StdPIPResponse;
 
 /**
- * EngineFinder implements the {@link com.att.research.xacml.api.pip.PIPFinder} interface by maintaining a simple list of
- * registered {@link com.att.research.xacml.api.pip.PIPEngine} objects.
+ * EngineFinder implements the {@link org.apache.openaz.xacml.api.pip.PIPFinder} interface by maintaining a simple list of
+ * registered {@link org.apache.openaz.xacml.api.pip.PIPEngine} objects.
  *
  */
 public class EngineFinder implements PIPFinder {

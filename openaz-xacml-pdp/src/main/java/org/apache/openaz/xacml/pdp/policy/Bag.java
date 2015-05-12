@@ -28,13 +28,13 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacmlatt.pdp.policy;
+package org.apache.openaz.xacml.pdp.policy;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import com.att.research.xacml.api.AttributeValue;
+import org.apache.openaz.xacml.api.AttributeValue;
 
 /**
  * Bag represents a collection of XACML attribute values for the same attribute.

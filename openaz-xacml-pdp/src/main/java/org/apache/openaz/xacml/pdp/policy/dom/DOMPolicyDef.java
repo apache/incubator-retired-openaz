@@ -28,7 +28,7 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacmlatt.pdp.policy.dom;
+package org.apache.openaz.xacml.pdp.policy.dom;
 
 import java.io.File;
 import java.io.InputStream;
@@ -36,17 +36,16 @@ import java.io.InputStream;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
+import org.apache.openaz.xacml.api.XACML3;
+import org.apache.openaz.xacml.pdp.policy.PolicyDef;
+import org.apache.openaz.xacml.pdp.policy.PolicySet;
+import org.apache.openaz.xacml.std.dom.DOMStructureException;
+import org.apache.openaz.xacml.std.dom.DOMUtil;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 
-import com.att.research.xacml.api.XACML3;
-import com.att.research.xacml.std.dom.DOMStructureException;
-import com.att.research.xacml.std.dom.DOMUtil;
-import com.att.research.xacmlatt.pdp.policy.PolicyDef;
-import com.att.research.xacmlatt.pdp.policy.PolicySet;
-
 /**
- * DOMPolicyDef extends {@link com.att.research.xacmlatt.pdp.policy.PolicyDef} with methods for loading them from a <code>File</code>.
+ * DOMPolicyDef extends {@link org.apache.openaz.xacml.pdp.policy.PolicyDef} with methods for loading them from a <code>File</code>.
  *
  */
 public abstract class DOMPolicyDef {

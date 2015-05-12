@@ -29,7 +29,7 @@
  *                     All Rights Reserved
  */
 
-package com.att.research.xacml.api;
+package org.apache.openaz.xacml.api;
 
 import java.util.Collection;
 

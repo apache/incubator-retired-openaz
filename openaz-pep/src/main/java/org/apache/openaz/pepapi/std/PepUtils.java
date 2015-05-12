@@ -18,7 +18,7 @@
  *
  */
 
-package org.openliberty.openaz.pepapi.std;
+package org.apache.openaz.pepapi.std;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;

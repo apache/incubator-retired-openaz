@@ -18,13 +18,13 @@
  *
  */
 
-package org.openliberty.openaz.pepapi.std.test;
+package org.apache.openaz.pepapi.std.test;
 
+import org.apache.openaz.pepapi.*;
+import org.apache.openaz.pepapi.std.StdPepAgentFactory;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.openliberty.openaz.pepapi.*;
-import org.openliberty.openaz.pepapi.std.StdPepAgentFactory;
 
 import java.net.URI;
 import java.util.ArrayList;

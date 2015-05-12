@@ -28,11 +28,11 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacml.std.datatypes;
+package org.apache.openaz.xacml.std.datatypes;
 
 import java.text.ParseException;
 
-import com.att.research.xacml.api.SemanticString;
+import org.apache.openaz.xacml.api.SemanticString;
 
 /**
  * RFC822Name represents an RFC 822 name consisting of a local part and a domain part.

@@ -28,23 +28,23 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacmlatt.pdp.policy.expressions;
+package org.apache.openaz.xacml.pdp.policy.expressions;
 
-import com.att.research.xacml.api.StatusCode;
-import com.att.research.xacml.api.trace.Traceable;
-import com.att.research.xacml.std.StdStatus;
-import com.att.research.xacml.std.StdStatusCode;
-import com.att.research.xacml.std.trace.StdTraceEvent;
-import com.att.research.xacmlatt.pdp.eval.EvaluationContext;
-import com.att.research.xacmlatt.pdp.eval.EvaluationException;
-import com.att.research.xacmlatt.pdp.policy.Expression;
-import com.att.research.xacmlatt.pdp.policy.ExpressionResult;
-import com.att.research.xacmlatt.pdp.policy.Policy;
-import com.att.research.xacmlatt.pdp.policy.PolicyDefaults;
-import com.att.research.xacmlatt.pdp.policy.VariableDefinition;
+import org.apache.openaz.xacml.api.StatusCode;
+import org.apache.openaz.xacml.api.trace.Traceable;
+import org.apache.openaz.xacml.pdp.eval.EvaluationContext;
+import org.apache.openaz.xacml.pdp.eval.EvaluationException;
+import org.apache.openaz.xacml.pdp.policy.Expression;
+import org.apache.openaz.xacml.pdp.policy.ExpressionResult;
+import org.apache.openaz.xacml.pdp.policy.Policy;
+import org.apache.openaz.xacml.pdp.policy.PolicyDefaults;
+import org.apache.openaz.xacml.pdp.policy.VariableDefinition;
+import org.apache.openaz.xacml.std.StdStatus;
+import org.apache.openaz.xacml.std.StdStatusCode;
+import org.apache.openaz.xacml.std.trace.StdTraceEvent;
 
 /**
- * VariableReference extends {@link com.att.research.xacmlatt.pdp.policy.Expression} to implement the XACML VariableReference
+ * VariableReference extends {@link org.apache.openaz.xacml.pdp.policy.Expression} to implement the XACML VariableReference
  * element.
  *
  */

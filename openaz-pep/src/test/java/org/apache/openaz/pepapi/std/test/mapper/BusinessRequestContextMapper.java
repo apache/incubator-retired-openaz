@@ -18,10 +18,10 @@
  *
  */
 
-package org.openliberty.openaz.pepapi.std.test.mapper;
+package org.apache.openaz.pepapi.std.test.mapper;
 
-import com.att.research.xacml.api.XACML3;
-import org.openliberty.openaz.pepapi.*;
+import org.apache.openaz.pepapi.*;
+import org.apache.openaz.xacml.api.XACML3;
 
 public class BusinessRequestContextMapper implements ObjectMapper {
 

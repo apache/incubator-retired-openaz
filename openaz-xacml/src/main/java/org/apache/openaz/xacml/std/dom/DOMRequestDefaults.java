@@ -28,22 +28,21 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacml.std.dom;
+package org.apache.openaz.xacml.std.dom;
 
 import java.net.URI;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.openaz.xacml.api.RequestDefaults;
+import org.apache.openaz.xacml.api.XACML3;
+import org.apache.openaz.xacml.std.StdRequestDefaults;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import com.att.research.xacml.api.RequestDefaults;
-import com.att.research.xacml.api.XACML3;
-import com.att.research.xacml.std.StdRequestDefaults;
-
 /**
- * DOMRequestDefaults extends {@link com.att.research.xacml.std.StdRequestDefaults} with methods for creation from
+ * DOMRequestDefaults extends {@link org.apache.openaz.xacml.std.StdRequestDefaults} with methods for creation from
  * DOM {@link org.w3c.dom.Node}s.
  *
  */

@@ -28,20 +28,20 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacml.std;
+package org.apache.openaz.xacml.std;
 
-import com.att.research.xacml.api.AttributeAssignment;
-import com.att.research.xacml.api.AttributeValue;
-import com.att.research.xacml.api.Identifier;
-import com.att.research.xacml.util.Wrapper;
+import org.apache.openaz.xacml.api.AttributeAssignment;
+import org.apache.openaz.xacml.api.AttributeValue;
+import org.apache.openaz.xacml.api.Identifier;
+import org.apache.openaz.xacml.util.Wrapper;
 
 /**
- * Immutable implementation of the {@link com.att.research.xacml.api.AttributeAssignment} interface.
+ * Immutable implementation of the {@link org.apache.openaz.xacml.api.AttributeAssignment} interface.
  *
  */
 public class StdAttributeAssignment extends Wrapper<AttributeAssignment> implements AttributeAssignment {
     /**
-     * Creates a new immutable <code>StdAttributeAssignment</code> that wraps the given {@link com.att.research.xacml.api.AttributeAssignment}.
+     * Creates a new immutable <code>StdAttributeAssignment</code> that wraps the given {@link org.apache.openaz.xacml.api.AttributeAssignment}.
      * The caller agrees not to modify the given <code>AttributeAssignment</code> as long as the new <code>StdAttributeAssignment</code> refers
      * to it.
      *
@@ -52,8 +52,8 @@ public class StdAttributeAssignment extends Wrapper<AttributeAssignment> impleme
     }
 
     /**
-     * Creates a new immutable <code>StdAttributeAssignment</code> with the given {@link com.att.research.xacml.api.Identifier}s representing the XACML
-     * Category and AttributeId of the Attribute to be assigned, the given <code>String</code> issuer, and the given {@link com.att.research.xacml.api.AttributeValue}
+     * Creates a new immutable <code>StdAttributeAssignment</code> with the given {@link org.apache.openaz.xacml.api.Identifier}s representing the XACML
+     * Category and AttributeId of the Attribute to be assigned, the given <code>String</code> issuer, and the given {@link org.apache.openaz.xacml.api.AttributeValue}
      * representing the value to assign to the Attribute.
      *
      * @param categoryIn the <code>Identifier</code> representing the Category of the Attribute to be assigned
@@ -66,7 +66,7 @@ public class StdAttributeAssignment extends Wrapper<AttributeAssignment> impleme
     }
 
     /**
-     * Creates a new immutable <code>StdAttributeAssignment</code> by copying the given {@link com.att.research.xacml.api.AttributeAssignment}.
+     * Creates a new immutable <code>StdAttributeAssignment</code> by copying the given {@link org.apache.openaz.xacml.api.AttributeAssignment}.
      *
      * @param attributeAssignment the <code>AttributeAssignment</code> to copy
      * @return a new <code>StdAttributeAssignment</code> copied from the given <code>AttributeAssignment</code>

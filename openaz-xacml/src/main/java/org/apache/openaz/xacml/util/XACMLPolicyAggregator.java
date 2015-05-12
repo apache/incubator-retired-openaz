@@ -28,7 +28,7 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacml.util;
+package org.apache.openaz.xacml.util;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -43,6 +43,16 @@ import javax.xml.bind.JAXBElement;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.openaz.xacml.api.Advice;
+import org.apache.openaz.xacml.api.Attribute;
+import org.apache.openaz.xacml.api.AttributeValue;
+import org.apache.openaz.xacml.api.Identifier;
+import org.apache.openaz.xacml.api.Obligation;
+import org.apache.openaz.xacml.std.IdentifierImpl;
+import org.apache.openaz.xacml.std.StdAttribute;
+import org.apache.openaz.xacml.std.StdAttributeValue;
+import org.apache.openaz.xacml.util.XACMLPolicyScanner.CallbackResult;
+import org.apache.openaz.xacml.util.XACMLPolicyScanner.SimpleCallback;
 
 import oasis.names.tc.xacml._3_0.core.schema.wd_17.AdviceExpressionType;
 import oasis.names.tc.xacml._3_0.core.schema.wd_17.ApplyType;
@@ -57,17 +67,6 @@ import oasis.names.tc.xacml._3_0.core.schema.wd_17.PolicyType;
 import oasis.names.tc.xacml._3_0.core.schema.wd_17.RuleType;
 import oasis.names.tc.xacml._3_0.core.schema.wd_17.VariableDefinitionType;
 import oasis.names.tc.xacml._3_0.core.schema.wd_17.VariableReferenceType;
-
-import com.att.research.xacml.api.Advice;
-import com.att.research.xacml.api.Attribute;
-import com.att.research.xacml.api.AttributeValue;
-import com.att.research.xacml.api.Identifier;
-import com.att.research.xacml.api.Obligation;
-import com.att.research.xacml.std.IdentifierImpl;
-import com.att.research.xacml.std.StdAttribute;
-import com.att.research.xacml.std.StdAttributeValue;
-import com.att.research.xacml.util.XACMLPolicyScanner.CallbackResult;
-import com.att.research.xacml.util.XACMLPolicyScanner.SimpleCallback;
 
 /**
  * This class extends the SimpleCallback class and aggregates specific data items in a policy.

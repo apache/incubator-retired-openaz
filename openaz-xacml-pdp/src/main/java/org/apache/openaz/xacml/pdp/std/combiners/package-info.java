@@ -29,7 +29,7 @@
  *                     All Rights Reserved
  */
 
-package com.att.research.xacmlatt.pdp.std.combiners;
+package org.apache.openaz.xacml.pdp.std.combiners;
 
 /**
  * com.att.research.xacmlatt.pdp.std.combiners contains implementations of the {@link com.att.research.xacmlatt.pdp.policy.CombiningAlgorithm}

@@ -28,7 +28,7 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacml.api;
+package org.apache.openaz.xacml.api;
 
 /**
  * Defines the API for objects that represent XACML Status elements.
@@ -36,7 +36,7 @@ package com.att.research.xacml.api;
  */
 public interface Status {
     /**
-     * Gets the {@link com.att.research.xacml.api.StatusCode} for this <code>Status</code>.
+     * Gets the {@link org.apache.openaz.xacml.api.StatusCode} for this <code>Status</code>.
      *
      * @return the <code>StatusCode</code> for this <code>Status</code>.
      */
@@ -50,7 +50,7 @@ public interface Status {
     public String getStatusMessage();
 
     /**
-     * Gets the {@link com.att.research.xacml.api.StatusDetail} associated with this <code>Status</code> if there is any.
+     * Gets the {@link org.apache.openaz.xacml.api.StatusDetail} associated with this <code>Status</code> if there is any.
      *
      * @return the <code>StatusDetail</code> for this <code>Status</code> if there is any.
      */

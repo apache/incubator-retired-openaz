@@ -28,21 +28,20 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacml.std.dom;
+package org.apache.openaz.xacml.std.dom;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.openaz.xacml.api.Advice;
+import org.apache.openaz.xacml.api.XACML3;
+import org.apache.openaz.xacml.std.StdAdvice;
+import org.apache.openaz.xacml.std.StdMutableAdvice;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-
-import com.att.research.xacml.api.Advice;
-import com.att.research.xacml.api.XACML3;
-import com.att.research.xacml.std.StdAdvice;
-import com.att.research.xacml.std.StdMutableAdvice;
 
 /**
  * DOMAdvice provides a static method for creating an instance of the {@link com.att.research.xacml.Advice} interface from

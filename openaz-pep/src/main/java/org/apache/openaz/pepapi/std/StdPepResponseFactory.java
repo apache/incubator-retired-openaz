@@ -18,15 +18,15 @@
  *
  */
 
-package org.openliberty.openaz.pepapi.std;
+package org.apache.openaz.pepapi.std;
 
-import com.att.research.xacml.api.Result;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.openliberty.openaz.pepapi.ObligationRouter;
-import org.openliberty.openaz.pepapi.PepConfig;
-import org.openliberty.openaz.pepapi.PepResponse;
-import org.openliberty.openaz.pepapi.PepResponseFactory;
+import org.apache.openaz.pepapi.ObligationRouter;
+import org.apache.openaz.pepapi.PepConfig;
+import org.apache.openaz.pepapi.PepResponse;
+import org.apache.openaz.pepapi.PepResponseFactory;
+import org.apache.openaz.xacml.api.Result;
 
 
 final class StdPepResponseFactory implements PepResponseFactory {

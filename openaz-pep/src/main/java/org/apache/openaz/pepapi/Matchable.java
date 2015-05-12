@@ -18,7 +18,7 @@
  *
  */
 
-package org.openliberty.openaz.pepapi;
+package org.apache.openaz.pepapi;
 
 /**
  * Interface that abstracts an object that can be matched. Concrete implementations provide a match() function.

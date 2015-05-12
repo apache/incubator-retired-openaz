@@ -28,7 +28,7 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacmlatt.pdp.std.json;
+package org.apache.openaz.xacml.pdp.std.json;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
@@ -45,14 +45,13 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
+import org.apache.openaz.xacml.api.Request;
+import org.apache.openaz.xacml.api.RequestAttributes;
+import org.apache.openaz.xacml.api.RequestReference;
+import org.apache.openaz.xacml.std.dom.DOMRequest;
+import org.apache.openaz.xacml.std.json.JSONRequest;
+import org.apache.openaz.xacml.std.json.JSONStructureException;
 import org.junit.Test;
-
-import com.att.research.xacml.api.Request;
-import com.att.research.xacml.api.RequestAttributes;
-import com.att.research.xacml.api.RequestReference;
-import com.att.research.xacml.std.dom.DOMRequest;
-import com.att.research.xacml.std.json.JSONRequest;
-import com.att.research.xacml.std.json.JSONStructureException;
 /**
  * Test JSON Request convert to object - Conformance tests
  *

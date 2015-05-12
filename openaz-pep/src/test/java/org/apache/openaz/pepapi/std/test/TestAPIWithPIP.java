@@ -18,16 +18,16 @@
  *
  */
 
-package org.openliberty.openaz.pepapi.std.test;
+package org.apache.openaz.pepapi.std.test;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.openaz.pepapi.*;
+import org.apache.openaz.pepapi.std.StdPepAgentFactory;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
-import org.openliberty.openaz.pepapi.*;
-import org.openliberty.openaz.pepapi.std.StdPepAgentFactory;
 
 import java.util.ArrayList;
 import java.util.List;

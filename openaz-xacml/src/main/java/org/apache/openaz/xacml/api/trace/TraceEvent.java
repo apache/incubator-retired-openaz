@@ -29,7 +29,7 @@
  *                     All Rights Reserved
  */
 
-package com.att.research.xacml.api.trace;
+package org.apache.openaz.xacml.api.trace;
 
 import java.util.Date;
 

@@ -28,14 +28,14 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacmlatt.pdp.policy;
+package org.apache.openaz.xacml.pdp.policy;
 
-import com.att.research.xacml.api.StatusCode;
-import com.att.research.xacmlatt.pdp.eval.EvaluationContext;
-import com.att.research.xacmlatt.pdp.eval.EvaluationException;
+import org.apache.openaz.xacml.api.StatusCode;
+import org.apache.openaz.xacml.pdp.eval.EvaluationContext;
+import org.apache.openaz.xacml.pdp.eval.EvaluationException;
 
 /**
- * Expression extends {@link com.att.research.xacmlatt.pdp.policy.PolicyComponent} to represent a XACML ExpressionType element.
+ * Expression extends {@link org.apache.openaz.xacml.pdp.policy.PolicyComponent} to represent a XACML ExpressionType element.
  *
  */
 public abstract class Expression extends PolicyComponent {
@@ -52,11 +52,11 @@ public abstract class Expression extends PolicyComponent {
     }
 
     /**
-     * Evaluates this <code>Expression</code> in the given {@link com.att.research.xacmlatt.pdp.eval.EvaluationContext}.
+     * Evaluates this <code>Expression</code> in the given {@link org.apache.openaz.xacml.pdp.eval.EvaluationContext}.
      *
      * @param evaluationContext the <code>EvaluationContext</code> in which to evaluate this <code>Expression</code>
      * @param policyDefaults the {@link com.att.research.xacml.pdp.policy.PolicyDefaults} to use in evaluating this <code>Expression</code>
-     * @return a {@link com.att.research.xacmlatt.pdp.policy.ExpressionResult}
+     * @return a {@link org.apache.openaz.xacml.pdp.policy.ExpressionResult}
      */
     public abstract ExpressionResult evaluate(EvaluationContext evaluationContext, PolicyDefaults policyDefaults) throws EvaluationException;
 }

@@ -28,7 +28,7 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacml.util;
+package org.apache.openaz.xacml.util;
 
 import java.io.OutputStream;
 import java.nio.file.Files;

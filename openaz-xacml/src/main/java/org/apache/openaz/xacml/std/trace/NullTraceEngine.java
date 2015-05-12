@@ -28,16 +28,16 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacml.std.trace;
+package org.apache.openaz.xacml.std.trace;
 
 import java.util.Properties;
 
-import com.att.research.xacml.api.trace.TraceEngine;
-import com.att.research.xacml.api.trace.TraceEvent;
+import org.apache.openaz.xacml.api.trace.TraceEngine;
+import org.apache.openaz.xacml.api.trace.TraceEvent;
 
 /**
- * Implements the {@link com.att.research.xacml.api.trace.TraceEngine} interface to just ignore {@link com.att.research.xacml.api.trace.TraceEvent}s.
- * This is the default implementation, returned by the default {@link com.att.research.xacml.api.trace.TraceEngineFactory}.
+ * Implements the {@link org.apache.openaz.xacml.api.trace.TraceEngine} interface to just ignore {@link org.apache.openaz.xacml.api.trace.TraceEvent}s.
+ * This is the default implementation, returned by the default {@link org.apache.openaz.xacml.api.trace.TraceEngineFactory}.
  *
  */
 public class NullTraceEngine implements TraceEngine {

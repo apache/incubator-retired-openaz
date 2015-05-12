@@ -28,12 +28,11 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacml.std.dom;
+package org.apache.openaz.xacml.std.dom;
 
+import org.apache.openaz.xacml.api.XACML3;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
-
-import com.att.research.xacml.api.XACML3;
 
 /**
  * DOMDocumentRepair provides methods for examining a DOM {@link org.w3c.dom.Document} for XACML document types and doing repair on them.
@@ -71,7 +70,7 @@ public class DOMDocumentRepair {
      * @param document the <code>Document</code> to check
      * @return true if any repairs were made in the <code>Document</code>, else false
      * @throws DOMStructureException if there were unrecoverable errors found
-     * @throws com.att.research.xacml.std.dom.DOMDocumentRepair.UnsupportedDocumentTypeException if the root element is not a XACML Request or Response.
+     * @throws org.apache.openaz.xacml.std.dom.DOMDocumentRepair.UnsupportedDocumentTypeException if the root element is not a XACML Request or Response.
      */
     public boolean repair(Document document) throws DOMStructureException, UnsupportedDocumentTypeException {
         Node firstChild	= DOMUtil.getFirstChildElement(document);

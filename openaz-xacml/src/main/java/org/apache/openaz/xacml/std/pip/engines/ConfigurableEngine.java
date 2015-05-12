@@ -28,15 +28,15 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacml.std.pip.engines;
+package org.apache.openaz.xacml.std.pip.engines;
 
 import java.util.Properties;
 
-import com.att.research.xacml.api.pip.PIPEngine;
-import com.att.research.xacml.api.pip.PIPException;
+import org.apache.openaz.xacml.api.pip.PIPEngine;
+import org.apache.openaz.xacml.api.pip.PIPException;
 
 /**
- * ConfigurableEngine extends the {@link com.att.research.xacml.api.pip.PIPEngine} interface with methods
+ * ConfigurableEngine extends the {@link org.apache.openaz.xacml.api.pip.PIPEngine} interface with methods
  * for configuring the engine from a <code>Properties</code> object.
  *
  */
@@ -46,7 +46,7 @@ public interface ConfigurableEngine extends PIPEngine {
      *
      * @param id the <code>String</code> name for this <code>ConfigurableEngine</code> used also to locate properties
      * @param properties the <code>Properties</code> containing the configuration parameters for this <code>ConfigurableEngine</code>
-     * @throws com.att.research.xacml.api.pip.PIPException if there is an error configuring the <code>ConfigurableEngine</code>
+     * @throws org.apache.openaz.xacml.api.pip.PIPException if there is an error configuring the <code>ConfigurableEngine</code>
      */
     public void configure(String id, Properties properties) throws PIPException;
 }

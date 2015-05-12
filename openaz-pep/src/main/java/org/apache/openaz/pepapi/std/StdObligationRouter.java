@@ -18,15 +18,15 @@
  *
  */
 
-package org.openliberty.openaz.pepapi.std;
+package org.apache.openaz.pepapi.std;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.openliberty.openaz.pepapi.Obligation;
-import org.openliberty.openaz.pepapi.ObligationHandlerRegistry;
-import org.openliberty.openaz.pepapi.ObligationRouter;
-import org.openliberty.openaz.pepapi.UnhandleableObligationException;
-import org.openliberty.openaz.pepapi.Matchable;
+import org.apache.openaz.pepapi.Matchable;
+import org.apache.openaz.pepapi.Obligation;
+import org.apache.openaz.pepapi.ObligationHandlerRegistry;
+import org.apache.openaz.pepapi.ObligationRouter;
+import org.apache.openaz.pepapi.UnhandleableObligationException;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -37,7 +37,7 @@ import java.util.Set;
 /**
  * Entity that routes obligations at runtime.
  *
- * @see org.openliberty.openaz.pepapi.Obligation
+ * @see org.apache.openaz.pepapi.Obligation
  */
 public final class StdObligationRouter implements ObligationRouter {
 
@@ -64,7 +64,7 @@ public final class StdObligationRouter implements ObligationRouter {
      * Handles runtime obligations and routes to appropriate policy enforcement points as required.
      *
      * @param obligationMap	a <code>Map</code> of <code>Obligation</code>s keyed by Obligation ID.
-     * @throws org.openliberty.openaz.pepapi.UnhandleableObligationException	if an Obligation cannot be handled/routed.
+     * @throws org.apache.openaz.pepapi.UnhandleableObligationException	if an Obligation cannot be handled/routed.
      */
     @Override
     public void routeObligations(Map<String, Obligation> obligationMap) {

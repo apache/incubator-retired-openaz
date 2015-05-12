@@ -18,12 +18,12 @@
  *
  */
 
-package org.openliberty.openaz.pepapi;
-
-import com.att.research.xacml.api.XACML3;
+package org.apache.openaz.pepapi;
 
 import java.net.URI;
 import java.util.Date;
+
+import org.apache.openaz.xacml.api.XACML3;
 
 /**
  * Container class that maps attributes to predefined XACML Resource category.

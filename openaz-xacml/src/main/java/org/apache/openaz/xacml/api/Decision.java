@@ -28,7 +28,7 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacml.api;
+package org.apache.openaz.xacml.api;
 
 /**
  * Enumeration of the XACML 3.0 decisions and extended decisions that can be returned as part of

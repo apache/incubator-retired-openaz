@@ -28,27 +28,27 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacmlatt.pdp.std.combiners;
+package org.apache.openaz.xacml.pdp.std.combiners;
 
 import java.util.Iterator;
 import java.util.List;
 
-import com.att.research.xacml.api.Decision;
-import com.att.research.xacml.api.Identifier;
-import com.att.research.xacmlatt.pdp.eval.EvaluationContext;
-import com.att.research.xacmlatt.pdp.eval.EvaluationException;
-import com.att.research.xacmlatt.pdp.eval.EvaluationResult;
-import com.att.research.xacmlatt.pdp.policy.CombinerParameter;
-import com.att.research.xacmlatt.pdp.policy.CombiningElement;
+import org.apache.openaz.xacml.api.Decision;
+import org.apache.openaz.xacml.api.Identifier;
+import org.apache.openaz.xacml.pdp.eval.EvaluationContext;
+import org.apache.openaz.xacml.pdp.eval.EvaluationException;
+import org.apache.openaz.xacml.pdp.eval.EvaluationResult;
+import org.apache.openaz.xacml.pdp.policy.CombinerParameter;
+import org.apache.openaz.xacml.pdp.policy.CombiningElement;
 
 /**
- * PermitOverrides extends {@link com.att.research.xacmlatt.pdp.std.combiners.CombiningAlgorithmBase} to implement the
+ * PermitOverrides extends {@link org.apache.openaz.xacml.pdp.std.combiners.CombiningAlgorithmBase} to implement the
  * XACML 3.0 Permit-overrides combining algorithm for policies and rules.
  *
  *
  * @param <T> the java class of the object to be combined
  */
-public class PermitOverrides<T extends com.att.research.xacmlatt.pdp.eval.Evaluatable> extends CombiningAlgorithmBase<T> {
+public class PermitOverrides<T extends org.apache.openaz.xacml.pdp.eval.Evaluatable> extends CombiningAlgorithmBase<T> {
 
     public PermitOverrides(Identifier identifierIn) {
         super(identifierIn);

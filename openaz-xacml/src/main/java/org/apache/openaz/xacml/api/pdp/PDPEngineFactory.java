@@ -29,14 +29,14 @@
  *                     All Rights Reserved
  */
 
-package com.att.research.xacml.api.pdp;
+package org.apache.openaz.xacml.api.pdp;
 
 import java.util.Properties;
 
-import com.att.research.xacml.api.Decision;
-import com.att.research.xacml.util.FactoryException;
-import com.att.research.xacml.util.FactoryFinder;
-import com.att.research.xacml.util.XACMLProperties;
+import org.apache.openaz.xacml.api.Decision;
+import org.apache.openaz.xacml.util.FactoryException;
+import org.apache.openaz.xacml.util.FactoryFinder;
+import org.apache.openaz.xacml.util.XACMLProperties;
 
 /**
  * PDPEngineFactory provides the interface for creating {@link com.att.research.xacml.pep.PDPEngine} instances.
@@ -44,7 +44,7 @@ import com.att.research.xacml.util.XACMLProperties;
  */
 public abstract class PDPEngineFactory {
     private static final String	FACTORYID					= XACMLProperties.PROP_PDPENGINEFACTORY;
-    private static final String	DEFAULT_FACTORY_CLASSNAME	= "com.att.research.xacmlatt.pdp.ATTPDPEngineFactory";
+    private static final String	DEFAULT_FACTORY_CLASSNAME	= "org.apache.openaz.xacml.pdp.ATTPDPEngineFactory";
 
     private Decision defaultBehavior	= Decision.INDETERMINATE;
     private ScopeResolver scopeResolver;
@@ -142,14 +142,14 @@ public abstract class PDPEngineFactory {
     }
 
     /**
-     * Creates a new <code>PDPEngine</code> using the default policy set and {@link com.att.research.xacml.api.pip.PIPFinder}.
+     * Creates a new <code>PDPEngine</code> using the default policy set and {@link org.apache.openaz.xacml.api.pip.PIPFinder}.
      *
      * @return a new <code>PDPEngine</code>
      */
     public abstract PDPEngine newEngine() throws FactoryException;
 
     /**
-     * Creates a new <code>PDPEngine</code> using the default policy set and {@link com.att.research.xacml.api.pip.PIPFinder}.
+     * Creates a new <code>PDPEngine</code> using the default policy set and {@link org.apache.openaz.xacml.api.pip.PIPFinder}.
      *
      * @return a new <code>PDPEngine</code>
      */

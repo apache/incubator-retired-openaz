@@ -29,10 +29,10 @@
  *                     All Rights Reserved
  */
 
-package com.att.research.xacmlatt.pdp.eval;
+package org.apache.openaz.xacml.pdp.eval;
 
-import com.att.research.xacml.api.Status;
-import com.att.research.xacml.std.StdStatus;
+import org.apache.openaz.xacml.api.Status;
+import org.apache.openaz.xacml.std.StdStatus;
 
 /**
  * MatchResult is the value returned by the {@link Matchable} interface.

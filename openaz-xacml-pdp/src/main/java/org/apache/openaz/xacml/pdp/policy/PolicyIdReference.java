@@ -28,14 +28,14 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacmlatt.pdp.policy;
+package org.apache.openaz.xacml.pdp.policy;
 
-import com.att.research.xacml.api.StatusCode;
-import com.att.research.xacmlatt.pdp.eval.EvaluationContext;
-import com.att.research.xacmlatt.pdp.eval.EvaluationException;
+import org.apache.openaz.xacml.api.StatusCode;
+import org.apache.openaz.xacml.pdp.eval.EvaluationContext;
+import org.apache.openaz.xacml.pdp.eval.EvaluationException;
 
 /**
- * PolicyIdReference extends {@link com.att.research.xacmlatt.pdp.policy.PolicyIdReferenceBase} for
+ * PolicyIdReference extends {@link org.apache.openaz.xacml.pdp.policy.PolicyIdReferenceBase} for
  * {@link Policy} objects with an implementation of the <code>ensureReferencee</code>
  * method to find a <code>Policy</code>.
  *

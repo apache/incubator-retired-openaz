@@ -18,18 +18,18 @@
  *
  */
 
-package org.openliberty.openaz.pepapi.std;
+package org.apache.openaz.pepapi.std;
 
-import com.att.research.xacml.api.Identifier;
-import com.att.research.xacml.api.RequestAttributes;
-import com.att.research.xacml.api.XACML3;
-import com.att.research.xacml.std.IdentifierImpl;
-import com.att.research.xacml.std.StdAttributeValue;
-import com.att.research.xacml.std.StdMutableAttribute;
-import com.att.research.xacml.std.StdMutableRequestAttributes;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.openliberty.openaz.pepapi.PepRequestAttributes;
+import org.apache.openaz.pepapi.PepRequestAttributes;
+import org.apache.openaz.xacml.api.Identifier;
+import org.apache.openaz.xacml.api.RequestAttributes;
+import org.apache.openaz.xacml.api.XACML3;
+import org.apache.openaz.xacml.std.IdentifierImpl;
+import org.apache.openaz.xacml.std.StdAttributeValue;
+import org.apache.openaz.xacml.std.StdMutableAttribute;
+import org.apache.openaz.xacml.std.StdMutableRequestAttributes;
 
 import java.net.URI;
 import java.util.Date;

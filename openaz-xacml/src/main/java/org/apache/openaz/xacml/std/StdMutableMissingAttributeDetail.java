@@ -28,21 +28,21 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacml.std;
+package org.apache.openaz.xacml.std;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
-import com.att.research.xacml.api.AttributeValue;
-import com.att.research.xacml.api.Identifier;
-import com.att.research.xacml.api.MissingAttributeDetail;
-import com.att.research.xacml.util.ListUtil;
-import com.att.research.xacml.util.ObjUtil;
+import org.apache.openaz.xacml.api.AttributeValue;
+import org.apache.openaz.xacml.api.Identifier;
+import org.apache.openaz.xacml.api.MissingAttributeDetail;
+import org.apache.openaz.xacml.util.ListUtil;
+import org.apache.openaz.xacml.util.ObjUtil;
 
 /**
- * Mutable implementation of the {@link com.att.research.xacml.api.MissingAttributeDetail} interface.
+ * Mutable implementation of the {@link org.apache.openaz.xacml.api.MissingAttributeDetail} interface.
  *
  */
 public class StdMutableMissingAttributeDetail implements MissingAttributeDetail {
@@ -62,9 +62,9 @@ public class StdMutableMissingAttributeDetail implements MissingAttributeDetail 
     }
 
     /**
-     * Creates a new <code>StdMutableMissingAttributeDetail</code> with the given {@link com.att.research.xacml.api.Identifier}s for the XACML Category,
+     * Creates a new <code>StdMutableMissingAttributeDetail</code> with the given {@link org.apache.openaz.xacml.api.Identifier}s for the XACML Category,
      * AttributeId, and DataType of the missing Attribute, and the given <code>String</code> Issuer.  If not null, the <code>Collection</code> of
-     * {@link com.att.research.xacml.api.AttributeValue}s is copied into the new <code>StdMutableMissingAttributeDetail</code>.
+     * {@link org.apache.openaz.xacml.api.AttributeValue}s is copied into the new <code>StdMutableMissingAttributeDetail</code>.
      *
      * @param categoryIn the <code>Identifier</code> representing the XACML Category of the missing Attribute
      * @param attributeIdIn the <code>Identifier</code> representing the XACML AttributeId of the missing Attribute
@@ -86,7 +86,7 @@ public class StdMutableMissingAttributeDetail implements MissingAttributeDetail 
     }
 
     /**
-     * Creates a new <code>StdMutableMissingAttributeDetail</code> with the given {@link com.att.research.xacml.api.Identifier}s for the XACML Category,
+     * Creates a new <code>StdMutableMissingAttributeDetail</code> with the given {@link org.apache.openaz.xacml.api.Identifier}s for the XACML Category,
      * AttributeId, and DataType of the missing Attribute, and the given <code>String</code> Issuer.
      *
      * @param categoryIn the <code>Identifier</code> representing the XACML Category of the missing Attribute
@@ -99,7 +99,7 @@ public class StdMutableMissingAttributeDetail implements MissingAttributeDetail 
     }
 
     /**
-     * Creates a new <code>StdMutableMissingAttributeDetail</code> with the given {@link com.att.research.xacml.api.Identifier}s for the XACML Category,
+     * Creates a new <code>StdMutableMissingAttributeDetail</code> with the given {@link org.apache.openaz.xacml.api.Identifier}s for the XACML Category,
      * AttributeId, and DataType of the missing Attribute.
      *
      * @param categoryIn the <code>Identifier</code> representing the XACML Category of the missing Attribute
@@ -111,7 +111,7 @@ public class StdMutableMissingAttributeDetail implements MissingAttributeDetail 
     }
 
     /**
-     * Creates a new <code>StdMutableMissingAttributeDetail</code> that is a copy of the given {@link com.att.research.xacml.api.MissingAttributeDetail}.
+     * Creates a new <code>StdMutableMissingAttributeDetail</code> that is a copy of the given {@link org.apache.openaz.xacml.api.MissingAttributeDetail}.
      *
      * @param missingAttributeDetail the <code>MissingAttributeDetail</code> to copy
      * @return a new <code>StdMutableMissingAttributeDetail</code> that is a copy of the given <code>MissingAttributeDetail</code>.
@@ -130,7 +130,7 @@ public class StdMutableMissingAttributeDetail implements MissingAttributeDetail 
     }
 
     /**
-     * Sets the {@link com.att.research.xacml.api.Identifier} representing the XACML Category of the MissingAttributeDetail.
+     * Sets the {@link org.apache.openaz.xacml.api.Identifier} representing the XACML Category of the MissingAttributeDetail.
      *
      * @param identifier the <code>Identifier</code> representing the XACML Category of the MissingAttributeDetail.
      */
@@ -144,7 +144,7 @@ public class StdMutableMissingAttributeDetail implements MissingAttributeDetail 
     }
 
     /**
-     * Sets the {@link com.att.research.xacml.api.Identifier} representing the XACML AttributeId of the MissingAttributeDetail.
+     * Sets the {@link org.apache.openaz.xacml.api.Identifier} representing the XACML AttributeId of the MissingAttributeDetail.
      *
      * @param identifier the <code>Identifier</code> representing the XACML AttributeId of the MissingAttributeDetail.
      */
@@ -158,7 +158,7 @@ public class StdMutableMissingAttributeDetail implements MissingAttributeDetail 
     }
 
     /**
-     * Sets the {@link com.att.research.xacml.api.Identifier} representing the XACML DataTypeId of the MissingAttributeDetail.
+     * Sets the {@link org.apache.openaz.xacml.api.Identifier} representing the XACML DataTypeId of the MissingAttributeDetail.
      *
      * @param identifier the <code>Identifier</code> representing the XACML AttributeId of the MissingAttributeDetail.
      */
@@ -181,7 +181,7 @@ public class StdMutableMissingAttributeDetail implements MissingAttributeDetail 
     }
 
     /**
-     * Adds an {@link com.att.research.xacml.api.AttributeValue} to this <code>StdMutableMissingAttributeDetail</code>.
+     * Adds an {@link org.apache.openaz.xacml.api.AttributeValue} to this <code>StdMutableMissingAttributeDetail</code>.
      *
      * @param attributeValue the <code>AttributeValue</code> to add to this <code>StdMutableMissingAttributeDetail</code>.
      */
@@ -193,7 +193,7 @@ public class StdMutableMissingAttributeDetail implements MissingAttributeDetail 
     }
 
     /**
-     * Adds a copy of the given <code>Collection</code> of {@link com.att.research.xacml.api.AttributeValue}s to this <code>StdMutableMissingAttributeDetail</code>.
+     * Adds a copy of the given <code>Collection</code> of {@link org.apache.openaz.xacml.api.AttributeValue}s to this <code>StdMutableMissingAttributeDetail</code>.
      *
      * @param attributeValuesIn the <code>Collection</code> of <code>AttributeValue</code>s to add to this <code>StdMutableMissingAttributeDetail</code>.
      */

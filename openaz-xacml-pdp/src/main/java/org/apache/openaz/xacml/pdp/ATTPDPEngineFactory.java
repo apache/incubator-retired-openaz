@@ -28,20 +28,19 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacmlatt.pdp;
+package org.apache.openaz.xacml.pdp;
 
 import java.util.Properties;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-
-import com.att.research.xacml.api.pdp.PDPEngine;
-import com.att.research.xacml.api.pdp.PDPEngineFactory;
-import com.att.research.xacml.util.FactoryException;
-import com.att.research.xacmlatt.pdp.eval.EvaluationContextFactory;
+import org.apache.openaz.xacml.api.pdp.PDPEngine;
+import org.apache.openaz.xacml.api.pdp.PDPEngineFactory;
+import org.apache.openaz.xacml.pdp.eval.EvaluationContextFactory;
+import org.apache.openaz.xacml.util.FactoryException;
 
 /**
- * ATTPDPEngineFactory extends {@link com.att.research.xacml.api.pdp.PDPEngineFactory} by implementing the abstract
+ * ATTPDPEngineFactory extends {@link org.apache.openaz.xacml.api.pdp.PDPEngineFactory} by implementing the abstract
  * <code>newEngine</code> method to create a {@link ATTPDPEngine} instance and initialize it
  * with policies and PIP instances based on configuration information provided to the factory.
  *

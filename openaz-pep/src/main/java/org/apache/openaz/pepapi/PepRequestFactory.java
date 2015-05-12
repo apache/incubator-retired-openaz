@@ -16,7 +16,7 @@
  * Contributor:
  * 	  Rich Levinson (Oracle)
  */
-package org.openliberty.openaz.pepapi;
+package org.apache.openaz.pepapi;
 
 import java.util.List;
 
@@ -29,7 +29,7 @@ public interface PepRequestFactory {
     /**
      *
      * @return
-     * @throws org.openliberty.openaz.pepapi.PepException, if no ObjectMappers found.
+     * @throws org.apache.openaz.pepapi.PepException, if no ObjectMappers found.
      * @throws IllegalArgumentException,, if any argument is null.
      */
     public PepRequest newPepRequest(Object[] objects);
@@ -39,7 +39,7 @@ public interface PepRequestFactory {
      * @param associations
      * @param objects
      * @return
-     * @throws org.openliberty.openaz.pepapi.PepException, if ObjectMappers are not found.
+     * @throws org.apache.openaz.pepapi.PepException, if ObjectMappers are not found.
      * @throws IllegalArgumentException,, if the arguments are null.
      */
     public PepRequest newBulkPepRequest(List<?> associations, Object[] objects);

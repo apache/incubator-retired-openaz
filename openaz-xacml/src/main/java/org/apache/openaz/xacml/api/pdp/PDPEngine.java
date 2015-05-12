@@ -29,13 +29,13 @@
  *                     All Rights Reserved
  */
 
-package com.att.research.xacml.api.pdp;
+package org.apache.openaz.xacml.api.pdp;
 
 import java.net.URI;
 import java.util.Collection;
 
-import com.att.research.xacml.api.Request;
-import com.att.research.xacml.api.Response;
+import org.apache.openaz.xacml.api.Request;
+import org.apache.openaz.xacml.api.Response;
 
 /**
  * PEPEngine is the interface that applications use to make policy queries against a XACML 3.0 policy engine.
@@ -43,11 +43,11 @@ import com.att.research.xacml.api.Response;
  */
 public interface PDPEngine {
     /**
-     * Evaluates the given {@link com.att.research.xacml.api.Request} using this <code>PDPEngine</code>'s
+     * Evaluates the given {@link org.apache.openaz.xacml.api.Request} using this <code>PDPEngine</code>'s
      * Policy Sets to determine if the given <code>Request</code> is allowed.
      *
      * @param pepRequest the <code>Request</code> to evaluate
-     * @return a {@link com.att.research.xacml.api.Response} indicating the decision
+     * @return a {@link org.apache.openaz.xacml.api.Response} indicating the decision
      */
     public Response decide(Request pepRequest) throws PDPException;
 

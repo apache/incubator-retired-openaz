@@ -28,7 +28,7 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacml.std.pip.engines;
+package org.apache.openaz.xacml.std.pip.engines;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -38,23 +38,23 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
-import com.att.research.xacml.api.Attribute;
-import com.att.research.xacml.api.AttributeValue;
-import com.att.research.xacml.api.Identifier;
-import com.att.research.xacml.api.Request;
-import com.att.research.xacml.api.RequestAttributes;
-import com.att.research.xacml.api.pip.PIPEngine;
-import com.att.research.xacml.api.pip.PIPException;
-import com.att.research.xacml.api.pip.PIPFinder;
-import com.att.research.xacml.api.pip.PIPRequest;
-import com.att.research.xacml.api.pip.PIPResponse;
-import com.att.research.xacml.std.StdMutableAttribute;
-import com.att.research.xacml.std.pip.StdMutablePIPResponse;
-import com.att.research.xacml.std.pip.StdPIPRequest;
-import com.att.research.xacml.std.pip.StdPIPResponse;
+import org.apache.openaz.xacml.api.Attribute;
+import org.apache.openaz.xacml.api.AttributeValue;
+import org.apache.openaz.xacml.api.Identifier;
+import org.apache.openaz.xacml.api.Request;
+import org.apache.openaz.xacml.api.RequestAttributes;
+import org.apache.openaz.xacml.api.pip.PIPEngine;
+import org.apache.openaz.xacml.api.pip.PIPException;
+import org.apache.openaz.xacml.api.pip.PIPFinder;
+import org.apache.openaz.xacml.api.pip.PIPRequest;
+import org.apache.openaz.xacml.api.pip.PIPResponse;
+import org.apache.openaz.xacml.std.StdMutableAttribute;
+import org.apache.openaz.xacml.std.pip.StdMutablePIPResponse;
+import org.apache.openaz.xacml.std.pip.StdPIPRequest;
+import org.apache.openaz.xacml.std.pip.StdPIPResponse;
 
 /**
- * StdRequestEngine implements the {@link com.att.research.xacml.api.pip.PIPEngine} interface to retrieve
+ * StdRequestEngine implements the {@link org.apache.openaz.xacml.api.pip.PIPEngine} interface to retrieve
  * matching {@link com.att.reserach.xacml.api.Attribute}s from a {@link com.att.research.xacml.pip.Request} object.
  *
  */

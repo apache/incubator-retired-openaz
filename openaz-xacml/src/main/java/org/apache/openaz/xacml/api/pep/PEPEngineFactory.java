@@ -29,13 +29,13 @@
  *                     All Rights Reserved
  */
 
-package com.att.research.xacml.api.pep;
+package org.apache.openaz.xacml.api.pep;
 
 import java.util.Properties;
 
-import com.att.research.xacml.util.FactoryException;
-import com.att.research.xacml.util.FactoryFinder;
-import com.att.research.xacml.util.XACMLProperties;
+import org.apache.openaz.xacml.util.FactoryException;
+import org.apache.openaz.xacml.util.FactoryFinder;
+import org.apache.openaz.xacml.util.XACMLProperties;
 
 /**
  * PEPEngineFactory provides the interface for creating {@link PEPEngine} instances.
@@ -43,7 +43,7 @@ import com.att.research.xacml.util.XACMLProperties;
  */
 public abstract class PEPEngineFactory {
     private static final String	FACTORYID	= XACMLProperties.PROP_PEPENGINEFACTORY;
-    private static final String	DEFAULT_FACTORY_CLASSNAME	= "com.att.research.xacml.std.pep.StdEngineFactory";
+    private static final String	DEFAULT_FACTORY_CLASSNAME	= "org.apache.openaz.xacml.std.pep.StdEngineFactory";
 
     /**
      * The constructor is protected to prevent instantiation of the class.

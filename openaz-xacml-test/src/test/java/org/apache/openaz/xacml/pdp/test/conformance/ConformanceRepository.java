@@ -28,7 +28,7 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacmlatt.pdp.test.conformance;
+package org.apache.openaz.xacml.pdp.test.conformance;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -39,9 +39,9 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Properties;
 
-import com.att.research.xacml.util.StringUtils;
-import com.att.research.xacml.util.XACMLProperties;
-import com.att.research.xacmlatt.pdp.std.StdPolicyFinderFactory;
+import org.apache.openaz.xacml.pdp.std.StdPolicyFinderFactory;
+import org.apache.openaz.xacml.util.StringUtils;
+import org.apache.openaz.xacml.util.XACMLProperties;
 
 /**
  * ConformanceRepository represents one or more policies for a single policy test, which will include one or more root policies, and

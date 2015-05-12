@@ -18,9 +18,9 @@
  *
  */
 
-package org.openliberty.openaz.pepapi;
+package org.apache.openaz.pepapi;
 
-import com.att.research.xacml.api.XACML3;
+import org.apache.openaz.xacml.api.XACML3;
 
 /**
  *

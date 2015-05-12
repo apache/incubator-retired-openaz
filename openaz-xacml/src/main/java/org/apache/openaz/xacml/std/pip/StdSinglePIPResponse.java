@@ -28,13 +28,13 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacml.std.pip;
+package org.apache.openaz.xacml.std.pip;
 
-import com.att.research.xacml.api.Attribute;
+import org.apache.openaz.xacml.api.Attribute;
 
 /**
- * StdSinglePIPResponse extends {@link com.att.research.xacml.std.pip.StdMutablePIPResponse} with methods for
- * retrieving a single {@link com.att.research.xacml.api.Attribute}.
+ * StdSinglePIPResponse extends {@link org.apache.openaz.xacml.std.pip.StdMutablePIPResponse} with methods for
+ * retrieving a single {@link org.apache.openaz.xacml.api.Attribute}.
  *
  */
 public class StdSinglePIPResponse extends StdMutablePIPResponse {

@@ -28,9 +28,9 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacml.api.pip;
+package org.apache.openaz.xacml.api.pip;
 
-import com.att.research.xacml.api.Identifier;
+import org.apache.openaz.xacml.api.Identifier;
 
 /**
  * PIPRequest is the interface that objects implement to represent a request to a {@link PIPEngine} to retrieve
@@ -39,7 +39,7 @@ import com.att.research.xacml.api.Identifier;
  */
 public interface PIPRequest {
     /**
-     * Gets the {@link com.att.research.xacml.api.Identifier} of the category of the attributes to retrieve.
+     * Gets the {@link org.apache.openaz.xacml.api.Identifier} of the category of the attributes to retrieve.
      *
      * @return the <code>Identifier</code> for the category of the attributes to retrieve
      */

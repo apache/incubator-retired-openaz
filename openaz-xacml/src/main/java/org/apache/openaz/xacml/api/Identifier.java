@@ -29,12 +29,12 @@
  *                     All Rights Reserved
  */
 
-package com.att.research.xacml.api;
+package org.apache.openaz.xacml.api;
 
 import java.net.URI;
 
 /**
- * Identifier is the interface for objects that represent a XACML 3.0 identifier.  In most cases the {@link com.att.research.xacml.std.IdentifierImpl}
+ * Identifier is the interface for objects that represent a XACML 3.0 identifier.  In most cases the {@link org.apache.openaz.xacml.std.IdentifierImpl}
  * in this package will suffice as an implementation of this interface, but all use of identifiers will use the <code>Identifier</code>
  * interface to allow for extensions.
  *

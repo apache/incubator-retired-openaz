@@ -28,7 +28,7 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacml.api;
+package org.apache.openaz.xacml.api;
 
 import java.util.Collection;
 
@@ -46,7 +46,7 @@ public interface Obligation {
     public Identifier getId();
 
     /**
-     * Gets the <code>Collection</code> of {@link com.att.research.xacml.api.AttributeAssignment}s representing the XACML AttributeAssignment elements
+     * Gets the <code>Collection</code> of {@link org.apache.openaz.xacml.api.AttributeAssignment}s representing the XACML AttributeAssignment elements
      * for this <code>Obligation</code>.
      *
      * @return a <code>Collection</code> of the <code>AttributeAssignment</code>s representing the XACML AttributeAssignment elements

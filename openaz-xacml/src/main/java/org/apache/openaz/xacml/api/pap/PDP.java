@@ -28,14 +28,15 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacml.api.pap;
+package org.apache.openaz.xacml.api.pap;
 
-import com.att.research.xacml.std.pap.StdPDP;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
 import java.util.Set;
+
+import org.apache.openaz.xacml.std.pap.StdPDP;
 
 /*
  * The following allows us to use Jackson to convert sub-types of this type into JSON and back to objects.

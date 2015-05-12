@@ -28,7 +28,7 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacml.api.pdp;
+package org.apache.openaz.xacml.api.pdp;
 
 /**
  * ScopeQualifier enumerates the values of the "scope" attribute in requests.

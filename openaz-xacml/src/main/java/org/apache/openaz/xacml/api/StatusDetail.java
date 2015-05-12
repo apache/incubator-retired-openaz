@@ -28,7 +28,7 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacml.api;
+package org.apache.openaz.xacml.api;
 
 import java.util.Collection;
 
@@ -38,7 +38,7 @@ import java.util.Collection;
  */
 public interface StatusDetail {
     /**
-     * Gets the <code>Collection</code> of {@link com.att.research.xacml.api.MissingAttributeDetail} objects for this <code>StatusDetail</code>.
+     * Gets the <code>Collection</code> of {@link org.apache.openaz.xacml.api.MissingAttributeDetail} objects for this <code>StatusDetail</code>.
      * If there are no <code>MissingAttributeDetail</code>s an empty <code>Collection</code> must be returned.
      *
      * @return the <code>MissingAttributeDetail</code> objects for this <code>StatusDetail</code> or null if none.

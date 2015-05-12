@@ -29,7 +29,7 @@
  *                     All Rights Reserved
  */
 
-package com.att.research.xacmlatt.pdp.policy.dom;
+package org.apache.openaz.xacml.pdp.policy.dom;
 
 /**
  * com.att.research.xacmlatt.pdp.policy.dom contains class definitions that extend {@link com.att.research.xacmlatt.pdp.policy} classes

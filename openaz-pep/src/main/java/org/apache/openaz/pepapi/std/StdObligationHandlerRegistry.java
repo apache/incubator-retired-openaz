@@ -18,17 +18,17 @@
  *
  */
 
-package org.openliberty.openaz.pepapi.std;
+package org.apache.openaz.pepapi.std;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.openliberty.openaz.pepapi.Obligation;
-import org.openliberty.openaz.pepapi.ObligationHandler;
-import org.openliberty.openaz.pepapi.ObligationHandlerRegistry;
-import org.openliberty.openaz.pepapi.Attribute;
-import org.openliberty.openaz.pepapi.MatchAllObligationAttributes;
-import org.openliberty.openaz.pepapi.MatchAnyObligation;
-import org.openliberty.openaz.pepapi.Matchable;
+import org.apache.openaz.pepapi.Attribute;
+import org.apache.openaz.pepapi.MatchAllObligationAttributes;
+import org.apache.openaz.pepapi.MatchAnyObligation;
+import org.apache.openaz.pepapi.Matchable;
+import org.apache.openaz.pepapi.Obligation;
+import org.apache.openaz.pepapi.ObligationHandler;
+import org.apache.openaz.pepapi.ObligationHandlerRegistry;
 
 import java.lang.annotation.Annotation;
 import java.util.HashMap;

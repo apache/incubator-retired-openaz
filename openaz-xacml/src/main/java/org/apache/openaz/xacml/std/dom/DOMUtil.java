@@ -28,7 +28,7 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacml.std.dom;
+package org.apache.openaz.xacml.std.dom;
 
 import java.io.File;
 import java.io.InputStream;
@@ -48,18 +48,17 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
 import org.apache.commons.logging.Log;
+import org.apache.openaz.xacml.api.Identifier;
+import org.apache.openaz.xacml.api.Version;
+import org.apache.openaz.xacml.api.XACML2;
+import org.apache.openaz.xacml.api.XACML3;
+import org.apache.openaz.xacml.std.IdentifierImpl;
+import org.apache.openaz.xacml.std.StdVersion;
+import org.apache.openaz.xacml.std.StdVersionMatch;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-
-import com.att.research.xacml.api.Identifier;
-import com.att.research.xacml.api.Version;
-import com.att.research.xacml.api.XACML2;
-import com.att.research.xacml.api.XACML3;
-import com.att.research.xacml.std.IdentifierImpl;
-import com.att.research.xacml.std.StdVersion;
-import com.att.research.xacml.std.StdVersionMatch;
 
 /**
  * DOMUtil contains a number of utility functions for DOM document elements.

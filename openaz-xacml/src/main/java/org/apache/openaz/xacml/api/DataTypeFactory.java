@@ -28,12 +28,12 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacml.api;
+package org.apache.openaz.xacml.api;
 
 import java.util.Properties;
 
-import com.att.research.xacml.util.FactoryException;
-import com.att.research.xacml.util.FactoryFinder;
+import org.apache.openaz.xacml.util.FactoryException;
+import org.apache.openaz.xacml.util.FactoryFinder;
 
 /**
  * Abstract class for mapping data type {@link Identifier}s to
@@ -50,7 +50,7 @@ import com.att.research.xacml.util.FactoryFinder;
  */
 public abstract class DataTypeFactory {
     private static final String	FACTORYID					= "xacml.dataTypeFactory";
-    private static final String	DEFAULT_FACTORY_CLASSNAME	= "com.att.research.xacml.std.StdDataTypeFactory";
+    private static final String	DEFAULT_FACTORY_CLASSNAME	= "org.apache.openaz.xacml.std.StdDataTypeFactory";
 
     /**
      * Protected constructor so this class cannot be instantiated.

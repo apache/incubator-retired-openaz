@@ -28,54 +28,54 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacmlatt.pdp.std;
+package org.apache.openaz.xacml.pdp.std;
 
 import java.math.BigInteger;
 import java.net.URI;
 
 import javax.security.auth.x500.X500Principal;
 
-import com.att.research.xacml.api.XACML1;
-import com.att.research.xacml.api.XACML2;
-import com.att.research.xacml.api.XACML3;
-import com.att.research.xacml.std.datatypes.Base64Binary;
-import com.att.research.xacml.std.datatypes.DataTypes;
-import com.att.research.xacml.std.datatypes.HexBinary;
-import com.att.research.xacml.std.datatypes.IPAddress;
-import com.att.research.xacml.std.datatypes.ISO8601Date;
-import com.att.research.xacml.std.datatypes.ISO8601DateTime;
-import com.att.research.xacml.std.datatypes.ISO8601Time;
-import com.att.research.xacml.std.datatypes.RFC2396DomainName;
-import com.att.research.xacml.std.datatypes.RFC822Name;
-import com.att.research.xacml.std.datatypes.XPathDayTimeDuration;
-import com.att.research.xacml.std.datatypes.XPathYearMonthDuration;
-import com.att.research.xacmlatt.pdp.policy.FunctionDefinition;
-import com.att.research.xacmlatt.pdp.std.functions.FunctionDefinitionAccessPermitted;
-import com.att.research.xacmlatt.pdp.std.functions.FunctionDefinitionArithmetic;
-import com.att.research.xacmlatt.pdp.std.functions.FunctionDefinitionBag;
-import com.att.research.xacmlatt.pdp.std.functions.FunctionDefinitionBagIsIn;
-import com.att.research.xacmlatt.pdp.std.functions.FunctionDefinitionBagOneAndOnly;
-import com.att.research.xacmlatt.pdp.std.functions.FunctionDefinitionBagSize;
-import com.att.research.xacmlatt.pdp.std.functions.FunctionDefinitionComparison;
-import com.att.research.xacmlatt.pdp.std.functions.FunctionDefinitionDateTimeArithmetic;
-import com.att.research.xacmlatt.pdp.std.functions.FunctionDefinitionEquality;
-import com.att.research.xacmlatt.pdp.std.functions.FunctionDefinitionHigherOrderBag;
-import com.att.research.xacmlatt.pdp.std.functions.FunctionDefinitionLogical;
-import com.att.research.xacmlatt.pdp.std.functions.FunctionDefinitionNumberTypeConversion;
-import com.att.research.xacmlatt.pdp.std.functions.FunctionDefinitionRFC822NameMatch;
-import com.att.research.xacmlatt.pdp.std.functions.FunctionDefinitionRegexpMatch;
-import com.att.research.xacmlatt.pdp.std.functions.FunctionDefinitionSet;
-import com.att.research.xacmlatt.pdp.std.functions.FunctionDefinitionStringConversion;
-import com.att.research.xacmlatt.pdp.std.functions.FunctionDefinitionStringEqualIgnoreCase;
-import com.att.research.xacmlatt.pdp.std.functions.FunctionDefinitionStringFunctions;
-import com.att.research.xacmlatt.pdp.std.functions.FunctionDefinitionStringNormalize;
-import com.att.research.xacmlatt.pdp.std.functions.FunctionDefinitionTimeInRange;
-import com.att.research.xacmlatt.pdp.std.functions.FunctionDefinitionURIStringConcatenate;
-import com.att.research.xacmlatt.pdp.std.functions.FunctionDefinitionX500NameMatch;
-import com.att.research.xacmlatt.pdp.std.functions.FunctionDefinitionXPath;
+import org.apache.openaz.xacml.api.XACML1;
+import org.apache.openaz.xacml.api.XACML2;
+import org.apache.openaz.xacml.api.XACML3;
+import org.apache.openaz.xacml.pdp.policy.FunctionDefinition;
+import org.apache.openaz.xacml.pdp.std.functions.FunctionDefinitionAccessPermitted;
+import org.apache.openaz.xacml.pdp.std.functions.FunctionDefinitionArithmetic;
+import org.apache.openaz.xacml.pdp.std.functions.FunctionDefinitionBag;
+import org.apache.openaz.xacml.pdp.std.functions.FunctionDefinitionBagIsIn;
+import org.apache.openaz.xacml.pdp.std.functions.FunctionDefinitionBagOneAndOnly;
+import org.apache.openaz.xacml.pdp.std.functions.FunctionDefinitionBagSize;
+import org.apache.openaz.xacml.pdp.std.functions.FunctionDefinitionComparison;
+import org.apache.openaz.xacml.pdp.std.functions.FunctionDefinitionDateTimeArithmetic;
+import org.apache.openaz.xacml.pdp.std.functions.FunctionDefinitionEquality;
+import org.apache.openaz.xacml.pdp.std.functions.FunctionDefinitionHigherOrderBag;
+import org.apache.openaz.xacml.pdp.std.functions.FunctionDefinitionLogical;
+import org.apache.openaz.xacml.pdp.std.functions.FunctionDefinitionNumberTypeConversion;
+import org.apache.openaz.xacml.pdp.std.functions.FunctionDefinitionRFC822NameMatch;
+import org.apache.openaz.xacml.pdp.std.functions.FunctionDefinitionRegexpMatch;
+import org.apache.openaz.xacml.pdp.std.functions.FunctionDefinitionSet;
+import org.apache.openaz.xacml.pdp.std.functions.FunctionDefinitionStringConversion;
+import org.apache.openaz.xacml.pdp.std.functions.FunctionDefinitionStringEqualIgnoreCase;
+import org.apache.openaz.xacml.pdp.std.functions.FunctionDefinitionStringFunctions;
+import org.apache.openaz.xacml.pdp.std.functions.FunctionDefinitionStringNormalize;
+import org.apache.openaz.xacml.pdp.std.functions.FunctionDefinitionTimeInRange;
+import org.apache.openaz.xacml.pdp.std.functions.FunctionDefinitionURIStringConcatenate;
+import org.apache.openaz.xacml.pdp.std.functions.FunctionDefinitionX500NameMatch;
+import org.apache.openaz.xacml.pdp.std.functions.FunctionDefinitionXPath;
+import org.apache.openaz.xacml.std.datatypes.Base64Binary;
+import org.apache.openaz.xacml.std.datatypes.DataTypes;
+import org.apache.openaz.xacml.std.datatypes.HexBinary;
+import org.apache.openaz.xacml.std.datatypes.IPAddress;
+import org.apache.openaz.xacml.std.datatypes.ISO8601Date;
+import org.apache.openaz.xacml.std.datatypes.ISO8601DateTime;
+import org.apache.openaz.xacml.std.datatypes.ISO8601Time;
+import org.apache.openaz.xacml.std.datatypes.RFC2396DomainName;
+import org.apache.openaz.xacml.std.datatypes.RFC822Name;
+import org.apache.openaz.xacml.std.datatypes.XPathDayTimeDuration;
+import org.apache.openaz.xacml.std.datatypes.XPathYearMonthDuration;
 
 /**
- * StdFunctions contains the {@link com.att.research.xacml.api.Identifier} values for the standard XACML functions.
+ * StdFunctions contains the {@link org.apache.openaz.xacml.api.Identifier} values for the standard XACML functions.
  *
  */
 @SuppressWarnings("deprecation")

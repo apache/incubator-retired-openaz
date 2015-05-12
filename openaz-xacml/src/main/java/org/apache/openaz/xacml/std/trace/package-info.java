@@ -30,7 +30,7 @@
  */
 
 /**
- * Provides standard implementations of the interfaces defined in the {@link com.att.research.xacml.api.trace} package.
+ * Provides standard implementations of the interfaces defined in the {@link org.apache.openaz.xacml.api.trace} package.
  *
  */
-package com.att.research.xacml.std.trace;
+package org.apache.openaz.xacml.std.trace;

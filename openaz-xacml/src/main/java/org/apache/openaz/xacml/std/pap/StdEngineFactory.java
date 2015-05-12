@@ -28,18 +28,17 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacml.std.pap;
+package org.apache.openaz.xacml.std.pap;
 
 import java.io.IOException;
 import java.util.Properties;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-
-import com.att.research.xacml.api.pap.PAPEngine;
-import com.att.research.xacml.api.pap.PAPEngineFactory;
-import com.att.research.xacml.api.pap.PAPException;
-import com.att.research.xacml.util.FactoryException;
+import org.apache.openaz.xacml.api.pap.PAPEngine;
+import org.apache.openaz.xacml.api.pap.PAPEngineFactory;
+import org.apache.openaz.xacml.api.pap.PAPException;
+import org.apache.openaz.xacml.util.FactoryException;
 
 public class StdEngineFactory extends PAPEngineFactory {
     private static Log	logger	= LogFactory.getLog(StdEngineFactory.class);

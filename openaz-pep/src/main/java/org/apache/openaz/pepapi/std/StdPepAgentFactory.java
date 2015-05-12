@@ -18,11 +18,11 @@
  *
  */
 
-package org.openliberty.openaz.pepapi.std;
+package org.apache.openaz.pepapi.std;
 
-import com.att.research.xacml.api.pdp.PDPEngineFactory;
-import com.att.research.xacml.util.FactoryException;
-import org.openliberty.openaz.pepapi.*;
+import org.apache.openaz.pepapi.*;
+import org.apache.openaz.xacml.api.pdp.PDPEngineFactory;
+import org.apache.openaz.xacml.util.FactoryException;
 
 import java.util.List;
 import java.util.Properties;

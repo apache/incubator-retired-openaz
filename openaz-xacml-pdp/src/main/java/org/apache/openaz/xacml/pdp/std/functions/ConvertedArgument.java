@@ -28,28 +28,28 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacmlatt.pdp.std.functions;
+package org.apache.openaz.xacml.pdp.std.functions;
 
-import com.att.research.xacml.api.AttributeValue;
-import com.att.research.xacml.api.DataType;
-import com.att.research.xacml.api.Identifier;
-import com.att.research.xacml.api.Status;
-import com.att.research.xacml.std.StdStatus;
-import com.att.research.xacml.std.StdStatusCode;
-import com.att.research.xacmlatt.pdp.policy.Bag;
-import com.att.research.xacmlatt.pdp.policy.FunctionArgument;
+import org.apache.openaz.xacml.api.AttributeValue;
+import org.apache.openaz.xacml.api.DataType;
+import org.apache.openaz.xacml.api.Identifier;
+import org.apache.openaz.xacml.api.Status;
+import org.apache.openaz.xacml.pdp.policy.Bag;
+import org.apache.openaz.xacml.pdp.policy.FunctionArgument;
+import org.apache.openaz.xacml.std.StdStatus;
+import org.apache.openaz.xacml.std.StdStatusCode;
 
 /**
- * A ConvertedArgument is the result of processing an {@link com.att.research.xacmlatt.pdp.policy.FunctionArgument}
+ * A ConvertedArgument is the result of processing an {@link org.apache.openaz.xacml.pdp.policy.FunctionArgument}
  * to validate its correctness and to convert it into an object of the required type.
  * It is returned by the <code>validateArguments</code> method in
- * {@link com.att.research.xacmlatt.pdp.std.functions.FunctionDefinitionHomogeneousSimple}
+ * {@link org.apache.openaz.xacml.pdp.std.functions.FunctionDefinitionHomogeneousSimple}
  * and should only be used by other Functions in that same package.
  * This is a data holder with no processing.
  * It contains two elements:
  * <UL>
  * <LI>
- * A {@link com.att.research.xacml.api.Status} object, and
+ * A {@link org.apache.openaz.xacml.api.Status} object, and
  * <LI>
  * An object containing the value of the FunctionArgument processed by validateArguments.
  * This object will only exist if status.isOk() (or the isOk() method in this class that calls status.isOk()) is true.
@@ -162,7 +162,7 @@ public class ConvertedArgument<I> {
      *
      * @param listFunctionArguments the <code>List</code> of <code>FunctionArgument</code>s to validate
      * @param convertedValues the <code>List</code> of <code>U</code> that the converted value is added to.
-     * @return a {@link com.att.research.xacml.api.Status} indication with an error if the arguments are not valid,
+     * @return a {@link org.apache.openaz.xacml.api.Status} indication with an error if the arguments are not valid,
      * 			or an object of the correct DataType containing the value.
      */
     @SuppressWarnings("unchecked")	// to suppress warning on bag conversion

@@ -28,15 +28,15 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacmlatt.pdp.test.custom;
+package org.apache.openaz.xacml.pdp.test.custom;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import com.att.research.xacml.api.DataType;
-import com.att.research.xacml.api.DataTypeFactory;
-import com.att.research.xacml.api.Identifier;
-import com.att.research.xacml.std.datatypes.DataTypes;
+import org.apache.openaz.xacml.api.DataType;
+import org.apache.openaz.xacml.api.DataTypeFactory;
+import org.apache.openaz.xacml.api.Identifier;
+import org.apache.openaz.xacml.std.datatypes.DataTypes;
 
 public class CustomDataTypeFactory extends DataTypeFactory {
     private static final Map<Identifier,DataType<?>> mapIdentifiersToDataTypes	= new HashMap<Identifier,DataType<?>>();

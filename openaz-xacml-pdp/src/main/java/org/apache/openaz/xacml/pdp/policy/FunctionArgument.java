@@ -28,19 +28,19 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacmlatt.pdp.policy;
+package org.apache.openaz.xacml.pdp.policy;
 
-import com.att.research.xacml.api.AttributeValue;
-import com.att.research.xacml.api.Status;
+import org.apache.openaz.xacml.api.AttributeValue;
+import org.apache.openaz.xacml.api.Status;
 
 /**
- * FunctionArgument is the interface implemented by objects that can serve as arguments to a {@link com.att.research.xacmlatt.pdp.policy.FunctionDefinition}
+ * FunctionArgument is the interface implemented by objects that can serve as arguments to a {@link org.apache.openaz.xacml.pdp.policy.FunctionDefinition}
  * <code>evaluate</code> call.
  *
  */
 public interface FunctionArgument {
     /**
-     * Gets the {@link com.att.research.xacml.api.Status} from the evaluation of this <code>FunctionArgument</code>.
+     * Gets the {@link org.apache.openaz.xacml.api.Status} from the evaluation of this <code>FunctionArgument</code>.
      *
      * @return the <code>Status</code> from the evaluation of this <code>FunctionArgument</code>>
      */

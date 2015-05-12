@@ -28,28 +28,27 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacmlatt.pdp.policy.dom;
+package org.apache.openaz.xacml.pdp.policy.dom;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.openaz.xacml.api.XACML3;
+import org.apache.openaz.xacml.pdp.policy.AdviceExpression;
+import org.apache.openaz.xacml.pdp.policy.Policy;
+import org.apache.openaz.xacml.pdp.policy.RuleEffect;
+import org.apache.openaz.xacml.std.StdStatusCode;
+import org.apache.openaz.xacml.std.dom.DOMProperties;
+import org.apache.openaz.xacml.std.dom.DOMStructureException;
+import org.apache.openaz.xacml.std.dom.DOMUtil;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import com.att.research.xacml.api.XACML3;
-import com.att.research.xacml.std.StdStatusCode;
-import com.att.research.xacml.std.dom.DOMProperties;
-import com.att.research.xacml.std.dom.DOMStructureException;
-import com.att.research.xacml.std.dom.DOMUtil;
-import com.att.research.xacmlatt.pdp.policy.AdviceExpression;
-import com.att.research.xacmlatt.pdp.policy.Policy;
-import com.att.research.xacmlatt.pdp.policy.RuleEffect;
-
 /**
- * DOMAdviceExpression extends {@link com.att.research.xacmlatt.pdp.policy.AdviceExpression} with methods for creation
+ * DOMAdviceExpression extends {@link org.apache.openaz.xacml.pdp.policy.AdviceExpression} with methods for creation
  * from {@link org.w3c.dom.Node}s.
  *
  */
@@ -63,7 +62,7 @@ public class DOMAdviceExpression extends AdviceExpression {
      * Creates a new <code>AdviceExpression</code> by parsing the given <code>Node</code> representing a XACML AdviceExpression element.
      *
      * @param nodeAdviceExpression the <code>Node</code> representing the XACML AdviceExpression element
-     * @param policy the {@link com.att.research.xacmlatt.pdp.policy.Policy} encompassing the AdviceExpression element
+     * @param policy the {@link org.apache.openaz.xacml.pdp.policy.Policy} encompassing the AdviceExpression element
      * @return a new <code>AdviceExpression</code> parsed from the given <code>Node</code>
      * @throws DOMStructureException if there is an error parsing the <code>Node</code>
      */

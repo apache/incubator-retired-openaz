@@ -28,30 +28,30 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacmlatt.pdp.policy.expressions;
+package org.apache.openaz.xacml.pdp.policy.expressions;
 
 import java.util.Collection;
 
-import com.att.research.xacml.api.Attribute;
-import com.att.research.xacml.api.AttributeValue;
-import com.att.research.xacml.api.Identifier;
-import com.att.research.xacml.api.MissingAttributeDetail;
-import com.att.research.xacml.api.Status;
-import com.att.research.xacml.api.StatusCode;
-import com.att.research.xacml.api.StatusDetail;
-import com.att.research.xacml.api.pip.PIPException;
-import com.att.research.xacml.api.pip.PIPRequest;
-import com.att.research.xacml.api.pip.PIPResponse;
-import com.att.research.xacml.std.StdMutableMissingAttributeDetail;
-import com.att.research.xacml.std.StdStatus;
-import com.att.research.xacml.std.StdStatusCode;
-import com.att.research.xacml.std.StdStatusDetail;
-import com.att.research.xacml.std.pip.StdPIPRequest;
-import com.att.research.xacmlatt.pdp.eval.EvaluationContext;
-import com.att.research.xacmlatt.pdp.eval.EvaluationException;
-import com.att.research.xacmlatt.pdp.policy.Bag;
-import com.att.research.xacmlatt.pdp.policy.ExpressionResult;
-import com.att.research.xacmlatt.pdp.policy.PolicyDefaults;
+import org.apache.openaz.xacml.api.Attribute;
+import org.apache.openaz.xacml.api.AttributeValue;
+import org.apache.openaz.xacml.api.Identifier;
+import org.apache.openaz.xacml.api.MissingAttributeDetail;
+import org.apache.openaz.xacml.api.Status;
+import org.apache.openaz.xacml.api.StatusCode;
+import org.apache.openaz.xacml.api.StatusDetail;
+import org.apache.openaz.xacml.api.pip.PIPException;
+import org.apache.openaz.xacml.api.pip.PIPRequest;
+import org.apache.openaz.xacml.api.pip.PIPResponse;
+import org.apache.openaz.xacml.pdp.eval.EvaluationContext;
+import org.apache.openaz.xacml.pdp.eval.EvaluationException;
+import org.apache.openaz.xacml.pdp.policy.Bag;
+import org.apache.openaz.xacml.pdp.policy.ExpressionResult;
+import org.apache.openaz.xacml.pdp.policy.PolicyDefaults;
+import org.apache.openaz.xacml.std.StdMutableMissingAttributeDetail;
+import org.apache.openaz.xacml.std.StdStatus;
+import org.apache.openaz.xacml.std.StdStatusCode;
+import org.apache.openaz.xacml.std.StdStatusDetail;
+import org.apache.openaz.xacml.std.pip.StdPIPRequest;
 
 /**
  * AttributeDesignator extends {@link com.att.research.xacmlatt.pdp.policy.expression.AttributeRetrievalBase} to represent the

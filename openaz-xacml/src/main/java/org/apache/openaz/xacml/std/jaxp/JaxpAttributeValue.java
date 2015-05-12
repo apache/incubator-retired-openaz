@@ -28,7 +28,7 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacml.std.jaxp;
+package org.apache.openaz.xacml.std.jaxp;
 
 import java.math.BigInteger;
 import java.net.URI;
@@ -36,46 +36,46 @@ import java.net.URI;
 import javax.security.auth.x500.X500Principal;
 import javax.xml.xpath.XPathExpression;
 
+import org.apache.openaz.xacml.api.DataTypeException;
+import org.apache.openaz.xacml.api.Identifier;
+import org.apache.openaz.xacml.api.XACML;
+import org.apache.openaz.xacml.api.XACML1;
+import org.apache.openaz.xacml.api.XACML2;
+import org.apache.openaz.xacml.api.XACML3;
+import org.apache.openaz.xacml.std.IdentifierImpl;
+import org.apache.openaz.xacml.std.StdAttributeValue;
+import org.apache.openaz.xacml.std.datatypes.Base64Binary;
+import org.apache.openaz.xacml.std.datatypes.DataTypeAnyURI;
+import org.apache.openaz.xacml.std.datatypes.DataTypeBase64Binary;
+import org.apache.openaz.xacml.std.datatypes.DataTypeBoolean;
+import org.apache.openaz.xacml.std.datatypes.DataTypeDNSName;
+import org.apache.openaz.xacml.std.datatypes.DataTypeDate;
+import org.apache.openaz.xacml.std.datatypes.DataTypeDateTime;
+import org.apache.openaz.xacml.std.datatypes.DataTypeDayTimeDuration;
+import org.apache.openaz.xacml.std.datatypes.DataTypeDouble;
+import org.apache.openaz.xacml.std.datatypes.DataTypeHexBinary;
+import org.apache.openaz.xacml.std.datatypes.DataTypeInteger;
+import org.apache.openaz.xacml.std.datatypes.DataTypeIpAddress;
+import org.apache.openaz.xacml.std.datatypes.DataTypeRFC822Name;
+import org.apache.openaz.xacml.std.datatypes.DataTypeString;
+import org.apache.openaz.xacml.std.datatypes.DataTypeTime;
+import org.apache.openaz.xacml.std.datatypes.DataTypeX500Name;
+import org.apache.openaz.xacml.std.datatypes.DataTypeXPathExpression;
+import org.apache.openaz.xacml.std.datatypes.DataTypeYearMonthDuration;
+import org.apache.openaz.xacml.std.datatypes.HexBinary;
+import org.apache.openaz.xacml.std.datatypes.IPAddress;
+import org.apache.openaz.xacml.std.datatypes.ISO8601Date;
+import org.apache.openaz.xacml.std.datatypes.ISO8601DateTime;
+import org.apache.openaz.xacml.std.datatypes.ISO8601Time;
+import org.apache.openaz.xacml.std.datatypes.RFC2396DomainName;
+import org.apache.openaz.xacml.std.datatypes.RFC822Name;
+import org.apache.openaz.xacml.std.datatypes.XPathDayTimeDuration;
+import org.apache.openaz.xacml.std.datatypes.XPathYearMonthDuration;
+
 import oasis.names.tc.xacml._3_0.core.schema.wd_17.AttributeValueType;
 
-import com.att.research.xacml.api.DataTypeException;
-import com.att.research.xacml.api.Identifier;
-import com.att.research.xacml.api.XACML;
-import com.att.research.xacml.api.XACML1;
-import com.att.research.xacml.api.XACML2;
-import com.att.research.xacml.api.XACML3;
-import com.att.research.xacml.std.IdentifierImpl;
-import com.att.research.xacml.std.StdAttributeValue;
-import com.att.research.xacml.std.datatypes.Base64Binary;
-import com.att.research.xacml.std.datatypes.DataTypeAnyURI;
-import com.att.research.xacml.std.datatypes.DataTypeBase64Binary;
-import com.att.research.xacml.std.datatypes.DataTypeBoolean;
-import com.att.research.xacml.std.datatypes.DataTypeDNSName;
-import com.att.research.xacml.std.datatypes.DataTypeDate;
-import com.att.research.xacml.std.datatypes.DataTypeDateTime;
-import com.att.research.xacml.std.datatypes.DataTypeDayTimeDuration;
-import com.att.research.xacml.std.datatypes.DataTypeDouble;
-import com.att.research.xacml.std.datatypes.DataTypeHexBinary;
-import com.att.research.xacml.std.datatypes.DataTypeInteger;
-import com.att.research.xacml.std.datatypes.DataTypeIpAddress;
-import com.att.research.xacml.std.datatypes.DataTypeRFC822Name;
-import com.att.research.xacml.std.datatypes.DataTypeString;
-import com.att.research.xacml.std.datatypes.DataTypeTime;
-import com.att.research.xacml.std.datatypes.DataTypeX500Name;
-import com.att.research.xacml.std.datatypes.DataTypeXPathExpression;
-import com.att.research.xacml.std.datatypes.DataTypeYearMonthDuration;
-import com.att.research.xacml.std.datatypes.HexBinary;
-import com.att.research.xacml.std.datatypes.IPAddress;
-import com.att.research.xacml.std.datatypes.ISO8601Date;
-import com.att.research.xacml.std.datatypes.ISO8601DateTime;
-import com.att.research.xacml.std.datatypes.ISO8601Time;
-import com.att.research.xacml.std.datatypes.RFC2396DomainName;
-import com.att.research.xacml.std.datatypes.RFC822Name;
-import com.att.research.xacml.std.datatypes.XPathDayTimeDuration;
-import com.att.research.xacml.std.datatypes.XPathYearMonthDuration;
-
 /**
- * JaxpAttributeValue<T> extends {@link com.att.research.xacml.std.StdAttributeValue} to instantiate itself
+ * JaxpAttributeValue<T> extends {@link org.apache.openaz.xacml.std.StdAttributeValue} to instantiate itself
  * from a JAXP {@link oasis.names.tc.xacml._3_0.core.schema.wd_17.AttributeValueType}.
  *
  * @param <T> the data type of the value in the <code>AttributeValue</code>.

@@ -29,7 +29,7 @@
  *                     All Rights Reserved
  */
 
-package com.att.research.xacml.api.pdp;
+package org.apache.openaz.xacml.api.pdp;
 
 /**
  * com.att.research.xacml.api.pdp contains the XACML API for that PDP implementations must meet to be used by the standard PEP

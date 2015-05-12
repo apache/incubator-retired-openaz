@@ -18,11 +18,11 @@
  *
  */
 
-package org.openliberty.openaz.pepapi.std;
+package org.apache.openaz.pepapi.std;
 
 
-import org.openliberty.openaz.pepapi.Obligation;
-import org.openliberty.openaz.pepapi.ObligationStore;
+import org.apache.openaz.pepapi.Obligation;
+import org.apache.openaz.pepapi.ObligationStore;
 
 import java.util.Collections;
 import java.util.HashSet;

@@ -28,13 +28,13 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacml.std.pep;
+package org.apache.openaz.xacml.std.pep;
 
 import java.util.Properties;
 
-import com.att.research.xacml.api.pep.PEPEngine;
-import com.att.research.xacml.api.pep.PEPEngineFactory;
-import com.att.research.xacml.api.pep.PEPException;
+import org.apache.openaz.xacml.api.pep.PEPEngine;
+import org.apache.openaz.xacml.api.pep.PEPEngineFactory;
+import org.apache.openaz.xacml.api.pep.PEPException;
 
 public class StdEngineFactory extends PEPEngineFactory {
 

@@ -28,7 +28,7 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacmlatt.pdp.test.custom;
+package org.apache.openaz.xacml.pdp.test.custom;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
@@ -37,12 +37,12 @@ import java.security.PublicKey;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.att.research.xacml.api.Identifier;
-import com.att.research.xacml.std.IdentifierImpl;
-import com.att.research.xacmlatt.pdp.policy.FunctionDefinition;
-import com.att.research.xacmlatt.pdp.policy.FunctionDefinitionFactory;
-import com.att.research.xacmlatt.pdp.std.StdFunctions;
-import com.att.research.xacmlatt.pdp.std.functions.FunctionDefinitionBagOneAndOnly;
+import org.apache.openaz.xacml.api.Identifier;
+import org.apache.openaz.xacml.pdp.policy.FunctionDefinition;
+import org.apache.openaz.xacml.pdp.policy.FunctionDefinitionFactory;
+import org.apache.openaz.xacml.pdp.std.StdFunctions;
+import org.apache.openaz.xacml.pdp.std.functions.FunctionDefinitionBagOneAndOnly;
+import org.apache.openaz.xacml.std.IdentifierImpl;
 
 public class CustomFunctionDefinitionFactory extends FunctionDefinitionFactory {
     private static Map<Identifier,FunctionDefinition> 	mapFunctionDefinitions	= new HashMap<Identifier,FunctionDefinition>();

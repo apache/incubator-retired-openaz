@@ -18,29 +18,29 @@
  *
  */
 
-package org.openliberty.openaz.pepapi;
+package org.apache.openaz.pepapi;
 
-import com.att.research.xacml.api.Result;
+import org.apache.openaz.xacml.api.Result;
 
 /**
  * Factory for creating and configuring <code>PepResponse</code>.
  * <br>
- * This class creates {@link org.openliberty.openaz.pepapi.PepResponse} objects and configures
+ * This class creates {@link org.apache.openaz.pepapi.PepResponse} objects and configures
  * the behavior of how the <code>PepResponse</code> interprets the
  * results from the AzService or any other PDP that is supported
  * by an implementation of PepApi (org.openliberty.openaz.azapi.pep.*).
  * <br>
  * The {@link PepResponseBehavior} that is invoked when
- * {@link org.openliberty.openaz.pepapi.PepResponse#allowed()} is called and the associated status code
+ * {@link org.apache.openaz.pepapi.PepResponse#allowed()} is called and the associated status code
  * has been returned by the PDP and is being handled by the PepResponse
  * provider impl, can be configured to be one of:
  * <ul>
  * <li>
- * {@link org.openliberty.openaz.pepapi.PepResponse#allowed()} returns true (PERMIT: {@link PepResponseBehavior#RETURN_YES}),
+ * {@link org.apache.openaz.pepapi.PepResponse#allowed()} returns true (PERMIT: {@link PepResponseBehavior#RETURN_YES}),
  * <li>
- * {@link org.openliberty.openaz.pepapi.PepResponse#allowed()} returns false (DENY: {@link PepResponseBehavior#RETURN_NO}),
+ * {@link org.apache.openaz.pepapi.PepResponse#allowed()} returns false (DENY: {@link PepResponseBehavior#RETURN_NO}),
  * <li>
- * or{@link org.openliberty.openaz.pepapi.PepResponse#allowed()} throws an exception (DENY: {@link PepResponseBehavior#THROW_EXCEPTION}).
+ * or{@link org.apache.openaz.pepapi.PepResponse#allowed()} throws an exception (DENY: {@link PepResponseBehavior#THROW_EXCEPTION}).
  * </ul>
  * <p>
  * In general, a Permit returns true, and a Deny returns false,

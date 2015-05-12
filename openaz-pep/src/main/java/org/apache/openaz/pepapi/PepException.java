@@ -16,7 +16,7 @@
  * Contributor:
  * 	  Rich Levinson (Oracle)
  */
-package org.openliberty.openaz.pepapi;
+package org.apache.openaz.pepapi;
 
 /**
  * The PepException is used to provide additional

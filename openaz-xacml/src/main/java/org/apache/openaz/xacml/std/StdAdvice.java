@@ -28,22 +28,22 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacml.std;
+package org.apache.openaz.xacml.std;
 
 import java.util.Collection;
 
-import com.att.research.xacml.api.Advice;
-import com.att.research.xacml.api.AttributeAssignment;
-import com.att.research.xacml.api.Identifier;
-import com.att.research.xacml.util.Wrapper;
+import org.apache.openaz.xacml.api.Advice;
+import org.apache.openaz.xacml.api.AttributeAssignment;
+import org.apache.openaz.xacml.api.Identifier;
+import org.apache.openaz.xacml.util.Wrapper;
 
 /**
- * Immutable implementation of the {@link com.att.research.xacml.api.Advice} interface.
+ * Immutable implementation of the {@link org.apache.openaz.xacml.api.Advice} interface.
  *
  */
 public class StdAdvice extends Wrapper<Advice> implements Advice {
     /**
-     * Creates an immutable <code>StdAdvice</code> that wraps the given {@link com.att.research.xacml.api.Advice}.
+     * Creates an immutable <code>StdAdvice</code> that wraps the given {@link org.apache.openaz.xacml.api.Advice}.
      *
      * @param advice the <code>Advice</code> object to wrap in the new <code>StdAdvice</code>
      */
@@ -52,8 +52,8 @@ public class StdAdvice extends Wrapper<Advice> implements Advice {
     }
 
     /**
-     * Creates an immutable <code>StdAdvice</code> with the given {@link com.att.research.xacml.api.Identifier} as the XACML AdviceId
-     * and the given <code>Collection</code> of {@link com.att.research.xacml.api.AttributeAssignment}s representing the XACML AttributeAssignment elements.
+     * Creates an immutable <code>StdAdvice</code> with the given {@link org.apache.openaz.xacml.api.Identifier} as the XACML AdviceId
+     * and the given <code>Collection</code> of {@link org.apache.openaz.xacml.api.AttributeAssignment}s representing the XACML AttributeAssignment elements.
      *
      * @param adviceId the <code>Identifier</code> representing the XACML AdviceId
      * @param attributeAssignmentsIn the <code>Collection</code> of <code>AttributeAssignment</code>s representing the XACML AttributeAssignment elements.
@@ -63,7 +63,7 @@ public class StdAdvice extends Wrapper<Advice> implements Advice {
     }
 
     /**
-     * Creates an immutable <code>StdAdvice</code> with the given {@link com.att.research.xacml.api.Identifier} as the XACML AdviceId and
+     * Creates an immutable <code>StdAdvice</code> with the given {@link org.apache.openaz.xacml.api.Identifier} as the XACML AdviceId and
      * an empty list of <code>AttributeAssignment</code>s.
      *
      * @param adviceId the <code>Identifier</code> representing the XACML AdviceId
@@ -73,7 +73,7 @@ public class StdAdvice extends Wrapper<Advice> implements Advice {
     }
 
     /**
-     * Creates a copy of the given {@link com.att.research.xacml.api.Advice}.
+     * Creates a copy of the given {@link org.apache.openaz.xacml.api.Advice}.
      *
      * @param advice the <code>Advice</code> to copy
      * @return a new <code>StdAdvice</code> that is a copy of the given <code>Advice</code>.

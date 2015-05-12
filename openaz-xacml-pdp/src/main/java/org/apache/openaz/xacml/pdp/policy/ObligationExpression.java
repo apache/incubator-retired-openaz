@@ -28,22 +28,22 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacmlatt.pdp.policy;
+package org.apache.openaz.xacml.pdp.policy;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
-import com.att.research.xacml.api.AttributeAssignment;
-import com.att.research.xacml.api.Decision;
-import com.att.research.xacml.api.Identifier;
-import com.att.research.xacml.api.Obligation;
-import com.att.research.xacml.api.StatusCode;
-import com.att.research.xacml.std.StdMutableObligation;
-import com.att.research.xacml.std.StdStatusCode;
-import com.att.research.xacmlatt.pdp.eval.EvaluationContext;
-import com.att.research.xacmlatt.pdp.eval.EvaluationException;
+import org.apache.openaz.xacml.api.AttributeAssignment;
+import org.apache.openaz.xacml.api.Decision;
+import org.apache.openaz.xacml.api.Identifier;
+import org.apache.openaz.xacml.api.Obligation;
+import org.apache.openaz.xacml.api.StatusCode;
+import org.apache.openaz.xacml.pdp.eval.EvaluationContext;
+import org.apache.openaz.xacml.pdp.eval.EvaluationException;
+import org.apache.openaz.xacml.std.StdMutableObligation;
+import org.apache.openaz.xacml.std.StdStatusCode;
 
 /**
  * ObligationExpression extends {@link PolicyComponent} to implement the XACML
@@ -118,13 +118,13 @@ public class ObligationExpression extends PolicyComponent {
     }
 
     /**
-     * Evaluates this <code>ObligationExpression</code> in the given {@link com.att.research.xacmlatt.pdp.eval.EvaluationContext}
-     * to get an {@link com.att.research.xacml.api.Obligation} to include in a PDP result.
+     * Evaluates this <code>ObligationExpression</code> in the given {@link org.apache.openaz.xacml.pdp.eval.EvaluationContext}
+     * to get an {@link org.apache.openaz.xacml.api.Obligation} to include in a PDP result.
      *
      * @param evaluationContext the <code>EvaluationContext</code> in which to evaluate this <code>ObligationExpression</code>
      * @param policyDefaults the <code>PolicyDefaults</code> to apply to the evaluation
      * @return a new <code>Obliagion</code> from this <code>ObligationExpression</code>
-     * @throws com.att.research.xacmlatt.pdp.eval.EvaluationException if there is an error evaluating any of the <code>AttributeAssignmentExpression</code>s
+     * @throws org.apache.openaz.xacml.pdp.eval.EvaluationException if there is an error evaluating any of the <code>AttributeAssignmentExpression</code>s
      */
     public Obligation evaluate(EvaluationContext evaluationContext, PolicyDefaults policyDefaults) throws EvaluationException {
         if (!this.validate()) {
@@ -154,7 +154,7 @@ public class ObligationExpression extends PolicyComponent {
      * @param policyDefaults
      * @param listObligationExpressions
      * @return
-     * @throws com.att.research.xacmlatt.pdp.eval.EvaluationException
+     * @throws org.apache.openaz.xacml.pdp.eval.EvaluationException
      */
     public static List<Obligation> evaluate(EvaluationContext evaluationContext, PolicyDefaults policyDefaults, Decision decision, Collection<ObligationExpression> listObligationExpressions) throws EvaluationException {
         List<Obligation> listObligations	= new ArrayList<Obligation>();

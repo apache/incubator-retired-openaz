@@ -28,15 +28,15 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacml.util;
+package org.apache.openaz.xacml.util;
 
-import com.att.research.xacml.api.Attribute;
-import com.att.research.xacml.api.AttributeValue;
-import com.att.research.xacml.api.Request;
-import com.att.research.xacml.api.RequestAttributes;
-import com.att.research.xacml.api.RequestDefaults;
-import com.att.research.xacml.api.RequestReference;
-import com.att.research.xacml.api.pip.PIPRequest;
+import org.apache.openaz.xacml.api.Attribute;
+import org.apache.openaz.xacml.api.AttributeValue;
+import org.apache.openaz.xacml.api.Request;
+import org.apache.openaz.xacml.api.RequestAttributes;
+import org.apache.openaz.xacml.api.RequestDefaults;
+import org.apache.openaz.xacml.api.RequestReference;
+import org.apache.openaz.xacml.api.pip.PIPRequest;
 
 public class AttributeUtils {
 

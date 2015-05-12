@@ -18,13 +18,14 @@
  *
  */
 
-package org.openliberty.openaz.pepapi.std.test.obligation;
+package org.apache.openaz.pepapi.std.test.obligation;
 
 import junit.framework.Assert;
-import org.openliberty.openaz.pepapi.Obligation;
-import org.openliberty.openaz.pepapi.ObligationStore;
-import org.openliberty.openaz.pepapi.ObligationStoreAware;
-import org.openliberty.openaz.pepapi.MatchAnyObligation;
+
+import org.apache.openaz.pepapi.MatchAnyObligation;
+import org.apache.openaz.pepapi.Obligation;
+import org.apache.openaz.pepapi.ObligationStore;
+import org.apache.openaz.pepapi.ObligationStoreAware;
 
 import java.util.HashSet;
 import java.util.Set;

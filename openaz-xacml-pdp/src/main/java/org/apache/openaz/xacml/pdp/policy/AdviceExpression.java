@@ -28,23 +28,23 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacmlatt.pdp.policy;
+package org.apache.openaz.xacml.pdp.policy;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
-import com.att.research.xacml.api.Advice;
-import com.att.research.xacml.api.AttributeAssignment;
-import com.att.research.xacml.api.Decision;
-import com.att.research.xacml.api.Identifier;
-import com.att.research.xacml.api.StatusCode;
-import com.att.research.xacml.std.StdMutableAdvice;
-import com.att.research.xacml.std.StdStatusCode;
-import com.att.research.xacml.util.StringUtils;
-import com.att.research.xacmlatt.pdp.eval.EvaluationContext;
-import com.att.research.xacmlatt.pdp.eval.EvaluationException;
+import org.apache.openaz.xacml.api.Advice;
+import org.apache.openaz.xacml.api.AttributeAssignment;
+import org.apache.openaz.xacml.api.Decision;
+import org.apache.openaz.xacml.api.Identifier;
+import org.apache.openaz.xacml.api.StatusCode;
+import org.apache.openaz.xacml.pdp.eval.EvaluationContext;
+import org.apache.openaz.xacml.pdp.eval.EvaluationException;
+import org.apache.openaz.xacml.std.StdMutableAdvice;
+import org.apache.openaz.xacml.std.StdStatusCode;
+import org.apache.openaz.xacml.util.StringUtils;
 
 /**
  * AdviceExpression extends {@link PolicyComponent} to implement the XACML AdviceExpression element.
@@ -119,12 +119,12 @@ public class AdviceExpression extends PolicyComponent {
 
     /**
      * Evaluates the <code>AttributeAssignmentExpression</code>s in this <code>AdviceExpression</code> to generate an
-     * {@link com.att.research.xacml.api.Advice} object.
+     * {@link org.apache.openaz.xacml.api.Advice} object.
      *
-     * @param evaluationContext the {@link com.att.research.xacmlatt.pdp.eval.EvaluationContext} in which to evaluate the <code>AttributeAssignmentExpression</code>s
+     * @param evaluationContext the {@link org.apache.openaz.xacml.pdp.eval.EvaluationContext} in which to evaluate the <code>AttributeAssignmentExpression</code>s
      * @param policyDefaults the {@link PolicyDefaults} for the evaluation
      * @return a new <code>Advice</code> evaluated from this <code>AdviceExpression</code>
-     * @throws com.att.research.xacmlatt.pdp.eval.EvaluationException if there is an error in the evaluation
+     * @throws org.apache.openaz.xacml.pdp.eval.EvaluationException if there is an error in the evaluation
      */
     public Advice evaluate(EvaluationContext evaluationContext, PolicyDefaults policyDefaults) throws EvaluationException {
         if (!this.validate()) {
@@ -156,7 +156,7 @@ public class AdviceExpression extends PolicyComponent {
      * @param policyDefaults
      * @param listAdviceExpressions
      * @return
-     * @throws com.att.research.xacmlatt.pdp.eval.EvaluationException
+     * @throws org.apache.openaz.xacml.pdp.eval.EvaluationException
      */
     public static List<Advice> evaluate(EvaluationContext evaluationContext, PolicyDefaults policyDefaults, Decision decision, Collection<AdviceExpression> listAdviceExpressions) throws EvaluationException {
         List<Advice> listAdvices	= new ArrayList<Advice>();

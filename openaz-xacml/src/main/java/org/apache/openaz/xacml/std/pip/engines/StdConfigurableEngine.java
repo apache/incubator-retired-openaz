@@ -28,12 +28,13 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacml.std.pip.engines;
+package org.apache.openaz.xacml.std.pip.engines;
 
 import java.util.Properties;
 
-import com.att.research.xacml.api.pip.PIPException;
-import com.att.research.xacml.api.pip.PIPResponse;
+import org.apache.openaz.xacml.api.pip.PIPException;
+import org.apache.openaz.xacml.api.pip.PIPResponse;
+
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
 

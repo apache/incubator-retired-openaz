@@ -28,7 +28,7 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacml.std.json;
+package org.apache.openaz.xacml.std.json;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
@@ -61,50 +61,50 @@ import javax.xml.parsers.ParserConfigurationException;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.openaz.xacml.api.Advice;
+import org.apache.openaz.xacml.api.Attribute;
+import org.apache.openaz.xacml.api.AttributeAssignment;
+import org.apache.openaz.xacml.api.AttributeCategory;
+import org.apache.openaz.xacml.api.AttributeValue;
+import org.apache.openaz.xacml.api.DataType;
+import org.apache.openaz.xacml.api.DataTypeException;
+import org.apache.openaz.xacml.api.DataTypeFactory;
+import org.apache.openaz.xacml.api.Decision;
+import org.apache.openaz.xacml.api.IdReference;
+import org.apache.openaz.xacml.api.Identifier;
+import org.apache.openaz.xacml.api.MissingAttributeDetail;
+import org.apache.openaz.xacml.api.Obligation;
+import org.apache.openaz.xacml.api.Response;
+import org.apache.openaz.xacml.api.Result;
+import org.apache.openaz.xacml.api.SemanticString;
+import org.apache.openaz.xacml.api.StatusCode;
+import org.apache.openaz.xacml.api.XACML3;
+import org.apache.openaz.xacml.std.IdentifierImpl;
+import org.apache.openaz.xacml.std.StdAdvice;
+import org.apache.openaz.xacml.std.StdDataTypeFactory;
+import org.apache.openaz.xacml.std.StdIdReference;
+import org.apache.openaz.xacml.std.StdMutableAttribute;
+import org.apache.openaz.xacml.std.StdMutableAttributeAssignment;
+import org.apache.openaz.xacml.std.StdMutableAttributeCategory;
+import org.apache.openaz.xacml.std.StdMutableMissingAttributeDetail;
+import org.apache.openaz.xacml.std.StdMutableResponse;
+import org.apache.openaz.xacml.std.StdMutableResult;
+import org.apache.openaz.xacml.std.StdMutableStatus;
+import org.apache.openaz.xacml.std.StdMutableStatusDetail;
+import org.apache.openaz.xacml.std.StdObligation;
+import org.apache.openaz.xacml.std.StdStatusCode;
+import org.apache.openaz.xacml.std.StdVersion;
+import org.apache.openaz.xacml.std.datatypes.DataTypes;
+import org.apache.openaz.xacml.std.datatypes.ExtendedNamespaceContext;
+import org.apache.openaz.xacml.std.datatypes.StringNamespaceContext;
+import org.apache.openaz.xacml.std.datatypes.XPathExpressionWrapper;
+import org.apache.openaz.xacml.util.FactoryException;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import com.att.research.xacml.api.Advice;
-import com.att.research.xacml.api.Attribute;
-import com.att.research.xacml.api.AttributeAssignment;
-import com.att.research.xacml.api.AttributeCategory;
-import com.att.research.xacml.api.AttributeValue;
-import com.att.research.xacml.api.DataType;
-import com.att.research.xacml.api.DataTypeException;
-import com.att.research.xacml.api.DataTypeFactory;
-import com.att.research.xacml.api.Decision;
-import com.att.research.xacml.api.IdReference;
-import com.att.research.xacml.api.Identifier;
-import com.att.research.xacml.api.MissingAttributeDetail;
-import com.att.research.xacml.api.Obligation;
-import com.att.research.xacml.api.Response;
-import com.att.research.xacml.api.Result;
-import com.att.research.xacml.api.SemanticString;
-import com.att.research.xacml.api.StatusCode;
-import com.att.research.xacml.api.XACML3;
-import com.att.research.xacml.std.IdentifierImpl;
-import com.att.research.xacml.std.StdAdvice;
-import com.att.research.xacml.std.StdDataTypeFactory;
-import com.att.research.xacml.std.StdIdReference;
-import com.att.research.xacml.std.StdMutableAttribute;
-import com.att.research.xacml.std.StdMutableAttributeAssignment;
-import com.att.research.xacml.std.StdMutableAttributeCategory;
-import com.att.research.xacml.std.StdMutableMissingAttributeDetail;
-import com.att.research.xacml.std.StdMutableResponse;
-import com.att.research.xacml.std.StdMutableResult;
-import com.att.research.xacml.std.StdMutableStatus;
-import com.att.research.xacml.std.StdMutableStatusDetail;
-import com.att.research.xacml.std.StdObligation;
-import com.att.research.xacml.std.StdStatusCode;
-import com.att.research.xacml.std.StdVersion;
-import com.att.research.xacml.std.datatypes.DataTypes;
-import com.att.research.xacml.std.datatypes.ExtendedNamespaceContext;
-import com.att.research.xacml.std.datatypes.StringNamespaceContext;
-import com.att.research.xacml.std.datatypes.XPathExpressionWrapper;
-import com.att.research.xacml.util.FactoryException;
 import com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.core.JsonParseException;
@@ -114,14 +114,14 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
 /**
- * JSONResponse is used to convert JSON into {@link com.att.research.xacml.api.Response} objects and
- * {@link com.att.research.xacml.api.Response} objects into JSON strings.
+ * JSONResponse is used to convert JSON into {@link org.apache.openaz.xacml.api.Response} objects and
+ * {@link org.apache.openaz.xacml.api.Response} objects into JSON strings.
  * Instances of this class are never created.
- * The {@link com.att.research.xacml.api.Response} objects returned by this class are instances of
- * {@link com.att.research.xacml.std.StdMutableResponse}.
- * {@link com.att.research.xacml.api.Response} objects are generated by loading a file or JSON string representing the Request.
+ * The {@link org.apache.openaz.xacml.api.Response} objects returned by this class are instances of
+ * {@link org.apache.openaz.xacml.std.StdMutableResponse}.
+ * {@link org.apache.openaz.xacml.api.Response} objects are generated by loading a file or JSON string representing the Request.
  * In normal product operation this is not used to generate new instances
- * because the PDP generates {@link com.att.research.xacml.std.StdResponse} objects internally.
+ * because the PDP generates {@link org.apache.openaz.xacml.std.StdResponse} objects internally.
  * Those objects are converted to JSON strings for transmission through the RESTful Web Service
  * using the <code>convert</code> method in this class.
  *
@@ -597,7 +597,7 @@ public class JSONResponse {
 
 
     /**
-     * Parse and JSON string into a {@link com.att.research.xacml.api.Response} object.
+     * Parse and JSON string into a {@link org.apache.openaz.xacml.api.Response} object.
      *
      * @param jsonString
      * @return
@@ -615,7 +615,7 @@ public class JSONResponse {
 
 
     /**
-     * Read a file containing an JSON representation of a Response and parse it into a {@link com.att.research.xacml.api.Response} Object.
+     * Read a file containing an JSON representation of a Response and parse it into a {@link org.apache.openaz.xacml.api.Response} Object.
      * This is used only for testing since Responses in the normal environment are generated by the PDP code.
      *
      * @param fileResponse
@@ -653,7 +653,7 @@ public class JSONResponse {
     }
 
     /**
-     * Read characters from the given <code>InputStream</code> and parse them into an XACML {@link com.att.research.xacml.api.Request} object.
+     * Read characters from the given <code>InputStream</code> and parse them into an XACML {@link org.apache.openaz.xacml.api.Request} object.
      *
      * @param is
      * @return
@@ -1077,7 +1077,7 @@ public class JSONResponse {
 
 
     /**
-     * Convert the {@link com.att.research.xacml.api.Response} into an JSON string with pretty-printing.
+     * Convert the {@link org.apache.openaz.xacml.api.Response} into an JSON string with pretty-printing.
      * This is used only for debugging.
      *
      * @param response
@@ -1089,7 +1089,7 @@ public class JSONResponse {
     }
 
     /**
-     * Convert the {@link com.att.research.xacml.api.Response} into an JSON string, pretty-printing is optional.
+     * Convert the {@link org.apache.openaz.xacml.api.Response} into an JSON string, pretty-printing is optional.
      * This is used only for debugging.
      *
      * @param response
@@ -1118,7 +1118,7 @@ public class JSONResponse {
     }
 
     /**
-     * Convert the {@link com.att.research.xacml.api.Response} object into a string suitable for output in an HTTPResponse.
+     * Convert the {@link org.apache.openaz.xacml.api.Response} object into a string suitable for output in an HTTPResponse.
      * This method generates the output without any pretty-printing.
      * This is the method normally called by the Web Service for generating the output to the PEP through the RESTful interface.
      *
@@ -1134,7 +1134,7 @@ public class JSONResponse {
     }
 
     /**
-     * Do the work of converting the {@link com.att.research.xacml.api.Response} object to a string, allowing for pretty-printing if desired.
+     * Do the work of converting the {@link org.apache.openaz.xacml.api.Response} object to a string, allowing for pretty-printing if desired.
      *
      * IMPORTANT: This method does NOT close the outputStream.  It is the responsibility of the caller to (who opened the stream) to close it.
      *

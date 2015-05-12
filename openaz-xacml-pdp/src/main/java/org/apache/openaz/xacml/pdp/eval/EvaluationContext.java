@@ -28,23 +28,23 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacmlatt.pdp.eval;
+package org.apache.openaz.xacml.pdp.eval;
 
-import com.att.research.xacml.api.IdReferenceMatch;
-import com.att.research.xacml.api.Request;
-import com.att.research.xacml.api.pip.PIPException;
-import com.att.research.xacml.api.pip.PIPFinder;
-import com.att.research.xacml.api.pip.PIPRequest;
-import com.att.research.xacml.api.pip.PIPResponse;
-import com.att.research.xacml.api.trace.TraceEngine;
-import com.att.research.xacmlatt.pdp.policy.Policy;
-import com.att.research.xacmlatt.pdp.policy.PolicyDef;
-import com.att.research.xacmlatt.pdp.policy.PolicyFinderResult;
-import com.att.research.xacmlatt.pdp.policy.PolicySet;
+import org.apache.openaz.xacml.api.IdReferenceMatch;
+import org.apache.openaz.xacml.api.Request;
+import org.apache.openaz.xacml.api.pip.PIPException;
+import org.apache.openaz.xacml.api.pip.PIPFinder;
+import org.apache.openaz.xacml.api.pip.PIPRequest;
+import org.apache.openaz.xacml.api.pip.PIPResponse;
+import org.apache.openaz.xacml.api.trace.TraceEngine;
+import org.apache.openaz.xacml.pdp.policy.Policy;
+import org.apache.openaz.xacml.pdp.policy.PolicyDef;
+import org.apache.openaz.xacml.pdp.policy.PolicyFinderResult;
+import org.apache.openaz.xacml.pdp.policy.PolicySet;
 
 /**
  * EvaluationContext provides the interface that the PDP uses to evaluate its set of Policies and PolicySets against
- * a {@link com.att.research.xacml.api.Request}.
+ * a {@link org.apache.openaz.xacml.api.Request}.
  *
  */
 public interface EvaluationContext extends PIPFinder, TraceEngine {
@@ -56,7 +56,7 @@ public interface EvaluationContext extends PIPFinder, TraceEngine {
     public Request getRequest();
 
     /**
-     * Gets the root {@link com.att.research.xacmlatt.pdp.policy.PolicyDef} from the policy store
+     * Gets the root {@link org.apache.openaz.xacml.pdp.policy.PolicyDef} from the policy store
      * configured by the particular implementation of the <code>PolicyFinderFactory</code> class.
      *
      * @return a <code>PolicyFinderResult</code> with the root <code>PolicyDef</code>
@@ -64,7 +64,7 @@ public interface EvaluationContext extends PIPFinder, TraceEngine {
     public abstract PolicyFinderResult<PolicyDef> getRootPolicyDef();
 
     /**
-     * Gets the {@link com.att.research.xacmlatt.pdp.policy.Policy} that matches the given {@link com.att.research.xacml.api.IdReferenceMatch}.
+     * Gets the {@link org.apache.openaz.xacml.pdp.policy.Policy} that matches the given {@link org.apache.openaz.xacml.api.IdReferenceMatch}.
      *
      * @param idReferenceMatch the <code>IdReferenceMatch</code> to search for
      * @return a <code>PolicyFinderResult</code> with the <code>Policy</code> matching the given <code>IdReferenceMatch</code>
@@ -72,7 +72,7 @@ public interface EvaluationContext extends PIPFinder, TraceEngine {
     public abstract PolicyFinderResult<Policy> getPolicy(IdReferenceMatch idReferenceMatch);
 
     /**
-     * Gets the {@link com.att.research.xacmlatt.pdp.policy.PolicySet} that matches the given {@link com.att.research.xacml.api.IdReferenceMatch}.
+     * Gets the {@link org.apache.openaz.xacml.pdp.policy.PolicySet} that matches the given {@link org.apache.openaz.xacml.api.IdReferenceMatch}.
      *
      * @param idReferenceMatch the <code>IdReferenceMatch</code> to search for
      * @return a <code>PolicyFinderResult</code> with the <code>PolicySet</code> matching the given <code>IdReferenceMatch</code>.
@@ -80,11 +80,11 @@ public interface EvaluationContext extends PIPFinder, TraceEngine {
     public abstract PolicyFinderResult<PolicySet> getPolicySet(IdReferenceMatch idReferenceMatch);
 
     /**
-     * Gets the {@link com.att.research.xacml.api.pip.PIPResponse} containing {@link com.att.research.xacml.api.Attribute}s that
-     * match the given {@link com.att.research.xacml.api.pip.PIPRequest} from this <code>EvaluationContext</code>.
+     * Gets the {@link org.apache.openaz.xacml.api.pip.PIPResponse} containing {@link org.apache.openaz.xacml.api.Attribute}s that
+     * match the given {@link org.apache.openaz.xacml.api.pip.PIPRequest} from this <code>EvaluationContext</code>.
      *
      * @param pipRequest the <code>PIPRequest</code> specifying which <code>Attribute</code>s to retrieve
-     * @return the <code>PIPResponse</code> containing the {@link com.att.research.xacml.api.Status} and <code>Attribute</code>s
+     * @return the <code>PIPResponse</code> containing the {@link org.apache.openaz.xacml.api.Status} and <code>Attribute</code>s
      * @throws EvaluationException if there is an error retrieving the <code>Attribute</code>s
      */
     public PIPResponse getAttributes(PIPRequest pipRequest) throws PIPException;

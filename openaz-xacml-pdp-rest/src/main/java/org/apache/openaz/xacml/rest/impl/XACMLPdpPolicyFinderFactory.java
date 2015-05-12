@@ -28,7 +28,7 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacml.rest.impl;
+package org.apache.openaz.xacml.rest.impl;
 
 import java.io.File;
 import java.io.IOException;
@@ -42,17 +42,17 @@ import java.util.Properties;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.openaz.xacml.pdp.policy.Policy;
+import org.apache.openaz.xacml.pdp.policy.PolicyDef;
+import org.apache.openaz.xacml.pdp.policy.PolicyFinder;
+import org.apache.openaz.xacml.pdp.policy.PolicyFinderFactory;
+import org.apache.openaz.xacml.pdp.policy.dom.DOMPolicyDef;
+import org.apache.openaz.xacml.pdp.std.StdPolicyFinder;
+import org.apache.openaz.xacml.std.StdStatusCode;
+import org.apache.openaz.xacml.std.dom.DOMStructureException;
+import org.apache.openaz.xacml.util.FactoryException;
+import org.apache.openaz.xacml.util.XACMLProperties;
 
-import com.att.research.xacml.std.StdStatusCode;
-import com.att.research.xacml.std.dom.DOMStructureException;
-import com.att.research.xacml.util.FactoryException;
-import com.att.research.xacml.util.XACMLProperties;
-import com.att.research.xacmlatt.pdp.policy.Policy;
-import com.att.research.xacmlatt.pdp.policy.PolicyDef;
-import com.att.research.xacmlatt.pdp.policy.PolicyFinder;
-import com.att.research.xacmlatt.pdp.policy.PolicyFinderFactory;
-import com.att.research.xacmlatt.pdp.policy.dom.DOMPolicyDef;
-import com.att.research.xacmlatt.pdp.std.StdPolicyFinder;
 import com.google.common.base.Splitter;
 
 public class XACMLPdpPolicyFinderFactory extends PolicyFinderFactory {

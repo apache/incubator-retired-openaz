@@ -28,12 +28,12 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacml.std.datatypes;
+package org.apache.openaz.xacml.std.datatypes;
 
 import javax.security.auth.x500.X500Principal;
 
-import com.att.research.xacml.api.DataTypeException;
-import com.att.research.xacml.api.XACML1;
+import org.apache.openaz.xacml.api.DataTypeException;
+import org.apache.openaz.xacml.api.XACML1;
 
 /**
  * DataTypeX500Name extends {@link DataTypeBase} to implement the XACML x500Name data type.

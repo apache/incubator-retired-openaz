@@ -28,18 +28,18 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacmlatt.pdp.test.conformance;
+package org.apache.openaz.xacml.pdp.test.conformance;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
-import com.att.research.xacml.api.Response;
-import com.att.research.xacml.api.Result;
+import org.apache.openaz.xacml.api.Response;
+import org.apache.openaz.xacml.api.Result;
 
 /**
- * ResponseMatchResult provides information about how a {@link com.att.research.xacml.api.Response} object matches
+ * ResponseMatchResult provides information about how a {@link org.apache.openaz.xacml.api.Response} object matches
  * another <code>Response</code> object.
  *
  */

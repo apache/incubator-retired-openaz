@@ -18,7 +18,7 @@
  *
  */
 
-package org.openliberty.openaz.pepapi;
+package org.apache.openaz.pepapi;
 
 /**
  * Runtime Exception thrown when the framework cannot find a registered handler to deal with the obligation.

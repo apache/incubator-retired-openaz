@@ -28,7 +28,7 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacml.std.pip.engines.csv;
+package org.apache.openaz.xacml.std.pip.engines.csv;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -39,22 +39,22 @@ import java.util.Properties;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.openaz.xacml.api.Attribute;
+import org.apache.openaz.xacml.api.AttributeValue;
+import org.apache.openaz.xacml.api.DataType;
+import org.apache.openaz.xacml.api.DataTypeException;
+import org.apache.openaz.xacml.api.DataTypeFactory;
+import org.apache.openaz.xacml.api.pip.PIPEngine;
+import org.apache.openaz.xacml.api.pip.PIPException;
+import org.apache.openaz.xacml.api.pip.PIPFinder;
+import org.apache.openaz.xacml.api.pip.PIPRequest;
+import org.apache.openaz.xacml.api.pip.PIPResponse;
+import org.apache.openaz.xacml.std.StdMutableAttribute;
+import org.apache.openaz.xacml.std.pip.StdPIPRequest;
+import org.apache.openaz.xacml.std.pip.StdPIPResponse;
+import org.apache.openaz.xacml.std.pip.engines.Configurables;
+import org.apache.openaz.xacml.util.FactoryException;
 
-import com.att.research.xacml.api.Attribute;
-import com.att.research.xacml.api.AttributeValue;
-import com.att.research.xacml.api.DataType;
-import com.att.research.xacml.api.DataTypeException;
-import com.att.research.xacml.api.DataTypeFactory;
-import com.att.research.xacml.api.pip.PIPEngine;
-import com.att.research.xacml.api.pip.PIPException;
-import com.att.research.xacml.api.pip.PIPFinder;
-import com.att.research.xacml.api.pip.PIPRequest;
-import com.att.research.xacml.api.pip.PIPResponse;
-import com.att.research.xacml.std.StdMutableAttribute;
-import com.att.research.xacml.std.pip.StdPIPRequest;
-import com.att.research.xacml.std.pip.StdPIPResponse;
-import com.att.research.xacml.std.pip.engines.Configurables;
-import com.att.research.xacml.util.FactoryException;
 import com.google.common.base.Splitter;
 
 public class ConfigurableCSVResolver implements CSVResolver {
@@ -95,7 +95,7 @@ public class ConfigurableCSVResolver implements CSVResolver {
      *
      * @param id
      * @param properties
-     * @throws com.att.research.xacml.api.pip.PIPException
+     * @throws org.apache.openaz.xacml.api.pip.PIPException
      */
     private void readSearchParameters(String id, Properties properties) throws PIPException {
         String parameterNamesString = properties.getProperty(id + "." + PROP_PARAMETERS);
@@ -137,7 +137,7 @@ public class ConfigurableCSVResolver implements CSVResolver {
      *
      * @param id
      * @param properties
-     * @throws com.att.research.xacml.api.pip.PIPException
+     * @throws org.apache.openaz.xacml.api.pip.PIPException
      */
     private void readPIPRequestFieldDefinitions(String id, Properties properties) throws PIPException {
         String fieldNamesString = properties.getProperty(id + ".fields");

@@ -28,11 +28,11 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacmlatt.pdp.std;
+package org.apache.openaz.xacml.pdp.std;
 
-import com.att.research.xacmlatt.pdp.util.ATTPDPProperties;
+import org.apache.openaz.xacml.pdp.util.OpenAZPDPProperties;
 
-public class StdProperties extends ATTPDPProperties {
+public class StdProperties extends OpenAZPDPProperties {
     protected StdProperties() {
     }
 

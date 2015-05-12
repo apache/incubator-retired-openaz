@@ -28,28 +28,27 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacmlatt.pdp.policy.dom;
+package org.apache.openaz.xacml.pdp.policy.dom;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.openaz.xacml.api.XACML3;
+import org.apache.openaz.xacml.pdp.policy.ObligationExpression;
+import org.apache.openaz.xacml.pdp.policy.Policy;
+import org.apache.openaz.xacml.pdp.policy.RuleEffect;
+import org.apache.openaz.xacml.std.StdStatusCode;
+import org.apache.openaz.xacml.std.dom.DOMProperties;
+import org.apache.openaz.xacml.std.dom.DOMStructureException;
+import org.apache.openaz.xacml.std.dom.DOMUtil;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import com.att.research.xacml.api.XACML3;
-import com.att.research.xacml.std.StdStatusCode;
-import com.att.research.xacml.std.dom.DOMProperties;
-import com.att.research.xacml.std.dom.DOMStructureException;
-import com.att.research.xacml.std.dom.DOMUtil;
-import com.att.research.xacmlatt.pdp.policy.ObligationExpression;
-import com.att.research.xacmlatt.pdp.policy.Policy;
-import com.att.research.xacmlatt.pdp.policy.RuleEffect;
-
 /**
- * DOMObligationExpression extends {@link com.att.research.xacmlatt.pdp.policy.ObligationExpression} with methods
+ * DOMObligationExpression extends {@link org.apache.openaz.xacml.pdp.policy.ObligationExpression} with methods
  * for creation from {@link org.w3c.dom.Node}s.
  *
  */
@@ -63,7 +62,7 @@ public class DOMObligationExpression extends ObligationExpression {
      * Creates a new <code>ObligationExpression</code> by parsing the given <code>Node</code> representing a XACML ObligationExpression element.
      *
      * @param nodeObligationExpression the <code>Node</code> representing the XACML ObligationExpression element
-     * @param policy the {@link com.att.research.xacmlatt.pdp.policy.Policy} encompassing the ObligationExpression element
+     * @param policy the {@link org.apache.openaz.xacml.pdp.policy.Policy} encompassing the ObligationExpression element
      * @return a new <code>ObligationExpression</code> parsed from the given <code>Node</code>
      * @throws DOMStructureException if there is an error parsing the <code>Node</code>
      */

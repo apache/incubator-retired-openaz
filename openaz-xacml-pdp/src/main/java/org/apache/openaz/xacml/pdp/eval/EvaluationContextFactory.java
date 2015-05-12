@@ -28,16 +28,16 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacmlatt.pdp.eval;
+package org.apache.openaz.xacml.pdp.eval;
 
 import java.util.Properties;
 
-import com.att.research.xacml.api.Request;
-import com.att.research.xacml.api.pip.PIPFinder;
-import com.att.research.xacml.util.FactoryException;
-import com.att.research.xacml.util.FactoryFinder;
-import com.att.research.xacmlatt.pdp.policy.PolicyFinder;
-import com.att.research.xacmlatt.pdp.util.ATTPDPProperties;
+import org.apache.openaz.xacml.api.Request;
+import org.apache.openaz.xacml.api.pip.PIPFinder;
+import org.apache.openaz.xacml.pdp.policy.PolicyFinder;
+import org.apache.openaz.xacml.pdp.util.OpenAZPDPProperties;
+import org.apache.openaz.xacml.util.FactoryException;
+import org.apache.openaz.xacml.util.FactoryFinder;
 
 /**
  * EvaluationContextFactory provides methods for creating {@link EvaluationContext} objects
@@ -45,8 +45,8 @@ import com.att.research.xacmlatt.pdp.util.ATTPDPProperties;
  *
  */
 public abstract class EvaluationContextFactory {
-    private static final String	FACTORYID					= ATTPDPProperties.PROP_EVALUATIONCONTEXTFACTORY;
-    private static final String DEFAULT_FACTORY_CLASSNAME	= "com.att.research.xacmlatt.pdp.std.StdEvaluationContextFactory";
+    private static final String	FACTORYID					= OpenAZPDPProperties.PROP_EVALUATIONCONTEXTFACTORY;
+    private static final String DEFAULT_FACTORY_CLASSNAME	= "org.apache.openaz.xacml.pdp.std.StdEvaluationContextFactory";
 
     protected EvaluationContextFactory() {
     }
@@ -71,7 +71,7 @@ public abstract class EvaluationContextFactory {
     }
 
     /**
-     * Gets a new {@link com.att.research.xacml.pdp.eval.EvaluationContext} for the given {@link com.att.research.xacml.api.Request}.
+     * Gets a new {@link com.att.research.xacml.pdp.eval.EvaluationContext} for the given {@link org.apache.openaz.xacml.api.Request}.
      *
      * @param request the <code>Request</code> for the new <code>EvaluationContext</code>
      * @return a new <code>EvaluationContext</code> for the given <code>Request</code>
@@ -79,7 +79,7 @@ public abstract class EvaluationContextFactory {
     public abstract EvaluationContext getEvaluationContext(Request request);
 
     /**
-     * Sets the {@link com.att.research.xacmlatt.pdp.policy.PolicyFinder} for this <code>EvaluationContextFactory</code> to an
+     * Sets the {@link org.apache.openaz.xacml.pdp.policy.PolicyFinder} for this <code>EvaluationContextFactory</code> to an
      * explicit instance instead of the default or configured value.
      *
      * @param policyFinder the <code>PolicyFinder</code> to use in creating new <code>EvaluationContext</code>s.
@@ -87,7 +87,7 @@ public abstract class EvaluationContextFactory {
     public abstract void setPolicyFinder(PolicyFinder policyFinder);
 
     /**
-     * Sets the {@link com.att.research.xacml.api.pip.PIPFinder} for this <code>EvaluationContextFactory</code> to an
+     * Sets the {@link org.apache.openaz.xacml.api.pip.PIPFinder} for this <code>EvaluationContextFactory</code> to an
      * explicit instance instaed of the default or configured value.
      *
      * @param pipFinder the <code>PIPFinder</code> to use in creating new <code>EvaluationContext</code>s.

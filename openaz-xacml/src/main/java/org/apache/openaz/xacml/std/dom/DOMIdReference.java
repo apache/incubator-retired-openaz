@@ -28,24 +28,23 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacml.std.dom;
+package org.apache.openaz.xacml.std.dom;
 
 import java.text.ParseException;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.openaz.xacml.api.IdReference;
+import org.apache.openaz.xacml.api.Identifier;
+import org.apache.openaz.xacml.api.Version;
+import org.apache.openaz.xacml.api.XACML3;
+import org.apache.openaz.xacml.std.StdIdReference;
+import org.apache.openaz.xacml.std.StdVersion;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
-import com.att.research.xacml.api.IdReference;
-import com.att.research.xacml.api.Identifier;
-import com.att.research.xacml.api.Version;
-import com.att.research.xacml.api.XACML3;
-import com.att.research.xacml.std.StdIdReference;
-import com.att.research.xacml.std.StdVersion;
-
 /**
- * DOMIdReference extends {@link com.att.research.xacml.std.StdIdReference} with methods for creation from
+ * DOMIdReference extends {@link org.apache.openaz.xacml.std.StdIdReference} with methods for creation from
  * DOM {@link org.w3c.dom.Node}s.
  *
  */

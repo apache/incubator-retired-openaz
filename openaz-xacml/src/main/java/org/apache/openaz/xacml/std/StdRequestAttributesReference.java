@@ -28,13 +28,13 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacml.std;
+package org.apache.openaz.xacml.std;
 
-import com.att.research.xacml.api.RequestAttributesReference;
-import com.att.research.xacml.util.ObjUtil;
+import org.apache.openaz.xacml.api.RequestAttributesReference;
+import org.apache.openaz.xacml.util.ObjUtil;
 
 /**
- * Immutable implementation of the {@link com.att.research.xacml.api.RequestAttributesReference} interface.
+ * Immutable implementation of the {@link org.apache.openaz.xacml.api.RequestAttributesReference} interface.
  *
  */
 public class StdRequestAttributesReference implements RequestAttributesReference {

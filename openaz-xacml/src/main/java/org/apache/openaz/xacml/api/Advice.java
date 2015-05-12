@@ -28,7 +28,7 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacml.api;
+package org.apache.openaz.xacml.api;
 
 import java.util.Collection;
 
@@ -38,7 +38,7 @@ import java.util.Collection;
  */
 public interface Advice {
     /**
-     * Gets the {@link com.att.research.xacml.api.Identifier} for this <code>Advice</code> object.  The <code>Identifier</code>
+     * Gets the {@link org.apache.openaz.xacml.api.Identifier} for this <code>Advice</code> object.  The <code>Identifier</code>
      * uniquely identifies a XACML 3.0 AssociatedAdvice element in a Rule or Policy.
      *
      * @return the <code>Identifier</code> for this <code>Advice</code>.
@@ -46,7 +46,7 @@ public interface Advice {
     public Identifier getId();
 
     /**
-     * Gets the {@link com.att.research.xacml.api.AttributeAssignment}s in this <code>Advice</code> object.  If there
+     * Gets the {@link org.apache.openaz.xacml.api.AttributeAssignment}s in this <code>Advice</code> object.  If there
      * are no <code>AttributeAssignment</code>s in this <code>Advice</code>, an empty <code>Collection</code> must be returned.
      * The returned <code>Collection</code> should not be modified.  Implementations are free to return an immutable view to enforce this.
      *

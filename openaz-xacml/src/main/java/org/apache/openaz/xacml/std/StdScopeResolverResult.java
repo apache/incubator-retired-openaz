@@ -28,20 +28,20 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacml.std;
+package org.apache.openaz.xacml.std;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
-import com.att.research.xacml.api.Attribute;
-import com.att.research.xacml.api.Status;
-import com.att.research.xacml.api.pdp.ScopeResolverResult;
-import com.att.research.xacml.util.StringUtils;
+import org.apache.openaz.xacml.api.Attribute;
+import org.apache.openaz.xacml.api.Status;
+import org.apache.openaz.xacml.api.pdp.ScopeResolverResult;
+import org.apache.openaz.xacml.util.StringUtils;
 
 /**
- * StdScopeResolverResult implements the {@link com.att.research.xacml.api.pdp.ScopeResolverResult} interface.
+ * StdScopeResolverResult implements the {@link org.apache.openaz.xacml.api.pdp.ScopeResolverResult} interface.
  *
  */
 public class StdScopeResolverResult implements ScopeResolverResult {

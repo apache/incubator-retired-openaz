@@ -28,13 +28,13 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacmlatt.pdp.policy;
+package org.apache.openaz.xacml.pdp.policy;
 
 import java.util.Iterator;
 
-import com.att.research.xacml.api.AttributeValue;
-import com.att.research.xacml.api.Status;
-import com.att.research.xacml.std.StdStatus;
+import org.apache.openaz.xacml.api.AttributeValue;
+import org.apache.openaz.xacml.api.Status;
+import org.apache.openaz.xacml.std.StdStatus;
 
 /**
  * ExpressionResult is the object returned by the <code>evaluate</code> method of {@link Expression}
@@ -148,7 +148,7 @@ public abstract class ExpressionResult implements FunctionArgument {
     }
 
     /**
-     * Creates a new <code>ExpressionResult</code> with the given {@link com.att.research.xacml.api.Status}.
+     * Creates a new <code>ExpressionResult</code> with the given {@link org.apache.openaz.xacml.api.Status}.
      *
      * @param statusIn the <code>Status</code> of this <code>ExpressionResult</code>
      */
@@ -175,7 +175,7 @@ public abstract class ExpressionResult implements FunctionArgument {
     }
 
     /**
-     * Gets the single {@link com.att.research.xacml.api.AttributeValue} from this <code>ExpressionResult</code>.  If this
+     * Gets the single {@link org.apache.openaz.xacml.api.AttributeValue} from this <code>ExpressionResult</code>.  If this
      * <code>ExpressionResult</code> represents a bag, the first element in the bag is returned.
      *
      * @return a single <code>AttributeValue</code> from this <code>ExpressionResult</code>

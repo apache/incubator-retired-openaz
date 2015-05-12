@@ -28,26 +28,25 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacml.std.pep;
+package org.apache.openaz.xacml.std.pep;
 
 import java.util.Properties;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-
-import com.att.research.xacml.api.Request;
-import com.att.research.xacml.api.Response;
-import com.att.research.xacml.api.pdp.PDPEngine;
-import com.att.research.xacml.api.pdp.PDPEngineFactory;
-import com.att.research.xacml.api.pdp.PDPException;
-import com.att.research.xacml.api.pep.PEPEngine;
-import com.att.research.xacml.api.pep.PEPException;
-import com.att.research.xacml.util.FactoryException;
+import org.apache.openaz.xacml.api.Request;
+import org.apache.openaz.xacml.api.Response;
+import org.apache.openaz.xacml.api.pdp.PDPEngine;
+import org.apache.openaz.xacml.api.pdp.PDPEngineFactory;
+import org.apache.openaz.xacml.api.pdp.PDPException;
+import org.apache.openaz.xacml.api.pep.PEPEngine;
+import org.apache.openaz.xacml.api.pep.PEPException;
+import org.apache.openaz.xacml.util.FactoryException;
 
 /**
- * StdEngine implements the {@link com.att.research.xacml.api.pep.PEPEngine} interface by creating
- * an instance of the {@link com.att.research.xacml.api.pdp.PDPEngine} interface using the {@link com.att.research.xacml.api.pdp.PDPEngineFactory} and
- * passing requests through to that engine, forwarding the {@link com.att.research.xacml.api.Response} object back to the caller.
+ * StdEngine implements the {@link org.apache.openaz.xacml.api.pep.PEPEngine} interface by creating
+ * an instance of the {@link org.apache.openaz.xacml.api.pdp.PDPEngine} interface using the {@link org.apache.openaz.xacml.api.pdp.PDPEngineFactory} and
+ * passing requests through to that engine, forwarding the {@link org.apache.openaz.xacml.api.Response} object back to the caller.
  *
  */
 public class StdEngine implements PEPEngine {

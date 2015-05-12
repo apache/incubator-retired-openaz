@@ -28,18 +28,18 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacml.std.pip.engines.csv;
+package org.apache.openaz.xacml.std.pip.engines.csv;
 
 import java.util.List;
 import java.util.Map;
 
-import com.att.research.xacml.api.Attribute;
-import com.att.research.xacml.api.AttributeValue;
-import com.att.research.xacml.api.pip.PIPEngine;
-import com.att.research.xacml.api.pip.PIPException;
-import com.att.research.xacml.api.pip.PIPFinder;
-import com.att.research.xacml.api.pip.PIPRequest;
-import com.att.research.xacml.std.pip.engines.ConfigurableResolver;
+import org.apache.openaz.xacml.api.Attribute;
+import org.apache.openaz.xacml.api.AttributeValue;
+import org.apache.openaz.xacml.api.pip.PIPEngine;
+import org.apache.openaz.xacml.api.pip.PIPException;
+import org.apache.openaz.xacml.api.pip.PIPFinder;
+import org.apache.openaz.xacml.api.pip.PIPRequest;
+import org.apache.openaz.xacml.std.pip.engines.ConfigurableResolver;
 
 /**
  * CSVResolver is the interface used by the {@link CSVEngine} to
@@ -67,7 +67,7 @@ public interface CSVResolver extends ConfigurableResolver {
      * @param request
      * @param finder
      * @return
-     * @throws com.att.research.xacml.api.pip.PIPException
+     * @throws org.apache.openaz.xacml.api.pip.PIPException
      */
     Map<Integer, List<AttributeValue<?>>>	getColumnParameterValues(PIPEngine engine, PIPRequest request, PIPFinder finder) throws PIPException;
 
@@ -76,7 +76,7 @@ public interface CSVResolver extends ConfigurableResolver {
      *
      * @param line - line read from CSV file broken into fields.
      * @return list of attributes
-     * @throws com.att.research.xacml.api.pip.PIPException
+     * @throws org.apache.openaz.xacml.api.pip.PIPException
      */
     List<Attribute>	decodeResult(String[] line)  throws PIPException;
 

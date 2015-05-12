@@ -28,21 +28,20 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacml.std.dom;
+package org.apache.openaz.xacml.std.dom;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.openaz.xacml.api.MissingAttributeDetail;
+import org.apache.openaz.xacml.api.XACML3;
+import org.apache.openaz.xacml.std.StdMissingAttributeDetail;
+import org.apache.openaz.xacml.std.StdMutableMissingAttributeDetail;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import com.att.research.xacml.api.MissingAttributeDetail;
-import com.att.research.xacml.api.XACML3;
-import com.att.research.xacml.std.StdMissingAttributeDetail;
-import com.att.research.xacml.std.StdMutableMissingAttributeDetail;
-
 /**
- * DOMMissingAttributeDetail extends {@link com.att.research.xacml.std.StdMutableMissingAttributeDetail} with methods for creation from
+ * DOMMissingAttributeDetail extends {@link org.apache.openaz.xacml.std.StdMutableMissingAttributeDetail} with methods for creation from
  * DOM {@link org.w3c.dom.Node}s.
  *
  */
@@ -56,7 +55,7 @@ public class DOMMissingAttributeDetail {
      *
      * @param nodeMissingAttributeDetail the <code>Node</code> representing the MissingAttributeDetail element
      * @return a new <code>DOMMissingAttributeDetail</code> parsed from the given <code>Node</code>
-     * @throws com.att.research.xacml.std.dom.DOMStructureException if the conversion is not possible
+     * @throws org.apache.openaz.xacml.std.dom.DOMStructureException if the conversion is not possible
      */
     public static MissingAttributeDetail newInstance(Node nodeMissingAttributeDetail) throws DOMStructureException {
         Element	elementMissingAttributeDetail				= DOMUtil.getElement(nodeMissingAttributeDetail);

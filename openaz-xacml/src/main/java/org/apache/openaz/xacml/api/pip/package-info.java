@@ -29,7 +29,7 @@
  *                     All Rights Reserved
  */
 
-package com.att.research.xacml.api.pip;
+package org.apache.openaz.xacml.api.pip;
 
 /**
  * com.att.research.xacml.api.pip contains an API for PIP providers and PIP users

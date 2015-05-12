@@ -29,7 +29,7 @@
  *                     All Rights Reserved
  */
 
-package com.att.research.xacmlatt.pdp.eval;
+package org.apache.openaz.xacml.pdp.eval;
 
 /**
  * Matchable is the interface objects implement to indicate they are part of a XACML Target matching tree.
@@ -37,8 +37,8 @@ package com.att.research.xacmlatt.pdp.eval;
  */
 public interface Matchable {
     /**
-     * Matches this <code>Matchable</code> in the given {@link com.att.research.xacmlatt.pdp.eval.EvaluationContext} and
-     * returns a {@link com.att.research.xacmlatt.pdp.eval.MatchResult}.
+     * Matches this <code>Matchable</code> in the given {@link org.apache.openaz.xacml.pdp.eval.EvaluationContext} and
+     * returns a {@link org.apache.openaz.xacml.pdp.eval.MatchResult}.
      *
      * @param evaluationContext the <code>EvaluationContext</code> to use in matching
      * @return a <code>MatchResult</code> indicating whether this <code>Matchable</code> matches against the given <code>EvaluationContext</code>.

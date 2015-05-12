@@ -28,7 +28,7 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacmlatt.pdp.std.functions;
+package org.apache.openaz.xacml.pdp.std.functions;
 
 
 import java.io.ByteArrayInputStream;
@@ -38,23 +38,22 @@ import java.util.List;
 
 import javax.xml.parsers.DocumentBuilderFactory;
 
+import org.apache.openaz.xacml.api.Identifier;
+import org.apache.openaz.xacml.api.Request;
+import org.apache.openaz.xacml.api.RequestAttributes;
+import org.apache.openaz.xacml.pdp.eval.EvaluationContext;
+import org.apache.openaz.xacml.pdp.policy.ExpressionResult;
+import org.apache.openaz.xacml.pdp.policy.FunctionArgument;
+import org.apache.openaz.xacml.std.StdRequest;
+import org.apache.openaz.xacml.std.StdStatus;
+import org.apache.openaz.xacml.std.StdStatusCode;
+import org.apache.openaz.xacml.std.datatypes.DataTypes;
+import org.apache.openaz.xacml.std.dom.DOMRequestAttributes;
+import org.apache.openaz.xacml.std.dom.DOMStructureException;
 import org.w3c.dom.Node;
 
-import com.att.research.xacml.api.Identifier;
-import com.att.research.xacml.api.Request;
-import com.att.research.xacml.api.RequestAttributes;
-import com.att.research.xacml.std.StdRequest;
-import com.att.research.xacml.std.StdStatus;
-import com.att.research.xacml.std.StdStatusCode;
-import com.att.research.xacml.std.datatypes.DataTypes;
-import com.att.research.xacml.std.dom.DOMRequestAttributes;
-import com.att.research.xacml.std.dom.DOMStructureException;
-import com.att.research.xacmlatt.pdp.eval.EvaluationContext;
-import com.att.research.xacmlatt.pdp.policy.ExpressionResult;
-import com.att.research.xacmlatt.pdp.policy.FunctionArgument;
-
 /**
- * FunctionDefinitionAccessPermitted implements {@link com.att.research.xacmlatt.pdp.policy.FunctionDefinition} to
+ * FunctionDefinitionAccessPermitted implements {@link org.apache.openaz.xacml.pdp.policy.FunctionDefinition} to
  * implement the XACML access-permitted predicate.
  *
  * WARNING: This code is unfinished.  Initially we did not complete the implementation because we did not understand how to handle XML Namespaces

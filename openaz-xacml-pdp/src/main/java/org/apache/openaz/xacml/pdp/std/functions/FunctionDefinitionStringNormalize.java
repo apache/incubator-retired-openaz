@@ -28,25 +28,25 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacmlatt.pdp.std.functions;
+package org.apache.openaz.xacml.pdp.std.functions;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import com.att.research.xacml.api.AttributeValue;
-import com.att.research.xacml.api.Identifier;
-import com.att.research.xacml.api.Status;
-import com.att.research.xacml.api.XACML;
-import com.att.research.xacml.std.StdAttributeValue;
-import com.att.research.xacml.std.StdStatusCode;
-import com.att.research.xacml.std.datatypes.DataTypeString;
-import com.att.research.xacml.std.datatypes.DataTypes;
-import com.att.research.xacmlatt.pdp.eval.EvaluationContext;
-import com.att.research.xacmlatt.pdp.policy.ExpressionResult;
-import com.att.research.xacmlatt.pdp.policy.FunctionArgument;
+import org.apache.openaz.xacml.api.AttributeValue;
+import org.apache.openaz.xacml.api.Identifier;
+import org.apache.openaz.xacml.api.Status;
+import org.apache.openaz.xacml.api.XACML;
+import org.apache.openaz.xacml.pdp.eval.EvaluationContext;
+import org.apache.openaz.xacml.pdp.policy.ExpressionResult;
+import org.apache.openaz.xacml.pdp.policy.FunctionArgument;
+import org.apache.openaz.xacml.std.StdAttributeValue;
+import org.apache.openaz.xacml.std.StdStatusCode;
+import org.apache.openaz.xacml.std.datatypes.DataTypeString;
+import org.apache.openaz.xacml.std.datatypes.DataTypes;
 
 /**
- * FunctionDefinitionStringNormalize extends {@link com.att.research.xacmlatt.pdp.std.functions.FunctionDefinitionHomogeneousSimple} to
+ * FunctionDefinitionStringNormalize extends {@link org.apache.openaz.xacml.pdp.std.functions.FunctionDefinitionHomogeneousSimple} to
  * implement the XACML String normalization predicates as functions taking one <code>String</code> arg and returning a single value of the same type.
  *
  * In the first implementation of XACML we had separate files for each XACML Function.

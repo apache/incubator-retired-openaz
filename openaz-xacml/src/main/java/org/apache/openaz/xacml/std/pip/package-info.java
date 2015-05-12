@@ -29,7 +29,7 @@
  *                     All Rights Reserved
  */
 
-package com.att.research.xacml.std.pip;
+package org.apache.openaz.xacml.std.pip;
 
 /**
  * com.att.research.xacml.std.pip contains the standard implementation of the PIP interface

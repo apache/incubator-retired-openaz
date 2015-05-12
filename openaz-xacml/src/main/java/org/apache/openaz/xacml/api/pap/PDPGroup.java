@@ -28,7 +28,7 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacml.api.pap;
+package org.apache.openaz.xacml.api.pap;
 
 import java.util.Properties;
 import java.util.Set;

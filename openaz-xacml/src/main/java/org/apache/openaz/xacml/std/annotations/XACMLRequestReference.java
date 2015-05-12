@@ -28,7 +28,7 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacml.std.annotations;
+package org.apache.openaz.xacml.std.annotations;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;

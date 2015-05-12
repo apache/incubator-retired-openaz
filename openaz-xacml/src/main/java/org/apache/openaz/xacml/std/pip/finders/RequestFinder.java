@@ -28,7 +28,7 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacml.std.pip.finders;
+package org.apache.openaz.xacml.std.pip.finders;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -38,20 +38,20 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.att.research.xacml.api.Status;
-import com.att.research.xacml.api.XACML3;
-import com.att.research.xacml.api.pip.PIPEngine;
-import com.att.research.xacml.api.pip.PIPException;
-import com.att.research.xacml.api.pip.PIPFinder;
-import com.att.research.xacml.api.pip.PIPRequest;
-import com.att.research.xacml.api.pip.PIPResponse;
-import com.att.research.xacml.std.pip.StdPIPResponse;
-import com.att.research.xacml.std.pip.engines.EnvironmentEngine;
-import com.att.research.xacml.std.pip.engines.RequestEngine;
+import org.apache.openaz.xacml.api.Status;
+import org.apache.openaz.xacml.api.XACML3;
+import org.apache.openaz.xacml.api.pip.PIPEngine;
+import org.apache.openaz.xacml.api.pip.PIPException;
+import org.apache.openaz.xacml.api.pip.PIPFinder;
+import org.apache.openaz.xacml.api.pip.PIPRequest;
+import org.apache.openaz.xacml.api.pip.PIPResponse;
+import org.apache.openaz.xacml.std.pip.StdPIPResponse;
+import org.apache.openaz.xacml.std.pip.engines.EnvironmentEngine;
+import org.apache.openaz.xacml.std.pip.engines.RequestEngine;
 
 /**
- * RequestFinder implements the {@link com.att.research.xacml.api.pip.PIPFinder} interface by wrapping another
- * <code>PIPFinder</code> a {@link com.att.research.xacml.std.pip.engines.RequestEngine} and a {@link com.att.research.xacml.std.pip.engines.EnvironmentEngine}.
+ * RequestFinder implements the {@link org.apache.openaz.xacml.api.pip.PIPFinder} interface by wrapping another
+ * <code>PIPFinder</code> a {@link org.apache.openaz.xacml.std.pip.engines.RequestEngine} and a {@link org.apache.openaz.xacml.std.pip.engines.EnvironmentEngine}.
  * When attributes are requested, the
  * <code>RequestEngine</code> is searched first, followed by the <code>EnvironmentEngine</code> and if no results are found, the wrapped <code>PIPFinder</code> is searched.
  *

@@ -28,7 +28,7 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacml.std.jaxp;
+package org.apache.openaz.xacml.std.jaxp;
 
 import java.io.File;
 import java.io.IOException;
@@ -47,16 +47,15 @@ import oasis.names.tc.xacml._3_0.core.schema.wd_17.ResultType;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.openaz.xacml.std.StdMutableResponse;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-import com.att.research.xacml.std.StdMutableResponse;
-
 /**
- * JaxpResponse extends {@link com.att.research.xacml.std.StdMutableResponse} with methods for creation from
+ * JaxpResponse extends {@link org.apache.openaz.xacml.std.StdMutableResponse} with methods for creation from
  * JAXP elements.
  *
  */

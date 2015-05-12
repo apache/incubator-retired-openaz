@@ -29,7 +29,7 @@
  *                     All Rights Reserved
  */
 
-package com.att.research.xacml.std.pep;
+package org.apache.openaz.xacml.std.pep;
 
 /**
  * com.att.research.xacml.std.pep contains the standard implementation of the PEP interface

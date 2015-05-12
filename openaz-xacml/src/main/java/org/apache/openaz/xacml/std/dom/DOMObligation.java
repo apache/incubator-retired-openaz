@@ -28,24 +28,23 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacml.std.dom;
+package org.apache.openaz.xacml.std.dom;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.openaz.xacml.api.Obligation;
+import org.apache.openaz.xacml.api.XACML3;
+import org.apache.openaz.xacml.std.StdMutableObligation;
+import org.apache.openaz.xacml.std.StdObligation;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import com.att.research.xacml.api.Obligation;
-import com.att.research.xacml.api.XACML3;
-import com.att.research.xacml.std.StdMutableObligation;
-import com.att.research.xacml.std.StdObligation;
-
 /**
- * Provides static methods for creating {@link com.att.research.xacml.api.Obligation} objects from a {@link org.w3c.dom.Node}.
+ * Provides static methods for creating {@link org.apache.openaz.xacml.api.Obligation} objects from a {@link org.w3c.dom.Node}.
  *
  */
 public class DOMObligation {

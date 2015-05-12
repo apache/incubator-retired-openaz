@@ -28,12 +28,12 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacml.api.pdp;
+package org.apache.openaz.xacml.api.pdp;
 
 import java.util.Iterator;
 
-import com.att.research.xacml.api.Attribute;
-import com.att.research.xacml.api.Status;
+import org.apache.openaz.xacml.api.Attribute;
+import org.apache.openaz.xacml.api.Status;
 
 /**
  * ScopeResolverResult is the interface for objects returned by the {@link ScopeResolver}'s

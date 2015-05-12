@@ -28,21 +28,21 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacml.std.jaxp;
+package org.apache.openaz.xacml.std.jaxp;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
+import org.apache.openaz.xacml.api.MissingAttributeDetail;
+import org.apache.openaz.xacml.std.StdMutableStatusDetail;
+
 import oasis.names.tc.xacml._3_0.core.schema.wd_17.MissingAttributeDetailType;
 import oasis.names.tc.xacml._3_0.core.schema.wd_17.StatusDetailType;
 
-import com.att.research.xacml.api.MissingAttributeDetail;
-import com.att.research.xacml.std.StdMutableStatusDetail;
-
 /**
- * JaxpStatusDetail extends {@link com.att.research.xacml.std.StdMutableStatusDetail} with methods for creation from
+ * JaxpStatusDetail extends {@link org.apache.openaz.xacml.std.StdMutableStatusDetail} with methods for creation from
  * JAXP elements.
  *
  */

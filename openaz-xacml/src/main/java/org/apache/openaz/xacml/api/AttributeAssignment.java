@@ -28,7 +28,7 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacml.api;
+package org.apache.openaz.xacml.api;
 
 /**
  * Defines the API for objects that represent XACML 3.0 AttributeAssignment elements.  AttributeAssignments are used

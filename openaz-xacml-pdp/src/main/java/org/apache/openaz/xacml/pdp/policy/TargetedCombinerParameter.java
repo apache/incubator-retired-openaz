@@ -28,10 +28,10 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacmlatt.pdp.policy;
+package org.apache.openaz.xacml.pdp.policy;
 
-import com.att.research.xacml.api.AttributeValue;
-import com.att.research.xacml.api.StatusCode;
+import org.apache.openaz.xacml.api.AttributeValue;
+import org.apache.openaz.xacml.api.StatusCode;
 
 /**
  * TargetedCombinerParameter extends {@link CombinerParameter} to include a lazy

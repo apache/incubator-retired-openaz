@@ -28,15 +28,15 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacmlatt.pdp.std.dom;
+package org.apache.openaz.xacml.pdp.std.dom;
 
-import com.att.research.xacml.api.*;
-import com.att.research.xacml.std.*;
-import com.att.research.xacml.std.datatypes.DataTypes;
-import com.att.research.xacml.std.datatypes.StringNamespaceContext;
-import com.att.research.xacml.std.datatypes.XPathExpressionWrapper;
-import com.att.research.xacml.std.dom.DOMResponse;
-import com.att.research.xacml.std.dom.DOMStructureException;
+import org.apache.openaz.xacml.api.*;
+import org.apache.openaz.xacml.std.*;
+import org.apache.openaz.xacml.std.datatypes.DataTypes;
+import org.apache.openaz.xacml.std.datatypes.StringNamespaceContext;
+import org.apache.openaz.xacml.std.datatypes.XPathExpressionWrapper;
+import org.apache.openaz.xacml.std.dom.DOMResponse;
+import org.apache.openaz.xacml.std.dom.DOMStructureException;
 import org.junit.Test;
 
 import java.text.ParseException;

@@ -28,14 +28,14 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacmlatt.pdp.test.custom;
+package org.apache.openaz.xacml.pdp.test.custom;
 
 import java.security.PublicKey;
 
-import com.att.research.xacml.api.DataTypeException;
-import com.att.research.xacml.api.Identifier;
-import com.att.research.xacml.std.IdentifierImpl;
-import com.att.research.xacml.std.datatypes.DataTypeBase;
+import org.apache.openaz.xacml.api.DataTypeException;
+import org.apache.openaz.xacml.api.Identifier;
+import org.apache.openaz.xacml.std.IdentifierImpl;
+import org.apache.openaz.xacml.std.datatypes.DataTypeBase;
 
 public class DataTypePublicKey extends DataTypeBase<PublicKey> {
     public static final Identifier DT_PUBLICKEY = new IdentifierImpl("urn:com:att:research:xacml:custom:3.0:rsa:public");

@@ -28,20 +28,19 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacmlatt.pdp.test.conformance;
+package org.apache.openaz.xacml.pdp.test.conformance;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-
-import com.att.research.xacml.api.Request;
-import com.att.research.xacml.api.Response;
-import com.att.research.xacml.api.pdp.PDPEngine;
-import com.att.research.xacml.api.pdp.PDPEngineFactory;
-import com.att.research.xacml.api.pdp.ScopeResolver;
-import com.att.research.xacml.std.dom.DOMProperties;
-import com.att.research.xacml.std.dom.DOMRequest;
-import com.att.research.xacml.std.dom.DOMResponse;
-import com.att.research.xacml.util.FactoryException;
+import org.apache.openaz.xacml.api.Request;
+import org.apache.openaz.xacml.api.Response;
+import org.apache.openaz.xacml.api.pdp.PDPEngine;
+import org.apache.openaz.xacml.api.pdp.PDPEngineFactory;
+import org.apache.openaz.xacml.api.pdp.ScopeResolver;
+import org.apache.openaz.xacml.std.dom.DOMProperties;
+import org.apache.openaz.xacml.std.dom.DOMRequest;
+import org.apache.openaz.xacml.std.dom.DOMResponse;
+import org.apache.openaz.xacml.util.FactoryException;
 
 /**
  * ConformanceTestEngine handles the creation of the PDPEngine for a ConformanceTest instance.

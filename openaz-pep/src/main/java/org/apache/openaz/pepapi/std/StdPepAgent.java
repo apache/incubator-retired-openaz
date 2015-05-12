@@ -18,21 +18,21 @@
  *
  */
 
-package org.openliberty.openaz.pepapi.std;
+package org.apache.openaz.pepapi.std;
 
-import com.att.research.xacml.api.Request;
-import com.att.research.xacml.api.Response;
-import com.att.research.xacml.api.Result;
-import com.att.research.xacml.api.pdp.PDPEngine;
-import com.att.research.xacml.api.pdp.PDPEngineFactory;
-import com.att.research.xacml.api.pdp.PDPException;
-import com.att.research.xacml.std.json.JSONRequest;
-import com.att.research.xacml.std.json.JSONResponse;
-import com.att.research.xacml.std.json.JSONStructureException;
-import com.att.research.xacml.util.FactoryException;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.openliberty.openaz.pepapi.*;
+import org.apache.openaz.pepapi.*;
+import org.apache.openaz.xacml.api.Request;
+import org.apache.openaz.xacml.api.Response;
+import org.apache.openaz.xacml.api.Result;
+import org.apache.openaz.xacml.api.pdp.PDPEngine;
+import org.apache.openaz.xacml.api.pdp.PDPEngineFactory;
+import org.apache.openaz.xacml.api.pdp.PDPException;
+import org.apache.openaz.xacml.std.json.JSONRequest;
+import org.apache.openaz.xacml.std.json.JSONResponse;
+import org.apache.openaz.xacml.std.json.JSONStructureException;
+import org.apache.openaz.xacml.util.FactoryException;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;

@@ -28,7 +28,7 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacmlatt.pdp.test.conformance;
+package org.apache.openaz.xacml.pdp.test.conformance;
 
 import java.net.URI;
 import java.util.ArrayList;
@@ -39,18 +39,17 @@ import java.util.Map;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-
-import com.att.research.xacml.api.Attribute;
-import com.att.research.xacml.api.AttributeValue;
-import com.att.research.xacml.api.pdp.ScopeQualifier;
-import com.att.research.xacml.api.pdp.ScopeResolver;
-import com.att.research.xacml.api.pdp.ScopeResolverException;
-import com.att.research.xacml.api.pdp.ScopeResolverResult;
-import com.att.research.xacml.std.StdMutableAttribute;
-import com.att.research.xacml.std.StdScopeResolverResult;
-import com.att.research.xacml.std.StdStatus;
-import com.att.research.xacml.std.StdStatusCode;
-import com.att.research.xacml.std.datatypes.DataTypes;
+import org.apache.openaz.xacml.api.Attribute;
+import org.apache.openaz.xacml.api.AttributeValue;
+import org.apache.openaz.xacml.api.pdp.ScopeQualifier;
+import org.apache.openaz.xacml.api.pdp.ScopeResolver;
+import org.apache.openaz.xacml.api.pdp.ScopeResolverException;
+import org.apache.openaz.xacml.api.pdp.ScopeResolverResult;
+import org.apache.openaz.xacml.std.StdMutableAttribute;
+import org.apache.openaz.xacml.std.StdScopeResolverResult;
+import org.apache.openaz.xacml.std.StdStatus;
+import org.apache.openaz.xacml.std.StdStatusCode;
+import org.apache.openaz.xacml.std.datatypes.DataTypes;
 
 /**
  * ConformanceScopeResolver implements {@link com.att.research.xacml.pdp.ScopeResolver} for the conformance tests

@@ -28,12 +28,12 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacmlatt.pdp.policy;
+package org.apache.openaz.xacml.pdp.policy;
 
-import com.att.research.xacml.api.AttributeValue;
-import com.att.research.xacml.api.Status;
-import com.att.research.xacml.std.StdStatus;
-import com.att.research.xacml.std.datatypes.DataTypeBoolean;
+import org.apache.openaz.xacml.api.AttributeValue;
+import org.apache.openaz.xacml.api.Status;
+import org.apache.openaz.xacml.std.StdStatus;
+import org.apache.openaz.xacml.std.datatypes.DataTypeBoolean;
 
 /**
  * ExpressionResultBoolean extends {@link ExpressionResult} to represent predicates.

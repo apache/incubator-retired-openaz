@@ -29,16 +29,16 @@
  *                     All Rights Reserved
  */
 
-package com.att.research.xacml.api.trace;
+package org.apache.openaz.xacml.api.trace;
 
 /**
- * Defines the API for objects that can be set as the "cause" in a {@link com.att.research.xacml.api.trace.TraceEvent}.  Objects
+ * Defines the API for objects that can be set as the "cause" in a {@link org.apache.openaz.xacml.api.trace.TraceEvent}.  Objects
  * cause a <code>TraceEvent</code> through methods called during the evaluation of a XACML Policy or PolicySet.
  *
  */
 public interface Traceable {
     /**
-     * Gets the <code>String</code> identifier for the object that caused the {@link com.att.research.xacml.api.trace.TraceEvent} as a result
+     * Gets the <code>String</code> identifier for the object that caused the {@link org.apache.openaz.xacml.api.trace.TraceEvent} as a result
      * of a policy evaluation method.
      * Implementations must not return <code>null</code>.
      *

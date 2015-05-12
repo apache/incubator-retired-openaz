@@ -18,22 +18,24 @@
  *
  */
 
-package com.att.research.xacmlatt.pdp.std.functions;
+package org.apache.openaz.xacml.pdp.std.functions;
 
-import com.att.research.xacml.api.Request;
-import com.att.research.xacml.api.XACML3;
-import com.att.research.xacml.std.StdMutableRequest;
-import com.att.research.xacml.std.datatypes.DataTypes;
-import com.att.research.xacml.std.dom.DOMRequest;
-import com.att.research.xacmlatt.pdp.policy.ExpressionResult;
-import com.att.research.xacmlatt.pdp.policy.FunctionArgument;
-import com.att.research.xacmlatt.pdp.policy.FunctionArgumentAttributeValue;
-import com.att.research.xacmlatt.pdp.std.StdEvaluationContext;
-import com.att.research.xacmlatt.pdp.std.StdFunctions;
+import org.apache.openaz.xacml.api.Request;
+import org.apache.openaz.xacml.api.XACML3;
+import org.apache.openaz.xacml.pdp.policy.ExpressionResult;
+import org.apache.openaz.xacml.pdp.policy.FunctionArgument;
+import org.apache.openaz.xacml.pdp.policy.FunctionArgumentAttributeValue;
+import org.apache.openaz.xacml.pdp.std.StdEvaluationContext;
+import org.apache.openaz.xacml.pdp.std.StdFunctions;
+import org.apache.openaz.xacml.pdp.std.functions.FunctionDefinitionAccessPermitted;
+import org.apache.openaz.xacml.std.StdMutableRequest;
+import org.apache.openaz.xacml.std.datatypes.DataTypes;
+import org.apache.openaz.xacml.std.dom.DOMRequest;
 import org.junit.Ignore;
 import org.junit.Test;
 
 import javax.xml.namespace.NamespaceContext;
+
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -301,7 +303,7 @@ public class FunctionDefinitionAccessPermittedTest {
             try {
                 requestDoubleContent = DOMRequest.load(tFile);
                 tFile.delete();
-            } catch (com.att.research.xacml.std.dom.DOMStructureException e) {
+            } catch (org.apache.openaz.xacml.std.dom.DOMStructureException e) {
                 // this is what it should do, so just continue
             } catch (Exception e) {
                 fail("Unexpected exception for bad XML, e="+e);
@@ -346,7 +348,7 @@ public class FunctionDefinitionAccessPermittedTest {
             try {
                 requestContentMisplaced = DOMRequest.load(tFile);
                 tFile.delete();
-            } catch (com.att.research.xacml.std.dom.DOMStructureException e) {
+            } catch (org.apache.openaz.xacml.std.dom.DOMStructureException e) {
                 // this is what it should do, so just continue
             } catch (Exception e) {
                 fail("Unexpected exception for bad XML, e="+e);
@@ -362,7 +364,7 @@ public class FunctionDefinitionAccessPermittedTest {
             try {
                 requestMalformedContent = DOMRequest.load(tFile);
                 tFile.delete();
-            } catch (com.att.research.xacml.std.dom.DOMStructureException e) {
+            } catch (org.apache.openaz.xacml.std.dom.DOMStructureException e) {
                 // this is what it should do, so just continue
             } catch (Exception e) {
                 fail("Unexpected exception for bad XML, e="+e);

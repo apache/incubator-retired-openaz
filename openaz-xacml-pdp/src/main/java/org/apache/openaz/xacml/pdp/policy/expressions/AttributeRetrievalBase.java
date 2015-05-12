@@ -28,21 +28,21 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacmlatt.pdp.policy.expressions;
+package org.apache.openaz.xacml.pdp.policy.expressions;
 
-import com.att.research.xacml.api.Identifier;
-import com.att.research.xacml.api.StatusCode;
-import com.att.research.xacml.api.StatusDetail;
-import com.att.research.xacml.api.XACML;
-import com.att.research.xacml.std.StdStatus;
-import com.att.research.xacml.std.StdStatusCode;
-import com.att.research.xacml.std.datatypes.DataTypes;
-import com.att.research.xacmlatt.pdp.policy.Expression;
-import com.att.research.xacmlatt.pdp.policy.ExpressionResult;
+import org.apache.openaz.xacml.api.Identifier;
+import org.apache.openaz.xacml.api.StatusCode;
+import org.apache.openaz.xacml.api.StatusDetail;
+import org.apache.openaz.xacml.api.XACML;
+import org.apache.openaz.xacml.pdp.policy.Expression;
+import org.apache.openaz.xacml.pdp.policy.ExpressionResult;
+import org.apache.openaz.xacml.std.StdStatus;
+import org.apache.openaz.xacml.std.StdStatusCode;
+import org.apache.openaz.xacml.std.datatypes.DataTypes;
 
 /**
- * AttributeRetrievalBase extends {@link com.att.research.xacmlatt.pdp.policy.PolicyComponent} and
- * implements {@link com.att.research.xacmlatt.pdp.eval.Evaluatable} to serve as an abstract base class
+ * AttributeRetrievalBase extends {@link org.apache.openaz.xacml.pdp.policy.PolicyComponent} and
+ * implements {@link org.apache.openaz.xacml.pdp.eval.Evaluatable} to serve as an abstract base class
  * for the {@link com.att.research.xacmlatt.pdp.policy.AttributeSelector} and {@link com.att.research.xacmlatt.pdp.policy.AttributeDesignator}
  * classes.
  *
@@ -71,7 +71,7 @@ public abstract class AttributeRetrievalBase extends Expression {
     }
 
     /**
-     * Gets the {@link com.att.research.xacml.api.Identifier} for the category associated with this
+     * Gets the {@link org.apache.openaz.xacml.api.Identifier} for the category associated with this
      * <code>AttributeRetrievalBase</code>.
      *
      * @return the <code>Identifier</code> for the category of this <code>AttributeRetrievalBase</code>.
@@ -172,7 +172,7 @@ public abstract class AttributeRetrievalBase extends Expression {
     }
 
     /**
-     * Creates the appropriate {@link com.att.research.xacmlatt.pdp.policy.ExpressionResult} for an empty list based
+     * Creates the appropriate {@link org.apache.openaz.xacml.pdp.policy.ExpressionResult} for an empty list based
      * on the <code>getMustBePresent</code> value.
      *
      * @return an appropriate <code>ExpressionResult</code>

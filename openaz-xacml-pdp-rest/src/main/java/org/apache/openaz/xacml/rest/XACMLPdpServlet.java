@@ -28,7 +28,7 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacml.rest;
+package org.apache.openaz.xacml.rest;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
@@ -54,18 +54,20 @@ import org.apache.commons.io.IOUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.http.entity.ContentType;
+import org.apache.openaz.xacml.api.Request;
+import org.apache.openaz.xacml.api.Response;
+import org.apache.openaz.xacml.api.pap.PDPStatus.Status;
+import org.apache.openaz.xacml.api.pdp.PDPEngine;
+import org.apache.openaz.xacml.api.pdp.PDPException;
+import org.apache.openaz.xacml.rest.XACMLRest;
+import org.apache.openaz.xacml.rest.XACMLRestProperties;
+import org.apache.openaz.xacml.std.dom.DOMRequest;
+import org.apache.openaz.xacml.std.dom.DOMResponse;
+import org.apache.openaz.xacml.std.json.JSONRequest;
+import org.apache.openaz.xacml.std.json.JSONResponse;
+import org.apache.openaz.xacml.std.pap.StdPDPStatus;
+import org.apache.openaz.xacml.util.XACMLProperties;
 
-import com.att.research.xacml.api.Request;
-import com.att.research.xacml.api.Response;
-import com.att.research.xacml.api.pap.PDPStatus.Status;
-import com.att.research.xacml.api.pdp.PDPEngine;
-import com.att.research.xacml.api.pdp.PDPException;
-import com.att.research.xacml.std.dom.DOMRequest;
-import com.att.research.xacml.std.dom.DOMResponse;
-import com.att.research.xacml.std.json.JSONRequest;
-import com.att.research.xacml.std.json.JSONResponse;
-import com.att.research.xacml.std.pap.StdPDPStatus;
-import com.att.research.xacml.util.XACMLProperties;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**

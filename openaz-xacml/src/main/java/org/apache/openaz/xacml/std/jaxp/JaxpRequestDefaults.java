@@ -28,16 +28,16 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacml.std.jaxp;
+package org.apache.openaz.xacml.std.jaxp;
 
 import java.net.URI;
 
+import org.apache.openaz.xacml.std.StdRequestDefaults;
+
 import oasis.names.tc.xacml._3_0.core.schema.wd_17.RequestDefaultsType;
 
-import com.att.research.xacml.std.StdRequestDefaults;
-
 /**
- * JaxpRequestDefaults extends {@link com.att.research.xacml.std.StdRequestDefaults} with methods for creation
+ * JaxpRequestDefaults extends {@link org.apache.openaz.xacml.std.StdRequestDefaults} with methods for creation
  * from JAXP elements.
  *
  */

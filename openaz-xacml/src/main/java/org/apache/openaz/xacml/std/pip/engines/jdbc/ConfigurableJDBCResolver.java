@@ -28,7 +28,7 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacml.std.pip.engines.jdbc;
+package org.apache.openaz.xacml.std.pip.engines.jdbc;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -45,24 +45,24 @@ import java.util.Set;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.openaz.xacml.api.Attribute;
+import org.apache.openaz.xacml.api.AttributeValue;
+import org.apache.openaz.xacml.api.DataType;
+import org.apache.openaz.xacml.api.DataTypeFactory;
+import org.apache.openaz.xacml.api.Identifier;
+import org.apache.openaz.xacml.api.XACML3;
+import org.apache.openaz.xacml.api.pip.PIPEngine;
+import org.apache.openaz.xacml.api.pip.PIPException;
+import org.apache.openaz.xacml.api.pip.PIPFinder;
+import org.apache.openaz.xacml.api.pip.PIPRequest;
+import org.apache.openaz.xacml.api.pip.PIPResponse;
+import org.apache.openaz.xacml.std.StdAttribute;
+import org.apache.openaz.xacml.std.datatypes.DataTypes;
+import org.apache.openaz.xacml.std.datatypes.ISO8601Date;
+import org.apache.openaz.xacml.std.datatypes.ISO8601DateTime;
+import org.apache.openaz.xacml.std.pip.StdPIPRequest;
+import org.apache.openaz.xacml.std.pip.engines.Configurables;
 
-import com.att.research.xacml.api.Attribute;
-import com.att.research.xacml.api.AttributeValue;
-import com.att.research.xacml.api.DataType;
-import com.att.research.xacml.api.DataTypeFactory;
-import com.att.research.xacml.api.Identifier;
-import com.att.research.xacml.api.XACML3;
-import com.att.research.xacml.api.pip.PIPEngine;
-import com.att.research.xacml.api.pip.PIPException;
-import com.att.research.xacml.api.pip.PIPFinder;
-import com.att.research.xacml.api.pip.PIPRequest;
-import com.att.research.xacml.api.pip.PIPResponse;
-import com.att.research.xacml.std.StdAttribute;
-import com.att.research.xacml.std.datatypes.DataTypes;
-import com.att.research.xacml.std.datatypes.ISO8601Date;
-import com.att.research.xacml.std.datatypes.ISO8601DateTime;
-import com.att.research.xacml.std.pip.StdPIPRequest;
-import com.att.research.xacml.std.pip.engines.Configurables;
 import com.google.common.base.Joiner;
 import com.google.common.base.Splitter;
 
@@ -96,7 +96,7 @@ public class ConfigurableJDBCResolver implements JDBCResolver {
     }
 
     /**
-     * Determines if the given {@link com.att.research.xacml.api.pip.PIPRequest} can be answered with this <code>ConfigurableJDBCResolver</code>.
+     * Determines if the given {@link org.apache.openaz.xacml.api.pip.PIPRequest} can be answered with this <code>ConfigurableJDBCResolver</code>.
      *
      * @param pipRequest the <code>PIPRequest</code> to check
      * @return true if the given <code>PIPRequest</code> is supported by this <code>ConfigurableJDBCResolver</code>, else false
@@ -378,11 +378,11 @@ public class ConfigurableJDBCResolver implements JDBCResolver {
     }
 
     /**
-     * Creates an {@link com.att.research.xacml.api.Attribute} from the value associated with the field with the given <code>fieldName</code>.
+     * Creates an {@link org.apache.openaz.xacml.api.Attribute} from the value associated with the field with the given <code>fieldName</code>.
      *
      * @param resultSet the {@link java.sql.ResultSet} containing the current row from the database
      * @param fieldName the <code>String</code> name of the field containing the attribute value
-     * @param pipRequestAttribute the {@link com.att.research.xacml.api.pip.PIPRequest} for the <code>Attribute</code> to create
+     * @param pipRequestAttribute the {@link org.apache.openaz.xacml.api.pip.PIPRequest} for the <code>Attribute</code> to create
      * @return a new <code>Attribute</code> with the value of the given <code>fieldName</code>.
      */
     protected Attribute getAttributeFromResultSet(ResultSet resultSet, String fieldName, PIPRequest pipRequestAttribute) {

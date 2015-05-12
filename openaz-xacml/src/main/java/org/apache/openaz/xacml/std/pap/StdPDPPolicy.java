@@ -28,7 +28,7 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacml.std.pap;
+package org.apache.openaz.xacml.std.pap;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -44,10 +44,10 @@ import oasis.names.tc.xacml._3_0.core.schema.wd_17.PolicyType;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.openaz.xacml.api.pap.PAPException;
+import org.apache.openaz.xacml.api.pap.PDPPolicy;
+import org.apache.openaz.xacml.util.XACMLPolicyScanner;
 
-import com.att.research.xacml.api.pap.PAPException;
-import com.att.research.xacml.api.pap.PDPPolicy;
-import com.att.research.xacml.util.XACMLPolicyScanner;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.google.common.base.Splitter;
 import com.google.common.collect.Lists;

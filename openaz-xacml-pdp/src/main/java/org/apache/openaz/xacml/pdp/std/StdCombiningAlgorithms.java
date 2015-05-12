@@ -28,29 +28,29 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacmlatt.pdp.std;
+package org.apache.openaz.xacml.pdp.std;
 
-import com.att.research.xacml.api.XACML1;
-import com.att.research.xacml.api.XACML3;
-import com.att.research.xacmlatt.pdp.policy.CombiningAlgorithm;
-import com.att.research.xacmlatt.pdp.policy.PolicySetChild;
-import com.att.research.xacmlatt.pdp.policy.Rule;
-import com.att.research.xacmlatt.pdp.std.combiners.CombinedPermitOverrides;
-import com.att.research.xacmlatt.pdp.std.combiners.DenyOverrides;
-import com.att.research.xacmlatt.pdp.std.combiners.DenyUnlessPermit;
-import com.att.research.xacmlatt.pdp.std.combiners.FirstApplicable;
-import com.att.research.xacmlatt.pdp.std.combiners.LegacyDenyOverridesPolicy;
-import com.att.research.xacmlatt.pdp.std.combiners.LegacyDenyOverridesRule;
-import com.att.research.xacmlatt.pdp.std.combiners.LegacyPermitOverridesPolicy;
-import com.att.research.xacmlatt.pdp.std.combiners.LegacyPermitOverridesRule;
-import com.att.research.xacmlatt.pdp.std.combiners.OnlyOneApplicable;
-import com.att.research.xacmlatt.pdp.std.combiners.PermitOverrides;
-import com.att.research.xacmlatt.pdp.std.combiners.PermitUnlessDeny;
-import com.att.research.xacmlatt.pdp.util.ATTPDPProperties;
+import org.apache.openaz.xacml.api.XACML1;
+import org.apache.openaz.xacml.api.XACML3;
+import org.apache.openaz.xacml.pdp.policy.CombiningAlgorithm;
+import org.apache.openaz.xacml.pdp.policy.PolicySetChild;
+import org.apache.openaz.xacml.pdp.policy.Rule;
+import org.apache.openaz.xacml.pdp.std.combiners.CombinedPermitOverrides;
+import org.apache.openaz.xacml.pdp.std.combiners.DenyOverrides;
+import org.apache.openaz.xacml.pdp.std.combiners.DenyUnlessPermit;
+import org.apache.openaz.xacml.pdp.std.combiners.FirstApplicable;
+import org.apache.openaz.xacml.pdp.std.combiners.LegacyDenyOverridesPolicy;
+import org.apache.openaz.xacml.pdp.std.combiners.LegacyDenyOverridesRule;
+import org.apache.openaz.xacml.pdp.std.combiners.LegacyPermitOverridesPolicy;
+import org.apache.openaz.xacml.pdp.std.combiners.LegacyPermitOverridesRule;
+import org.apache.openaz.xacml.pdp.std.combiners.OnlyOneApplicable;
+import org.apache.openaz.xacml.pdp.std.combiners.PermitOverrides;
+import org.apache.openaz.xacml.pdp.std.combiners.PermitUnlessDeny;
+import org.apache.openaz.xacml.pdp.util.OpenAZPDPProperties;
 
 /**
- * StdCombiningAlgorithms contains single instances of each of the {@link com.att.research.xacmlatt.pdp.policy.CombiningAlgorithm}
- * implementations in the {@link com.att.research.xacmlatt.pdp.std.combiners} package.
+ * StdCombiningAlgorithms contains single instances of each of the {@link org.apache.openaz.xacml.pdp.policy.CombiningAlgorithm}
+ * implementations in the {@link org.apache.openaz.xacml.pdp.std.combiners} package.
  *
  */
 public class StdCombiningAlgorithms {
@@ -138,6 +138,6 @@ public class StdCombiningAlgorithms {
     // Custom AT&T Policy Combing Algorithms
     //
     public static final CombiningAlgorithm<PolicySetChild> CA_POLICY_COMBINED_PERMIT_OVERRIDES
-        = new CombinedPermitOverrides<PolicySetChild>(ATTPDPProperties.ID_POLICY_COMBINEDPERMITOVERRIDES);
+        = new CombinedPermitOverrides<PolicySetChild>(OpenAZPDPProperties.ID_POLICY_COMBINEDPERMITOVERRIDES);
 
 }

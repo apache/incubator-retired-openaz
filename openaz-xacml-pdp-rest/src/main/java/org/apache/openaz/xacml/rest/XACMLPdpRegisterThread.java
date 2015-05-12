@@ -28,7 +28,7 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacml.rest;
+package org.apache.openaz.xacml.rest;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -42,9 +42,9 @@ import java.util.Properties;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-
-import com.att.research.xacml.rest.XACMLPdpServlet.PutRequest;
-import com.att.research.xacml.util.XACMLProperties;
+import org.apache.openaz.xacml.rest.XACMLRestProperties;
+import org.apache.openaz.xacml.rest.XACMLPdpServlet.PutRequest;
+import org.apache.openaz.xacml.util.XACMLProperties;
 
 public class XACMLPdpRegisterThread implements Runnable {
     private static final Log logger	= LogFactory.getLog(XACMLPdpRegisterThread.class);

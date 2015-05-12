@@ -29,7 +29,7 @@
  *                     All Rights Reserved
  */
 
-package com.att.research.xacml.std.pip.engines.jdbc;
+package org.apache.openaz.xacml.std.pip.engines.jdbc;
 
 /**
  * com.att.research.xacml.std.pip.engines contains an implementation of the {@link com.att.research.xacml.api.pip.PIPEngine}

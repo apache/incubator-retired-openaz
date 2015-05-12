@@ -29,16 +29,16 @@
  *                     All Rights Reserved
  */
 
-package com.att.research.xacml.std;
+package org.apache.openaz.xacml.std;
 
 import java.net.URI;
 import java.util.UUID;
 
-import com.att.research.xacml.api.Identifier;
-import com.att.research.xacml.util.ObjUtil;
+import org.apache.openaz.xacml.api.Identifier;
+import org.apache.openaz.xacml.util.ObjUtil;
 
 /**
- * IdentifierImpl provides a common implementation of the {@link com.att.research.xacml.api.Identifier} interface with a stored, fixed <code>URI</code>.
+ * IdentifierImpl provides a common implementation of the {@link org.apache.openaz.xacml.api.Identifier} interface with a stored, fixed <code>URI</code>.
  *
  */
 public class IdentifierImpl implements Identifier {

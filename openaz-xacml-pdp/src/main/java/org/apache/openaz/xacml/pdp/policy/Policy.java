@@ -29,27 +29,27 @@
  *                     All Rights Reserved
  */
 
-package com.att.research.xacmlatt.pdp.policy;
+package org.apache.openaz.xacml.pdp.policy;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
-import com.att.research.xacml.api.Decision;
-import com.att.research.xacml.api.Result;
-import com.att.research.xacml.api.StatusCode;
-import com.att.research.xacml.std.StdStatus;
-import com.att.research.xacml.std.StdStatusCode;
-import com.att.research.xacml.std.trace.StdTraceEvent;
-import com.att.research.xacml.util.StringUtils;
-import com.att.research.xacmlatt.pdp.eval.EvaluationContext;
-import com.att.research.xacmlatt.pdp.eval.EvaluationException;
-import com.att.research.xacmlatt.pdp.eval.EvaluationResult;
-import com.att.research.xacmlatt.pdp.eval.MatchResult;
+import org.apache.openaz.xacml.api.Decision;
+import org.apache.openaz.xacml.api.Result;
+import org.apache.openaz.xacml.api.StatusCode;
+import org.apache.openaz.xacml.pdp.eval.EvaluationContext;
+import org.apache.openaz.xacml.pdp.eval.EvaluationException;
+import org.apache.openaz.xacml.pdp.eval.EvaluationResult;
+import org.apache.openaz.xacml.pdp.eval.MatchResult;
+import org.apache.openaz.xacml.std.StdStatus;
+import org.apache.openaz.xacml.std.StdStatusCode;
+import org.apache.openaz.xacml.std.trace.StdTraceEvent;
+import org.apache.openaz.xacml.util.StringUtils;
 
 /**
- * Policy extends {@link com.att.research.xacmlatt.pdp.policy.PolicyDef} to represent a XACML 3.0 Policy element.
+ * Policy extends {@link org.apache.openaz.xacml.pdp.policy.PolicyDef} to represent a XACML 3.0 Policy element.
  *
  */
 public class Policy extends PolicyDef {
@@ -112,7 +112,7 @@ public class Policy extends PolicyDef {
     }
 
     /**
-     * Gets an <code>Iterator</code> over the {@link com.att.research.xacmlatt.pdp.policy.TargetedCombinerParameter}s for
+     * Gets an <code>Iterator</code> over the {@link org.apache.openaz.xacml.pdp.policy.TargetedCombinerParameter}s for
      * the {@link Rule}s in this <code>Policy</code>.
      *
      * @return an <code>Iterator</code> over the <code>TargetedCombinerParameter</code>s for this <code>Policy</code>.
@@ -150,7 +150,7 @@ public class Policy extends PolicyDef {
     }
 
     /**
-     * Gets an <code>Iterator</code> over the {@link com.att.research.xacmlatt.pdp.policy.VariableDefinition}s in this <code>Policy</code>.
+     * Gets an <code>Iterator</code> over the {@link org.apache.openaz.xacml.pdp.policy.VariableDefinition}s in this <code>Policy</code>.
      *
      * @return an <code>Iterator</code> over the <code>VariableDefinition</code>s in this <code>Policy</code>
      */

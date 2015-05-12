@@ -18,10 +18,10 @@
  *
  */
 
-package org.openliberty.openaz.pepapi.std.test.util;
+package org.apache.openaz.pepapi.std.test.util;
 
-import org.openliberty.openaz.pepapi.PepAgent;
-import org.openliberty.openaz.pepapi.PepResponse;
+import org.apache.openaz.pepapi.PepAgent;
+import org.apache.openaz.pepapi.PepResponse;
 
 import java.util.concurrent.Callable;
 

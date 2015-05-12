@@ -28,7 +28,7 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacml.std;
+package org.apache.openaz.xacml.std;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -36,13 +36,13 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
-import com.att.research.xacml.api.Attribute;
-import com.att.research.xacml.api.AttributeValue;
-import com.att.research.xacml.api.DataType;
-import com.att.research.xacml.api.DataTypeException;
-import com.att.research.xacml.api.Identifier;
-import com.att.research.xacml.util.ListUtil;
-import com.att.research.xacml.util.ObjUtil;
+import org.apache.openaz.xacml.api.Attribute;
+import org.apache.openaz.xacml.api.AttributeValue;
+import org.apache.openaz.xacml.api.DataType;
+import org.apache.openaz.xacml.api.DataTypeException;
+import org.apache.openaz.xacml.api.Identifier;
+import org.apache.openaz.xacml.util.ListUtil;
+import org.apache.openaz.xacml.util.ObjUtil;
 
 /**
  * Mutable implementation of the {@link com.att.research.xacml.Attribute} interface.
@@ -122,7 +122,7 @@ public class StdMutableAttribute implements Attribute {
     }
 
     /**
-     * Creates a new <code>StdMutableAttribute</code> that is a copy of the given {@link com.att.research.xacml.api.Attribute}.
+     * Creates a new <code>StdMutableAttribute</code> that is a copy of the given {@link org.apache.openaz.xacml.api.Attribute}.
      *
      * @param attribute the <code>Attribute</code> to copy
      * @return a new <code>StdMutableAttribute</code> that is a copy of the given <code>Attribute</code>.
@@ -137,7 +137,7 @@ public class StdMutableAttribute implements Attribute {
     }
 
     /**
-     * Sets the {@link com.att.research.xacml.api.Identifier} representing the XACML AttributeId of the Attribute represented by this <code>StdMutableAttribute</code>>
+     * Sets the {@link org.apache.openaz.xacml.api.Identifier} representing the XACML AttributeId of the Attribute represented by this <code>StdMutableAttribute</code>>
      *
      * @param identifier the <code>Identifier</code> representing the XACML AttributeId of the Attribute represented by this <code>StdMutableAttribute</code>.
      */
@@ -151,7 +151,7 @@ public class StdMutableAttribute implements Attribute {
     }
 
     /**
-     * Sets the {@link com.att.research.xacml.api.Identifier} representing the XACML Category of the Attribute represented by this <code>StdMutableAttribute</code>.
+     * Sets the {@link org.apache.openaz.xacml.api.Identifier} representing the XACML Category of the Attribute represented by this <code>StdMutableAttribute</code>.
      *
      * @param identifier the <code>Identifier</code> representing the XACML Category of the Attribute represented by this <code>StdMutableAttribute</code>.
      */
@@ -165,7 +165,7 @@ public class StdMutableAttribute implements Attribute {
     }
 
     /**
-     * Adds an {@link com.att.research.xacml.api.AttributeValue} to this <code>StdMutableAttribute</code>.
+     * Adds an {@link org.apache.openaz.xacml.api.AttributeValue} to this <code>StdMutableAttribute</code>.
      *
      * @param attributeValue the <code>AttributeValue</code> to add to this <code>StdMutableAttribute</code>.
      */
@@ -177,7 +177,7 @@ public class StdMutableAttribute implements Attribute {
     }
 
     /**
-     * Adds a copy of the given <code>Collection</code> of {@link com.att.research.xacml.api.AttributeValue}s to this <code>StdMutableAttribute</code>.
+     * Adds a copy of the given <code>Collection</code> of {@link org.apache.openaz.xacml.api.AttributeValue}s to this <code>StdMutableAttribute</code>.
      *
      * @param listAttributeValues the <code>Collection</code> of <code>AttributeValue</code>s to add to this <code>StdMutableAttribute</code>.
      */
@@ -191,7 +191,7 @@ public class StdMutableAttribute implements Attribute {
     }
 
     /**
-     * Sets the {@link com.att.research.xacml.api.AttributeValue}s in this <code>StdMutableAttribute</code> to a copy of the given
+     * Sets the {@link org.apache.openaz.xacml.api.AttributeValue}s in this <code>StdMutableAttribute</code> to a copy of the given
      * <code>Collection</code>.
      *
      * @param listAttributeValues the <code>Collection</code> of <code>AttributValue</code>s to set in this <code>StdMutableAttribute</code>.

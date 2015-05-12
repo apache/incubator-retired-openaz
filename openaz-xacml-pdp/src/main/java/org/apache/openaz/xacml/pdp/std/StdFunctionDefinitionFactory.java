@@ -28,19 +28,19 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacmlatt.pdp.std;
+package org.apache.openaz.xacml.pdp.std;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.att.research.xacml.api.Identifier;
-import com.att.research.xacmlatt.pdp.policy.FunctionDefinition;
-import com.att.research.xacmlatt.pdp.policy.FunctionDefinitionFactory;
+import org.apache.openaz.xacml.api.Identifier;
+import org.apache.openaz.xacml.pdp.policy.FunctionDefinition;
+import org.apache.openaz.xacml.pdp.policy.FunctionDefinitionFactory;
 
 /**
- * StdFunctionDefinitionFactory is the default {@link com.att.research.xacmlatt.pdp.policy.FunctionDefinitionFactory} implementation
+ * StdFunctionDefinitionFactory is the default {@link org.apache.openaz.xacml.pdp.policy.FunctionDefinitionFactory} implementation
  * used if no other <code>FunctionDefinitionFactory</code> implementation is supplied.  It contains all of the standard XACML 3.0
  * functions.
  *

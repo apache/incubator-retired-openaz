@@ -18,7 +18,7 @@
  *
  */
 
-package org.openliberty.openaz.pepapi;
+package org.apache.openaz.pepapi;
 
 
 /**
@@ -47,7 +47,7 @@ public interface MapperRegistry {
      *
      * @param clazz
      * @return an ObjectMapper instance
-     * @throws org.openliberty.openaz.pepapi.PepException if no ObjectMapper could be found for class clazz;
+     * @throws org.apache.openaz.pepapi.PepException if no ObjectMapper could be found for class clazz;
      */
     public ObjectMapper getMapper(Class<?> clazz);
 

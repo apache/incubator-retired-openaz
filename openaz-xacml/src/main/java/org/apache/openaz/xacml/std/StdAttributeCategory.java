@@ -28,23 +28,23 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacml.std;
+package org.apache.openaz.xacml.std;
 
 import java.util.Collection;
 import java.util.Iterator;
 
-import com.att.research.xacml.api.Attribute;
-import com.att.research.xacml.api.AttributeCategory;
-import com.att.research.xacml.api.Identifier;
-import com.att.research.xacml.util.Wrapper;
+import org.apache.openaz.xacml.api.Attribute;
+import org.apache.openaz.xacml.api.AttributeCategory;
+import org.apache.openaz.xacml.api.Identifier;
+import org.apache.openaz.xacml.util.Wrapper;
 
 /**
- * Immutable implementation of the {@link com.att.research.xacml.api.AttributeCategory} interface.
+ * Immutable implementation of the {@link org.apache.openaz.xacml.api.AttributeCategory} interface.
  *
  */
 public class StdAttributeCategory extends Wrapper<AttributeCategory> implements AttributeCategory {
     /**
-     * Creates an immutable <code>StdAttributeCategory</code> that wraps the given {@link com.att.research.xacml.api.AttributeCategory}.
+     * Creates an immutable <code>StdAttributeCategory</code> that wraps the given {@link org.apache.openaz.xacml.api.AttributeCategory}.
      * The caller agrees to no longer modify the given <code>AttributeCategory</code> while it is wrapped by the <code>StdAttributeCategory</code>>
      *
      * @param attributeCategory the <code>AttributeCategory</code> to wrap.
@@ -54,8 +54,8 @@ public class StdAttributeCategory extends Wrapper<AttributeCategory> implements 
     }
 
     /**
-     * Creates a new <code>StdAttributeCategory</code> with the given {@link com.att.research.xacml.api.Identifier} representing its
-     * XACML Category, and the given <code>Collection</code> of {@link com.att.research.xacml.api.Attribute}s as its XACML Attributes.
+     * Creates a new <code>StdAttributeCategory</code> with the given {@link org.apache.openaz.xacml.api.Identifier} representing its
+     * XACML Category, and the given <code>Collection</code> of {@link org.apache.openaz.xacml.api.Attribute}s as its XACML Attributes.
      * The <code>Collection</code> is copied; changes made to the <code>Collection</code> after creating the new <code>StdAttributeCategory</code>
      * are not reflected in the <code>StdAttributeCategory</code>.
      *

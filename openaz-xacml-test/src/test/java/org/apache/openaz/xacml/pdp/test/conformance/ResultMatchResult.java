@@ -28,14 +28,14 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacmlatt.pdp.test.conformance;
+package org.apache.openaz.xacml.pdp.test.conformance;
 
-import com.att.research.xacml.api.Result;
-import com.att.research.xacml.std.StdStatusCode;
-import com.att.research.xacml.util.ListUtil;
+import org.apache.openaz.xacml.api.Result;
+import org.apache.openaz.xacml.std.StdStatusCode;
+import org.apache.openaz.xacml.util.ListUtil;
 
 /**
- * ResultMatchResult provides information about how well a {@link com.att.research.xacml.api.Result} object matches
+ * ResultMatchResult provides information about how well a {@link org.apache.openaz.xacml.api.Result} object matches
  * another <code>Result</code> object.
  *
  */

@@ -28,7 +28,7 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacmlatt.pdp.test.conformance;
+package org.apache.openaz.xacml.pdp.test.conformance;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -40,15 +40,15 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
-import com.att.research.xacml.api.Advice;
-import com.att.research.xacml.api.Attribute;
-import com.att.research.xacml.api.AttributeAssignment;
-import com.att.research.xacml.api.AttributeCategory;
-import com.att.research.xacml.api.AttributeValue;
-import com.att.research.xacml.api.IdReference;
-import com.att.research.xacml.api.Obligation;
-import com.att.research.xacml.api.Response;
-import com.att.research.xacml.api.Result;
+import org.apache.openaz.xacml.api.Advice;
+import org.apache.openaz.xacml.api.Attribute;
+import org.apache.openaz.xacml.api.AttributeAssignment;
+import org.apache.openaz.xacml.api.AttributeCategory;
+import org.apache.openaz.xacml.api.AttributeValue;
+import org.apache.openaz.xacml.api.IdReference;
+import org.apache.openaz.xacml.api.Obligation;
+import org.apache.openaz.xacml.api.Response;
+import org.apache.openaz.xacml.api.Result;
 
 /**
  * Conformance is an application that runs a <code>ConformanceTestSet</code> and dumps results comparing the actual and

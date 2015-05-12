@@ -29,11 +29,11 @@
  *                     All Rights Reserved
  */
 
-package com.att.research.xacml.api.trace;
+package org.apache.openaz.xacml.api.trace;
 
 /**
  * Defines the API for objects that serve as handlers for {@link TraceEvent}s.  <code>TraceEngine</code>s
- * are instantiated with {@link com.att.research.xacml.api.trace.TraceEngineFactory} objects.
+ * are instantiated with {@link org.apache.openaz.xacml.api.trace.TraceEngineFactory} objects.
  *
  */
 public interface TraceEngine {

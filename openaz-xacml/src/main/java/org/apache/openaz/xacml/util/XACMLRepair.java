@@ -28,7 +28,7 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacml.util;
+package org.apache.openaz.xacml.util;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -41,11 +41,10 @@ import java.util.List;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.openaz.xacml.std.dom.DOMDocumentRepair;
+import org.apache.openaz.xacml.std.dom.DOMStructureException;
+import org.apache.openaz.xacml.std.dom.DOMUtil;
 import org.w3c.dom.Document;
-
-import com.att.research.xacml.std.dom.DOMDocumentRepair;
-import com.att.research.xacml.std.dom.DOMStructureException;
-import com.att.research.xacml.std.dom.DOMUtil;
 
 /**
  * XACMLRepair is an application class that can load individual XACML documents or directories of XACML documents, make any needed

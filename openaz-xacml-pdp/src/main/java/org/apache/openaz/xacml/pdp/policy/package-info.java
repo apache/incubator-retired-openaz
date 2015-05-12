@@ -29,7 +29,7 @@
  *                     All Rights Reserved
  */
 
-package com.att.research.xacmlatt.pdp.policy;
+package org.apache.openaz.xacml.pdp.policy;
 
 /**
  * com.att.research.xacmlatt.pdp.policy contains class definitions that represent a XACML 3.0 Policy such that it can be

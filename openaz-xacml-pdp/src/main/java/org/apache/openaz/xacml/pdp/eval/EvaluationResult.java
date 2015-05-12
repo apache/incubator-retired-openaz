@@ -29,20 +29,20 @@
  *                     All Rights Reserved
  */
 
-package com.att.research.xacmlatt.pdp.eval;
+package org.apache.openaz.xacml.pdp.eval;
 
 import java.util.Collection;
 
-import com.att.research.xacml.api.Advice;
-import com.att.research.xacml.api.AttributeCategory;
-import com.att.research.xacml.api.Decision;
-import com.att.research.xacml.api.IdReference;
-import com.att.research.xacml.api.Obligation;
-import com.att.research.xacml.api.Status;
-import com.att.research.xacml.std.StdMutableResult;
+import org.apache.openaz.xacml.api.Advice;
+import org.apache.openaz.xacml.api.AttributeCategory;
+import org.apache.openaz.xacml.api.Decision;
+import org.apache.openaz.xacml.api.IdReference;
+import org.apache.openaz.xacml.api.Obligation;
+import org.apache.openaz.xacml.api.Status;
+import org.apache.openaz.xacml.std.StdMutableResult;
 
 /**
- * EvaluationResult extends {@link com.att.research.xacml.std.StdMutableResult} with methods useful within a PDP implementation
+ * EvaluationResult extends {@link org.apache.openaz.xacml.std.StdMutableResult} with methods useful within a PDP implementation
  *
  */
 public class EvaluationResult extends StdMutableResult {
@@ -72,7 +72,7 @@ public class EvaluationResult extends StdMutableResult {
     }
 
     /**
-     * Creates an <code>EvaluationResult</code> generally from a {@link com.att.research.xacmlatt.pdp.policy.Rule} <code>evaluation</code>
+     * Creates an <code>EvaluationResult</code> generally from a {@link org.apache.openaz.xacml.pdp.policy.Rule} <code>evaluation</code>
      * call.
      *
      * @param decisionIn the <code>Decision</code>

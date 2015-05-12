@@ -28,23 +28,23 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacmlatt.pdp.std.functions;
+package org.apache.openaz.xacml.pdp.std.functions;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.security.auth.x500.X500Principal;
 
-import com.att.research.xacml.api.Identifier;
-import com.att.research.xacml.api.Status;
-import com.att.research.xacml.std.StdStatusCode;
-import com.att.research.xacml.std.datatypes.DataTypes;
-import com.att.research.xacmlatt.pdp.eval.EvaluationContext;
-import com.att.research.xacmlatt.pdp.policy.ExpressionResult;
-import com.att.research.xacmlatt.pdp.policy.FunctionArgument;
+import org.apache.openaz.xacml.api.Identifier;
+import org.apache.openaz.xacml.api.Status;
+import org.apache.openaz.xacml.pdp.eval.EvaluationContext;
+import org.apache.openaz.xacml.pdp.policy.ExpressionResult;
+import org.apache.openaz.xacml.pdp.policy.FunctionArgument;
+import org.apache.openaz.xacml.std.StdStatusCode;
+import org.apache.openaz.xacml.std.datatypes.DataTypes;
 
 /**
- * FunctionDefinitionX500NameMatch extends {@link com.att.research.xacmlatt.pdp.std.functions.FunctionDefinitionHomogeneousSimple} to
+ * FunctionDefinitionX500NameMatch extends {@link org.apache.openaz.xacml.pdp.std.functions.FunctionDefinitionHomogeneousSimple} to
  * implement the XACML X500Name match predicate as functions taking two <code>X500Name</code> arguments and returning a single <code>Boolean</code> value.
  *
  * In the first implementation of XACML we had separate files for each XACML Function.

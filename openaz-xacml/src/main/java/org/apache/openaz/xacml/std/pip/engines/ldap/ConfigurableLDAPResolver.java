@@ -28,7 +28,7 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacml.std.pip.engines.ldap;
+package org.apache.openaz.xacml.std.pip.engines.ldap;
 
 import java.io.StringWriter;
 import java.util.ArrayList;
@@ -42,12 +42,34 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 
+
+
+
+
+
+
+
 //import javax.naming.directory.Attribute;
 import javax.naming.NamingException;
 import javax.naming.directory.SearchResult;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.openaz.xacml.api.Attribute;
+import org.apache.openaz.xacml.api.AttributeValue;
+import org.apache.openaz.xacml.api.DataType;
+import org.apache.openaz.xacml.api.DataTypeException;
+import org.apache.openaz.xacml.api.DataTypeFactory;
+import org.apache.openaz.xacml.api.pip.PIPEngine;
+import org.apache.openaz.xacml.api.pip.PIPException;
+import org.apache.openaz.xacml.api.pip.PIPFinder;
+import org.apache.openaz.xacml.api.pip.PIPRequest;
+import org.apache.openaz.xacml.api.pip.PIPResponse;
+import org.apache.openaz.xacml.std.StdAttribute;
+import org.apache.openaz.xacml.std.datatypes.DataTypes;
+import org.apache.openaz.xacml.std.pip.StdPIPRequest;
+import org.apache.openaz.xacml.std.pip.engines.Configurables;
+import org.apache.openaz.xacml.util.FactoryException;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.Velocity;
 import org.apache.velocity.app.event.EventCartridge;
@@ -55,22 +77,6 @@ import org.apache.velocity.app.event.ReferenceInsertionEventHandler;
 import org.apache.velocity.exception.MethodInvocationException;
 import org.apache.velocity.exception.ParseErrorException;
 import org.apache.velocity.exception.ResourceNotFoundException;
-
-import com.att.research.xacml.api.Attribute;
-import com.att.research.xacml.api.AttributeValue;
-import com.att.research.xacml.api.DataType;
-import com.att.research.xacml.api.DataTypeException;
-import com.att.research.xacml.api.DataTypeFactory;
-import com.att.research.xacml.api.pip.PIPEngine;
-import com.att.research.xacml.api.pip.PIPException;
-import com.att.research.xacml.api.pip.PIPFinder;
-import com.att.research.xacml.api.pip.PIPRequest;
-import com.att.research.xacml.api.pip.PIPResponse;
-import com.att.research.xacml.std.StdAttribute;
-import com.att.research.xacml.std.datatypes.DataTypes;
-import com.att.research.xacml.std.pip.StdPIPRequest;
-import com.att.research.xacml.std.pip.engines.Configurables;
-import com.att.research.xacml.util.FactoryException;
 
 public class ConfigurableLDAPResolver implements LDAPResolver {
 

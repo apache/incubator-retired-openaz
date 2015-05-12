@@ -28,12 +28,12 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacml.std.datatypes;
+package org.apache.openaz.xacml.std.datatypes;
 
-import com.att.research.xacml.api.AttributeValue;
-import com.att.research.xacml.api.DataTypeException;
-import com.att.research.xacml.api.XACML;
-import com.att.research.xacml.std.StdAttributeValue;
+import org.apache.openaz.xacml.api.AttributeValue;
+import org.apache.openaz.xacml.api.DataTypeException;
+import org.apache.openaz.xacml.api.XACML;
+import org.apache.openaz.xacml.std.StdAttributeValue;
 
 /**
  * DataTypeBoolean extends {@link DataTypeBase} with conversions to the

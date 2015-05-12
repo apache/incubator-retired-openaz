@@ -28,7 +28,7 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacml.api.pap;
+package org.apache.openaz.xacml.api.pap;
 
 public class PAPException extends Exception {
     private static final long serialVersionUID = 8291987599333392339L;

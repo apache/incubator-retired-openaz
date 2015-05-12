@@ -28,7 +28,7 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacmlatt.pdp.test.conformance;
+package org.apache.openaz.xacml.pdp.test.conformance;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -48,25 +48,24 @@ import java.util.Properties;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-
-import com.att.research.xacml.api.Attribute;
-import com.att.research.xacml.api.AttributeValue;
-import com.att.research.xacml.api.DataType;
-import com.att.research.xacml.api.DataTypeException;
-import com.att.research.xacml.api.DataTypeFactory;
-import com.att.research.xacml.api.Identifier;
-import com.att.research.xacml.api.pip.PIPException;
-import com.att.research.xacml.api.pip.PIPFinder;
-import com.att.research.xacml.api.pip.PIPRequest;
-import com.att.research.xacml.api.pip.PIPResponse;
-import com.att.research.xacml.std.IdentifierImpl;
-import com.att.research.xacml.std.StdMutableAttribute;
-import com.att.research.xacml.std.pip.StdPIPResponse;
-import com.att.research.xacml.std.pip.engines.ConfigurableEngine;
-import com.att.research.xacml.util.FactoryException;
+import org.apache.openaz.xacml.api.Attribute;
+import org.apache.openaz.xacml.api.AttributeValue;
+import org.apache.openaz.xacml.api.DataType;
+import org.apache.openaz.xacml.api.DataTypeException;
+import org.apache.openaz.xacml.api.DataTypeFactory;
+import org.apache.openaz.xacml.api.Identifier;
+import org.apache.openaz.xacml.api.pip.PIPException;
+import org.apache.openaz.xacml.api.pip.PIPFinder;
+import org.apache.openaz.xacml.api.pip.PIPRequest;
+import org.apache.openaz.xacml.api.pip.PIPResponse;
+import org.apache.openaz.xacml.std.IdentifierImpl;
+import org.apache.openaz.xacml.std.StdMutableAttribute;
+import org.apache.openaz.xacml.std.pip.StdPIPResponse;
+import org.apache.openaz.xacml.std.pip.engines.ConfigurableEngine;
+import org.apache.openaz.xacml.util.FactoryException;
 
 /**
- * ConformancePIPEngine implements the {@link com.att.research.xacml.api.pip.PIPFinder} interface to find attributes
+ * ConformancePIPEngine implements the {@link org.apache.openaz.xacml.api.pip.PIPFinder} interface to find attributes
  * loaded from a text file containing the following fields:
  * 	category-id,attribute-id,datatype-id,issuer,value
  *

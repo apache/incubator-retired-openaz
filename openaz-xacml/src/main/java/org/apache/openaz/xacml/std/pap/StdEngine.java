@@ -28,7 +28,7 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacml.std.pap;
+package org.apache.openaz.xacml.std.pap;
 
 
 
@@ -53,14 +53,14 @@ import java.util.TreeSet;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.openaz.xacml.api.pap.PAPEngine;
+import org.apache.openaz.xacml.api.pap.PAPException;
+import org.apache.openaz.xacml.api.pap.PDP;
+import org.apache.openaz.xacml.api.pap.PDPGroup;
+import org.apache.openaz.xacml.api.pap.PDPPolicy;
+import org.apache.openaz.xacml.api.pap.PDPStatus;
+import org.apache.openaz.xacml.util.XACMLProperties;
 
-import com.att.research.xacml.api.pap.PAPEngine;
-import com.att.research.xacml.api.pap.PAPException;
-import com.att.research.xacml.api.pap.PDP;
-import com.att.research.xacml.api.pap.PDPGroup;
-import com.att.research.xacml.api.pap.PDPPolicy;
-import com.att.research.xacml.api.pap.PDPStatus;
-import com.att.research.xacml.util.XACMLProperties;
 import com.google.common.base.Joiner;
 import com.google.common.base.Splitter;
 import com.google.common.collect.Sets;

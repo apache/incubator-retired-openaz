@@ -28,21 +28,20 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacmlatt.pdp.policy.dom;
+package org.apache.openaz.xacml.pdp.policy.dom;
 
+import org.apache.openaz.xacml.api.XACML3;
+import org.apache.openaz.xacml.std.dom.DOMStructureException;
+import org.apache.openaz.xacml.std.dom.DOMUtil;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 
-import com.att.research.xacml.api.XACML3;
-import com.att.research.xacml.std.dom.DOMStructureException;
-import com.att.research.xacml.std.dom.DOMUtil;
-
 /**
- * DOMDocumentRepair extends {@link com.att.research.xacml.std.dom.DOMDocumentRepair} to repair Policy documents as well as
+ * DOMDocumentRepair extends {@link org.apache.openaz.xacml.std.dom.DOMDocumentRepair} to repair Policy documents as well as
  * Request and Response documents.
  *
  */
-public class DOMDocumentRepair extends com.att.research.xacml.std.dom.DOMDocumentRepair {
+public class DOMDocumentRepair extends org.apache.openaz.xacml.std.dom.DOMDocumentRepair {
     protected boolean repairPolicy(Node nodePolicy) throws DOMStructureException {
         return DOMPolicy.repair(nodePolicy);
     }

@@ -29,7 +29,7 @@
  *                     All Rights Reserved
  */
 
-package com.att.research.xacml.std.dom;
+package org.apache.openaz.xacml.std.dom;
 
 /**
  * com.att.research.xacml.std.dom contains the implementation of interfaces in {@link com.att.research.xacml.api} using DOM nodes.

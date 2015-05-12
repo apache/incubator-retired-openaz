@@ -29,7 +29,7 @@
  *                     All Rights Reserved
  */
 
-package com.att.research.xacml.std;
+package org.apache.openaz.xacml.std;
 
 /**
  * Provides standard implementations of the interfaces from the {@link com.att.research.xacml} package.  All of the standard classes implement

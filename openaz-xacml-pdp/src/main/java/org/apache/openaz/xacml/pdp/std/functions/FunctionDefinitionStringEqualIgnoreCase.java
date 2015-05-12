@@ -28,10 +28,10 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacmlatt.pdp.std.functions;
+package org.apache.openaz.xacml.pdp.std.functions;
 
-import com.att.research.xacml.api.Identifier;
-import com.att.research.xacml.std.datatypes.DataTypes;
+import org.apache.openaz.xacml.api.Identifier;
+import org.apache.openaz.xacml.std.datatypes.DataTypes;
 
 /**
  * FunctionDefinitionStringEqualIgnoreCase extends {@link FunctionDefinitionEquality} for

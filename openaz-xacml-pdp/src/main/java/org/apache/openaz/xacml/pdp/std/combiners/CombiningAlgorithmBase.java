@@ -28,12 +28,12 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacmlatt.pdp.std.combiners;
+package org.apache.openaz.xacml.pdp.std.combiners;
 
-import com.att.research.xacml.api.Identifier;
-import com.att.research.xacmlatt.pdp.policy.CombiningAlgorithm;
+import org.apache.openaz.xacml.api.Identifier;
+import org.apache.openaz.xacml.pdp.policy.CombiningAlgorithm;
 
-public abstract class CombiningAlgorithmBase<T extends com.att.research.xacmlatt.pdp.eval.Evaluatable> implements CombiningAlgorithm<T> {
+public abstract class CombiningAlgorithmBase<T extends org.apache.openaz.xacml.pdp.eval.Evaluatable> implements CombiningAlgorithm<T> {
     private Identifier id;
 
     public CombiningAlgorithmBase(Identifier identifierIn) {

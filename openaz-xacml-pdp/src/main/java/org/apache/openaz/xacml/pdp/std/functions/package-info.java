@@ -29,7 +29,7 @@
  *                     All Rights Reserved
  */
 
-package com.att.research.xacmlatt.pdp.std.functions;
+package org.apache.openaz.xacml.pdp.std.functions;
 
 /**
  * com.att.research.xacmlatt.pdp.policy.expressions contains class definitions that represent specific XACML function

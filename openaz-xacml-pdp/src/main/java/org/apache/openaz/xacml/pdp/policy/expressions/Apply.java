@@ -28,30 +28,30 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacmlatt.pdp.policy.expressions;
+package org.apache.openaz.xacml.pdp.policy.expressions;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
-import com.att.research.xacml.api.Identifier;
-import com.att.research.xacml.api.StatusCode;
-import com.att.research.xacml.std.StdStatus;
-import com.att.research.xacml.std.StdStatusCode;
-import com.att.research.xacml.util.FactoryException;
-import com.att.research.xacmlatt.pdp.eval.EvaluationContext;
-import com.att.research.xacmlatt.pdp.eval.EvaluationException;
-import com.att.research.xacmlatt.pdp.policy.Expression;
-import com.att.research.xacmlatt.pdp.policy.ExpressionResult;
-import com.att.research.xacmlatt.pdp.policy.FunctionArgument;
-import com.att.research.xacmlatt.pdp.policy.FunctionArgumentExpression;
-import com.att.research.xacmlatt.pdp.policy.FunctionDefinition;
-import com.att.research.xacmlatt.pdp.policy.FunctionDefinitionFactory;
-import com.att.research.xacmlatt.pdp.policy.PolicyDefaults;
+import org.apache.openaz.xacml.api.Identifier;
+import org.apache.openaz.xacml.api.StatusCode;
+import org.apache.openaz.xacml.pdp.eval.EvaluationContext;
+import org.apache.openaz.xacml.pdp.eval.EvaluationException;
+import org.apache.openaz.xacml.pdp.policy.Expression;
+import org.apache.openaz.xacml.pdp.policy.ExpressionResult;
+import org.apache.openaz.xacml.pdp.policy.FunctionArgument;
+import org.apache.openaz.xacml.pdp.policy.FunctionArgumentExpression;
+import org.apache.openaz.xacml.pdp.policy.FunctionDefinition;
+import org.apache.openaz.xacml.pdp.policy.FunctionDefinitionFactory;
+import org.apache.openaz.xacml.pdp.policy.PolicyDefaults;
+import org.apache.openaz.xacml.std.StdStatus;
+import org.apache.openaz.xacml.std.StdStatusCode;
+import org.apache.openaz.xacml.util.FactoryException;
 
 /**
- * Apply extends {@link com.att.research.xacmlatt.pdp.policy.Expression} to implement the XACML Apply Expression element.
+ * Apply extends {@link org.apache.openaz.xacml.pdp.policy.Expression} to implement the XACML Apply Expression element.
  *
  */
 public class Apply extends Expression {
@@ -97,7 +97,7 @@ public class Apply extends Expression {
     }
 
     /**
-     * Gets and caches the {@link com.att.research.xacmlatt.pdp.policy.FunctionDefinition} matching the
+     * Gets and caches the {@link org.apache.openaz.xacml.pdp.policy.FunctionDefinition} matching the
      * <code>Identifier</code> for the FunctionId in this <code>Apply</code>.
      *
      * @return the <code>FunctionDefinition</code> for the <code>Identifier</code> for the Function Id for this <code>Apply</code>

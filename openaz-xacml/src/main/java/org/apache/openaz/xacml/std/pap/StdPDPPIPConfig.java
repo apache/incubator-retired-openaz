@@ -28,7 +28,7 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacml.std.pap;
+package org.apache.openaz.xacml.std.pap;
 
 import java.io.Serializable;
 import java.util.Collections;
@@ -38,8 +38,8 @@ import java.util.Properties;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.openaz.xacml.api.pap.PDPPIPConfig;
 
-import com.att.research.xacml.api.pap.PDPPIPConfig;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class StdPDPPIPConfig implements PDPPIPConfig, Serializable {

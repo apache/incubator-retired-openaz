@@ -28,28 +28,27 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacmlatt.pdp.policy.dom;
+package org.apache.openaz.xacml.pdp.policy.dom;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.openaz.xacml.api.AttributeValue;
+import org.apache.openaz.xacml.api.XACML3;
+import org.apache.openaz.xacml.pdp.policy.Expression;
+import org.apache.openaz.xacml.pdp.policy.Policy;
+import org.apache.openaz.xacml.pdp.policy.expressions.AttributeValueExpression;
+import org.apache.openaz.xacml.pdp.policy.expressions.Function;
+import org.apache.openaz.xacml.pdp.policy.expressions.VariableReference;
+import org.apache.openaz.xacml.std.StdStatusCode;
+import org.apache.openaz.xacml.std.dom.DOMAttributeValue;
+import org.apache.openaz.xacml.std.dom.DOMProperties;
+import org.apache.openaz.xacml.std.dom.DOMStructureException;
+import org.apache.openaz.xacml.std.dom.DOMUtil;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
-import com.att.research.xacml.api.AttributeValue;
-import com.att.research.xacml.api.XACML3;
-import com.att.research.xacml.std.StdStatusCode;
-import com.att.research.xacml.std.dom.DOMAttributeValue;
-import com.att.research.xacml.std.dom.DOMProperties;
-import com.att.research.xacml.std.dom.DOMStructureException;
-import com.att.research.xacml.std.dom.DOMUtil;
-import com.att.research.xacmlatt.pdp.policy.Expression;
-import com.att.research.xacmlatt.pdp.policy.Policy;
-import com.att.research.xacmlatt.pdp.policy.expressions.AttributeValueExpression;
-import com.att.research.xacmlatt.pdp.policy.expressions.Function;
-import com.att.research.xacmlatt.pdp.policy.expressions.VariableReference;
-
 /**
- * DOMExpression extends {@link com.att.research.xacmlatt.pdp.policy.Expression} with methods for creation
+ * DOMExpression extends {@link org.apache.openaz.xacml.pdp.policy.Expression} with methods for creation
  * from DOM {@link org.w3c.dom.Node}s.
  *
  */
@@ -74,7 +73,7 @@ public abstract class DOMExpression extends Expression {
      * Creates a new <code>Expression</code> of the appropriate sub-type based on the name of the given <code>Node</code>.
      *
      * @param nodeExpression the <code>Node</code> to parse
-     * @param policy the {@link com.att.research.xacmlatt.pdp.policy.Policy} containing the Expression element
+     * @param policy the {@link org.apache.openaz.xacml.pdp.policy.Policy} containing the Expression element
      * @return a new <code>Expression</code> parsed from the given <code>Node</code>
      * @throws DOMStructureException if there is an error parsing the <code>Node</code>
      */

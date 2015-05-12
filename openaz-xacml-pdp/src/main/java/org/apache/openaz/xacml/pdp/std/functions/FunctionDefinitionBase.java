@@ -28,23 +28,23 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacmlatt.pdp.std.functions;
+package org.apache.openaz.xacml.pdp.std.functions;
 
-import com.att.research.xacml.api.DataType;
-import com.att.research.xacml.api.Identifier;
-import com.att.research.xacml.api.Status;
-import com.att.research.xacml.std.StdStatus;
-import com.att.research.xacml.std.datatypes.DataTypeBoolean;
-import com.att.research.xacmlatt.pdp.policy.ExpressionResult;
-import com.att.research.xacmlatt.pdp.policy.FunctionDefinition;
+import org.apache.openaz.xacml.api.DataType;
+import org.apache.openaz.xacml.api.Identifier;
+import org.apache.openaz.xacml.api.Status;
+import org.apache.openaz.xacml.pdp.policy.ExpressionResult;
+import org.apache.openaz.xacml.pdp.policy.FunctionDefinition;
+import org.apache.openaz.xacml.std.StdStatus;
+import org.apache.openaz.xacml.std.datatypes.DataTypeBoolean;
 
 
 /**
  * /**
- * FunctionDefinitionBase provides a common base for {@link com.att.research.xacmlatt.pdp.policy.FunctionDefinition}s.
+ * FunctionDefinitionBase provides a common base for {@link org.apache.openaz.xacml.pdp.policy.FunctionDefinition}s.
  * The child classes derived from this are of two types:
  * <UL>
- * <LI> Functions returning a single simple value of a type defined in {@link com.att.research.xacml.std.datatypes.DataTypes}.
+ * <LI> Functions returning a single simple value of a type defined in {@link org.apache.openaz.xacml.std.datatypes.DataTypes}.
  * 	These functions will all derive from {@link com.att.research.xacmlatt.pdp.std.functions.FunctionDefinitionSimple}.
  * <LI> Functions returning a single bag with elements of a single type.
  * <UL>
@@ -87,7 +87,7 @@ public abstract class FunctionDefinitionBase<O,I> implements FunctionDefinition 
     protected static final ExpressionResult			ER_FALSE	= ExpressionResult.newSingle(DataTypeBoolean.AV_FALSE);
 
     /**
-     * Creates a new <code>FunctionDefinitionBase</code> with the {@link com.att.research.xacml.api.Identifier} <code>idIn</code> as
+     * Creates a new <code>FunctionDefinitionBase</code> with the {@link org.apache.openaz.xacml.api.Identifier} <code>idIn</code> as
      * the function id.
      *
      * @param idIn the <code>Identifier</code> for this <code>FunctionDefinitionBase</code>

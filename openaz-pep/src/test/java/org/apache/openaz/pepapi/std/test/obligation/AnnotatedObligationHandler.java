@@ -18,11 +18,11 @@
  *
  */
 
-package org.openliberty.openaz.pepapi.std.test.obligation;
+package org.apache.openaz.pepapi.std.test.obligation;
 
-import org.openliberty.openaz.pepapi.Attribute;
-import org.openliberty.openaz.pepapi.MatchAllObligationAttributes;
-import org.openliberty.openaz.pepapi.MatchAnyObligation;
+import org.apache.openaz.pepapi.Attribute;
+import org.apache.openaz.pepapi.MatchAllObligationAttributes;
+import org.apache.openaz.pepapi.MatchAnyObligation;
 
 @MatchAnyObligation({"jpmc:obligation:one","jpmc:obligation:two","jpmc:obligation:three"})
 @MatchAllObligationAttributes({

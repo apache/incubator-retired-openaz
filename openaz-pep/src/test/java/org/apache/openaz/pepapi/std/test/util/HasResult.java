@@ -18,7 +18,7 @@
  *
  */
 
-package org.openliberty.openaz.pepapi.std.test.util;
+package org.apache.openaz.pepapi.std.test.util;
 
 public interface HasResult {
 

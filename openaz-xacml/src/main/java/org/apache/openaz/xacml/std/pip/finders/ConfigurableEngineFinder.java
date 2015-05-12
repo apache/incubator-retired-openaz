@@ -28,18 +28,17 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacml.std.pip.finders;
+package org.apache.openaz.xacml.std.pip.finders;
 
 import java.util.Collection;
 import java.util.Properties;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-
-import com.att.research.xacml.api.pip.PIPException;
-import com.att.research.xacml.api.pip.PIPRequest;
-import com.att.research.xacml.std.pip.engines.ConfigurableEngine;
-import com.att.research.xacml.util.AttributeUtils;
+import org.apache.openaz.xacml.api.pip.PIPException;
+import org.apache.openaz.xacml.api.pip.PIPRequest;
+import org.apache.openaz.xacml.std.pip.engines.ConfigurableEngine;
+import org.apache.openaz.xacml.util.AttributeUtils;
 
 /**
  * ConfigurableEngineFinder extends {@link EngineFinder} with a method for configuring
@@ -58,7 +57,7 @@ public class ConfigurableEngineFinder extends EngineFinder {
      *
      * @param className the <code>String</code> class name of the engine
      * @return an instance of the given class name
-     * @throws com.att.research.xacml.api.pip.PIPException
+     * @throws org.apache.openaz.xacml.api.pip.PIPException
      */
     protected ConfigurableEngine newEngine(String className) throws PIPException {
         Class<?> classForEngine	= null;
@@ -119,7 +118,7 @@ public class ConfigurableEngineFinder extends EngineFinder {
      * the list of PIP engines that should be created, configured, and registered.
      *
      * @param properties the <code>Properties</code> containing the engine configurations
-     * @throws com.att.research.xacml.api.pip.PIPException if there is an error creating and configuring the engines
+     * @throws org.apache.openaz.xacml.api.pip.PIPException if there is an error creating and configuring the engines
      */
     public void configure(Properties properties) throws PIPException {
         String engineIds	= properties.getProperty(PROP_PIP_ENGINES);

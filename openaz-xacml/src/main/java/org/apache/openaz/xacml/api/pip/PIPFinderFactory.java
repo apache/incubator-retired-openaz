@@ -28,13 +28,13 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacml.api.pip;
+package org.apache.openaz.xacml.api.pip;
 
 import java.util.Properties;
 
-import com.att.research.xacml.util.FactoryException;
-import com.att.research.xacml.util.FactoryFinder;
-import com.att.research.xacml.util.XACMLProperties;
+import org.apache.openaz.xacml.util.FactoryException;
+import org.apache.openaz.xacml.util.FactoryFinder;
+import org.apache.openaz.xacml.util.XACMLProperties;
 
 /**
  * PIPFinderFactory is the factory class for getting the configured {@link PIPFinder}.
@@ -42,7 +42,7 @@ import com.att.research.xacml.util.XACMLProperties;
  */
 public abstract class PIPFinderFactory {
     private static final String	FACTORYID					= XACMLProperties.PROP_PIPFINDERFACTORY;
-    private static final String	DEFAULT_FACTORY_CLASSNAME	= "com.att.research.xacml.std.pip.StdPIPFinderFactory";
+    private static final String	DEFAULT_FACTORY_CLASSNAME	= "org.apache.openaz.xacml.std.pip.StdPIPFinderFactory";
 
     protected Properties properties = null;
 

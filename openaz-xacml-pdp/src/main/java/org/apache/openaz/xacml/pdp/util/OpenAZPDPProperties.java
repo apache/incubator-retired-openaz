@@ -28,22 +28,22 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacmlatt.pdp.util;
+package org.apache.openaz.xacml.pdp.util;
 
-import com.att.research.xacml.api.Identifier;
-import com.att.research.xacml.std.IdentifierImpl;
-import com.att.research.xacml.util.XACMLProperties;
+import org.apache.openaz.xacml.api.Identifier;
+import org.apache.openaz.xacml.std.IdentifierImpl;
+import org.apache.openaz.xacml.util.XACMLProperties;
 
-public class ATTPDPProperties extends XACMLProperties {
-    public static final String PROP_EVALUATIONCONTEXTFACTORY	= "xacml.att.evaluationContextFactory";
-    public static final String PROP_COMBININGALGORITHMFACTORY	= "xacml.att.combiningAlgorithmFactory";
-    public static final String PROP_FUNCTIONDEFINITIONFACTORY	= "xacml.att.functionDefinitionFactory";
-    public static final String PROP_POLICYFINDERFACTORY			= "xacml.att.policyFinderFactory";
-    public static final String PROP_POLICYFINDERFACTORY_COMBINEROOTPOLICIES = "xacml.att.policyFinderFactory.combineRootPolicies";
+public class OpenAZPDPProperties extends XACMLProperties {
+    public static final String PROP_EVALUATIONCONTEXTFACTORY	= "xacml.openaz.evaluationContextFactory";
+    public static final String PROP_COMBININGALGORITHMFACTORY	= "xacml.openaz.combiningAlgorithmFactory";
+    public static final String PROP_FUNCTIONDEFINITIONFACTORY	= "xacml.openaz.functionDefinitionFactory";
+    public static final String PROP_POLICYFINDERFACTORY			= "xacml.openaz.policyFinderFactory";
+    public static final String PROP_POLICYFINDERFACTORY_COMBINEROOTPOLICIES = "xacml.openaz.policyFinderFactory.combineRootPolicies";
 
-    public static final Identifier ID_POLICY_COMBINEDPERMITOVERRIDES = new IdentifierImpl("urn:com:att:xacml:3.0:policy-combining-algorithm:combined-permit-overrides");
+    public static final Identifier ID_POLICY_COMBINEDPERMITOVERRIDES = new IdentifierImpl("urn:org:apache:openaz:xacml:3.0:policy-combining-algorithm:combined-permit-overrides");
 
-    protected ATTPDPProperties() {
+    protected OpenAZPDPProperties() {
     }
 
 }

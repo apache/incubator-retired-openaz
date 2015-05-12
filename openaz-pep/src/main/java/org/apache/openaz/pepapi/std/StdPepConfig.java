@@ -18,15 +18,16 @@
  *
  */
 
-package org.openliberty.openaz.pepapi.std;
+package org.apache.openaz.pepapi.std;
 
-import com.att.research.xacml.api.XACML3;
 import com.google.common.base.Splitter;
+
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.openliberty.openaz.pepapi.PepConfig;
-import org.openliberty.openaz.pepapi.PepResponseBehavior;
+import org.apache.openaz.pepapi.PepConfig;
+import org.apache.openaz.pepapi.PepResponseBehavior;
+import org.apache.openaz.xacml.api.XACML3;
 
 import java.util.ArrayList;
 import java.util.Collections;

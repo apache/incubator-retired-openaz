@@ -28,18 +28,17 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacml.rest.impl;
+package org.apache.openaz.xacml.rest.impl;
 
 import java.util.Properties;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-
-import com.att.research.xacml.api.pip.PIPException;
-import com.att.research.xacml.api.pip.PIPFinder;
-import com.att.research.xacml.api.pip.PIPFinderFactory;
-import com.att.research.xacml.std.pip.finders.ConfigurableEngineFinder;
-import com.att.research.xacml.util.XACMLProperties;
+import org.apache.openaz.xacml.api.pip.PIPException;
+import org.apache.openaz.xacml.api.pip.PIPFinder;
+import org.apache.openaz.xacml.api.pip.PIPFinderFactory;
+import org.apache.openaz.xacml.std.pip.finders.ConfigurableEngineFinder;
+import org.apache.openaz.xacml.util.XACMLProperties;
 
 public class XACMLPdpPIPFinderFactory extends PIPFinderFactory {
     private ConfigurableEngineFinder pipFinder;

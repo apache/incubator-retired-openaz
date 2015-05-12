@@ -18,10 +18,10 @@
  *
  */
 
-package org.openliberty.openaz.pepapi.std;
+package org.apache.openaz.pepapi.std;
 
 
-import org.openliberty.openaz.pepapi.Obligation;
+import org.apache.openaz.pepapi.Obligation;
 
 public final class MatchAnyCriterion implements ObligationCriterion {
 

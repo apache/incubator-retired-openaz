@@ -28,7 +28,7 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacml.rest;
+package org.apache.openaz.xacml.rest;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -47,24 +47,26 @@ import java.util.Set;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.openaz.xacml.api.pap.PAPException;
+import org.apache.openaz.xacml.api.pap.PDPStatus;
+import org.apache.openaz.xacml.api.pap.PDPStatus.Status;
+import org.apache.openaz.xacml.api.pdp.PDPEngine;
+import org.apache.openaz.xacml.api.pdp.PDPEngineFactory;
+import org.apache.openaz.xacml.api.pip.PIPEngine;
+import org.apache.openaz.xacml.api.pip.PIPException;
+import org.apache.openaz.xacml.api.pip.PIPFinder;
+import org.apache.openaz.xacml.api.pip.PIPFinderFactory;
+import org.apache.openaz.xacml.pdp.policy.PolicyDef;
+import org.apache.openaz.xacml.pdp.policy.dom.DOMPolicyDef;
+import org.apache.openaz.xacml.pdp.std.StdPolicyFinderFactory;
+import org.apache.openaz.xacml.rest.XACMLRest;
+import org.apache.openaz.xacml.rest.XACMLRestProperties;
+import org.apache.openaz.xacml.std.pap.StdPDPPIPConfig;
+import org.apache.openaz.xacml.std.pap.StdPDPPolicy;
+import org.apache.openaz.xacml.std.pap.StdPDPStatus;
+import org.apache.openaz.xacml.util.FactoryException;
+import org.apache.openaz.xacml.util.XACMLProperties;
 
-import com.att.research.xacml.api.pap.PAPException;
-import com.att.research.xacml.api.pap.PDPStatus;
-import com.att.research.xacml.api.pap.PDPStatus.Status;
-import com.att.research.xacml.api.pdp.PDPEngine;
-import com.att.research.xacml.api.pdp.PDPEngineFactory;
-import com.att.research.xacml.api.pip.PIPEngine;
-import com.att.research.xacml.api.pip.PIPException;
-import com.att.research.xacml.api.pip.PIPFinder;
-import com.att.research.xacml.api.pip.PIPFinderFactory;
-import com.att.research.xacml.std.pap.StdPDPPIPConfig;
-import com.att.research.xacml.std.pap.StdPDPPolicy;
-import com.att.research.xacml.std.pap.StdPDPStatus;
-import com.att.research.xacml.util.FactoryException;
-import com.att.research.xacml.util.XACMLProperties;
-import com.att.research.xacmlatt.pdp.policy.PolicyDef;
-import com.att.research.xacmlatt.pdp.policy.dom.DOMPolicyDef;
-import com.att.research.xacmlatt.pdp.std.StdPolicyFinderFactory;
 import com.google.common.base.Splitter;
 
 /**

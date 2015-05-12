@@ -28,13 +28,13 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacml.std.jaxp;
+package org.apache.openaz.xacml.std.jaxp;
+
+import org.apache.openaz.xacml.api.StatusCode;
+import org.apache.openaz.xacml.api.StatusDetail;
+import org.apache.openaz.xacml.std.StdMutableStatus;
 
 import oasis.names.tc.xacml._3_0.core.schema.wd_17.StatusType;
-
-import com.att.research.xacml.api.StatusCode;
-import com.att.research.xacml.api.StatusDetail;
-import com.att.research.xacml.std.StdMutableStatus;
 
 /**
  * JaxpStatus extends {@link com.att.research.StdMutableStatus.common.std.StdStatus} with methods for creation from

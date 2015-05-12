@@ -28,7 +28,7 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacml.std.pip.engines;
+package org.apache.openaz.xacml.std.pip.engines;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -40,11 +40,10 @@ import java.util.Scanner;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-
-import com.att.research.xacml.api.pip.PIPException;
-import com.att.research.xacml.api.pip.PIPRequest;
-import com.att.research.xacml.std.IdentifierImpl;
-import com.att.research.xacml.std.pip.StdPIPRequest;
+import org.apache.openaz.xacml.api.pip.PIPException;
+import org.apache.openaz.xacml.api.pip.PIPRequest;
+import org.apache.openaz.xacml.std.IdentifierImpl;
+import org.apache.openaz.xacml.std.pip.StdPIPRequest;
 
 /**
  */

@@ -28,10 +28,10 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacml.api.pdp;
+package org.apache.openaz.xacml.api.pdp;
 
 /**
- * PEPException extends <code>Exception</code> to implement exceptions thrown by {@link PDPEngine} and {@link com.att.research.xacml.api.pdp.PDPEngineFactory}
+ * PEPException extends <code>Exception</code> to implement exceptions thrown by {@link PDPEngine} and {@link org.apache.openaz.xacml.api.pdp.PDPEngineFactory}
  * classes.
  *
  */

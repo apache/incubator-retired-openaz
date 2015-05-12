@@ -28,23 +28,23 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacml.std.jaxp;
+package org.apache.openaz.xacml.std.jaxp;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
+import org.apache.openaz.xacml.api.AttributeAssignment;
+import org.apache.openaz.xacml.api.Identifier;
+import org.apache.openaz.xacml.std.IdentifierImpl;
+import org.apache.openaz.xacml.std.StdMutableAdvice;
+
 import oasis.names.tc.xacml._3_0.core.schema.wd_17.AdviceType;
 import oasis.names.tc.xacml._3_0.core.schema.wd_17.AttributeAssignmentType;
 
-import com.att.research.xacml.api.AttributeAssignment;
-import com.att.research.xacml.api.Identifier;
-import com.att.research.xacml.std.IdentifierImpl;
-import com.att.research.xacml.std.StdMutableAdvice;
-
 /**
- * JaxpAdvice extends {@link com.att.research.xacml.std.StdMutableAdvice} with methods for creation from
+ * JaxpAdvice extends {@link org.apache.openaz.xacml.std.StdMutableAdvice} with methods for creation from
  * JAXP elements.
  *
  */

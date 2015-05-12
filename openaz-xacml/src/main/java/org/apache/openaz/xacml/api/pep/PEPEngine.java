@@ -29,10 +29,10 @@
  *                     All Rights Reserved
  */
 
-package com.att.research.xacml.api.pep;
+package org.apache.openaz.xacml.api.pep;
 
-import com.att.research.xacml.api.Request;
-import com.att.research.xacml.api.Response;
+import org.apache.openaz.xacml.api.Request;
+import org.apache.openaz.xacml.api.Response;
 
 /**
  * PEPEngine is the interface that applications use to make policy queries against a XACML 3.0 policy engine.
@@ -40,11 +40,11 @@ import com.att.research.xacml.api.Response;
  */
 public interface PEPEngine {
     /**
-     * Instantiates a Policy Decision Point (PDP) to evaluate the given {@link com.att.research.xacml.api.Request} using its
+     * Instantiates a Policy Decision Point (PDP) to evaluate the given {@link org.apache.openaz.xacml.api.Request} using its
      * Policy Sets to determine if the given <code>Request</code> is allowed.
      *
      * @param pepRequest the <code>Request</code> to evaluate
-     * @return a {@link com.att.research.xacml.api.Response} indicating the decision
+     * @return a {@link org.apache.openaz.xacml.api.Response} indicating the decision
      */
     public Response decide(Request pepRequest) throws PEPException;
 }

@@ -28,7 +28,7 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacmlatt.pdp;
+package org.apache.openaz.xacml.pdp;
 
 import java.net.URI;
 import java.util.Collection;
@@ -40,36 +40,35 @@ import java.util.Set;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-
-import com.att.research.xacml.api.AttributeCategory;
-import com.att.research.xacml.api.Decision;
-import com.att.research.xacml.api.Request;
-import com.att.research.xacml.api.Response;
-import com.att.research.xacml.api.Result;
-import com.att.research.xacml.api.Status;
-import com.att.research.xacml.api.XACML3;
-import com.att.research.xacml.api.pdp.PDPEngine;
-import com.att.research.xacml.api.pdp.PDPException;
-import com.att.research.xacml.api.pdp.ScopeResolver;
-import com.att.research.xacml.api.trace.TraceEngine;
-import com.att.research.xacml.api.trace.TraceEngineFactory;
-import com.att.research.xacml.api.trace.Traceable;
-import com.att.research.xacml.std.StdIndividualDecisionRequestGenerator;
-import com.att.research.xacml.std.StdMutableResponse;
-import com.att.research.xacml.std.StdMutableResult;
-import com.att.research.xacml.std.StdResult;
-import com.att.research.xacml.std.StdStatus;
-import com.att.research.xacml.std.StdStatusCode;
-import com.att.research.xacml.std.trace.StdTraceEvent;
-import com.att.research.xacml.util.FactoryException;
-import com.att.research.xacmlatt.pdp.eval.EvaluationContext;
-import com.att.research.xacmlatt.pdp.eval.EvaluationContextFactory;
-import com.att.research.xacmlatt.pdp.eval.EvaluationException;
-import com.att.research.xacmlatt.pdp.policy.PolicyDef;
-import com.att.research.xacmlatt.pdp.policy.PolicyFinderResult;
+import org.apache.openaz.xacml.api.AttributeCategory;
+import org.apache.openaz.xacml.api.Decision;
+import org.apache.openaz.xacml.api.Request;
+import org.apache.openaz.xacml.api.Response;
+import org.apache.openaz.xacml.api.Result;
+import org.apache.openaz.xacml.api.Status;
+import org.apache.openaz.xacml.api.XACML3;
+import org.apache.openaz.xacml.api.pdp.PDPEngine;
+import org.apache.openaz.xacml.api.pdp.PDPException;
+import org.apache.openaz.xacml.api.pdp.ScopeResolver;
+import org.apache.openaz.xacml.api.trace.TraceEngine;
+import org.apache.openaz.xacml.api.trace.TraceEngineFactory;
+import org.apache.openaz.xacml.api.trace.Traceable;
+import org.apache.openaz.xacml.pdp.eval.EvaluationContext;
+import org.apache.openaz.xacml.pdp.eval.EvaluationContextFactory;
+import org.apache.openaz.xacml.pdp.eval.EvaluationException;
+import org.apache.openaz.xacml.pdp.policy.PolicyDef;
+import org.apache.openaz.xacml.pdp.policy.PolicyFinderResult;
+import org.apache.openaz.xacml.std.StdIndividualDecisionRequestGenerator;
+import org.apache.openaz.xacml.std.StdMutableResponse;
+import org.apache.openaz.xacml.std.StdMutableResult;
+import org.apache.openaz.xacml.std.StdResult;
+import org.apache.openaz.xacml.std.StdStatus;
+import org.apache.openaz.xacml.std.StdStatusCode;
+import org.apache.openaz.xacml.std.trace.StdTraceEvent;
+import org.apache.openaz.xacml.util.FactoryException;
 
 /**
- * ATTPDPEngine implements the {@link com.att.research.xacml.api.pdp.PDPEngine} interface using the XACML 3.0 specification.
+ * ATTPDPEngine implements the {@link org.apache.openaz.xacml.api.pdp.PDPEngine} interface using the XACML 3.0 specification.
  *
  */
 public class ATTPDPEngine implements PDPEngine, Traceable {

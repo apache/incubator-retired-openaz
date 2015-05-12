@@ -18,7 +18,7 @@
  *
  */
 
-package org.openliberty.openaz.pepapi;
+package org.apache.openaz.pepapi;
 
 /**
  * An interface that may be implemented to process the
@@ -31,11 +31,11 @@ public interface PostDecisionHandler {
 
     /**
      * This method is used to apply post-decision custom
-     * processing to the {@link org.openliberty.openaz.pepapi.PepResponse} after it has
+     * processing to the {@link org.apache.openaz.pepapi.PepResponse} after it has
      * been returned.
      *
      * @param request
-     * @throws org.openliberty.openaz.pepapi.PepException
+     * @throws org.apache.openaz.pepapi.PepException
      */
     public void postDecide(PepRequest request, PepResponse response)
     throws PepException;

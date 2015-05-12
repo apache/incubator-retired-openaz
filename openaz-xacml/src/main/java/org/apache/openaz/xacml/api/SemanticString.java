@@ -28,7 +28,7 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacml.api;
+package org.apache.openaz.xacml.api;
 
 /**
  * SemanticString is an interface for objects that have semantically significant <code>String</code> representations.  It differentiates

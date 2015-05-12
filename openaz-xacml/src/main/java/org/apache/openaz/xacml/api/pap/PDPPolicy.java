@@ -28,13 +28,14 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacml.api.pap;
+package org.apache.openaz.xacml.api.pap;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URI;
 
-import com.att.research.xacml.std.pap.StdPDPPolicy;
+import org.apache.openaz.xacml.std.pap.StdPDPPolicy;
+
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;

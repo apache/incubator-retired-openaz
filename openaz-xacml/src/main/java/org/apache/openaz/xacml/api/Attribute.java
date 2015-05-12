@@ -28,7 +28,7 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacml.api;
+package org.apache.openaz.xacml.api;
 
 import java.util.Collection;
 import java.util.Iterator;
@@ -39,7 +39,7 @@ import java.util.Iterator;
  */
 public interface Attribute {
     /**
-     * Gets the {@link com.att.research.xacml.api.Identifier} for this <code>Attribute</code> object.
+     * Gets the {@link org.apache.openaz.xacml.api.Identifier} for this <code>Attribute</code> object.
      * The <code>Identifier</code> uniquely identifies a XACML 3.0 Attribute element in a Request, Policy, or Response document.
      *
      * @return the <code>Identifier</code> for this <code>Attribute</code>
@@ -47,14 +47,14 @@ public interface Attribute {
     public Identifier getAttributeId();
 
     /**
-     * Gets the {@link com.att.research.xacml.api.Identifier} for the XACML 3.0 Category of this <code>Attribute</code>.
+     * Gets the {@link org.apache.openaz.xacml.api.Identifier} for the XACML 3.0 Category of this <code>Attribute</code>.
      *
      * @return the <code>Identifier</code> for the XACML 3.0 Category of this <code>Attribute</code>.
      */
     public Identifier getCategory();
 
     /**
-     * Gets the <code>Collection</code> of {@link com.att.research.xacml.api.AttributeValue} objects for this <code>Attribute</code>.
+     * Gets the <code>Collection</code> of {@link org.apache.openaz.xacml.api.AttributeValue} objects for this <code>Attribute</code>.
      * If there are no <code>AttributeValue</code>s in this <code>Attribute</code>, an empty <code>Collection</code> must be returned.
      * The returned <code>Collection</code> should not be modified.  Implementations are free to return an immutable view to enforce this.
      *
@@ -63,7 +63,7 @@ public interface Attribute {
     public Collection<AttributeValue<?>> getValues();
 
     /**
-     * Finds all of the {@link com.att.research.xacml.api.AttributeValue} objects with the given {@link DataType} in
+     * Finds all of the {@link org.apache.openaz.xacml.api.AttributeValue} objects with the given {@link DataType} in
      * the <code>AttributeValue</code>s for this <code>Attribute</code>.  If there are no matching <code>AttributeValue</code>s, an empty
      * <code>Iterator</code> must be returned.
      *

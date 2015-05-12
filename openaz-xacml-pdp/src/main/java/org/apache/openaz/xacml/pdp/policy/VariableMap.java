@@ -28,7 +28,7 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacmlatt.pdp.policy;
+package org.apache.openaz.xacml.pdp.policy;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -37,10 +37,10 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import com.att.research.xacml.util.StringUtils;
+import org.apache.openaz.xacml.util.StringUtils;
 
 /**
- * VariableMap is a collection of {@link com.att.research.xacmlatt.pdp.policy.VariableDefinition}s that are accessible by
+ * VariableMap is a collection of {@link org.apache.openaz.xacml.pdp.policy.VariableDefinition}s that are accessible by
  * the variable identifier.
  *
  */

@@ -28,7 +28,7 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacml.std;
+package org.apache.openaz.xacml.std;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -37,20 +37,20 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
-import com.att.research.xacml.api.Attribute;
-import com.att.research.xacml.api.AttributeCategory;
-import com.att.research.xacml.api.AttributeValue;
-import com.att.research.xacml.api.Identifier;
-import com.att.research.xacml.api.Request;
-import com.att.research.xacml.api.RequestAttributes;
-import com.att.research.xacml.api.RequestDefaults;
-import com.att.research.xacml.api.RequestReference;
-import com.att.research.xacml.api.Status;
-import com.att.research.xacml.util.ListUtil;
-import com.att.research.xacml.util.ObjUtil;
+import org.apache.openaz.xacml.api.Attribute;
+import org.apache.openaz.xacml.api.AttributeCategory;
+import org.apache.openaz.xacml.api.AttributeValue;
+import org.apache.openaz.xacml.api.Identifier;
+import org.apache.openaz.xacml.api.Request;
+import org.apache.openaz.xacml.api.RequestAttributes;
+import org.apache.openaz.xacml.api.RequestDefaults;
+import org.apache.openaz.xacml.api.RequestReference;
+import org.apache.openaz.xacml.api.Status;
+import org.apache.openaz.xacml.util.ListUtil;
+import org.apache.openaz.xacml.util.ObjUtil;
 
 /**
- * Mutable implementation of the {@link com.att.research.xacml.api.Request} interface.
+ * Mutable implementation of the {@link org.apache.openaz.xacml.api.Request} interface.
  *
  */
 public class StdMutableRequest implements Request {
@@ -71,12 +71,12 @@ public class StdMutableRequest implements Request {
     /**
      * Creates a new <code>StdMutableRequest</code> with the given parameters.
      *
-     * @param statusIn the {@link com.att.research.xacml.api.Status} of the <code>StdMutableRequest</code> representing its validity
-     * @param requestDefaultsIn the {@link com.att.research.xacml.api.RequestDefaults} representing the XACML RequestDefaults
+     * @param statusIn the {@link org.apache.openaz.xacml.api.Status} of the <code>StdMutableRequest</code> representing its validity
+     * @param requestDefaultsIn the {@link org.apache.openaz.xacml.api.RequestDefaults} representing the XACML RequestDefaults
      * @param returnPolicyIdListIn a boolean indicating whether XACML PolicyId and PolicySetIds should be returned with the Results
      * @param combinedDecisionIn a boolean indicating whether multiple Decision Request Results should be combined into a single Result
-     * @param listRequestAttributes a <code>Collection</code> of {@link com.att.research.xacml.api.RequestAttributes} defining the parameters of the Request
-     * @param listRequestReferences a <code>Collection</code> of {@link com.att.research.xacml.api.RequestReference}s for multiple decision requests
+     * @param listRequestAttributes a <code>Collection</code> of {@link org.apache.openaz.xacml.api.RequestAttributes} defining the parameters of the Request
+     * @param listRequestReferences a <code>Collection</code> of {@link org.apache.openaz.xacml.api.RequestReference}s for multiple decision requests
      */
     public StdMutableRequest(Status statusIn,
                              RequestDefaults requestDefaultsIn,
@@ -105,14 +105,14 @@ public class StdMutableRequest implements Request {
     }
 
     /**
-     * Creates a new <code>StdMutableRequest</code> with a default {@link com.att.research.xacml.api.Status} and the given parameters.  The default <code>Status</code>
+     * Creates a new <code>StdMutableRequest</code> with a default {@link org.apache.openaz.xacml.api.Status} and the given parameters.  The default <code>Status</code>
      * represents a XACML OK Status.
      *
-     * @param requestDefaultsIn the {@link com.att.research.xacml.api.RequestDefaults} representing the XACML RequestDefaults
+     * @param requestDefaultsIn the {@link org.apache.openaz.xacml.api.RequestDefaults} representing the XACML RequestDefaults
      * @param returnPolicyIdListIn a boolean indicating whether XACML PolicyId and PolicySetIds should be returned with the Results
      * @param combinedDecisionIn a boolean indicating whether multiple Decision Request Results should be combined into a single Result
-     * @param listRequestAttributes a <code>Collection</code> of {@link com.att.research.xacml.api.RequestAttributes} defining the parameters of the Request
-     * @param listRequestReferences a <code>Collection</code> of {@link com.att.research.xacml.api.RequestReference}s for multiple decision requests
+     * @param listRequestAttributes a <code>Collection</code> of {@link org.apache.openaz.xacml.api.RequestAttributes} defining the parameters of the Request
+     * @param listRequestReferences a <code>Collection</code> of {@link org.apache.openaz.xacml.api.RequestReference}s for multiple decision requests
      */
     public StdMutableRequest(RequestDefaults requestDefaultsIn,
                              boolean returnPolicyIdListIn,
@@ -123,7 +123,7 @@ public class StdMutableRequest implements Request {
     }
 
     /**
-     * Creates a new <code>StdMutableRequest</code> that is a copy of the given {@link com.att.research.xacml.api.Request}.
+     * Creates a new <code>StdMutableRequest</code> that is a copy of the given {@link org.apache.openaz.xacml.api.Request}.
      *
      * @param request the <code>Request</code> to copy
      */
@@ -145,7 +145,7 @@ public class StdMutableRequest implements Request {
     }
 
     /**
-     * Creates a new <code>StdMutableRequest</code> with the given {@link com.att.research.xacml.api.Status} representing its validity and
+     * Creates a new <code>StdMutableRequest</code> with the given {@link org.apache.openaz.xacml.api.Status} representing its validity and
      * defaults for all other attributes.
      *
      * @param statusIn the <code>Status</code> for the new <code>StdMutableRequest</code>
@@ -160,7 +160,7 @@ public class StdMutableRequest implements Request {
     }
 
     /**
-     * Sets the {@link com.att.research.xacml.api.RequestDefaults} interface for this <code>PEPRequest</code>.
+     * Sets the {@link org.apache.openaz.xacml.api.RequestDefaults} interface for this <code>PEPRequest</code>.
      *
      * @param requestDefaultsIn the <code>RequestDefaults</code> to use for this <code>PEPRequest</code>.
      */
@@ -213,7 +213,7 @@ public class StdMutableRequest implements Request {
     }
 
     /**
-     * Adds a {@link com.att.research.xacml.api.RequestAttributes} to the <code>RequestAttributes</code> in this <code>StdMutableRequest</code>>
+     * Adds a {@link org.apache.openaz.xacml.api.RequestAttributes} to the <code>RequestAttributes</code> in this <code>StdMutableRequest</code>>
      *
      * @param requestAttributesNew the <code>RequestAttributes</code> to add to this <code>StdMutableRequest</code>
      * @throws NullPointerException if <code>requestAttributesNew</code> is null or if <code>requestAttributesNew.getCategory()</code> is null
@@ -262,7 +262,7 @@ public class StdMutableRequest implements Request {
     }
 
     /**
-     * Adds a {@link com.att.research.xacml.api.RequestReference} to the <code>RequestReference</code>s in this <code>StdMutableRequest</code>.
+     * Adds a {@link org.apache.openaz.xacml.api.RequestReference} to the <code>RequestReference</code>s in this <code>StdMutableRequest</code>.
      *
      * @param requestReference the <code>RequestReference</code> to add
      */
@@ -384,7 +384,7 @@ public class StdMutableRequest implements Request {
     }
 
     /**
-     * Sets the {@link com.att.research.xacml.api.Status} indicating the validity of this <code>StdMutableRequest</code>.
+     * Sets the {@link org.apache.openaz.xacml.api.Status} indicating the validity of this <code>StdMutableRequest</code>.
      *
      * @param statusIn the <code>Status</code> for this <code>StdMutableRequest</code>.
      */

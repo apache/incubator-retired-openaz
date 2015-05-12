@@ -28,7 +28,7 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacml.std.pip;
+package org.apache.openaz.xacml.std.pip;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -37,26 +37,26 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import com.att.research.xacml.api.Attribute;
-import com.att.research.xacml.api.AttributeValue;
-import com.att.research.xacml.api.Status;
-import com.att.research.xacml.api.pip.PIPException;
-import com.att.research.xacml.api.pip.PIPRequest;
-import com.att.research.xacml.api.pip.PIPResponse;
-import com.att.research.xacml.std.StdAttribute;
-import com.att.research.xacml.std.StdMutableAttribute;
-import com.att.research.xacml.std.StdStatus;
-import com.att.research.xacml.util.Wrapper;
+import org.apache.openaz.xacml.api.Attribute;
+import org.apache.openaz.xacml.api.AttributeValue;
+import org.apache.openaz.xacml.api.Status;
+import org.apache.openaz.xacml.api.pip.PIPException;
+import org.apache.openaz.xacml.api.pip.PIPRequest;
+import org.apache.openaz.xacml.api.pip.PIPResponse;
+import org.apache.openaz.xacml.std.StdAttribute;
+import org.apache.openaz.xacml.std.StdMutableAttribute;
+import org.apache.openaz.xacml.std.StdStatus;
+import org.apache.openaz.xacml.util.Wrapper;
 
 /**
- * Immutable implementation of the {@link com.att.research.xacml.api.pip.PIPResponse} interface.
+ * Immutable implementation of the {@link org.apache.openaz.xacml.api.pip.PIPResponse} interface.
  *
  */
 public class StdPIPResponse extends Wrapper<PIPResponse> implements PIPResponse {
     public static final PIPResponse	PIP_RESPONSE_EMPTY	= new StdPIPResponse(StdStatus.STATUS_OK);
 
     /**
-     * Creates a new immutable <code>StdPIPResponse</code> that wraps the given {@link com.att.research.xacml.api.pip.PIPResponse}.
+     * Creates a new immutable <code>StdPIPResponse</code> that wraps the given {@link org.apache.openaz.xacml.api.pip.PIPResponse}.
      *
      * @param wrappedObjectIn the <code>PIPResponse</code> to wrap.
      */
@@ -65,7 +65,7 @@ public class StdPIPResponse extends Wrapper<PIPResponse> implements PIPResponse 
     }
 
     /**
-     * Creates a new <code>StdPIPResponse</code> with the given {@link com.att.research.xacml.api.Status}.
+     * Creates a new <code>StdPIPResponse</code> with the given {@link org.apache.openaz.xacml.api.Status}.
      *
      * @param status the <code>Status</code> for the new <code>StdPIPResponse</code>
      */
@@ -74,8 +74,8 @@ public class StdPIPResponse extends Wrapper<PIPResponse> implements PIPResponse 
     }
 
     /**
-     * Creates a new <code>StdPIPResponse</code> with an OK {@link com.att.research.xacml.api.Status} and a
-     * single {@link com.att.research.xacml.api.Attribute}.
+     * Creates a new <code>StdPIPResponse</code> with an OK {@link org.apache.openaz.xacml.api.Status} and a
+     * single {@link org.apache.openaz.xacml.api.Attribute}.
      *
      * @param attribute the <code>Attribute</code> for the new <code>StdPIPResponse</code>.
      */
@@ -84,8 +84,8 @@ public class StdPIPResponse extends Wrapper<PIPResponse> implements PIPResponse 
     }
 
     /**
-     * Creates a new <code>StdPIPResponse</code> with an OK {@link com.att.research.xacml.api.Status} and a copy
-     * of the given <code>Collection</code> of {@link com.att.research.xacml.api.Attribute}s.
+     * Creates a new <code>StdPIPResponse</code> with an OK {@link org.apache.openaz.xacml.api.Status} and a copy
+     * of the given <code>Collection</code> of {@link org.apache.openaz.xacml.api.Attribute}s.
      *
      * @param attributes the <code>Attribute</code>s for the new <code>StdPIPResponse</code>.
      */
@@ -104,7 +104,7 @@ public class StdPIPResponse extends Wrapper<PIPResponse> implements PIPResponse 
     }
 
     /**
-     * Determines if the given {@link com.att.research.xacml.api.pip.PIPRequest} matches the given {@link com.att.research.xacml.api.Attribute} by
+     * Determines if the given {@link org.apache.openaz.xacml.api.pip.PIPRequest} matches the given {@link org.apache.openaz.xacml.api.Attribute} by
      * comparing the category, attribute id, and if not null in the <code>PIPRequest</code>, the issuer.
      *
      * @param pipRequest the <code>PIPRequest</code> to compare against
@@ -125,8 +125,8 @@ public class StdPIPResponse extends Wrapper<PIPResponse> implements PIPResponse 
     }
 
     /**
-     * Gets the subset of the {@link com.att.research.xacml.api.AttributeValue}s from the given <code>Collection</code> whose data type
-     * matches the data type in the given {@link com.att.research.xacml.api.pip.PIPRequest}.
+     * Gets the subset of the {@link org.apache.openaz.xacml.api.AttributeValue}s from the given <code>Collection</code> whose data type
+     * matches the data type in the given {@link org.apache.openaz.xacml.api.pip.PIPRequest}.
      *
      * @param pipRequest the <code>PIPRequest</code> to compare against
      * @param listAttributeValues the <code>Collection</code> of <code>AttributeValue</code>s to select from
@@ -171,14 +171,14 @@ public class StdPIPResponse extends Wrapper<PIPResponse> implements PIPResponse 
     }
 
     /**
-     * Returns a {@link com.att.research.xacml.api.pip.PIPResponse} that only contains the {@link com.att.research.xacml.api.Attribute}s
-     * that match the given {@link com.att.research.xacml.api.pip.PIPRequest} with {@link com.att.research.xacml.api.AttributeValue}s that
+     * Returns a {@link org.apache.openaz.xacml.api.pip.PIPResponse} that only contains the {@link org.apache.openaz.xacml.api.Attribute}s
+     * that match the given {@link org.apache.openaz.xacml.api.pip.PIPRequest} with {@link org.apache.openaz.xacml.api.AttributeValue}s that
      * match the requested data type.
      *
      * @param pipRequest
      * @param pipResponse
      * @return
-     * @throws com.att.research.xacml.api.pip.PIPException
+     * @throws org.apache.openaz.xacml.api.pip.PIPException
      */
     public static PIPResponse getMatchingResponse(PIPRequest pipRequest, PIPResponse pipResponse) throws PIPException {
         /*
@@ -288,13 +288,13 @@ public class StdPIPResponse extends Wrapper<PIPResponse> implements PIPResponse 
     }
 
     /**
-     * Takes a {@link com.att.research.xacml.api.pip.PIPResponse} that may contain {@link com.att.research.xacml.api.Attribute}s, with multiple
-     * identifiers, each of which may contain multiple {@link com.att.research.xacml.api.AttributeValue}s with different data types and creates a collection of
+     * Takes a {@link org.apache.openaz.xacml.api.pip.PIPResponse} that may contain {@link org.apache.openaz.xacml.api.Attribute}s, with multiple
+     * identifiers, each of which may contain multiple {@link org.apache.openaz.xacml.api.AttributeValue}s with different data types and creates a collection of
      * simple <code>PIPResponse</code>s that contain a single <code>Attribute</code> with <code>AttributeValue</code>s of one data type.
      *
      * @param pipResponse the <code>PIPResponse</code> to split
      * @return a <code>Collection</code> of simple <code>PIPResponse</code>s
-     * @throws com.att.research.xacml.api.pip.PIPException if there is an error splitting the response
+     * @throws org.apache.openaz.xacml.api.pip.PIPException if there is an error splitting the response
      */
     public static Map<PIPRequest,PIPResponse> splitResponse(PIPResponse pipResponse) throws PIPException {
         Map<PIPRequest,PIPResponse> map	= new HashMap<PIPRequest,PIPResponse>();

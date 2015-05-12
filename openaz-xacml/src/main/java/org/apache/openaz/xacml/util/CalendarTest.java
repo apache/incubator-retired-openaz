@@ -18,7 +18,7 @@
  *
  */
 
-package com.att.research.xacml.util;
+package org.apache.openaz.xacml.util;
 
 import java.util.Calendar;
 import java.util.TimeZone;

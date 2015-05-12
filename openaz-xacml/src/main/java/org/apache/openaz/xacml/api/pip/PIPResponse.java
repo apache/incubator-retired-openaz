@@ -28,12 +28,12 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacml.api.pip;
+package org.apache.openaz.xacml.api.pip;
 
 import java.util.Collection;
 
-import com.att.research.xacml.api.Attribute;
-import com.att.research.xacml.api.Status;
+import org.apache.openaz.xacml.api.Attribute;
+import org.apache.openaz.xacml.api.Status;
 
 /**
  * PIPResponse is the interface that objects implement that represent a response from a {@link PIPEngine}.
@@ -41,14 +41,14 @@ import com.att.research.xacml.api.Status;
  */
 public interface PIPResponse {
     /**
-     * Gets the {@link com.att.research.xacml.api.Status} of the request to retrieve attributes from a <code>PIPEngine</code>.
+     * Gets the {@link org.apache.openaz.xacml.api.Status} of the request to retrieve attributes from a <code>PIPEngine</code>.
      *
      * @return the <code>Status</code> of the request to retrieve attributes from a <code>PIPEngine</code>
      */
     public Status getStatus();
 
     /**
-     * Gets the <code>Collection</code> of {@link com.att.research.xacml.api.Attribute}s returned from a {@link PIPEngine}.
+     * Gets the <code>Collection</code> of {@link org.apache.openaz.xacml.api.Attribute}s returned from a {@link PIPEngine}.
      * The caller must not modify the returned <code>Collection</code>.  The implementation is free to enforce this with unmodifiable collections.
      *
      * @return The <code>Collection</code> of <code>Attribute</code>s returned or an empty list if none are found
@@ -57,7 +57,7 @@ public interface PIPResponse {
 
     /**
      * Determines if this <code>PIPResponse</code> is simple or not.  A simple <code>PIPResponse</code> contains a single
-     * {@link com.att.research.xacml.api.Attribute} whose {@link com.att.research.xacml.api.AttributeValue}s are all of the same data type.
+     * {@link org.apache.openaz.xacml.api.Attribute} whose {@link org.apache.openaz.xacml.api.AttributeValue}s are all of the same data type.
      *
      * @return true if this <code>PIPResponse</code> is simple, else false.
      */

@@ -28,21 +28,21 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacmlatt.pdp.policy;
+package org.apache.openaz.xacml.pdp.policy;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
-import com.att.research.xacml.api.AttributeAssignment;
-import com.att.research.xacml.api.Status;
-import com.att.research.xacml.std.StdStatus;
-import com.att.research.xacml.util.StringUtils;
+import org.apache.openaz.xacml.api.AttributeAssignment;
+import org.apache.openaz.xacml.api.Status;
+import org.apache.openaz.xacml.std.StdStatus;
+import org.apache.openaz.xacml.util.StringUtils;
 
 /**
- * AttributeAssignmentResult is the object returned by the <code>evaluate</code> method of an {@link com.att.research.xacmlatt.pdp.policy.AttributeAssignmentExpression}.
- * It contains a {@link com.att.research.xacml.api.Status} and an optional collection of {@link com.att.research.xacml.api.AttributeAssignment}
+ * AttributeAssignmentResult is the object returned by the <code>evaluate</code> method of an {@link org.apache.openaz.xacml.pdp.policy.AttributeAssignmentExpression}.
+ * It contains a {@link org.apache.openaz.xacml.api.Status} and an optional collection of {@link org.apache.openaz.xacml.api.AttributeAssignment}
  * elements.
  *
  */

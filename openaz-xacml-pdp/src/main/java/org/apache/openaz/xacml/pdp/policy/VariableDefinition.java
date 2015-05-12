@@ -28,10 +28,10 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacmlatt.pdp.policy;
+package org.apache.openaz.xacml.pdp.policy;
 
-import com.att.research.xacml.api.StatusCode;
-import com.att.research.xacml.std.StdStatusCode;
+import org.apache.openaz.xacml.api.StatusCode;
+import org.apache.openaz.xacml.std.StdStatusCode;
 
 /**
  * VariableDefinition extends {@link PolicyComponent} to represent a XACML VariableDefinition element.

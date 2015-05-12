@@ -28,23 +28,23 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacml.std.jaxp;
+package org.apache.openaz.xacml.std.jaxp;
 
 import java.util.List;
 
+import org.apache.openaz.xacml.api.AttributeValue;
+import org.apache.openaz.xacml.api.DataType;
+import org.apache.openaz.xacml.api.DataTypeException;
+import org.apache.openaz.xacml.api.DataTypeFactory;
+import org.apache.openaz.xacml.api.Identifier;
+import org.apache.openaz.xacml.std.IdentifierImpl;
+import org.apache.openaz.xacml.std.StdMutableAttributeAssignment;
+import org.apache.openaz.xacml.util.FactoryException;
+
 import oasis.names.tc.xacml._3_0.core.schema.wd_17.AttributeAssignmentType;
 
-import com.att.research.xacml.api.AttributeValue;
-import com.att.research.xacml.api.DataType;
-import com.att.research.xacml.api.DataTypeException;
-import com.att.research.xacml.api.DataTypeFactory;
-import com.att.research.xacml.api.Identifier;
-import com.att.research.xacml.std.IdentifierImpl;
-import com.att.research.xacml.std.StdMutableAttributeAssignment;
-import com.att.research.xacml.util.FactoryException;
-
 /**
- * JaxpAttributeAssignment extends {@link com.att.research.xacml.std.StdMutableAttributeAssignment} with methods for creation
+ * JaxpAttributeAssignment extends {@link org.apache.openaz.xacml.std.StdMutableAttributeAssignment} with methods for creation
  * from JAXP elements.
  *
  *

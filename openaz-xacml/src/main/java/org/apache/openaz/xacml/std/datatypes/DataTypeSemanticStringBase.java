@@ -28,12 +28,12 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacml.std.datatypes;
+package org.apache.openaz.xacml.std.datatypes;
 
-import com.att.research.xacml.api.DataTypeException;
-import com.att.research.xacml.api.Identifier;
+import org.apache.openaz.xacml.api.DataTypeException;
+import org.apache.openaz.xacml.api.Identifier;
 
-public abstract class DataTypeSemanticStringBase<T extends com.att.research.xacml.api.SemanticString> extends DataTypeBase<T> {
+public abstract class DataTypeSemanticStringBase<T extends org.apache.openaz.xacml.api.SemanticString> extends DataTypeBase<T> {
 
     public DataTypeSemanticStringBase(Identifier identifierIn, Class<T> classConvertIn) {
         super(identifierIn, classConvertIn);

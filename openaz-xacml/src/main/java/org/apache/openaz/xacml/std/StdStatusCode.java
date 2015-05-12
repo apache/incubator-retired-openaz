@@ -28,14 +28,14 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacml.std;
+package org.apache.openaz.xacml.std;
 
-import com.att.research.xacml.api.Identifier;
-import com.att.research.xacml.api.StatusCode;
-import com.att.research.xacml.api.XACML1;
+import org.apache.openaz.xacml.api.Identifier;
+import org.apache.openaz.xacml.api.StatusCode;
+import org.apache.openaz.xacml.api.XACML1;
 
 /**
- * Immutable implementation of the {@link com.att.research.xacml.api.StatusCode} interface to store the major
+ * Immutable implementation of the {@link org.apache.openaz.xacml.api.StatusCode} interface to store the major
  * and minor {@link com.att.research.xacml.common.StatusCodeValues} objects associated with a XACML StatusCode element.
  *
  */
@@ -49,8 +49,8 @@ public class StdStatusCode implements StatusCode {
     public static final StatusCode	STATUS_CODE_PROCESSING_ERROR	= new StdStatusCode(XACML1.ID_STATUS_PROCESSING_ERROR);
 
     /**
-     * Creates a new <code>StdStatusCode</code> with the given {@link com.att.research.xacml.api.Identifier} representing the XACML StatusCode value,
-     * and the given {@link com.att.research.xacml.api.StatusCode} representing the sub-StatusCode.
+     * Creates a new <code>StdStatusCode</code> with the given {@link org.apache.openaz.xacml.api.Identifier} representing the XACML StatusCode value,
+     * and the given {@link org.apache.openaz.xacml.api.StatusCode} representing the sub-StatusCode.
      *
      * @param statusCodeValueIn the <code>Identifier</code> representing the XACML StatusCode value
      * @param childIn the <code>StatusCode</code> representing the XACML sub-StatusCode value
@@ -61,7 +61,7 @@ public class StdStatusCode implements StatusCode {
     }
 
     /**
-     * Creates a new <code>StdStatusCode</code> with the given {@link com.att.research.xacml.api.Identifier} representing the XACML StatusCode value
+     * Creates a new <code>StdStatusCode</code> with the given {@link org.apache.openaz.xacml.api.Identifier} representing the XACML StatusCode value
      *
      * @param statusCodeValueIn the <code>Identifier</code> representing the XACML StatusCode value
      */
@@ -70,7 +70,7 @@ public class StdStatusCode implements StatusCode {
     }
 
     /**
-     * Creates a new <code>StdStatusCode</code> that is a copy of the given {@link com.att.research.xacml.api.StatusCode}.
+     * Creates a new <code>StdStatusCode</code> that is a copy of the given {@link org.apache.openaz.xacml.api.StatusCode}.
      *
      * @param statusCode the <code>StatusCode</code> to copy
      * @return a new <code>StdStatusCode</code> that is a copy of the given <code>StatusCode</code>.

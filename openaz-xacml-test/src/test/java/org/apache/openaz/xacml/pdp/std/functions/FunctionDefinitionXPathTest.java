@@ -18,7 +18,7 @@
  *
  */
 
-package com.att.research.xacmlatt.pdp.std.functions;
+package org.apache.openaz.xacml.pdp.std.functions;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -37,21 +37,21 @@ import javax.xml.namespace.NamespaceContext;
 import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathFactory;
 
+import org.apache.openaz.xacml.api.Request;
+import org.apache.openaz.xacml.api.XACML3;
+import org.apache.openaz.xacml.pdp.policy.ExpressionResult;
+import org.apache.openaz.xacml.pdp.policy.FunctionArgument;
+import org.apache.openaz.xacml.pdp.policy.FunctionArgumentAttributeValue;
+import org.apache.openaz.xacml.pdp.std.StdEvaluationContext;
+import org.apache.openaz.xacml.pdp.std.StdFunctions;
+import org.apache.openaz.xacml.pdp.std.functions.FunctionDefinitionXPath;
+import org.apache.openaz.xacml.std.IdentifierImpl;
+import org.apache.openaz.xacml.std.StdRequest;
+import org.apache.openaz.xacml.std.StdStatus;
+import org.apache.openaz.xacml.std.datatypes.DataTypes;
+import org.apache.openaz.xacml.std.datatypes.XPathExpressionWrapper;
+import org.apache.openaz.xacml.std.dom.DOMRequest;
 import org.junit.Test;
-
-import com.att.research.xacml.api.Request;
-import com.att.research.xacml.api.XACML3;
-import com.att.research.xacml.std.IdentifierImpl;
-import com.att.research.xacml.std.StdRequest;
-import com.att.research.xacml.std.StdStatus;
-import com.att.research.xacml.std.datatypes.DataTypes;
-import com.att.research.xacml.std.datatypes.XPathExpressionWrapper;
-import com.att.research.xacml.std.dom.DOMRequest;
-import com.att.research.xacmlatt.pdp.policy.ExpressionResult;
-import com.att.research.xacmlatt.pdp.policy.FunctionArgument;
-import com.att.research.xacmlatt.pdp.policy.FunctionArgumentAttributeValue;
-import com.att.research.xacmlatt.pdp.std.StdEvaluationContext;
-import com.att.research.xacmlatt.pdp.std.StdFunctions;
 
 /**
  * Test of PDP Functions (See XACML core spec section A.3)
@@ -359,7 +359,7 @@ public class FunctionDefinitionXPathTest {
             try {
                 requestDoubleContent = DOMRequest.load(tFile);
                 tFile.delete();
-            } catch (com.att.research.xacml.std.dom.DOMStructureException e) {
+            } catch (org.apache.openaz.xacml.std.dom.DOMStructureException e) {
                 // this is what it should do, so just continue
             } catch (Exception e) {
                 fail("Unexpected exception for bad XML, e="+e);
@@ -375,7 +375,7 @@ public class FunctionDefinitionXPathTest {
             try {
                 requestContentMisplaced = DOMRequest.load(tFile);
                 tFile.delete();
-            } catch (com.att.research.xacml.std.dom.DOMStructureException e) {
+            } catch (org.apache.openaz.xacml.std.dom.DOMStructureException e) {
                 // this is what it should do, so just continue
             } catch (Exception e) {
                 fail("Unexpected exception for bad XML, e="+e);
@@ -391,7 +391,7 @@ public class FunctionDefinitionXPathTest {
             try {
                 requestMalformedContent = DOMRequest.load(tFile);
                 tFile.delete();
-            } catch (com.att.research.xacml.std.dom.DOMStructureException e) {
+            } catch (org.apache.openaz.xacml.std.dom.DOMStructureException e) {
                 // this is what it should do, so just continue
             } catch (Exception e) {
                 fail("Unexpected exception for bad XML, e="+e);

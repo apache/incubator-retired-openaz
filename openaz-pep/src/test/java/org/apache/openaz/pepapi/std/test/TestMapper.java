@@ -18,18 +18,18 @@
  *
  */
 
-package org.openliberty.openaz.pepapi.std.test;
+package org.apache.openaz.pepapi.std.test;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.openaz.pepapi.*;
+import org.apache.openaz.pepapi.std.StdPepAgentFactory;
+import org.apache.openaz.pepapi.std.test.mapper.BusinessRequestContext;
+import org.apache.openaz.pepapi.std.test.mapper.Client;
+import org.apache.openaz.pepapi.std.test.mapper.Document;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.openliberty.openaz.pepapi.*;
-import org.openliberty.openaz.pepapi.std.StdPepAgentFactory;
-import org.openliberty.openaz.pepapi.std.test.mapper.BusinessRequestContext;
-import org.openliberty.openaz.pepapi.std.test.mapper.Client;
-import org.openliberty.openaz.pepapi.std.test.mapper.Document;
 
 import java.util.ArrayList;
 import java.util.List;

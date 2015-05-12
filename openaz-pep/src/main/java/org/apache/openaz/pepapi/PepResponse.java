@@ -18,14 +18,14 @@
  *
  */
 
-package org.openliberty.openaz.pepapi;
-
-import com.att.research.xacml.api.Attribute;
-import com.att.research.xacml.api.Identifier;
-import com.att.research.xacml.api.Result;
+package org.apache.openaz.pepapi;
 
 import java.util.Collection;
 import java.util.Map;
+
+import org.apache.openaz.xacml.api.Attribute;
+import org.apache.openaz.xacml.api.Identifier;
+import org.apache.openaz.xacml.api.Result;
 
 /**
  */
@@ -42,20 +42,20 @@ public interface PepResponse {
     public boolean allowed() throws PepException;
 
     /**
-     * Return the set of {@link org.openliberty.openaz.pepapi.Obligation}s associated with the
+     * Return the set of {@link org.apache.openaz.pepapi.Obligation}s associated with the
      * current result indexed by ObligationId.
      * @return a Map of ObligationId, Obligation pairs
      * @throws PepException
-     * @see org.openliberty.openaz.pepapi.Obligation#getId()
+     * @see org.apache.openaz.pepapi.Obligation#getId()
      */
     public Map<String, Obligation> getObligations() throws PepException;
 
     /**
-     * Return the set of {@link org.openliberty.openaz.pepapi.Advice}s associated with the
+     * Return the set of {@link org.apache.openaz.pepapi.Advice}s associated with the
      * current result indexed by adviceId.
      * @return a Map of adviceId, Advice pairs
      * @throws PepException
-     * @see org.openliberty.openaz.pepapi.Advice#getId()
+     * @see org.apache.openaz.pepapi.Advice#getId()
      */
     public Map<String, Advice> getAdvices() throws PepException;
 

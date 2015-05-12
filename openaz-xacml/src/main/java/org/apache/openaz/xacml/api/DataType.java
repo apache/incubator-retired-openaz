@@ -29,7 +29,7 @@
  *                     All Rights Reserved
  */
 
-package com.att.research.xacml.api;
+package org.apache.openaz.xacml.api;
 
 /**
  * Defines the API for objects that represent XACML 3.0 data types.
@@ -39,7 +39,7 @@ package com.att.research.xacml.api;
  */
 public interface DataType<T> {
     /**
-     * Gets the {@link com.att.research.xacml.api.Identifier} representing the XACML data type id for this <code>DataType</code>.
+     * Gets the {@link org.apache.openaz.xacml.api.Identifier} representing the XACML data type id for this <code>DataType</code>.
      *
      * @return the <code>Identifier</code> representing the XACML data type id for this <code>DataType</code>.
      */
@@ -65,28 +65,28 @@ public interface DataType<T> {
     public String toStringValue(T source) throws DataTypeException;
 
     /**
-     * Converts the given <code>Object</code> to a {@link com.att.research.xacml.api.AttributeValue} whose value
+     * Converts the given <code>Object</code> to a {@link org.apache.openaz.xacml.api.AttributeValue} whose value
      * is an instance of class <code>T</code>.
      *
      * @param source the source object to be converted
-     * @return a new {@link com.att.research.xacml.api.AttributeValue}
+     * @return a new {@link org.apache.openaz.xacml.api.AttributeValue}
      * @throws UnsupportedOperationException if the given source object cannot be converted to a <code>T</code>
      */
     public AttributeValue<T> createAttributeValue(Object source) throws DataTypeException;
 
     /**
-     * Converts the given <code>Object</code> to a {@link com.att.research.xacml.api.AttributeValue} whose value
+     * Converts the given <code>Object</code> to a {@link org.apache.openaz.xacml.api.AttributeValue} whose value
      * is an instance of class <code>T</code>.  If not null, the <code>xpathCategory</code> is used in the newly created <code>AttributeValue</code>
      *
      * @param source the source object to be converted
      * @param xpathCategory the <code>Identifier</code> for the XPathCategory of the new <code>AttributeValue</code>
-     * @return a new {@link com.att.research.xacml.api.AttributeValue}
+     * @return a new {@link org.apache.openaz.xacml.api.AttributeValue}
      * @throws UnsupportedOperationException if the given source object cannot be converted to a <code>T</code>
      */
     public AttributeValue<T> createAttributeValue(Object source, Identifier xpathCategory) throws DataTypeException;
 
     /**
-     * Converts the given {@link com.att.research.xacml.api.AttributeValue} of an unknown data type to an <code>AttributeValue</code>
+     * Converts the given {@link org.apache.openaz.xacml.api.AttributeValue} of an unknown data type to an <code>AttributeValue</code>
      * whose value is represented by an instance of class <code>T</code>.
      *
      * @param attributeValueFrom the <code>AttributeValue</code> to convert

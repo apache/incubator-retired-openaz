@@ -28,18 +28,18 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacml.std;
+package org.apache.openaz.xacml.std;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import com.att.research.xacml.api.DataType;
-import com.att.research.xacml.api.DataTypeFactory;
-import com.att.research.xacml.api.Identifier;
-import com.att.research.xacml.std.datatypes.DataTypes;
+import org.apache.openaz.xacml.api.DataType;
+import org.apache.openaz.xacml.api.DataTypeFactory;
+import org.apache.openaz.xacml.api.Identifier;
+import org.apache.openaz.xacml.std.datatypes.DataTypes;
 
 /**
- * Implements the {@link com.att.research.xacml.api.DataTypeFactory} interface to support all of the data types in the XACML 3.0
+ * Implements the {@link org.apache.openaz.xacml.api.DataTypeFactory} interface to support all of the data types in the XACML 3.0
  * specification.
  *
  */
@@ -81,8 +81,8 @@ public class StdDataTypeFactory extends DataTypeFactory {
     }
 
     /**
-     * Creates a new <code>StdDataTypeFactory</code> and initializes the mapping from {@link com.att.research.xacml.api.Identifier}s for XACML
-     * data types to the {@link com.att.research.xacml.api.DataType} class instance that implements that data type.
+     * Creates a new <code>StdDataTypeFactory</code> and initializes the mapping from {@link org.apache.openaz.xacml.api.Identifier}s for XACML
+     * data types to the {@link org.apache.openaz.xacml.api.DataType} class instance that implements that data type.
      */
     public StdDataTypeFactory() {
         initMap();

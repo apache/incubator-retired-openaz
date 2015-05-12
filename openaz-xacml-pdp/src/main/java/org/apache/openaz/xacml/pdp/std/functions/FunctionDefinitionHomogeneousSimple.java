@@ -28,16 +28,16 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacmlatt.pdp.std.functions;
+package org.apache.openaz.xacml.pdp.std.functions;
 
 import java.util.List;
 
-import com.att.research.xacml.api.DataType;
-import com.att.research.xacml.api.Identifier;
-import com.att.research.xacml.api.Status;
-import com.att.research.xacml.std.StdStatus;
-import com.att.research.xacml.std.StdStatusCode;
-import com.att.research.xacmlatt.pdp.policy.FunctionArgument;
+import org.apache.openaz.xacml.api.DataType;
+import org.apache.openaz.xacml.api.Identifier;
+import org.apache.openaz.xacml.api.Status;
+import org.apache.openaz.xacml.pdp.policy.FunctionArgument;
+import org.apache.openaz.xacml.std.StdStatus;
+import org.apache.openaz.xacml.std.StdStatusCode;
 
 /**
  * FunctionDefinitionHomogeneousSimple extends {@link com.att.research.xacmlatt.pdp.std.functions.FunctionDefinitionSimple}
@@ -59,7 +59,7 @@ import com.att.research.xacmlatt.pdp.policy.FunctionArgument;
  *
  *
  * @param <O> the java class for the value of the Output return result from the <code>FunctionDefinition</code>
- * @param <I> the java class for the value of the Input {@link com.att.research.xacmlatt.pdp.policy.FunctionArgument}s in the <code>evaluate</code> method
+ * @param <I> the java class for the value of the Input {@link org.apache.openaz.xacml.pdp.policy.FunctionArgument}s in the <code>evaluate</code> method
  */
 public abstract class FunctionDefinitionHomogeneousSimple<O,I> extends FunctionDefinitionBase<O,I> {
 
@@ -97,7 +97,7 @@ public abstract class FunctionDefinitionHomogeneousSimple<O,I> extends FunctionD
      * This combines both the argument list length check and the evaluation of all arguments on that list.
      *
      * @param listFunctionArguments the <code>List</code> of <code>FunctionArgument</code>s to validate
-     * @return a {@link com.att.research.xacml.api.Status} indication with an error if the arguments are not valid
+     * @return a {@link org.apache.openaz.xacml.api.Status} indication with an error if the arguments are not valid
      */
     public Status validateArguments(List<FunctionArgument> listFunctionArguments, List<I> convertedValues) {
         /*
@@ -136,7 +136,7 @@ public abstract class FunctionDefinitionHomogeneousSimple<O,I> extends FunctionD
      * Validates the given <code>List</code> of <code>FunctionArgument</code>s has the correct count.
      *
      * @param listFunctionArguments the <code>List</code> of <code>FunctionArgument</code>s to validate
-     * @return a {@link com.att.research.xacml.api.Status} indication with an error if the arguments are not valid
+     * @return a {@link org.apache.openaz.xacml.api.Status} indication with an error if the arguments are not valid
      */
     public Status validateArgumentListLength(List<FunctionArgument> listFunctionArguments) {
         /*

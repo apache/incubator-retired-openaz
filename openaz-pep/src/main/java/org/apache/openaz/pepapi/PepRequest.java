@@ -17,10 +17,10 @@
  * Contributor:
  * 	  Rich Levinson (Oracle)
  */
-package org.openliberty.openaz.pepapi;
+package org.apache.openaz.pepapi;
 
-import com.att.research.xacml.api.Identifier;
-import com.att.research.xacml.api.Request;
+import org.apache.openaz.xacml.api.Identifier;
+import org.apache.openaz.xacml.api.Request;
 
 /**
  *

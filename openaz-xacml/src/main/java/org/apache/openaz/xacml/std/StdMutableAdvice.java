@@ -28,21 +28,21 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacml.std;
+package org.apache.openaz.xacml.std;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
-import com.att.research.xacml.api.Advice;
-import com.att.research.xacml.api.AttributeAssignment;
-import com.att.research.xacml.api.Identifier;
-import com.att.research.xacml.util.ListUtil;
-import com.att.research.xacml.util.ObjUtil;
+import org.apache.openaz.xacml.api.Advice;
+import org.apache.openaz.xacml.api.AttributeAssignment;
+import org.apache.openaz.xacml.api.Identifier;
+import org.apache.openaz.xacml.util.ListUtil;
+import org.apache.openaz.xacml.util.ObjUtil;
 
 /**
- * Mutable implementation of the {@link com.att.research.xacml.api.Advice} interface.
+ * Mutable implementation of the {@link org.apache.openaz.xacml.api.Advice} interface.
  *
  */
 public class StdMutableAdvice implements Advice {
@@ -86,7 +86,7 @@ public class StdMutableAdvice implements Advice {
     }
 
     /**
-     * Creates a copy of the given {@link com.att.research.xacml.api.Advice} as a new <code>StdMutableAdvice</code>.
+     * Creates a copy of the given {@link org.apache.openaz.xacml.api.Advice} as a new <code>StdMutableAdvice</code>.
      *
      * @param advice the <code>Advice</code> to copy
      * @return a new <code>StdMutableAdvice</code> that is a copy of the given <code>Advice</code>
@@ -101,7 +101,7 @@ public class StdMutableAdvice implements Advice {
     }
 
     /**
-     * Sets the {@link com.att.research.xacml.api.Identifier} representing the XACML AdviceId of the Advice represented by this <code>StdMutableAdvice</code>.
+     * Sets the {@link org.apache.openaz.xacml.api.Identifier} representing the XACML AdviceId of the Advice represented by this <code>StdMutableAdvice</code>.
      *
      * @param identifier the <code>Identifier</code> representing the XACML AdviceId of the Advice represented by this <code>StdMutableAdvice</code>.
      */
@@ -115,7 +115,7 @@ public class StdMutableAdvice implements Advice {
     }
 
     /**
-     * Adds an {@link com.att.research.xacml.api.AttributeAssignment} to this <code>StdMutableAdvice</code>>
+     * Adds an {@link org.apache.openaz.xacml.api.AttributeAssignment} to this <code>StdMutableAdvice</code>>
      *
      * @param attributeAssignment the <code>AttributeAssignment</code> to add to this <code>StdMutableAdvice</code>>
      */
@@ -127,7 +127,7 @@ public class StdMutableAdvice implements Advice {
     }
 
     /**
-     * Adds a copy of the given <code>Collection</code> of {@link com.att.research.xacml.api.AttributeAssignment}s to this <code>StdMutableAdvice</code>>
+     * Adds a copy of the given <code>Collection</code> of {@link org.apache.openaz.xacml.api.AttributeAssignment}s to this <code>StdMutableAdvice</code>>
      *
      * @param listAttributeAssignments the <code>Collection</code> of <code>AttributeAssignment</code>s to add to this <code>StdMutableAdvice</code>.
      */
@@ -141,7 +141,7 @@ public class StdMutableAdvice implements Advice {
     }
 
     /**
-     * Sets the {@link com.att.research.xacml.api.AttributeAssignment}s in this <code>StdMutableAdvice</code> to a copy of the
+     * Sets the {@link org.apache.openaz.xacml.api.AttributeAssignment}s in this <code>StdMutableAdvice</code> to a copy of the
      * given <code>Collection</code>.
      *
      * @param listAttributeAssignments the <code>Collection</code> of <code>AttributeAssignment</code>s to set in this <code>StdMutableAdvice</code>.

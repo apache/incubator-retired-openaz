@@ -28,25 +28,25 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacmlatt.pdp.std.combiners;
+package org.apache.openaz.xacml.pdp.std.combiners;
 
 import java.util.Iterator;
 import java.util.List;
 
-import com.att.research.xacml.api.Decision;
-import com.att.research.xacml.api.Identifier;
-import com.att.research.xacml.std.StdStatus;
-import com.att.research.xacml.std.StdStatusCode;
-import com.att.research.xacmlatt.pdp.eval.EvaluationContext;
-import com.att.research.xacmlatt.pdp.eval.EvaluationException;
-import com.att.research.xacmlatt.pdp.eval.EvaluationResult;
-import com.att.research.xacmlatt.pdp.eval.MatchResult;
-import com.att.research.xacmlatt.pdp.policy.CombinerParameter;
-import com.att.research.xacmlatt.pdp.policy.CombiningElement;
-import com.att.research.xacmlatt.pdp.policy.PolicySetChild;
+import org.apache.openaz.xacml.api.Decision;
+import org.apache.openaz.xacml.api.Identifier;
+import org.apache.openaz.xacml.pdp.eval.EvaluationContext;
+import org.apache.openaz.xacml.pdp.eval.EvaluationException;
+import org.apache.openaz.xacml.pdp.eval.EvaluationResult;
+import org.apache.openaz.xacml.pdp.eval.MatchResult;
+import org.apache.openaz.xacml.pdp.policy.CombinerParameter;
+import org.apache.openaz.xacml.pdp.policy.CombiningElement;
+import org.apache.openaz.xacml.pdp.policy.PolicySetChild;
+import org.apache.openaz.xacml.std.StdStatus;
+import org.apache.openaz.xacml.std.StdStatusCode;
 
 /**
- * OnlyOneApplicable extends {@link com.att.research.xacmlatt.pdp.std.combiners.CombiningAlgorithmBase} to implement the
+ * OnlyOneApplicable extends {@link org.apache.openaz.xacml.pdp.std.combiners.CombiningAlgorithmBase} to implement the
  * XACML 1.0 "only-one-applicable" combining algorithm for policies and rules.
  *
  *

@@ -28,24 +28,24 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacmlatt.pdp.policy;
+package org.apache.openaz.xacml.pdp.policy;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
-import com.att.research.xacml.api.StatusCode;
-import com.att.research.xacml.std.StdStatus;
-import com.att.research.xacml.std.StdStatusCode;
-import com.att.research.xacml.util.StringUtils;
-import com.att.research.xacmlatt.pdp.eval.EvaluationContext;
-import com.att.research.xacmlatt.pdp.eval.EvaluationException;
-import com.att.research.xacmlatt.pdp.eval.MatchResult;
-import com.att.research.xacmlatt.pdp.eval.Matchable;
+import org.apache.openaz.xacml.api.StatusCode;
+import org.apache.openaz.xacml.pdp.eval.EvaluationContext;
+import org.apache.openaz.xacml.pdp.eval.EvaluationException;
+import org.apache.openaz.xacml.pdp.eval.MatchResult;
+import org.apache.openaz.xacml.pdp.eval.Matchable;
+import org.apache.openaz.xacml.std.StdStatus;
+import org.apache.openaz.xacml.std.StdStatusCode;
+import org.apache.openaz.xacml.util.StringUtils;
 
 /**
- * AnyOf extends {@link com.att.research.xacmlatt.pdp.policy.PolicyComponent} and implements the {@link com.att.research.xacmlatt.pdp.policy.Matchable}
+ * AnyOf extends {@link org.apache.openaz.xacml.pdp.policy.PolicyComponent} and implements the {@link com.att.research.xacmlatt.pdp.policy.Matchable}
  * interface to represent XACML AnyOf elements in a XACML Target.
  *
  */

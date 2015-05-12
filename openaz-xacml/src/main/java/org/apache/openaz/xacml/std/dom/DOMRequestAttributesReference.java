@@ -28,19 +28,18 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacml.std.dom;
+package org.apache.openaz.xacml.std.dom;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.openaz.xacml.api.RequestAttributesReference;
+import org.apache.openaz.xacml.api.XACML3;
+import org.apache.openaz.xacml.std.StdRequestAttributesReference;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
-import com.att.research.xacml.api.RequestAttributesReference;
-import com.att.research.xacml.api.XACML3;
-import com.att.research.xacml.std.StdRequestAttributesReference;
-
 /**
- * DOMRequestAttributesReference extends {@link com.att.research.xacml.std.StdRequestAttributesReference} with methods for creation from
+ * DOMRequestAttributesReference extends {@link org.apache.openaz.xacml.std.StdRequestAttributesReference} with methods for creation from
  * DOM {@link org.w3c.dom.Node}s.
  *
  */
@@ -55,7 +54,7 @@ public class DOMRequestAttributesReference {
      *
      * @param nodeAttributesReference the <code>Node</code> to parse
      * @return a new <code>DOMRequestAttributesReference</code>
-     * @throws com.att.research.xacml.std.dom.DOMStructureException if the conversion cannot be made
+     * @throws org.apache.openaz.xacml.std.dom.DOMStructureException if the conversion cannot be made
      */
     public static RequestAttributesReference newInstance(Node nodeAttributesReference) throws DOMStructureException {
         Element	elementAttributesReference	= DOMUtil.getElement(nodeAttributesReference);

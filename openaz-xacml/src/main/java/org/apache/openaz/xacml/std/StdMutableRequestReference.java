@@ -28,19 +28,19 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacml.std;
+package org.apache.openaz.xacml.std;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
-import com.att.research.xacml.api.RequestAttributesReference;
-import com.att.research.xacml.api.RequestReference;
-import com.att.research.xacml.util.ListUtil;
+import org.apache.openaz.xacml.api.RequestAttributesReference;
+import org.apache.openaz.xacml.api.RequestReference;
+import org.apache.openaz.xacml.util.ListUtil;
 
 /**
- * Mutable implementation of the {@link com.att.research.xacml.api.RequestReference} interface.
+ * Mutable implementation of the {@link org.apache.openaz.xacml.api.RequestReference} interface.
  *
  */
 public class StdMutableRequestReference implements RequestReference {
@@ -48,7 +48,7 @@ public class StdMutableRequestReference implements RequestReference {
     private List<RequestAttributesReference> requestAttributesReferences	= EMPTY_LIST;
 
     /**
-     * Creates a new <code>StdMutableRequestReference</code> with no {@link com.att.research.xacml.api.RequestAttributesReference}s.
+     * Creates a new <code>StdMutableRequestReference</code> with no {@link org.apache.openaz.xacml.api.RequestAttributesReference}s.
      */
     public StdMutableRequestReference() {
     }
@@ -66,7 +66,7 @@ public class StdMutableRequestReference implements RequestReference {
     }
 
     /**
-     * Adds a {@link com.att.research.xacml.api.RequestAttributesReference} to this <code>StdMutableRequestReference</code>>
+     * Adds a {@link org.apache.openaz.xacml.api.RequestAttributesReference} to this <code>StdMutableRequestReference</code>>
      *
      * @param requestAttributesReference the <code>RequestAttributesReference</code> to add
      */

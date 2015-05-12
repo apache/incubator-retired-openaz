@@ -18,7 +18,7 @@
  *
  */
 
-package org.openliberty.openaz.pepapi;
+package org.apache.openaz.pepapi;
 
 /**
  * RuntimeException thrown when a registered handler class does not contain one of the

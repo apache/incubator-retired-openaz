@@ -28,22 +28,21 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacml.std.dom;
+package org.apache.openaz.xacml.std.dom;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.openaz.xacml.api.Attribute;
+import org.apache.openaz.xacml.api.Identifier;
+import org.apache.openaz.xacml.api.XACML3;
+import org.apache.openaz.xacml.std.StdAttribute;
+import org.apache.openaz.xacml.std.StdMutableAttribute;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import com.att.research.xacml.api.Attribute;
-import com.att.research.xacml.api.Identifier;
-import com.att.research.xacml.api.XACML3;
-import com.att.research.xacml.std.StdAttribute;
-import com.att.research.xacml.std.StdMutableAttribute;
-
 /**
- * DOMAttribute extends {@link com.att.research.xacml.std.StdMutableAttribute} with methods for creation from DOM <code>Node</code>s.
+ * DOMAttribute extends {@link org.apache.openaz.xacml.std.StdMutableAttribute} with methods for creation from DOM <code>Node</code>s.
  *
  */
 public class DOMAttribute {

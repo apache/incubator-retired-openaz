@@ -35,4 +35,4 @@
  *
  *
  */
-package com.att.research.xacml.api.pap;
+package org.apache.openaz.xacml.api.pap;

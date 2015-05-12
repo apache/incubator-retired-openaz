@@ -18,11 +18,11 @@
  *
  */
 
-package com.att.research.xacml.std.datatypes;
+package org.apache.openaz.xacml.std.datatypes;
 
 import java.text.ParseException;
 
-import com.att.research.xacml.api.SemanticString;
+import org.apache.openaz.xacml.api.SemanticString;
 
 /**
  * PortRange represents the optional range of port values for an <code>IPAddress</code>.  A value of -1

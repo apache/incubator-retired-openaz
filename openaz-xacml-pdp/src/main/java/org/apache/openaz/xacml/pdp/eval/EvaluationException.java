@@ -29,7 +29,7 @@
  *                     All Rights Reserved
  */
 
-package com.att.research.xacmlatt.pdp.eval;
+package org.apache.openaz.xacml.pdp.eval;
 
 /**
  * EvaluationException extends <code>Exception</code> to represent errors returned by methods of the

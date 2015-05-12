@@ -28,7 +28,7 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacml.std;
+package org.apache.openaz.xacml.std;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -41,27 +41,26 @@ import java.util.Set;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.openaz.xacml.api.Attribute;
+import org.apache.openaz.xacml.api.AttributeValue;
+import org.apache.openaz.xacml.api.Identifier;
+import org.apache.openaz.xacml.api.Request;
+import org.apache.openaz.xacml.api.RequestAttributes;
+import org.apache.openaz.xacml.api.RequestAttributesReference;
+import org.apache.openaz.xacml.api.RequestReference;
+import org.apache.openaz.xacml.api.Status;
+import org.apache.openaz.xacml.api.XACML3;
+import org.apache.openaz.xacml.api.pdp.ScopeQualifier;
+import org.apache.openaz.xacml.api.pdp.ScopeResolver;
+import org.apache.openaz.xacml.api.pdp.ScopeResolverException;
+import org.apache.openaz.xacml.api.pdp.ScopeResolverResult;
+import org.apache.openaz.xacml.std.datatypes.DataTypes;
+import org.apache.openaz.xacml.std.datatypes.XPathExpressionWrapper;
 import org.w3c.dom.NodeList;
-
-import com.att.research.xacml.api.Attribute;
-import com.att.research.xacml.api.AttributeValue;
-import com.att.research.xacml.api.Identifier;
-import com.att.research.xacml.api.Request;
-import com.att.research.xacml.api.RequestAttributes;
-import com.att.research.xacml.api.RequestAttributesReference;
-import com.att.research.xacml.api.RequestReference;
-import com.att.research.xacml.api.Status;
-import com.att.research.xacml.api.XACML3;
-import com.att.research.xacml.api.pdp.ScopeQualifier;
-import com.att.research.xacml.api.pdp.ScopeResolver;
-import com.att.research.xacml.api.pdp.ScopeResolverException;
-import com.att.research.xacml.api.pdp.ScopeResolverResult;
-import com.att.research.xacml.std.datatypes.DataTypes;
-import com.att.research.xacml.std.datatypes.XPathExpressionWrapper;
 
 /**
  * StdIndividualDecisionRequestGenerator is a utility that PDP developers can use to take an original
- * {@link com.att.research.xacml.api.Request} and turn it into a sequence of individual decision <code>Request</code>s.
+ * {@link org.apache.openaz.xacml.api.Request} and turn it into a sequence of individual decision <code>Request</code>s.
  * This class implements all of the multiple-decision profiles specified in "XACML v3.0 Multiple Decision Profile Version 1.0"
  *
  */
@@ -271,7 +270,7 @@ public class StdIndividualDecisionRequestGenerator {
      *
      * @param requestAttributes
      * @return
-     * @throws com.att.research.xacml.api.pdp.ScopeResolverException
+     * @throws org.apache.openaz.xacml.api.pdp.ScopeResolverException
      */
     private static ScopeQualifier getScopeQualifier(RequestAttributes requestAttributes) throws ScopeResolverException {
         Iterator<Attribute> iterAttributesScope	= requestAttributes.getAttributes(XACML3.ID_RESOURCE_SCOPE);

@@ -28,17 +28,17 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacmlatt.pdp.policy;
+package org.apache.openaz.xacml.pdp.policy;
 
-import com.att.research.xacml.api.Decision;
-import com.att.research.xacml.api.IdReferenceMatch;
-import com.att.research.xacml.api.StatusCode;
-import com.att.research.xacml.std.StdStatus;
-import com.att.research.xacml.std.StdStatusCode;
-import com.att.research.xacmlatt.pdp.eval.EvaluationContext;
-import com.att.research.xacmlatt.pdp.eval.EvaluationException;
-import com.att.research.xacmlatt.pdp.eval.EvaluationResult;
-import com.att.research.xacmlatt.pdp.eval.MatchResult;
+import org.apache.openaz.xacml.api.Decision;
+import org.apache.openaz.xacml.api.IdReferenceMatch;
+import org.apache.openaz.xacml.api.StatusCode;
+import org.apache.openaz.xacml.pdp.eval.EvaluationContext;
+import org.apache.openaz.xacml.pdp.eval.EvaluationException;
+import org.apache.openaz.xacml.pdp.eval.EvaluationResult;
+import org.apache.openaz.xacml.pdp.eval.MatchResult;
+import org.apache.openaz.xacml.std.StdStatus;
+import org.apache.openaz.xacml.std.StdStatusCode;
 
 /**
  * PolicyIdReferenceBase extends {@link PolicySetChild} to implement a XACML PolicyIdReference element.
@@ -68,7 +68,7 @@ public abstract class PolicyIdReferenceBase<T extends PolicyDef> extends PolicyS
      *
      * @param evaluationContext the <code>EvaluationContext</code> to search for the referencee
      * @return the <code>T</code> referencee if found, else null
-     * @throws com.att.research.xacmlatt.pdp.eval.EvaluationException if there is an error attempting to locate the referenced <code>T</code>.
+     * @throws org.apache.openaz.xacml.pdp.eval.EvaluationException if there is an error attempting to locate the referenced <code>T</code>.
      */
     protected abstract T ensureReferencee(EvaluationContext evaluationContext) throws EvaluationException;
 
@@ -92,7 +92,7 @@ public abstract class PolicyIdReferenceBase<T extends PolicyDef> extends PolicyS
     }
 
     /**
-     * Gets the {@link com.att.research.xacml.api.IdReferenceMatch} for this <code>PolicyIdReferenceBase</code>.
+     * Gets the {@link org.apache.openaz.xacml.api.IdReferenceMatch} for this <code>PolicyIdReferenceBase</code>.
      *
      * @return the <code>IdReferenceMatch</code> for this <code>PolicyIdReference</code>.
      */

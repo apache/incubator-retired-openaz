@@ -28,7 +28,7 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacml.std;
+package org.apache.openaz.xacml.std;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -40,15 +40,14 @@ import java.util.Map;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-
-import com.att.research.xacml.api.Attribute;
-import com.att.research.xacml.api.AttributeCategory;
-import com.att.research.xacml.api.Identifier;
-import com.att.research.xacml.util.ListUtil;
-import com.att.research.xacml.util.ObjUtil;
+import org.apache.openaz.xacml.api.Attribute;
+import org.apache.openaz.xacml.api.AttributeCategory;
+import org.apache.openaz.xacml.api.Identifier;
+import org.apache.openaz.xacml.util.ListUtil;
+import org.apache.openaz.xacml.util.ObjUtil;
 
 /**
- * Mutable implementation of the {@link com.att.research.xacml.api.AttributeCategory} interface.
+ * Mutable implementation of the {@link org.apache.openaz.xacml.api.AttributeCategory} interface.
  *
  */
 public class StdMutableAttributeCategory implements AttributeCategory {
@@ -60,8 +59,8 @@ public class StdMutableAttributeCategory implements AttributeCategory {
     private Map<Identifier,List<Attribute>> attributesById	= new HashMap<Identifier,List<Attribute>>();
 
     /**
-     * Builds the <code>Map</code> from {@link com.att.research.xacml.api.Identifier}s for XACML AttributeIds to
-     * {@link com.att.research.xacml.api.Attribute}s.
+     * Builds the <code>Map</code> from {@link org.apache.openaz.xacml.api.Identifier}s for XACML AttributeIds to
+     * {@link org.apache.openaz.xacml.api.Attribute}s.
      */
     private void buildMap() {
         for (Attribute attribute: this.attributes) {
@@ -82,8 +81,8 @@ public class StdMutableAttributeCategory implements AttributeCategory {
     }
 
     /**
-     * Creates a new <code>StdMutableAttributeCategory</code> with the given {@link com.att.research.xacml.api.Identifier} representing its
-     * XACML Category, and the given <code>Collection</code> of {@link com.att.research.xacml.api.Attribute}s as its XACML Attributes.
+     * Creates a new <code>StdMutableAttributeCategory</code> with the given {@link org.apache.openaz.xacml.api.Identifier} representing its
+     * XACML Category, and the given <code>Collection</code> of {@link org.apache.openaz.xacml.api.Attribute}s as its XACML Attributes.
      * The <code>Collection</code> is copied; changes made to the <code>Collection</code> after creating the new <code>StdMutableAttributeCategory</code>
      * are not reflected in the <code>StdMutableAttributeCategory</code>.
      *
@@ -99,7 +98,7 @@ public class StdMutableAttributeCategory implements AttributeCategory {
     }
 
     /**
-     * Creates a new <code>StdMutableAttributeCategory</code> that is a copy of the given {@link com.att.research.xacml.api.AttributeCategory}.
+     * Creates a new <code>StdMutableAttributeCategory</code> that is a copy of the given {@link org.apache.openaz.xacml.api.AttributeCategory}.
      *
      * @param attributeCategory the <code>AttributeCategory</code> to copy
      */
@@ -115,7 +114,7 @@ public class StdMutableAttributeCategory implements AttributeCategory {
     }
 
     /**
-     * Sets the {@link com.att.research.xacml.api.Identifier} representing the XACML Category of this <code>StdMutableAttributeCategory</code>.
+     * Sets the {@link org.apache.openaz.xacml.api.Identifier} representing the XACML Category of this <code>StdMutableAttributeCategory</code>.
      *
      * @param identifierCategory the <code>Identifier</code> representing the XACML Category of this <code>StdMutableAttributeCategory</code>.
      */
@@ -129,7 +128,7 @@ public class StdMutableAttributeCategory implements AttributeCategory {
     }
 
     /**
-     * Adds a {@link com.att.research.xacml.api.Attribute} to this <code>StdMutableAttributeCategory</code>>
+     * Adds a {@link org.apache.openaz.xacml.api.Attribute} to this <code>StdMutableAttributeCategory</code>>
      *
      * @param attribute the <code>Attribute</code> to add
      */

@@ -28,7 +28,7 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacml.std.jaxp;
+package org.apache.openaz.xacml.std.jaxp;
 
 import java.io.File;
 import java.io.IOException;
@@ -48,16 +48,15 @@ import oasis.names.tc.xacml._3_0.core.schema.wd_17.RequestType;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.openaz.xacml.std.StdMutableRequest;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-import com.att.research.xacml.std.StdMutableRequest;
-
 /**
- * JaxpRequest extends {@link com.att.research.xacml.std.StdMutableRequest} with methods for creation from JAXP elements.
+ * JaxpRequest extends {@link org.apache.openaz.xacml.std.StdMutableRequest} with methods for creation from JAXP elements.
  *
  */
 public class JaxpRequest extends StdMutableRequest {

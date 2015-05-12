@@ -28,7 +28,7 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacmlatt.pdp.policy.dom;
+package org.apache.openaz.xacml.pdp.policy.dom;
 
 import java.io.File;
 import java.util.Iterator;
@@ -38,28 +38,27 @@ import javax.xml.parsers.DocumentBuilderFactory;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.openaz.xacml.api.Identifier;
+import org.apache.openaz.xacml.api.XACML3;
+import org.apache.openaz.xacml.pdp.policy.CombiningAlgorithm;
+import org.apache.openaz.xacml.pdp.policy.CombiningAlgorithmFactory;
+import org.apache.openaz.xacml.pdp.policy.Policy;
+import org.apache.openaz.xacml.pdp.policy.PolicyDefaults;
+import org.apache.openaz.xacml.pdp.policy.PolicySet;
+import org.apache.openaz.xacml.pdp.policy.Rule;
+import org.apache.openaz.xacml.std.StdStatusCode;
+import org.apache.openaz.xacml.std.dom.DOMProperties;
+import org.apache.openaz.xacml.std.dom.DOMStructureException;
+import org.apache.openaz.xacml.std.dom.DOMUtil;
+import org.apache.openaz.xacml.util.FactoryException;
+import org.apache.openaz.xacml.util.StringUtils;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import com.att.research.xacml.api.Identifier;
-import com.att.research.xacml.api.XACML3;
-import com.att.research.xacml.std.StdStatusCode;
-import com.att.research.xacml.std.dom.DOMProperties;
-import com.att.research.xacml.std.dom.DOMStructureException;
-import com.att.research.xacml.std.dom.DOMUtil;
-import com.att.research.xacml.util.FactoryException;
-import com.att.research.xacml.util.StringUtils;
-import com.att.research.xacmlatt.pdp.policy.CombiningAlgorithm;
-import com.att.research.xacmlatt.pdp.policy.CombiningAlgorithmFactory;
-import com.att.research.xacmlatt.pdp.policy.Policy;
-import com.att.research.xacmlatt.pdp.policy.PolicyDefaults;
-import com.att.research.xacmlatt.pdp.policy.PolicySet;
-import com.att.research.xacmlatt.pdp.policy.Rule;
-
 /**
- * DOMPolicy extends {@link com.att.research.xacmlatt.pdp.policy.Policy} with methods for creation from a
+ * DOMPolicy extends {@link org.apache.openaz.xacml.pdp.policy.Policy} with methods for creation from a
  * DOM {@link org.w3c.dom.Node}.
  *
  */

@@ -28,18 +28,18 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacmlatt.pdp.policy;
+package org.apache.openaz.xacml.pdp.policy;
 
-import com.att.research.xacml.api.Status;
+import org.apache.openaz.xacml.api.Status;
 
 /**
- * PolicyFinderResult is the interface for return values of the methods in the {@link com.att.research.xacmlatt.pdp.policy.PolicyFinderFactory} interface.
+ * PolicyFinderResult is the interface for return values of the methods in the {@link org.apache.openaz.xacml.pdp.policy.PolicyFinderFactory} interface.
  *
  * @param <T> the class extending {@link PolicyDef} contained as a result in this <code>PolicyFinderResult</code>
  */
 public interface PolicyFinderResult<T extends PolicyDef> {
     /**
-     * Gets the {@link com.att.research.xacml.api.Status} of the method call.
+     * Gets the {@link org.apache.openaz.xacml.api.Status} of the method call.
      *
      * @return the <code>Status</code> of the method call
      */

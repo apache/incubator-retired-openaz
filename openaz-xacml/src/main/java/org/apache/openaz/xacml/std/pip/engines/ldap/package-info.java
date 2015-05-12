@@ -29,7 +29,7 @@
  *                     All Rights Reserved
  */
 
-package com.att.research.xacml.std.pip.engines.ldap;
+package org.apache.openaz.xacml.std.pip.engines.ldap;
 
 /**
  * com.att.research.xacml.std.pip.engines.ldap contains an implementation of the {@link com.att.research.xacml.api.pip.PIPEngine}

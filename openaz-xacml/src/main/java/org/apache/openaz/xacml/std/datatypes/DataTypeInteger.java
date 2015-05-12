@@ -28,12 +28,12 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacml.std.datatypes;
+package org.apache.openaz.xacml.std.datatypes;
 
 import java.math.BigInteger;
 
-import com.att.research.xacml.api.DataTypeException;
-import com.att.research.xacml.api.XACML;
+import org.apache.openaz.xacml.api.DataTypeException;
+import org.apache.openaz.xacml.api.XACML;
 
 /**
  * DataTypeInteger extends {@link DataTypeBase} to implement the XACML integer type.

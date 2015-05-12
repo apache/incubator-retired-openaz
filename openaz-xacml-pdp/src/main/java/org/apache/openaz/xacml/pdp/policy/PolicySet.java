@@ -28,26 +28,26 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacmlatt.pdp.policy;
+package org.apache.openaz.xacml.pdp.policy;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
-import com.att.research.xacml.api.Decision;
-import com.att.research.xacml.api.Identifier;
-import com.att.research.xacml.api.Result;
-import com.att.research.xacml.api.StatusCode;
-import com.att.research.xacml.api.trace.Traceable;
-import com.att.research.xacml.std.StdStatus;
-import com.att.research.xacml.std.StdStatusCode;
-import com.att.research.xacml.std.trace.StdTraceEvent;
-import com.att.research.xacml.util.StringUtils;
-import com.att.research.xacmlatt.pdp.eval.EvaluationContext;
-import com.att.research.xacmlatt.pdp.eval.EvaluationException;
-import com.att.research.xacmlatt.pdp.eval.EvaluationResult;
-import com.att.research.xacmlatt.pdp.eval.MatchResult;
+import org.apache.openaz.xacml.api.Decision;
+import org.apache.openaz.xacml.api.Identifier;
+import org.apache.openaz.xacml.api.Result;
+import org.apache.openaz.xacml.api.StatusCode;
+import org.apache.openaz.xacml.api.trace.Traceable;
+import org.apache.openaz.xacml.pdp.eval.EvaluationContext;
+import org.apache.openaz.xacml.pdp.eval.EvaluationException;
+import org.apache.openaz.xacml.pdp.eval.EvaluationResult;
+import org.apache.openaz.xacml.pdp.eval.MatchResult;
+import org.apache.openaz.xacml.std.StdStatus;
+import org.apache.openaz.xacml.std.StdStatusCode;
+import org.apache.openaz.xacml.std.trace.StdTraceEvent;
+import org.apache.openaz.xacml.util.StringUtils;
 
 /**
  * PolicySet extends {@link PolicyDef} to represent a XACML PolicySet element.
@@ -114,7 +114,7 @@ public class PolicySet extends PolicyDef {
     }
 
     /**
-     * Gets an <code>Iterator</code> over the {@link com.att.research.xacmlatt.pdp.policy.TargetedCombinerParameter}s
+     * Gets an <code>Iterator</code> over the {@link org.apache.openaz.xacml.pdp.policy.TargetedCombinerParameter}s
      * for {@link Policy} elements in this
      * <code>PolicySet</code>.
      *
@@ -170,7 +170,7 @@ public class PolicySet extends PolicyDef {
     }
 
     /**
-     * Gets the {@link com.att.research.xacmlatt.pdp.policy.CombiningAlgorithm} for <code>PolicySetChild</code> children for this <code>PolicySet</code>.
+     * Gets the {@link org.apache.openaz.xacml.pdp.policy.CombiningAlgorithm} for <code>PolicySetChild</code> children for this <code>PolicySet</code>.
      *
      * @return the <code>CombiningAlgorithm</code> for <code>PolicySetChild</code> children for this <code>PolicySet</code>.
      */

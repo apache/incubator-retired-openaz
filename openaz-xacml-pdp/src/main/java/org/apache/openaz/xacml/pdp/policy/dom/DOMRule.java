@@ -28,29 +28,28 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacmlatt.pdp.policy.dom;
+package org.apache.openaz.xacml.pdp.policy.dom;
 
 import java.util.Iterator;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.openaz.xacml.api.XACML3;
+import org.apache.openaz.xacml.pdp.policy.Condition;
+import org.apache.openaz.xacml.pdp.policy.Policy;
+import org.apache.openaz.xacml.pdp.policy.Rule;
+import org.apache.openaz.xacml.pdp.policy.RuleEffect;
+import org.apache.openaz.xacml.std.IdentifierImpl;
+import org.apache.openaz.xacml.std.StdStatusCode;
+import org.apache.openaz.xacml.std.dom.DOMProperties;
+import org.apache.openaz.xacml.std.dom.DOMStructureException;
+import org.apache.openaz.xacml.std.dom.DOMUtil;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import com.att.research.xacml.api.XACML3;
-import com.att.research.xacml.std.IdentifierImpl;
-import com.att.research.xacml.std.StdStatusCode;
-import com.att.research.xacml.std.dom.DOMProperties;
-import com.att.research.xacml.std.dom.DOMStructureException;
-import com.att.research.xacml.std.dom.DOMUtil;
-import com.att.research.xacmlatt.pdp.policy.Condition;
-import com.att.research.xacmlatt.pdp.policy.Policy;
-import com.att.research.xacmlatt.pdp.policy.Rule;
-import com.att.research.xacmlatt.pdp.policy.RuleEffect;
-
 /**
- * DOMRule extends {@link com.att.research.xacmlatt.pdp.policy.Rule} with methods for creation from
+ * DOMRule extends {@link org.apache.openaz.xacml.pdp.policy.Rule} with methods for creation from
  * DOM {@link org.w3c.dom.Node}s.
  *
  */
@@ -64,7 +63,7 @@ public class DOMRule extends Rule {
      * Creates a new <code>Rule</code> by parsing the given <code>Node</code> representing a XACML Rule element.
      *
      * @param nodeRule the <code>Node</code> representing the XACML Rule element
-     * @param policy the {@link com.att.research.xacmlatt.pdp.policy.Policy} encompassing the Rule element
+     * @param policy the {@link org.apache.openaz.xacml.pdp.policy.Policy} encompassing the Rule element
      * @return a new <code>Rule</code> parsed from the given <code>Node</code>
      * @throws DOMStructureException if there is an error parsing the <code>Node</code>
      */

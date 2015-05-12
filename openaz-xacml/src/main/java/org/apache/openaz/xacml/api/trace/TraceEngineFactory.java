@@ -29,13 +29,13 @@
  *                     All Rights Reserved
  */
 
-package com.att.research.xacml.api.trace;
+package org.apache.openaz.xacml.api.trace;
 
 import java.util.Properties;
 
-import com.att.research.xacml.util.FactoryException;
-import com.att.research.xacml.util.FactoryFinder;
-import com.att.research.xacml.util.XACMLProperties;
+import org.apache.openaz.xacml.util.FactoryException;
+import org.apache.openaz.xacml.util.FactoryFinder;
+import org.apache.openaz.xacml.util.XACMLProperties;
 
 /**
  * Provides methods for creating instances of the {@link TraceEngine} interface.  This may be used by PDP, PEP, or PIP
@@ -44,7 +44,7 @@ import com.att.research.xacml.util.XACMLProperties;
  */
 public abstract class TraceEngineFactory {
     private static final String	FACTORYID					= XACMLProperties.PROP_TRACEENGINEFACTORY;
-    private static final String	DEFAULT_FACTORY_CLASSNAME	= "com.att.research.xacml.std.trace.NullTraceEngineFactory";
+    private static final String	DEFAULT_FACTORY_CLASSNAME	= "org.apache.openaz.xacml.std.trace.NullTraceEngineFactory";
 
     protected Properties properties = null;
 
@@ -57,7 +57,7 @@ public abstract class TraceEngineFactory {
 
     /**
      * Gets an instance of the <code>TraceEngineFactory</code> class using standard factory lookup methods defined by
-     * the {@link com.att.research.xacml.util.FactoryFinder} class.
+     * the {@link org.apache.openaz.xacml.util.FactoryFinder} class.
      *
      * @return an instance of the <code>TraceEngineFactory</code> class.
      * @throws FactoryException if there is an error finding a <code>TraceEngineFactory</code>
@@ -68,7 +68,7 @@ public abstract class TraceEngineFactory {
 
     /**
      * Gets an instance of the <code>TraceEngineFactory</code> class using standard factory lookup methods defined by
-     * the {@link com.att.research.xacml.util.FactoryFinder} class.
+     * the {@link org.apache.openaz.xacml.util.FactoryFinder} class.
      *
      * @return an instance of the <code>TraceEngineFactory</code> class.
      * @throws FactoryException if there is an error finding a <code>TraceEngineFactory</code>

@@ -28,11 +28,11 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacml.std.datatypes;
+package org.apache.openaz.xacml.std.datatypes;
 
 import java.text.ParseException;
 
-import com.att.research.xacml.api.SemanticString;
+import org.apache.openaz.xacml.api.SemanticString;
 
 /**
  * IPAddress represents either an IPv4 or IPv6 network address with optional (IPv4)masks or (IPv6)prefixes and port range components.

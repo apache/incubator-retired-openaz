@@ -28,14 +28,14 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacmlatt.pdp.policy;
+package org.apache.openaz.xacml.pdp.policy;
 
-import com.att.research.xacml.api.Identifier;
-import com.att.research.xacml.api.StatusCode;
-import com.att.research.xacml.api.trace.Traceable;
-import com.att.research.xacml.std.StdStatusCode;
-import com.att.research.xacmlatt.pdp.eval.Evaluatable;
-import com.att.research.xacmlatt.pdp.eval.Matchable;
+import org.apache.openaz.xacml.api.Identifier;
+import org.apache.openaz.xacml.api.StatusCode;
+import org.apache.openaz.xacml.api.trace.Traceable;
+import org.apache.openaz.xacml.pdp.eval.Evaluatable;
+import org.apache.openaz.xacml.pdp.eval.Matchable;
+import org.apache.openaz.xacml.std.StdStatusCode;
 
 /**
  * PolicySetChild extends {@link com.att.research.xacmlatt.pdp.PolicyComponent} to represent XACML 3.0 Policies, PolicySets, PolicyReferences,
@@ -48,7 +48,7 @@ public abstract class PolicySetChild extends PolicyComponent implements Evaluata
     private PolicySet parent;
 
     /**
-     * Creates a new <code>PolicySetChild</code> with the given given {@link com.att.research.xacml.api.StatusCode}
+     * Creates a new <code>PolicySetChild</code> with the given given {@link org.apache.openaz.xacml.api.StatusCode}
      * and <code>String</code> status message.
      *
      * @param statusCodeIn the <code>StatusCode</code> for the new <code>PolicySetChild</code>

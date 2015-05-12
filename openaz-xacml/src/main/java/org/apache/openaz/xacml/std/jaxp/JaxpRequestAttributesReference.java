@@ -28,14 +28,14 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacml.std.jaxp;
+package org.apache.openaz.xacml.std.jaxp;
+
+import org.apache.openaz.xacml.std.StdRequestAttributesReference;
 
 import oasis.names.tc.xacml._3_0.core.schema.wd_17.AttributesReferenceType;
 
-import com.att.research.xacml.std.StdRequestAttributesReference;
-
 /**
- * JaxpRequestAttributesReference extends {@link com.att.research.xacml.std.StdRequestAttributesReference} with methods for
+ * JaxpRequestAttributesReference extends {@link org.apache.openaz.xacml.std.StdRequestAttributesReference} with methods for
  * creation using JAXP elements.
  *
  */

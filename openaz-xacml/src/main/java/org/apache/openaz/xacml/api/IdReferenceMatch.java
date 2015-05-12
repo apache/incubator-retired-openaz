@@ -28,7 +28,7 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacml.api;
+package org.apache.openaz.xacml.api;
 
 /**
  * Defines the API for objects that represent XACML PolicyIdReference or PolicySetIdReference elements with exact, earliest, and latest version

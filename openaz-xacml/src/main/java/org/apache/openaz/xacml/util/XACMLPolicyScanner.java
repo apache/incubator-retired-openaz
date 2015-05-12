@@ -28,7 +28,7 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacml.util;
+package org.apache.openaz.xacml.util;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -64,21 +64,20 @@ import oasis.names.tc.xacml._3_0.core.schema.wd_17.VariableDefinitionType;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.openaz.xacml.api.Advice;
+import org.apache.openaz.xacml.api.Attribute;
+import org.apache.openaz.xacml.api.AttributeAssignment;
+import org.apache.openaz.xacml.api.Obligation;
+import org.apache.openaz.xacml.std.IdentifierImpl;
+import org.apache.openaz.xacml.std.StdAttribute;
+import org.apache.openaz.xacml.std.StdAttributeAssignment;
+import org.apache.openaz.xacml.std.StdAttributeValue;
+import org.apache.openaz.xacml.std.StdMutableAdvice;
+import org.apache.openaz.xacml.std.StdMutableObligation;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-
-import com.att.research.xacml.api.Advice;
-import com.att.research.xacml.api.Attribute;
-import com.att.research.xacml.api.AttributeAssignment;
-import com.att.research.xacml.api.Obligation;
-import com.att.research.xacml.std.IdentifierImpl;
-import com.att.research.xacml.std.StdAttribute;
-import com.att.research.xacml.std.StdAttributeAssignment;
-import com.att.research.xacml.std.StdAttributeValue;
-import com.att.research.xacml.std.StdMutableAdvice;
-import com.att.research.xacml.std.StdMutableObligation;
 
 /**
  * class XACMLPolicyScanner

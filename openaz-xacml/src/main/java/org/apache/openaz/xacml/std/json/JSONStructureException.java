@@ -28,7 +28,7 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacml.std.json;
+package org.apache.openaz.xacml.std.json;
 
 /**
  * Exception indicating that a JSON structure is incorrect.

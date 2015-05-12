@@ -28,7 +28,7 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacml.util;
+package org.apache.openaz.xacml.util;
 
 /**
  * Defines an object that delegates its <code>equals</code>, <code>hashCode</code> and <code>toString</code> methods to

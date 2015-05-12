@@ -28,17 +28,17 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacml.api.pap;
+package org.apache.openaz.xacml.api.pap;
 
 import java.util.Properties;
 
-import com.att.research.xacml.util.FactoryException;
-import com.att.research.xacml.util.FactoryFinder;
-import com.att.research.xacml.util.XACMLProperties;
+import org.apache.openaz.xacml.util.FactoryException;
+import org.apache.openaz.xacml.util.FactoryFinder;
+import org.apache.openaz.xacml.util.XACMLProperties;
 
 public abstract class PAPEngineFactory {
     private static final String	FACTORYID	= XACMLProperties.PROP_PAP_PAPENGINEFACTORY;
-    private static final String	DEFAULT_FACTORY_CLASSNAME	= "com.att.research.xacml.std.pap.StdEngineFactory";
+    private static final String	DEFAULT_FACTORY_CLASSNAME	= "org.apache.openaz.xacml.std.pap.StdEngineFactory";
 
     /**
      * The constructor is protected to prevent instantiation of the class.
@@ -100,7 +100,7 @@ public abstract class PAPEngineFactory {
      * Creates a new <code>PAPEngine</code> based on the configured <code>PAPEngineFactory</code>.
      *
      * @return a new <code>PAPEngine</code>
-     * @throws com.att.research.xacml.api.pap.PAPException
+     * @throws org.apache.openaz.xacml.api.pap.PAPException
      */
     public abstract PAPEngine newEngine() throws FactoryException, PAPException;
 
@@ -108,7 +108,7 @@ public abstract class PAPEngineFactory {
      * Creates a new <code>PAPEngine</code> based on the configured <code>PAPEngineFactory</code>.
      *
      * @return a new <code>PAPEngine</code>
-     * @throws com.att.research.xacml.api.pap.PAPException
+     * @throws org.apache.openaz.xacml.api.pap.PAPException
      */
     public abstract PAPEngine newEngine(Properties properties) throws FactoryException, PAPException;
 }

@@ -28,12 +28,12 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacmlatt.pdp.policy;
+package org.apache.openaz.xacml.pdp.policy;
 
 import java.util.List;
 
-import com.att.research.xacml.api.Identifier;
-import com.att.research.xacmlatt.pdp.eval.EvaluationContext;
+import org.apache.openaz.xacml.api.Identifier;
+import org.apache.openaz.xacml.pdp.eval.EvaluationContext;
 
 /**
  * FunctionDefinition is the interface that objects representing XACML functions found in Match and Apply elements in Policies, PolicySets
@@ -42,7 +42,7 @@ import com.att.research.xacmlatt.pdp.eval.EvaluationContext;
  */
 public interface FunctionDefinition {
     /**
-     * Gets the {@link com.att.research.xacml.api.Identifier} for this <code>FunctionDefinition</code>.
+     * Gets the {@link org.apache.openaz.xacml.api.Identifier} for this <code>FunctionDefinition</code>.
      *
      * @return the <code>Identifier</code> for this <code>FunctionDefinition</code>.
      */
@@ -66,7 +66,7 @@ public interface FunctionDefinition {
     /**
      * Evaluates this <code>FunctionDefinition</code> on the given <code>List</code> of{@link FunctionArgument}s.
      *
-     * @param evaluationContext the {@link com.att.research.xacmlatt.pdp.eval.EvaluationContext} to use in the evaluation
+     * @param evaluationContext the {@link org.apache.openaz.xacml.pdp.eval.EvaluationContext} to use in the evaluation
      * @param arguments the <code>List</code> of <code>FunctionArgument</code>s for the evaluation
      * @return an {@link ExpressionResult} with the results of the call
      */

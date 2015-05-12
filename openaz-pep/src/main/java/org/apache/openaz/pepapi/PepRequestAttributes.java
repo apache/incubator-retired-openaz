@@ -18,16 +18,16 @@
  *
  */
 
-package org.openliberty.openaz.pepapi;
-
-import com.att.research.xacml.api.Identifier;
-import com.att.research.xacml.api.RequestAttributes;
+package org.apache.openaz.pepapi;
 
 import java.net.URI;
 import java.util.Date;
 
+import org.apache.openaz.xacml.api.Identifier;
+import org.apache.openaz.xacml.api.RequestAttributes;
+
 /**
- * Convenient wrapper around a RequestAttributes{@link com.att.research.xacml.api.RequestAttributes} instance,
+ * Convenient wrapper around a RequestAttributes{@link org.apache.openaz.xacml.api.RequestAttributes} instance,
  * representing a collection of request attributes that belong to a particular category.
  *
  */

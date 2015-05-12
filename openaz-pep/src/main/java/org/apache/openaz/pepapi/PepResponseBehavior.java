@@ -18,12 +18,12 @@
  *
  */
 
-package org.openliberty.openaz.pepapi;
+package org.apache.openaz.pepapi;
 
 /**
  * This enum provides the options that can be set using the
- * {@link org.openliberty.openaz.pepapi.PepResponseFactory} to determine the behavior when
- * {@link org.openliberty.openaz.pepapi.PepResponse#allowed()} is called AND the
+ * {@link org.apache.openaz.pepapi.PepResponseFactory} to determine the behavior when
+ * {@link org.apache.openaz.pepapi.PepResponse#allowed()} is called AND the
  * decision is either Indeterminate or NotApplicable.
  *
  *

@@ -18,14 +18,15 @@
  *
  */
 
-package org.openliberty.openaz.pepapi.std.test.obligation;
+package org.apache.openaz.pepapi.std.test.obligation;
 
 import junit.framework.Assert;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.openliberty.openaz.pepapi.Obligation;
-import org.openliberty.openaz.pepapi.ObligationHandler;
-import org.openliberty.openaz.pepapi.ObligationStore;
+import org.apache.openaz.pepapi.Obligation;
+import org.apache.openaz.pepapi.ObligationHandler;
+import org.apache.openaz.pepapi.ObligationStore;
 
 import java.util.Set;
 

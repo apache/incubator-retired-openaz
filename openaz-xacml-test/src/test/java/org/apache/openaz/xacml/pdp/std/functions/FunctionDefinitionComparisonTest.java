@@ -28,7 +28,7 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacmlatt.pdp.std.functions;
+package org.apache.openaz.xacml.pdp.std.functions;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -40,17 +40,18 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.openaz.xacml.api.XACML3;
+import org.apache.openaz.xacml.pdp.policy.ExpressionResult;
+import org.apache.openaz.xacml.pdp.policy.FunctionArgument;
+import org.apache.openaz.xacml.pdp.policy.FunctionArgumentAttributeValue;
+import org.apache.openaz.xacml.pdp.std.StdFunctions;
+import org.apache.openaz.xacml.pdp.std.functions.FunctionDefinitionComparison;
+import org.apache.openaz.xacml.pdp.std.functions.FunctionDefinitionTimeInRange;
+import org.apache.openaz.xacml.std.datatypes.DataTypes;
+import org.apache.openaz.xacml.std.datatypes.ISO8601Date;
+import org.apache.openaz.xacml.std.datatypes.ISO8601DateTime;
+import org.apache.openaz.xacml.std.datatypes.ISO8601Time;
 import org.junit.Test;
-
-import com.att.research.xacml.api.XACML3;
-import com.att.research.xacml.std.datatypes.DataTypes;
-import com.att.research.xacml.std.datatypes.ISO8601Date;
-import com.att.research.xacml.std.datatypes.ISO8601DateTime;
-import com.att.research.xacml.std.datatypes.ISO8601Time;
-import com.att.research.xacmlatt.pdp.policy.ExpressionResult;
-import com.att.research.xacmlatt.pdp.policy.FunctionArgument;
-import com.att.research.xacmlatt.pdp.policy.FunctionArgumentAttributeValue;
-import com.att.research.xacmlatt.pdp.std.StdFunctions;
 
 /**
  * Test FunctionDefinitionComparison

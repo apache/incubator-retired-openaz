@@ -28,9 +28,9 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacml.rest;
+package org.apache.openaz.xacml.rest;
 
-import com.att.research.xacml.util.XACMLProperties;
+import org.apache.openaz.xacml.util.XACMLProperties;
 
 /**
  * These are XACML Properties that are relevant to the RESTful API interface for

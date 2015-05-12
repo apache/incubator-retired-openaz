@@ -28,12 +28,12 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacml.api;
+package org.apache.openaz.xacml.api;
 
-import com.att.research.xacml.std.IdentifierImpl;
+import org.apache.openaz.xacml.std.IdentifierImpl;
 
 /**
- * XACML2 contains the constants (<code>String</code>s, <code>URI</code>s {@link com.att.research.xacml.api.Identifier}s that are
+ * XACML2 contains the constants (<code>String</code>s, <code>URI</code>s {@link org.apache.openaz.xacml.api.Identifier}s that are
  * defined in the XACML 2.0 Specification: "XACML 2.0 Core: eXtensible Access Control Markup Language (XACML) Version 2.0".
  *
  */

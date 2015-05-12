@@ -28,11 +28,11 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacmlatt.pdp.policy;
+package org.apache.openaz.xacml.pdp.policy;
 
-import com.att.research.xacml.api.AttributeValue;
-import com.att.research.xacml.api.StatusCode;
-import com.att.research.xacml.std.StdStatusCode;
+import org.apache.openaz.xacml.api.AttributeValue;
+import org.apache.openaz.xacml.api.StatusCode;
+import org.apache.openaz.xacml.std.StdStatusCode;
 
 /**
  * CombinerParameter extends {@link PolicyComponent} to represent a XACML CombinerParameter element.
@@ -58,7 +58,7 @@ public class CombinerParameter extends PolicyComponent {
 
     /**
      * Creates a new <code>CombinerParameter</code> with the given <code>String</code> name, <code>AttributeValue</code>,
-     * {@link com.att.research.xacml.api.StatusCode} and <code>String</code> status message.
+     * {@link org.apache.openaz.xacml.api.StatusCode} and <code>String</code> status message.
      *
      * @param nameIn the <code>String</code> name of the <code>CombinerParameter</code>
      * @param attributeValueIn the <code>AttributeValue</code> of the <code>CombinerParameter</code>

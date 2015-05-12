@@ -29,7 +29,7 @@
  *                     All Rights Reserved
  */
 
-package com.att.research.xacml.api;
+package org.apache.openaz.xacml.api;
 
 /**
  * Provides the interfaces common to the XACML 3.0 Policy Enforcement Point (PEP), Policy Decision Point (PDP), and Policy Information Point (PIP) APIs.

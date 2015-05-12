@@ -28,17 +28,17 @@
  *              Unpublished and Not for Publication
  *                     All Rights Reserved
  */
-package com.att.research.xacml.std.jaxp;
+package org.apache.openaz.xacml.std.jaxp;
 
 import java.util.Iterator;
+
+import org.apache.openaz.xacml.std.StdMutableRequestReference;
 
 import oasis.names.tc.xacml._3_0.core.schema.wd_17.AttributesReferenceType;
 import oasis.names.tc.xacml._3_0.core.schema.wd_17.RequestReferenceType;
 
-import com.att.research.xacml.std.StdMutableRequestReference;
-
 /**
- * JaxpRequestReference extends {@link com.att.research.xacml.std.StdMutableRequestReference} with methods for
+ * JaxpRequestReference extends {@link org.apache.openaz.xacml.std.StdMutableRequestReference} with methods for
  * creation form JAXP elements.
  *
  */
