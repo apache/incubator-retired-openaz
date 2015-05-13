@@ -25,7 +25,6 @@
 // Generated on: 2013.05.23 at 02:47:00 PM EDT
 //
 
-
 package oasis.names.tc.xacml._3_0.core.schema.wd_17;
 
 import javax.xml.bind.JAXBElement;
@@ -35,11 +34,11 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElementRef;
 import javax.xml.bind.annotation.XmlType;
 
-
 /**
- * <p>Java class for VariableDefinitionType complex type.
- *
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>
+ * Java class for VariableDefinitionType complex type.
+ * <p>
+ * The following schema fragment specifies the expected content contained within this class.
  *
  * <pre>
  * &lt;complexType name="VariableDefinitionType">
@@ -53,12 +52,10 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- *
- *
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "VariableDefinitionType", propOrder = {
-    "expression"
+                                                       "expression"
 })
 public class VariableDefinitionType {
 
@@ -70,16 +67,19 @@ public class VariableDefinitionType {
     /**
      * Gets the value of the expression property.
      *
-     * @return
-     *     possible object is
-     *     {@link javax.xml.bind.JAXBElement }{@code <}{@link oasis.names.tc.xacml._3_0.core.schema.wd_17.FunctionType }{@code >}
-     *     {@link javax.xml.bind.JAXBElement }{@code <}{@link AttributeDesignatorType }{@code >}
-     *     {@link javax.xml.bind.JAXBElement }{@code <}{@link oasis.names.tc.xacml._3_0.core.schema.wd_17.VariableReferenceType }{@code >}
-     *     {@link javax.xml.bind.JAXBElement }{@code <}{@link oasis.names.tc.xacml._3_0.core.schema.wd_17.ExpressionType }{@code >}
-     *     {@link javax.xml.bind.JAXBElement }{@code <}{@link oasis.names.tc.xacml._3_0.core.schema.wd_17.AttributeSelectorType }{@code >}
-     *     {@link javax.xml.bind.JAXBElement }{@code <}{@link oasis.names.tc.xacml._3_0.core.schema.wd_17.ApplyType }{@code >}
-     *     {@link javax.xml.bind.JAXBElement }{@code <}{@link oasis.names.tc.xacml._3_0.core.schema.wd_17.AttributeValueType }{@code >}
-     *
+     * @return possible object is {@link javax.xml.bind.JAXBElement }{@code <}
+     *         {@link oasis.names.tc.xacml._3_0.core.schema.wd_17.FunctionType }{@code >}
+     *         {@link javax.xml.bind.JAXBElement }{@code <}{@link AttributeDesignatorType }{@code >}
+     *         {@link javax.xml.bind.JAXBElement }{@code <}
+     *         {@link oasis.names.tc.xacml._3_0.core.schema.wd_17.VariableReferenceType }{@code >}
+     *         {@link javax.xml.bind.JAXBElement }{@code <}
+     *         {@link oasis.names.tc.xacml._3_0.core.schema.wd_17.ExpressionType }{@code >}
+     *         {@link javax.xml.bind.JAXBElement }{@code <}
+     *         {@link oasis.names.tc.xacml._3_0.core.schema.wd_17.AttributeSelectorType }{@code >}
+     *         {@link javax.xml.bind.JAXBElement }{@code <}
+     *         {@link oasis.names.tc.xacml._3_0.core.schema.wd_17.ApplyType }{@code >}
+     *         {@link javax.xml.bind.JAXBElement }{@code <}
+     *         {@link oasis.names.tc.xacml._3_0.core.schema.wd_17.AttributeValueType }{@code >}
      */
     public JAXBElement<?> getExpression() {
         return expression;
@@ -88,28 +88,28 @@ public class VariableDefinitionType {
     /**
      * Sets the value of the expression property.
      *
-     * @param value
-     *     allowed object is
-     *     {@link javax.xml.bind.JAXBElement }{@code <}{@link oasis.names.tc.xacml._3_0.core.schema.wd_17.FunctionType }{@code >}
-     *     {@link javax.xml.bind.JAXBElement }{@code <}{@link AttributeDesignatorType }{@code >}
-     *     {@link javax.xml.bind.JAXBElement }{@code <}{@link oasis.names.tc.xacml._3_0.core.schema.wd_17.VariableReferenceType }{@code >}
-     *     {@link javax.xml.bind.JAXBElement }{@code <}{@link oasis.names.tc.xacml._3_0.core.schema.wd_17.ExpressionType }{@code >}
-     *     {@link javax.xml.bind.JAXBElement }{@code <}{@link oasis.names.tc.xacml._3_0.core.schema.wd_17.AttributeSelectorType }{@code >}
-     *     {@link javax.xml.bind.JAXBElement }{@code <}{@link oasis.names.tc.xacml._3_0.core.schema.wd_17.ApplyType }{@code >}
-     *     {@link javax.xml.bind.JAXBElement }{@code <}{@link oasis.names.tc.xacml._3_0.core.schema.wd_17.AttributeValueType }{@code >}
-     *
+     * @param value allowed object is {@link javax.xml.bind.JAXBElement }{@code <}
+     *            {@link oasis.names.tc.xacml._3_0.core.schema.wd_17.FunctionType }{@code >}
+     *            {@link javax.xml.bind.JAXBElement }{@code <}{@link AttributeDesignatorType }{@code >}
+     *            {@link javax.xml.bind.JAXBElement }{@code <}
+     *            {@link oasis.names.tc.xacml._3_0.core.schema.wd_17.VariableReferenceType }{@code >}
+     *            {@link javax.xml.bind.JAXBElement }{@code <}
+     *            {@link oasis.names.tc.xacml._3_0.core.schema.wd_17.ExpressionType }{@code >}
+     *            {@link javax.xml.bind.JAXBElement }{@code <}
+     *            {@link oasis.names.tc.xacml._3_0.core.schema.wd_17.AttributeSelectorType }{@code >}
+     *            {@link javax.xml.bind.JAXBElement }{@code <}
+     *            {@link oasis.names.tc.xacml._3_0.core.schema.wd_17.ApplyType }{@code >}
+     *            {@link javax.xml.bind.JAXBElement }{@code <}
+     *            {@link oasis.names.tc.xacml._3_0.core.schema.wd_17.AttributeValueType }{@code >}
      */
     public void setExpression(JAXBElement<?> value) {
-        this.expression = ((JAXBElement<?> ) value);
+        this.expression = (value);
     }
 
     /**
      * Gets the value of the variableId property.
      *
-     * @return
-     *     possible object is
-     *     {@link String }
-     *
+     * @return possible object is {@link String }
      */
     public String getVariableId() {
         return variableId;
@@ -118,10 +118,7 @@ public class VariableDefinitionType {
     /**
      * Sets the value of the variableId property.
      *
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *
+     * @param value allowed object is {@link String }
      */
     public void setVariableId(String value) {
         this.variableId = value;

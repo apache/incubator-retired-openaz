@@ -41,15 +41,14 @@ import org.apache.openaz.xacml.std.pip.engines.ConfigurableEngine;
 import org.apache.openaz.xacml.util.AttributeUtils;
 
 /**
- * ConfigurableEngineFinder extends {@link EngineFinder} with a method for configuring
- * it from a <code>Properties</code> object.
- *
+ * ConfigurableEngineFinder extends {@link EngineFinder} with a method for configuring it from a
+ * <code>Properties</code> object.
  */
 public class ConfigurableEngineFinder extends EngineFinder {
-    private static final String	PROP_PIP_ENGINES	= "xacml.pip.engines";
-    private static final String	CLASSNAME			= ".classname";
+    private static final String PROP_PIP_ENGINES = "xacml.pip.engines";
+    private static final String CLASSNAME = ".classname";
 
-    private Log logger	= LogFactory.getLog(this.getClass());
+    private Log logger = LogFactory.getLog(this.getClass());
 
     /**
      * Creates an instance of the given <code>String</code> className for an object implementing the
@@ -60,15 +59,17 @@ public class ConfigurableEngineFinder extends EngineFinder {
      * @throws org.apache.openaz.xacml.api.pip.PIPException
      */
     protected ConfigurableEngine newEngine(String className) throws PIPException {
-        Class<?> classForEngine	= null;
+        Class<?> classForEngine = null;
         try {
-            classForEngine	= Class.forName(className);
+            classForEngine = Class.forName(className);
             if (!ConfigurableEngine.class.isAssignableFrom(classForEngine)) {
-                throw new ClassNotFoundException("Engine class \"" + className + "\" does not implement ConfigurableEngine");
+                throw new ClassNotFoundException("Engine class \"" + className
+                                                 + "\" does not implement ConfigurableEngine");
             }
             return ConfigurableEngine.class.cast(classForEngine.newInstance());
         } catch (Exception ex) {
-            throw new PIPException("Exception getting Class for \"" + className + "\"" + ex.getLocalizedMessage());
+            throw new PIPException("Exception getting Class for \"" + className + "\""
+                                   + ex.getLocalizedMessage());
         }
     }
 
@@ -76,7 +77,7 @@ public class ConfigurableEngineFinder extends EngineFinder {
         /*
          * Get the class name for the engine
          */
-        String engineClassName	= properties.getProperty(engineId + CLASSNAME);
+        String engineClassName = properties.getProperty(engineId + CLASSNAME);
         if (engineClassName == null) {
             throw new PIPException("No " + CLASSNAME + " property for PIP engine \"" + engineId + "\"");
         }
@@ -84,7 +85,7 @@ public class ConfigurableEngineFinder extends EngineFinder {
         /*
          * Get an instance of the engine
          */
-        ConfigurableEngine configurableEngine	= newEngine(engineClassName);
+        ConfigurableEngine configurableEngine = newEngine(engineClassName);
 
         /*
          * Configure the engine
@@ -118,10 +119,11 @@ public class ConfigurableEngineFinder extends EngineFinder {
      * the list of PIP engines that should be created, configured, and registered.
      *
      * @param properties the <code>Properties</code> containing the engine configurations
-     * @throws org.apache.openaz.xacml.api.pip.PIPException if there is an error creating and configuring the engines
+     * @throws com.att.research.xacml.api.pip.PIPException if there is an error creating and configuring the
+     *             engines
      */
     public void configure(Properties properties) throws PIPException {
-        String engineIds	= properties.getProperty(PROP_PIP_ENGINES);
+        String engineIds = properties.getProperty(PROP_PIP_ENGINES);
         if (engineIds == null || engineIds.length() == 0) {
             return;
         }
@@ -129,7 +131,7 @@ public class ConfigurableEngineFinder extends EngineFinder {
         /*
          * Split the engines by comma
          */
-        String[] engineIdArray	= engineIds.split("[,]",0);
+        String[] engineIdArray = engineIds.split("[,]", 0);
         if (engineIdArray == null || engineIdArray.length == 0) {
             return;
         }

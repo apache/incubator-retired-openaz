@@ -42,11 +42,8 @@ import org.apache.openaz.xacml.api.pip.PIPRequest;
 import org.apache.openaz.xacml.std.pip.engines.ConfigurableResolver;
 
 /**
- * CSVResolver is the interface used by the {@link CSVEngine} to
- * create list of column parameters to check for XACML attribute requests and convert the results
- * into XACML attributes.
- *
- *
+ * CSVResolver is the interface used by the {@link CSVEngine} to create list of column parameters to check for
+ * XACML attribute requests and convert the results into XACML attributes.
  */
 public interface CSVResolver extends ConfigurableResolver {
 
@@ -59,9 +56,9 @@ public interface CSVResolver extends ConfigurableResolver {
     boolean supportRequest(PIPRequest pipRequest);
 
     /**
-     * Returns a mapping of column's to a list of attribute values. The PIPEngine uses the map
-     * to determine if a line from a CSV file matches the given values. For columns with multiple
-     * possible values, only one value needs to match.
+     * Returns a mapping of column's to a list of attribute values. The PIPEngine uses the map to determine if
+     * a line from a CSV file matches the given values. For columns with multiple possible values, only one
+     * value needs to match.
      *
      * @param engine
      * @param request
@@ -69,7 +66,8 @@ public interface CSVResolver extends ConfigurableResolver {
      * @return
      * @throws org.apache.openaz.xacml.api.pip.PIPException
      */
-    Map<Integer, List<AttributeValue<?>>>	getColumnParameterValues(PIPEngine engine, PIPRequest request, PIPFinder finder) throws PIPException;
+    Map<Integer, List<AttributeValue<?>>> getColumnParameterValues(PIPEngine engine, PIPRequest request,
+                                                                   PIPFinder finder) throws PIPException;
 
     /**
      * Parses the CSV line and returns array of attributes.
@@ -78,6 +76,6 @@ public interface CSVResolver extends ConfigurableResolver {
      * @return list of attributes
      * @throws org.apache.openaz.xacml.api.pip.PIPException
      */
-    List<Attribute>	decodeResult(String[] line)  throws PIPException;
+    List<Attribute> decodeResult(String[] line) throws PIPException;
 
 }

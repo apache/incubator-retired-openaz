@@ -36,17 +36,13 @@ import org.apache.openaz.xacml.util.FactoryException;
 import org.apache.openaz.xacml.util.FactoryFinder;
 
 /**
- * Abstract class for mapping data type {@link Identifier}s to
- * {@link DataType} objects.
- *
- * The static <code>newInstance</code> method looks for the class name of the class extending <code>DataTypeFactory</code> by looking for the
- * property: {@code xacml.dataTypeFactory} in the following places (in order):
- * 		1. System properties
- * 		2. The xacml.properties file which is located by:
- * 			a) {@code System.getProperty("xacml.properties")}
- * 			b) {@code java.home/xacml.properties}
- * 		3. If the class name is not found in one of these properties, the default is: {@code com.att.research.xacml.std.StdDataTypeFactory}
- *
+ * Abstract class for mapping data type {@link Identifier}s to {@link DataType} objects. The static
+ * <code>newInstance</code> method looks for the class name of the class extending
+ * <code>DataTypeFactory</code> by looking for the property: {@code xacml.dataTypeFactory} in the following
+ * places (in order): 1. System properties 2. The xacml.properties file which is located by: a)
+ * {@code System.getProperty("xacml.properties")} b) {@code java.home/xacml.properties} 3. If the class name
+ * is not found in one of these properties, the default is:
+ * {@code com.att.research.xacml.std.StdDataTypeFactory}
  */
 public abstract class DataTypeFactory {
     private static final String	FACTORYID					= "xacml.dataTypeFactory";
@@ -66,8 +62,8 @@ public abstract class DataTypeFactory {
     }
 
     /**
-     * Maps the given {@link Identifier} representing a XACML data type id to a {@link DataType}
-     * object implementing that data type.
+     * Maps the given {@link Identifier} representing a XACML data type id to a {@link DataType} object
+     * implementing that data type.
      *
      * @param dataTypeId the <code>Identifier</code> of the <code>DataType</code> to retrieve.
      * @return the <code>DataType</code> with the given <code>Identifier</code> or null if there is no match.
@@ -106,13 +102,15 @@ public abstract class DataTypeFactory {
     }
 
     /**
-     * Creates an instance of the <code>DataTypeFactory</code> using the given class name using the given <code>ClassLoader</code>.
+     * Creates an instance of the <code>DataTypeFactory</code> using the given class name using the given
+     * <code>ClassLoader</code>.
      *
      * @param className the <code>String</code> class name of the <code>DataTypeFactory</code> to create
      * @param classLoader the <code>ClassLoader</code> to use to load the class with the given class name
      * @return the <code>DataTypeFactory</code> for the given class name
      */
-    public static DataTypeFactory newInstance(String className, ClassLoader classLoader) throws FactoryException {
+    public static DataTypeFactory newInstance(String className, ClassLoader classLoader)
+        throws FactoryException {
         return FactoryFinder.newInstance(className, DataTypeFactory.class, classLoader, false);
     }
 }

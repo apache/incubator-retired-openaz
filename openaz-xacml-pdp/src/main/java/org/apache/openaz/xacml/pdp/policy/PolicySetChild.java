@@ -38,25 +38,24 @@ import org.apache.openaz.xacml.pdp.eval.Matchable;
 import org.apache.openaz.xacml.std.StdStatusCode;
 
 /**
- * PolicySetChild extends {@link com.att.research.xacmlatt.pdp.PolicyComponent} to represent XACML 3.0 Policies, PolicySets, PolicyReferences,
- * and PolicySetReferences.
- *
+ * PolicySetChild extends {@link com.att.research.xacmlatt.pdp.PolicyComponent} to represent XACML 3.0
+ * Policies, PolicySets, PolicyReferences, and PolicySetReferences.
  */
 public abstract class PolicySetChild extends PolicyComponent implements Evaluatable, Matchable, Traceable {
-    private Identifier		identifier;
-    private PolicyDefaults	policyDefaults;
+    private Identifier identifier;
+    private PolicyDefaults policyDefaults;
     private PolicySet parent;
 
     /**
-     * Creates a new <code>PolicySetChild</code> with the given given {@link org.apache.openaz.xacml.api.StatusCode}
-     * and <code>String</code> status message.
+     * Creates a new <code>PolicySetChild</code> with the given given
+     * {@link com.att.research.xacml.api.StatusCode} and <code>String</code> status message.
      *
      * @param statusCodeIn the <code>StatusCode</code> for the new <code>PolicySetChild</code>
      * @param statusMessageIn the <code>String</code> status message for the new <code>PolicySetChild</code>
      */
     protected PolicySetChild(PolicySet parentIn, StatusCode statusCodeIn, String statusMessageIn) {
         super(statusCodeIn, statusMessageIn);
-        this.parent	= parentIn;
+        this.parent = parentIn;
     }
 
     protected PolicySetChild(StatusCode statusCodeIn, String statusMessageIn) {
@@ -73,7 +72,7 @@ public abstract class PolicySetChild extends PolicyComponent implements Evaluata
     }
 
     protected PolicySetChild(PolicySet parentIn) {
-        this.parent	= parentIn;
+        this.parent = parentIn;
     }
 
     /**
@@ -93,7 +92,7 @@ public abstract class PolicySetChild extends PolicyComponent implements Evaluata
     }
 
     public void setIdentifier(Identifier identifierIn) {
-        this.identifier	= identifierIn;
+        this.identifier = identifierIn;
     }
 
     /**
@@ -111,12 +110,12 @@ public abstract class PolicySetChild extends PolicyComponent implements Evaluata
      * @param policyDefaultsIn the <code>PolicyDefaults</code> for this <code>PolicySetChild</code>
      */
     public void setPolicyDefaults(PolicyDefaults policyDefaultsIn) {
-        this.policyDefaults	= policyDefaultsIn;
+        this.policyDefaults = policyDefaultsIn;
     }
 
     /**
-     * Gets the parent {@link PolicySet} containing this <code>PolicySetChild</code>
-     * or null if this is the root.
+     * Gets the parent {@link PolicySet} containing this <code>PolicySetChild</code> or null if this is the
+     * root.
      *
      * @return the parent <code>PolicySet</code> of this <code>PolicySetChild</code>
      */
@@ -147,7 +146,7 @@ public abstract class PolicySetChild extends PolicyComponent implements Evaluata
 
     @Override
     public String toString() {
-        StringBuilder stringBuilder	= new StringBuilder("{");
+        StringBuilder stringBuilder = new StringBuilder("{");
 
         stringBuilder.append("super=");
         stringBuilder.append(super.toString());

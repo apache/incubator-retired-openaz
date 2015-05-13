@@ -21,11 +21,8 @@
 package org.apache.openaz.pepapi;
 
 /**
- * An interface that can be used for preliminary processing
- * of a PepRequest before it is actually submitted to the
- * main decide() method.
- *
- *
+ * An interface that can be used for preliminary processing of a PepRequest before it is actually submitted to
+ * the main decide() method.
  */
 public interface PreDecisionHandler {
 
@@ -37,6 +34,5 @@ public interface PreDecisionHandler {
      * @param request
      * @throws org.apache.openaz.pepapi.PepException
      */
-    public void preDecide(PepRequest request)
-    throws PepException;
+    void preDecide(PepRequest request) throws PepException;
 }

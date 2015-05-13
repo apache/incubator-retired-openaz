@@ -63,33 +63,32 @@ import com.google.common.base.Splitter;
 import com.google.common.cache.Cache;
 
 /**
- * PIPEgineJDBC extends {@link org.apache.openaz.xacml.std.pip.engines.StdConfigurableEngine} to implement a PIP that
- * retrieves XACML attributes from a database using JDBC.  This is a minimal implementation that does not do any caching of
- * results.  It does not perform JDBC connection pooling either.
- *
+ * PIPEgineJDBC extends {@link com.att.research.xacml.std.pip.engines.StdConfigurableEngine} to implement a
+ * PIP that retrieves XACML attributes from a database using JDBC. This is a minimal implementation that does
+ * not do any caching of results. It does not perform JDBC connection pooling either.
  */
 public class JDBCEngine extends StdConfigurableEngine {
-    public static final String PROP_TYPE			= "type";
-    public static final String PROP_JDBC_DRIVER		= "jdbc.driver";
-    public static final String PROP_JDBC_URL		= "jdbc.url";
-    public static final String PROP_JDBC_CONN		= "jdbc.conn";
-    public static final String PROP_JDBC_CONN_USER	= "jdbc.conn.user";
-    public static final String PROP_JDBC_CONN_PASS	= "jdbc.conn.password";
-    public static final String PROP_RESOLVERS		= "resolvers";
-    public static final String PROP_RESOLVER		= "resolver";
-    public static final String PROP_CLASSNAME		= "classname";
+    public static final String PROP_TYPE = "type";
+    public static final String PROP_JDBC_DRIVER = "jdbc.driver";
+    public static final String PROP_JDBC_URL = "jdbc.url";
+    public static final String PROP_JDBC_CONN = "jdbc.conn";
+    public static final String PROP_JDBC_CONN_USER = "jdbc.conn.user";
+    public static final String PROP_JDBC_CONN_PASS = "jdbc.conn.password";
+    public static final String PROP_RESOLVERS = "resolvers";
+    public static final String PROP_RESOLVER = "resolver";
+    public static final String PROP_CLASSNAME = "classname";
 
-    public static final String TYPE_JDBC			= "jdbc";
-    public static final String TYPE_JNDI			= "jndi";
+    public static final String TYPE_JDBC = "jdbc";
+    public static final String TYPE_JNDI = "jndi";
 
-    protected Log logger	= LogFactory.getLog(this.getClass());
+    protected Log logger = LogFactory.getLog(this.getClass());
     private String type;
     private String jndiDataSource;
     private String jdbcDriverClass;
     private boolean jdbcDriverClassLoaded;
     private String jdbcUrl;
-    private Properties jdbcConnProperties	= new Properties();
-    private List<JDBCResolver> jdbcResolvers	= new ArrayList<JDBCResolver>();
+    private Properties jdbcConnProperties = new Properties();
+    private List<JDBCResolver> jdbcResolvers = new ArrayList<JDBCResolver>();
 
     /**
      * If the JDBC driver <code>Class</code> has not been loaded yet, do so now.
@@ -98,21 +97,22 @@ public class JDBCEngine extends StdConfigurableEngine {
      */
     protected void loadDriverClass() throws ClassNotFoundException {
         if (!this.jdbcDriverClassLoaded) {
-            synchronized(this) {
+            synchronized (this) {
                 if (!this.jdbcDriverClassLoaded) {
                     Class.forName(this.jdbcDriverClass);
-                    this.jdbcDriverClassLoaded	= true;
+                    this.jdbcDriverClassLoaded = true;
                 }
             }
         }
     }
 
     /**
-     * Creates a JDBC {@link java.sql.Connection} to the database.  Extensions to the <code>JDBCEngine</code> class can perform
-     * connection pooling or other connection reuse optimizations here.
+     * Creates a JDBC {@link java.sql.Connection} to the database. Extensions to the <code>JDBCEngine</code>
+     * class can perform connection pooling or other connection reuse optimizations here.
      *
      * @return a <code>Connection</code> to use to execute the query
-     * @throws org.apache.openaz.xacml.api.pip.PIPException if there is an error creating the JDBC <code>Connection</code>.
+     * @throws com.att.research.xacml.api.pip.PIPException if there is an error creating the JDBC
+     *             <code>Connection</code>.
      */
     protected Connection getConnection() throws PIPException {
         /*
@@ -132,16 +132,18 @@ public class JDBCEngine extends StdConfigurableEngine {
         try {
             this.loadDriverClass();
         } catch (ClassNotFoundException ex) {
-            this.logger.error("ClassNotFoundException loading JDBC driver class '" + this.jdbcDriverClass + "'", ex);
-            throw new PIPException("ClassNotFoundException loading JDBC driver class '" + this.jdbcDriverClass + "'", ex);
+            this.logger.error("ClassNotFoundException loading JDBC driver class '" + this.jdbcDriverClass
+                              + "'", ex);
+            throw new PIPException("ClassNotFoundException loading JDBC driver class '"
+                                   + this.jdbcDriverClass + "'", ex);
         }
 
         /*
          * Try to create a new Connection
          */
-        Connection connectionResult	= null;
+        Connection connectionResult = null;
         try {
-            connectionResult	= DriverManager.getConnection(this.jdbcUrl, this.jdbcConnProperties);
+            connectionResult = DriverManager.getConnection(this.jdbcUrl, this.jdbcConnProperties);
         } catch (SQLException ex) {
             this.logger.error("SQLException creating Connection", ex);
             throw new PIPException("SQLException creating Connection", ex);
@@ -153,7 +155,7 @@ public class JDBCEngine extends StdConfigurableEngine {
     protected Connection getJNDIConnection() throws PIPException {
         try {
             Context initialContext = new InitialContext();
-            DataSource datasource = (DataSource) initialContext.lookup(this.jndiDataSource);
+            DataSource datasource = (DataSource)initialContext.lookup(this.jndiDataSource);
             if (datasource == null) {
                 throw new PIPException("");
             }
@@ -164,12 +166,14 @@ public class JDBCEngine extends StdConfigurableEngine {
         }
     }
 
-    protected void getAttributes(PIPRequest pipRequest, PIPFinder pipFinder, JDBCResolver jdbcResolver, StdMutablePIPResponse pipResponse) throws PIPException {
+    protected void getAttributes(PIPRequest pipRequest, PIPFinder pipFinder, JDBCResolver jdbcResolver,
+                                 StdMutablePIPResponse pipResponse) throws PIPException {
         /*
          * First we need to get a PreparedStatement
          */
         Connection connection = this.getConnection();
-        PreparedStatement preparedStatement	= jdbcResolver.getPreparedStatement(this, pipRequest, pipFinder, connection);
+        PreparedStatement preparedStatement = jdbcResolver.getPreparedStatement(this, pipRequest, pipFinder,
+                                                                                connection);
         if (preparedStatement == null) {
             this.logger.debug(this.getName() + " does not handle " + pipRequest.toString());
             try {
@@ -193,9 +197,9 @@ public class JDBCEngine extends StdConfigurableEngine {
         /*
          * Execute the prepared statement
          */
-        ResultSet resultSet		= null;
+        ResultSet resultSet = null;
         try {
-            resultSet	= preparedStatement.executeQuery();
+            resultSet = preparedStatement.executeQuery();
         } catch (SQLException ex) {
             this.logger.error("SQLException executing query: " + ex.toString(), ex);
             // TODO: Should we re-throw the exception, or just return an empty response?
@@ -219,7 +223,7 @@ public class JDBCEngine extends StdConfigurableEngine {
              * Get all the results
              */
             while (resultSet.next()) {
-                List<Attribute> listAttributes	= jdbcResolver.decodeResult(resultSet);
+                List<Attribute> listAttributes = jdbcResolver.decodeResult(resultSet);
                 if (listAttributes != null) {
                     pipResponse.addAttributes(listAttributes);
                 }
@@ -238,18 +242,21 @@ public class JDBCEngine extends StdConfigurableEngine {
                 try {
                     resultSet.close();
                 } catch (SQLException e) {
-                    this.logger.error("SQLException closing resultSet: " + e.toString() + "  (May be memory leak)");
+                    this.logger.error("SQLException closing resultSet: " + e.toString()
+                                      + "  (May be memory leak)");
                 }
             }
             try {
                 preparedStatement.close();
             } catch (SQLException e) {
-                this.logger.error("SQLException closing preparedStatement: " + e.toString() + "  (May be memory leak)");
+                this.logger.error("SQLException closing preparedStatement: " + e.toString()
+                                  + "  (May be memory leak)");
             }
             try {
                 connection.close();
             } catch (SQLException e) {
-                this.logger.error("SQLException closing connection: " + e.toString() + "  (May be memory leak)");
+                this.logger.error("SQLException closing connection: " + e.toString()
+                                  + "  (May be memory leak)");
             }
         }
     }
@@ -260,7 +267,7 @@ public class JDBCEngine extends StdConfigurableEngine {
             throw new IllegalStateException(this.getClass().getCanonicalName() + " is not configured");
         }
 
-        StdMutablePIPResponse mutablePIPResponse	= new StdMutablePIPResponse();
+        StdMutablePIPResponse mutablePIPResponse = new StdMutablePIPResponse();
         for (JDBCResolver jdbcResolver : this.jdbcResolvers) {
             this.getAttributes(pipRequest, pipFinder, jdbcResolver, mutablePIPResponse);
         }
@@ -276,36 +283,42 @@ public class JDBCEngine extends StdConfigurableEngine {
                     this.logger.debug(AttributeUtils.prettyPrint(attribute));
                 }
             } else if (this.logger.isDebugEnabled()) {
-//				this.logger.debug("Returning " + mutablePIPResponse.getAttributes().size() + " attributes");
-//				this.logger.debug(mutablePIPResponse.getAttributes());
+                // this.logger.debug("Returning " + mutablePIPResponse.getAttributes().size() +
+                // " attributes");
+                // this.logger.debug(mutablePIPResponse.getAttributes());
             }
             return new StdPIPResponse(mutablePIPResponse);
         }
     }
 
     /**
-     * Creates a new {@link org.apache.openaz.xacml.std.pip.engines.jdbc.JDBCResolver} by looking up the "classname"
-     * property for the given <code>String</code> resolver ID and then calling its <code>configure</code> method.
+     * Creates a new {@link com.att.research.xacml.std.pip.engines.jdbc.JDBCResolver} by looking up the
+     * "classname" property for the given <code>String</code> resolver ID and then calling its
+     * <code>configure</code> method.
      *
      * @param resolverId the <code>String</code> identifier of the resolver to configure
-     * @param properties the <code>Properties</code> to search for the "classname" and any resolver-specific properties
-     * @throws org.apache.openaz.xacml.api.pip.PIPException if there is an error creating the <code>JDBCResolver</code>.
+     * @param properties the <code>Properties</code> to search for the "classname" and any resolver-specific
+     *            properties
+     * @throws com.att.research.xacml.api.pip.PIPException if there is an error creating the
+     *             <code>JDBCResolver</code>.
      */
     protected void createResolver(String resolverId, Properties properties) throws PIPException {
-        String propPrefix	= resolverId + ".";
-        String resolverClassName	= properties.getProperty(propPrefix + PROP_CLASSNAME);
+        String propPrefix = resolverId + ".";
+        String resolverClassName = properties.getProperty(propPrefix + PROP_CLASSNAME);
         if (resolverClassName == null || resolverClassName.length() == 0) {
             this.logger.error("No '" + propPrefix + PROP_CLASSNAME + "' property.");
             throw new PIPException("No '" + propPrefix + PROP_CLASSNAME + "' property.");
         }
         try {
-            Class<?> resolverClass	= Class.forName(resolverClassName);
+            Class<?> resolverClass = Class.forName(resolverClassName);
             if (!JDBCResolver.class.isAssignableFrom(resolverClass)) {
-                this.logger.error("JDBCResolver class " + propPrefix + " does not implement " + JDBCResolver.class.getCanonicalName());
-                throw new PIPException("JDBCResolver class " + propPrefix + " does not implement " + JDBCResolver.class.getCanonicalName());
+                this.logger.error("JDBCResolver class " + propPrefix + " does not implement "
+                                  + JDBCResolver.class.getCanonicalName());
+                throw new PIPException("JDBCResolver class " + propPrefix + " does not implement "
+                                       + JDBCResolver.class.getCanonicalName());
 
             }
-            JDBCResolver jdbcResolver	= JDBCResolver.class.cast(resolverClass.newInstance());
+            JDBCResolver jdbcResolver = JDBCResolver.class.cast(resolverClass.newInstance());
             jdbcResolver.configure(resolverId, properties, this.getIssuer());
             this.jdbcResolvers.add(jdbcResolver);
         } catch (Exception ex) {
@@ -323,7 +336,7 @@ public class JDBCEngine extends StdConfigurableEngine {
         //
         // Prefix
         //
-        String propPrefix	= id + ".";
+        String propPrefix = id + ".";
         //
         // What is our type?
         //
@@ -339,7 +352,9 @@ public class JDBCEngine extends StdConfigurableEngine {
             Class.forName(this.jdbcDriverClass);
         } catch (Exception ex) {
             this.logger.error("Exception instantiating JDBC driver class '" + this.jdbcDriverClass + "'", ex);
-            throw new PIPException("Exception instantiating JDBC driver class '" + this.jdbcDriverClass + "'", ex);
+            throw new PIPException(
+                                   "Exception instantiating JDBC driver class '" + this.jdbcDriverClass + "'",
+                                   ex);
         }
 
         if ((this.jdbcUrl = properties.getProperty(propPrefix + PROP_JDBC_URL)) == null) {
@@ -349,7 +364,7 @@ public class JDBCEngine extends StdConfigurableEngine {
         //
         // Go through all our resolvers
         //
-        String propResolverPrefix	= propPrefix + PROP_RESOLVERS;
+        String propResolverPrefix = propPrefix + PROP_RESOLVERS;
         String stringProp = properties.getProperty(propResolverPrefix);
         if (stringProp == null || stringProp.isEmpty()) {
             this.logger.error("No '" + propResolverPrefix + "' property");
@@ -367,10 +382,10 @@ public class JDBCEngine extends StdConfigurableEngine {
         if ((stringProp = properties.getProperty(propPrefix + PROP_JDBC_CONN_PASS)) != null) {
             this.jdbcConnProperties.setProperty("password", stringProp);
         }
-        String jdbcConnPrefix	= propPrefix + PROP_JDBC_CONN;
+        String jdbcConnPrefix = propPrefix + PROP_JDBC_CONN;
         if ((stringProp = properties.getProperty(jdbcConnPrefix)) != null) {
-            jdbcConnPrefix	= jdbcConnPrefix + ".";
-            String[] connProperties	= stringProp.split("[,]",0);
+            jdbcConnPrefix = jdbcConnPrefix + ".";
+            String[] connProperties = stringProp.split("[,]", 0);
             for (String connProperty : connProperties) {
                 if ((stringProp = properties.getProperty(jdbcConnPrefix + connProperty)) != null) {
                     this.jdbcConnProperties.setProperty(connProperty, stringProp);

@@ -48,18 +48,19 @@ import java.net.URI;
 import java.util.*;
 
 public class RequestParser {
-    private static Log logger	= LogFactory.getLog(RequestParser.class);
+    private static Log logger = LogFactory.getLog(RequestParser.class);
 
     //
     // Create our data type factory object. We could make this static
     //
-    protected static DataTypeFactory dataTypeFactory		= null;
+    protected static DataTypeFactory dataTypeFactory = null;
+
     protected static synchronized DataTypeFactory getDataTypeFactory() {
         try {
             if (dataTypeFactory != null) {
                 return dataTypeFactory;
             }
-            dataTypeFactory	= DataTypeFactory.newInstance();
+            dataTypeFactory = DataTypeFactory.newInstance();
             if (dataTypeFactory == null) {
                 logger.error("Could not create data type factory");
             }
@@ -69,11 +70,12 @@ public class RequestParser {
         return dataTypeFactory;
     }
 
-    public static Request	parseRequest(Object obj) throws IllegalArgumentException, IllegalAccessException, DataTypeException {
+    public static Request parseRequest(Object obj) throws IllegalArgumentException, IllegalAccessException,
+        DataTypeException {
         //
         // Our returned object
         //
-        StdMutableRequest stdMutableRequest	= new StdMutableRequest();
+        StdMutableRequest stdMutableRequest = new StdMutableRequest();
         //
         // Our collection of attribute values
         //
@@ -88,7 +90,8 @@ public class RequestParser {
         stdMutableRequest.setReturnPolicyIdList(requestAnnotation.ReturnPolicyIdList());
         stdMutableRequest.setCombinedDecision(requestAnnotation.CombinedDecision());
         if (requestAnnotation.Defaults().equals(XACMLRequest.nullString) == false) {
-            stdMutableRequest.setRequestDefaults(new StdRequestDefaults(URI.create(requestAnnotation.Defaults())));
+            stdMutableRequest.setRequestDefaults(new StdRequestDefaults(URI.create(requestAnnotation
+                .Defaults())));
         }
         //
         // Check for multi-request
@@ -118,23 +121,23 @@ public class RequestParser {
                                            new IdentifierImpl(subject.category()),
                                            new IdentifierImpl(subject.attributeId()),
                                            subject.includeInResults(),
-                                           (subject.datatype().equals(XACMLRequest.nullString) ? null : subject.datatype()),
-                                           (subject.issuer().equals(XACMLRequest.nullString) ? null : subject.issuer()),
-                                           (subject.id().equals(XACMLRequest.nullString) ? null : subject.id()),
-                                           field,
-                                           obj);
+                                           (subject.datatype().equals(XACMLRequest.nullString)
+                                               ? null : subject.datatype()),
+                                           (subject.issuer().equals(XACMLRequest.nullString) ? null : subject
+                                               .issuer()), (subject.id().equals(XACMLRequest.nullString)
+                                               ? null : subject.id()), field, obj);
             }
             XACMLAction action = field.getAnnotation(XACMLAction.class);
             if (action != null) {
-                RequestParser.addAttribute(attributes,
-                                           new IdentifierImpl(action.category()),
-                                           new IdentifierImpl(action.attributeId()),
-                                           action.includeInResults(),
-                                           (action.datatype().equals(XACMLRequest.nullString) ? null : action.datatype()),
-                                           (action.issuer().equals(XACMLRequest.nullString) ? null : action.issuer()),
-                                           (action.id().equals(XACMLRequest.nullString) ? null : action.id()),
-                                           field,
-                                           obj);
+                RequestParser
+                    .addAttribute(attributes,
+                                  new IdentifierImpl(action.category()),
+                                  new IdentifierImpl(action.attributeId()),
+                                  action.includeInResults(),
+                                  (action.datatype().equals(XACMLRequest.nullString) ? null : action
+                                      .datatype()), (action.issuer().equals(XACMLRequest.nullString)
+                                      ? null : action.issuer()), (action.id().equals(XACMLRequest.nullString)
+                                      ? null : action.id()), field, obj);
             }
             XACMLResource resource = field.getAnnotation(XACMLResource.class);
             if (resource != null) {
@@ -142,23 +145,24 @@ public class RequestParser {
                                            new IdentifierImpl(resource.category()),
                                            new IdentifierImpl(resource.attributeId()),
                                            resource.includeInResults(),
-                                           (resource.datatype().equals(XACMLRequest.nullString) ? null : resource.datatype()),
-                                           (resource.issuer().equals(XACMLRequest.nullString) ? null : resource.issuer()),
-                                           (resource.id().equals(XACMLRequest.nullString) ? null : resource.id()),
-                                           field,
-                                           obj);
+                                           (resource.datatype().equals(XACMLRequest.nullString)
+                                               ? null : resource.datatype()),
+                                           (resource.issuer().equals(XACMLRequest.nullString)
+                                               ? null : resource.issuer()),
+                                           (resource.id().equals(XACMLRequest.nullString) ? null : resource
+                                               .id()), field, obj);
             }
             XACMLEnvironment environment = field.getAnnotation(XACMLEnvironment.class);
             if (environment != null) {
-                RequestParser.addAttribute(attributes,
-                                           new IdentifierImpl(environment.category()),
-                                           new IdentifierImpl(environment.attributeId()),
-                                           environment.includeInResults(),
-                                           (environment.datatype().equals(XACMLRequest.nullString) ? null : environment.datatype()),
-                                           (environment.issuer().equals(XACMLRequest.nullString) ? null : environment.issuer()),
-                                           (environment.id().equals(XACMLRequest.nullString) ? null : environment.id()),
-                                           field,
-                                           obj);
+                RequestParser.addAttribute(attributes, new IdentifierImpl(environment.category()),
+                                           new IdentifierImpl(environment.attributeId()), environment
+                                               .includeInResults(),
+                                           (environment.datatype().equals(XACMLRequest.nullString)
+                                               ? null : environment.datatype()),
+                                           (environment.issuer().equals(XACMLRequest.nullString)
+                                               ? null : environment.issuer()),
+                                           (environment.id().equals(XACMLRequest.nullString)
+                                               ? null : environment.id()), field, obj);
             }
             XACMLAttribute attribute = field.getAnnotation(XACMLAttribute.class);
             if (attribute != null) {
@@ -166,11 +170,12 @@ public class RequestParser {
                                            new IdentifierImpl(attribute.category()),
                                            new IdentifierImpl(attribute.attributeId()),
                                            attribute.includeInResults(),
-                                           (attribute.datatype().equals(XACMLRequest.nullString) ? null : attribute.datatype()),
-                                           (attribute.issuer().equals(XACMLRequest.nullString) ? null : attribute.issuer()),
-                                           (attribute.id().equals(XACMLRequest.nullString) ? null : attribute.id()),
-                                           field,
-                                           obj);
+                                           (attribute.datatype().equals(XACMLRequest.nullString)
+                                               ? null : attribute.datatype()),
+                                           (attribute.issuer().equals(XACMLRequest.nullString)
+                                               ? null : attribute.issuer()),
+                                           (attribute.id().equals(XACMLRequest.nullString) ? null : attribute
+                                               .id()), field, obj);
             }
         }
         //
@@ -185,19 +190,14 @@ public class RequestParser {
         return stdMutableRequest;
     }
 
-    public static void addAttribute(List<StdMutableRequestAttributes> attributes,
-                                    Identifier category,
-                                    Identifier attributeId,
-                                    boolean includeInResults,
-                                    String datatype,
-                                    String issuer,
-                                    String id,
-                                    Field field,
-                                    Object object) throws IllegalArgumentException, IllegalAccessException, DataTypeException {
+    public static void addAttribute(List<StdMutableRequestAttributes> attributes, Identifier category,
+                                    Identifier attributeId, boolean includeInResults, String datatype,
+                                    String issuer, String id, Field field, Object object)
+        throws IllegalArgumentException, IllegalAccessException, DataTypeException {
         //
         // Create our attribute
         //
-        StdMutableAttribute mutableAttribute	= new StdMutableAttribute();
+        StdMutableAttribute mutableAttribute = new StdMutableAttribute();
         mutableAttribute.setCategory(category);
         mutableAttribute.setAttributeId(attributeId);
         mutableAttribute.setIncludeInResults(includeInResults);
@@ -219,8 +219,8 @@ public class RequestParser {
         //
         boolean added = false;
         for (StdMutableRequestAttributes a : attributes) {
-            if (a.getCategory().equals(mutableAttribute.getCategory()) &&
-                    (id != null ? a.getXmlId().equals(id) : (a.getXmlId() == null ? true : false))) {
+            if (a.getCategory().equals(mutableAttribute.getCategory())
+                && (id != null ? a.getXmlId().equals(id) : (a.getXmlId() == null ? true : false))) {
                 //
                 // Category exists, add in the attribute values
                 //
@@ -244,7 +244,8 @@ public class RequestParser {
         }
     }
 
-    public static Collection<AttributeValue<?>>	extractValues(String datatype, Field field, Object object) throws IllegalArgumentException, IllegalAccessException, DataTypeException {
+    public static Collection<AttributeValue<?>> extractValues(String datatype, Field field, Object object)
+        throws IllegalArgumentException, IllegalAccessException, DataTypeException {
         //
         // Synchronize?
         //
@@ -274,7 +275,7 @@ public class RequestParser {
         // Are we working with a collection or an array?
         //
         if (field.get(object) instanceof Collection || field.get(object) instanceof Map) {
-            Collection<?> objects = (Collection<?>) field.get(object);
+            Collection<?> objects = (Collection<?>)field.get(object);
             if (objects == null || objects.isEmpty()) {
                 if (logger.isTraceEnabled()) {
                     logger.trace("empty collection");
@@ -318,9 +319,8 @@ public class RequestParser {
                 datatypeId = XACML3.ID_DATATYPE_BOOLEAN;
             } else if (object instanceof Double || object instanceof Float) {
                 datatypeId = XACML3.ID_DATATYPE_DOUBLE;
-            } else if (object instanceof Date ||
-                       object instanceof Calendar ||
-                       object instanceof ISO8601DateTime) {
+            } else if (object instanceof Date || object instanceof Calendar
+                       || object instanceof ISO8601DateTime) {
                 datatypeId = XACML3.ID_DATATYPE_DATETIME;
             } else if (object instanceof URI) {
                 datatypeId = XACML3.ID_DATATYPE_ANYURI;
@@ -330,8 +330,7 @@ public class RequestParser {
                 datatypeId = XACML3.ID_DATATYPE_TIME;
             } else if (object instanceof RFC2396DomainName) {
                 datatypeId = XACML3.ID_DATATYPE_DNSNAME;
-            } else if (object instanceof byte[] ||
-                       object instanceof HexBinary) {
+            } else if (object instanceof byte[] || object instanceof HexBinary) {
                 datatypeId = XACML3.ID_DATATYPE_HEXBINARY;
             } else if (object instanceof Base64Binary) {
                 datatypeId = XACML3.ID_DATATYPE_BASE64BINARY;
@@ -343,13 +342,13 @@ public class RequestParser {
                 datatypeId = XACML3.ID_DATATYPE_RFC822NAME;
             } else if (object instanceof X500Principal) {
                 datatypeId = XACML3.ID_DATATYPE_X500NAME;
-            } else if (object instanceof XPathExpression ||
-                       object instanceof Node) {
+            } else if (object instanceof XPathExpression || object instanceof Node) {
                 datatypeId = XACML3.ID_DATATYPE_XPATHEXPRESSION;
             } else if (object instanceof XPathYearMonthDuration) {
                 datatypeId = XACML3.ID_DATATYPE_YEARMONTHDURATION;
             } else {
-                logger.warn("Cannot decipher java object, defaulting to String datatype. If this is not correct, you must specify the datatype in the annotation.");
+                logger
+                    .warn("Cannot decipher java object, defaulting to String datatype. If this is not correct, you must specify the datatype in the annotation.");
                 //
                 // Default to a string
                 //
@@ -358,7 +357,7 @@ public class RequestParser {
         } else {
             datatypeId = new IdentifierImpl(datatype);
         }
-        DataType<?> dataTypeExtended	= getDataTypeFactory().getDataType(datatypeId);
+        DataType<?> dataTypeExtended = getDataTypeFactory().getDataType(datatypeId);
         if (dataTypeExtended == null) {
             logger.error("DataType factory does not know datatype: " + datatype);
             return null;

@@ -25,7 +25,6 @@
 // Generated on: 2013.05.23 at 02:47:00 PM EDT
 //
 
-
 package oasis.names.tc.xacml._3_0.core.schema.wd_17;
 
 import java.util.ArrayList;
@@ -41,11 +40,11 @@ import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
-
 /**
- * <p>Java class for AttributesType complex type.
- *
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>
+ * Java class for AttributesType complex type.
+ * <p>
+ * The following schema fragment specifies the expected content contained within this class.
  *
  * <pre>
  * &lt;complexType name="AttributesType">
@@ -61,13 +60,10 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- *
- *
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "AttributesType", propOrder = {
-    "content",
-    "attribute"
+                                               "content", "attribute"
 })
 public class AttributesType {
 
@@ -87,10 +83,7 @@ public class AttributesType {
     /**
      * Gets the value of the content property.
      *
-     * @return
-     *     possible object is
-     *     {@link oasis.names.tc.xacml._3_0.core.schema.wd_17.ContentType }
-     *
+     * @return possible object is {@link oasis.names.tc.xacml._3_0.core.schema.wd_17.ContentType }
      */
     public ContentType getContent() {
         return content;
@@ -99,10 +92,7 @@ public class AttributesType {
     /**
      * Sets the value of the content property.
      *
-     * @param value
-     *     allowed object is
-     *     {@link oasis.names.tc.xacml._3_0.core.schema.wd_17.ContentType }
-     *
+     * @param value allowed object is {@link oasis.names.tc.xacml._3_0.core.schema.wd_17.ContentType }
      */
     public void setContent(ContentType value) {
         this.content = value;
@@ -110,25 +100,19 @@ public class AttributesType {
 
     /**
      * Gets the value of the attribute property.
-     *
      * <p>
-     * This accessor method returns a reference to the live list,
-     * not a snapshot. Therefore any modification you make to the
-     * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the attribute property.
-     *
+     * This accessor method returns a reference to the live list, not a snapshot. Therefore any modification
+     * you make to the returned list will be present inside the JAXB object. This is why there is not a
+     * <CODE>set</CODE> method for the attribute property.
      * <p>
      * For example, to add a new item, do as follows:
+     * 
      * <pre>
-     *    getAttribute().add(newItem);
+     * getAttribute().add(newItem);
      * </pre>
-     *
-     *
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link oasis.names.tc.xacml._3_0.core.schema.wd_17.AttributeType }
-     *
-     *
      */
     public List<AttributeType> getAttribute() {
         if (attribute == null) {
@@ -140,10 +124,7 @@ public class AttributesType {
     /**
      * Gets the value of the category property.
      *
-     * @return
-     *     possible object is
-     *     {@link String }
-     *
+     * @return possible object is {@link String }
      */
     public String getCategory() {
         return category;
@@ -152,10 +133,7 @@ public class AttributesType {
     /**
      * Sets the value of the category property.
      *
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *
+     * @param value allowed object is {@link String }
      */
     public void setCategory(String value) {
         this.category = value;
@@ -164,10 +142,7 @@ public class AttributesType {
     /**
      * Gets the value of the id property.
      *
-     * @return
-     *     possible object is
-     *     {@link String }
-     *
+     * @return possible object is {@link String }
      */
     public String getId() {
         return id;
@@ -176,10 +151,7 @@ public class AttributesType {
     /**
      * Sets the value of the id property.
      *
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *
+     * @param value allowed object is {@link String }
      */
     public void setId(String value) {
         this.id = value;

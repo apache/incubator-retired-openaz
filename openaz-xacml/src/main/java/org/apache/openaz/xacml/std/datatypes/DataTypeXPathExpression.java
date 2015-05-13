@@ -37,12 +37,10 @@ import org.apache.openaz.xacml.api.XACML3;
 import org.w3c.dom.Node;
 
 /**
- * DataTypeXPathExpression extends {@link DataTypeBase} to implement the XACML
- * xpathExpression data type.
- *
+ * DataTypeXPathExpression extends {@link DataTypeBase} to implement the XACML xpathExpression data type.
  */
 public class DataTypeXPathExpression extends DataTypeBase<XPathExpressionWrapper> {
-    private static final DataTypeXPathExpression	singleInstance	= new DataTypeXPathExpression();
+    private static final DataTypeXPathExpression singleInstance = new DataTypeXPathExpression();
 
     private DataTypeXPathExpression() {
         super(XACML3.ID_DATATYPE_XPATHEXPRESSION, XPathExpressionWrapper.class);
@@ -59,7 +57,7 @@ public class DataTypeXPathExpression extends DataTypeBase<XPathExpressionWrapper
         } else if (source instanceof XPathExpression) {
             return new XPathExpressionWrapper((XPathExpression)source);
         } else if (source instanceof Node) {
-            Node node			= (Node)source;
+            Node node = (Node)source;
             return new XPathExpressionWrapper(node.getOwnerDocument(), node.getTextContent());
         } else {
             return new XPathExpressionWrapper(this.convertToString(source));

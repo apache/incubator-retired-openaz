@@ -47,36 +47,19 @@ import org.apache.openaz.xacml.std.StdStatusCode;
 import org.apache.openaz.xacml.std.datatypes.DataTypes;
 
 /**
- * FunctionDefinitionBagSize implements {@link org.apache.openaz.xacml.pdp.policy.FunctionDefinition} to
- * implement the XACML 'type'-bag-size predicates as functions taking one <code>Bag</code> argument and returning an <code>Integer</code>
- * representing the number of elements in the bag.
- *
- * In the first implementation of XACML we had separate files for each XACML Function.
- * This release combines multiple Functions in fewer files to minimize code duplication.
- * This file supports the following XACML codes:
- * 		string-bag-size
- * 		boolean-bag-size
- * 		integer-bag-size
- * 		double-bag-size
- * 		time-bag-size
- * 		date-bag-size
- * 		dateTime-bag-size
- * 		anyURI-bag-size
- * 		hexBinary-bag-size
- * 		base64Binary-bag-size
- * 		dayTimeDuration-bag-size (version 1 and3)
- * 		yearMonthDuration-bag-size (version 1 and 3)
- * 		x500Name-bag-size
- * 		rfc822Name-bag-size
- * 		ipAddress-bag-size
- * 		dnsName-bag-size
- *
- *
+ * FunctionDefinitionBagSize implements {@link com.att.research.xacmlatt.pdp.policy.FunctionDefinition} to
+ * implement the XACML 'type'-bag-size predicates as functions taking one <code>Bag</code> argument and
+ * returning an <code>Integer</code> representing the number of elements in the bag. In the first
+ * implementation of XACML we had separate files for each XACML Function. This release combines multiple
+ * Functions in fewer files to minimize code duplication. This file supports the following XACML codes:
+ * string-bag-size boolean-bag-size integer-bag-size double-bag-size time-bag-size date-bag-size
+ * dateTime-bag-size anyURI-bag-size hexBinary-bag-size base64Binary-bag-size dayTimeDuration-bag-size
+ * (version 1 and3) yearMonthDuration-bag-size (version 1 and 3) x500Name-bag-size rfc822Name-bag-size
+ * ipAddress-bag-size dnsName-bag-size
  *
  * @param <I> the java class for the data type of the function Input arguments
  */
 public class FunctionDefinitionBagSize<I> extends FunctionDefinitionBase<BigInteger, I> {
-
 
     /**
      * Constructor - need dataType input because of java Generic type-erasure during compilation.
@@ -89,9 +72,11 @@ public class FunctionDefinitionBagSize<I> extends FunctionDefinitionBase<BigInte
     }
 
     /**
-     * Evaluates this <code>FunctionDefinition</code> on the given <code>List</code> of{@link org.apache.openaz.xacml.pdp.policy.FunctionArgument}s.
+     * Evaluates this <code>FunctionDefinition</code> on the given <code>List</code> of
+     * {@link com.att.research.xacmlatt.pdp.policy.FunctionArgument}s.
      *
-     * @param evaluationContext the {@link org.apache.openaz.xacml.pdp.eval.EvaluationContext} to use in the evaluation
+     * @param evaluationContext the {@link com.att.research.xacmlatt.pdp.eval.EvaluationContext} to use in the
+     *            evaluation
      * @param arguments the <code>List</code> of <code>FunctionArgument</code>s for the evaluation
      * @return an {@link org.apache.openaz.xacml.pdp.policy.ExpressionResult} with the results of the call
      */
@@ -99,30 +84,35 @@ public class FunctionDefinitionBagSize<I> extends FunctionDefinitionBase<BigInte
     public ExpressionResult evaluate(EvaluationContext evaluationContext, List<FunctionArgument> arguments) {
 
         if (arguments == null || arguments.size() != 1) {
-            return ExpressionResult.newError(new StdStatus(StdStatusCode.STATUS_CODE_PROCESSING_ERROR, this.getShortFunctionId() + " Expected 1 argument, got " +
-                                             ((arguments == null) ? "null" : arguments.size()) ));
+            return ExpressionResult.newError(new StdStatus(StdStatusCode.STATUS_CODE_PROCESSING_ERROR,
+                                                           this.getShortFunctionId()
+                                                               + " Expected 1 argument, got "
+                                                               + ((arguments == null) ? "null" : arguments
+                                                                   .size())));
         }
 
         FunctionArgument argument = arguments.get(0);
         ConvertedArgument<Bag> convertedArgument = new ConvertedArgument<Bag>(argument, null, true);
 
-        if ( ! convertedArgument.isOk()) {
+        if (!convertedArgument.isOk()) {
             return ExpressionResult.newError(getFunctionStatus(convertedArgument.getStatus()));
         }
 
         Bag bag = convertedArgument.getBag();
 
         if (bag == null) {
-            return ExpressionResult.newError(new StdStatus(StdStatusCode.STATUS_CODE_PROCESSING_ERROR, this.getShortFunctionId() + " Bag is null" ));
+            return ExpressionResult.newError(new StdStatus(StdStatusCode.STATUS_CODE_PROCESSING_ERROR, this
+                .getShortFunctionId() + " Bag is null"));
 
         }
 
-
         // type is correct, so create a wrapper and return it
-        AttributeValue<BigInteger> resultAttributeValue = new StdAttributeValue<BigInteger>(XACML.ID_DATATYPE_INTEGER, BigInteger.valueOf(bag.size()));
+        AttributeValue<BigInteger> resultAttributeValue = new StdAttributeValue<BigInteger>(
+                                                                                            XACML.ID_DATATYPE_INTEGER,
+                                                                                            BigInteger
+                                                                                                .valueOf(bag
+                                                                                                    .size()));
         return ExpressionResult.newSingle(resultAttributeValue);
     }
-
-
 
 }

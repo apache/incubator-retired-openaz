@@ -50,12 +50,11 @@ import org.apache.openaz.xacml.std.pip.StdMutablePIPResponse;
 import org.apache.openaz.xacml.std.pip.StdPIPResponse;
 
 /**
- * EngineFinder implements the {@link org.apache.openaz.xacml.api.pip.PIPFinder} interface by maintaining a simple list of
- * registered {@link org.apache.openaz.xacml.api.pip.PIPEngine} objects.
- *
+ * EngineFinder implements the {@link com.att.research.xacml.api.pip.PIPFinder} interface by maintaining a
+ * simple list of registered {@link com.att.research.xacml.api.pip.PIPEngine} objects.
  */
 public class EngineFinder implements PIPFinder {
-    private Map<String,List<PIPEngine>> pipEngines	= new HashMap<String,List<PIPEngine>>();
+    private Map<String, List<PIPEngine>> pipEngines = new HashMap<String, List<PIPEngine>>();
 
     /**
      * Creates an empty <code>EngineFinder</code>
@@ -70,9 +69,9 @@ public class EngineFinder implements PIPFinder {
      */
     public void register(PIPEngine pipEngine) {
         if (pipEngine != null) {
-            List<PIPEngine> pipEnginesForName	= this.pipEngines.get(pipEngine.getName());
+            List<PIPEngine> pipEnginesForName = this.pipEngines.get(pipEngine.getName());
             if (pipEnginesForName == null) {
-                pipEnginesForName	= new ArrayList<PIPEngine>();
+                pipEnginesForName = new ArrayList<PIPEngine>();
                 this.pipEngines.put(pipEngine.getName(), pipEnginesForName);
             }
             pipEnginesForName.add(pipEngine);
@@ -80,20 +79,22 @@ public class EngineFinder implements PIPFinder {
     }
 
     @Override
-    public PIPResponse getAttributes(PIPRequest pipRequest, PIPEngine exclude, PIPFinder pipFinderParent) throws PIPException {
-        StdMutablePIPResponse pipResponse	= new StdMutablePIPResponse();
-        Status firstErrorStatus	= null;
-        Iterator<List<PIPEngine>> iterPIPEngineLists	= this.pipEngines.values().iterator();
+    public PIPResponse getAttributes(PIPRequest pipRequest, PIPEngine exclude, PIPFinder pipFinderParent)
+        throws PIPException {
+        StdMutablePIPResponse pipResponse = new StdMutablePIPResponse();
+        Status firstErrorStatus = null;
+        Iterator<List<PIPEngine>> iterPIPEngineLists = this.pipEngines.values().iterator();
         while (iterPIPEngineLists.hasNext()) {
-            List<PIPEngine> listPIPEngines	= iterPIPEngineLists.next();
+            List<PIPEngine> listPIPEngines = iterPIPEngineLists.next();
             for (PIPEngine pipEngine : listPIPEngines) {
                 if (pipEngine != exclude) {
                     PIPResponse pipResponseEngine = null;
                     try {
                         pipResponseEngine = pipEngine.getAttributes(pipRequest, pipFinderParent);
                     } catch (Exception e) {
-                        pipResponseEngine = new StdPIPResponse(new
-                                                               StdStatus(StdStatusCode.STATUS_CODE_PROCESSING_ERROR));
+                        pipResponseEngine = new StdPIPResponse(
+                                                               new StdStatus(
+                                                                             StdStatusCode.STATUS_CODE_PROCESSING_ERROR));
                     }
                     if (pipResponseEngine != null) {
                         if (pipResponseEngine.getStatus() == null || pipResponseEngine.getStatus().isOk()) {
@@ -113,8 +114,10 @@ public class EngineFinder implements PIPFinder {
     }
 
     @Override
-    public PIPResponse getMatchingAttributes(PIPRequest pipRequest, PIPEngine exclude, PIPFinder pipFinderParent) throws PIPException {
-        return StdPIPResponse.getMatchingResponse(pipRequest, this.getAttributes(pipRequest, exclude, pipFinderParent));
+    public PIPResponse getMatchingAttributes(PIPRequest pipRequest, PIPEngine exclude,
+                                             PIPFinder pipFinderParent) throws PIPException {
+        return StdPIPResponse.getMatchingResponse(pipRequest,
+                                                  this.getAttributes(pipRequest, exclude, pipFinderParent));
     }
 
     @Override

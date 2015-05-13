@@ -37,12 +37,11 @@ import org.apache.openaz.xacml.std.datatypes.DataTypeBoolean;
 
 /**
  * ExpressionResultBoolean extends {@link ExpressionResult} to represent predicates.
- *
  */
 public class ExpressionResultBoolean extends ExpressionResult {
-    private AttributeValue<Boolean>	value;
-    public static final ExpressionResultBoolean	ERB_FALSE						= new ExpressionResultBoolean(false);
-    public static final ExpressionResultBoolean	ERB_TRUE						= new ExpressionResultBoolean(true);
+    private AttributeValue<Boolean> value;
+    public static final ExpressionResultBoolean ERB_FALSE = new ExpressionResultBoolean(false);
+    public static final ExpressionResultBoolean ERB_TRUE = new ExpressionResultBoolean(true);
 
     public ExpressionResultBoolean(Status statusIn) {
         super(statusIn);
@@ -50,7 +49,7 @@ public class ExpressionResultBoolean extends ExpressionResult {
 
     public ExpressionResultBoolean(boolean bvalue) {
         super(StdStatus.STATUS_OK);
-        this.value	= (bvalue ? DataTypeBoolean.AV_TRUE : DataTypeBoolean.AV_FALSE);
+        this.value = (bvalue ? DataTypeBoolean.AV_TRUE : DataTypeBoolean.AV_FALSE);
     }
 
     /**

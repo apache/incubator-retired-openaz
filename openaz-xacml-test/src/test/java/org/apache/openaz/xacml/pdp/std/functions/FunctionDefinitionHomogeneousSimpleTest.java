@@ -50,32 +50,29 @@ import org.junit.Test;
 
 /**
  * FunctionDefinitionHomogeneousSimple is an abstract class, so we have to test it by creating a sub-class.
- * The constructor is tested by default when an instance of the sub-class is created for other tests.
- *
- * Each of these functions needs to be tested for each type of function to be sure the values are correct,
- * so this is just a simple test to see that the mechanism works.
- *
- * TO RUN - use jUnit
- * In Eclipse select this file or the enclosing directory, right-click and select Run As/JUnit Test
- *
- *
+ * The constructor is tested by default when an instance of the sub-class is created for other tests. Each of
+ * these functions needs to be tested for each type of function to be sure the values are correct, so this is
+ * just a simple test to see that the mechanism works. TO RUN - use jUnit In Eclipse select this file or the
+ * enclosing directory, right-click and select Run As/JUnit Test
  */
 public class FunctionDefinitionHomogeneousSimpleTest {
-
-
 
     @Test
     public void testGetDataTypeArgs() {
 
         // test a simple instance using the Equality class
-        FunctionDefinitionEquality<String> fd   = new FunctionDefinitionEquality<String>(XACML3.ID_FUNCTION_STRING_EQUAL, DataTypes.DT_STRING);
+        FunctionDefinitionEquality<String> fd = new FunctionDefinitionEquality<String>(
+                                                                                       XACML3.ID_FUNCTION_STRING_EQUAL,
+                                                                                       DataTypes.DT_STRING);
         assertEquals(DataTypes.DT_STRING.getId(), fd.getDataTypeArgs().getId());
     }
 
     @Test
     public void testGetNumArgs() {
         // test a simple instance using the Equality class
-        FunctionDefinitionEquality<String> fd   = new FunctionDefinitionEquality<String>(XACML3.ID_FUNCTION_STRING_EQUAL, DataTypes.DT_STRING);
+        FunctionDefinitionEquality<String> fd = new FunctionDefinitionEquality<String>(
+                                                                                       XACML3.ID_FUNCTION_STRING_EQUAL,
+                                                                                       DataTypes.DT_STRING);
         assertEquals(new Integer(2), fd.getNumArgs());
     }
 
@@ -92,10 +89,12 @@ public class FunctionDefinitionHomogeneousSimpleTest {
             stringAttr3 = new FunctionArgumentAttributeValue(DataTypes.DT_STRING.createAttributeValue("ghi"));
             intAttr = new FunctionArgumentAttributeValue(DataTypes.DT_INTEGER.createAttributeValue(1));
         } catch (Exception e) {
-            fail("creating attribute e="+ e);
+            fail("creating attribute e=" + e);
         }
 
-        FunctionDefinitionEquality<String> fd   = new FunctionDefinitionEquality<String>(XACML3.ID_FUNCTION_STRING_EQUAL, DataTypes.DT_STRING);
+        FunctionDefinitionEquality<String> fd = new FunctionDefinitionEquality<String>(
+                                                                                       XACML3.ID_FUNCTION_STRING_EQUAL,
+                                                                                       DataTypes.DT_STRING);
         List<String> convertedValues = new ArrayList<String>();
         List<FunctionArgument> listFunctionArguments = new ArrayList<FunctionArgument>();
 
@@ -104,14 +103,15 @@ public class FunctionDefinitionHomogeneousSimpleTest {
         listFunctionArguments.add(stringAttr2);
         Status status = fd.validateArguments(listFunctionArguments, convertedValues);
         assertTrue(status.isOk());
-        assertEquals(convertedValues.size(),2);
+        assertEquals(convertedValues.size(), 2);
 
         // test too few args
         listFunctionArguments.remove(1);
         status = fd.validateArguments(listFunctionArguments, convertedValues);
         assertFalse(status.isOk());
         assertEquals("Expected 2 arguments, got 1", status.getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", status.getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", status.getStatusCode()
+            .getStatusCodeValue().stringValue());
 
         // test too many args
         listFunctionArguments.add(stringAttr2);
@@ -119,7 +119,8 @@ public class FunctionDefinitionHomogeneousSimpleTest {
         status = fd.validateArguments(listFunctionArguments, convertedValues);
         assertFalse(status.isOk());
         assertEquals("Expected 2 arguments, got 3", status.getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", status.getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", status.getStatusCode()
+            .getStatusCodeValue().stringValue());
 
         // test with null arg
         listFunctionArguments.clear();
@@ -128,12 +129,13 @@ public class FunctionDefinitionHomogeneousSimpleTest {
         status = fd.validateArguments(listFunctionArguments, convertedValues);
         assertFalse(status.isOk());
         assertEquals("Got null argument at arg index 0", status.getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", status.getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", status.getStatusCode()
+            .getStatusCodeValue().stringValue());
 
         // test function that takes 0 args
-//TODO test with func that specifies 0 args? ASSUME for now that there are no such functions since a function needs to operate on something
-//		fail("need to test function with 0 args and various inputs - see validateArguments code");
-
+        // TODO test with func that specifies 0 args? ASSUME for now that there are no such functions since a
+        // function needs to operate on something
+        // fail("need to test function with 0 args and various inputs - see validateArguments code");
 
         // test with one is a bag
         listFunctionArguments.clear();
@@ -144,7 +146,8 @@ public class FunctionDefinitionHomogeneousSimpleTest {
         status = fd.validateArguments(listFunctionArguments, convertedValues);
         assertFalse(status.isOk());
         assertEquals("Expected a simple value, saw a bag at arg index 1", status.getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", status.getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", status.getStatusCode()
+            .getStatusCodeValue().stringValue());
 
         // test with string and int
         listFunctionArguments.clear();
@@ -153,7 +156,8 @@ public class FunctionDefinitionHomogeneousSimpleTest {
         status = fd.validateArguments(listFunctionArguments, convertedValues);
         assertFalse(status.isOk());
         assertEquals("Expected data type 'string' saw 'integer' at arg index 1", status.getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", status.getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", status.getStatusCode()
+            .getStatusCodeValue().stringValue());
     }
 
 }

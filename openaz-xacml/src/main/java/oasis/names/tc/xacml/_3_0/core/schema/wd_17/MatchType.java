@@ -25,7 +25,6 @@
 // Generated on: 2013.05.23 at 02:47:00 PM EDT
 //
 
-
 package oasis.names.tc.xacml._3_0.core.schema.wd_17;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -35,11 +34,11 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 
-
 /**
- * <p>Java class for MatchType complex type.
- *
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>
+ * Java class for MatchType complex type.
+ * <p>
+ * The following schema fragment specifies the expected content contained within this class.
  *
  * <pre>
  * &lt;complexType name="MatchType">
@@ -57,14 +56,10 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- *
- *
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "MatchType", propOrder = {
-    "attributeValue",
-    "attributeDesignator",
-    "attributeSelector"
+                                          "attributeValue", "attributeDesignator", "attributeSelector"
 })
 public class MatchType {
 
@@ -81,10 +76,7 @@ public class MatchType {
     /**
      * Gets the value of the attributeValue property.
      *
-     * @return
-     *     possible object is
-     *     {@link AttributeValueType }
-     *
+     * @return possible object is {@link AttributeValueType }
      */
     public AttributeValueType getAttributeValue() {
         return attributeValue;
@@ -93,10 +85,7 @@ public class MatchType {
     /**
      * Sets the value of the attributeValue property.
      *
-     * @param value
-     *     allowed object is
-     *     {@link AttributeValueType }
-     *
+     * @param value allowed object is {@link AttributeValueType }
      */
     public void setAttributeValue(AttributeValueType value) {
         this.attributeValue = value;
@@ -105,10 +94,7 @@ public class MatchType {
     /**
      * Gets the value of the attributeDesignator property.
      *
-     * @return
-     *     possible object is
-     *     {@link AttributeDesignatorType }
-     *
+     * @return possible object is {@link AttributeDesignatorType }
      */
     public AttributeDesignatorType getAttributeDesignator() {
         return attributeDesignator;
@@ -117,10 +103,7 @@ public class MatchType {
     /**
      * Sets the value of the attributeDesignator property.
      *
-     * @param value
-     *     allowed object is
-     *     {@link AttributeDesignatorType }
-     *
+     * @param value allowed object is {@link AttributeDesignatorType }
      */
     public void setAttributeDesignator(AttributeDesignatorType value) {
         this.attributeDesignator = value;
@@ -129,10 +112,7 @@ public class MatchType {
     /**
      * Gets the value of the attributeSelector property.
      *
-     * @return
-     *     possible object is
-     *     {@link AttributeSelectorType }
-     *
+     * @return possible object is {@link AttributeSelectorType }
      */
     public AttributeSelectorType getAttributeSelector() {
         return attributeSelector;
@@ -141,10 +121,7 @@ public class MatchType {
     /**
      * Sets the value of the attributeSelector property.
      *
-     * @param value
-     *     allowed object is
-     *     {@link AttributeSelectorType }
-     *
+     * @param value allowed object is {@link AttributeSelectorType }
      */
     public void setAttributeSelector(AttributeSelectorType value) {
         this.attributeSelector = value;
@@ -153,10 +130,7 @@ public class MatchType {
     /**
      * Gets the value of the matchId property.
      *
-     * @return
-     *     possible object is
-     *     {@link String }
-     *
+     * @return possible object is {@link String }
      */
     public String getMatchId() {
         return matchId;
@@ -165,10 +139,7 @@ public class MatchType {
     /**
      * Sets the value of the matchId property.
      *
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *
+     * @param value allowed object is {@link String }
      */
     public void setMatchId(String value) {
         this.matchId = value;

@@ -49,7 +49,6 @@ public class PepUtils {
         return clazz;
     }
 
-
     public static <T> T instantiateClass(Class<T> clazz) {
         try {
             return clazz.newInstance();
@@ -60,14 +59,13 @@ public class PepUtils {
         }
     }
 
-
     public static Properties loadProperties(String propertyFile) {
         Properties properties = new Properties();
 
-        //Try the location as a file first.
+        // Try the location as a file first.
         File file = new File(propertyFile);
         InputStream in;
-        if(file.exists() && file.canRead()) {
+        if (file.exists() && file.canRead()) {
             if (!file.isAbsolute()) {
                 file = file.getAbsoluteFile();
             }
@@ -80,7 +78,7 @@ public class PepUtils {
 
         in = PepUtils.class.getResourceAsStream(propertyFile);
 
-        if(in == null) {
+        if (in == null) {
             logger.error("Invalid classpath of file location: " + propertyFile);
             throw new IllegalArgumentException("Invalid classpath or file location: " + propertyFile);
         }
@@ -91,7 +89,7 @@ public class PepUtils {
             logger.error(e);
             throw new IllegalArgumentException(e);
         } finally {
-            if(in != null) {
+            if (in != null) {
                 try {
                     in.close();
                 } catch (IOException e) {

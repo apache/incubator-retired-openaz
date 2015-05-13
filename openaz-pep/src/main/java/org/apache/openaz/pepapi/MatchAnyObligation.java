@@ -26,19 +26,16 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Represents an Obligation criteria that matches any of the supplied Obligation ids.
- * If no ids are provided, then any Obligation will be matched(catch-all).
- *
- *
+ * Represents an Obligation criteria that matches any of the supplied Obligation ids. If no ids are provided,
+ * then any Obligation will be matched(catch-all).
  */
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface MatchAnyObligation {
 
     /**
-     *
      * @return
      */
-String[] value() default {};
+    String[] value() default {};
 
 }

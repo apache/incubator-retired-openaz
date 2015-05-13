@@ -34,7 +34,6 @@ import java.util.Collection;
 
 /**
  * Defines the API for objects that implement XACML 3.0 AssociatedAdvice elements.
- *
  */
 public interface Advice {
     /**
@@ -43,26 +42,24 @@ public interface Advice {
      *
      * @return the <code>Identifier</code> for this <code>Advice</code>.
      */
-    public Identifier getId();
+    Identifier getId();
 
     /**
      * Gets the {@link org.apache.openaz.xacml.api.AttributeAssignment}s in this <code>Advice</code> object.  If there
      * are no <code>AttributeAssignment</code>s in this <code>Advice</code>, an empty <code>Collection</code> must be returned.
      * The returned <code>Collection</code> should not be modified.  Implementations are free to return an immutable view to enforce this.
      *
-     * @return the <code>Collection</code> of <code>AttributeAssignment</code>s in this <code>Advice</code> object.
+     * @return the <code>Collection</code> of <code>AttributeAssignment</code>s in this <code>Advice</code>
+     *         object.
      */
-    public Collection<AttributeAssignment> getAttributeAssignments();
+    Collection<AttributeAssignment> getAttributeAssignments();
 
     /**
-     * {@inheritDoc}
-     *
-     * The implementation of the <code>Advice</code> interface must override the <code>equals</code> method with the following
-     * semantics:
-     * 		Two <code>Advice</code> objects (<code>a1</code> and <code>a2</code>) are equal if:
-     * 			{@code a1.getId().equals(a2.getId())} AND
-     * 			{@code a1.getAttributeAssignments()} is pair-wise equal to {@code a2.getAttributeAssignments()}
+     * {@inheritDoc} The implementation of the <code>Advice</code> interface must override the
+     * <code>equals</code> method with the following semantics: Two <code>Advice</code> objects (
+     * <code>a1</code> and <code>a2</code>) are equal if: {@code a1.getId().equals(a2.getId())} AND
+     * {@code a1.getAttributeAssignments()} is pair-wise equal to {@code a2.getAttributeAssignments()}
      */
     @Override
-    public boolean equals(Object obj);
+    boolean equals(Object obj);
 }

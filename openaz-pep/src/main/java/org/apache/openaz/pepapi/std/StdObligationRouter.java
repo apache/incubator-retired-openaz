@@ -53,11 +53,9 @@ public final class StdObligationRouter implements ObligationRouter {
         this.obligationStore = threadLocalOStore;
     }
 
-    public static StdObligationRouter newInstance(
-        ObligationHandlerRegistry registrationHandler,
-        ThreadLocalObligationStore threadLocalOStore) {
-        return new StdObligationRouter(registrationHandler,
-                                       threadLocalOStore);
+    public static StdObligationRouter newInstance(ObligationHandlerRegistry registrationHandler,
+                                                  ThreadLocalObligationStore threadLocalOStore) {
+        return new StdObligationRouter(registrationHandler, threadLocalOStore);
     }
 
     /**
@@ -68,36 +66,36 @@ public final class StdObligationRouter implements ObligationRouter {
      */
     @Override
     public void routeObligations(Map<String, Obligation> obligationMap) {
-        //Clear any stale Obligations on the current thread.
+        // Clear any stale Obligations on the current thread.
         obligationStore.clear();
-        if(obligationMap != null) {
-            Map<Class<?>, Set<Obligation>> obligationMapByHandlerClass
-                = new HashMap<Class<?>, Set<Obligation>>();
-            for(Entry<String, Obligation> oe: obligationMap.entrySet()) {
+        if (obligationMap != null) {
+            Map<Class<?>, Set<Obligation>> obligationMapByHandlerClass = new HashMap<Class<?>, Set<Obligation>>();
+            for (Entry<String, Obligation> oe : obligationMap.entrySet()) {
                 boolean isObligationHandleable = false;
                 String obligationId = oe.getKey();
                 Obligation obligation = oe.getValue();
-                for(Entry<Class<?>, Matchable<Obligation>> pe :
-                        this.registrationHandler.getRegisteredHandlerMap().entrySet()) {
+                for (Entry<Class<?>, Matchable<Obligation>> pe : this.registrationHandler
+                    .getRegisteredHandlerMap().entrySet()) {
                     Class<?> handlerClass = pe.getKey();
                     Matchable<Obligation> matchable = pe.getValue();
-                    if(matchable.match(obligation)) {
+                    if (matchable.match(obligation)) {
                         Set<Obligation> handlerObligationSet = obligationMapByHandlerClass.get(handlerClass);
-                        if(handlerObligationSet == null) {
+                        if (handlerObligationSet == null) {
                             handlerObligationSet = new HashSet<Obligation>();
                             obligationMapByHandlerClass.put(handlerClass, handlerObligationSet);
                         }
                         handlerObligationSet.add(obligation);
                         isObligationHandleable = true;
-                        if(logger.isDebugEnabled()) {
-                            logger.debug("Obligation - " + obligationId + " matched by Handler - " + handlerClass);
+                        if (logger.isDebugEnabled()) {
+                            logger.debug("Obligation - " + obligationId + " matched by Handler - "
+                                         + handlerClass);
                         }
                     }
                 }
-                if(!isObligationHandleable) {
+                if (!isObligationHandleable) {
                     throw new UnhandleableObligationException(
-                        "No ObligationHandlers available for handling Obligation: "
-                        + oe.getKey());
+                                                              "No ObligationHandlers available for handling Obligation: "
+                                                                  + oe.getKey());
                 }
             }
             obligationStore.setObligations(obligationMapByHandlerClass);

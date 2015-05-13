@@ -34,17 +34,17 @@ import org.apache.openaz.xacml.api.AttributeValue;
 import org.apache.openaz.xacml.api.Status;
 
 /**
- * FunctionArgument is the interface implemented by objects that can serve as arguments to a {@link org.apache.openaz.xacml.pdp.policy.FunctionDefinition}
- * <code>evaluate</code> call.
- *
+ * FunctionArgument is the interface implemented by objects that can serve as arguments to a
+ * {@link com.att.research.xacmlatt.pdp.policy.FunctionDefinition} <code>evaluate</code> call.
  */
 public interface FunctionArgument {
     /**
-     * Gets the {@link org.apache.openaz.xacml.api.Status} from the evaluation of this <code>FunctionArgument</code>.
+     * Gets the {@link com.att.research.xacml.api.Status} from the evaluation of this
+     * <code>FunctionArgument</code>.
      *
      * @return the <code>Status</code> from the evaluation of this <code>FunctionArgument</code>>
      */
-    public Status getStatus();
+    Status getStatus();
 
     /**
      * Determines if this <code>FunctionArgument</code> is OK and can have its <code>AttributeValue</code> or
@@ -52,29 +52,31 @@ public interface FunctionArgument {
      *
      * @return true if this <code>FunctionArgument</code> is OK, otherwise false.
      */
-    public boolean isOk();
+    boolean isOk();
 
     /**
      * Determines if this <code>FunctionArgument</code> represents a bag of values.
      *
      * @return true if this <code>FunctionArgument</code> represents a bag of values, else false.
      */
-    public boolean isBag();
+    boolean isBag();
 
     /**
-     * Gets the single <code>AttributeValue</code> representing the value of this <code>FunctionArgument</code>.  If
-     * this <code>FunctionArgument</code> represents a bag, the value returned is up to the implementation.
+     * Gets the single <code>AttributeValue</code> representing the value of this
+     * <code>FunctionArgument</code>. If this <code>FunctionArgument</code> represents a bag, the value
+     * returned is up to the implementation.
      *
-     * @return the single <code>AttributeValue</code> representing the value of this <code>FunctionArgument</code>.
+     * @return the single <code>AttributeValue</code> representing the value of this
+     *         <code>FunctionArgument</code>.
      */
-    public AttributeValue<?> getValue();
+    AttributeValue<?> getValue();
 
     /**
-     * Gets the {@link Bag} value for this <code>FunctionArgument</code> if the
-     * argument represents a <code>Bag</code>, (i.e. <code>isBag</code> returns true).
+     * Gets the {@link Bag} value for this <code>FunctionArgument</code> if the argument represents a
+     * <code>Bag</code>, (i.e. <code>isBag</code> returns true).
      *
      * @return the <code>Bag</code> value for this <code>FunctionArgument</code>.
      */
-    public Bag getBag();
+    Bag getBag();
 
 }

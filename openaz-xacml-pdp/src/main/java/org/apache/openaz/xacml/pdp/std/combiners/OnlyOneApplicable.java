@@ -46,9 +46,8 @@ import org.apache.openaz.xacml.std.StdStatus;
 import org.apache.openaz.xacml.std.StdStatusCode;
 
 /**
- * OnlyOneApplicable extends {@link org.apache.openaz.xacml.pdp.std.combiners.CombiningAlgorithmBase} to implement the
- * XACML 1.0 "only-one-applicable" combining algorithm for policies and rules.
- *
+ * OnlyOneApplicable extends {@link com.att.research.xacmlatt.pdp.std.combiners.CombiningAlgorithmBase} to
+ * implement the XACML 1.0 "only-one-applicable" combining algorithm for policies and rules.
  *
  * @param <T> the java class of the object to be combined
  */
@@ -61,28 +60,30 @@ public class OnlyOneApplicable extends CombiningAlgorithmBase<PolicySetChild> {
     @Override
     public EvaluationResult combine(EvaluationContext evaluationContext,
                                     List<CombiningElement<PolicySetChild>> elements,
-                                    List<CombinerParameter> combinerParameters)
-    throws EvaluationException {
-        Iterator<CombiningElement<PolicySetChild>> iterElements	= elements.iterator();
-        PolicySetChild policySetChildApplicable					= null;
+                                    List<CombinerParameter> combinerParameters) throws EvaluationException {
+        Iterator<CombiningElement<PolicySetChild>> iterElements = elements.iterator();
+        PolicySetChild policySetChildApplicable = null;
         while (iterElements.hasNext()) {
-            CombiningElement<PolicySetChild> combiningElement		= iterElements.next();
-            MatchResult matchResultElement				= combiningElement.getEvaluatable().match(evaluationContext);
+            CombiningElement<PolicySetChild> combiningElement = iterElements.next();
+            MatchResult matchResultElement = combiningElement.getEvaluatable().match(evaluationContext);
 
-            switch(matchResultElement.getMatchCode()) {
+            switch (matchResultElement.getMatchCode()) {
             case INDETERMINATE:
                 return new EvaluationResult(Decision.INDETERMINATE, matchResultElement.getStatus());
             case MATCH:
                 if (policySetChildApplicable == null) {
-                    policySetChildApplicable	= combiningElement.getEvaluatable();
+                    policySetChildApplicable = combiningElement.getEvaluatable();
                 } else {
-                    return new EvaluationResult(Decision.INDETERMINATE, new StdStatus(StdStatusCode.STATUS_CODE_PROCESSING_ERROR, "More than one applicable policy"));
+                    return new EvaluationResult(Decision.INDETERMINATE,
+                                                new StdStatus(StdStatusCode.STATUS_CODE_PROCESSING_ERROR,
+                                                              "More than one applicable policy"));
                 }
                 break;
             case NOMATCH:
                 break;
             default:
-                throw new EvaluationException("Illegal Decision: \"" + matchResultElement.getMatchCode().toString());
+                throw new EvaluationException("Illegal Decision: \""
+                                              + matchResultElement.getMatchCode().toString());
             }
         }
 

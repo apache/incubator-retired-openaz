@@ -20,18 +20,13 @@
 
 package org.apache.openaz.pepapi.std;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.apache.openaz.pepapi.ObligationRouter;
 import org.apache.openaz.pepapi.PepConfig;
 import org.apache.openaz.pepapi.PepResponse;
 import org.apache.openaz.pepapi.PepResponseFactory;
 import org.apache.openaz.xacml.api.Result;
 
-
 final class StdPepResponseFactory implements PepResponseFactory {
-
-    private static final Log logger = LogFactory.getLog(StdPepResponseFactory.class);
 
     private PepConfig pepConfig;
 

@@ -59,32 +59,32 @@ import com.google.common.base.Splitter;
 
 public class ConfigurableCSVResolver implements CSVResolver {
 
-    public static final String PROP_PARAMETERS		= "parameters";
+    public static final String PROP_PARAMETERS = "parameters";
 
-    public static final String PROP_ID				= "id";
-    public static final String PROP_DATATYPE		= "datatype";
-    public static final String PROP_CATEGORY		= "category";
-    public static final String PROP_ISSUER			= "issuer";
+    public static final String PROP_ID = "id";
+    public static final String PROP_DATATYPE = "datatype";
+    public static final String PROP_CATEGORY = "category";
+    public static final String PROP_ISSUER = "issuer";
 
-    public static final String PROP_COLUMN			= "column";
+    public static final String PROP_COLUMN = "column";
 
-    private static DataTypeFactory dataTypeFactory		= null;
+    private static DataTypeFactory dataTypeFactory = null;
 
     static {
         try {
-            dataTypeFactory	= DataTypeFactory.newInstance();
+            dataTypeFactory = DataTypeFactory.newInstance();
         } catch (FactoryException fx) {
             throw new RuntimeException(fx);
         }
     }
 
-    protected Log logger	= LogFactory.getLog(this.getClass());
+    protected Log logger = LogFactory.getLog(this.getClass());
 
     private String id;
     private String defaultIssuer;
 
-    private Map<Integer, PIPRequest>	parameterMap = new HashMap<Integer, PIPRequest>();
-    private Map<Integer, PIPRequest>	fieldMap = new HashMap<Integer, PIPRequest>();
+    private Map<Integer, PIPRequest> parameterMap = new HashMap<Integer, PIPRequest>();
+    private Map<Integer, PIPRequest> fieldMap = new HashMap<Integer, PIPRequest>();
 
     public ConfigurableCSVResolver() {
 
@@ -104,7 +104,8 @@ public class ConfigurableCSVResolver implements CSVResolver {
             logger.error(message);
             throw new PIPException(message);
         }
-        for (String parameterName : Splitter.on(',').omitEmptyStrings().trimResults().split(parameterNamesString)) {
+        for (String parameterName : Splitter.on(',').omitEmptyStrings().trimResults()
+            .split(parameterNamesString)) {
             String parameterIdPrefix = id + ".parameter." + parameterName;
             String tmpString = properties.getProperty(parameterIdPrefix + "." + PROP_COLUMN);
             if (tmpString == null || tmpString.length() == 0) {
@@ -116,7 +117,8 @@ public class ConfigurableCSVResolver implements CSVResolver {
             try {
                 column = Integer.parseInt(tmpString);
             } catch (NumberFormatException e) {
-                String message = id + ": parameter " + parameterName + ".column is not a number in '" + tmpString + "'";
+                String message = id + ": parameter " + parameterName + ".column is not a number in '"
+                                 + tmpString + "'";
                 logger.error(message);
                 throw new PIPException(message);
             }
@@ -158,12 +160,14 @@ public class ConfigurableCSVResolver implements CSVResolver {
             try {
                 column = Integer.parseInt(tmpString);
             } catch (NumberFormatException e) {
-                String message = id + ": field " + fieldName + ".column is not a number in '" + tmpString + "'";
+                String message = id + ": field " + fieldName + ".column is not a number in '" + tmpString
+                                 + "'";
                 logger.error(message);
                 throw new PIPException(message);
             }
 
-            PIPRequest pipRequest = Configurables.getPIPRequest(fieldIdPrefix, properties, this.defaultIssuer);
+            PIPRequest pipRequest = Configurables
+                .getPIPRequest(fieldIdPrefix, properties, this.defaultIssuer);
             if (pipRequest != null) {
                 this.fieldMap.put(column, pipRequest);
             } else {
@@ -182,7 +186,8 @@ public class ConfigurableCSVResolver implements CSVResolver {
         this.id = id;
         this.defaultIssuer = defaultIssuer;
         //
-        // Get the "parameters", i.e. the fields to use for uniquely identifying a single row, from the properties
+        // Get the "parameters", i.e. the fields to use for uniquely identifying a single row, from the
+        // properties
         //
         readSearchParameters(id, properties);
         //
@@ -226,7 +231,9 @@ public class ConfigurableCSVResolver implements CSVResolver {
     }
 
     @Override
-    public Map<Integer, List<AttributeValue<?>>>	getColumnParameterValues(PIPEngine engine, PIPRequest request, PIPFinder finder) throws PIPException {
+    public Map<Integer, List<AttributeValue<?>>> getColumnParameterValues(PIPEngine engine,
+                                                                          PIPRequest request, PIPFinder finder)
+        throws PIPException {
         Map<Integer, List<AttributeValue<?>>> map = new HashMap<Integer, List<AttributeValue<?>>>();
         for (Integer column : this.parameterMap.keySet()) {
             PIPRequest requestParameter = this.parameterMap.get(column);
@@ -234,7 +241,8 @@ public class ConfigurableCSVResolver implements CSVResolver {
             // Get the parameter attributes
             //
             PIPResponse pipResponse = finder.getMatchingAttributes(requestParameter, null);
-            if (pipResponse == null || ! pipResponse.getStatus().isOk() || pipResponse == StdPIPResponse.PIP_RESPONSE_EMPTY) {
+            if (pipResponse == null || !pipResponse.getStatus().isOk()
+                || pipResponse == StdPIPResponse.PIP_RESPONSE_EMPTY) {
                 //
                 // We must have at least one attribute value. If none exist, then return null
                 //
@@ -287,8 +295,9 @@ public class ConfigurableCSVResolver implements CSVResolver {
             //
             StdMutableAttribute attribute = null;
             for (Attribute a : attributeList) {
-                if (a.getCategory() == request.getCategory() && a.getAttributeId() == request.getAttributeId()) {
-                    attribute = (StdMutableAttribute) a;
+                if (a.getCategory() == request.getCategory()
+                    && a.getAttributeId() == request.getAttributeId()) {
+                    attribute = (StdMutableAttribute)a;
                 }
             }
             if (attribute == null) {

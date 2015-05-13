@@ -31,9 +31,8 @@
 package org.apache.openaz.xacml.api.pep;
 
 /**
- * PEPException extends <code>Exception</code> to implement exceptions thrown by {@link PEPEngine} and {@link org.apache.openaz.xacml.api.pep.PEPEngineFactory}
- * classes.
- *
+ * PEPException extends <code>Exception</code> to implement exceptions thrown by {@link PEPEngine} and
+ * {@link org.apache.openaz.xacml.api.pep.PEPEngineFactory} classes.
  */
 public class PEPException extends Exception {
     private static final long serialVersionUID = 5438207617158925229L;

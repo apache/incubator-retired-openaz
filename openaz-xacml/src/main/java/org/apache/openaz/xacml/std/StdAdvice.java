@@ -38,12 +38,12 @@ import org.apache.openaz.xacml.api.Identifier;
 import org.apache.openaz.xacml.util.Wrapper;
 
 /**
- * Immutable implementation of the {@link org.apache.openaz.xacml.api.Advice} interface.
- *
+ * Immutable implementation of the {@link com.att.research.xacml.api.Advice} interface.
  */
 public class StdAdvice extends Wrapper<Advice> implements Advice {
     /**
-     * Creates an immutable <code>StdAdvice</code> that wraps the given {@link org.apache.openaz.xacml.api.Advice}.
+     * Creates an immutable <code>StdAdvice</code> that wraps the given
+     * {@link com.att.research.xacml.api.Advice}.
      *
      * @param advice the <code>Advice</code> object to wrap in the new <code>StdAdvice</code>
      */
@@ -52,19 +52,23 @@ public class StdAdvice extends Wrapper<Advice> implements Advice {
     }
 
     /**
-     * Creates an immutable <code>StdAdvice</code> with the given {@link org.apache.openaz.xacml.api.Identifier} as the XACML AdviceId
-     * and the given <code>Collection</code> of {@link org.apache.openaz.xacml.api.AttributeAssignment}s representing the XACML AttributeAssignment elements.
+     * Creates an immutable <code>StdAdvice</code> with the given
+     * {@link com.att.research.xacml.api.Identifier} as the XACML AdviceId and the given
+     * <code>Collection</code> of {@link com.att.research.xacml.api.AttributeAssignment}s representing the
+     * XACML AttributeAssignment elements.
      *
      * @param adviceId the <code>Identifier</code> representing the XACML AdviceId
-     * @param attributeAssignmentsIn the <code>Collection</code> of <code>AttributeAssignment</code>s representing the XACML AttributeAssignment elements.
+     * @param attributeAssignmentsIn the <code>Collection</code> of <code>AttributeAssignment</code>s
+     *            representing the XACML AttributeAssignment elements.
      */
     public StdAdvice(Identifier adviceId, Collection<AttributeAssignment> attributeAssignmentsIn) {
         this(new StdMutableAdvice(adviceId, attributeAssignmentsIn));
     }
 
     /**
-     * Creates an immutable <code>StdAdvice</code> with the given {@link org.apache.openaz.xacml.api.Identifier} as the XACML AdviceId and
-     * an empty list of <code>AttributeAssignment</code>s.
+     * Creates an immutable <code>StdAdvice</code> with the given
+     * {@link com.att.research.xacml.api.Identifier} as the XACML AdviceId and an empty list of
+     * <code>AttributeAssignment</code>s.
      *
      * @param adviceId the <code>Identifier</code> representing the XACML AdviceId
      */

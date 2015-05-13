@@ -37,7 +37,8 @@ public class BusinessRequestContextMapper implements ObjectMapper {
     @Override
     public void map(Object o, PepRequest pepRequest) {
         BusinessRequestContext bc = (BusinessRequestContext)o;
-        PepRequestAttributes envAttributes = pepRequest.getPepRequestAttributes(XACML3.ID_ATTRIBUTE_CATEGORY_ENVIRONMENT);
+        PepRequestAttributes envAttributes = pepRequest
+            .getPepRequestAttributes(XACML3.ID_ATTRIBUTE_CATEGORY_ENVIRONMENT);
         envAttributes.addAttribute("jpmc:request-context:country", bc.getRequestCountry());
         envAttributes.addAttribute("jpmc:request-context:time", bc.getRequestTime());
     }

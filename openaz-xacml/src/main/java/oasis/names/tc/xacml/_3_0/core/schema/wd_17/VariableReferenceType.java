@@ -25,7 +25,6 @@
 // Generated on: 2013.05.23 at 02:47:00 PM EDT
 //
 
-
 package oasis.names.tc.xacml._3_0.core.schema.wd_17;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -33,11 +32,11 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlType;
 
-
 /**
- * <p>Java class for VariableReferenceType complex type.
- *
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>
+ * Java class for VariableReferenceType complex type.
+ * <p>
+ * The following schema fragment specifies the expected content contained within this class.
  *
  * <pre>
  * &lt;complexType name="VariableReferenceType">
@@ -48,13 +47,10 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- *
- *
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "VariableReferenceType")
-public class VariableReferenceType
-    extends ExpressionType {
+public class VariableReferenceType extends ExpressionType {
 
     @XmlAttribute(name = "VariableId", required = true)
     protected String variableId;
@@ -62,10 +58,7 @@ public class VariableReferenceType
     /**
      * Gets the value of the variableId property.
      *
-     * @return
-     *     possible object is
-     *     {@link String }
-     *
+     * @return possible object is {@link String }
      */
     public String getVariableId() {
         return variableId;
@@ -74,10 +67,7 @@ public class VariableReferenceType
     /**
      * Sets the value of the variableId property.
      *
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *
+     * @param value allowed object is {@link String }
      */
     public void setVariableId(String value) {
         this.variableId = value;

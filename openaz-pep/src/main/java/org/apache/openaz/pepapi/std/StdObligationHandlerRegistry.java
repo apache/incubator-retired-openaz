@@ -36,11 +36,10 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * An <code>ObligationHandlerRegistry</code> implementation that accept handler classes that are either ObligationHandler instances
- * or contain any of the following annotations - <code> @MatchAnyObligation, @MatchAllObligationAttributes</code>
- * that represents Obligation criteria for registration.
- *
- *
+ * An <code>ObligationHandlerRegistry</code> implementation that accept handler classes that are either
+ * ObligationHandler instances or contain any of the following annotations -
+ * <code> @MatchAnyObligation, @MatchAllObligationAttributes</code> that represents Obligation criteria for
+ * registration.
  */
 public class StdObligationHandlerRegistry implements ObligationHandlerRegistry {
 
@@ -53,7 +52,7 @@ public class StdObligationHandlerRegistry implements ObligationHandlerRegistry {
         for (Object oHandler : oHandlers) {
             Class<?> oHandlerClass = oHandler.getClass();
             Matchable<Obligation> matchable = null;
-            if(oHandler instanceof ObligationHandler) {
+            if (oHandler instanceof ObligationHandler) {
                 matchable = (ObligationHandler)oHandler;
             } else {
                 matchable = processAnnotation(oHandlerClass);
@@ -62,10 +61,13 @@ public class StdObligationHandlerRegistry implements ObligationHandlerRegistry {
             if (matchable != null) {
                 oHandlerCriteriaMap.put(oHandlerClass, matchable);
             } else {
-                logger.error("Obligation Handler Class: " + oHandlerClass
-                             + " is not an instance of ObligationHandler or doesn't contain a valid Annotation");
-                throw new IllegalArgumentException("Obligation Handler Class: " + oHandlerClass
-                                                   + " is not an instance of ObligationHandler or doesn't contain a valid Annotation");
+                logger
+                    .error("Obligation Handler Class: " + oHandlerClass
+                           + " is not an instance of ObligationHandler or doesn't contain a valid Annotation");
+                throw new IllegalArgumentException(
+                                                   "Obligation Handler Class: "
+                                                       + oHandlerClass
+                                                       + " is not an instance of ObligationHandler or doesn't contain a valid Annotation");
             }
         }
     }
@@ -80,7 +82,7 @@ public class StdObligationHandlerRegistry implements ObligationHandlerRegistry {
         ObligationCriteria criteria = null;
         for (Annotation a : oHandlerClass.getAnnotations()) {
             if (a.annotationType().equals(MatchAnyObligation.class)) {
-                String[] obligationIds = ((MatchAnyObligation) a).value();
+                String[] obligationIds = ((MatchAnyObligation)a).value();
                 ObligationCriteriaBuilder criteriaBuilder = new ObligationCriteriaBuilder();
                 if (obligationIds != null && obligationIds.length > 0) {
                     criteriaBuilder.matchAnyObligationId(obligationIds);
@@ -90,14 +92,12 @@ public class StdObligationHandlerRegistry implements ObligationHandlerRegistry {
                 criteria = criteriaBuilder.build();
             } else if (a.annotationType().equals(MatchAllObligationAttributes.class)) {
                 ObligationCriteriaBuilder criteriaBuilder = new ObligationCriteriaBuilder();
-                MatchAllObligationAttributes attributeObligationAnnotation =
-                    (MatchAllObligationAttributes) a;
+                MatchAllObligationAttributes attributeObligationAnnotation = (MatchAllObligationAttributes)a;
                 for (Attribute attribute : attributeObligationAnnotation.value()) {
                     String attributeId = attribute.id();
                     String[] anyValue = attribute.anyValue();
                     if (anyValue != null && anyValue.length > 0) {
-                        criteriaBuilder.matchAttributeWithAnyGivenValue(
-                            attributeId, anyValue);
+                        criteriaBuilder.matchAttributeWithAnyGivenValue(attributeId, anyValue);
                     } else {
                         criteriaBuilder.matchAttribute(attributeId);
                     }

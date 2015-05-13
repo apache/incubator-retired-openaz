@@ -29,9 +29,8 @@ import java.util.Map;
 public interface ObligationRouter {
 
     /**
-     *
      * @param obligationMap
      */
-    public void routeObligations(Map<String, Obligation> obligationMap);
+    void routeObligations(Map<String, Obligation> obligationMap);
 
 }

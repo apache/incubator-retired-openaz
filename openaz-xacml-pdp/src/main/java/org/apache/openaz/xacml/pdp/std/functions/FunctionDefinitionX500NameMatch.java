@@ -44,18 +44,15 @@ import org.apache.openaz.xacml.std.StdStatusCode;
 import org.apache.openaz.xacml.std.datatypes.DataTypes;
 
 /**
- * FunctionDefinitionX500NameMatch extends {@link org.apache.openaz.xacml.pdp.std.functions.FunctionDefinitionHomogeneousSimple} to
- * implement the XACML X500Name match predicate as functions taking two <code>X500Name</code> arguments and returning a single <code>Boolean</code> value.
- *
- * In the first implementation of XACML we had separate files for each XACML Function.
- * This release combines multiple Functions in fewer files to minimize code duplication.
- * This file supports the following XACML codes:
- * 		x500Name-match
- *
- *
+ * FunctionDefinitionX500NameMatch extends
+ * {@link com.att.research.xacmlatt.pdp.std.functions.FunctionDefinitionHomogeneousSimple} to implement the
+ * XACML X500Name match predicate as functions taking two <code>X500Name</code> arguments and returning a
+ * single <code>Boolean</code> value. In the first implementation of XACML we had separate files for each
+ * XACML Function. This release combines multiple Functions in fewer files to minimize code duplication. This
+ * file supports the following XACML codes: x500Name-match
  */
-public class FunctionDefinitionX500NameMatch extends FunctionDefinitionHomogeneousSimple<Boolean, X500Principal> {
-
+public class FunctionDefinitionX500NameMatch extends
+    FunctionDefinitionHomogeneousSimple<Boolean, X500Principal> {
 
     /**
      * Constructor
@@ -68,11 +65,10 @@ public class FunctionDefinitionX500NameMatch extends FunctionDefinitionHomogeneo
         super(idIn, DataTypes.DT_BOOLEAN, DataTypes.DT_X500NAME, 2);
     }
 
-
     @Override
     public ExpressionResult evaluate(EvaluationContext evaluationContext, List<FunctionArgument> arguments) {
-        List<X500Principal> convertedArguments	= new ArrayList<X500Principal>();
-        Status status				= this.validateArguments(arguments, convertedArguments);
+        List<X500Principal> convertedArguments = new ArrayList<X500Principal>();
+        Status status = this.validateArguments(arguments, convertedArguments);
 
         /*
          * If the function arguments are not correct, just return an error status immediately
@@ -86,9 +82,8 @@ public class FunctionDefinitionX500NameMatch extends FunctionDefinitionHomogeneo
          */
 
         /*
-         * The spec writer's comments at:
-         * https://lists.oasis-open.org/archives/xacml/200906/msg00019.html
-         * say that the first sequence must exactly match the END of the second sequence.
+         * The spec writer's comments at: https://lists.oasis-open.org/archives/xacml/200906/msg00019.html say
+         * that the first sequence must exactly match the END of the second sequence.
          */
 
         String[] searchFor = convertedArguments.get(0).getName().split(",");
@@ -103,12 +98,11 @@ public class FunctionDefinitionX500NameMatch extends FunctionDefinitionHomogeneo
         for (int i = 0; i < searchFor.length; i++) {
             String searchForTerm = searchFor[searchFor.length - i - 1];
             String searchInTerm = searchIn[searchIn.length - i - 1];
-            if (searchForTerm == null || searchInTerm == null ||
-                    ! searchForTerm.trim().equals(searchInTerm.trim())) {
+            if (searchForTerm == null || searchInTerm == null
+                || !searchForTerm.trim().equals(searchInTerm.trim())) {
                 return ER_FALSE;
             }
         }
-
 
         return ER_TRUE;
     }

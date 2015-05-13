@@ -42,9 +42,8 @@ import oasis.names.tc.xacml._3_0.core.schema.wd_17.MissingAttributeDetailType;
 import oasis.names.tc.xacml._3_0.core.schema.wd_17.StatusDetailType;
 
 /**
- * JaxpStatusDetail extends {@link org.apache.openaz.xacml.std.StdMutableStatusDetail} with methods for creation from
- * JAXP elements.
- *
+ * JaxpStatusDetail extends {@link com.att.research.xacml.std.StdMutableStatusDetail} with methods for
+ * creation from JAXP elements.
  */
 public class JaxpStatusDetail extends StdMutableStatusDetail {
 
@@ -56,16 +55,17 @@ public class JaxpStatusDetail extends StdMutableStatusDetail {
         if (statusDetailType == null) {
             throw new NullPointerException("Null StatusDetailType");
         }
-        List<MissingAttributeDetail>	listMissingAttributeDetails	= null;
+        List<MissingAttributeDetail> listMissingAttributeDetails = null;
         if (statusDetailType.getAny() != null && statusDetailType.getAny().size() > 0) {
-            Iterator<Object>	iterObjects	= statusDetailType.getAny().iterator();
+            Iterator<Object> iterObjects = statusDetailType.getAny().iterator();
             while (iterObjects.hasNext()) {
-                Object object	= iterObjects.next();
+                Object object = iterObjects.next();
                 if (object instanceof MissingAttributeDetailType) {
                     if (listMissingAttributeDetails == null) {
-                        listMissingAttributeDetails	= new ArrayList<MissingAttributeDetail>();
+                        listMissingAttributeDetails = new ArrayList<MissingAttributeDetail>();
                     }
-                    listMissingAttributeDetails.add(JaxpMissingAttributeDetail.newInstance((MissingAttributeDetailType)object));
+                    listMissingAttributeDetails.add(JaxpMissingAttributeDetail
+                        .newInstance((MissingAttributeDetailType)object));
                 }
             }
         }

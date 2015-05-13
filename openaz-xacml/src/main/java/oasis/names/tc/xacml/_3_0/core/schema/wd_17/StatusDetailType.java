@@ -25,7 +25,6 @@
 // Generated on: 2013.05.23 at 02:47:00 PM EDT
 //
 
-
 package oasis.names.tc.xacml._3_0.core.schema.wd_17;
 
 import java.util.ArrayList;
@@ -36,13 +35,11 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAnyElement;
 import javax.xml.bind.annotation.XmlType;
 
-import org.w3c.dom.Element;
-
-
 /**
- * <p>Java class for StatusDetailType complex type.
- *
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>
+ * Java class for StatusDetailType complex type.
+ * <p>
+ * The following schema fragment specifies the expected content contained within this class.
  *
  * <pre>
  * &lt;complexType name="StatusDetailType">
@@ -55,12 +52,10 @@ import org.w3c.dom.Element;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- *
- *
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "StatusDetailType", propOrder = {
-    "any"
+                                                 "any"
 })
 public class StatusDetailType {
 
@@ -69,26 +64,18 @@ public class StatusDetailType {
 
     /**
      * Gets the value of the any property.
-     *
      * <p>
-     * This accessor method returns a reference to the live list,
-     * not a snapshot. Therefore any modification you make to the
-     * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the any property.
-     *
+     * This accessor method returns a reference to the live list, not a snapshot. Therefore any modification
+     * you make to the returned list will be present inside the JAXB object. This is why there is not a
+     * <CODE>set</CODE> method for the any property.
      * <p>
      * For example, to add a new item, do as follows:
+     * 
      * <pre>
-     *    getAny().add(newItem);
+     * getAny().add(newItem);
      * </pre>
-     *
-     *
      * <p>
-     * Objects of the following type(s) are allowed in the list
-     * {@link Object }
-     * {@link org.w3c.dom.Element }
-     *
-     *
+     * Objects of the following type(s) are allowed in the list {@link Object } {@link org.w3c.dom.Element }
      */
     public List<Object> getAny() {
         if (any == null) {

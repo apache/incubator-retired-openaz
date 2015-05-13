@@ -41,10 +41,10 @@ import org.apache.openaz.xacml.std.StdStatus;
 import org.apache.openaz.xacml.util.StringUtils;
 
 /**
- * AttributeAssignmentResult is the object returned by the <code>evaluate</code> method of an {@link org.apache.openaz.xacml.pdp.policy.AttributeAssignmentExpression}.
- * It contains a {@link org.apache.openaz.xacml.api.Status} and an optional collection of {@link org.apache.openaz.xacml.api.AttributeAssignment}
- * elements.
- *
+ * AttributeAssignmentResult is the object returned by the <code>evaluate</code> method of an
+ * {@link com.att.research.xacmlatt.pdp.policy.AttributeAssignmentExpression}. It contains a
+ * {@link com.att.research.xacml.api.Status} and an optional collection of
+ * {@link com.att.research.xacml.api.AttributeAssignment} elements.
  */
 public class AttributeAssignmentResult {
     private Status status;
@@ -54,10 +54,11 @@ public class AttributeAssignmentResult {
         return this.listAttributeAssignments;
     }
 
-    public AttributeAssignmentResult(Status statusIn, Collection<AttributeAssignment> listAttributeAssignmentsIn) {
-        this.status	= statusIn;
+    public AttributeAssignmentResult(Status statusIn,
+                                     Collection<AttributeAssignment> listAttributeAssignmentsIn) {
+        this.status = statusIn;
         if (listAttributeAssignmentsIn != null && listAttributeAssignmentsIn.size() > 0) {
-            this.listAttributeAssignments	= new ArrayList<AttributeAssignment>();
+            this.listAttributeAssignments = new ArrayList<AttributeAssignment>();
             this.listAttributeAssignments.addAll(listAttributeAssignmentsIn);
         }
     }
@@ -75,29 +76,29 @@ public class AttributeAssignmentResult {
     }
 
     public boolean isOk() {
-        return (this.getStatus() == null || this.getStatus().isOk());
+        return this.getStatus() == null || this.getStatus().isOk();
     }
 
     public Iterator<AttributeAssignment> getAttributeAssignments() {
-        List<AttributeAssignment> thisListAttributeAssignments	= this.getListAttributeAssignments();
+        List<AttributeAssignment> thisListAttributeAssignments = this.getListAttributeAssignments();
         return (thisListAttributeAssignments == null ? null : thisListAttributeAssignments.iterator());
     }
 
     public int getNumAttributeAssignments() {
-        List<AttributeAssignment> thisListAttributeAssignments	= this.getListAttributeAssignments();
+        List<AttributeAssignment> thisListAttributeAssignments = this.getListAttributeAssignments();
         return (thisListAttributeAssignments == null ? 0 : thisListAttributeAssignments.size());
     }
 
     @Override
     public String toString() {
-        StringBuilder stringBuilder	= new StringBuilder("{");
-        boolean needsComma	= false;
+        StringBuilder stringBuilder = new StringBuilder("{");
+        boolean needsComma = false;
 
         Object objectToDump;
         if ((objectToDump = this.getStatus()) != null) {
             stringBuilder.append("status=");
             stringBuilder.append(objectToDump.toString());
-            needsComma	= true;
+            needsComma = true;
         }
 
         Iterator<?> iterToDump;

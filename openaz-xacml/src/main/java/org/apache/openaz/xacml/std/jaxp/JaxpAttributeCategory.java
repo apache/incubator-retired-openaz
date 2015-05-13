@@ -44,9 +44,8 @@ import oasis.names.tc.xacml._3_0.core.schema.wd_17.AttributeType;
 import oasis.names.tc.xacml._3_0.core.schema.wd_17.AttributesType;
 
 /**
- * JaxpAttributeCategory extends {@link org.apache.openaz.xacml.std.StdAttributeCategory} with methods for creation from
- * JAXP elements.
- *
+ * JaxpAttributeCategory extends {@link com.att.research.xacml.std.StdAttributeCategory} with methods for
+ * creation from JAXP elements.
  */
 public class JaxpAttributeCategory {
 
@@ -59,11 +58,11 @@ public class JaxpAttributeCategory {
         } else if (attributesType.getCategory() == null) {
             throw new IllegalArgumentException("Null categoryId for AttributesType");
         }
-        Identifier identifierCategory	= new IdentifierImpl(attributesType.getCategory());
-        List<Attribute> listAttributes	= new ArrayList<Attribute>();
+        Identifier identifierCategory = new IdentifierImpl(attributesType.getCategory());
+        List<Attribute> listAttributes = new ArrayList<Attribute>();
 
         if (attributesType.getAttribute() != null && attributesType.getAttribute().size() > 0) {
-            Iterator<AttributeType>	iterAttributeTypes	= attributesType.getAttribute().iterator();
+            Iterator<AttributeType> iterAttributeTypes = attributesType.getAttribute().iterator();
             while (iterAttributeTypes.hasNext()) {
                 listAttributes.add(JaxpAttribute.newInstance(identifierCategory, iterAttributeTypes.next()));
             }

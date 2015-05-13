@@ -41,28 +41,25 @@ import org.apache.openaz.xacml.std.pap.StdPDP;
 /*
  * The following allows us to use Jackson to convert sub-types of this type into JSON and back to objects.
  */
-@JsonTypeInfo(
-    use = JsonTypeInfo.Id.NAME,
-    include = JsonTypeInfo.As.PROPERTY,
-    property = "PDPType")
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "PDPType")
 @JsonSubTypes({
     @Type(value = StdPDP.class, name = "StdPDP")
 })
 public interface PDP {
 
-    public String 						getId();
+    String getId();
 
-    public String						getName();
+    String getName();
 
-    public void							setName(String name);
+    void setName(String name);
 
-    public String						getDescription();
+    String getDescription();
 
-    public void							setDescription(String description);
+    void setDescription(String description);
 
-    public PDPStatus					getStatus();
+    PDPStatus getStatus();
 
-    public Set<PDPPolicy>	 			getPolicies();
+    Set<PDPPolicy> getPolicies();
 
-    public Set<PDPPIPConfig> 			getPipConfigs();
+    Set<PDPPIPConfig> getPipConfigs();
 }

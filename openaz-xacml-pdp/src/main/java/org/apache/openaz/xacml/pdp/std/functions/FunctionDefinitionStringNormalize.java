@@ -46,33 +46,28 @@ import org.apache.openaz.xacml.std.datatypes.DataTypeString;
 import org.apache.openaz.xacml.std.datatypes.DataTypes;
 
 /**
- * FunctionDefinitionStringNormalize extends {@link org.apache.openaz.xacml.pdp.std.functions.FunctionDefinitionHomogeneousSimple} to
- * implement the XACML String normalization predicates as functions taking one <code>String</code> arg and returning a single value of the same type.
- *
- * In the first implementation of XACML we had separate files for each XACML Function.
- * This release combines multiple Functions in fewer files to minimize code duplication.
- * This file supports the following XACML codes:
- * 		string-normalize-space
- * 		string-normalize-to-lower-case
- *
- *
+ * FunctionDefinitionStringNormalize extends
+ * {@link com.att.research.xacmlatt.pdp.std.functions.FunctionDefinitionHomogeneousSimple} to implement the
+ * XACML String normalization predicates as functions taking one <code>String</code> arg and returning a
+ * single value of the same type. In the first implementation of XACML we had separate files for each XACML
+ * Function. This release combines multiple Functions in fewer files to minimize code duplication. This file
+ * supports the following XACML codes: string-normalize-space string-normalize-to-lower-case
  */
 public class FunctionDefinitionStringNormalize extends FunctionDefinitionHomogeneousSimple<String, String> {
 
     /**
      * List of string normalization operations.
-     *
-     *
      */
-    public enum OPERATION {SPACE, LOWER_CASE };
+    public enum OPERATION {
+        SPACE,
+        LOWER_CASE
+    };
 
     // operation to be used in this instance of the Arightmetic class
     private final OPERATION operation;
 
-
     // result variables used by all functions
-    AttributeValue<String>	result;
-
+    AttributeValue<String> result;
 
     /**
      * Constructor
@@ -81,8 +76,9 @@ public class FunctionDefinitionStringNormalize extends FunctionDefinitionHomogen
      * @param dataTypeArgsIn
      * @param op
      */
-    public FunctionDefinitionStringNormalize(Identifier idIn,  OPERATION op) {
-        // for Arithmetic functions, the output type is the same as the input type (no mixing of Ints and Doubles!)
+    public FunctionDefinitionStringNormalize(Identifier idIn, OPERATION op) {
+        // for Arithmetic functions, the output type is the same as the input type (no mixing of Ints and
+        // Doubles!)
         super(idIn, DataTypes.DT_STRING, DataTypeString.newInstance(), 1);
 
         // save the operation and data type to be used in this instance
@@ -90,11 +86,10 @@ public class FunctionDefinitionStringNormalize extends FunctionDefinitionHomogen
 
     }
 
-
     @Override
     public ExpressionResult evaluate(EvaluationContext evaluationContext, List<FunctionArgument> arguments) {
-        List<String> convertedArguments	= new ArrayList<String>();
-        Status status				= this.validateArguments(arguments, convertedArguments);
+        List<String> convertedArguments = new ArrayList<String>();
+        Status status = this.validateArguments(arguments, convertedArguments);
 
         /*
          * If the function arguments are not correct, just return an error status immediately
@@ -110,10 +105,11 @@ public class FunctionDefinitionStringNormalize extends FunctionDefinitionHomogen
 
         switch (operation) {
         case SPACE:
-            result	= new StdAttributeValue<String>(XACML.ID_DATATYPE_STRING, convertedArguments.get(0).trim() );
+            result = new StdAttributeValue<String>(XACML.ID_DATATYPE_STRING, convertedArguments.get(0).trim());
             break;
         case LOWER_CASE:
-            result	= new StdAttributeValue<String>(XACML.ID_DATATYPE_STRING, convertedArguments.get(0).toLowerCase() );
+            result = new StdAttributeValue<String>(XACML.ID_DATATYPE_STRING, convertedArguments.get(0)
+                .toLowerCase());
             break;
         }
 

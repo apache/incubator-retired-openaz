@@ -32,7 +32,7 @@ public final class ObligationIdCriterion implements ObligationCriterion {
 
     public ObligationIdCriterion(String... obligationIds) {
         this.obligationIdSet = new HashSet<String>();
-        if(obligationIds != null) {
+        if (obligationIds != null) {
             this.obligationIdSet.addAll(Arrays.asList(obligationIds));
         }
     }

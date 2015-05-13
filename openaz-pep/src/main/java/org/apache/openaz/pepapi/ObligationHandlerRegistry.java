@@ -20,12 +20,10 @@
 
 package org.apache.openaz.pepapi;
 
-
 import java.util.Map;
 
 /**
  * Abstraction for a Obligation Handler registration mechanism. Subclasses provide specific implementations.
- *
  */
 public interface ObligationHandlerRegistry {
 
@@ -34,6 +32,6 @@ public interface ObligationHandlerRegistry {
      *
      * @return
      */
-    public Map<Class<?>, Matchable<Obligation>> getRegisteredHandlerMap();
+    Map<Class<?>, Matchable<Obligation>> getRegisteredHandlerMap();
 
 }

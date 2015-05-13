@@ -21,7 +21,8 @@
 package org.apache.openaz.pepapi;
 
 /**
- * Interface that abstracts an object that can be matched. Concrete implementations provide a match() function.
+ * Interface that abstracts an object that can be matched. Concrete implementations provide a match()
+ * function.
  *
  * @param <T>
  */
@@ -33,6 +34,6 @@ public interface Matchable<T> {
      * @param t
      * @return a <code>boolean</code> value
      */
-    public boolean match(T t);
+    boolean match(T t);
 
 }

@@ -48,54 +48,53 @@ import org.apache.openaz.xacml.pdp.policy.CombiningElement;
  *
  * @param <T> the java class of the object to be combined
  */
-public class PermitOverrides<T extends org.apache.openaz.xacml.pdp.eval.Evaluatable> extends CombiningAlgorithmBase<T> {
+public class PermitOverrides<T extends org.apache.openaz.xacml.pdp.eval.Evaluatable> extends 
+    CombiningAlgorithmBase<T> {
 
     public PermitOverrides(Identifier identifierIn) {
         super(identifierIn);
     }
 
     @Override
-    public EvaluationResult combine(EvaluationContext evaluationContext,
-                                    List<CombiningElement<T>> elements,
-                                    List<CombinerParameter> combinerParameters)
-    throws EvaluationException {
-        boolean atLeastOneDeny					= false;
+    public EvaluationResult combine(EvaluationContext evaluationContext, List<CombiningElement<T>> elements,
+                                    List<CombinerParameter> combinerParameters) throws EvaluationException {
+        boolean atLeastOneDeny = false;
 
-        EvaluationResult combinedResult			= new EvaluationResult(Decision.DENY);
+        EvaluationResult combinedResult = new EvaluationResult(Decision.DENY);
 
-        EvaluationResult firstIndeterminateD	= null;
-        EvaluationResult firstIndeterminateP	= null;
-        EvaluationResult firstIndeterminateDP	= null;
+        EvaluationResult firstIndeterminateD = null;
+        EvaluationResult firstIndeterminateP = null;
+        EvaluationResult firstIndeterminateDP = null;
 
-        Iterator<CombiningElement<T>> iterElements	= elements.iterator();
+        Iterator<CombiningElement<T>> iterElements = elements.iterator();
         while (iterElements.hasNext()) {
-            CombiningElement<T> combiningElement		= iterElements.next();
-            EvaluationResult evaluationResultElement	= combiningElement.evaluate(evaluationContext);
+            CombiningElement<T> combiningElement = iterElements.next();
+            EvaluationResult evaluationResultElement = combiningElement.evaluate(evaluationContext);
 
-            assert(evaluationResultElement != null);
-            switch(evaluationResultElement.getDecision()) {
+            assert evaluationResultElement != null;
+            switch (evaluationResultElement.getDecision()) {
             case DENY:
-                atLeastOneDeny	= true;
+                atLeastOneDeny = true;
                 combinedResult.merge(evaluationResultElement);
                 break;
             case INDETERMINATE:
             case INDETERMINATE_DENYPERMIT:
                 if (firstIndeterminateDP == null) {
-                    firstIndeterminateDP	= evaluationResultElement;
+                    firstIndeterminateDP = evaluationResultElement;
                 } else {
                     firstIndeterminateDP.merge(evaluationResultElement);
                 }
                 break;
             case INDETERMINATE_DENY:
                 if (firstIndeterminateD == null) {
-                    firstIndeterminateD		= evaluationResultElement;
+                    firstIndeterminateD = evaluationResultElement;
                 } else {
                     firstIndeterminateD.merge(evaluationResultElement);
                 }
                 break;
             case INDETERMINATE_PERMIT:
                 if (firstIndeterminateP == null) {
-                    firstIndeterminateP		= evaluationResultElement;
+                    firstIndeterminateP = evaluationResultElement;
                 } else {
                     firstIndeterminateP.merge(evaluationResultElement);
                 }
@@ -105,7 +104,8 @@ public class PermitOverrides<T extends org.apache.openaz.xacml.pdp.eval.Evaluata
             case PERMIT:
                 return evaluationResultElement;
             default:
-                throw new EvaluationException("Illegal Decision: \"" + evaluationResultElement.getDecision().toString());
+                throw new EvaluationException("Illegal Decision: \""
+                                              + evaluationResultElement.getDecision().toString());
             }
         }
 

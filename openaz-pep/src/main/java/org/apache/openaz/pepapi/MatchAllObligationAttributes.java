@@ -26,17 +26,14 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Represents a union of Obligation Attribute match criterion.
- * All attribute criterion supplied will be conjunctively matched by the framework.
- *
- *
+ * Represents a union of Obligation Attribute match criterion. All attribute criterion supplied will be
+ * conjunctively matched by the framework.
  */
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface MatchAllObligationAttributes {
 
     /**
-     *
      * @return
      */
     Attribute[] value();

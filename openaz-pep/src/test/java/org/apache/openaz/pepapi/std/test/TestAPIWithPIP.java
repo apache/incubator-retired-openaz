@@ -32,7 +32,6 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class TestAPIWithPIP {
 
     private static final Log log = LogFactory.getLog(TestAPIWithPIP.class);
@@ -44,7 +43,6 @@ public class TestAPIWithPIP {
         pepAgentFactory = new StdPepAgentFactory("xacml.properties");
     }
 
-
     /**
      *
      */
@@ -54,21 +52,17 @@ public class TestAPIWithPIP {
         Assert.assertNotNull(getPepAgent());
     }
 
-
     /**
      *
      */
     @Ignore
     @Test
     public void testPermit() {
-        PepResponse response = getPepAgent()
-                               .simpleDecide("John Doe",
-                                             "read",
-                                             "http://medico.com/record/patient/BartSimpson");
+        PepResponse response = getPepAgent().simpleDecide("John Doe", "read",
+                                                          "http://medico.com/record/patient/BartSimpson");
         Assert.assertNotNull(response);
         Assert.assertEquals(true, response.allowed());
     }
-
 
     /**
      *
@@ -76,14 +70,11 @@ public class TestAPIWithPIP {
     @Ignore
     @Test
     public void testNotApplicable() {
-        PepResponse response = getPepAgent()
-                               .simpleDecide("John Smith",
-                                             "read",
-                                             "http://medico.com/record/patient/BartSimpson");
+        PepResponse response = getPepAgent().simpleDecide("John Smith", "read",
+                                                          "http://medico.com/record/patient/BartSimpson");
         Assert.assertNotNull(response);
         Assert.assertEquals(false, response.allowed());
     }
-
 
     /**
      *
@@ -107,7 +98,7 @@ public class TestAPIWithPIP {
         Assert.assertEquals(false, responses.get(1).allowed());
         Assert.assertEquals(true, responses.get(2).allowed());
         Assert.assertEquals(false, responses.get(3).allowed());
-        for(PepResponse response: responses) {
+        for (PepResponse response : responses) {
             log.debug(response.getAssociation());
         }
     }

@@ -25,7 +25,6 @@
 // Generated on: 2013.05.23 at 02:47:00 PM EDT
 //
 
-
 package oasis.names.tc.xacml._3_0.core.schema.wd_17;
 
 import java.util.ArrayList;
@@ -38,11 +37,11 @@ import javax.xml.bind.annotation.XmlElementRef;
 import javax.xml.bind.annotation.XmlElementRefs;
 import javax.xml.bind.annotation.XmlType;
 
-
 /**
- * <p>Java class for PolicyIdentifierListType complex type.
- *
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>
+ * Java class for PolicyIdentifierListType complex type.
+ * <p>
+ * The following schema fragment specifies the expected content contained within this class.
  *
  * <pre>
  * &lt;complexType name="PolicyIdentifierListType">
@@ -56,12 +55,10 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- *
- *
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "PolicyIdentifierListType", propOrder = {
-    "policyIdReferenceOrPolicySetIdReference"
+                                                         "policyIdReferenceOrPolicySetIdReference"
 })
 public class PolicyIdentifierListType {
 
@@ -73,26 +70,21 @@ public class PolicyIdentifierListType {
 
     /**
      * Gets the value of the policyIdReferenceOrPolicySetIdReference property.
-     *
      * <p>
-     * This accessor method returns a reference to the live list,
-     * not a snapshot. Therefore any modification you make to the
-     * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the policyIdReferenceOrPolicySetIdReference property.
-     *
+     * This accessor method returns a reference to the live list, not a snapshot. Therefore any modification
+     * you make to the returned list will be present inside the JAXB object. This is why there is not a
+     * <CODE>set</CODE> method for the policyIdReferenceOrPolicySetIdReference property.
      * <p>
      * For example, to add a new item, do as follows:
+     * 
      * <pre>
-     *    getPolicyIdReferenceOrPolicySetIdReference().add(newItem);
+     * getPolicyIdReferenceOrPolicySetIdReference().add(newItem);
      * </pre>
-     *
-     *
      * <p>
-     * Objects of the following type(s) are allowed in the list
-     * {@link javax.xml.bind.JAXBElement }{@code <}{@link oasis.names.tc.xacml._3_0.core.schema.wd_17.IdReferenceType }{@code >}
-     * {@link javax.xml.bind.JAXBElement }{@code <}{@link oasis.names.tc.xacml._3_0.core.schema.wd_17.IdReferenceType }{@code >}
-     *
-     *
+     * Objects of the following type(s) are allowed in the list {@link javax.xml.bind.JAXBElement }{@code <}
+     * {@link oasis.names.tc.xacml._3_0.core.schema.wd_17.IdReferenceType }{@code >}
+     * {@link javax.xml.bind.JAXBElement }{@code <}
+     * {@link oasis.names.tc.xacml._3_0.core.schema.wd_17.IdReferenceType }{@code >}
      */
     public List<JAXBElement<IdReferenceType>> getPolicyIdReferenceOrPolicySetIdReference() {
         if (policyIdReferenceOrPolicySetIdReference == null) {

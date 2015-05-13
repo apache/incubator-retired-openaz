@@ -51,14 +51,14 @@ import org.apache.openaz.xacml.std.StdStatusCode;
 import org.apache.openaz.xacml.util.FactoryException;
 
 /**
- * Apply extends {@link org.apache.openaz.xacml.pdp.policy.Expression} to implement the XACML Apply Expression element.
- *
+ * Apply extends {@link com.att.research.xacmlatt.pdp.policy.Expression} to implement the XACML Apply
+ * Expression element.
  */
 public class Apply extends Expression {
     private Identifier functionId;
     private FunctionDefinition functionDefinition;
     private String description;
-    private List<Expression> arguments	= new ArrayList<Expression>();
+    private List<Expression> arguments = new ArrayList<Expression>();
 
     protected List<Expression> getArgumentList() {
         return this.arguments;
@@ -80,8 +80,8 @@ public class Apply extends Expression {
     }
 
     public Apply(Identifier functionIdIn, String descriptionIn, Collection<Expression> argumentsIn) {
-        this.functionId		= functionIdIn;
-        this.description	= descriptionIn;
+        this.functionId = functionIdIn;
+        this.description = descriptionIn;
         if (argumentsIn != null) {
             this.arguments.addAll(argumentsIn);
         }
@@ -92,24 +92,27 @@ public class Apply extends Expression {
     }
 
     public void setFunctionId(Identifier identifier) {
-        this.functionId			= identifier;
-        this.functionDefinition	= null;
+        this.functionId = identifier;
+        this.functionDefinition = null;
     }
 
     /**
      * Gets and caches the {@link org.apache.openaz.xacml.pdp.policy.FunctionDefinition} matching the
      * <code>Identifier</code> for the FunctionId in this <code>Apply</code>.
      *
-     * @return the <code>FunctionDefinition</code> for the <code>Identifier</code> for the Function Id for this <code>Apply</code>
+     * @return the <code>FunctionDefinition</code> for the <code>Identifier</code> for the Function Id for
+     *         this <code>Apply</code>
      */
     public FunctionDefinition getFunctionDefinition() {
         if (this.functionDefinition == null) {
-            Identifier thisFunctionId	= this.getFunctionId();
+            Identifier thisFunctionId = this.getFunctionId();
             if (thisFunctionId != null) {
                 try {
-                    this.functionDefinition	= FunctionDefinitionFactory.newInstance().getFunctionDefinition(thisFunctionId);
+                    this.functionDefinition = FunctionDefinitionFactory.newInstance()
+                        .getFunctionDefinition(thisFunctionId);
                 } catch (FactoryException ex) {
-                    this.setStatus(StdStatusCode.STATUS_CODE_PROCESSING_ERROR, "FactoryException getting FunctionDefinition");
+                    this.setStatus(StdStatusCode.STATUS_CODE_PROCESSING_ERROR,
+                                   "FactoryException getting FunctionDefinition");
                 }
             }
         }
@@ -121,7 +124,7 @@ public class Apply extends Expression {
     }
 
     public void setDescription(String string) {
-        this.description	= string;
+        this.description = string;
     }
 
     public Iterator<Expression> getArguments() {
@@ -144,7 +147,8 @@ public class Apply extends Expression {
     }
 
     @Override
-    public ExpressionResult evaluate(EvaluationContext evaluationContext, PolicyDefaults policyDefaults) throws EvaluationException {
+    public ExpressionResult evaluate(EvaluationContext evaluationContext, PolicyDefaults policyDefaults)
+        throws EvaluationException {
         if (!this.validate()) {
             return ExpressionResult.newError(new StdStatus(this.getStatusCode(), this.getStatusMessage()));
         }
@@ -152,19 +156,22 @@ public class Apply extends Expression {
         /*
          * Get the FunctionDefinition
          */
-        FunctionDefinition thisFunctionDefinition	= this.getFunctionDefinition();
+        FunctionDefinition thisFunctionDefinition = this.getFunctionDefinition();
         if (thisFunctionDefinition == null) {
-            return ExpressionResult.newError(new StdStatus(StdStatusCode.STATUS_CODE_PROCESSING_ERROR, "Unknown Function \"" + this.getFunctionId().toString() + "\""));
+            return ExpressionResult.newError(new StdStatus(StdStatusCode.STATUS_CODE_PROCESSING_ERROR,
+                                                           "Unknown Function \""
+                                                               + this.getFunctionId().toString() + "\""));
         }
 
         /*
          * Get all of the arguments and convert them into FunctionArgument objects.
          */
-        List<FunctionArgument> listFunctionArguments	= new ArrayList<FunctionArgument>();
-        Iterator<Expression> iterExpressionArguments	= this.getArguments();
+        List<FunctionArgument> listFunctionArguments = new ArrayList<FunctionArgument>();
+        Iterator<Expression> iterExpressionArguments = this.getArguments();
         if (iterExpressionArguments != null) {
             while (iterExpressionArguments.hasNext()) {
-                listFunctionArguments.add(new FunctionArgumentExpression(iterExpressionArguments.next(), evaluationContext, policyDefaults));
+                listFunctionArguments.add(new FunctionArgumentExpression(iterExpressionArguments.next(),
+                                                                         evaluationContext, policyDefaults));
             }
         }
 

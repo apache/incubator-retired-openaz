@@ -40,14 +40,14 @@ import org.apache.openaz.xacml.pdp.policy.FunctionDefinition;
 import org.apache.openaz.xacml.pdp.policy.FunctionDefinitionFactory;
 
 /**
- * StdFunctionDefinitionFactory is the default {@link org.apache.openaz.xacml.pdp.policy.FunctionDefinitionFactory} implementation
- * used if no other <code>FunctionDefinitionFactory</code> implementation is supplied.  It contains all of the standard XACML 3.0
- * functions.
- *
+ * StdFunctionDefinitionFactory is the default
+ * {@link com.att.research.xacmlatt.pdp.policy.FunctionDefinitionFactory} implementation used if no other
+ * <code>FunctionDefinitionFactory</code> implementation is supplied. It contains all of the standard XACML
+ * 3.0 functions.
  */
 public class StdFunctionDefinitionFactory extends FunctionDefinitionFactory {
-    private static Map<Identifier,FunctionDefinition> 	mapFunctionDefinitions	= new HashMap<Identifier,FunctionDefinition>();
-    private static boolean								needMapInit				= true;
+    private static Map<Identifier, FunctionDefinition> mapFunctionDefinitions = new HashMap<Identifier, FunctionDefinition>();
+    private static boolean needMapInit = true;
 
     private static void register(FunctionDefinition functionDefinition) {
         mapFunctionDefinitions.put(functionDefinition.getId(), functionDefinition);
@@ -55,20 +55,19 @@ public class StdFunctionDefinitionFactory extends FunctionDefinitionFactory {
 
     private static void initMap() {
         if (needMapInit) {
-            synchronized(mapFunctionDefinitions) {
+            synchronized (mapFunctionDefinitions) {
                 if (needMapInit) {
-                    needMapInit	= false;
-                    Field[] declaredFields	= StdFunctions.class.getDeclaredFields();
+                    needMapInit = false;
+                    Field[] declaredFields = StdFunctions.class.getDeclaredFields();
                     for (Field field : declaredFields) {
-                        if (Modifier.isStatic(field.getModifiers()) &&
-                                field.getName().startsWith(StdFunctions.FD_PREFIX) &&
-                                FunctionDefinition.class.isAssignableFrom(field.getType()) &&
-                                Modifier.isPublic(field.getModifiers())
-                           ) {
+                        if (Modifier.isStatic(field.getModifiers())
+                            && field.getName().startsWith(StdFunctions.FD_PREFIX)
+                            && FunctionDefinition.class.isAssignableFrom(field.getType())
+                            && Modifier.isPublic(field.getModifiers())) {
                             try {
                                 register((FunctionDefinition)(field.get(null)));
-                            } catch (IllegalAccessException ex) {
-
+                            } catch (IllegalAccessException ex) { //NOPMD
+                                // TODO
                             }
                         }
                     }

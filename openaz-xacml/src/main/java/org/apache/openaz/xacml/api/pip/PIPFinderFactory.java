@@ -38,11 +38,10 @@ import org.apache.openaz.xacml.util.XACMLProperties;
 
 /**
  * PIPFinderFactory is the factory class for getting the configured {@link PIPFinder}.
- *
  */
 public abstract class PIPFinderFactory {
-    private static final String	FACTORYID					= XACMLProperties.PROP_PIPFINDERFACTORY;
-    private static final String	DEFAULT_FACTORY_CLASSNAME	= "org.apache.openaz.xacml.std.pip.StdPIPFinderFactory";
+    private static final String	FACTORYID = XACMLProperties.PROP_PIPFINDERFACTORY;
+    private static final String	DEFAULT_FACTORY_CLASSNAME = "org.apache.openaz.xacml.std.pip.StdPIPFinderFactory";
 
     protected Properties properties = null;
 
@@ -73,7 +72,8 @@ public abstract class PIPFinderFactory {
         return FactoryFinder.find(FACTORYID, DEFAULT_FACTORY_CLASSNAME, PIPFinderFactory.class, properties);
     }
 
-    public static PIPFinderFactory newInstance(String factoryClassName, ClassLoader classLoader) throws FactoryException {
+    public static PIPFinderFactory newInstance(String factoryClassName, ClassLoader classLoader)
+        throws FactoryException {
         return FactoryFinder.newInstance(factoryClassName, PIPFinderFactory.class, classLoader, false);
     }
 
@@ -86,12 +86,12 @@ public abstract class PIPFinderFactory {
      *
      * @return an instance of the configured <code>PIPFinder</code>
      */
-    abstract public PIPFinder getFinder() throws PIPException ;
+    abstract public PIPFinder getFinder() throws PIPException;
 
     /**
      * Gets an instance of the configured <code>PIPFinder</code> class.
      *
      * @return an instance of the configured <code>PIPFinder</code>
      */
-    abstract public PIPFinder getFinder(Properties properties) throws PIPException ;
+    abstract public PIPFinder getFinder(Properties properties) throws PIPException;
 }

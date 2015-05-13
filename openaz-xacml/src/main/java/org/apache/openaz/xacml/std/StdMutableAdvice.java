@@ -42,11 +42,11 @@ import org.apache.openaz.xacml.util.ListUtil;
 import org.apache.openaz.xacml.util.ObjUtil;
 
 /**
- * Mutable implementation of the {@link org.apache.openaz.xacml.api.Advice} interface.
- *
+ * Mutable implementation of the {@link com.att.research.xacml.api.Advice} interface.
  */
 public class StdMutableAdvice implements Advice {
-    private static final List<AttributeAssignment> EMPTY_ATTRIBUTE_ASSIGNMENTS	= Collections.unmodifiableList(new ArrayList<AttributeAssignment>());
+    private static final List<AttributeAssignment> EMPTY_ATTRIBUTE_ASSIGNMENTS = Collections
+        .unmodifiableList(new ArrayList<AttributeAssignment>());
 
     private Identifier id;
     private List<AttributeAssignment> attributeAssignments;
@@ -55,20 +55,23 @@ public class StdMutableAdvice implements Advice {
      * Creates a new empty <code>StdMutableAdvice</code>.
      */
     public StdMutableAdvice() {
-        this.attributeAssignments	= EMPTY_ATTRIBUTE_ASSIGNMENTS;
+        this.attributeAssignments = EMPTY_ATTRIBUTE_ASSIGNMENTS;
     }
 
     /**
-     * Creates a new <code>StdMutableAdvice</code> with the given {@link com.att.research.xacml.Identifier} as its unique identifier, and
-     * the given <code>Collection</code> of {@link com.att.research.xacml.AttributeAssignment}s.  A copy of the <code>AttributeAssignment</code>s
-     * is made.
+     * Creates a new <code>StdMutableAdvice</code> with the given {@link com.att.research.xacml.Identifier} as
+     * its unique identifier, and the given <code>Collection</code> of
+     * {@link com.att.research.xacml.AttributeAssignment}s. A copy of the <code>AttributeAssignment</code>s is
+     * made.
      *
-     * @param idIn the <code>Identifier</code> that uniquely identifies this <code>StdMutableAdvice</code>.  Should not be null.
-     * @param attributeAssignmentsIn the <code>Collection</code> of <code>AttributeAssignment</code>s for this <code>StdMutableAdvice</code>.  May be null.
+     * @param idIn the <code>Identifier</code> that uniquely identifies this <code>StdMutableAdvice</code>.
+     *            Should not be null.
+     * @param attributeAssignmentsIn the <code>Collection</code> of <code>AttributeAssignment</code>s for this
+     *            <code>StdMutableAdvice</code>. May be null.
      */
     public StdMutableAdvice(Identifier idIn, Collection<AttributeAssignment> attributeAssignmentsIn) {
         this();
-        this.id	= idIn;
+        this.id = idIn;
         this.attributeAssignments = new ArrayList<AttributeAssignment>();
         if (attributeAssignmentsIn != null) {
             this.addAttributeAssignments(attributeAssignmentsIn);
@@ -76,9 +79,11 @@ public class StdMutableAdvice implements Advice {
     }
 
     /**
-     * Creates a new <code>StdMutableAdvice</code> with the given {@link com.att.research.xacml.Identifier} as its unique identifier.
+     * Creates a new <code>StdMutableAdvice</code> with the given {@link com.att.research.xacml.Identifier} as
+     * its unique identifier.
      *
-     * @param idIn the <code>Identifier</code> that uniquely identifies this <code>StdMutableAdvice</code>.  May be null.
+     * @param idIn the <code>Identifier</code> that uniquely identifies this <code>StdMutableAdvice</code>.
+     *            May be null.
      */
     public StdMutableAdvice(Identifier idIn) {
         this(idIn, null);
@@ -86,7 +91,12 @@ public class StdMutableAdvice implements Advice {
     }
 
     /**
+<<<<<<< HEAD:openaz-xacml/src/main/java/org/apache/openaz/xacml/std/StdMutableAdvice.java
      * Creates a copy of the given {@link org.apache.openaz.xacml.api.Advice} as a new <code>StdMutableAdvice</code>.
+=======
+     * Creates a copy of the given {@link com.att.research.xacml.api.Advice} as a new
+     * <code>StdMutableAdvice</code>.
+>>>>>>> fbf04a9381a2cdc18cbbe04bdc63b86b9772f14b:openaz-xacml/src/main/java/com/att/research/xacml/std/StdMutableAdvice.java
      *
      * @param advice the <code>Advice</code> to copy
      * @return a new <code>StdMutableAdvice</code> that is a copy of the given <code>Advice</code>
@@ -101,53 +111,64 @@ public class StdMutableAdvice implements Advice {
     }
 
     /**
+<<<<<<< HEAD:openaz-xacml/src/main/java/org/apache/openaz/xacml/std/StdMutableAdvice.java
      * Sets the {@link org.apache.openaz.xacml.api.Identifier} representing the XACML AdviceId of the Advice represented by this <code>StdMutableAdvice</code>.
+=======
+     * Sets the {@link com.att.research.xacml.api.Identifier} representing the XACML AdviceId of the Advice
+     * represented by this <code>StdMutableAdvice</code>.
+>>>>>>> fbf04a9381a2cdc18cbbe04bdc63b86b9772f14b:openaz-xacml/src/main/java/com/att/research/xacml/std/StdMutableAdvice.java
      *
-     * @param identifier the <code>Identifier</code> representing the XACML AdviceId of the Advice represented by this <code>StdMutableAdvice</code>.
+     * @param identifier the <code>Identifier</code> representing the XACML AdviceId of the Advice represented
+     *            by this <code>StdMutableAdvice</code>.
      */
     public void setId(Identifier identifier) {
-        this.id	= identifier;
+        this.id = identifier;
     }
 
     @Override
     public Collection<AttributeAssignment> getAttributeAssignments() {
-        return (this.attributeAssignments == EMPTY_ATTRIBUTE_ASSIGNMENTS ? this.attributeAssignments : Collections.unmodifiableList(this.attributeAssignments));
+        return (this.attributeAssignments == EMPTY_ATTRIBUTE_ASSIGNMENTS
+            ? this.attributeAssignments : Collections.unmodifiableList(this.attributeAssignments));
     }
 
     /**
      * Adds an {@link org.apache.openaz.xacml.api.AttributeAssignment} to this <code>StdMutableAdvice</code>>
      *
-     * @param attributeAssignment the <code>AttributeAssignment</code> to add to this <code>StdMutableAdvice</code>>
+     * @param attributeAssignment the <code>AttributeAssignment</code> to add to this
+     *            <code>StdMutableAdvice</code>>
      */
     public void addAttributeAssignment(AttributeAssignment attributeAssignment) {
         if (this.attributeAssignments == EMPTY_ATTRIBUTE_ASSIGNMENTS) {
-            this.attributeAssignments	= new ArrayList<AttributeAssignment>();
+            this.attributeAssignments = new ArrayList<AttributeAssignment>();
         }
         this.attributeAssignments.add(attributeAssignment);
     }
 
     /**
-     * Adds a copy of the given <code>Collection</code> of {@link org.apache.openaz.xacml.api.AttributeAssignment}s to this <code>StdMutableAdvice</code>>
+     * Adds a copy of the given <code>Collection</code> of
+     * {@link com.att.research.xacml.api.AttributeAssignment}s to this <code>StdMutableAdvice</code>>
      *
-     * @param listAttributeAssignments the <code>Collection</code> of <code>AttributeAssignment</code>s to add to this <code>StdMutableAdvice</code>.
+     * @param listAttributeAssignments the <code>Collection</code> of <code>AttributeAssignment</code>s to add
+     *            to this <code>StdMutableAdvice</code>.
      */
     public void addAttributeAssignments(Collection<AttributeAssignment> listAttributeAssignments) {
         if (listAttributeAssignments != null && listAttributeAssignments.size() > 0) {
             if (this.attributeAssignments == EMPTY_ATTRIBUTE_ASSIGNMENTS) {
-                this.attributeAssignments	= new ArrayList<AttributeAssignment>();
+                this.attributeAssignments = new ArrayList<AttributeAssignment>();
             }
             this.attributeAssignments.addAll(listAttributeAssignments);
         }
     }
 
     /**
-     * Sets the {@link org.apache.openaz.xacml.api.AttributeAssignment}s in this <code>StdMutableAdvice</code> to a copy of the
-     * given <code>Collection</code>.
+     * Sets the {@link com.att.research.xacml.api.AttributeAssignment}s in this <code>StdMutableAdvice</code>
+     * to a copy of the given <code>Collection</code>.
      *
-     * @param listAttributeAssignments the <code>Collection</code> of <code>AttributeAssignment</code>s to set in this <code>StdMutableAdvice</code>.
+     * @param listAttributeAssignments the <code>Collection</code> of <code>AttributeAssignment</code>s to set
+     *            in this <code>StdMutableAdvice</code>.
      */
     public void setAttributeAssignments(Collection<AttributeAssignment> listAttributeAssignments) {
-        this.attributeAssignments	= EMPTY_ATTRIBUTE_ASSIGNMENTS;
+        this.attributeAssignments = EMPTY_ATTRIBUTE_ASSIGNMENTS;
         this.addAttributeAssignments(listAttributeAssignments);
     }
 
@@ -158,21 +179,21 @@ public class StdMutableAdvice implements Advice {
         } else if (obj == null || !(obj instanceof Advice)) {
             return false;
         } else {
-            Advice adviceObj	= (Advice)obj;
-            return (ObjUtil.equalsAllowNull(this.getId(), adviceObj.getId()) &&
-                    ListUtil.equalsAllowNulls(this.getAttributeAssignments(), adviceObj.getAttributeAssignments()));
+            Advice adviceObj = (Advice)obj;
+            return (ObjUtil.equalsAllowNull(this.getId(), adviceObj.getId()) && ListUtil
+                .equalsAllowNulls(this.getAttributeAssignments(), adviceObj.getAttributeAssignments()));
         }
     }
 
     @Override
     public String toString() {
-        StringBuilder	stringBuilder	= new StringBuilder("{");
-        boolean			needsComma		= false;
-        Identifier		identifier		= this.getId();
+        StringBuilder stringBuilder = new StringBuilder("{");
+        boolean needsComma = false;
+        Identifier identifier = this.getId();
         if (identifier != null) {
             stringBuilder.append("id=");
             stringBuilder.append(identifier.toString());
-            needsComma	= true;
+            needsComma = true;
         }
         if (this.attributeAssignments.size() > 0) {
             if (needsComma) {

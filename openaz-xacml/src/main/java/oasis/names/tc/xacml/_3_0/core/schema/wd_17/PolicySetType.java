@@ -25,7 +25,6 @@
 // Generated on: 2013.05.23 at 02:47:00 PM EDT
 //
 
-
 package oasis.names.tc.xacml._3_0.core.schema.wd_17;
 
 import java.math.BigInteger;
@@ -42,11 +41,11 @@ import javax.xml.bind.annotation.XmlElementRefs;
 import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 
-
 /**
- * <p>Java class for PolicySetType complex type.
- *
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>
+ * Java class for PolicySetType complex type.
+ * <p>
+ * The following schema fragment specifies the expected content contained within this class.
  *
  * <pre>
  * &lt;complexType name="PolicySetType">
@@ -77,18 +76,11 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- *
- *
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "PolicySetType", propOrder = {
-    "description",
-    "policyIssuer",
-    "policySetDefaults",
-    "target",
-    "policySetOrPolicyOrPolicySetIdReference",
-    "obligationExpressions",
-    "adviceExpressions"
+                                              "description", "policyIssuer", "policySetDefaults", "target", "policySetOrPolicyOrPolicySetIdReference",
+                                              "obligationExpressions", "adviceExpressions"
 })
 public class PolicySetType {
 
@@ -128,10 +120,7 @@ public class PolicySetType {
     /**
      * Gets the value of the description property.
      *
-     * @return
-     *     possible object is
-     *     {@link String }
-     *
+     * @return possible object is {@link String }
      */
     public String getDescription() {
         return description;
@@ -140,10 +129,7 @@ public class PolicySetType {
     /**
      * Sets the value of the description property.
      *
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *
+     * @param value allowed object is {@link String }
      */
     public void setDescription(String value) {
         this.description = value;
@@ -152,10 +138,7 @@ public class PolicySetType {
     /**
      * Gets the value of the policyIssuer property.
      *
-     * @return
-     *     possible object is
-     *     {@link PolicyIssuerType }
-     *
+     * @return possible object is {@link PolicyIssuerType }
      */
     public PolicyIssuerType getPolicyIssuer() {
         return policyIssuer;
@@ -164,10 +147,7 @@ public class PolicySetType {
     /**
      * Sets the value of the policyIssuer property.
      *
-     * @param value
-     *     allowed object is
-     *     {@link PolicyIssuerType }
-     *
+     * @param value allowed object is {@link PolicyIssuerType }
      */
     public void setPolicyIssuer(PolicyIssuerType value) {
         this.policyIssuer = value;
@@ -176,10 +156,7 @@ public class PolicySetType {
     /**
      * Gets the value of the policySetDefaults property.
      *
-     * @return
-     *     possible object is
-     *     {@link oasis.names.tc.xacml._3_0.core.schema.wd_17.DefaultsType }
-     *
+     * @return possible object is {@link oasis.names.tc.xacml._3_0.core.schema.wd_17.DefaultsType }
      */
     public DefaultsType getPolicySetDefaults() {
         return policySetDefaults;
@@ -188,10 +165,7 @@ public class PolicySetType {
     /**
      * Sets the value of the policySetDefaults property.
      *
-     * @param value
-     *     allowed object is
-     *     {@link oasis.names.tc.xacml._3_0.core.schema.wd_17.DefaultsType }
-     *
+     * @param value allowed object is {@link oasis.names.tc.xacml._3_0.core.schema.wd_17.DefaultsType }
      */
     public void setPolicySetDefaults(DefaultsType value) {
         this.policySetDefaults = value;
@@ -200,10 +174,7 @@ public class PolicySetType {
     /**
      * Gets the value of the target property.
      *
-     * @return
-     *     possible object is
-     *     {@link oasis.names.tc.xacml._3_0.core.schema.wd_17.TargetType }
-     *
+     * @return possible object is {@link oasis.names.tc.xacml._3_0.core.schema.wd_17.TargetType }
      */
     public TargetType getTarget() {
         return target;
@@ -212,10 +183,7 @@ public class PolicySetType {
     /**
      * Sets the value of the target property.
      *
-     * @param value
-     *     allowed object is
-     *     {@link oasis.names.tc.xacml._3_0.core.schema.wd_17.TargetType }
-     *
+     * @param value allowed object is {@link oasis.names.tc.xacml._3_0.core.schema.wd_17.TargetType }
      */
     public void setTarget(TargetType value) {
         this.target = value;
@@ -223,31 +191,26 @@ public class PolicySetType {
 
     /**
      * Gets the value of the policySetOrPolicyOrPolicySetIdReference property.
-     *
      * <p>
-     * This accessor method returns a reference to the live list,
-     * not a snapshot. Therefore any modification you make to the
-     * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the policySetOrPolicyOrPolicySetIdReference property.
-     *
+     * This accessor method returns a reference to the live list, not a snapshot. Therefore any modification
+     * you make to the returned list will be present inside the JAXB object. This is why there is not a
+     * <CODE>set</CODE> method for the policySetOrPolicyOrPolicySetIdReference property.
      * <p>
      * For example, to add a new item, do as follows:
+     * 
      * <pre>
-     *    getPolicySetOrPolicyOrPolicySetIdReference().add(newItem);
+     * getPolicySetOrPolicyOrPolicySetIdReference().add(newItem);
      * </pre>
-     *
-     *
      * <p>
-     * Objects of the following type(s) are allowed in the list
-     * {@link javax.xml.bind.JAXBElement }{@code <}{@link IdReferenceType }{@code >}
-     * {@link javax.xml.bind.JAXBElement }{@code <}{@link CombinerParametersType }{@code >}
-     * {@link javax.xml.bind.JAXBElement }{@code <}{@link IdReferenceType }{@code >}
-     * {@link javax.xml.bind.JAXBElement }{@code <}{@link PolicyCombinerParametersType }{@code >}
-     * {@link javax.xml.bind.JAXBElement }{@code <}{@link PolicySetCombinerParametersType }{@code >}
-     * {@link javax.xml.bind.JAXBElement }{@code <}{@link oasis.names.tc.xacml._3_0.core.schema.wd_17.PolicyType }{@code >}
-     * {@link javax.xml.bind.JAXBElement }{@code <}{@link oasis.names.tc.xacml._3_0.core.schema.wd_17.PolicySetType }{@code >}
-     *
-     *
+     * Objects of the following type(s) are allowed in the list {@link javax.xml.bind.JAXBElement }{@code <}
+     * {@link IdReferenceType }{@code >} {@link javax.xml.bind.JAXBElement }{@code <}
+     * {@link CombinerParametersType }{@code >} {@link javax.xml.bind.JAXBElement }{@code <}
+     * {@link IdReferenceType }{@code >} {@link javax.xml.bind.JAXBElement }{@code <}
+     * {@link PolicyCombinerParametersType }{@code >} {@link javax.xml.bind.JAXBElement }{@code <}
+     * {@link PolicySetCombinerParametersType }{@code >} {@link javax.xml.bind.JAXBElement }{@code <}
+     * {@link oasis.names.tc.xacml._3_0.core.schema.wd_17.PolicyType }{@code >}
+     * {@link javax.xml.bind.JAXBElement }{@code <}
+     * {@link oasis.names.tc.xacml._3_0.core.schema.wd_17.PolicySetType }{@code >}
      */
     public List<JAXBElement<?>> getPolicySetOrPolicyOrPolicySetIdReference() {
         if (policySetOrPolicyOrPolicySetIdReference == null) {
@@ -259,10 +222,7 @@ public class PolicySetType {
     /**
      * Gets the value of the obligationExpressions property.
      *
-     * @return
-     *     possible object is
-     *     {@link ObligationExpressionsType }
-     *
+     * @return possible object is {@link ObligationExpressionsType }
      */
     public ObligationExpressionsType getObligationExpressions() {
         return obligationExpressions;
@@ -271,10 +231,7 @@ public class PolicySetType {
     /**
      * Sets the value of the obligationExpressions property.
      *
-     * @param value
-     *     allowed object is
-     *     {@link ObligationExpressionsType }
-     *
+     * @param value allowed object is {@link ObligationExpressionsType }
      */
     public void setObligationExpressions(ObligationExpressionsType value) {
         this.obligationExpressions = value;
@@ -283,10 +240,7 @@ public class PolicySetType {
     /**
      * Gets the value of the adviceExpressions property.
      *
-     * @return
-     *     possible object is
-     *     {@link AdviceExpressionsType }
-     *
+     * @return possible object is {@link AdviceExpressionsType }
      */
     public AdviceExpressionsType getAdviceExpressions() {
         return adviceExpressions;
@@ -295,10 +249,7 @@ public class PolicySetType {
     /**
      * Sets the value of the adviceExpressions property.
      *
-     * @param value
-     *     allowed object is
-     *     {@link AdviceExpressionsType }
-     *
+     * @param value allowed object is {@link AdviceExpressionsType }
      */
     public void setAdviceExpressions(AdviceExpressionsType value) {
         this.adviceExpressions = value;
@@ -307,10 +258,7 @@ public class PolicySetType {
     /**
      * Gets the value of the policySetId property.
      *
-     * @return
-     *     possible object is
-     *     {@link String }
-     *
+     * @return possible object is {@link String }
      */
     public String getPolicySetId() {
         return policySetId;
@@ -319,10 +267,7 @@ public class PolicySetType {
     /**
      * Sets the value of the policySetId property.
      *
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *
+     * @param value allowed object is {@link String }
      */
     public void setPolicySetId(String value) {
         this.policySetId = value;
@@ -331,10 +276,7 @@ public class PolicySetType {
     /**
      * Gets the value of the version property.
      *
-     * @return
-     *     possible object is
-     *     {@link String }
-     *
+     * @return possible object is {@link String }
      */
     public String getVersion() {
         return version;
@@ -343,10 +285,7 @@ public class PolicySetType {
     /**
      * Sets the value of the version property.
      *
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *
+     * @param value allowed object is {@link String }
      */
     public void setVersion(String value) {
         this.version = value;
@@ -355,10 +294,7 @@ public class PolicySetType {
     /**
      * Gets the value of the policyCombiningAlgId property.
      *
-     * @return
-     *     possible object is
-     *     {@link String }
-     *
+     * @return possible object is {@link String }
      */
     public String getPolicyCombiningAlgId() {
         return policyCombiningAlgId;
@@ -367,10 +303,7 @@ public class PolicySetType {
     /**
      * Sets the value of the policyCombiningAlgId property.
      *
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *
+     * @param value allowed object is {@link String }
      */
     public void setPolicyCombiningAlgId(String value) {
         this.policyCombiningAlgId = value;
@@ -379,10 +312,7 @@ public class PolicySetType {
     /**
      * Gets the value of the maxDelegationDepth property.
      *
-     * @return
-     *     possible object is
-     *     {@link java.math.BigInteger }
-     *
+     * @return possible object is {@link java.math.BigInteger }
      */
     public BigInteger getMaxDelegationDepth() {
         return maxDelegationDepth;
@@ -391,10 +321,7 @@ public class PolicySetType {
     /**
      * Sets the value of the maxDelegationDepth property.
      *
-     * @param value
-     *     allowed object is
-     *     {@link java.math.BigInteger }
-     *
+     * @param value allowed object is {@link java.math.BigInteger }
      */
     public void setMaxDelegationDepth(BigInteger value) {
         this.maxDelegationDepth = value;

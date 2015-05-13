@@ -29,7 +29,6 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class TestAPI {
 
     private PepAgentFactory pepAgentFactory;
@@ -39,7 +38,6 @@ public class TestAPI {
         pepAgentFactory = new StdPepAgentFactory("/properties/testapi.xacml.properties");
     }
 
-
     /**
      *
      */
@@ -48,30 +46,27 @@ public class TestAPI {
         Assert.assertNotNull(getPepAgent());
     }
 
-
     /**
      *
      */
     @Test
     public void testPermit() {
-        PepResponse response = getPepAgent().simpleDecide("Julius Hibbert",
-                               "read", "http://medico.com/record/patient/BartSimpson");
+        PepResponse response = getPepAgent().simpleDecide("Julius Hibbert", "read",
+                                                          "http://medico.com/record/patient/BartSimpson");
         Assert.assertNotNull(response);
         Assert.assertEquals(true, response.allowed());
     }
-
 
     /**
      *
      */
     @Test
     public void testNotApplicable() {
-        PepResponse response = getPepAgent().simpleDecide("Julius Hibbert",
-                               "read","http://medico.com/record/patient/JohnSmith");
+        PepResponse response = getPepAgent().simpleDecide("Julius Hibbert", "read",
+                                                          "http://medico.com/record/patient/JohnSmith");
         Assert.assertNotNull(response);
         Assert.assertEquals(false, response.allowed());
     }
-
 
     /**
      *
@@ -84,9 +79,9 @@ public class TestAPI {
         actions.add(Action.newInstance("update"));
         actions.add(Action.newInstance("delete"));
 
-        List<PepResponse> responses = getPepAgent().bulkDecide(actions,
-                                      Subject.newInstance("Julius Hibbert"),
-                                      Resource.newInstance("http://medico.com/record/patient/BartSimpson"));
+        List<PepResponse> responses = getPepAgent()
+            .bulkDecide(actions, Subject.newInstance("Julius Hibbert"),
+                        Resource.newInstance("http://medico.com/record/patient/BartSimpson"));
         Assert.assertNotNull(responses);
         Assert.assertEquals(true, responses.get(0).allowed());
         Assert.assertEquals(true, responses.get(1).allowed());

@@ -39,11 +39,11 @@ import org.apache.openaz.xacml.api.Identifier;
 import org.apache.openaz.xacml.std.datatypes.DataTypes;
 
 public class CustomDataTypeFactory extends DataTypeFactory {
-    private static final Map<Identifier,DataType<?>> mapIdentifiersToDataTypes	= new HashMap<Identifier,DataType<?>>();
-    private static boolean mapNeedsInit												= true;
+    private static final Map<Identifier, DataType<?>> mapIdentifiersToDataTypes = new HashMap<Identifier, DataType<?>>();
+    private static boolean mapNeedsInit = true;
 
-    public static final DataTypePrivateKey				DT_PRIVATEKEY				= DataTypePrivateKey.newInstance();
-    public static final DataTypePublicKey				DT_PUBLICKEY				= DataTypePublicKey.newInstance();
+    public static final DataTypePrivateKey DT_PRIVATEKEY = DataTypePrivateKey.newInstance();
+    public static final DataTypePublicKey DT_PUBLICKEY = DataTypePublicKey.newInstance();
 
     private static void registerDataType(DataType<?> dataType) {
         if (dataType != null && dataType.getId() != null) {
@@ -53,7 +53,7 @@ public class CustomDataTypeFactory extends DataTypeFactory {
 
     private static void initMap() {
         if (mapNeedsInit) {
-            synchronized(mapIdentifiersToDataTypes) {
+            synchronized (mapIdentifiersToDataTypes) {
                 if (mapNeedsInit) {
                     registerDataType(DataTypes.DT_ANYURI);
                     registerDataType(DataTypes.DT_BASE64BINARY);
@@ -80,7 +80,7 @@ public class CustomDataTypeFactory extends DataTypeFactory {
                     //
                     // Done
                     //
-                    mapNeedsInit	= false;
+                    mapNeedsInit = false;
                 }
             }
         }

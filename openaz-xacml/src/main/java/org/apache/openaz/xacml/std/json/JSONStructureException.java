@@ -32,8 +32,6 @@ package org.apache.openaz.xacml.std.json;
 
 /**
  * Exception indicating that a JSON structure is incorrect.
- *
- *
  */
 public class JSONStructureException extends Exception {
 
@@ -41,7 +39,6 @@ public class JSONStructureException extends Exception {
      *
      */
     private static final long serialVersionUID = 3375547841298623008L;
-
 
     public JSONStructureException() {
     }
@@ -57,6 +54,5 @@ public class JSONStructureException extends Exception {
     public JSONStructureException(String message, Throwable cause) {
         super(message, cause);
     }
-
 
 }

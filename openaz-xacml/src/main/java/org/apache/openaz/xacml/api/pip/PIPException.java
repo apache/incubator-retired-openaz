@@ -32,8 +32,7 @@ package org.apache.openaz.xacml.api.pip;
 
 /**
  * PIPException extends <code>Exception</code> to represent errors that can occur as a result of querying a
- * {@link PIPEngine} for {@link org.apache.openaz.xacml.api.Attribute}s.
- *
+ * {@link PIPEngine} for {@link com.att.research.xacml.api.Attribute}s.
  */
 public class PIPException extends Exception {
     private static final long serialVersionUID = -6656926395983776184L;
@@ -57,14 +56,14 @@ public class PIPException extends Exception {
 
     public PIPException(PIPEngine pipEngineIn, PIPRequest pipRequestIn, String message, Throwable cause) {
         this(message, cause);
-        this.pipEngine	= pipEngineIn;
-        this.pipRequest	= pipRequestIn;
+        this.pipEngine = pipEngineIn;
+        this.pipRequest = pipRequestIn;
     }
 
     public PIPException(PIPEngine pipEngineIn, PIPRequest pipRequestIn, String message) {
         this(message);
-        this.pipEngine	= pipEngineIn;
-        this.pipRequest	= pipRequestIn;
+        this.pipEngine = pipEngineIn;
+        this.pipRequest = pipRequestIn;
     }
 
     /**

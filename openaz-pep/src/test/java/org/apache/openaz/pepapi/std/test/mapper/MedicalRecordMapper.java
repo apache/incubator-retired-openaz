@@ -36,14 +36,18 @@ public class MedicalRecordMapper implements ObjectMapper {
 
     @Override
     public void map(Object o, PepRequest pepRequest) {
-        MedicalRecord md = (MedicalRecord) o;
-        PepRequestAttributes resourceAttributes = pepRequest.getPepRequestAttributes(XACML3.ID_ATTRIBUTE_CATEGORY_RESOURCE);
-        resourceAttributes.addAttribute("urn:oasis:names:tc:xacml:1.0:resource:resource-type", "PatientMedicalRecord");
+        MedicalRecord md = (MedicalRecord)o;
+        PepRequestAttributes resourceAttributes = pepRequest
+            .getPepRequestAttributes(XACML3.ID_ATTRIBUTE_CATEGORY_RESOURCE);
+        resourceAttributes.addAttribute("urn:oasis:names:tc:xacml:1.0:resource:resource-type",
+                                        "PatientMedicalRecord");
         resourceAttributes.addAttribute("urn:oasis:names:tc:xacml:1.0:resource:resource-id", md.getId());
-        for(String accessUser: md.getAccessUserGroup()) {
-            resourceAttributes.addAttribute("urn:oasis:names:tc:xacml:1.0:resource:resource-access-group", accessUser);
+        for (String accessUser : md.getAccessUserGroup()) {
+            resourceAttributes.addAttribute("urn:oasis:names:tc:xacml:1.0:resource:resource-access-group",
+                                            accessUser);
         }
     }
+
     @Override
     public void setMapperRegistry(MapperRegistry mapperRegistry) {
         this.mapperRegistry = mapperRegistry;

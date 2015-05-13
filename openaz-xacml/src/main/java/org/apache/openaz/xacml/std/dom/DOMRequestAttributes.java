@@ -45,61 +45,63 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 /**
- * DOMRequestAttributes extends {@link org.apache.openaz.xacml.std.StdRequestAttributes} with methods for creation from DOM
- * {@link org.w3c.dom.Node}s.
- *
+ * DOMRequestAttributes extends {@link com.att.research.xacml.std.StdRequestAttributes} with methods for
+ * creation from DOM {@link org.w3c.dom.Node}s.
  */
 public class DOMRequestAttributes {
-    private static final Log logger	= LogFactory.getLog(DOMRequestAttributes.class);
+    private static final Log logger = LogFactory.getLog(DOMRequestAttributes.class);
 
     protected DOMRequestAttributes() {
     }
 
     /**
-     * Creates a new <code>DOMRequestAttributes</code> from the given root <code>Node</code> of a XACML Attributes element.
+     * Creates a new <code>DOMRequestAttributes</code> from the given root <code>Node</code> of a XACML
+     * Attributes element.
      *
      * @param nodeRequestAttributes the <code>Node</code> representing the Attributes element
      * @return a new <code>DOMRequestAttributes</code> from the given <code>Node</code>
      * @throws DOMStructureException if the conversion cannot be made
      */
     public static RequestAttributes newInstance(Node nodeRequestAttributes) throws DOMStructureException {
-        Element	elementRequestAttributes			= DOMUtil.getElement(nodeRequestAttributes);
-        boolean bLenient							= DOMProperties.isLenient();
+        Element elementRequestAttributes = DOMUtil.getElement(nodeRequestAttributes);
+        boolean bLenient = DOMProperties.isLenient();
 
-        Identifier identifierCategory	= DOMUtil.getIdentifierAttribute(elementRequestAttributes, XACML3.ATTRIBUTE_CATEGORY, !bLenient);
-        String xmlId					= DOMUtil.getXmlId(elementRequestAttributes);
-        Node nodeContentRoot			= null;
-        List<Attribute> listAttributes	= new ArrayList<Attribute>();
-        boolean sawContent				= false;
+        Identifier identifierCategory = DOMUtil.getIdentifierAttribute(elementRequestAttributes,
+                                                                       XACML3.ATTRIBUTE_CATEGORY, !bLenient);
+        String xmlId = DOMUtil.getXmlId(elementRequestAttributes);
+        Node nodeContentRoot = null;
+        List<Attribute> listAttributes = new ArrayList<Attribute>();
+        boolean sawContent = false;
 
-        NodeList children	= elementRequestAttributes.getChildNodes();
+        NodeList children = elementRequestAttributes.getChildNodes();
         int numChildren;
         if (children != null && (numChildren = children.getLength()) > 0) {
-            for (int i = 0 ; i < numChildren ; i++) {
-                Node child	= children.item(i);
+            for (int i = 0; i < numChildren; i++) {
+                Node child = children.item(i);
                 if (DOMUtil.isElement(child)) {
                     if (DOMUtil.isInNamespace(child, XACML3.XMLNS)) {
-                        String childName	= child.getLocalName();
+                        String childName = child.getLocalName();
                         if (XACML3.ELEMENT_CONTENT.equals(childName)) {
                             if (sawContent && !bLenient) {
                                 throw DOMUtil.newUnexpectedElementException(child, elementRequestAttributes);
                             }
-                            sawContent	= true;
+                            sawContent = true;
                             /*
                              * Get the single root element node
                              */
-                            NodeList grandchildren	= child.getChildNodes();
+                            NodeList grandchildren = child.getChildNodes();
                             int numGrandchildren;
                             if (grandchildren != null && (numGrandchildren = grandchildren.getLength()) > 0) {
-                                for (int j = 0 ; j < numGrandchildren ; j++) {
-                                    Node grandchild	= grandchildren.item(j);
+                                for (int j = 0; j < numGrandchildren; j++) {
+                                    Node grandchild = grandchildren.item(j);
                                     if (DOMUtil.isElement(grandchild)) {
                                         if (nodeContentRoot != null) {
                                             if (!bLenient) {
-                                                throw DOMUtil.newUnexpectedElementException(grandchild, child);
+                                                throw DOMUtil
+                                                    .newUnexpectedElementException(grandchild, child);
                                             }
                                         } else {
-                                            nodeContentRoot	= DOMUtil.getDirectDocumentChild(grandchild);
+                                            nodeContentRoot = DOMUtil.getDirectDocumentChild(grandchild);
                                         }
                                     }
                                 }
@@ -127,35 +129,35 @@ public class DOMRequestAttributes {
     }
 
     public static boolean repair(Node nodeRequestAttributes) throws DOMStructureException {
-        Element	elementRequestAttributes	= DOMUtil.getElement(nodeRequestAttributes);
-        boolean result						= false;
+        Element elementRequestAttributes = DOMUtil.getElement(nodeRequestAttributes);
+        boolean result = false;
 
-        result								= DOMUtil.repairIdentifierAttribute(elementRequestAttributes, XACML3.ATTRIBUTE_CATEGORY, logger) || result;
-        NodeList children	= elementRequestAttributes.getChildNodes();
+        result = DOMUtil.repairIdentifierAttribute(elementRequestAttributes, XACML3.ATTRIBUTE_CATEGORY,
+                                                   logger) || result;
+        NodeList children = elementRequestAttributes.getChildNodes();
         int numChildren;
         if (children != null && (numChildren = children.getLength()) > 0) {
-            for (int i = 0 ; i < numChildren ; i++) {
-                Node child	= children.item(i);
+            for (int i = 0; i < numChildren; i++) {
+                Node child = children.item(i);
                 if (DOMUtil.isElement(child)) {
                     if (DOMUtil.isInNamespace(child, XACML3.XMLNS)) {
-                        String childName	= child.getLocalName();
+                        String childName = child.getLocalName();
                         if (XACML3.ELEMENT_ATTRIBUTE.equals(childName)) {
-                            result	= DOMAttribute.repair(child) || result;
+                            result = DOMAttribute.repair(child) || result;
                         } else if (XACML3.ELEMENT_CONTENT.equals(childName)) {
                         } else {
                             logger.warn("Unexpected element " + child.getNodeName());
                             elementRequestAttributes.removeChild(child);
-                            result	= true;
+                            result = true;
                         }
                     } else {
                         logger.warn("Unexpected element " + child.getNodeName());
                         elementRequestAttributes.removeChild(child);
-                        result	= true;
+                        result = true;
                     }
                 }
             }
         }
-
 
         return result;
     }

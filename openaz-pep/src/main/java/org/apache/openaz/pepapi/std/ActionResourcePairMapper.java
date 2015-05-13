@@ -20,14 +20,13 @@
 
 package org.apache.openaz.pepapi.std;
 
-
 import org.apache.openaz.pepapi.*;
 
 public final class ActionResourcePairMapper implements ObjectMapper {
 
     private MapperRegistry mapperRegistry;
 
-    private PepConfig pepConfig;
+    private PepConfig pepConfig; //NOPMD
 
     @Override
     public Class<?> getMappedClass() {

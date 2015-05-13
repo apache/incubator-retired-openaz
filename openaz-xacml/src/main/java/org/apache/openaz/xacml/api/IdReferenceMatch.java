@@ -31,52 +31,56 @@
 package org.apache.openaz.xacml.api;
 
 /**
- * Defines the API for objects that represent XACML PolicyIdReference or PolicySetIdReference elements with exact, earliest, and latest version
- * matching.
- *
+ * Defines the API for objects that represent XACML PolicyIdReference or PolicySetIdReference elements with
+ * exact, earliest, and latest version matching.
  */
 public interface IdReferenceMatch {
     /**
-     * Returns the {@link Identifier} representing the XACML PolicyId or PolicySetId that
-     * is referenced by this <code>IdReference</code>.
+     * Returns the {@link Identifier} representing the XACML PolicyId or PolicySetId that is referenced by
+     * this <code>IdReference</code>.
      *
-     * @return the <code>Identifier</code> representing the XACML PolicyId or PolicySetId that
-     * is referenced by this <code>IdReference</code>.
+     * @return the <code>Identifier</code> representing the XACML PolicyId or PolicySetId that is referenced
+     *         by this <code>IdReference</code>.
      */
-    public Identifier getId();
+    Identifier getId();
 
     /**
      * Gets the {@link VersionMatch} representing a full or partial match against a XACML Version string.
      *
-     * @return the <code>VersionMatch</code> representing a full or partial match against a XACML Version string.
+     * @return the <code>VersionMatch</code> representing a full or partial match against a XACML Version
+     *         string.
      */
-    public VersionMatch getVersion();
+    VersionMatch getVersion();
 
     /**
-     * Gets the {@link VersionMatch} representing a full or partial match against the earliest XACML Version string.
+     * Gets the {@link VersionMatch} representing a full or partial match against the earliest XACML Version
+     * string.
      *
-     * @return the <code>VersionMatch</code> representing a full or partial match against the earliest XACML Version string.
+     * @return the <code>VersionMatch</code> representing a full or partial match against the earliest XACML
+     *         Version string.
      */
-    public VersionMatch getEarliestVersion();
+    VersionMatch getEarliestVersion();
 
     /**
-     * Gets the {@link VersionMatch} representing a full or partial match against the latest XACML Version string.
+     * Gets the {@link VersionMatch} representing a full or partial match against the latest XACML Version
+     * string.
      *
-     * @return the <code>VersionMatch</code> representing a full or partial match against the latest XACML Version string.
+     * @return the <code>VersionMatch</code> representing a full or partial match against the latest XACML
+     *         Version string.
      */
-    public VersionMatch getLatestVersion();
+    VersionMatch getLatestVersion();
 
     /**
-     * {@inheritDoc}
-     *
-     * Implementations of the <code>IdReferenceMatch</code> interface must override the <code>equals</code> method with the following semantics:
-     *
-     * 		Two <code>IdReferenceMatch</code> objects (<code>i1</code> and <code>i2</code>) are equal if:
-     * 			{@code i1.getId().equals(i2.getId())} AND
-     * 			{@code i1.getVersion() == null && i2.getVersion() == null} OR {@code i1.getVersion().equals(i2.getVersion())}
-     * 			{@code i1.getEarliestVersion() == null && i2.getEarliestVersion() == null} OR {@code i1.getEarliestVersion().equals(i2.getEarliestVersion())} AND
-     * 			{@code i1.getLatestVersion() == null && i2.getLatestVersion() == null} OR {@code i1.getLatestVersion().equals(i2.getLatestVersion())}
+     * {@inheritDoc} Implementations of the <code>IdReferenceMatch</code> interface must override the
+     * <code>equals</code> method with the following semantics: Two <code>IdReferenceMatch</code> objects (
+     * <code>i1</code> and <code>i2</code>) are equal if: {@code i1.getId().equals(i2.getId())} AND
+     * {@code i1.getVersion() == null && i2.getVersion() == null} OR
+     * {@code i1.getVersion().equals(i2.getVersion())}
+     * {@code i1.getEarliestVersion() == null && i2.getEarliestVersion() == null} OR
+     * {@code i1.getEarliestVersion().equals(i2.getEarliestVersion())} AND
+     * {@code i1.getLatestVersion() == null && i2.getLatestVersion() == null} OR
+     * {@code i1.getLatestVersion().equals(i2.getLatestVersion())}
      */
     @Override
-    public boolean equals(Object obj);
+    boolean equals(Object obj);
 }

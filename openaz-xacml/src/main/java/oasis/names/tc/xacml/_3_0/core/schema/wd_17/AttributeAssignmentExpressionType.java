@@ -25,7 +25,6 @@
 // Generated on: 2013.05.23 at 02:47:00 PM EDT
 //
 
-
 package oasis.names.tc.xacml._3_0.core.schema.wd_17;
 
 import javax.xml.bind.JAXBElement;
@@ -36,11 +35,11 @@ import javax.xml.bind.annotation.XmlElementRef;
 import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 
-
 /**
- * <p>Java class for AttributeAssignmentExpressionType complex type.
- *
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>
+ * Java class for AttributeAssignmentExpressionType complex type.
+ * <p>
+ * The following schema fragment specifies the expected content contained within this class.
  *
  * <pre>
  * &lt;complexType name="AttributeAssignmentExpressionType">
@@ -56,12 +55,10 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- *
- *
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "AttributeAssignmentExpressionType", propOrder = {
-    "expression"
+                                                                  "expression"
 })
 public class AttributeAssignmentExpressionType {
 
@@ -79,16 +76,20 @@ public class AttributeAssignmentExpressionType {
     /**
      * Gets the value of the expression property.
      *
-     * @return
-     *     possible object is
-     *     {@link javax.xml.bind.JAXBElement }{@code <}{@link oasis.names.tc.xacml._3_0.core.schema.wd_17.FunctionType }{@code >}
-     *     {@link javax.xml.bind.JAXBElement }{@code <}{@link oasis.names.tc.xacml._3_0.core.schema.wd_17.AttributeDesignatorType }{@code >}
-     *     {@link javax.xml.bind.JAXBElement }{@code <}{@link oasis.names.tc.xacml._3_0.core.schema.wd_17.VariableReferenceType }{@code >}
-     *     {@link javax.xml.bind.JAXBElement }{@code <}{@link oasis.names.tc.xacml._3_0.core.schema.wd_17.ExpressionType }{@code >}
-     *     {@link javax.xml.bind.JAXBElement }{@code <}{@link oasis.names.tc.xacml._3_0.core.schema.wd_17.AttributeSelectorType }{@code >}
-     *     {@link javax.xml.bind.JAXBElement }{@code <}{@link oasis.names.tc.xacml._3_0.core.schema.wd_17.ApplyType }{@code >}
-     *     {@link javax.xml.bind.JAXBElement }{@code <}{@link oasis.names.tc.xacml._3_0.core.schema.wd_17.AttributeValueType }{@code >}
-     *
+     * @return possible object is {@link javax.xml.bind.JAXBElement }{@code <}
+     *         {@link oasis.names.tc.xacml._3_0.core.schema.wd_17.FunctionType }{@code >}
+     *         {@link javax.xml.bind.JAXBElement }{@code <}
+     *         {@link oasis.names.tc.xacml._3_0.core.schema.wd_17.AttributeDesignatorType }{@code >}
+     *         {@link javax.xml.bind.JAXBElement }{@code <}
+     *         {@link oasis.names.tc.xacml._3_0.core.schema.wd_17.VariableReferenceType }{@code >}
+     *         {@link javax.xml.bind.JAXBElement }{@code <}
+     *         {@link oasis.names.tc.xacml._3_0.core.schema.wd_17.ExpressionType }{@code >}
+     *         {@link javax.xml.bind.JAXBElement }{@code <}
+     *         {@link oasis.names.tc.xacml._3_0.core.schema.wd_17.AttributeSelectorType }{@code >}
+     *         {@link javax.xml.bind.JAXBElement }{@code <}
+     *         {@link oasis.names.tc.xacml._3_0.core.schema.wd_17.ApplyType }{@code >}
+     *         {@link javax.xml.bind.JAXBElement }{@code <}
+     *         {@link oasis.names.tc.xacml._3_0.core.schema.wd_17.AttributeValueType }{@code >}
      */
     public JAXBElement<?> getExpression() {
         return expression;
@@ -97,28 +98,29 @@ public class AttributeAssignmentExpressionType {
     /**
      * Sets the value of the expression property.
      *
-     * @param value
-     *     allowed object is
-     *     {@link javax.xml.bind.JAXBElement }{@code <}{@link oasis.names.tc.xacml._3_0.core.schema.wd_17.FunctionType }{@code >}
-     *     {@link javax.xml.bind.JAXBElement }{@code <}{@link oasis.names.tc.xacml._3_0.core.schema.wd_17.AttributeDesignatorType }{@code >}
-     *     {@link javax.xml.bind.JAXBElement }{@code <}{@link oasis.names.tc.xacml._3_0.core.schema.wd_17.VariableReferenceType }{@code >}
-     *     {@link javax.xml.bind.JAXBElement }{@code <}{@link oasis.names.tc.xacml._3_0.core.schema.wd_17.ExpressionType }{@code >}
-     *     {@link javax.xml.bind.JAXBElement }{@code <}{@link oasis.names.tc.xacml._3_0.core.schema.wd_17.AttributeSelectorType }{@code >}
-     *     {@link javax.xml.bind.JAXBElement }{@code <}{@link oasis.names.tc.xacml._3_0.core.schema.wd_17.ApplyType }{@code >}
-     *     {@link javax.xml.bind.JAXBElement }{@code <}{@link oasis.names.tc.xacml._3_0.core.schema.wd_17.AttributeValueType }{@code >}
-     *
+     * @param value allowed object is {@link javax.xml.bind.JAXBElement }{@code <}
+     *            {@link oasis.names.tc.xacml._3_0.core.schema.wd_17.FunctionType }{@code >}
+     *            {@link javax.xml.bind.JAXBElement }{@code <}
+     *            {@link oasis.names.tc.xacml._3_0.core.schema.wd_17.AttributeDesignatorType }{@code >}
+     *            {@link javax.xml.bind.JAXBElement }{@code <}
+     *            {@link oasis.names.tc.xacml._3_0.core.schema.wd_17.VariableReferenceType }{@code >}
+     *            {@link javax.xml.bind.JAXBElement }{@code <}
+     *            {@link oasis.names.tc.xacml._3_0.core.schema.wd_17.ExpressionType }{@code >}
+     *            {@link javax.xml.bind.JAXBElement }{@code <}
+     *            {@link oasis.names.tc.xacml._3_0.core.schema.wd_17.AttributeSelectorType }{@code >}
+     *            {@link javax.xml.bind.JAXBElement }{@code <}
+     *            {@link oasis.names.tc.xacml._3_0.core.schema.wd_17.ApplyType }{@code >}
+     *            {@link javax.xml.bind.JAXBElement }{@code <}
+     *            {@link oasis.names.tc.xacml._3_0.core.schema.wd_17.AttributeValueType }{@code >}
      */
     public void setExpression(JAXBElement<?> value) {
-        this.expression = ((JAXBElement<?> ) value);
+        this.expression = (value);
     }
 
     /**
      * Gets the value of the attributeId property.
      *
-     * @return
-     *     possible object is
-     *     {@link String }
-     *
+     * @return possible object is {@link String }
      */
     public String getAttributeId() {
         return attributeId;
@@ -127,10 +129,7 @@ public class AttributeAssignmentExpressionType {
     /**
      * Sets the value of the attributeId property.
      *
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *
+     * @param value allowed object is {@link String }
      */
     public void setAttributeId(String value) {
         this.attributeId = value;
@@ -139,10 +138,7 @@ public class AttributeAssignmentExpressionType {
     /**
      * Gets the value of the category property.
      *
-     * @return
-     *     possible object is
-     *     {@link String }
-     *
+     * @return possible object is {@link String }
      */
     public String getCategory() {
         return category;
@@ -151,10 +147,7 @@ public class AttributeAssignmentExpressionType {
     /**
      * Sets the value of the category property.
      *
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *
+     * @param value allowed object is {@link String }
      */
     public void setCategory(String value) {
         this.category = value;
@@ -163,10 +156,7 @@ public class AttributeAssignmentExpressionType {
     /**
      * Gets the value of the issuer property.
      *
-     * @return
-     *     possible object is
-     *     {@link String }
-     *
+     * @return possible object is {@link String }
      */
     public String getIssuer() {
         return issuer;
@@ -175,10 +165,7 @@ public class AttributeAssignmentExpressionType {
     /**
      * Sets the value of the issuer property.
      *
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *
+     * @param value allowed object is {@link String }
      */
     public void setIssuer(String value) {
         this.issuer = value;

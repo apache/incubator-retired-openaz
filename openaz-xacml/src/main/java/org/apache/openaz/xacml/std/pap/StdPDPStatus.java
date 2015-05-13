@@ -46,7 +46,7 @@ public class StdPDPStatus implements Serializable, PDPStatus {
 
     private Status status = Status.UNKNOWN;
 
-    private Set<String>	loadErrors = new HashSet<String>();
+    private Set<String> loadErrors = new HashSet<String>();
 
     private Set<String> loadWarnings = new HashSet<String>();
 
@@ -56,15 +56,15 @@ public class StdPDPStatus implements Serializable, PDPStatus {
 
     private Set<PDPPolicy> failedPolicies = new HashSet<PDPPolicy>();
 
-    private Set<PDPPIPConfig>	loadedPIPConfigs = new HashSet<PDPPIPConfig>();
+    private Set<PDPPIPConfig> loadedPIPConfigs = new HashSet<PDPPIPConfig>();
 
-    private Set<PDPPIPConfig>	failedPIPConfigs = new HashSet<PDPPIPConfig>();
+    private Set<PDPPIPConfig> failedPIPConfigs = new HashSet<PDPPIPConfig>();
 
     public StdPDPStatus() {
     }
 
     public void set(StdPDPStatus newStatus) {
-        this.status				=	newStatus.status;
+        this.status = newStatus.status;
         this.loadErrors.clear();
         this.loadErrors.addAll(newStatus.getLoadErrors());
         this.loadWarnings.clear();
@@ -80,8 +80,6 @@ public class StdPDPStatus implements Serializable, PDPStatus {
         this.failedPIPConfigs.clear();
         this.failedPIPConfigs.addAll(newStatus.getFailedPipConfigs());
     }
-
-
 
     @Override
     public Status getStatus() {
@@ -153,7 +151,7 @@ public class StdPDPStatus implements Serializable, PDPStatus {
         return Collections.unmodifiableSet(this.failedPolicies);
     }
 
-    public void	setFailedPolicies(Set<PDPPolicy> policies) {
+    public void setFailedPolicies(Set<PDPPolicy> policies) {
         this.failedPolicies = policies;
     }
 
@@ -219,59 +217,58 @@ public class StdPDPStatus implements Serializable, PDPStatus {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime
-                 * result
-                 + (failedPIPConfigs.hashCode());
-        result = prime * result
-                 + (failedPolicies.hashCode());
-        result = prime * result
-                 + (loadErrors.hashCode());
-        result = prime * result
-                 + (loadWarnings.hashCode());
-        result = prime
-                 * result
-                 + (loadedPIPConfigs.hashCode());
-        result = prime * result
-                 + (loadedPolicies.hashCode());
-        result = prime * result + (status.hashCode());
+        result = prime * result + failedPIPConfigs.hashCode();
+        result = prime * result + failedPolicies.hashCode();
+        result = prime * result + loadErrors.hashCode();
+        result = prime * result + loadWarnings.hashCode();
+        result = prime * result + loadedPIPConfigs.hashCode();
+        result = prime * result + loadedPolicies.hashCode();
+        result = prime * result + status.hashCode();
         return result;
     }
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj)
+        if (this == obj) {
             return true;
-        if (obj == null)
+        }
+        if (obj == null) {
             return false;
-        if (getClass() != obj.getClass())
+        }
+        if (getClass() != obj.getClass()) {
             return false;
-        StdPDPStatus other = (StdPDPStatus) obj;
-        if (!failedPIPConfigs.equals(other.failedPIPConfigs))
+        }
+        StdPDPStatus other = (StdPDPStatus)obj;
+        if (!failedPIPConfigs.equals(other.failedPIPConfigs)) {
             return false;
-        if (!failedPolicies.equals(other.failedPolicies))
+        }
+        if (!failedPolicies.equals(other.failedPolicies)) {
             return false;
-        if (!loadErrors.equals(other.loadErrors))
+        }
+        if (!loadErrors.equals(other.loadErrors)) {
             return false;
-        if (!loadWarnings.equals(other.loadWarnings))
+        }
+        if (!loadWarnings.equals(other.loadWarnings)) {
             return false;
-        if (!loadedPIPConfigs.equals(other.loadedPIPConfigs))
+        }
+        if (!loadedPIPConfigs.equals(other.loadedPIPConfigs)) {
             return false;
-        if (!loadedPolicies.equals(other.loadedPolicies))
+        }
+        if (!loadedPolicies.equals(other.loadedPolicies)) {
             return false;
-        if (status != other.status)
+        }
+        if (status != other.status) {
             return false;
+        }
         return true;
     }
 
     @Override
     public String toString() {
-        return "StdPDPStatus [status=" + status + ", loadErrors=" + loadErrors
-               + ", loadWarnings=" + loadWarnings + ", loadedPolicies="
-               + loadedPolicies + ", loadedRootPolicies=" + loadedRootPolicies
-               + ", failedPolicies=" + failedPolicies
-               + ", loadedPIPConfigs=" + loadedPIPConfigs
-               + ", failedPIPConfigs=" + failedPIPConfigs + "]";
+        return "StdPDPStatus [status=" + status + ", loadErrors=" + loadErrors + ", loadWarnings="
+               + loadWarnings + ", loadedPolicies=" + loadedPolicies + ", loadedRootPolicies="
+               + loadedRootPolicies + ", failedPolicies=" + failedPolicies + ", loadedPIPConfigs="
+               + loadedPIPConfigs + ", failedPIPConfigs=" + failedPIPConfigs + "]";
     }
-
 
 }

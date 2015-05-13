@@ -36,12 +36,12 @@ import java.util.Arrays;
 import org.apache.openaz.xacml.api.Version;
 
 /**
- * StdVersion implements the {@link org.apache.openaz.xacml.api.Version} interface to represent XACML version identifiers.
- *
+ * StdVersion implements the {@link com.att.research.xacml.api.Version} interface to represent XACML version
+ * identifiers.
  */
 public class StdVersion implements Version {
-    private int[]	versionDigits;
-    private String	cachedVersionString;
+    private int[] versionDigits;
+    private String cachedVersionString;
 
     /**
      * Creates a new <code>StdVersion</code> from the given array of integer digits.
@@ -49,11 +49,12 @@ public class StdVersion implements Version {
      * @param versionDigitsIn the array of integer digits representing the version
      */
     public StdVersion(int[] versionDigitsIn) {
-        this.versionDigits	= versionDigitsIn;
+        this.versionDigits = versionDigitsIn;
     }
 
     /**
-     * Creates a new <code>StdVersion</code> by parsing a <code>String</code> of the form Number"."Number"."Number"..."Number"
+     * Creates a new <code>StdVersion</code> by parsing a <code>String</code> of the form
+     * Number"."Number"."Number"..."Number"
      *
      * @param versionString the <code>String</code> representation of the version
      * @return a new <code>StdVersion</code> parsed from the <code>String</code>
@@ -63,14 +64,14 @@ public class StdVersion implements Version {
         if (versionString == null) {
             throw new NullPointerException("Null version string");
         }
-        String[] versionParts	= versionString.split("[.]", -1);
+        String[] versionParts = versionString.split("[.]", -1);
         if (versionParts == null) {
             throw new ParseException("Invalid version string \"" + versionString + "\"", 0);
         }
-        int[]	versionNumberParts	= new int[versionParts.length];
-        for (int i = 0 ; i < versionParts.length ; i++) {
+        int[] versionNumberParts = new int[versionParts.length];
+        for (int i = 0; i < versionParts.length; i++) {
             try {
-                versionNumberParts[i]	= Integer.parseInt(versionParts[i]);
+                versionNumberParts[i] = Integer.parseInt(versionParts[i]);
             } catch (NumberFormatException ex) {
                 throw new ParseException("Invalid version number \"" + versionParts[i] + "\"", i);
             }
@@ -84,16 +85,16 @@ public class StdVersion implements Version {
     @Override
     public String getVersion() {
         if (this.cachedVersionString == null) {
-            StringBuilder stringBuilder		= new StringBuilder();
-            int[]		  versionDigitsHere	= this.getVersionDigits();
+            StringBuilder stringBuilder = new StringBuilder();
+            int[] versionDigitsHere = this.getVersionDigits();
             if (versionDigitsHere != null && versionDigitsHere.length > 0) {
                 stringBuilder.append(versionDigitsHere[0]);
-                for (int i = 1 ; i < versionDigitsHere.length ; i++) {
+                for (int i = 1; i < versionDigitsHere.length; i++) {
                     stringBuilder.append('.');
                     stringBuilder.append(versionDigitsHere[i]);
                 }
             }
-            this.cachedVersionString	= stringBuilder.toString();
+            this.cachedVersionString = stringBuilder.toString();
         }
         return this.cachedVersionString;
     }
@@ -115,8 +116,8 @@ public class StdVersion implements Version {
         } else if (obj == this) {
             return true;
         } else {
-            int[] objDigits		= ((Version)obj).getVersionDigits();
-            int[] thisDigits	= this.getVersionDigits();
+            int[] objDigits = ((Version)obj).getVersionDigits();
+            int[] thisDigits = this.getVersionDigits();
             if (thisDigits == null || thisDigits.length == 0) {
                 if (objDigits == null || objDigits.length == 0) {
                     return true;
@@ -141,8 +142,8 @@ public class StdVersion implements Version {
         if (o == this || this.equals(o)) {
             return 0;
         } else {
-            int[] thisDigits	= this.getVersionDigits();
-            int[] oDigits		= o.getVersionDigits();
+            int[] thisDigits = this.getVersionDigits();
+            int[] oDigits = o.getVersionDigits();
             if (thisDigits == null || thisDigits.length == 0) {
                 if (oDigits == null || oDigits.length == 0) {
                     return 0;
@@ -153,11 +154,11 @@ public class StdVersion implements Version {
                 if (oDigits == null || oDigits.length == 0) {
                     return 1;
                 } else {
-                    int maxDigits	= (thisDigits.length > oDigits.length ? thisDigits.length : oDigits.length);
-                    for (int i = 0 ; i < maxDigits ; i++) {
+                    int maxDigits = (thisDigits.length > oDigits.length ? thisDigits.length : oDigits.length);
+                    for (int i = 0; i < maxDigits; i++) {
                         if (i < thisDigits.length) {
                             if (i < oDigits.length) {
-                                int diff	= thisDigits[i] - oDigits[i];
+                                int diff = thisDigits[i] - oDigits[i];
                                 if (diff != 0) {
                                     return diff;
                                 }

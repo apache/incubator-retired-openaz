@@ -35,10 +35,9 @@ import org.apache.openaz.xacml.api.XACML;
 
 /**
  * DataTypeHexBinary extends {@link DataTypeBase} to implement the XACML hexBinary data type.
- *
  */
 public class DataTypeHexBinary extends DataTypeSemanticStringBase<HexBinary> {
-    private static final DataTypeHexBinary	singleInstance	= new DataTypeHexBinary();
+    private static final DataTypeHexBinary singleInstance = new DataTypeHexBinary();
 
     private DataTypeHexBinary() {
         super(XACML.ID_DATATYPE_HEXBINARY, HexBinary.class);
@@ -55,15 +54,17 @@ public class DataTypeHexBinary extends DataTypeSemanticStringBase<HexBinary> {
         } else if (source instanceof byte[]) {
             return new HexBinary((byte[])source);
         } else {
-            String	stringValue	= this.convertToString(source);
+            String stringValue = this.convertToString(source);
             if (stringValue == null) {
                 return null;
             }
-            HexBinary	hexBinary	= null;
+            HexBinary hexBinary = null;
             try {
-                hexBinary	= HexBinary.newInstance(stringValue);
+                hexBinary = HexBinary.newInstance(stringValue);
             } catch (Exception ex) {
-                throw new DataTypeException(this, "Failed to convert \"" + source.getClass().getCanonicalName() + "\" with value \"" + stringValue + "\" to HexBinary", ex);
+                throw new DataTypeException(this, "Failed to convert \""
+                                                  + source.getClass().getCanonicalName() + "\" with value \""
+                                                  + stringValue + "\" to HexBinary", ex);
             }
             return hexBinary;
         }

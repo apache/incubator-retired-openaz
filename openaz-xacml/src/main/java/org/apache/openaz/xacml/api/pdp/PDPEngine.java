@@ -39,7 +39,6 @@ import org.apache.openaz.xacml.api.Response;
 
 /**
  * PEPEngine is the interface that applications use to make policy queries against a XACML 3.0 policy engine.
- *
  */
 public interface PDPEngine {
     /**
@@ -49,14 +48,16 @@ public interface PDPEngine {
      * @param pepRequest the <code>Request</code> to evaluate
      * @return a {@link org.apache.openaz.xacml.api.Response} indicating the decision
      */
-    public Response decide(Request pepRequest) throws PDPException;
+    Response decide(Request pepRequest) throws PDPException;
 
     /**
-     * Gets the <code>Collection</code> of <code>URI</code>s that represent the profiles supported by this <code>PDPEngine</code>.
+     * Gets the <code>Collection</code> of <code>URI</code>s that represent the profiles supported by this
+     * <code>PDPEngine</code>.
      *
-     * @return an <code>Collection</code> over the <code>URI</code>s that represent the profiles supported by this <code>PDPEngine</code>.
+     * @return an <code>Collection</code> over the <code>URI</code>s that represent the profiles supported by
+     *         this <code>PDPEngine</code>.
      */
-    public Collection<URI> getProfiles();
+    Collection<URI> getProfiles();
 
     /**
      * Determines if this <code>PDPEngine</code> supports the given <code>URI</code> profile.
@@ -64,5 +65,5 @@ public interface PDPEngine {
      * @param uriProfile the <code>URI</code> representing the profile feature requested.
      * @return true if the profile is supported, else false
      */
-    public boolean hasProfile(URI uriProfile);
+    boolean hasProfile(URI uriProfile);
 }

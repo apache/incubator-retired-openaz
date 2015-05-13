@@ -40,29 +40,21 @@ import org.apache.openaz.xacml.std.datatypes.DataTypes;
 import org.junit.Test;
 
 /**
- * Test of PDP Functions (See XACML core spec section A.3)
- *
- * TO RUN - use jUnit
- * In Eclipse select this file or the enclosing directory, right-click and select Run As/JUnit Test
- *
- *
+ * Test of PDP Functions (See XACML core spec section A.3) TO RUN - use jUnit In Eclipse select this file or
+ * the enclosing directory, right-click and select Run As/JUnit Test
  */
 public class FunctionDefinitionBagSizeTest {
-
 
     /*
      * variables useful in the following tests
      */
     List<FunctionArgument> arguments = new ArrayList<FunctionArgument>();
 
-
     @Test
     public void testString() {
         String v1 = new String("abc");
         String v2 = new String("def");
         Integer vOtherType = new Integer(11);
-
-
 
         Bag bag0 = new Bag();
         Bag bag1 = new Bag();
@@ -73,24 +65,19 @@ public class FunctionDefinitionBagSizeTest {
         Bag bagOtherType = new Bag();
         bagOtherType.add(new StdAttributeValue<Integer>(DataTypes.DT_INTEGER.getId(), vOtherType));
 
-
         FunctionArgumentBag attrBag0 = new FunctionArgumentBag(bag0);
         FunctionArgumentBag attrBag1 = new FunctionArgumentBag(bag1);
         FunctionArgumentBag attrBag2 = new FunctionArgumentBag(bag2);
         FunctionArgumentBag attrBagOtherType = new FunctionArgumentBag(bagOtherType);
 
-
-        FunctionDefinitionBagSize<?> fd = (FunctionDefinitionBagSize<?>) StdFunctions.FD_STRING_BAG_SIZE;
+        FunctionDefinitionBagSize<?> fd = (FunctionDefinitionBagSize<?>)StdFunctions.FD_STRING_BAG_SIZE;
 
         // check identity and type of the thing created
         assertEquals(XACML3.ID_FUNCTION_STRING_BAG_SIZE, fd.getId());
         assertEquals(DataTypes.DT_INTEGER.getId(), fd.getDataTypeId());
 
-        // just to be safe...  If tests take too long these can probably be eliminated
+        // just to be safe... If tests take too long these can probably be eliminated
         assertFalse(fd.returnsBag());
-
-
-
 
         // bag with only one
         arguments.clear();
@@ -107,7 +94,8 @@ public class FunctionDefinitionBagSizeTest {
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
         assertEquals("function:string-bag-size Got null argument", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
         // bag with exactly one but of other type in it
         arguments.clear();
@@ -138,20 +126,11 @@ public class FunctionDefinitionBagSizeTest {
         assertEquals(BigInteger.valueOf(2), resValue);
     }
 
-
-
-
-
-
-
     //
     //
-    //  REST OF DATA TYPES OMITTED
-    //	because they "should" all work the same
+    // REST OF DATA TYPES OMITTED
+    // because they "should" all work the same
     //
     //
-
-
-
 
 }

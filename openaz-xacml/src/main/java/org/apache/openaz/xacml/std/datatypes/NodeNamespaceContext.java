@@ -43,13 +43,12 @@ import org.w3c.dom.Node;
 /**
  * NodeNamespaceContext extends {@link javax.xml.namespace.NamespaceContext} by delegating to the owning
  * {@link org.w3c.dom.Document}.
- *
  */
 public class NodeNamespaceContext extends ExtendedNamespaceContext {
     private Document document;
 
     public NodeNamespaceContext(Document documentIn) {
-        this.document	= documentIn;
+        this.document = documentIn;
     }
 
     @Override
@@ -71,8 +70,6 @@ public class NodeNamespaceContext extends ExtendedNamespaceContext {
     public Iterator getPrefixes(String namespaceURI) {
         return null;
     }
-
-
 
     @Override
     public Iterator<String> getAllPrefixes() {

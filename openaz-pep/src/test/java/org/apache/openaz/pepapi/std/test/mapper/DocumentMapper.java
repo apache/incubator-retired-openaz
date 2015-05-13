@@ -37,8 +37,10 @@ public class DocumentMapper implements ObjectMapper {
     @Override
     public void map(Object o, PepRequest pepRequest) {
         Document d = (Document)o;
-        PepRequestAttributes resourceAttributes = pepRequest.getPepRequestAttributes(XACML3.ID_ATTRIBUTE_CATEGORY_RESOURCE);
-        resourceAttributes.addAttribute("urn:oasis:names:tc:xacml:1.0:resource:resource-id", d.getDocumentId());
+        PepRequestAttributes resourceAttributes = pepRequest
+            .getPepRequestAttributes(XACML3.ID_ATTRIBUTE_CATEGORY_RESOURCE);
+        resourceAttributes.addAttribute("urn:oasis:names:tc:xacml:1.0:resource:resource-id",
+                                        d.getDocumentId());
         resourceAttributes.addAttribute("urn:oasis:names:tc:xacml:1.0:resource:resource-type", "Document");
         resourceAttributes.addAttribute("jpmc:document:document-name", d.getDocumentName());
         resourceAttributes.addAttribute("jpmc:document:client-name", d.getClientName());

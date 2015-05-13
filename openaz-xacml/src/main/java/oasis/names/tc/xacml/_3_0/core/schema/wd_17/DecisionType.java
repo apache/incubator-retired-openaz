@@ -25,19 +25,19 @@
 // Generated on: 2013.05.23 at 02:47:00 PM EDT
 //
 
-
 package oasis.names.tc.xacml._3_0.core.schema.wd_17;
 
 import javax.xml.bind.annotation.XmlEnum;
 import javax.xml.bind.annotation.XmlEnumValue;
 import javax.xml.bind.annotation.XmlType;
 
-
 /**
- * <p>Java class for DecisionType.
- *
- * <p>The following schema fragment specifies the expected content contained within this class.
  * <p>
+ * Java class for DecisionType.
+ * <p>
+ * The following schema fragment specifies the expected content contained within this class.
+ * <p>
+ * 
  * <pre>
  * &lt;simpleType name="DecisionType">
  *   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
@@ -48,7 +48,6 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/restriction>
  * &lt;/simpleType>
  * </pre>
- *
  */
 @XmlType(name = "DecisionType")
 @XmlEnum
@@ -73,7 +72,7 @@ public enum DecisionType {
     }
 
     public static DecisionType fromValue(String v) {
-        for (DecisionType c: DecisionType.values()) {
+        for (DecisionType c : DecisionType.values()) {
             if (c.value.equals(v)) {
                 return c;
             }

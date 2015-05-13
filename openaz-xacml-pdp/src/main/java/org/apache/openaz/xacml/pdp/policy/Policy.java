@@ -49,15 +49,15 @@ import org.apache.openaz.xacml.std.trace.StdTraceEvent;
 import org.apache.openaz.xacml.util.StringUtils;
 
 /**
- * Policy extends {@link org.apache.openaz.xacml.pdp.policy.PolicyDef} to represent a XACML 3.0 Policy element.
- *
+ * Policy extends {@link com.att.research.xacmlatt.pdp.policy.PolicyDef} to represent a XACML 3.0 Policy
+ * element.
  */
 public class Policy extends PolicyDef {
-    private TargetedCombinerParameterMap<String,Rule>		ruleCombinerParameters	= new TargetedCombinerParameterMap<String,Rule>();
-    private VariableMap										variableMap				= new VariableMap();
-    private List<Rule>										rules					= new ArrayList<Rule>();
-    private List<CombiningElement<Rule>>					combiningRules;
-    private CombiningAlgorithm<Rule>						ruleCombiningAlgorithm;
+    private TargetedCombinerParameterMap<String, Rule> ruleCombinerParameters = new TargetedCombinerParameterMap<String, Rule>();
+    private VariableMap variableMap = new VariableMap();
+    private List<Rule> rules = new ArrayList<Rule>();
+    private List<CombiningElement<Rule>> combiningRules;
+    private CombiningAlgorithm<Rule> ruleCombiningAlgorithm;
 
     @Override
     protected boolean validateComponent() {
@@ -80,11 +80,12 @@ public class Policy extends PolicyDef {
      */
     protected List<CombiningElement<Rule>> getCombiningRules() {
         if (this.combiningRules == null) {
-            this.combiningRules			= new ArrayList<CombiningElement<Rule>>();
-            Iterator<Rule> iterRules	= this.getRules();
+            this.combiningRules = new ArrayList<CombiningElement<Rule>>();
+            Iterator<Rule> iterRules = this.getRules();
             while (iterRules.hasNext()) {
-                Rule rule	= iterRules.next();
-                this.combiningRules.add(new CombiningElement<Rule>(rule, this.ruleCombinerParameters.getCombinerParameters(rule)));
+                Rule rule = iterRules.next();
+                this.combiningRules.add(new CombiningElement<Rule>(rule, this.ruleCombinerParameters
+                    .getCombinerParameters(rule)));
             }
         }
         return this.combiningRules;
@@ -112,45 +113,52 @@ public class Policy extends PolicyDef {
     }
 
     /**
-     * Gets an <code>Iterator</code> over the {@link org.apache.openaz.xacml.pdp.policy.TargetedCombinerParameter}s for
-     * the {@link Rule}s in this <code>Policy</code>.
+     * Gets an <code>Iterator</code> over the
+     * {@link com.att.research.xacmlatt.pdp.policy.TargetedCombinerParameter}s for the {@link Rule}s in this
+     * <code>Policy</code>.
      *
-     * @return an <code>Iterator</code> over the <code>TargetedCombinerParameter</code>s for this <code>Policy</code>.
+     * @return an <code>Iterator</code> over the <code>TargetedCombinerParameter</code>s for this
+     *         <code>Policy</code>.
      */
-    public Iterator<TargetedCombinerParameter<String,Rule>> getRuleCombinerParameters() {
+    public Iterator<TargetedCombinerParameter<String, Rule>> getRuleCombinerParameters() {
         return this.ruleCombinerParameters.getTargetedCombinerParameters();
     }
 
     /**
-     * Sets the Rule combiner parameters for this <code>Policy</code> to the contents of the given <code>Collection</code> of
-     * <code>TargetedCombinerParameter</code>s.
+     * Sets the Rule combiner parameters for this <code>Policy</code> to the contents of the given
+     * <code>Collection</code> of <code>TargetedCombinerParameter</code>s.
      *
-     * @param ruleCombinerParameters the <code>Collection</code> of <code>TargetedCombinerParameter</code>s to set
+     * @param ruleCombinerParameters the <code>Collection</code> of <code>TargetedCombinerParameter</code>s to
+     *            set
      */
-    public void setRuleCombinerParameters(Collection<TargetedCombinerParameter<String,Rule>> ruleCombinerParameters) {
+    public void setRuleCombinerParameters(Collection<TargetedCombinerParameter<String, Rule>> ruleCombinerParameters) {
         this.ruleCombinerParameters.setCombinerParameters(ruleCombinerParameters);
     }
 
     /**
-     * Adds the given <code>TargetedCombinerParameter</code> to the set of Rule combiner parameters for this <code>Policy</code>.
+     * Adds the given <code>TargetedCombinerParameter</code> to the set of Rule combiner parameters for this
+     * <code>Policy</code>.
+     * 
      * @param ruleCombinerParameter the <code>TargetedCombinerParameter</code> for <code>Rule</code>s to add.
      */
-    public void addRuleCombinerParameter(TargetedCombinerParameter<String,Rule> ruleCombinerParameter) {
+    public void addRuleCombinerParameter(TargetedCombinerParameter<String, Rule> ruleCombinerParameter) {
         this.ruleCombinerParameters.addCombinerParameter(ruleCombinerParameter);
     }
 
     /**
-     * Adds the contents of the given <code>Collection</code> of <code>TargetedCombinerParameter</code>s to the set of Rule combiner parameters
-     * for this <code>Policy</code>.
+     * Adds the contents of the given <code>Collection</code> of <code>TargetedCombinerParameter</code>s to
+     * the set of Rule combiner parameters for this <code>Policy</code>.
      *
-     * @param ruleCombinerParameters the <code>Collection</code> of <code>TargetedCombinerParameter</code>s to add
+     * @param ruleCombinerParameters the <code>Collection</code> of <code>TargetedCombinerParameter</code>s to
+     *            add
      */
-    public void addRuleCombinerParameters(Collection<TargetedCombinerParameter<String,Rule>> ruleCombinerParameters) {
+    public void addRuleCombinerParameters(Collection<TargetedCombinerParameter<String, Rule>> ruleCombinerParameters) {
         this.ruleCombinerParameters.addCombinerParameters(ruleCombinerParameters);
     }
 
     /**
-     * Gets an <code>Iterator</code> over the {@link org.apache.openaz.xacml.pdp.policy.VariableDefinition}s in this <code>Policy</code>.
+     * Gets an <code>Iterator</code> over the {@link com.att.research.xacmlatt.pdp.policy.VariableDefinition}s
+     * in this <code>Policy</code>.
      *
      * @return an <code>Iterator</code> over the <code>VariableDefinition</code>s in this <code>Policy</code>
      */
@@ -162,14 +170,16 @@ public class Policy extends PolicyDef {
      * Gets the <code>VariableDefinition</code> for the given <code>String</code> variable identifier.
      *
      * @param variableId the <code>String</code> variable identifier
-     * @return the <code>VariableDefinition</code> with the given <code>String</code> identifier or null if not found
+     * @return the <code>VariableDefinition</code> with the given <code>String</code> identifier or null if
+     *         not found
      */
     public VariableDefinition getVariableDefinition(String variableId) {
         return this.variableMap.getVariableDefinition(variableId);
     }
 
     /**
-     * Sets the <code>VariableDefinition</code>s in this <code>Policy</code> to the contents of the given <code>Collection</code>.
+     * Sets the <code>VariableDefinition</code>s in this <code>Policy</code> to the contents of the given
+     * <code>Collection</code>.
      *
      * @param listVariableDefinitions the <code>Collection</code> of <code>VariableDefinition</code>s to set
      */
@@ -178,7 +188,8 @@ public class Policy extends PolicyDef {
     }
 
     /**
-     * Adds the given <code>VariableDefinition</code> to the set of <code>VariableDefinition</code>s for this <code>Policy</code>.
+     * Adds the given <code>VariableDefinition</code> to the set of <code>VariableDefinition</code>s for this
+     * <code>Policy</code>.
      *
      * @param variableDefinition the <code>VariableDefinition</code> to add
      */
@@ -187,7 +198,8 @@ public class Policy extends PolicyDef {
     }
 
     /**
-     * Adds the contents of the given <code>Collection</code> of <code>VariableDefinition</code>s to this <code>Policy</code>.
+     * Adds the contents of the given <code>Collection</code> of <code>VariableDefinition</code>s to this
+     * <code>Policy</code>.
      *
      * @param variableDefinitions the <code>Collection</code> of <code>VariableDefinition</code>s to add.
      */
@@ -196,17 +208,20 @@ public class Policy extends PolicyDef {
     }
 
     /**
-     * Gets an <code>Iterator</code> over the <code>Rule</code>s in this <code>Policy</code> or null if there are none.
+     * Gets an <code>Iterator</code> over the <code>Rule</code>s in this <code>Policy</code> or null if there
+     * are none.
      *
-     * @return an <code>Iterator</code> over the <code>Rule</code>s in this <code>Policy</code> or null if there are none.
+     * @return an <code>Iterator</code> over the <code>Rule</code>s in this <code>Policy</code> or null if
+     *         there are none.
      */
     public Iterator<Rule> getRules() {
         return this.rules.iterator();
     }
 
     /**
-     * Sets the <code>Rule</code>s for this <code>Policy</code> to the contents of the given <code>Collection</code> of
-     * <code>Rule</code>s. If the <code>Collection</code> is null, the set of <code>Rule</code>s for this <code>Policy</code> is set to null.
+     * Sets the <code>Rule</code>s for this <code>Policy</code> to the contents of the given
+     * <code>Collection</code> of <code>Rule</code>s. If the <code>Collection</code> is null, the set of
+     * <code>Rule</code>s for this <code>Policy</code> is set to null.
      *
      * @param listRules the <code>Collection</code> of <code>Rule</code>s or null
      */
@@ -227,8 +242,8 @@ public class Policy extends PolicyDef {
     }
 
     /**
-     * Adds the contents of the given <code>Collection</code> of <code>Rule</code>s to the set of <code>Rule</code>s for
-     * this <code>Policy</code>.
+     * Adds the contents of the given <code>Collection</code> of <code>Rule</code>s to the set of
+     * <code>Rule</code>s for this <code>Policy</code>.
      *
      * @param listRules the <code>Collection</code> of <code>Rule</code>s to add
      */
@@ -248,16 +263,17 @@ public class Policy extends PolicyDef {
     /**
      * Sets the <code>CombiningAlgorithm</code> for <code>Rule</code>s for this <code>Policy</code>>
      *
-     * @param ruleCombiningAlgorithmIn the <code>CombiningAlgorithm</code> for <code>Rule</code>s for this <code>Policy</code>
+     * @param ruleCombiningAlgorithmIn the <code>CombiningAlgorithm</code> for <code>Rule</code>s for this
+     *            <code>Policy</code>
      */
     public void setRuleCombiningAlgorithm(CombiningAlgorithm<Rule> ruleCombiningAlgorithmIn) {
-        this.ruleCombiningAlgorithm	= ruleCombiningAlgorithmIn;
+        this.ruleCombiningAlgorithm = ruleCombiningAlgorithmIn;
     }
 
     @Override
     public EvaluationResult evaluate(EvaluationContext evaluationContext) throws EvaluationException {
         /*
-         * First check to see if we are valid.  If not, return an error status immediately
+         * First check to see if we are valid. If not, return an error status immediately
          */
         if (!this.validate()) {
             return new EvaluationResult(new StdStatus(this.getStatusCode(), this.getStatusMessage()));
@@ -266,12 +282,12 @@ public class Policy extends PolicyDef {
         /*
          * See if we match
          */
-        MatchResult thisMatchResult	= this.match(evaluationContext);
-        assert(thisMatchResult != null);
+        MatchResult thisMatchResult = this.match(evaluationContext);
+        assert thisMatchResult != null;
         if (evaluationContext.isTracing()) {
             evaluationContext.trace(new StdTraceEvent<MatchResult>("Match", this, thisMatchResult));
         }
-        switch(thisMatchResult.getMatchCode()) {
+        switch (thisMatchResult.getMatchCode()) {
         case INDETERMINATE:
             return new EvaluationResult(Decision.INDETERMINATE, thisMatchResult.getStatus());
         case MATCH:
@@ -283,17 +299,19 @@ public class Policy extends PolicyDef {
         /*
          * Get the combining elements
          */
-        List<CombiningElement<Rule>> ruleCombiningElements	= this.getCombiningRules();
-        assert(ruleCombiningElements != null);
+        List<CombiningElement<Rule>> ruleCombiningElements = this.getCombiningRules();
+        assert ruleCombiningElements != null;
 
         /*
          * Run the combining algorithm
          */
-        assert(this.getRuleCombiningAlgorithm() != null);
-        EvaluationResult evaluationResultCombined	= this.getRuleCombiningAlgorithm().combine(evaluationContext, ruleCombiningElements, this.getCombinerParameterList());
-        assert(evaluationResultCombined != null);
+        assert this.getRuleCombiningAlgorithm() != null;
+        EvaluationResult evaluationResultCombined = this.getRuleCombiningAlgorithm()
+            .combine(evaluationContext, ruleCombiningElements, this.getCombinerParameterList());
+        assert evaluationResultCombined != null;
 
-        if (evaluationResultCombined.getDecision() == Decision.DENY || evaluationResultCombined.getDecision() == Decision.PERMIT) {
+        if (evaluationResultCombined.getDecision() == Decision.DENY
+            || evaluationResultCombined.getDecision() == Decision.PERMIT) {
             this.updateResult(evaluationResultCombined, evaluationContext);
 
             /*
@@ -311,7 +329,7 @@ public class Policy extends PolicyDef {
 
     @Override
     public String toString() {
-        StringBuilder stringBuilder	= new StringBuilder("{");
+        StringBuilder stringBuilder = new StringBuilder("{");
         stringBuilder.append("super=");
         stringBuilder.append(super.toString());
 

@@ -42,13 +42,13 @@ import org.apache.openaz.xacml.api.Status;
 import org.apache.openaz.xacml.util.Wrapper;
 
 /**
- * Immutable implementation of the {@link org.apache.openaz.xacml.api.Result} interface.
- *
+ * Immutable implementation of the {@link com.att.research.xacml.api.Result} interface.
  */
 public class StdResult extends Wrapper<Result> implements Result {
     /**
-     * Creates an immutable <code>StdResult</code> by wrapping another {@link org.apache.openaz.xacml.api.Result}.  By creating
-     * this wrapper, the caller is stating they will not modify the wrapped <code>Result</code> any further.
+     * Creates an immutable <code>StdResult</code> by wrapping another
+     * {@link com.att.research.xacml.api.Result}. By creating this wrapper, the caller is stating they will
+     * not modify the wrapped <code>Result</code> any further.
      *
      * @param result the <code>Result</code> to wrap.
      */
@@ -57,7 +57,8 @@ public class StdResult extends Wrapper<Result> implements Result {
     }
 
     /**
-     * Creates an immutable <code>StdResult</code> with the given {@link org.apache.openaz.xacml.api.Decision} and {@link org.apache.openaz.xacml.api.Status}.
+     * Creates an immutable <code>StdResult</code> with the given {@link com.att.research.xacml.api.Decision}
+     * and {@link com.att.research.xacml.api.Status}.
      *
      * @param decision the <code>Decision</code> for the new <code>StdResult</code>
      * @param status the <code>Status</code> for the new <code>StdResult</code>
@@ -67,7 +68,8 @@ public class StdResult extends Wrapper<Result> implements Result {
     }
 
     /**
-     * Creates an immutable <code>StdResult</code> with the given {@link org.apache.openaz.xacml.api.Decision} and an OK {@link org.apache.openaz.xacml.api.Status}.
+     * Creates an immutable <code>StdResult</code> with the given {@link com.att.research.xacml.api.Decision}
+     * and an OK {@link com.att.research.xacml.api.Status}.
      *
      * @param decision the <code>Decision</code> for the new <code>StdResult</code>
      */
@@ -76,8 +78,8 @@ public class StdResult extends Wrapper<Result> implements Result {
     }
 
     /**
-     * Creates an immutable <code>StdResult</code> with an <code>INDETERMINATE</code> {@link org.apache.openaz.xacml.api.Decision} and
-     * the given {@link org.apache.openaz.xacml.api.Status}.
+     * Creates an immutable <code>StdResult</code> with an <code>INDETERMINATE</code>
+     * {@link com.att.research.xacml.api.Decision} and the given {@link com.att.research.xacml.api.Status}.
      *
      * @param status the <code>Status</code> for the new <code>StdResult</code>>
      */
@@ -86,23 +88,26 @@ public class StdResult extends Wrapper<Result> implements Result {
     }
 
     /**
-     * Creates an immutable <code>StdResult</code> with the given {@link org.apache.openaz.xacml.api.Decision} and the given set of <code>Collection</code>s
-     * with the details of the result.
+     * Creates an immutable <code>StdResult</code> with the given {@link com.att.research.xacml.api.Decision}
+     * and the given set of <code>Collection</code>s with the details of the result.
      *
      * @param decisionIn the <code>Decision</code> for the new <code>StdMutableResult</code>
-     * @param obligationsIn a <code>Collection</code> of {@link org.apache.openaz.xacml.api.Obligation}s for the new <code>StdMutableResult</code>
-     * @param adviceIn a <code>Collection</code> of {@link org.apache.openaz.xacml.api.Advice} objects for the new <code>StdMutableResult</code>
-     * @param attributesIn a <code>Collection</code> of {@link org.apache.openaz.xacml.api.AttributeCategory} objects for the new <code>StdMutableResult</code>
-     * @param policyIdentifiersIn a <code>Collection</code> of {@link org.apache.openaz.xacml.api.IdReference} objects for the Policy identifiers
-     * @param policySetIdentifiersIn a <code>Collection</code> of {@link org.apache.openaz.xacml.api.IdReference} objects for the PolicySet identifiers
+     * @param obligationsIn a <code>Collection</code> of {@link com.att.research.xacml.api.Obligation}s for
+     *            the new <code>StdMutableResult</code>
+     * @param adviceIn a <code>Collection</code> of {@link com.att.research.xacml.api.Advice} objects for the
+     *            new <code>StdMutableResult</code>
+     * @param attributesIn a <code>Collection</code> of {@link com.att.research.xacml.api.AttributeCategory}
+     *            objects for the new <code>StdMutableResult</code>
+     * @param policyIdentifiersIn a <code>Collection</code> of {@link com.att.research.xacml.api.IdReference}
+     *            objects for the Policy identifiers
+     * @param policySetIdentifiersIn a <code>Collection</code> of
+     *            {@link com.att.research.xacml.api.IdReference} objects for the PolicySet identifiers
      */
-    public StdResult(Decision decisionIn,
-                     Collection<Obligation> obligationsIn,
-                     Collection<Advice> adviceIn,
-                     Collection<AttributeCategory> attributesIn,
-                     Collection<IdReference> policyIdentifiersIn,
+    public StdResult(Decision decisionIn, Collection<Obligation> obligationsIn, Collection<Advice> adviceIn,
+                     Collection<AttributeCategory> attributesIn, Collection<IdReference> policyIdentifiersIn,
                      Collection<IdReference> policySetIdentifiersIn) {
-        this(new StdMutableResult(decisionIn, obligationsIn, adviceIn, attributesIn, policyIdentifiersIn, policySetIdentifiersIn));
+        this(new StdMutableResult(decisionIn, obligationsIn, adviceIn, attributesIn, policyIdentifiersIn,
+                                  policySetIdentifiersIn));
     }
 
     @Override

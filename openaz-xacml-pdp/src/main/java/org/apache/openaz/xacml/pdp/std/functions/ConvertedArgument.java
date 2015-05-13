@@ -40,23 +40,17 @@ import org.apache.openaz.xacml.std.StdStatus;
 import org.apache.openaz.xacml.std.StdStatusCode;
 
 /**
- * A ConvertedArgument is the result of processing an {@link org.apache.openaz.xacml.pdp.policy.FunctionArgument}
- * to validate its correctness and to convert it into an object of the required type.
- * It is returned by the <code>validateArguments</code> method in
- * {@link org.apache.openaz.xacml.pdp.std.functions.FunctionDefinitionHomogeneousSimple}
- * and should only be used by other Functions in that same package.
- * This is a data holder with no processing.
- * It contains two elements:
+ * A ConvertedArgument is the result of processing an
+ * {@link com.att.research.xacmlatt.pdp.policy.FunctionArgument} to validate its correctness and to convert it
+ * into an object of the required type. It is returned by the <code>validateArguments</code> method in
+ * {@link com.att.research.xacmlatt.pdp.std.functions.FunctionDefinitionHomogeneousSimple} and should only be
+ * used by other Functions in that same package. This is a data holder with no processing. It contains two
+ * elements:
  * <UL>
- * <LI>
- * A {@link org.apache.openaz.xacml.api.Status} object, and
- * <LI>
- * An object containing the value of the FunctionArgument processed by validateArguments.
- * This object will only exist if status.isOk() (or the isOk() method in this class that calls status.isOk()) is true.
+ * <LI>A {@link com.att.research.xacml.api.Status} object, and
+ * <LI>An object containing the value of the FunctionArgument processed by validateArguments. This object will
+ * only exist if status.isOk() (or the isOk() method in this class that calls status.isOk()) is true.
  * </UL>
- *
- *
- *
  */
 public class ConvertedArgument<I> {
 
@@ -92,7 +86,6 @@ public class ConvertedArgument<I> {
         return status;
     }
 
-
     /**
      * Convenience method that directly returns the isOk() state from the status object.
      *
@@ -102,16 +95,14 @@ public class ConvertedArgument<I> {
         return status.isOk();
     }
 
-
     /**
-     * Get the value object.  This may be a Bag.
+     * Get the value object. This may be a Bag.
      *
      * @return
      */
     public I getValue() {
         return value;
     }
-
 
     /**
      * Get the value as a Bag. (convenience method)
@@ -122,10 +113,9 @@ public class ConvertedArgument<I> {
         return (Bag)value;
     }
 
-
     /**
-     * Returns a shortened version of the given DataType Id, primarily for use with error messages to prevent them from becoming too long.
-     * This is a simple convenience method to reduce code bloat.
+     * Returns a shortened version of the given DataType Id, primarily for use with error messages to prevent
+     * them from becoming too long. This is a simple convenience method to reduce code bloat.
      *
      * @param identifier expected to have '#' in it, and if no '#' should have ":data-type:"
      * @return
@@ -141,68 +131,68 @@ public class ConvertedArgument<I> {
                 return idString.substring(index + 11);
             }
         } else {
-            return idString.substring(index+1);
+            return idString.substring(index + 1);
         }
     }
 
-
-
     /**
-     * Evaluates the given <code>FunctionArgument</code> and validates that it has the correct <code>DataType</code>.
-     * The returned object will be either:
+     * Evaluates the given <code>FunctionArgument</code> and validates that it has the correct
+     * <code>DataType</code>. The returned object will be either:
      * <UL>
-     * <LI>
-     * A Status Object indicating an error condition, or
-     * <LI>
-     * An Object of the appropriate type containing the value of the function.
-     * In this case the caller should assume that the Status is Status.OK.
-     * Note that the object may be a bag if that is what the caller expected.
+     * <LI>A Status Object indicating an error condition, or
+     * <LI>An Object of the appropriate type containing the value of the function. In this case the caller
+     * should assume that the Status is Status.OK. Note that the object may be a bag if that is what the
+     * caller expected.
      * </UL>
-     *
      *
      * @param listFunctionArguments the <code>List</code> of <code>FunctionArgument</code>s to validate
      * @param convertedValues the <code>List</code> of <code>U</code> that the converted value is added to.
-     * @return a {@link org.apache.openaz.xacml.api.Status} indication with an error if the arguments are not valid,
-     * 			or an object of the correct DataType containing the value.
+     * @return a {@link com.att.research.xacml.api.Status} indication with an error if the arguments are not
+     *         valid, or an object of the correct DataType containing the value.
      */
-    @SuppressWarnings("unchecked")	// to suppress warning on bag conversion
-    public ConvertedArgument(FunctionArgument functionArgument, DataType<I> expectedDataType, boolean expectBag) {
+    @SuppressWarnings("unchecked")
+    // to suppress warning on bag conversion
+    public ConvertedArgument(FunctionArgument functionArgument, DataType<I> expectedDataType,
+                             boolean expectBag) {
 
-        if (functionArgument == null ) {
+        if (functionArgument == null) {
             status = new StdStatus(StdStatusCode.STATUS_CODE_PROCESSING_ERROR, "Got null argument");
             return;
         }
-        if ( ! functionArgument.isOk()) {
+        if (!functionArgument.isOk()) {
             status = functionArgument.getStatus();
             return;
         }
 
         // bags are valid arguments for some functions
         if (expectBag) {
-            if ( ! functionArgument.isBag()) {
-                status = new StdStatus(StdStatusCode.STATUS_CODE_PROCESSING_ERROR, "Expected a bag, saw a simple value");
+            if (!functionArgument.isBag()) {
+                status = new StdStatus(StdStatusCode.STATUS_CODE_PROCESSING_ERROR,
+                                       "Expected a bag, saw a simple value");
                 return;
             }
 
             Bag bag = functionArgument.getBag();
-            value = (I) bag;
+            value = (I)bag;
             status = StdStatus.STATUS_OK;
             return;
         }
 
         // argument should not be a bag
         if (functionArgument.isBag()) {
-            status = new StdStatus(StdStatusCode.STATUS_CODE_PROCESSING_ERROR, "Expected a simple value, saw a bag");
+            status = new StdStatus(StdStatusCode.STATUS_CODE_PROCESSING_ERROR,
+                                   "Expected a simple value, saw a bag");
             return;
         }
-        AttributeValue<?> attributeValue	= functionArgument.getValue();
+        AttributeValue<?> attributeValue = functionArgument.getValue();
         if (attributeValue == null || attributeValue.getValue() == null) {
             status = new StdStatus(StdStatusCode.STATUS_CODE_PROCESSING_ERROR, "Got null attribute");
             return;
         }
-        if ( ! attributeValue.getDataTypeId().equals(expectedDataType.getId())) {
-            status = new StdStatus(StdStatusCode.STATUS_CODE_PROCESSING_ERROR, "Expected data type '" +
-                                   getShortDataTypeId(expectedDataType.getId()) + "' saw '" + getShortDataTypeId(attributeValue.getDataTypeId()) + "'");
+        if (!attributeValue.getDataTypeId().equals(expectedDataType.getId())) {
+            status = new StdStatus(StdStatusCode.STATUS_CODE_PROCESSING_ERROR,
+                                   "Expected data type '" + getShortDataTypeId(expectedDataType.getId())
+                                       + "' saw '" + getShortDataTypeId(attributeValue.getDataTypeId()) + "'");
             return;
         }
 
@@ -217,7 +207,5 @@ public class ConvertedArgument<I> {
             status = new StdStatus(StdStatusCode.STATUS_CODE_PROCESSING_ERROR, message);
         }
     }
-
-
 
 }

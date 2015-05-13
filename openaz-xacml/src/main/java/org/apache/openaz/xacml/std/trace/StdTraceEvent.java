@@ -38,20 +38,19 @@ import org.apache.openaz.xacml.api.trace.Traceable;
 /**
  * Immutable implementation of the {@link org.apache.openaz.xacml.api.trace.TraceEvent} interface.
  *
- *
  * @param <T>
  */
 public class StdTraceEvent<T> implements TraceEvent<T> {
-    private Date	timestamp;
-    private String	message;
+    private Date timestamp;
+    private String message;
     private Traceable cause;
     private T value;
 
     public StdTraceEvent(Date timestampIn, String messageIn, Traceable causeIn, T valueIn) {
-        this.timestamp	= timestampIn;
-        this.message	= messageIn;
-        this.cause		= causeIn;
-        this.value		= valueIn;
+        this.timestamp = timestampIn;
+        this.message = messageIn;
+        this.cause = causeIn;
+        this.value = valueIn;
     }
 
     public StdTraceEvent(String messageIn, Traceable causeIn, T valueIn) {

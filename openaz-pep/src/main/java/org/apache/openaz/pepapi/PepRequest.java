@@ -12,10 +12,10 @@
  *
  * Authors:
  *    (2014): Ajith Nair, David Laurance
- * 	  1.1 (2011): Rich Levinson, Prateek Mishra (Oracle)
- * 	  1.0 (2009): Josh Bregman, Rich Levinson, Prateek Mishra (Oracle)
+ *        1.1 (2011): Rich Levinson, Prateek Mishra (Oracle)
+ *        1.0 (2009): Josh Bregman, Rich Levinson, Prateek Mishra (Oracle)
  * Contributor:
- * 	  Rich Levinson (Oracle)
+ *        Rich Levinson (Oracle)
  */
 package org.apache.openaz.pepapi;
 
@@ -29,17 +29,16 @@ import org.apache.openaz.xacml.api.Request;
 public interface PepRequest {
 
     /**
-     * Returns a PepRequestAttributes instance that represents the attribute category identified
-     * by the categoryIdentfier parameter.
+     * Returns a PepRequestAttributes instance that represents the attribute category identified by the
+     * categoryIdentfier parameter.
      *
      * @param categoryIdentifier an identifier for a category
      */
-    public PepRequestAttributes getPepRequestAttributes(Identifier categoryIdentifier);
+    PepRequestAttributes getPepRequestAttributes(Identifier categoryIdentifier);
 
     /**
-     *
      * @return
      */
-    public Request getWrappedRequest();
+    Request getWrappedRequest();
 
 }

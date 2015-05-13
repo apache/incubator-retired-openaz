@@ -35,8 +35,8 @@ public class FilteringObligationHandler implements ObligationHandler {
 
     public void enforce() {
         Set<Obligation> obligationSet = obligationStore.getHandlerObligations(this.getClass());
-        if(obligationSet.size() == 1) {
-            for(Obligation obligation: obligationSet) {
+        if (obligationSet.size() == 1) {
+            for (Obligation obligation : obligationSet) {
                 Assert.assertEquals("urn:oasis:names:tc:xacml:2.0:obligation:obligation-1",
                                     obligation.getId());
             }
@@ -48,10 +48,10 @@ public class FilteringObligationHandler implements ObligationHandler {
     @Override
     public boolean match(Obligation obligation) {
         Map<String, Object[]> map = obligation.getAttributeMap();
-        if(map.containsKey("jpmc:obligation:obligation-type")) {
+        if (map.containsKey("jpmc:obligation:obligation-type")) {
             Object[] values = map.get("jpmc:obligation:obligation-type");
-            if(values != null && values.length != 0) {
-                for(Object value: values) {
+            if (values != null && values.length != 0) {
+                for (Object value : values) {
                     return value.equals("Filtering");
                 }
             }

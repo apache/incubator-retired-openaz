@@ -45,7 +45,7 @@ public class StdPIPRequest implements PIPRequest {
     private String issuer;
 
     private static Identifier getDataType(Attribute attribute) {
-        Collection<AttributeValue<?>> values	= attribute.getValues();
+        Collection<AttributeValue<?>> values = attribute.getValues();
         if (values != null && values.size() > 0) {
             return values.iterator().next().getDataTypeId();
         } else {
@@ -53,15 +53,17 @@ public class StdPIPRequest implements PIPRequest {
         }
     }
 
-    public StdPIPRequest(Identifier identifierCategory, Identifier identifierAttribute, Identifier identifierDataType) {
-        this.category		= identifierCategory;
-        this.attributeId	= identifierAttribute;
-        this.dataTypeId		= identifierDataType;
+    public StdPIPRequest(Identifier identifierCategory, Identifier identifierAttribute,
+                         Identifier identifierDataType) {
+        this.category = identifierCategory;
+        this.attributeId = identifierAttribute;
+        this.dataTypeId = identifierDataType;
     }
 
-    public StdPIPRequest(Identifier identifierCategory, Identifier identifierAttribute, Identifier identifierDataType, String issuerIn) {
+    public StdPIPRequest(Identifier identifierCategory, Identifier identifierAttribute,
+                         Identifier identifierDataType, String issuerIn) {
         this(identifierCategory, identifierAttribute, identifierDataType);
-        this.issuer			= issuerIn;
+        this.issuer = issuerIn;
     }
 
     public StdPIPRequest(Attribute attribute, Identifier identifierDataType) {
@@ -99,19 +101,19 @@ public class StdPIPRequest implements PIPRequest {
     @Override
     public int hashCode() {
         Identifier identifier;
-        int hc		= 1;
+        int hc = 1;
         if ((identifier = this.getCategory()) != null) {
-            hc	+= identifier.hashCode();
+            hc += identifier.hashCode();
         }
         if ((identifier = this.getAttributeId()) != null) {
-            hc	+= identifier.hashCode();
+            hc += identifier.hashCode();
         }
         if ((identifier = this.getDataTypeId()) != null) {
-            hc	+= identifier.hashCode();
+            hc += identifier.hashCode();
         }
-        String thisIssuer	= this.getIssuer();
+        String thisIssuer = this.getIssuer();
         if (thisIssuer != null) {
-            hc	+= thisIssuer.hashCode();
+            hc += thisIssuer.hashCode();
         }
         return hc;
     }
@@ -123,25 +125,25 @@ public class StdPIPRequest implements PIPRequest {
         } else if (obj == null || !(obj instanceof PIPRequest)) {
             return false;
         } else {
-            PIPRequest pipRequest	= (PIPRequest)obj;
-            return ObjUtil.equalsAllowNull(this.getCategory(), pipRequest.getCategory()) &&
-                   ObjUtil.equalsAllowNull(this.getAttributeId(), pipRequest.getAttributeId()) &&
-                   ObjUtil.equalsAllowNull(this.getDataTypeId(), pipRequest.getDataTypeId()) &&
-                   ObjUtil.equalsAllowNull(this.getIssuer(), pipRequest.getIssuer());
+            PIPRequest pipRequest = (PIPRequest)obj;
+            return ObjUtil.equalsAllowNull(this.getCategory(), pipRequest.getCategory())
+                   && ObjUtil.equalsAllowNull(this.getAttributeId(), pipRequest.getAttributeId())
+                   && ObjUtil.equalsAllowNull(this.getDataTypeId(), pipRequest.getDataTypeId())
+                   && ObjUtil.equalsAllowNull(this.getIssuer(), pipRequest.getIssuer());
         }
     }
 
     @Override
     public String toString() {
-        StringBuilder stringBuilder	= new StringBuilder("{");
+        StringBuilder stringBuilder = new StringBuilder("{");
 
-        boolean needsComma	= false;
+        boolean needsComma = false;
         Object objectToDump;
 
         if ((objectToDump = this.getCategory()) != null) {
             stringBuilder.append("category=");
             stringBuilder.append(objectToDump.toString());
-            needsComma	= true;
+            needsComma = true;
         }
         if ((objectToDump = this.getAttributeId()) != null) {
             if (needsComma) {
@@ -149,7 +151,7 @@ public class StdPIPRequest implements PIPRequest {
             }
             stringBuilder.append("attributeId=");
             stringBuilder.append(objectToDump.toString());
-            needsComma	= true;
+            needsComma = true;
         }
         if ((objectToDump = this.getDataTypeId()) != null) {
             if (needsComma) {
@@ -157,7 +159,7 @@ public class StdPIPRequest implements PIPRequest {
             }
             stringBuilder.append("dataTypeId=");
             stringBuilder.append(objectToDump.toString());
-            needsComma	= true;
+            needsComma = true;
         }
         if ((objectToDump = this.getIssuer()) != null) {
             if (needsComma) {
@@ -165,7 +167,7 @@ public class StdPIPRequest implements PIPRequest {
             }
             stringBuilder.append("issuer=");
             stringBuilder.append((String)objectToDump);
-            needsComma	= true;
+            needsComma = true;
         }
         stringBuilder.append('}');
         return stringBuilder.toString();

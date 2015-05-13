@@ -80,20 +80,14 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 /**
- * class XACMLPolicyScanner
- *
- * This class traverses the hierarchy of a XACML 3.0 policy. You can optionally pass a Callback class
- * and override any desired methods to retrieve information from a policy.
- *
- *
+ * class XACMLPolicyScanner This class traverses the hierarchy of a XACML 3.0 policy. You can optionally pass
+ * a Callback class and override any desired methods to retrieve information from a policy.
  */
 public class XACMLPolicyScanner {
 
     /**
      * Very simple enumeration used in the callback class. Return CONTINUE to instruct the XACMLPolicyScanner
      * to continue scanning the policy. Otherwise, call STOP to terminate scanning the policy.
-     *
-     *
      */
     public enum CallbackResult {
         //
@@ -107,11 +101,8 @@ public class XACMLPolicyScanner {
     }
 
     /**
-     *  This is a simple callback interface that can be implemented and passed to the XACMLPolicyScanner.
-     * When the XACMLPolicyScanner encounters a relevant element in the policy, it calls the appropriate
-     * method.
-     *
-     *
+     * This is a simple callback interface that can be implemented and passed to the XACMLPolicyScanner. When
+     * the XACMLPolicyScanner encounters a relevant element in the policy, it calls the appropriate method.
      */
     public interface Callback {
         /**
@@ -120,14 +111,14 @@ public class XACMLPolicyScanner {
          * @param root - The root PolicySet/Policy object.
          * @return CallbackResult - CONTINUE or STOP scanning the policy.
          */
-        public CallbackResult onBeginScan(Object root);
+        CallbackResult onBeginScan(Object root);
 
         /**
          * Called when the scanning finishes with the root element.
          *
          * @param root - The root PolicySet/Policy object.
          */
-        public void onFinishScan(Object root);
+        void onFinishScan(Object root);
 
         /**
          * Called when the scanning of the policy first encounters a PolicySet
@@ -136,68 +127,63 @@ public class XACMLPolicyScanner {
          * @param policySet - The PolicySet object.
          * @return CallbackResult - CONTINUE or STOP scanning the policy.
          */
-        public CallbackResult onPreVisitPolicySet(PolicySetType parent, PolicySetType policySet);
+        CallbackResult onPreVisitPolicySet(PolicySetType parent, PolicySetType policySet);
 
         /**
-         *
          * Called when the scanning of the PolicySet has finished.
          *
          * @param parent - The parent PolicySet of the policySet. Can be null if this is the root PolicySet.
          * @param policySet - The PolicySet object.
          * @return CallbackResult - CONTINUE or STOP scanning the policy.
          */
-        public CallbackResult onPostVisitPolicySet(PolicySetType parent, PolicySetType policySet);
+        CallbackResult onPostVisitPolicySet(PolicySetType parent, PolicySetType policySet);
 
         /**
-         *
          * Called when the scanning of the policy first encounters a Policy
          *
          * @param parent - The parent PolicySet of the policy. This can be null if this policy is the root.
          * @param policy - The policy.
          * @return CallbackResult - CONTINUE or STOP scanning the policy.
          */
-        public CallbackResult onPreVisitPolicy(PolicySetType parent, PolicyType policy);
+        CallbackResult onPreVisitPolicy(PolicySetType parent, PolicyType policy);
 
         /**
-         *
          * Called when the scanning of the Policy has finished.
          *
          * @param parent - The parent PolicySet of the policy. This can be null if this policy is the root.
          * @param policy - The policy.
          * @return CallbackResult - CONTINUE or STOP scanning the policy.
          */
-        public CallbackResult onPostVisitPolicy(PolicySetType parent, PolicyType policy);
+        CallbackResult onPostVisitPolicy(PolicySetType parent, PolicyType policy);
 
         /**
-         *
          * Called when the scanning of the policy first encounters a Rule
          *
          * @param parent - The parent policy of the rule
          * @param rule - The rule
          * @return CallbackResult - CONTINUE or STOP scanning the policy.
          */
-        public CallbackResult onPreVisitRule(PolicyType parent, RuleType rule);
+        CallbackResult onPreVisitRule(PolicyType parent, RuleType rule);
 
         /**
-         *
          * Called when the scanning of the Rule has finished.
          *
          * @param parent - The parent policy of the rule
          * @param rule - The rule
          * @return CallbackResult - CONTINUE or STOP scanning the policy.
          */
-        public CallbackResult onPostVisitRule(PolicyType parent, RuleType rule);
+        CallbackResult onPostVisitRule(PolicyType parent, RuleType rule);
 
         /**
-         *
          * When an attribute has been encountered.
          *
          * @param parent - The parent PolicySet/Policy/Rule for this attribute.
-         * @param container - What part of the PolicySet/Policy/Rule this attribute is located. eg. Target, Condition
+         * @param container - What part of the PolicySet/Policy/Rule this attribute is located. eg. Target,
+         *            Condition
          * @param attribute - The attribute
          * @return CallbackResult - CONTINUE or STOP scanning the policy.
          */
-        public CallbackResult onAttribute(Object parent, Object container, Attribute attribute);
+        CallbackResult onAttribute(Object parent, Object container, Attribute attribute);
 
         /**
          * When an obligation has been encountered.
@@ -206,66 +192,58 @@ public class XACMLPolicyScanner {
          * @param obligation - The obligation.
          * @return CallbackResult - CONTINUE or STOP scanning the policy.
          */
-        public CallbackResult onObligation(Object parent, ObligationExpressionType expression, Obligation obligation);
+        CallbackResult onObligation(Object parent, ObligationExpressionType expression,
+                                           Obligation obligation);
 
         /**
-         *
          * When an advice has been encountered.
          *
          * @param parent - The parent PolicySet/Policy/Rule for the obligation.
-         * @param advice -  The advice.
+         * @param advice - The advice.
          * @return CallbackResult - CONTINUE or STOP scanning the policy.
          */
-        public CallbackResult onAdvice(Object parent, AdviceExpressionType expression, Advice advice);
+        CallbackResult onAdvice(Object parent, AdviceExpressionType expression, Advice advice);
 
         /**
-         *
          * When a variable definition has been encountered.
          *
-         * @param policy -  The Policy the variable is located in.
+         * @param policy - The Policy the variable is located in.
          * @param variable - The variable.
          * @return CallbackResult - CONTINUE or STOP scanning the policy.
          */
-        public CallbackResult onVariable(PolicyType policy, VariableDefinitionType variable);
+        CallbackResult onVariable(PolicyType policy, VariableDefinitionType variable);
 
         /**
-         *
          * When a condition has been encountered.
          *
-         * @param rule -  The Rule containing the condition.
+         * @param rule - The Rule containing the condition.
          * @param condition - The condition
          * @return CallbackResult - CONTINUE or STOP scanning the policy.
          */
-        public CallbackResult onCondition(RuleType rule, ConditionType condition);
+        CallbackResult onCondition(RuleType rule, ConditionType condition);
 
         /**
-         *
          * When a reference to another PolicySet is encountered.
          *
          * @param reference - The Policy Set Reference ID
          * @param parent - The parent PolicySet that holds the reference
          * @return CallbackResult - CONTINUE or STOP scanning the policy.
          */
-        public CallbackResult onPolicySetIdReference(IdReferenceType reference, PolicySetType parent);
+        CallbackResult onPolicySetIdReference(IdReferenceType reference, PolicySetType parent);
 
         /**
-         *
          * When a reference to another PolicySet is encountered.
          *
          * @param reference - The Policy Set Reference ID
          * @param parent - The parent PolicySet that holds the reference
          * @return CallbackResult - CONTINUE or STOP scanning the policy.
          */
-        public CallbackResult onPolicyIdReference(IdReferenceType reference, PolicySetType parent);
+        CallbackResult onPolicyIdReference(IdReferenceType reference, PolicySetType parent);
     }
 
     /**
-     *
-     * This is a simple implementation of the Callback. Extend this if you don't wish
-     * to implement all the callback functions available. Each method simply returns
-     * CallbackResult.CONTINUE.
-     *
-     *
+     * This is a simple implementation of the Callback. Extend this if you don't wish to implement all the
+     * callback functions available. Each method simply returns CallbackResult.CONTINUE.
      */
     public static class SimpleCallback implements Callback {
 
@@ -309,13 +287,13 @@ public class XACMLPolicyScanner {
         }
 
         @Override
-        public CallbackResult onAttribute(Object parent, Object container,
-                                          Attribute attribute) {
+        public CallbackResult onAttribute(Object parent, Object container, Attribute attribute) {
             return CallbackResult.CONTINUE;
         }
 
         @Override
-        public CallbackResult onObligation(Object parent, ObligationExpressionType expression, Obligation obligation) {
+        public CallbackResult onObligation(Object parent, ObligationExpressionType expression,
+                                           Obligation obligation) {
             return CallbackResult.CONTINUE;
         }
 
@@ -346,7 +324,7 @@ public class XACMLPolicyScanner {
 
     }
 
-    private static final Log logger				= LogFactory.getLog(XACMLPolicyScanner.class);
+    private static final Log logger = LogFactory.getLog(XACMLPolicyScanner.class);
     private Object policyObject = null;
     private Callback callback = null;
 
@@ -398,7 +376,6 @@ public class XACMLPolicyScanner {
     }
 
     /**
-     *
      * This begins the scanning of the contained object.
      *
      * @return - The PolicySet/Policy that was scanned.
@@ -407,15 +384,14 @@ public class XACMLPolicyScanner {
         if (this.policyObject == null) {
             return null;
         }
-        if (this.callback != null) {
-            if (this.callback.onBeginScan(this.policyObject) == CallbackResult.STOP) {
-                return this.policyObject;
-            }
+        if (this.callback != null 
+            && this.callback.onBeginScan(this.policyObject) == CallbackResult.STOP) {
+            return this.policyObject;
         }
         if (this.policyObject instanceof PolicyType) {
-            this.scanPolicy(null, (PolicyType) this.policyObject);
+            this.scanPolicy(null, (PolicyType)this.policyObject);
         } else if (this.policyObject instanceof PolicySetType) {
-            this.scanPolicySet(null, (PolicySetType) this.policyObject);
+            this.scanPolicySet(null, (PolicySetType)this.policyObject);
         } else {
             logger.error("Unknown class type: " + this.policyObject.getClass().getCanonicalName());
         }
@@ -439,12 +415,12 @@ public class XACMLPolicyScanner {
      */
     protected CallbackResult scanPolicySet(PolicySetType parent, PolicySetType policySet) {
         if (logger.isTraceEnabled()) {
-            logger.trace("scanning policy set: " + policySet.getPolicySetId() + " " + policySet.getDescription());
+            logger.trace("scanning policy set: " + policySet.getPolicySetId() + " "
+                         + policySet.getDescription());
         }
-        if (this.callback != null) {
-            if (this.callback.onPreVisitPolicySet(parent, policySet) == CallbackResult.STOP) {
-                return CallbackResult.STOP;
-            }
+        if (this.callback != null
+            && this.callback.onPreVisitPolicySet(parent, policySet) == CallbackResult.STOP) {
+            return CallbackResult.STOP;
         }
         //
         // Scan its info
@@ -462,7 +438,7 @@ public class XACMLPolicyScanner {
         // Iterate the policy sets and/or policies
         //
         List<JAXBElement<?>> list = policySet.getPolicySetOrPolicyOrPolicySetIdReference();
-        for (JAXBElement<?> element: list) {
+        for (JAXBElement<?> element : list) {
             if (element.getName().getLocalPart().equals("PolicySet")) {
                 if (this.scanPolicySet(policySet, (PolicySetType)element.getValue()) == CallbackResult.STOP) {
                     return CallbackResult.STOP;
@@ -471,26 +447,25 @@ public class XACMLPolicyScanner {
                 if (this.scanPolicy(policySet, (PolicyType)element.getValue()) == CallbackResult.STOP) {
                     return CallbackResult.STOP;
                 }
-            } else if (element.getValue() instanceof IdReferenceType) {
-                if (element.getName().getLocalPart().equals("PolicySetIdReference")) {
+            } else if (element.getValue() instanceof IdReferenceType) { //NOPMD
+                /*TODO if (element.getName().getLocalPart().equals("PolicySetIdReference")) {
 
                 } else if (element.getName().getLocalPart().equals("PolicyIdReference")) {
 
-                }
+                }*/
             } else {
-                logger.warn("generating policy sets found unsupported element: " + element.getName().getNamespaceURI());
+                logger.warn("generating policy sets found unsupported element: "
+                            + element.getName().getNamespaceURI());
             }
         }
-        if (this.callback != null) {
-            if (this.callback.onPostVisitPolicySet(parent, policySet) == CallbackResult.STOP) {
-                return CallbackResult.STOP;
-            }
+        if (this.callback != null
+            && this.callback.onPostVisitPolicySet(parent, policySet) == CallbackResult.STOP) {
+            return CallbackResult.STOP;
         }
         return CallbackResult.CONTINUE;
     }
 
     /**
-     *
      * This performs scanning of the Policy object.
      *
      * @param parent - The parent PolicySet of the policy. This can be null if this is a root Policy.
@@ -501,10 +476,9 @@ public class XACMLPolicyScanner {
         if (logger.isTraceEnabled()) {
             logger.trace("scanning policy: " + policy.getPolicyId() + " " + policy.getDescription());
         }
-        if (this.callback != null) {
-            if (this.callback.onPreVisitPolicy(parent, policy) == CallbackResult.STOP) {
-                return CallbackResult.STOP;
-            }
+        if (this.callback != null
+            && this.callback.onPreVisitPolicy(parent, policy) == CallbackResult.STOP) {
+            return CallbackResult.STOP;
         }
         //
         // Scan its info
@@ -512,7 +486,8 @@ public class XACMLPolicyScanner {
         if (this.scanTarget(policy, policy.getTarget()) == CallbackResult.STOP) {
             return CallbackResult.STOP;
         }
-        if (this.scanVariables(policy, policy.getCombinerParametersOrRuleCombinerParametersOrVariableDefinition()) == CallbackResult.STOP) {
+        if (this.scanVariables(policy,
+                               policy.getCombinerParametersOrRuleCombinerParametersOrVariableDefinition()) == CallbackResult.STOP) {
             return CallbackResult.STOP;
         }
         if (this.scanObligations(policy, policy.getObligationExpressions()) == CallbackResult.STOP) {
@@ -525,16 +500,15 @@ public class XACMLPolicyScanner {
         // Iterate the rules
         //
         List<Object> list = policy.getCombinerParametersOrRuleCombinerParametersOrVariableDefinition();
-        for (Object o: list) {
+        for (Object o : list) {
             if (o instanceof RuleType) {
-                RuleType rule = (RuleType) o;
+                RuleType rule = (RuleType)o;
                 if (logger.isTraceEnabled()) {
                     logger.trace("scanning rule: " + rule.getRuleId() + " " + rule.getDescription());
                 }
-                if (this.callback != null) {
-                    if (this.callback.onPreVisitRule(policy, rule) == CallbackResult.STOP) {
-                        return CallbackResult.STOP;
-                    }
+                if (this.callback != null
+                    && this.callback.onPreVisitRule(policy, rule) == CallbackResult.STOP) {
+                    return CallbackResult.STOP;
                 }
                 if (this.scanTarget(rule, rule.getTarget()) == CallbackResult.STOP) {
                     return CallbackResult.STOP;
@@ -548,16 +522,14 @@ public class XACMLPolicyScanner {
                 if (this.scanAdvice(rule, rule.getAdviceExpressions()) == CallbackResult.STOP) {
                     return CallbackResult.STOP;
                 }
-                if (this.callback != null) {
-                    if (this.callback.onPostVisitRule(policy, rule) == CallbackResult.STOP) {
-                        return CallbackResult.STOP;
-                    }
+                if (this.callback != null
+                    && this.callback.onPostVisitRule(policy, rule) == CallbackResult.STOP) {
+                    return CallbackResult.STOP;
                 }
             } else if (o instanceof VariableDefinitionType) {
-                if (this.callback != null) {
-                    if (this.callback.onVariable(policy, (VariableDefinitionType) o) == CallbackResult.STOP) {
-                        return CallbackResult.STOP;
-                    }
+                if (this.callback != null
+                    && this.callback.onVariable(policy, (VariableDefinitionType)o) == CallbackResult.STOP) {
+                    return CallbackResult.STOP;
                 }
             } else {
                 if (logger.isDebugEnabled()) {
@@ -565,10 +537,9 @@ public class XACMLPolicyScanner {
                 }
             }
         }
-        if (this.callback != null) {
-            if (this.callback.onPostVisitPolicy(parent, policy) == CallbackResult.STOP) {
-                return CallbackResult.STOP;
-            }
+        if (this.callback != null
+            && this.callback.onPostVisitPolicy(parent, policy) == CallbackResult.STOP) {
+            return CallbackResult.STOP;
         }
         return CallbackResult.CONTINUE;
     }
@@ -609,25 +580,36 @@ public class XACMLPolicyScanner {
                                     //
                                     // The content may be tricky
                                     //
-                                    attribute = new StdAttribute(new IdentifierImpl(designator.getCategory()),
-                                                                 new IdentifierImpl(designator.getAttributeId()),
-                                                                 new StdAttributeValue<List<?>>(new IdentifierImpl(value.getDataType()), value.getContent()),
-                                                                 designator.getIssuer(),
-                                                                 false);
+                                    attribute = new StdAttribute(
+                                                                 new IdentifierImpl(designator.getCategory()),
+                                                                 new IdentifierImpl(designator
+                                                                     .getAttributeId()),
+                                                                 new StdAttributeValue<List<?>>(
+                                                                                                new IdentifierImpl(
+                                                                                                                   value
+                                                                                                                       .getDataType()),
+                                                                                                value
+                                                                                                    .getContent()),
+                                                                 designator.getIssuer(), false);
                                 } else if (match.getAttributeSelector() != null && value != null) {
                                     AttributeSelectorType selector = match.getAttributeSelector();
-                                    attribute = new StdAttribute(new IdentifierImpl(selector.getCategory()),
-                                                                 new IdentifierImpl(selector.getContextSelectorId()),
-                                                                 new StdAttributeValue<List<?>>(new IdentifierImpl(value.getDataType()), value.getContent()),
-                                                                 null,
-                                                                 false);
+                                    attribute = new StdAttribute(
+                                                                 new IdentifierImpl(selector.getCategory()),
+                                                                 new IdentifierImpl(selector
+                                                                     .getContextSelectorId()),
+                                                                 new StdAttributeValue<List<?>>(
+                                                                                                new IdentifierImpl(
+                                                                                                                   value
+                                                                                                                       .getDataType()),
+                                                                                                value
+                                                                                                    .getContent()),
+                                                                 null, false);
                                 } else {
                                     logger.warn("NULL designator/selector or value for match.");
                                 }
-                                if (attribute != null && this.callback != null) {
-                                    if (this.callback.onAttribute(parent, target, attribute) == CallbackResult.STOP) {
-                                        return CallbackResult.STOP;
-                                    }
+                                if (attribute != null && this.callback != null
+                                    && this.callback.onAttribute(parent, target, attribute) == CallbackResult.STOP) {
+                                    return CallbackResult.STOP;
                                 }
                             }
                         }
@@ -645,7 +627,8 @@ public class XACMLPolicyScanner {
      * @param obligationExpressionsType - All the obligation expressions.
      * @return CallbackResult - CONTINUE to continue, STOP to terminate scanning.
      */
-    protected CallbackResult scanObligations(Object parent, ObligationExpressionsType obligationExpressionsType) {
+    protected CallbackResult scanObligations(Object parent,
+                                             ObligationExpressionsType obligationExpressionsType) {
         if (obligationExpressionsType == null) {
             return CallbackResult.CONTINUE;
         }
@@ -654,8 +637,11 @@ public class XACMLPolicyScanner {
             return CallbackResult.CONTINUE;
         }
         for (ObligationExpressionType expression : expressions) {
-            StdMutableObligation ob = new StdMutableObligation(new IdentifierImpl(expression.getObligationId()));
-            List<AttributeAssignmentExpressionType> assignments = expression.getAttributeAssignmentExpression();
+            StdMutableObligation ob = new StdMutableObligation(new IdentifierImpl(
+                                                                                  expression
+                                                                                      .getObligationId()));
+            List<AttributeAssignmentExpressionType> assignments = expression
+                .getAttributeAssignmentExpression();
             if (assignments != null) {
                 for (AttributeAssignmentExpressionType assignment : assignments) {
                     // category is optional and may be null
@@ -664,25 +650,25 @@ public class XACMLPolicyScanner {
                         categoryId = new IdentifierImpl(assignment.getCategory());
                     }
                     AttributeAssignment attribute = new StdAttributeAssignment(
-                        categoryId,
-                        new IdentifierImpl(assignment.getAttributeId()),
-                        assignment.getIssuer(),
-                        new StdAttributeValue<Object>(null, null)
-                    );
+                                                                               categoryId,
+                                                                               new IdentifierImpl(assignment
+                                                                                   .getAttributeId()),
+                                                                               assignment.getIssuer(),
+                                                                               new StdAttributeValue<Object>(
+                                                                                                             null,
+                                                                                                             null));
                     ob.addAttributeAssignment(attribute);
                 }
             }
-            if (this.callback != null) {
-                if (this.callback.onObligation(parent, expression, ob) == CallbackResult.STOP) {
-                    return CallbackResult.STOP;
-                }
+            if (this.callback != null
+                && this.callback.onObligation(parent, expression, ob) == CallbackResult.STOP) {
+                return CallbackResult.STOP;
             }
         }
         return CallbackResult.CONTINUE;
     }
 
     /**
-     *
      * Scans the list of advice expressions returning each individually.
      *
      * @param parent - The parent PolicySet/Policy/Rule for the advice.
@@ -699,7 +685,8 @@ public class XACMLPolicyScanner {
         }
         for (AdviceExpressionType expression : expressions) {
             StdMutableAdvice ob = new StdMutableAdvice(new IdentifierImpl(expression.getAdviceId()));
-            List<AttributeAssignmentExpressionType> assignments = expression.getAttributeAssignmentExpression();
+            List<AttributeAssignmentExpressionType> assignments = expression
+                .getAttributeAssignmentExpression();
             if (assignments != null) {
                 for (AttributeAssignmentExpressionType assignment : assignments) {
                     IdentifierImpl categoryId = null;
@@ -707,18 +694,19 @@ public class XACMLPolicyScanner {
                         categoryId = new IdentifierImpl(assignment.getCategory());
                     }
                     AttributeAssignment attribute = new StdAttributeAssignment(
-                        categoryId,
-                        new IdentifierImpl(assignment.getAttributeId()),
-                        assignment.getIssuer(),
-                        new StdAttributeValue<Object>(null, null)
-                    );
+                                                                               categoryId,
+                                                                               new IdentifierImpl(assignment
+                                                                                   .getAttributeId()),
+                                                                               assignment.getIssuer(),
+                                                                               new StdAttributeValue<Object>(
+                                                                                                             null,
+                                                                                                             null));
                     ob.addAttributeAssignment(attribute);
                 }
             }
-            if (this.callback != null) {
-                if (this.callback.onAdvice(parent, expression, ob) == CallbackResult.STOP) {
-                    return CallbackResult.STOP;
-                }
+            if (this.callback != null
+                && this.callback.onAdvice(parent, expression, ob) == CallbackResult.STOP) {
+                return CallbackResult.STOP;
             }
         }
         return CallbackResult.CONTINUE;
@@ -736,12 +724,9 @@ public class XACMLPolicyScanner {
             return CallbackResult.CONTINUE;
         }
         for (Object o : list) {
-            if (o instanceof VariableDefinitionType) {
-                if (this.callback != null) {
-                    if (this.callback.onVariable(policy, (VariableDefinitionType) o) == CallbackResult.STOP) {
-                        return CallbackResult.STOP;
-                    }
-                }
+            if (o instanceof VariableDefinitionType && this.callback != null
+                && this.callback.onVariable(policy, (VariableDefinitionType)o) == CallbackResult.STOP) {
+                return CallbackResult.STOP;
             }
         }
 
@@ -756,24 +741,22 @@ public class XACMLPolicyScanner {
      * @return
      */
     protected CallbackResult scanConditions(RuleType rule, ConditionType condition) {
-        if (condition != null) {
-            if (this.callback != null) {
-                if (this.callback.onCondition(rule, condition) == CallbackResult.STOP) {
-                    return CallbackResult.STOP;
-                }
-            }
+        if (condition != null && this.callback != null
+            && this.callback.onCondition(rule, condition) == CallbackResult.STOP) {
+            return CallbackResult.STOP;
         }
         return CallbackResult.CONTINUE;
     }
 
     /**
-     * Reads the XACML XML policy file in and returns the version contained in the root Policy/PolicySet element.
+     * Reads the XACML XML policy file in and returns the version contained in the root Policy/PolicySet
+     * element.
      *
      * @param policy - The policy file.
      * @return - The version string from the file (uninterpreted)
      * @throws java.io.IOException
      */
-    public static String	getVersion(Path policy) throws IOException {
+    public static String getVersion(Path policy) throws IOException {
         Object data = null;
         try (InputStream is = Files.newInputStream(policy)) {
             data = XACMLPolicyScanner.readPolicy(is);
@@ -794,7 +777,7 @@ public class XACMLPolicyScanner {
      * @param data - Either a PolicySet or Policy XACML type object.
      * @return - The integer version value. -1 if it doesn't exist or was un-parsable.
      */
-    public static String	getVersion(Object data) {
+    public static String getVersion(Object data) {
         String version = null;
         try {
             if (data instanceof PolicySetType) {
@@ -803,7 +786,8 @@ public class XACMLPolicyScanner {
                 version = ((PolicyType)data).getVersion();
             } else {
                 if (data != null) {
-                    logger.error("Expecting a PolicySet/Policy/Rule object. Got: " + data.getClass().getCanonicalName());
+                    logger.error("Expecting a PolicySet/Policy/Rule object. Got: "
+                                 + data.getClass().getCanonicalName());
                 }
                 return null;
             }
@@ -831,7 +815,8 @@ public class XACMLPolicyScanner {
         } else if (data instanceof PolicyType) {
             return ((PolicyType)data).getPolicyId();
         } else {
-            logger.error("Expecting a PolicySet/Policy/Rule object. Got: " + data.getClass().getCanonicalName());
+            logger.error("Expecting a PolicySet/Policy/Rule object. Got: "
+                         + data.getClass().getCanonicalName());
             return null;
         }
     }
@@ -862,7 +847,7 @@ public class XACMLPolicyScanner {
             Node node = nodes.item(0);
             Element e = null;
             if (node.getNodeType() == Node.ELEMENT_NODE) {
-                e = (Element) node;
+                e = (Element)node;
                 //
                 // Is it a 3.0 policy?
                 //
@@ -904,9 +889,8 @@ public class XACMLPolicyScanner {
                 }
             } else {
                 if (logger.isDebugEnabled()) {
-                    logger.debug("No root element contained in policy " +
-                                 " Name: " + node.getNodeName() + " type: " + node.getNodeType() +
-                                 " Value: " + node.getNodeValue());
+                    logger.debug("No root element contained in policy " + " Name: " + node.getNodeName()
+                                 + " type: " + node.getNodeType() + " Value: " + node.getNodeValue());
                 }
             }
         } catch (Exception e) {

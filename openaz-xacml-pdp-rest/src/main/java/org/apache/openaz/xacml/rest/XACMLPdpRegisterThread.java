@@ -47,7 +47,7 @@ import org.apache.openaz.xacml.rest.XACMLPdpServlet.PutRequest;
 import org.apache.openaz.xacml.util.XACMLProperties;
 
 public class XACMLPdpRegisterThread implements Runnable {
-    private static final Log logger	= LogFactory.getLog(XACMLPdpRegisterThread.class);
+    private static final Log logger = LogFactory.getLog(XACMLPdpRegisterThread.class);
 
     public volatile boolean isRunning = false;
 
@@ -60,20 +60,19 @@ public class XACMLPdpRegisterThread implements Runnable {
     }
 
     /**
-     *
      * This is our thread that runs on startup to tell the PAP server we are up-and-running.
-     *
      */
     @Override
     public void run() {
-        synchronized(this) {
+        synchronized (this) {
             this.isRunning = true;
         }
         boolean registered = false;
         boolean interrupted = false;
         int seconds;
         try {
-            seconds = Integer.parseInt(XACMLProperties.getProperty(XACMLRestProperties.PROP_PDP_REGISTER_SLEEP));
+            seconds = Integer.parseInt(XACMLProperties
+                .getProperty(XACMLRestProperties.PROP_PDP_REGISTER_SLEEP));
         } catch (NumberFormatException e) {
             logger.error("REGISTER_SLEEP: ", e);
             seconds = 5;
@@ -83,12 +82,13 @@ public class XACMLPdpRegisterThread implements Runnable {
         }
         int retries;
         try {
-            retries = Integer.parseInt(XACMLProperties.getProperty(XACMLRestProperties.PROP_PDP_REGISTER_RETRIES));
+            retries = Integer.parseInt(XACMLProperties
+                .getProperty(XACMLRestProperties.PROP_PDP_REGISTER_RETRIES));
         } catch (NumberFormatException e) {
             logger.error("REGISTER_SLEEP: ", e);
             retries = -1;
         }
-        while (! registered && ! interrupted && this.isRunning()) {
+        while (!registered && !interrupted && this.isRunning()) {
             HttpURLConnection connection = null;
             try {
                 //
@@ -97,7 +97,7 @@ public class XACMLPdpRegisterThread implements Runnable {
                 URL url = new URL(XACMLProperties.getProperty(XACMLRestProperties.PROP_PAP_URL));
                 logger.info("Registering with " + url.toString());
                 boolean finished = false;
-                while (! finished) {
+                while (!finished) {
                     //
                     // Open up the connection
                     //
@@ -108,7 +108,9 @@ public class XACMLPdpRegisterThread implements Runnable {
                     connection.setRequestMethod("POST");
                     connection.setRequestProperty("Accept", "text/x-java-properties");
                     connection.setRequestProperty("Content-Type", "text/x-java-properties");
-                    connection.setRequestProperty(XACMLRestProperties.PROP_PDP_HTTP_HEADER_ID, XACMLProperties.getProperty(XACMLRestProperties.PROP_PDP_ID));
+                    connection.setRequestProperty(XACMLRestProperties.PROP_PDP_HTTP_HEADER_ID,
+                                                  XACMLProperties
+                                                      .getProperty(XACMLRestProperties.PROP_PDP_ID));
                     connection.setUseCaches(false);
                     //
                     // Adding this in. It seems the HttpUrlConnection class does NOT
@@ -124,11 +126,13 @@ public class XACMLPdpRegisterThread implements Runnable {
                         //
                         // Send our current policy configuration
                         //
-                        String lists = XACMLProperties.PROP_ROOTPOLICIES + "=" + XACMLProperties.getProperty(XACMLProperties.PROP_ROOTPOLICIES);
-                        lists = lists + "\n" + XACMLProperties.PROP_REFERENCEDPOLICIES + "=" + XACMLProperties.getProperty(XACMLProperties.PROP_REFERENCEDPOLICIES) + "\n";
+                        String lists = XACMLProperties.PROP_ROOTPOLICIES + "="
+                                       + XACMLProperties.getProperty(XACMLProperties.PROP_ROOTPOLICIES);
+                        lists = lists + "\n" + XACMLProperties.PROP_REFERENCEDPOLICIES + "="
+                                + XACMLProperties.getProperty(XACMLProperties.PROP_REFERENCEDPOLICIES) + "\n";
                         try (InputStream listsInputStream = new ByteArrayInputStream(lists.getBytes());
-                                    InputStream pipInputStream = Files.newInputStream(XACMLPdpLoader.getPIPConfig());
-                                    OutputStream os = connection.getOutputStream()) {
+                            InputStream pipInputStream = Files.newInputStream(XACMLPdpLoader.getPIPConfig());
+                            OutputStream os = connection.getOutputStream()) {
                             IOUtils.copy(listsInputStream, os);
 
                             //
@@ -156,14 +160,17 @@ public class XACMLPdpRegisterThread implements Runnable {
                         // Queue it
                         //
                         // The incoming properties does NOT include urls
-                        PutRequest req = new PutRequest(XACMLProperties.getPolicyProperties(properties, false), XACMLProperties.getPipProperties(properties));
+                        PutRequest req = new PutRequest(
+                                                        XACMLProperties
+                                                            .getPolicyProperties(properties, false),
+                                                        XACMLProperties.getPipProperties(properties));
                         XACMLPdpServlet.queue.offer(req);
                         //
                         // We are now registered
                         //
                         finished = true;
-                        registered=true;
-                    } else if (connection.getResponseCode() >= 300 && connection.getResponseCode()  <= 399) {
+                        registered = true;
+                    } else if (connection.getResponseCode() >= 300 && connection.getResponseCode() <= 399) {
                         //
                         // Re-direction
                         //
@@ -176,7 +183,8 @@ public class XACMLPdpRegisterThread implements Runnable {
                             url = new URL(newLocation);
                         }
                     } else {
-                        logger.warn("Failed: " + connection.getResponseCode() + "  message: " + connection.getResponseMessage());
+                        logger.warn("Failed: " + connection.getResponseCode() + "  message: "
+                                    + connection.getResponseMessage());
                         finished = true;
                     }
                 }
@@ -191,7 +199,7 @@ public class XACMLPdpRegisterThread implements Runnable {
                         InputStream is = null;
                         try {
                             is = connection.getInputStream();
-                        } catch (Exception e1) {
+                        } catch (Exception e1) { //NOPMD
                             // ignore this
                         }
                         if (is != null) {
@@ -221,10 +229,11 @@ public class XACMLPdpRegisterThread implements Runnable {
                 this.terminate();
             }
         }
-        synchronized(this) {
+        synchronized (this) {
             this.isRunning = false;
         }
-        logger.info("Thread exiting...(registered=" + registered + ", interrupted=" + interrupted + ", isRunning=" + this.isRunning() + ", retries=" + retries + ")");
+        logger.info("Thread exiting...(registered=" + registered + ", interrupted=" + interrupted
+                    + ", isRunning=" + this.isRunning() + ", retries=" + retries + ")");
     }
 
 }

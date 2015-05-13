@@ -47,21 +47,17 @@ import org.apache.openaz.xacml.std.StdStatus;
 import org.apache.openaz.xacml.std.StdStatusCode;
 
 /**
- * FunctionDefinitionNumberTypeConversion extends {@link FunctionDefinitionHomogeneousSimple} to
- * implement the XACML predicates foc converting <code>Double</code> to <code>Integer</code> and vice versa.
- *
- * In the first implementation of XACML we had separate files for each XACML Function.
- * This release combines multiple Functions in fewer files to minimize code duplication.
- * This file supports the following XACML codes:
- * 		double-to-integer
- * 		integer-to-double
- *
+ * FunctionDefinitionNumberTypeConversion extends {@link FunctionDefinitionHomogeneousSimple} to implement the
+ * XACML predicates foc converting <code>Double</code> to <code>Integer</code> and vice versa. In the first
+ * implementation of XACML we had separate files for each XACML Function. This release combines multiple
+ * Functions in fewer files to minimize code duplication. This file supports the following XACML codes:
+ * double-to-integer integer-to-double
  *
  * @param <O> the java class for the data type of the function Output
  * @param <I> the java class for the data type of the function Input argument
  */
-public class FunctionDefinitionNumberTypeConversion<O extends Number, I extends Number> extends FunctionDefinitionHomogeneousSimple<O, I> {
-
+public class FunctionDefinitionNumberTypeConversion<O extends Number, I extends Number> extends
+    FunctionDefinitionHomogeneousSimple<O, I> {
 
     public FunctionDefinitionNumberTypeConversion(Identifier idIn, DataType<O> outputType, DataType<I> argType) {
         super(idIn, outputType, argType, 1);
@@ -70,8 +66,8 @@ public class FunctionDefinitionNumberTypeConversion<O extends Number, I extends 
 
     @Override
     public ExpressionResult evaluate(EvaluationContext evaluationContext, List<FunctionArgument> arguments) {
-        List<I> convertedArguments	= new ArrayList<I>();
-        Status status				= this.validateArguments(arguments, convertedArguments);
+        List<I> convertedArguments = new ArrayList<I>();
+        Status status = this.validateArguments(arguments, convertedArguments);
 
         /*
          * If the function arguments are not correct, just return an error status immediately
@@ -81,17 +77,26 @@ public class FunctionDefinitionNumberTypeConversion<O extends Number, I extends 
         }
 
         /*
-         * Numeric operations cannot be operated on generically in java, so we have to check the types and handle separately.
-         * Whichever type the argument is, convert it to the other
+         * Numeric operations cannot be operated on generically in java, so we have to check the types and
+         * handle separately. Whichever type the argument is, convert it to the other
          */
         ExpressionResult expressionResult;
         try {
             if (convertedArguments.get(0).getClass() == BigInteger.class) {
-                AttributeValue<Double>	doubleResult	= new StdAttributeValue<Double>(XACML.ID_DATATYPE_DOUBLE,
-                        new Double(  ((BigInteger)convertedArguments.get(0)).toString()  ) );
+                AttributeValue<Double> doubleResult = new StdAttributeValue<Double>(
+                                                                                    XACML.ID_DATATYPE_DOUBLE,
+                                                                                    new Double(
+                                                                                               ((BigInteger)convertedArguments
+                                                                                                   .get(0))
+                                                                                                   .toString()));
                 expressionResult = ExpressionResult.newSingle(doubleResult);
             } else {
-                AttributeValue<BigInteger>	integerResult	= new StdAttributeValue<BigInteger>(XACML.ID_DATATYPE_INTEGER, BigInteger.valueOf(((Double)convertedArguments.get(0)).intValue()) );
+                AttributeValue<BigInteger> integerResult = new StdAttributeValue<BigInteger>(
+                                                                                             XACML.ID_DATATYPE_INTEGER,
+                                                                                             BigInteger
+                                                                                                 .valueOf(((Double)convertedArguments
+                                                                                                     .get(0))
+                                                                                                     .intValue()));
                 expressionResult = ExpressionResult.newSingle(integerResult);
             }
         } catch (Exception e) {
@@ -99,7 +104,8 @@ public class FunctionDefinitionNumberTypeConversion<O extends Number, I extends 
             if (e.getCause() != null) {
                 message = e.getCause().getMessage();
             }
-            return ExpressionResult.newError(new StdStatus(StdStatusCode.STATUS_CODE_PROCESSING_ERROR, this.getShortFunctionId() + " " + message));
+            return ExpressionResult.newError(new StdStatus(StdStatusCode.STATUS_CODE_PROCESSING_ERROR, this
+                .getShortFunctionId() + " " + message));
         }
 
         return expressionResult;

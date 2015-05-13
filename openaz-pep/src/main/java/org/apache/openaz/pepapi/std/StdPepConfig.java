@@ -34,7 +34,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Properties;
 
-
 public final class StdPepConfig implements PepConfig {
 
     private static final Log logger = LogFactory.getLog(StdPepConfig.class);
@@ -68,13 +67,13 @@ public final class StdPepConfig implements PepConfig {
     private List<String> mapperClassNames;
 
     public StdPepConfig() {
-        //Defaults
+        // Defaults
         subjectIdURI = XACML3.ID_SUBJECT_SUBJECT_ID.stringValue();
         actionIdURI = XACML3.ID_ACTION_ACTION_ID.stringValue();
         resourceIdURI = XACML3.ID_RESOURCE_RESOURCE_ID.stringValue();
         indeterminateBehavior = PepResponseBehavior.THROW_EXCEPTION;
         notApplicableBehavior = PepResponseBehavior.RETURN_NO;
-        mapperClassNames = Collections.EMPTY_LIST;
+        mapperClassNames = Collections.emptyList();
     }
 
     public StdPepConfig(Properties properties) {
@@ -82,45 +81,45 @@ public final class StdPepConfig implements PepConfig {
         issuer = properties.getProperty(PEP_ISSUER);
 
         String subjectIdURI = properties.getProperty(PEP_DEFAULT_SUBJECT_ID);
-        if(!StringUtils.isEmpty(subjectIdURI)) {
+        if (!StringUtils.isEmpty(subjectIdURI)) {
             this.subjectIdURI = subjectIdURI;
         }
 
         String actionIdURI = properties.getProperty(PEP_DEFAULT_ACTION_ID);
-        if(!StringUtils.isEmpty(actionIdURI)) {
+        if (!StringUtils.isEmpty(actionIdURI)) {
             this.actionIdURI = actionIdURI;
         }
 
         String resourceIdURI = properties.getProperty(PEP_DEFAULT_RESOURCE_ID);
-        if(!StringUtils.isEmpty(resourceIdURI)) {
+        if (!StringUtils.isEmpty(resourceIdURI)) {
             this.resourceIdURI = resourceIdURI;
         }
 
         String indeterminateString = properties.getProperty(PEP_INDETERMINATE_BEHAVIOR);
-        if(!StringUtils.isEmpty(indeterminateString)) {
+        if (!StringUtils.isEmpty(indeterminateString)) {
             PepResponseBehavior indeterminateBehavior = PepResponseBehavior.valueOf(indeterminateString);
-            if(indeterminateBehavior == null) {
+            if (indeterminateBehavior == null) {
                 logger.error("Invalid indeterminate behavior found in configuration.");
-                //TODO: Throw exception ?
+                // TODO: Throw exception ?
             }
             this.indeterminateBehavior = indeterminateBehavior;
         }
 
         String notapplicableString = properties.getProperty(PEP_NOTAPPLICABLE_BEHAVIOR);
-        if(!StringUtils.isEmpty(notapplicableString)) {
+        if (!StringUtils.isEmpty(notapplicableString)) {
             PepResponseBehavior notApplicableBehavior = PepResponseBehavior.valueOf(notapplicableString);
-            if(notApplicableBehavior == null) {
+            if (notApplicableBehavior == null) {
                 logger.error("Invalid notapplicable behavior found in configuration.");
-                //TODO: Throw exception ?
+                // TODO: Throw exception ?
             }
             this.notApplicableBehavior = notApplicableBehavior;
         }
 
-
         String mapperClassNameString = properties.getProperty(PEP_MAPPER_CLASSES);
-        if(!StringUtils.isEmpty(mapperClassNameString)) {
-            List mapperClassNames = new ArrayList<String>();
-            for(String className: Splitter.on(",").omitEmptyStrings().trimResults().split(mapperClassNameString)) {
+        if (!StringUtils.isEmpty(mapperClassNameString)) {
+            List<String> mapperClassNames = new ArrayList<String>();
+            for (String className : Splitter.on(",").omitEmptyStrings().trimResults()
+                .split(mapperClassNameString)) {
                 mapperClassNames.add(className);
             }
             this.mapperClassNames = Collections.unmodifiableList(mapperClassNames);

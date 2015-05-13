@@ -42,29 +42,31 @@ import org.apache.openaz.xacml.pdp.policy.CombinerParameter;
 import org.apache.openaz.xacml.pdp.policy.CombiningElement;
 
 /**
- * PermitUnlessDeny implements the XACML 3.0 "permit-unless-deny" combining algorithm for both policies and rules.
- *
+ * PermitUnlessDeny implements the XACML 3.0 "permit-unless-deny" combining algorithm for both policies and
+ * rules.
  *
  * @param <T> the java class for the {@link org.apache.openaz.xacml.pdp.eval.Evaluatable}
  * @param <U> the java class for the identifier
  */
-public class PermitUnlessDeny<T extends org.apache.openaz.xacml.pdp.eval.Evaluatable> extends CombiningAlgorithmBase<T> {
+public class PermitUnlessDeny<T extends org.apache.openaz.xacml.pdp.eval.Evaluatable> extends 
+    CombiningAlgorithmBase<T> {
 
     public PermitUnlessDeny(Identifier identifierIn) {
         super(identifierIn);
     }
 
     @Override
-    public EvaluationResult combine(EvaluationContext evaluationContext, List<CombiningElement<T>> elements, List<CombinerParameter> combinerParameters) throws EvaluationException {
-        EvaluationResult combinedResult			= new EvaluationResult(Decision.PERMIT);
+    public EvaluationResult combine(EvaluationContext evaluationContext, List<CombiningElement<T>> elements,
+                                    List<CombinerParameter> combinerParameters) throws EvaluationException {
+        EvaluationResult combinedResult = new EvaluationResult(Decision.PERMIT);
 
-        Iterator<CombiningElement<T>> iterElements	= elements.iterator();
+        Iterator<CombiningElement<T>> iterElements = elements.iterator();
         while (iterElements.hasNext()) {
-            CombiningElement<T> combiningElement		= iterElements.next();
-            EvaluationResult evaluationResultElement	= combiningElement.evaluate(evaluationContext);
+            CombiningElement<T> combiningElement = iterElements.next();
+            EvaluationResult evaluationResultElement = combiningElement.evaluate(evaluationContext);
 
-            assert(evaluationResultElement != null);
-            switch(evaluationResultElement.getDecision()) {
+            assert evaluationResultElement != null;
+            switch (evaluationResultElement.getDecision()) {
             case DENY:
                 return evaluationResultElement;
             case INDETERMINATE:
@@ -78,7 +80,8 @@ public class PermitUnlessDeny<T extends org.apache.openaz.xacml.pdp.eval.Evaluat
                 combinedResult.merge(evaluationResultElement);
                 break;
             default:
-                throw new EvaluationException("Illegal Decision: \"" + evaluationResultElement.getDecision().toString());
+                throw new EvaluationException("Illegal Decision: \""
+                                              + evaluationResultElement.getDecision().toString());
             }
         }
 

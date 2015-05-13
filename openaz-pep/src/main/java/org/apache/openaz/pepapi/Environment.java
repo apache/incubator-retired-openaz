@@ -23,10 +23,7 @@ package org.apache.openaz.pepapi;
 import org.apache.openaz.xacml.api.XACML3;
 
 /**
- *
  * Container class that maps attributes to predefined XACML Environment category.
- *
- *
  */
 public final class Environment extends CategoryContainer {
 

@@ -20,11 +20,10 @@
 
 package org.apache.openaz.pepapi.std;
 
-
 import org.apache.openaz.pepapi.Obligation;
 
 public interface ObligationCriterion {
 
-    public boolean match(Obligation obligation);
+    boolean match(Obligation obligation);
 
 }

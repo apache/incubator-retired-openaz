@@ -26,8 +26,6 @@ import org.apache.openaz.xacml.api.XACML3;
 
 /**
  * Container class that maps attributes to predefined XACML Action category.
- *
- *
  */
 public class Action extends CategoryContainer {
 

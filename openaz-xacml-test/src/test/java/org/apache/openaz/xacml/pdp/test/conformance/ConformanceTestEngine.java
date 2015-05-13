@@ -44,16 +44,15 @@ import org.apache.openaz.xacml.util.FactoryException;
 
 /**
  * ConformanceTestEngine handles the creation of the PDPEngine for a ConformanceTest instance.
- *
  */
 public class ConformanceTestEngine {
-    private Log logger	= LogFactory.getLog(ConformanceTestEngine.class);
+    private Log logger = LogFactory.getLog(ConformanceTestEngine.class);
 
     private PDPEngineFactory pdpEngineFactory;
     private ScopeResolver scopeResolver;
     private boolean lenientRequests;
     private boolean lenientPolicies;
-    private int iterations			= 1;
+    private int iterations = 1;
 
     // total of all first calls to decide()
     private long firstDecideTime;
@@ -68,44 +67,47 @@ public class ConformanceTestEngine {
 
     protected PDPEngineFactory getPDPEngineFactory() throws FactoryException {
         if (this.pdpEngineFactory == null) {
-            this.pdpEngineFactory	= PDPEngineFactory.newInstance();
+            this.pdpEngineFactory = PDPEngineFactory.newInstance();
             this.pdpEngineFactory.setScopeResolver(this.scopeResolver);
         }
         return this.pdpEngineFactory;
     }
 
-    public ConformanceTestEngine(ScopeResolver scopeResolverIn, boolean lenientRequestsIn, boolean lenientPoliciesIn, int iterationsIn) {
-        this.scopeResolver		= scopeResolverIn;
-        this.lenientRequests	= lenientRequestsIn;
-        this.lenientPolicies	= lenientPoliciesIn;
-        this.iterations			= iterationsIn;
+    public ConformanceTestEngine(ScopeResolver scopeResolverIn, boolean lenientRequestsIn,
+                                 boolean lenientPoliciesIn, int iterationsIn) {
+        this.scopeResolver = scopeResolverIn;
+        this.lenientRequests = lenientRequestsIn;
+        this.lenientPolicies = lenientPoliciesIn;
+        this.iterations = iterationsIn;
     }
 
     public ConformanceTestResult run(ConformanceTest conformanceTest) {
-        if (conformanceTest.getRequest() == null || conformanceTest.getResponse() == null || conformanceTest.getRepository() == null) {
+        if (conformanceTest.getRequest() == null || conformanceTest.getResponse() == null
+            || conformanceTest.getRepository() == null) {
             logger.error("Incomplete Conformance Test: " + conformanceTest.getTestName());
         }
-        PDPEngineFactory thisPDPEngineFactory	= null;
+        PDPEngineFactory thisPDPEngineFactory = null;
         try {
-            thisPDPEngineFactory	= this.getPDPEngineFactory();
+            thisPDPEngineFactory = this.getPDPEngineFactory();
         } catch (FactoryException ex) {
             return new ConformanceTestResult(conformanceTest, ex);
         }
 
-        ConformanceTestResult conformanceTestResult	= new ConformanceTestResult(conformanceTest, iterations);
+        ConformanceTestResult conformanceTestResult = new ConformanceTestResult(conformanceTest, iterations);
 
         /*
          * Load the request
          */
-        Request request			= null;
-        boolean isLenient		= DOMProperties.isLenient();
+        Request request = null;
+        boolean isLenient = DOMProperties.isLenient();
         try {
             DOMProperties.setLenient(this.lenientRequests);
             try {
-                request		= DOMRequest.load(conformanceTest.getRequest());
+                request = DOMRequest.load(conformanceTest.getRequest());
                 conformanceTestResult.setRequest(request);
             } catch (Exception ex) {
-                logger.error("Exception loading Request file " + conformanceTest.getRequest().getAbsolutePath(), ex);
+                logger.error("Exception loading Request file "
+                             + conformanceTest.getRequest().getAbsolutePath(), ex);
                 conformanceTestResult.setError(ex);
                 return conformanceTestResult;
 
@@ -114,12 +116,13 @@ public class ConformanceTestEngine {
             /*
              * Load the expected response
              */
-            Response response		= null;
+            Response response = null;
             try {
-                response	= DOMResponse.load(conformanceTest.getResponse());
+                response = DOMResponse.load(conformanceTest.getResponse());
                 conformanceTestResult.setExpectedResponse(response);
             } catch (Exception ex) {
-                logger.error("Exception loading Response file " + conformanceTest.getResponse().getAbsolutePath(), ex);
+                logger.error("Exception loading Response file "
+                             + conformanceTest.getResponse().getAbsolutePath(), ex);
                 conformanceTestResult.setError(ex);
                 return conformanceTestResult;
             }
@@ -133,10 +136,11 @@ public class ConformanceTestEngine {
             /*
              * Create the engine
              */
-            PDPEngine pdpEngine		= null;
+            PDPEngine pdpEngine = null;
             try {
-                // pdpEngine	= thisPDPEngineFactory.newEngine(conformanceTest.getRootPolicy(), conformanceTest.getReferencedPolicies(), pipFinderEngine);
-                pdpEngine		= thisPDPEngineFactory.newEngine();
+                // pdpEngine = thisPDPEngineFactory.newEngine(conformanceTest.getRootPolicy(),
+                // conformanceTest.getReferencedPolicies(), pipFinderEngine);
+                pdpEngine = thisPDPEngineFactory.newEngine();
             } catch (Exception ex) {
                 logger.error("Exception getting PDP engine instance", ex);
                 conformanceTestResult.setError(ex);
@@ -152,14 +156,14 @@ public class ConformanceTestEngine {
              * Run the request
              */
             long startTime, endTime;
-            long curDecideTime	= this.firstDecideTime;
+            long curDecideTime = this.firstDecideTime;
             try {
-                startTime	= System.nanoTime();
-                response	= pdpEngine.decide(request);
+                startTime = System.nanoTime();
+                response = pdpEngine.decide(request);
                 endTime = System.nanoTime();
-//System.out.println(endTime  - startTime);
+                // System.out.println(endTime - startTime);
                 // add to total
-                this.firstDecideTime	+= endTime - startTime;
+                this.firstDecideTime += endTime - startTime;
                 this.numberOfFirstDecides++;
                 // remember just this test
                 conformanceTestResult.setFirstCallTime(endTime - startTime);
@@ -178,14 +182,15 @@ public class ConformanceTestEngine {
             long localLoopTime = 0;
             try {
                 // if user requested non-first-call calls to decide() to get performance info, run them now.
-                // We can ignore the result since we are only interested in how long they take to process the Request.
-                for (int i = 0 ; i < this.iterations ; i++) {
-                    startTime	= System.nanoTime();
+                // We can ignore the result since we are only interested in how long they take to process the
+                // Request.
+                for (int i = 0; i < this.iterations; i++) {
+                    startTime = System.nanoTime();
                     pdpEngine.decide(request);
                     endTime = System.nanoTime();
-//System.out.println(endTime - startTime);
+                    // System.out.println(endTime - startTime);
                     // add to the global total for all tests
-                    this.decideTimeMultiple	+= (endTime - startTime);
+                    this.decideTimeMultiple += (endTime - startTime);
                     // remember just this one test's info
                     localLoopTime += (endTime - startTime);
                 }
@@ -196,11 +201,12 @@ public class ConformanceTestEngine {
 
             // add to total average for non-first-call times for all test cases
             avgDecideTimeMultiple += (localLoopTime / iterations);
-//System.out.println("localLoop="+localLoopTime + "   it="+iterations + "   avg=" + (localLoopTime / iterations) );
+            // System.out.println("localLoop="+localLoopTime + "   it="+iterations + "   avg=" +
+            // (localLoopTime / iterations) );
             // remember average time for just this test
-            conformanceTestResult.setAverageTotalLoopTime(localLoopTime/iterations);
+            conformanceTestResult.setAverageTotalLoopTime(localLoopTime / iterations);
 
-            long elapsedDecideTime	= this.firstDecideTime - curDecideTime;
+            long elapsedDecideTime = this.firstDecideTime - curDecideTime;
             logger.info("Decide Time: " + elapsedDecideTime + "ns");
 
             return conformanceTestResult;
@@ -217,10 +223,10 @@ public class ConformanceTestEngine {
         return this.decideTimeMultiple;
     }
 
-
     public long getAvgFirstDecideTime() {
         return this.firstDecideTime / numberOfFirstDecides;
     }
+
     public long getAvgDecideTimeMultiple() {
         return this.avgDecideTimeMultiple / numberOfFirstDecides;
     }

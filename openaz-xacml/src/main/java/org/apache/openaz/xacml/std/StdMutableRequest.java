@@ -50,61 +50,68 @@ import org.apache.openaz.xacml.util.ListUtil;
 import org.apache.openaz.xacml.util.ObjUtil;
 
 /**
- * Mutable implementation of the {@link org.apache.openaz.xacml.api.Request} interface.
- *
+ * Mutable implementation of the {@link com.att.research.xacml.api.Request} interface.
  */
 public class StdMutableRequest implements Request {
-    private static final List<RequestReference>	EMPTY_REQUEST_REFERENCE_LIST	= Collections.unmodifiableList(new ArrayList<RequestReference>());
-    private static final List<RequestAttributes> EMPTY_REQUEST_ATTRIBUTES_LIST	= Collections.unmodifiableList(new ArrayList<RequestAttributes>());
-    private static final List<AttributeCategory> EMPTY_ATTRIBUTE_CATEGORY_LIST	= Collections.unmodifiableList(new ArrayList<AttributeCategory>());
+    private static final List<RequestReference> EMPTY_REQUEST_REFERENCE_LIST = Collections
+        .unmodifiableList(new ArrayList<RequestReference>());
+    private static final List<RequestAttributes> EMPTY_REQUEST_ATTRIBUTES_LIST = Collections
+        .unmodifiableList(new ArrayList<RequestAttributes>());
+    private static final List<AttributeCategory> EMPTY_ATTRIBUTE_CATEGORY_LIST = Collections
+        .unmodifiableList(new ArrayList<AttributeCategory>());
 
     private Status status;
-    private RequestDefaults	requestDefaults;
-    private boolean	returnPolicyIdList;
-    private boolean	combinedDecision;
+    private RequestDefaults requestDefaults;
+    private boolean returnPolicyIdList;
+    private boolean combinedDecision;
     private List<RequestAttributes> requestAttributes;
-    private List<AttributeCategory> requestAttributesIncludeInResult					= EMPTY_ATTRIBUTE_CATEGORY_LIST;
-    private HashMap<Identifier,List<RequestAttributes>>	requestAttributesByCategoryId	= new HashMap<Identifier,List<RequestAttributes>>();
-    private HashMap<String,RequestAttributes> requestAttributesByXmlId					= new HashMap<String,RequestAttributes>();
+    private List<AttributeCategory> requestAttributesIncludeInResult = EMPTY_ATTRIBUTE_CATEGORY_LIST;
+    private HashMap<Identifier, List<RequestAttributes>> requestAttributesByCategoryId = new HashMap<Identifier, List<RequestAttributes>>();
+    private HashMap<String, RequestAttributes> requestAttributesByXmlId = new HashMap<String, RequestAttributes>();
     private List<RequestReference> requestReferences;
 
     /**
      * Creates a new <code>StdMutableRequest</code> with the given parameters.
      *
-     * @param statusIn the {@link org.apache.openaz.xacml.api.Status} of the <code>StdMutableRequest</code> representing its validity
-     * @param requestDefaultsIn the {@link org.apache.openaz.xacml.api.RequestDefaults} representing the XACML RequestDefaults
-     * @param returnPolicyIdListIn a boolean indicating whether XACML PolicyId and PolicySetIds should be returned with the Results
-     * @param combinedDecisionIn a boolean indicating whether multiple Decision Request Results should be combined into a single Result
-     * @param listRequestAttributes a <code>Collection</code> of {@link org.apache.openaz.xacml.api.RequestAttributes} defining the parameters of the Request
-     * @param listRequestReferences a <code>Collection</code> of {@link org.apache.openaz.xacml.api.RequestReference}s for multiple decision requests
+     * @param statusIn the {@link com.att.research.xacml.api.Status} of the <code>StdMutableRequest</code>
+     *            representing its validity
+     * @param requestDefaultsIn the {@link com.att.research.xacml.api.RequestDefaults} representing the XACML
+     *            RequestDefaults
+     * @param returnPolicyIdListIn a boolean indicating whether XACML PolicyId and PolicySetIds should be
+     *            returned with the Results
+     * @param combinedDecisionIn a boolean indicating whether multiple Decision Request Results should be
+     *            combined into a single Result
+     * @param listRequestAttributes a <code>Collection</code> of
+     *            {@link com.att.research.xacml.api.RequestAttributes} defining the parameters of the Request
+     * @param listRequestReferences a <code>Collection</code> of
+     *            {@link com.att.research.xacml.api.RequestReference}s for multiple decision requests
      */
-    public StdMutableRequest(Status statusIn,
-                             RequestDefaults requestDefaultsIn,
-                             boolean returnPolicyIdListIn,
-                             boolean combinedDecisionIn,
+    public StdMutableRequest(Status statusIn, RequestDefaults requestDefaultsIn,
+                             boolean returnPolicyIdListIn, boolean combinedDecisionIn,
                              Collection<RequestAttributes> listRequestAttributes,
                              Collection<RequestReference> listRequestReferences) {
-        this.status				= statusIn;
-        this.requestDefaults	= requestDefaultsIn;
-        this.returnPolicyIdList	= returnPolicyIdListIn;
-        this.combinedDecision	= combinedDecisionIn;
+        this.status = statusIn;
+        this.requestDefaults = requestDefaultsIn;
+        this.returnPolicyIdList = returnPolicyIdListIn;
+        this.combinedDecision = combinedDecisionIn;
         if (listRequestAttributes != null) {
-            this.requestAttributes	= new ArrayList<RequestAttributes>();
+            this.requestAttributes = new ArrayList<RequestAttributes>();
             for (RequestAttributes requestAttributes : listRequestAttributes) {
                 this.add(requestAttributes);
             }
         } else {
-            this.requestAttributes	= EMPTY_REQUEST_ATTRIBUTES_LIST;
+            this.requestAttributes = EMPTY_REQUEST_ATTRIBUTES_LIST;
         }
         if (listRequestReferences != null) {
-            this.requestReferences	= new ArrayList<RequestReference>();
+            this.requestReferences = new ArrayList<RequestReference>();
             this.requestReferences.addAll(listRequestReferences);
         } else {
-            this.requestReferences	= EMPTY_REQUEST_REFERENCE_LIST;
+            this.requestReferences = EMPTY_REQUEST_REFERENCE_LIST;
         }
     }
 
     /**
+<<<<<<< HEAD:openaz-xacml/src/main/java/org/apache/openaz/xacml/std/StdMutableRequest.java
      * Creates a new <code>StdMutableRequest</code> with a default {@link org.apache.openaz.xacml.api.Status} and the given parameters.  The default <code>Status</code>
      * represents a XACML OK Status.
      *
@@ -113,28 +120,42 @@ public class StdMutableRequest implements Request {
      * @param combinedDecisionIn a boolean indicating whether multiple Decision Request Results should be combined into a single Result
      * @param listRequestAttributes a <code>Collection</code> of {@link org.apache.openaz.xacml.api.RequestAttributes} defining the parameters of the Request
      * @param listRequestReferences a <code>Collection</code> of {@link org.apache.openaz.xacml.api.RequestReference}s for multiple decision requests
+=======
+     * Creates a new <code>StdMutableRequest</code> with a default {@link com.att.research.xacml.api.Status}
+     * and the given parameters. The default <code>Status</code> represents a XACML OK Status.
+     *
+     * @param requestDefaultsIn the {@link com.att.research.xacml.api.RequestDefaults} representing the XACML
+     *            RequestDefaults
+     * @param returnPolicyIdListIn a boolean indicating whether XACML PolicyId and PolicySetIds should be
+     *            returned with the Results
+     * @param combinedDecisionIn a boolean indicating whether multiple Decision Request Results should be
+     *            combined into a single Result
+     * @param listRequestAttributes a <code>Collection</code> of
+     *            {@link com.att.research.xacml.api.RequestAttributes} defining the parameters of the Request
+     * @param listRequestReferences a <code>Collection</code> of
+     *            {@link com.att.research.xacml.api.RequestReference}s for multiple decision requests
+>>>>>>> fbf04a9381a2cdc18cbbe04bdc63b86b9772f14b:openaz-xacml/src/main/java/com/att/research/xacml/std/StdMutableRequest.java
      */
-    public StdMutableRequest(RequestDefaults requestDefaultsIn,
-                             boolean returnPolicyIdListIn,
-                             boolean combinedDecisionIn,
-                             Collection<RequestAttributes> listRequestAttributes,
+    public StdMutableRequest(RequestDefaults requestDefaultsIn, boolean returnPolicyIdListIn,
+                             boolean combinedDecisionIn, Collection<RequestAttributes> listRequestAttributes,
                              Collection<RequestReference> listRequestReferences) {
-        this(null, requestDefaultsIn, returnPolicyIdListIn, combinedDecisionIn, listRequestAttributes, listRequestReferences);
+        this(null, requestDefaultsIn, returnPolicyIdListIn, combinedDecisionIn, listRequestAttributes,
+             listRequestReferences);
     }
 
     /**
+<<<<<<< HEAD:openaz-xacml/src/main/java/org/apache/openaz/xacml/std/StdMutableRequest.java
      * Creates a new <code>StdMutableRequest</code> that is a copy of the given {@link org.apache.openaz.xacml.api.Request}.
+=======
+     * Creates a new <code>StdMutableRequest</code> that is a copy of the given
+     * {@link com.att.research.xacml.api.Request}.
+>>>>>>> fbf04a9381a2cdc18cbbe04bdc63b86b9772f14b:openaz-xacml/src/main/java/com/att/research/xacml/std/StdMutableRequest.java
      *
      * @param request the <code>Request</code> to copy
      */
     public StdMutableRequest(Request request) {
-        this(request.getStatus(),
-             request.getRequestDefaults(),
-             request.getReturnPolicyIdList(),
-             request.getCombinedDecision(),
-             request.getRequestAttributes(),
-             request.getMultiRequests()
-            );
+        this(request.getStatus(), request.getRequestDefaults(), request.getReturnPolicyIdList(), request
+            .getCombinedDecision(), request.getRequestAttributes(), request.getMultiRequests());
     }
 
     /**
@@ -145,8 +166,13 @@ public class StdMutableRequest implements Request {
     }
 
     /**
+<<<<<<< HEAD:openaz-xacml/src/main/java/org/apache/openaz/xacml/std/StdMutableRequest.java
      * Creates a new <code>StdMutableRequest</code> with the given {@link org.apache.openaz.xacml.api.Status} representing its validity and
      * defaults for all other attributes.
+=======
+     * Creates a new <code>StdMutableRequest</code> with the given {@link com.att.research.xacml.api.Status}
+     * representing its validity and defaults for all other attributes.
+>>>>>>> fbf04a9381a2cdc18cbbe04bdc63b86b9772f14b:openaz-xacml/src/main/java/com/att/research/xacml/std/StdMutableRequest.java
      *
      * @param statusIn the <code>Status</code> for the new <code>StdMutableRequest</code>
      */
@@ -165,7 +191,7 @@ public class StdMutableRequest implements Request {
      * @param requestDefaultsIn the <code>RequestDefaults</code> to use for this <code>PEPRequest</code>.
      */
     public void setRequestDefaults(RequestDefaults requestDefaultsIn) {
-        this.requestDefaults	= requestDefaultsIn;
+        this.requestDefaults = requestDefaultsIn;
     }
 
     @Override
@@ -176,10 +202,11 @@ public class StdMutableRequest implements Request {
     /**
      * Sets the flag indicating whether policy ids should be returned with the response to the given request.
      *
-     * @param returnPolicyIdListIn if true, policy ids will be returned in the response, otherwise they may not be.
+     * @param returnPolicyIdListIn if true, policy ids will be returned in the response, otherwise they may
+     *            not be.
      */
     public void setReturnPolicyIdList(boolean returnPolicyIdListIn) {
-        this.returnPolicyIdList	= returnPolicyIdListIn;
+        this.returnPolicyIdList = returnPolicyIdListIn;
     }
 
     @Override
@@ -188,13 +215,14 @@ public class StdMutableRequest implements Request {
     }
 
     /**
-     * Sets the flag indicating whether multiple requests within this <code>PEPRequest</code> should have their results
-     * combined into a single combined result or if a list of individual results should be maintained.
+     * Sets the flag indicating whether multiple requests within this <code>PEPRequest</code> should have
+     * their results combined into a single combined result or if a list of individual results should be
+     * maintained.
      *
      * @param combinedDecisionIn if true, multiple results should be combined into a single results
      */
     public void setCombinedDecision(boolean combinedDecisionIn) {
-        this.combinedDecision	= combinedDecisionIn;
+        this.combinedDecision = combinedDecisionIn;
     }
 
     @Override
@@ -204,7 +232,8 @@ public class StdMutableRequest implements Request {
 
     @Override
     public Iterator<RequestAttributes> getRequestAttributes(Identifier categoryId) {
-        List<RequestAttributes>	listRequestAttributesForCategory	= this.requestAttributesByCategoryId.get(categoryId);
+        List<RequestAttributes> listRequestAttributesForCategory = this.requestAttributesByCategoryId
+            .get(categoryId);
         if (listRequestAttributesForCategory != null) {
             return listRequestAttributesForCategory.iterator();
         } else {
@@ -213,30 +242,39 @@ public class StdMutableRequest implements Request {
     }
 
     /**
+<<<<<<< HEAD:openaz-xacml/src/main/java/org/apache/openaz/xacml/std/StdMutableRequest.java
      * Adds a {@link org.apache.openaz.xacml.api.RequestAttributes} to the <code>RequestAttributes</code> in this <code>StdMutableRequest</code>>
+=======
+     * Adds a {@link com.att.research.xacml.api.RequestAttributes} to the <code>RequestAttributes</code> in
+     * this <code>StdMutableRequest</code>>
+>>>>>>> fbf04a9381a2cdc18cbbe04bdc63b86b9772f14b:openaz-xacml/src/main/java/com/att/research/xacml/std/StdMutableRequest.java
      *
-     * @param requestAttributesNew the <code>RequestAttributes</code> to add to this <code>StdMutableRequest</code>
-     * @throws NullPointerException if <code>requestAttributesNew</code> is null or if <code>requestAttributesNew.getCategory()</code> is null
+     * @param requestAttributesNew the <code>RequestAttributes</code> to add to this
+     *            <code>StdMutableRequest</code>
+     * @throws NullPointerException if <code>requestAttributesNew</code> is null or if
+     *             <code>requestAttributesNew.getCategory()</code> is null
      */
     public void add(RequestAttributes requestAttributesNew) {
         if (this.requestAttributes == EMPTY_REQUEST_ATTRIBUTES_LIST) {
-            this.requestAttributes	= new ArrayList<RequestAttributes>();
+            this.requestAttributes = new ArrayList<RequestAttributes>();
         }
         this.requestAttributes.add(requestAttributesNew);
-        List<RequestAttributes>	listRequestAttributesForCategoryId	= this.requestAttributesByCategoryId.get(requestAttributesNew.getCategory());
+        List<RequestAttributes> listRequestAttributesForCategoryId = this.requestAttributesByCategoryId
+            .get(requestAttributesNew.getCategory());
         if (listRequestAttributesForCategoryId == null) {
-            listRequestAttributesForCategoryId	= new ArrayList<RequestAttributes>();
-            this.requestAttributesByCategoryId.put(requestAttributesNew.getCategory(), listRequestAttributesForCategoryId);
+            listRequestAttributesForCategoryId = new ArrayList<RequestAttributes>();
+            this.requestAttributesByCategoryId.put(requestAttributesNew.getCategory(),
+                                                   listRequestAttributesForCategoryId);
         }
         listRequestAttributesForCategoryId.add(requestAttributesNew);
         if (requestAttributesNew.getXmlId() != null) {
             this.requestAttributesByXmlId.put(requestAttributesNew.getXmlId(), requestAttributesNew);
         }
-        StdMutableAttributeCategory attributeCategoryIncludeInResult	= null;
+        StdMutableAttributeCategory attributeCategoryIncludeInResult = null;
         for (Attribute attribute : requestAttributesNew.getAttributes()) {
             if (attribute.getIncludeInResults()) {
                 if (attributeCategoryIncludeInResult == null) {
-                    attributeCategoryIncludeInResult	= new StdMutableAttributeCategory();
+                    attributeCategoryIncludeInResult = new StdMutableAttributeCategory();
                     attributeCategoryIncludeInResult.setCategory(requestAttributesNew.getCategory());
                 }
                 attributeCategoryIncludeInResult.add(attribute);
@@ -244,7 +282,7 @@ public class StdMutableRequest implements Request {
         }
         if (attributeCategoryIncludeInResult != null) {
             if (this.requestAttributesIncludeInResult == EMPTY_ATTRIBUTE_CATEGORY_LIST) {
-                this.requestAttributesIncludeInResult	= new ArrayList<AttributeCategory>();
+                this.requestAttributesIncludeInResult = new ArrayList<AttributeCategory>();
             }
             this.requestAttributesIncludeInResult.add(attributeCategoryIncludeInResult);
         }
@@ -262,13 +300,18 @@ public class StdMutableRequest implements Request {
     }
 
     /**
+<<<<<<< HEAD:openaz-xacml/src/main/java/org/apache/openaz/xacml/std/StdMutableRequest.java
      * Adds a {@link org.apache.openaz.xacml.api.RequestReference} to the <code>RequestReference</code>s in this <code>StdMutableRequest</code>.
+=======
+     * Adds a {@link com.att.research.xacml.api.RequestReference} to the <code>RequestReference</code>s in
+     * this <code>StdMutableRequest</code>.
+>>>>>>> fbf04a9381a2cdc18cbbe04bdc63b86b9772f14b:openaz-xacml/src/main/java/com/att/research/xacml/std/StdMutableRequest.java
      *
      * @param requestReference the <code>RequestReference</code> to add
      */
     public void add(RequestReference requestReference) {
         if (this.requestReferences == EMPTY_REQUEST_REFERENCE_LIST) {
-            this.requestReferences	= new ArrayList<RequestReference>();
+            this.requestReferences = new ArrayList<RequestReference>();
         }
         this.requestReferences.add(requestReference);
     }
@@ -285,25 +328,26 @@ public class StdMutableRequest implements Request {
         } else if (obj == null || !(obj instanceof Request)) {
             return false;
         } else {
-            Request objRequest	= (Request)obj;
-            return ObjUtil.equalsAllowNull(this.getStatus(), objRequest.getStatus()) &&
-                   ObjUtil.equalsAllowNull(this.getRequestDefaults(), objRequest.getRequestDefaults()) &&
-                   this.getCombinedDecision() == objRequest.getCombinedDecision() &&
-                   this.getReturnPolicyIdList() == objRequest.getReturnPolicyIdList() &&
-                   ListUtil.equalsAllowNulls(this.getRequestAttributes(), objRequest.getRequestAttributes()) &&
-                   ListUtil.equalsAllowNulls(this.getMultiRequests(), objRequest.getMultiRequests());
+            Request objRequest = (Request)obj;
+            return ObjUtil.equalsAllowNull(this.getStatus(), objRequest.getStatus())
+                   && ObjUtil.equalsAllowNull(this.getRequestDefaults(), objRequest.getRequestDefaults())
+                   && this.getCombinedDecision() == objRequest.getCombinedDecision()
+                   && this.getReturnPolicyIdList() == objRequest.getReturnPolicyIdList()
+                   && ListUtil.equalsAllowNulls(this.getRequestAttributes(),
+                                                objRequest.getRequestAttributes())
+                   && ListUtil.equalsAllowNulls(this.getMultiRequests(), objRequest.getMultiRequests());
         }
     }
 
     @Override
     public String toString() {
-        StringBuilder	stringBuilder	= new StringBuilder("{");
-        boolean			needsComma		= false;
-        Object			objectToDump;
+        StringBuilder stringBuilder = new StringBuilder("{");
+        boolean needsComma = false;
+        Object objectToDump;
         if ((objectToDump = this.getRequestDefaults()) != null) {
             stringBuilder.append("requestDefaults=");
             stringBuilder.append(objectToDump.toString());
-            needsComma	= true;
+            needsComma = true;
         }
         if (needsComma) {
             stringBuilder.append(',');
@@ -312,12 +356,12 @@ public class StdMutableRequest implements Request {
         stringBuilder.append(this.getReturnPolicyIdList());
         stringBuilder.append(",combinedDecision=");
         stringBuilder.append(this.getCombinedDecision());
-        Collection<RequestAttributes> thisRequestAttributes	= this.getRequestAttributes();
+        Collection<RequestAttributes> thisRequestAttributes = this.getRequestAttributes();
         if (thisRequestAttributes.size() > 0) {
             stringBuilder.append(",requestAttributes=");
             stringBuilder.append(ListUtil.toString(thisRequestAttributes));
         }
-        Collection<RequestReference> thisRequestReferences	= this.getMultiRequests();
+        Collection<RequestReference> thisRequestReferences = this.getMultiRequests();
         if (thisRequestReferences.size() > 0) {
             stringBuilder.append(",multiRequests=");
             stringBuilder.append(ListUtil.toString(thisRequestReferences));
@@ -331,18 +375,24 @@ public class StdMutableRequest implements Request {
             this.setStatus(new StdStatus(StdStatusCode.STATUS_CODE_SYNTAX_ERROR, "Missing AttributeId"));
             return;
         }
-        Iterator<AttributeValue<?>> iterAttributeValues	= attribute.getValues().iterator();
+        Iterator<AttributeValue<?>> iterAttributeValues = attribute.getValues().iterator();
         if (!iterAttributeValues.hasNext()) {
-            this.setStatus(new StdStatus(StdStatusCode.STATUS_CODE_SYNTAX_ERROR, "Missing AttributeValue for Attribute " + attribute.getAttributeId().stringValue()));
+            this.setStatus(new StdStatus(StdStatusCode.STATUS_CODE_SYNTAX_ERROR,
+                                         "Missing AttributeValue for Attribute "
+                                             + attribute.getAttributeId().stringValue()));
             return;
         } else {
             while (iterAttributeValues.hasNext()) {
-                AttributeValue<?> attributeValue	= iterAttributeValues.next();
+                AttributeValue<?> attributeValue = iterAttributeValues.next();
                 if (attributeValue.getDataTypeId() == null) {
-                    this.setStatus(new StdStatus(StdStatusCode.STATUS_CODE_SYNTAX_ERROR, "Missing DataType in AttributeValue for Attribute " + attribute.getAttributeId().stringValue()));
+                    this.setStatus(new StdStatus(StdStatusCode.STATUS_CODE_SYNTAX_ERROR,
+                                                 "Missing DataType in AttributeValue for Attribute "
+                                                     + attribute.getAttributeId().stringValue()));
                     return;
                 } else if (attributeValue.getValue() == null) {
-                    this.setStatus(new StdStatus(StdStatusCode.STATUS_CODE_SYNTAX_ERROR, "Missing value in AttributeValue for Attribute " + attribute.getAttributeId().stringValue()));
+                    this.setStatus(new StdStatus(StdStatusCode.STATUS_CODE_SYNTAX_ERROR,
+                                                 "Missing value in AttributeValue for Attribute "
+                                                     + attribute.getAttributeId().stringValue()));
                     return;
                 }
             }
@@ -354,7 +404,7 @@ public class StdMutableRequest implements Request {
             this.setStatus(new StdStatus(StdStatusCode.STATUS_CODE_SYNTAX_ERROR, "Missing Category"));
             return;
         }
-        Iterator<Attribute> iterAttributes	= requestAttributes.getAttributes().iterator();
+        Iterator<Attribute> iterAttributes = requestAttributes.getAttributes().iterator();
         if (iterAttributes != null) {
             while (iterAttributes.hasNext() && this.status == null) {
                 this.validate(iterAttributes.next());
@@ -363,11 +413,11 @@ public class StdMutableRequest implements Request {
     }
 
     /**
-     * Validates that the request has all required elements in it.  For now we just check through all of the
+     * Validates that the request has all required elements in it. For now we just check through all of the
      * attributes.
      */
     protected void validate() {
-        Iterator<RequestAttributes> iterRequestAttributes	= this.getRequestAttributes().iterator();
+        Iterator<RequestAttributes> iterRequestAttributes = this.getRequestAttributes().iterator();
         if (iterRequestAttributes != null && iterRequestAttributes.hasNext()) {
             while (iterRequestAttributes.hasNext() && this.status == null) {
                 this.validate(iterRequestAttributes.next());
@@ -384,12 +434,17 @@ public class StdMutableRequest implements Request {
     }
 
     /**
+<<<<<<< HEAD:openaz-xacml/src/main/java/org/apache/openaz/xacml/std/StdMutableRequest.java
      * Sets the {@link org.apache.openaz.xacml.api.Status} indicating the validity of this <code>StdMutableRequest</code>.
+=======
+     * Sets the {@link com.att.research.xacml.api.Status} indicating the validity of this
+     * <code>StdMutableRequest</code>.
+>>>>>>> fbf04a9381a2cdc18cbbe04bdc63b86b9772f14b:openaz-xacml/src/main/java/com/att/research/xacml/std/StdMutableRequest.java
      *
      * @param statusIn the <code>Status</code> for this <code>StdMutableRequest</code>.
      */
     public void setStatus(Status statusIn) {
-        this.status	= statusIn;
+        this.status = statusIn;
     }
 
 }

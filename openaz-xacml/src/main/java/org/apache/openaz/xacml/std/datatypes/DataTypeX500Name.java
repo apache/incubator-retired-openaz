@@ -37,10 +37,9 @@ import org.apache.openaz.xacml.api.XACML1;
 
 /**
  * DataTypeX500Name extends {@link DataTypeBase} to implement the XACML x500Name data type.
- *
  */
 public class DataTypeX500Name extends DataTypeBase<X500Principal> {
-    private static final DataTypeX500Name	singleInstance	= new DataTypeX500Name();
+    private static final DataTypeX500Name singleInstance = new DataTypeX500Name();
 
     /**
      * Creates a new <code>DataTypeX500Name</code>>
@@ -58,12 +57,14 @@ public class DataTypeX500Name extends DataTypeBase<X500Principal> {
         if (source == null || (source instanceof X500Principal)) {
             return (X500Principal)source;
         } else {
-            String 			stringValue		= this.convertToString(source);
-            X500Principal	x500Principal	= null;
+            String stringValue = this.convertToString(source);
+            X500Principal x500Principal = null;
             try {
-                x500Principal	= new X500Principal(stringValue);
+                x500Principal = new X500Principal(stringValue);
             } catch (IllegalArgumentException ex) {
-                throw new DataTypeException(this, "Failed to convert \"" + source.getClass().getCanonicalName() + "\" with value \"" + stringValue + "\" to X500Name", ex);
+                throw new DataTypeException(this, "Failed to convert \""
+                                                  + source.getClass().getCanonicalName() + "\" with value \""
+                                                  + stringValue + "\" to X500Name", ex);
             }
             return x500Principal;
         }

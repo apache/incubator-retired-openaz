@@ -42,5 +42,5 @@ import java.lang.annotation.Target;
 @Inherited
 @Retention(RetentionPolicy.RUNTIME)
 public @interface XACMLMultiRequest {
-XACMLRequestReference[] values() default @XACMLRequestReference();
+    XACMLRequestReference[] values() default @XACMLRequestReference();
 }

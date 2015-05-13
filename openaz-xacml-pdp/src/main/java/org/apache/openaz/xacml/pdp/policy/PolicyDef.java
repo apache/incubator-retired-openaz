@@ -53,37 +53,36 @@ import org.apache.openaz.xacml.std.StdStatusCode;
 import org.apache.openaz.xacml.util.StringUtils;
 
 /**
- * PolicyDef extends {@link org.apache.openaz.xacml.pdp.policy.PolicySetChild} with members and methods common
- * to XACML 3.0 Policies and PolicySets.
- *
+ * PolicyDef extends {@link com.att.research.xacmlatt.pdp.policy.PolicySetChild} with members and methods
+ * common to XACML 3.0 Policies and PolicySets.
  */
 public abstract class PolicyDef extends PolicySetChild {
-    private String 						description;
-    private PolicyIssuer 				policyIssuer;
-    private Target 						target;
-    private List<CombinerParameter> 	combinerParameters;
-    private List<ObligationExpression> 	obligationExpressions;
-    private List<AdviceExpression> 		adviceExpressions;
-    private Version						version;
-    private Integer 					maxDelegationDepth;
+    private String description;
+    private PolicyIssuer policyIssuer;
+    private Target target;
+    private List<CombinerParameter> combinerParameters;
+    private List<ObligationExpression> obligationExpressions;
+    private List<AdviceExpression> adviceExpressions;
+    private Version version;
+    private Integer maxDelegationDepth;
 
-    private IdReference					idReference;
+    private IdReference idReference;
 
     private void ensureCombinerParameters() {
         if (this.combinerParameters == null) {
-            this.combinerParameters	= new ArrayList<CombinerParameter>();
+            this.combinerParameters = new ArrayList<CombinerParameter>();
         }
     }
 
     private void ensureObligationExpressions() {
         if (this.obligationExpressions == null) {
-            this.obligationExpressions	= new ArrayList<ObligationExpression>();
+            this.obligationExpressions = new ArrayList<ObligationExpression>();
         }
     }
 
     private void ensureAdviceExpressions() {
         if (this.adviceExpressions == null) {
-            this.adviceExpressions	= new ArrayList<AdviceExpression>();
+            this.adviceExpressions = new ArrayList<AdviceExpression>();
         }
     }
 
@@ -99,18 +98,24 @@ public abstract class PolicyDef extends PolicySetChild {
         return this.adviceExpressions;
     }
 
-    protected void updateResult(EvaluationResult evaluationResult, EvaluationContext evaluationContext) throws EvaluationException {
-        List<ObligationExpression> thisObligationExpressions	= this.getObligationExpressionList();
+    protected void updateResult(EvaluationResult evaluationResult, EvaluationContext evaluationContext)
+        throws EvaluationException {
+        List<ObligationExpression> thisObligationExpressions = this.getObligationExpressionList();
         if (thisObligationExpressions != null && thisObligationExpressions.size() > 0) {
-            List<Obligation> listObligations	= ObligationExpression.evaluate(evaluationContext, this.getPolicyDefaults(), evaluationResult.getDecision(), thisObligationExpressions);
+            List<Obligation> listObligations = ObligationExpression.evaluate(evaluationContext,
+                                                                             this.getPolicyDefaults(),
+                                                                             evaluationResult.getDecision(),
+                                                                             thisObligationExpressions);
             if (listObligations != null && listObligations.size() > 0) {
                 evaluationResult.addObligations(listObligations);
             }
         }
 
-        List<AdviceExpression> thisAdviceExpressions			= this.getAdviceExpressionList();
+        List<AdviceExpression> thisAdviceExpressions = this.getAdviceExpressionList();
         if (thisAdviceExpressions != null && thisAdviceExpressions.size() > 0) {
-            List<Advice> listAdvices			= AdviceExpression.evaluate(evaluationContext, this.getPolicyDefaults(), evaluationResult.getDecision(), thisAdviceExpressions);
+            List<Advice> listAdvices = AdviceExpression.evaluate(evaluationContext, this.getPolicyDefaults(),
+                                                                 evaluationResult.getDecision(),
+                                                                 thisAdviceExpressions);
             if (listAdvices != null && listAdvices.size() > 0) {
                 evaluationResult.addAdvice(listAdvices);
             }
@@ -124,7 +129,9 @@ public abstract class PolicyDef extends PolicySetChild {
                 this.setStatus(StdStatusCode.STATUS_CODE_SYNTAX_ERROR, "Missing version string");
                 return false;
             } else if (this.getTarget() == null) {
-                this.setStatus(StdStatusCode.STATUS_CODE_SYNTAX_ERROR, "Missing Target in policy " + this.getIdReference().getId().stringValue());
+                this.setStatus(StdStatusCode.STATUS_CODE_SYNTAX_ERROR, "Missing Target in policy "
+                                                                       + this.getIdReference().getId()
+                                                                           .stringValue());
                 return false;
             } else {
                 return true;
@@ -157,7 +164,7 @@ public abstract class PolicyDef extends PolicySetChild {
     @Override
     public void setIdentifier(Identifier identifierIn) {
         super.setIdentifier(identifierIn);
-        this.idReference 	= null;
+        this.idReference = null;
     }
 
     /**
@@ -175,7 +182,7 @@ public abstract class PolicyDef extends PolicySetChild {
      * @param s the <code>String</code> description of this <code>PolicyDef</code>
      */
     public void setDescription(String s) {
-        this.description	= s;
+        this.description = s;
     }
 
     /**
@@ -193,7 +200,7 @@ public abstract class PolicyDef extends PolicySetChild {
      * @param policyIssuerIn the <code>PolicyIssuer</code> for this <code>PolicyDef</code>.
      */
     public void setPolicyIssuer(PolicyIssuer policyIssuerIn) {
-        this.policyIssuer	= policyIssuerIn;
+        this.policyIssuer = policyIssuerIn;
     }
 
     /**
@@ -211,27 +218,29 @@ public abstract class PolicyDef extends PolicySetChild {
      * @param targetIn the <code>Target</code> for this <code>PolicyDef</code>
      */
     public void setTarget(Target targetIn) {
-        this.target	= targetIn;
+        this.target = targetIn;
     }
 
     /**
      * Gets an <code>Iterator</code> over the <code>CombinerParameter</code>s for this <code>Policy</code>.
      *
-     * @return an <code>Iterator</code> over the <code>CombinerParameter</code>s for this <code>Policy</code> or null if there are none
+     * @return an <code>Iterator</code> over the <code>CombinerParameter</code>s for this <code>Policy</code>
+     *         or null if there are none
      */
     public Iterator<CombinerParameter> getCombinerParameters() {
         return (this.combinerParameters == null ? null : this.combinerParameters.iterator());
     }
 
     /**
-     * Sets the <code>CombinerParameter</code>s for this<code>Policy</code> to the contents of the
-     * given <code>Collection</code>.  If the <code>Collection</code> is null, the set of <code>CombinerParameter</code>s
-     * for this <code>Policy</code> is set to null.
+     * Sets the <code>CombinerParameter</code>s for this<code>Policy</code> to the contents of the given
+     * <code>Collection</code>. If the <code>Collection</code> is null, the set of
+     * <code>CombinerParameter</code>s for this <code>Policy</code> is set to null.
      *
-     * @param combinerParametersIn the <code>Collection</code> of <code>CombinerParameter</code>s for this <code>PolicyDef</code>
+     * @param combinerParametersIn the <code>Collection</code> of <code>CombinerParameter</code>s for this
+     *            <code>PolicyDef</code>
      */
     public void setCombinerParameters(Collection<CombinerParameter> combinerParametersIn) {
-        this.combinerParameters	= null;
+        this.combinerParameters = null;
         if (combinerParametersIn != null) {
             this.addCombinerParameters(combinerParametersIn);
         }
@@ -249,7 +258,8 @@ public abstract class PolicyDef extends PolicySetChild {
     }
 
     /**
-     * Adds the given <code>Collection</code> of <code>CombinerParameter</code>s to this <code>PolicyDef</code>>
+     * Adds the given <code>Collection</code> of <code>CombinerParameter</code>s to this
+     * <code>PolicyDef</code>>
      *
      * @param combinerParametersIn the <code>Collection</code> of <code>CombinerParameter</code>s to add
      */
@@ -259,29 +269,34 @@ public abstract class PolicyDef extends PolicySetChild {
     }
 
     /**
-     * Gets an <code>Iterator</code> over the <code>ObligationExpression</code>s for this <code>PolicyDef</code>.
+     * Gets an <code>Iterator</code> over the <code>ObligationExpression</code>s for this
+     * <code>PolicyDef</code>.
      *
-     * @return an <code>Iterator</code> over the <code>ObligationExpression</code>s for this <code>PolicyDef</code> or null if there are none.
+     * @return an <code>Iterator</code> over the <code>ObligationExpression</code>s for this
+     *         <code>PolicyDef</code> or null if there are none.
      */
     public Iterator<ObligationExpression> getObligationExpressions() {
         return (this.obligationExpressions == null ? null : this.obligationExpressions.iterator());
     }
 
     /**
-     * Sets the <code>ObligationExpression</code>s for this <code>PolicyDef</code> to the contents of the given <code>Collection</code>.
-     * If the <code>Collection</code> is null, the <code>ObligationExpression</code>s for this <code>PolicyDef</code> are set to null.
+     * Sets the <code>ObligationExpression</code>s for this <code>PolicyDef</code> to the contents of the
+     * given <code>Collection</code>. If the <code>Collection</code> is null, the
+     * <code>ObligationExpression</code>s for this <code>PolicyDef</code> are set to null.
      *
-     * @param obligationExpressionsIn the <code>Collection</code> of <code>ObligationExpression</code>s for this <code>PolicyDef</code>.
+     * @param obligationExpressionsIn the <code>Collection</code> of <code>ObligationExpression</code>s for
+     *            this <code>PolicyDef</code>.
      */
     public void setObligationExpressions(Collection<ObligationExpression> obligationExpressionsIn) {
-        this.obligationExpressions	= null;
+        this.obligationExpressions = null;
         if (obligationExpressionsIn != null) {
             this.addObligationExpressions(obligationExpressionsIn);
         }
     }
 
     /**
-     * Adds the given <code>ObligationExpression</code> to the set of <code>ObligationExpression</code>s for this <code>PolicyDef</code>.
+     * Adds the given <code>ObligationExpression</code> to the set of <code>ObligationExpression</code>s for
+     * this <code>PolicyDef</code>.
      *
      * @param obligationExpression the <code>ObligationExpression</code> to add
      */
@@ -291,8 +306,8 @@ public abstract class PolicyDef extends PolicySetChild {
     }
 
     /**
-     * Adds the contents of the given <code>Collection</code> of <code>ObligationExpression</code>s to the set of <code>ObligationExpression</code>s for
-     * this <code>PolicyDef</code>.
+     * Adds the contents of the given <code>Collection</code> of <code>ObligationExpression</code>s to the set
+     * of <code>ObligationExpression</code>s for this <code>PolicyDef</code>.
      *
      * @param obligationExpressionsIn the <code>Collection</code> of <code>ObligationExpression</code>s to add
      */
@@ -302,28 +317,32 @@ public abstract class PolicyDef extends PolicySetChild {
     }
 
     /**
-     * Gets an <code>Iterator</code> over the set of <code>AdviceExpression</code>s for this <code>PolicyDef</code>.
+     * Gets an <code>Iterator</code> over the set of <code>AdviceExpression</code>s for this
+     * <code>PolicyDef</code>.
      *
-     * @return an <code>Iterator</code> over the set of <code>AdviceExpression</code>s for this <code>PolicyDef</code> or null if there are none.
+     * @return an <code>Iterator</code> over the set of <code>AdviceExpression</code>s for this
+     *         <code>PolicyDef</code> or null if there are none.
      */
     public Iterator<AdviceExpression> getAdviceExpressions() {
         return (this.adviceExpressions == null ? null : this.adviceExpressions.iterator());
     }
 
     /**
-     * Sets the set of <code>AdviceExpression</code>s for this <code>PolicyDef</code> to the contents of the given <code>Collection</code>.
+     * Sets the set of <code>AdviceExpression</code>s for this <code>PolicyDef</code> to the contents of the
+     * given <code>Collection</code>.
      *
      * @param adviceExpressionsIn the <code>Collection</code> of <code>AdviceExpression</code> to add
      */
     public void setAdviceExpressions(Collection<AdviceExpression> adviceExpressionsIn) {
-        this.adviceExpressions	= null;
+        this.adviceExpressions = null;
         if (adviceExpressionsIn != null) {
             this.addAdviceExpressions(adviceExpressionsIn);
         }
     }
 
     /**
-     * Adds the given <code>AdviceExpression</code> to the set of <code>AdviceExpression</code>s for this <code>PolicyDef</code>.
+     * Adds the given <code>AdviceExpression</code> to the set of <code>AdviceExpression</code>s for this
+     * <code>PolicyDef</code>.
      *
      * @param adviceExpression the <code>AdviceExpression</code> to add.
      */
@@ -358,8 +377,8 @@ public abstract class PolicyDef extends PolicySetChild {
      * @param versionIn the <code>String</code> version for this <code>PolicyDef</code>
      */
     public void setVersion(Version versionIn) {
-        this.version		= versionIn;
-        this.idReference	= null;
+        this.version = versionIn;
+        this.idReference = null;
     }
 
     /**
@@ -369,14 +388,15 @@ public abstract class PolicyDef extends PolicySetChild {
      */
     public IdReference getIdReference() {
         if (this.idReference == null) {
-            this.idReference	= new StdIdReference(this.getIdentifier(), this.getVersion());
+            this.idReference = new StdIdReference(this.getIdentifier(), this.getVersion());
         }
         return this.idReference;
     }
 
     public boolean matches(IdReferenceMatch idReferenceRequest) {
-        IdReference thisIdReference	= this.getIdReference();
-        if (thisIdReference == null || thisIdReference.getId() == null || idReferenceRequest == null || idReferenceRequest.getId() == null) {
+        IdReference thisIdReference = this.getIdReference();
+        if (thisIdReference == null || thisIdReference.getId() == null || idReferenceRequest == null
+            || idReferenceRequest.getId() == null) {
             return false;
         } else if (!thisIdReference.getId().equals(idReferenceRequest.getId())) {
             return false;
@@ -385,20 +405,20 @@ public abstract class PolicyDef extends PolicySetChild {
         /*
          * Now do version number matching
          */
-        VersionMatch idReferenceRequestVersion	= idReferenceRequest.getVersion();
+        VersionMatch idReferenceRequestVersion = idReferenceRequest.getVersion();
         if (idReferenceRequestVersion != null) {
             /*
              * Do exact version matching
              */
-            Version thisVersion	= thisIdReference.getVersion();
+            Version thisVersion = thisIdReference.getVersion();
             if (thisVersion == null) {
                 return false;
             } else {
                 return idReferenceRequestVersion.match(thisVersion, 0);
             }
         } else {
-            VersionMatch idReferenceRequestEarliestVersion	= idReferenceRequest.getEarliestVersion();
-            Version thisVersion								= thisIdReference.getVersion();
+            VersionMatch idReferenceRequestEarliestVersion = idReferenceRequest.getEarliestVersion();
+            Version thisVersion = thisIdReference.getVersion();
 
             if (idReferenceRequestEarliestVersion != null) {
                 if (thisVersion == null) {
@@ -408,7 +428,7 @@ public abstract class PolicyDef extends PolicySetChild {
                 }
             }
 
-            VersionMatch idReferenceRequestLatestVersion	= idReferenceRequest.getLatestVersion();
+            VersionMatch idReferenceRequestLatestVersion = idReferenceRequest.getLatestVersion();
             if (idReferenceRequestLatestVersion != null) {
                 if (thisVersion == null) {
                     return false;
@@ -432,15 +452,16 @@ public abstract class PolicyDef extends PolicySetChild {
 
     /**
      * Sets the <code>Integer</code> maximum delegation depth for this <code>PolicyDef</code>
+     * 
      * @param i the <code>Integer</code> maximum delegation depth for this <code>PolicyDef</code>
      */
     public void setMaxDelegationDepth(Integer i) {
-        this.maxDelegationDepth	= i;
+        this.maxDelegationDepth = i;
     }
 
     @Override
     public String toString() {
-        StringBuilder stringBuilder	= new StringBuilder("{");
+        StringBuilder stringBuilder = new StringBuilder("{");
 
         stringBuilder.append("super=");
         stringBuilder.append(super.toString());

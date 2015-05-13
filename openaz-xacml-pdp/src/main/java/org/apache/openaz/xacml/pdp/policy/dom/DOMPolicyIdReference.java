@@ -39,9 +39,8 @@ import org.apache.openaz.xacml.std.dom.DOMStructureException;
 import org.w3c.dom.Node;
 
 /**
- * DOMPolicyIdReference extends {@link org.apache.openaz.xacml.pdp.policy.PolicyIdReference} with methods for creation
- * from DOM {@link org.w3c.dom.Node}s.
- *
+ * DOMPolicyIdReference extends {@link com.att.research.xacmlatt.pdp.policy.PolicyIdReference} with methods
+ * for creation from DOM {@link org.w3c.dom.Node}s.
  */
 public class DOMPolicyIdReference {
 
@@ -49,14 +48,16 @@ public class DOMPolicyIdReference {
     }
 
     /**
-     * Creates a new <code>PolicyIdReference</code> parsed from the given <code>Node</code> representing a XACML PolicyIdReference element.
+     * Creates a new <code>PolicyIdReference</code> parsed from the given <code>Node</code> representing a
+     * XACML PolicyIdReference element.
      *
      * @param nodePolicyIdReference the <code>Node</code> representing the XACML PolicyIdReference element
      * @return a new <code>PolicyIdReference</code> parsed from the given <code>Node</code>
      * @throws DOMStructureException if there is an error parsing the <code>Node</code>
      */
-    public static PolicyIdReference newInstance(Node nodePolicyIdReference, PolicySet policySetParent) throws DOMStructureException {
-        PolicyIdReference domPolicyIdReference	= new PolicyIdReference(policySetParent);
+    public static PolicyIdReference newInstance(Node nodePolicyIdReference, PolicySet policySetParent)
+        throws DOMStructureException {
+        PolicyIdReference domPolicyIdReference = new PolicyIdReference(policySetParent);
 
         try {
             domPolicyIdReference.setIdReferenceMatch(DOMIdReferenceMatch.newInstance(nodePolicyIdReference));

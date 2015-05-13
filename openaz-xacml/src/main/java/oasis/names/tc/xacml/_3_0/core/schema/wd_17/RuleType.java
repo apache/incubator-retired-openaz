@@ -25,7 +25,6 @@
 // Generated on: 2013.05.23 at 02:47:00 PM EDT
 //
 
-
 package oasis.names.tc.xacml._3_0.core.schema.wd_17;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -34,11 +33,11 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
-
 /**
- * <p>Java class for RuleType complex type.
- *
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>
+ * Java class for RuleType complex type.
+ * <p>
+ * The following schema fragment specifies the expected content contained within this class.
  *
  * <pre>
  * &lt;complexType name="RuleType">
@@ -57,16 +56,10 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- *
- *
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "RuleType", propOrder = {
-    "description",
-    "target",
-    "condition",
-    "obligationExpressions",
-    "adviceExpressions"
+                                         "description", "target", "condition", "obligationExpressions", "adviceExpressions"
 })
 public class RuleType {
 
@@ -88,10 +81,7 @@ public class RuleType {
     /**
      * Gets the value of the description property.
      *
-     * @return
-     *     possible object is
-     *     {@link String }
-     *
+     * @return possible object is {@link String }
      */
     public String getDescription() {
         return description;
@@ -100,10 +90,7 @@ public class RuleType {
     /**
      * Sets the value of the description property.
      *
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *
+     * @param value allowed object is {@link String }
      */
     public void setDescription(String value) {
         this.description = value;
@@ -112,10 +99,7 @@ public class RuleType {
     /**
      * Gets the value of the target property.
      *
-     * @return
-     *     possible object is
-     *     {@link TargetType }
-     *
+     * @return possible object is {@link TargetType }
      */
     public TargetType getTarget() {
         return target;
@@ -124,10 +108,7 @@ public class RuleType {
     /**
      * Sets the value of the target property.
      *
-     * @param value
-     *     allowed object is
-     *     {@link TargetType }
-     *
+     * @param value allowed object is {@link TargetType }
      */
     public void setTarget(TargetType value) {
         this.target = value;
@@ -136,10 +117,7 @@ public class RuleType {
     /**
      * Gets the value of the condition property.
      *
-     * @return
-     *     possible object is
-     *     {@link ConditionType }
-     *
+     * @return possible object is {@link ConditionType }
      */
     public ConditionType getCondition() {
         return condition;
@@ -148,10 +126,7 @@ public class RuleType {
     /**
      * Sets the value of the condition property.
      *
-     * @param value
-     *     allowed object is
-     *     {@link ConditionType }
-     *
+     * @param value allowed object is {@link ConditionType }
      */
     public void setCondition(ConditionType value) {
         this.condition = value;
@@ -160,10 +135,7 @@ public class RuleType {
     /**
      * Gets the value of the obligationExpressions property.
      *
-     * @return
-     *     possible object is
-     *     {@link ObligationExpressionsType }
-     *
+     * @return possible object is {@link ObligationExpressionsType }
      */
     public ObligationExpressionsType getObligationExpressions() {
         return obligationExpressions;
@@ -172,10 +144,7 @@ public class RuleType {
     /**
      * Sets the value of the obligationExpressions property.
      *
-     * @param value
-     *     allowed object is
-     *     {@link ObligationExpressionsType }
-     *
+     * @param value allowed object is {@link ObligationExpressionsType }
      */
     public void setObligationExpressions(ObligationExpressionsType value) {
         this.obligationExpressions = value;
@@ -184,10 +153,7 @@ public class RuleType {
     /**
      * Gets the value of the adviceExpressions property.
      *
-     * @return
-     *     possible object is
-     *     {@link AdviceExpressionsType }
-     *
+     * @return possible object is {@link AdviceExpressionsType }
      */
     public AdviceExpressionsType getAdviceExpressions() {
         return adviceExpressions;
@@ -196,10 +162,7 @@ public class RuleType {
     /**
      * Sets the value of the adviceExpressions property.
      *
-     * @param value
-     *     allowed object is
-     *     {@link AdviceExpressionsType }
-     *
+     * @param value allowed object is {@link AdviceExpressionsType }
      */
     public void setAdviceExpressions(AdviceExpressionsType value) {
         this.adviceExpressions = value;
@@ -208,10 +171,7 @@ public class RuleType {
     /**
      * Gets the value of the ruleId property.
      *
-     * @return
-     *     possible object is
-     *     {@link String }
-     *
+     * @return possible object is {@link String }
      */
     public String getRuleId() {
         return ruleId;
@@ -220,10 +180,7 @@ public class RuleType {
     /**
      * Sets the value of the ruleId property.
      *
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *
+     * @param value allowed object is {@link String }
      */
     public void setRuleId(String value) {
         this.ruleId = value;
@@ -232,10 +189,7 @@ public class RuleType {
     /**
      * Gets the value of the effect property.
      *
-     * @return
-     *     possible object is
-     *     {@link EffectType }
-     *
+     * @return possible object is {@link EffectType }
      */
     public EffectType getEffect() {
         return effect;
@@ -244,10 +198,7 @@ public class RuleType {
     /**
      * Sets the value of the effect property.
      *
-     * @param value
-     *     allowed object is
-     *     {@link EffectType }
-     *
+     * @param value allowed object is {@link EffectType }
      */
     public void setEffect(EffectType value) {
         this.effect = value;

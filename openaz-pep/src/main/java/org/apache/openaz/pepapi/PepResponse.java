@@ -33,13 +33,12 @@ public interface PepResponse {
 
     /**
      * Returns the decision associated with the current result.
-     * @return true if the user was granted access to the resource,
-     * otherwise false
-     * @throws PepException if the {@link PepResponseBehavior}
-     * configured in the {@link PepResponseFactory}
-     * indicates that for the response should be thrown
+     * 
+     * @return true if the user was granted access to the resource, otherwise false
+     * @throws PepException if the {@link PepResponseBehavior} configured in the {@link PepResponseFactory}
+     *             indicates that for the response should be thrown
      */
-    public boolean allowed() throws PepException;
+    boolean allowed() throws PepException;
 
     /**
      * Return the set of {@link org.apache.openaz.pepapi.Obligation}s associated with the
@@ -48,7 +47,7 @@ public interface PepResponse {
      * @throws PepException
      * @see org.apache.openaz.pepapi.Obligation#getId()
      */
-    public Map<String, Obligation> getObligations() throws PepException;
+    Map<String, Obligation> getObligations() throws PepException;
 
     /**
      * Return the set of {@link org.apache.openaz.pepapi.Advice}s associated with the
@@ -57,35 +56,31 @@ public interface PepResponse {
      * @throws PepException
      * @see org.apache.openaz.pepapi.Advice#getId()
      */
-    public Map<String, Advice> getAdvices() throws PepException;
+    Map<String, Advice> getAdvices() throws PepException;
 
     /**
-    * Return the object association that is tied to the current
-    * result. The association is the same object that was
-    * used to create the PepRequest and may be used to
-    * correlate the PepResponse results with the association
-    * pairs that were used to create the PepRequest.
-    * @return an object that was used as the action-resource in the PepRequest
-    * @throws PepException
-    */
-    public Object getAssociation() throws PepException;
+     * Return the object association that is tied to the current result. The association is the same object
+     * that was used to create the PepRequest and may be used to correlate the PepResponse results with the
+     * association pairs that were used to create the PepRequest.
+     * 
+     * @return an object that was used as the action-resource in the PepRequest
+     * @throws PepException
+     */
+    Object getAssociation() throws PepException;
 
     /**
-     *
      * @return
      */
-    public Collection<Attribute> getAttributes();
+    Collection<Attribute> getAttributes();
 
     /**
-     *
      * @return
      */
-    public Map<Identifier, Collection<Attribute>> getAttributesByCategory();
+    Map<Identifier, Collection<Attribute>> getAttributesByCategory();
 
     /**
-     *
      * @return
      */
-    public Result getWrappedResult();
+    Result getWrappedResult();
 
 }

@@ -48,7 +48,8 @@ public class FactoryException extends Exception {
         super(message, cause);
     }
 
-    public FactoryException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
+    public FactoryException(String message, Throwable cause, boolean enableSuppression,
+                            boolean writableStackTrace) {
         super(message, cause, enableSuppression, writableStackTrace);
     }
 

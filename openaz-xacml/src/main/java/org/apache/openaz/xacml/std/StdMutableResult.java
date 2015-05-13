@@ -46,32 +46,35 @@ import org.apache.openaz.xacml.util.ListUtil;
 import org.apache.openaz.xacml.util.ObjUtil;
 
 /**
- * Mutable implementation of the {@link org.apache.openaz.xacml.api.Result}
- *
+ * Mutable implementation of the {@link com.att.research.xacml.api.Result}
  */
 public class StdMutableResult implements Result {
-    private static final List<Obligation> EMPTY_OBLIGATION_LIST		= Collections.unmodifiableList(new ArrayList<Obligation>());
-    private static final List<Advice> EMPTY_ADVICE_LIST				= Collections.unmodifiableList(new ArrayList<Advice>());
-    private static final List<AttributeCategory> EMPTY_ATTRIBUTES	= Collections.unmodifiableList(new ArrayList<AttributeCategory>());
-    private static final List<IdReference> EMPTY_REFERENCES			= Collections.unmodifiableList(new ArrayList<IdReference>());
+    private static final List<Obligation> EMPTY_OBLIGATION_LIST = Collections
+        .unmodifiableList(new ArrayList<Obligation>());
+    private static final List<Advice> EMPTY_ADVICE_LIST = Collections
+        .unmodifiableList(new ArrayList<Advice>());
+    private static final List<AttributeCategory> EMPTY_ATTRIBUTES = Collections
+        .unmodifiableList(new ArrayList<AttributeCategory>());
+    private static final List<IdReference> EMPTY_REFERENCES = Collections
+        .unmodifiableList(new ArrayList<IdReference>());
 
     private Decision decision;
     private Status status;
-    private List<Obligation> obligations			= new ArrayList<Obligation>();
-    private List<Advice> associatedAdvice			= new ArrayList<Advice>();
-    private List<AttributeCategory>	attributes		= new ArrayList<AttributeCategory>();
-    private List<IdReference> policyIdentifiers		= new ArrayList<IdReference>();
-    private List<IdReference> policySetIdentifiers	= new ArrayList<IdReference>();
+    private List<Obligation> obligations = new ArrayList<Obligation>();
+    private List<Advice> associatedAdvice = new ArrayList<Advice>();
+    private List<AttributeCategory> attributes = new ArrayList<AttributeCategory>();
+    private List<IdReference> policyIdentifiers = new ArrayList<IdReference>();
+    private List<IdReference> policySetIdentifiers = new ArrayList<IdReference>();
 
     /**
      * Creates a new empty <code>StdMutableResult</code>.
      */
     public StdMutableResult() {
-        this.obligations			= EMPTY_OBLIGATION_LIST;
-        this.associatedAdvice		= EMPTY_ADVICE_LIST;
-        this.attributes				= EMPTY_ATTRIBUTES;
-        this.policyIdentifiers		= EMPTY_REFERENCES;
-        this.policySetIdentifiers	= EMPTY_REFERENCES;
+        this.obligations = EMPTY_OBLIGATION_LIST;
+        this.associatedAdvice = EMPTY_ADVICE_LIST;
+        this.attributes = EMPTY_ATTRIBUTES;
+        this.policyIdentifiers = EMPTY_REFERENCES;
+        this.policySetIdentifiers = EMPTY_REFERENCES;
     }
 
     public StdMutableResult(Result resultCopy) {
@@ -84,20 +87,30 @@ public class StdMutableResult implements Result {
     }
 
     /**
+<<<<<<< HEAD:openaz-xacml/src/main/java/org/apache/openaz/xacml/std/StdMutableResult.java
      * Creates a new <code>StdMutableResult</code> with the given {@link org.apache.openaz.xacml.api.Decision} and {@link org.apache.openaz.xacml.api.Status}.
+=======
+     * Creates a new <code>StdMutableResult</code> with the given {@link com.att.research.xacml.api.Decision}
+     * and {@link com.att.research.xacml.api.Status}.
+>>>>>>> fbf04a9381a2cdc18cbbe04bdc63b86b9772f14b:openaz-xacml/src/main/java/com/att/research/xacml/std/StdMutableResult.java
      *
      * @param decisionIn the <code>Decision</code> for the new <code>StdMutableResult</code>
      * @param statusIn the <code>Status</code> for the new <code>StdMutableResult</code>
      */
     public StdMutableResult(Decision decisionIn, Status statusIn) {
         this();
-        this.status		= statusIn;
-        this.decision	= decisionIn;
+        this.status = statusIn;
+        this.decision = decisionIn;
     }
 
     /**
+<<<<<<< HEAD:openaz-xacml/src/main/java/org/apache/openaz/xacml/std/StdMutableResult.java
      * Creates a new <code>StdMutableResult</code> with a {@link org.apache.openaz.xacml.api.Decision} of <code>INDETERMINATE</code> and
      * the given {@link org.apache.openaz.xacml.api.Status}.
+=======
+     * Creates a new <code>StdMutableResult</code> with a {@link com.att.research.xacml.api.Decision} of
+     * <code>INDETERMINATE</code> and the given {@link com.att.research.xacml.api.Status}.
+>>>>>>> fbf04a9381a2cdc18cbbe04bdc63b86b9772f14b:openaz-xacml/src/main/java/com/att/research/xacml/std/StdMutableResult.java
      *
      * @param statusIn the <code>Status</code> for the new <code>StdMutableResult</code>
      */
@@ -106,8 +119,13 @@ public class StdMutableResult implements Result {
     }
 
     /**
+<<<<<<< HEAD:openaz-xacml/src/main/java/org/apache/openaz/xacml/std/StdMutableResult.java
      * Creates a new <code>StdMutableResult</code> with the given {@link org.apache.openaz.xacml.api.Decision} and a {@link org.apache.openaz.xacml.api.Status}
      * of OK.
+=======
+     * Creates a new <code>StdMutableResult</code> with the given {@link com.att.research.xacml.api.Decision}
+     * and a {@link com.att.research.xacml.api.Status} of OK.
+>>>>>>> fbf04a9381a2cdc18cbbe04bdc63b86b9772f14b:openaz-xacml/src/main/java/com/att/research/xacml/std/StdMutableResult.java
      *
      * @param decisionIn the <code>Decision</code> for the new <code>StdMutableResult</code>
      */
@@ -116,20 +134,23 @@ public class StdMutableResult implements Result {
     }
 
     /**
-     * Creates a new <code>StdMutableResult</code> with the given {@link org.apache.openaz.xacml.api.Decision} and the given set of <code>Collection</code>s
-     * with the details of the result.
+     * Creates a new <code>StdMutableResult</code> with the given {@link com.att.research.xacml.api.Decision}
+     * and the given set of <code>Collection</code>s with the details of the result.
      *
      * @param decisionIn the <code>Decision</code> for the new <code>StdMutableResult</code>
-     * @param obligationsIn a <code>Collection</code> of {@link org.apache.openaz.xacml.api.Obligation}s for the new <code>StdMutableResult</code>
-     * @param adviceIn a <code>Collection</code> of {@link org.apache.openaz.xacml.api.Advice} objects for the new <code>StdMutableResult</code>
-     * @param attributesIn a <code>Collection</code> of {@link org.apache.openaz.xacml.api.AttributeCategory} objects for the new <code>StdMutableResult</code>
-     * @param policyIdentifiersIn a <code>Collection</code> of {@link org.apache.openaz.xacml.api.IdReference} objects for the Policy identifiers
-     * @param policySetIdentifiersIn a <code>Collection</code> of {@link org.apache.openaz.xacml.api.IdReference} objects for the PolicySet identifiers
+     * @param obligationsIn a <code>Collection</code> of {@link com.att.research.xacml.api.Obligation}s for
+     *            the new <code>StdMutableResult</code>
+     * @param adviceIn a <code>Collection</code> of {@link com.att.research.xacml.api.Advice} objects for the
+     *            new <code>StdMutableResult</code>
+     * @param attributesIn a <code>Collection</code> of {@link com.att.research.xacml.api.AttributeCategory}
+     *            objects for the new <code>StdMutableResult</code>
+     * @param policyIdentifiersIn a <code>Collection</code> of {@link com.att.research.xacml.api.IdReference}
+     *            objects for the Policy identifiers
+     * @param policySetIdentifiersIn a <code>Collection</code> of
+     *            {@link com.att.research.xacml.api.IdReference} objects for the PolicySet identifiers
      */
-    public StdMutableResult(Decision decisionIn,
-                            Collection<Obligation> obligationsIn,
-                            Collection<Advice> adviceIn,
-                            Collection<AttributeCategory> attributesIn,
+    public StdMutableResult(Decision decisionIn, Collection<Obligation> obligationsIn,
+                            Collection<Advice> adviceIn, Collection<AttributeCategory> attributesIn,
                             Collection<IdReference> policyIdentifiersIn,
                             Collection<IdReference> policySetIdentifiersIn) {
         this(decisionIn);
@@ -151,7 +172,7 @@ public class StdMutableResult implements Result {
      * @param decisionIn the <code>Decision</code> for this <code>StdMutableResult</code>.
      */
     public void setDecision(Decision decisionIn) {
-        this.decision	= decisionIn;
+        this.decision = decisionIn;
     }
 
     @Override
@@ -165,12 +186,13 @@ public class StdMutableResult implements Result {
      * @param statusIn the <code>Status</code> for this <code>StdMutableResult</code>.
      */
     public void setStatus(Status statusIn) {
-        this.status	= statusIn;
+        this.status = statusIn;
     }
 
     @Override
     public Collection<Obligation> getObligations() {
-        return this.obligations == EMPTY_OBLIGATION_LIST ? this.obligations : Collections.unmodifiableCollection(this.obligations);
+        return this.obligations == EMPTY_OBLIGATION_LIST ? this.obligations : Collections
+            .unmodifiableCollection(this.obligations);
     }
 
     /**
@@ -180,39 +202,46 @@ public class StdMutableResult implements Result {
      */
     public void addObligation(Obligation obligation) {
         if (this.obligations == EMPTY_OBLIGATION_LIST) {
-            this.obligations	= new ArrayList<Obligation>();
+            this.obligations = new ArrayList<Obligation>();
         }
         this.obligations.add(obligation);
     }
 
     /**
+<<<<<<< HEAD:openaz-xacml/src/main/java/org/apache/openaz/xacml/std/StdMutableResult.java
      * Adds a copy of the given <code>Collection</code> of {@link org.apache.openaz.xacml.api.Obligation}s to this <code>StdMutableResult</code>.
+=======
+     * Adds a copy of the given <code>Collection</code> of {@link com.att.research.xacml.api.Obligation}s to
+     * this <code>StdMutableResult</code>.
+>>>>>>> fbf04a9381a2cdc18cbbe04bdc63b86b9772f14b:openaz-xacml/src/main/java/com/att/research/xacml/std/StdMutableResult.java
      *
      * @param obligationsIn the <code>Collection</code> of <code>Obligation</code>s to add
      */
     public void addObligations(Collection<Obligation> obligationsIn) {
         if (obligationsIn != null && obligationsIn.size() > 0) {
             if (this.obligations == EMPTY_OBLIGATION_LIST) {
-                this.obligations	= new ArrayList<Obligation>();
+                this.obligations = new ArrayList<Obligation>();
             }
             this.obligations.addAll(obligationsIn);
         }
     }
 
     /**
-     * Clears any existing {@link org.apache.openaz.xacml.api.Obligation}s from this <code>StdMutableResult</code> and adds
-     * the given <code>Collection</code> of <code>Obligation</code>s.
+     * Clears any existing {@link com.att.research.xacml.api.Obligation}s from this
+     * <code>StdMutableResult</code> and adds the given <code>Collection</code> of <code>Obligation</code>s.
      *
-     * @param obligationsIn the <code>Collection</code> of <code>Obligation</code>s to set in this <code>StdMutableResult</code>.
+     * @param obligationsIn the <code>Collection</code> of <code>Obligation</code>s to set in this
+     *            <code>StdMutableResult</code>.
      */
     public void setObligations(Collection<Obligation> obligationsIn) {
-        this.obligations	= EMPTY_OBLIGATION_LIST;
+        this.obligations = EMPTY_OBLIGATION_LIST;
         this.addObligations(obligationsIn);
     }
 
     @Override
     public Collection<Advice> getAssociatedAdvice() {
-        return this.associatedAdvice == EMPTY_ADVICE_LIST ? this.associatedAdvice : Collections.unmodifiableCollection(this.associatedAdvice);
+        return this.associatedAdvice == EMPTY_ADVICE_LIST ? this.associatedAdvice : Collections
+            .unmodifiableCollection(this.associatedAdvice);
     }
 
     /**
@@ -222,38 +251,43 @@ public class StdMutableResult implements Result {
      */
     public void addAdvice(Advice advice) {
         if (this.associatedAdvice == EMPTY_ADVICE_LIST) {
-            this.associatedAdvice	= new ArrayList<Advice>();
+            this.associatedAdvice = new ArrayList<Advice>();
         }
         this.associatedAdvice.add(advice);
     }
 
     /**
-     * Adds a copy of the {@link org.apache.openaz.xacml.api.Advice} objects in the given <code>Collection</code> to this <code>StdMutableResult</code>>
+     * Adds a copy of the {@link com.att.research.xacml.api.Advice} objects in the given
+     * <code>Collection</code> to this <code>StdMutableResult</code>>
      *
-     * @param adviceIn the <code>Collection</code> of <code>Advice</code> objects to add to this <code>StdMutableResult</code>.
+     * @param adviceIn the <code>Collection</code> of <code>Advice</code> objects to add to this
+     *            <code>StdMutableResult</code>.
      */
     public void addAdvice(Collection<Advice> adviceIn) {
         if (adviceIn != null && adviceIn.size() > 0) {
             if (this.associatedAdvice == EMPTY_ADVICE_LIST) {
-                this.associatedAdvice	= new ArrayList<Advice>();
+                this.associatedAdvice = new ArrayList<Advice>();
             }
             this.associatedAdvice.addAll(adviceIn);
         }
     }
 
     /**
-     * Sets the {@link org.apache.openaz.xacml.api.Advice} objects in this <code>StdMutableResult</code> to a copy of the given <code>Collection</code>.
+     * Sets the {@link com.att.research.xacml.api.Advice} objects in this <code>StdMutableResult</code> to a
+     * copy of the given <code>Collection</code>.
      *
-     * @param adviceIn the <code>Collection</code> of <code>Advice</code> objects to set in this <code>StdMutableResult</code>.
+     * @param adviceIn the <code>Collection</code> of <code>Advice</code> objects to set in this
+     *            <code>StdMutableResult</code>.
      */
     public void setAdvice(Collection<Advice> adviceIn) {
-        this.associatedAdvice	= EMPTY_ADVICE_LIST;
+        this.associatedAdvice = EMPTY_ADVICE_LIST;
         this.addAdvice(adviceIn);
     }
 
     @Override
     public Collection<AttributeCategory> getAttributes() {
-        return this.attributes == EMPTY_ATTRIBUTES ? this.attributes : Collections.unmodifiableCollection(this.attributes);
+        return this.attributes == EMPTY_ATTRIBUTES ? this.attributes : Collections
+            .unmodifiableCollection(this.attributes);
     }
 
     /**
@@ -263,117 +297,131 @@ public class StdMutableResult implements Result {
      */
     public void addAttributeCategory(AttributeCategory attribute) {
         if (this.attributes == EMPTY_ATTRIBUTES) {
-            this.attributes	= new ArrayList<AttributeCategory>();
+            this.attributes = new ArrayList<AttributeCategory>();
         }
         this.attributes.add(attribute);
     }
 
     /**
-     * Adds a copy of the given <code>Collection</code> of {@link org.apache.openaz.xacml.api.AttributeCategory}s to this <code>StdMutableResult</code>.
+     * Adds a copy of the given <code>Collection</code> of
+     * {@link com.att.research.xacml.api.AttributeCategory}s to this <code>StdMutableResult</code>.
      *
-     * @param listAttributeCategories the <code>Collection</code> of <code>AttributeCategory</code>s to add to this <code>StdMutableResult</code>.
+     * @param listAttributeCategories the <code>Collection</code> of <code>AttributeCategory</code>s to add to
+     *            this <code>StdMutableResult</code>.
      */
     public void addAttributeCategories(Collection<AttributeCategory> listAttributeCategories) {
         if (listAttributeCategories != null && listAttributeCategories.size() > 0) {
             if (this.attributes == EMPTY_ATTRIBUTES) {
-                this.attributes	= new ArrayList<AttributeCategory>();
+                this.attributes = new ArrayList<AttributeCategory>();
             }
             this.attributes.addAll(listAttributeCategories);
         }
     }
 
     /**
-     * Sets the {@link org.apache.openaz.xacml.api.AttributeCategory}s in this <code>StdMutableResult</code> to be a copy of the given
-     * <code>Collection</code> or to an empty list if the <code>Collection</code> is null.
+     * Sets the {@link com.att.research.xacml.api.AttributeCategory}s in this <code>StdMutableResult</code> to
+     * be a copy of the given <code>Collection</code> or to an empty list if the <code>Collection</code> is
+     * null.
      *
-     * @param listAttributeCategories the <code>Collection</code> of <code>AttributeCategory</code>s to set in this <code>StdMutableResult</code>
+     * @param listAttributeCategories the <code>Collection</code> of <code>AttributeCategory</code>s to set in
+     *            this <code>StdMutableResult</code>
      */
     public void setAttributeCategories(Collection<AttributeCategory> listAttributeCategories) {
-        this.attributes	= EMPTY_ATTRIBUTES;
+        this.attributes = EMPTY_ATTRIBUTES;
         this.addAttributeCategories(listAttributeCategories);
     }
 
     @Override
     public Collection<IdReference> getPolicyIdentifiers() {
-        return this.policyIdentifiers == EMPTY_REFERENCES ? this.policyIdentifiers : Collections.unmodifiableCollection(this.policyIdentifiers);
+        return this.policyIdentifiers == EMPTY_REFERENCES ? this.policyIdentifiers : Collections
+            .unmodifiableCollection(this.policyIdentifiers);
     }
 
     /**
-     * Adds an {@link org.apache.openaz.xacml.api.IdReference} as a XACML Policy ID to this <code>StdMutableResult</code>.
+     * Adds an {@link com.att.research.xacml.api.IdReference} as a XACML Policy ID to this
+     * <code>StdMutableResult</code>.
      *
-     * @param policyIdentifier the <code>Identifier</code> of the Policy to add to this <code>StdMutableResult</code>.
+     * @param policyIdentifier the <code>Identifier</code> of the Policy to add to this
+     *            <code>StdMutableResult</code>.
      */
     public void addPolicyIdentifier(IdReference policyIdentifier) {
         if (this.policyIdentifiers == EMPTY_REFERENCES) {
-            this.policyIdentifiers	= new ArrayList<IdReference>();
+            this.policyIdentifiers = new ArrayList<IdReference>();
         }
         this.policyIdentifiers.add(policyIdentifier);
     }
 
     /**
-     * Adds a copy of the given <code>Collection</code> of {@link org.apache.openaz.xacml.api.IdReference}s representing PolicyIds to this <code>StdMutableResult</code>.
+     * Adds a copy of the given <code>Collection</code> of {@link com.att.research.xacml.api.IdReference}s
+     * representing PolicyIds to this <code>StdMutableResult</code>.
      *
      * @param policyIdentifierList the <code>Collection</code> of <code>IdReference</code> to add
      */
     public void addPolicyIdentifiers(Collection<IdReference> policyIdentifierList) {
         if (policyIdentifierList != null && policyIdentifierList.size() > 0) {
             if (this.policyIdentifiers == EMPTY_REFERENCES) {
-                this.policyIdentifiers	= new ArrayList<IdReference>();
+                this.policyIdentifiers = new ArrayList<IdReference>();
             }
             this.policyIdentifiers.addAll(policyIdentifierList);
         }
     }
 
     /**
-     * Sets the {@link org.apache.openaz.xacml.api.IdReference}s representing PolicyIds in this <code>StdMutableResult</code> to a copy of the given
-     * <code>Collection</code>.
+     * Sets the {@link com.att.research.xacml.api.IdReference}s representing PolicyIds in this
+     * <code>StdMutableResult</code> to a copy of the given <code>Collection</code>.
      *
-     * @param policyIdentifierList the <code>Collection</code> of <code>IdReference</code>s representing PolicyIds to set in this <code>StdMutableResult</code>
+     * @param policyIdentifierList the <code>Collection</code> of <code>IdReference</code>s representing
+     *            PolicyIds to set in this <code>StdMutableResult</code>
      */
     public void setPolicyIdentifiers(Collection<IdReference> policyIdentifierList) {
-        this.policyIdentifiers	= EMPTY_REFERENCES;
+        this.policyIdentifiers = EMPTY_REFERENCES;
         this.addPolicyIdentifiers(policyIdentifierList);
     }
 
     @Override
     public Collection<IdReference> getPolicySetIdentifiers() {
-        return this.policySetIdentifiers == EMPTY_REFERENCES ? this.policySetIdentifiers : Collections.unmodifiableCollection(this.policySetIdentifiers);
+        return this.policySetIdentifiers == EMPTY_REFERENCES ? this.policySetIdentifiers : Collections
+            .unmodifiableCollection(this.policySetIdentifiers);
     }
 
     /**
-     * Adds an {@link org.apache.openaz.xacml.api.IdReference} as a XACML Policy ID to this <code>StdMutableResult</code>.
+     * Adds an {@link com.att.research.xacml.api.IdReference} as a XACML Policy ID to this
+     * <code>StdMutableResult</code>.
      *
-     * @param policyIdentifier the <code>Identifier</code> of the Policy to add to this <code>StdMutableResult</code>.
+     * @param policyIdentifier the <code>Identifier</code> of the Policy to add to this
+     *            <code>StdMutableResult</code>.
      */
     public void addPolicySetIdentifier(IdReference policyIdentifier) {
         if (this.policySetIdentifiers == EMPTY_REFERENCES) {
-            this.policySetIdentifiers	= new ArrayList<IdReference>();
+            this.policySetIdentifiers = new ArrayList<IdReference>();
         }
         this.policySetIdentifiers.add(policyIdentifier);
     }
 
     /**
-     * Adds a copy of the given <code>Collection</code> of {@link org.apache.openaz.xacml.api.IdReference}s representing PolicySetIds to this <code>StdMutableResult</code>.
+     * Adds a copy of the given <code>Collection</code> of {@link com.att.research.xacml.api.IdReference}s
+     * representing PolicySetIds to this <code>StdMutableResult</code>.
      *
      * @param policyIdentifierList the <code>Collection</code> of <code>IdReference</code> to add
      */
     public void addPolicySetIdentifiers(Collection<IdReference> policyIdentifierList) {
         if (policyIdentifierList != null && policyIdentifierList.size() > 0) {
             if (this.policySetIdentifiers == EMPTY_REFERENCES) {
-                this.policySetIdentifiers	= new ArrayList<IdReference>();
+                this.policySetIdentifiers = new ArrayList<IdReference>();
             }
             this.policySetIdentifiers.addAll(policyIdentifierList);
         }
     }
 
     /**
-     * Sets the {@link org.apache.openaz.xacml.api.IdReference}s representing PolicySetIds in this <code>StdMutableResult</code> to a copy of the given
-     * <code>Collection</code>.
+     * Sets the {@link com.att.research.xacml.api.IdReference}s representing PolicySetIds in this
+     * <code>StdMutableResult</code> to a copy of the given <code>Collection</code>.
      *
-     * @param policyIdentifierList the <code>Collection</code> of <code>IdReference</code>s representing PolicySetIds to set in this <code>StdMutableResult</code>
+     * @param policyIdentifierList the <code>Collection</code> of <code>IdReference</code>s representing
+     *            PolicySetIds to set in this <code>StdMutableResult</code>
      */
     public void setPolicySetIdentifiers(Collection<IdReference> policyIdentifierList) {
-        this.policySetIdentifiers	= EMPTY_REFERENCES;
+        this.policySetIdentifiers = EMPTY_REFERENCES;
         this.addPolicySetIdentifiers(policyIdentifierList);
     }
 
@@ -384,25 +432,27 @@ public class StdMutableResult implements Result {
         } else if (obj == null || !(obj instanceof Result)) {
             return false;
         } else {
-            Result objResult	= (Result)obj;
-            return ObjUtil.equalsAllowNull(this.getDecision(), objResult.getDecision()) &&
-                   ObjUtil.equalsAllowNull(this.getStatus(), objResult.getStatus()) &&
-                   ListUtil.equalsAllowNulls(this.getObligations(), objResult.getObligations()) &&
-                   ListUtil.equalsAllowNulls(this.getAssociatedAdvice(), objResult.getAssociatedAdvice()) &&
-                   ListUtil.equalsAllowNulls(this.getAttributes(), objResult.getAttributes()) &&
-                   ListUtil.equalsAllowNulls(this.getPolicyIdentifiers(), objResult.getPolicyIdentifiers()) &&
-                   ListUtil.equalsAllowNulls(this.getPolicySetIdentifiers(), objResult.getPolicySetIdentifiers());
+            Result objResult = (Result)obj;
+            return ObjUtil.equalsAllowNull(this.getDecision(), objResult.getDecision())
+                   && ObjUtil.equalsAllowNull(this.getStatus(), objResult.getStatus())
+                   && ListUtil.equalsAllowNulls(this.getObligations(), objResult.getObligations())
+                   && ListUtil.equalsAllowNulls(this.getAssociatedAdvice(), objResult.getAssociatedAdvice())
+                   && ListUtil.equalsAllowNulls(this.getAttributes(), objResult.getAttributes())
+                   && ListUtil
+                       .equalsAllowNulls(this.getPolicyIdentifiers(), objResult.getPolicyIdentifiers())
+                   && ListUtil.equalsAllowNulls(this.getPolicySetIdentifiers(),
+                                                objResult.getPolicySetIdentifiers());
         }
     }
 
     @Override
     public String toString() {
-        StringBuilder	stringBuilder	= new StringBuilder("{");
-        boolean			needsComma		= false;
-        Object			toDump;
+        StringBuilder stringBuilder = new StringBuilder("{");
+        boolean needsComma = false;
+        Object toDump;
         if ((toDump = this.getDecision()) != null) {
             stringBuilder.append("decision=" + toDump.toString());
-            needsComma	= true;
+            needsComma = true;
         }
         if ((toDump = this.getStatus()) != null) {
             if (needsComma) {
@@ -410,7 +460,7 @@ public class StdMutableResult implements Result {
             }
             stringBuilder.append("status=");
             stringBuilder.append(toDump.toString());
-            needsComma	= true;
+            needsComma = true;
         }
         Collection<?> listToDump;
         if ((listToDump = this.obligations).size() > 0) {
@@ -419,7 +469,7 @@ public class StdMutableResult implements Result {
             }
             stringBuilder.append("obligations=");
             stringBuilder.append(ListUtil.toString(listToDump));
-            needsComma	= true;
+            needsComma = true;
         }
         if ((listToDump = this.associatedAdvice).size() > 0) {
             if (needsComma) {
@@ -427,7 +477,7 @@ public class StdMutableResult implements Result {
             }
             stringBuilder.append("associatedAdvice=");
             stringBuilder.append(ListUtil.toString(listToDump));
-            needsComma	= true;
+            needsComma = true;
         }
         if ((listToDump = this.attributes).size() > 0) {
             if (needsComma) {
@@ -435,7 +485,7 @@ public class StdMutableResult implements Result {
             }
             stringBuilder.append("attributeCategories=");
             stringBuilder.append(ListUtil.toString(listToDump));
-            needsComma	= true;
+            needsComma = true;
         }
         if ((listToDump = this.policyIdentifiers).size() > 0) {
             if (needsComma) {
@@ -443,7 +493,7 @@ public class StdMutableResult implements Result {
             }
             stringBuilder.append("policyIdentifiers=");
             stringBuilder.append(ListUtil.toString(listToDump));
-            needsComma	= true;
+            needsComma = true;
         }
         if ((listToDump = this.policySetIdentifiers).size() > 0) {
             if (needsComma) {
@@ -451,7 +501,7 @@ public class StdMutableResult implements Result {
             }
             stringBuilder.append("policySetIdentifiers=");
             stringBuilder.append(ListUtil.toString(listToDump));
-            needsComma	= true;
+            needsComma = true;
         }
         stringBuilder.append("}");
         return stringBuilder.toString();

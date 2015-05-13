@@ -62,26 +62,12 @@ import org.junit.Test;
 
 /**
  * Test FunctionDefinitionEquality, all of its super-classes, and all XACML functions supported by that class.
- *
- * TO RUN - use jUnit
- * In Eclipse select this file or the enclosing directory, right-click and select Run As/JUnit Test
- *
- * In the first implementation of XACML we had separate files for each XACML Function.
- * This release combines multiple Functions in fewer files to minimize code duplication.
- * This file supports the following XACML codes:
- * 		string-equal
- * 		boolean-equal
- * 		integer-equal
- * 		double-equal
- * 		date-equal
- * 		time-equal
- * 		dateTime-equal
- * 		dayTimeDuration-equal
- * 		yearMonthDuration-equal
- *
- * Each of these is put into a separate test method just to keep things organized.
- *
- *
+ * TO RUN - use jUnit In Eclipse select this file or the enclosing directory, right-click and select Run
+ * As/JUnit Test In the first implementation of XACML we had separate files for each XACML Function. This
+ * release combines multiple Functions in fewer files to minimize code duplication. This file supports the
+ * following XACML codes: string-equal boolean-equal integer-equal double-equal date-equal time-equal
+ * dateTime-equal dayTimeDuration-equal yearMonthDuration-equal Each of these is put into a separate test
+ * method just to keep things organized.
  */
 public class FunctionDefinitionEqualityTest {
 
@@ -93,7 +79,7 @@ public class FunctionDefinitionEqualityTest {
     FunctionArgumentAttributeValue stringAttr1 = null;
     FunctionArgumentAttributeValue stringAttr2 = null;
     FunctionArgumentAttributeValue stringAttr3 = null;
-    FunctionArgumentAttributeValue stringAttr4 =  null;
+    FunctionArgumentAttributeValue stringAttr4 = null;
 
     FunctionArgumentAttributeValue booleanAttrT1 = null;
     FunctionArgumentAttributeValue booleanAttrT2 = null;
@@ -113,10 +99,18 @@ public class FunctionDefinitionEqualityTest {
             stringAttr3 = new FunctionArgumentAttributeValue(DataTypes.DT_STRING.createAttributeValue("ABC"));
             stringAttr4 = new FunctionArgumentAttributeValue(DataTypes.DT_STRING.createAttributeValue("def"));
 
-            booleanAttrT1 = new FunctionArgumentAttributeValue(DataTypes.DT_BOOLEAN.createAttributeValue(true));
-            booleanAttrT2 = new FunctionArgumentAttributeValue(DataTypes.DT_BOOLEAN.createAttributeValue(true));
-            booleanAttrF1 = new FunctionArgumentAttributeValue(DataTypes.DT_BOOLEAN.createAttributeValue(false));
-            booleanAttrF2 = new FunctionArgumentAttributeValue(DataTypes.DT_BOOLEAN.createAttributeValue(false));
+            booleanAttrT1 = new FunctionArgumentAttributeValue(
+                                                               DataTypes.DT_BOOLEAN
+                                                                   .createAttributeValue(true));
+            booleanAttrT2 = new FunctionArgumentAttributeValue(
+                                                               DataTypes.DT_BOOLEAN
+                                                                   .createAttributeValue(true));
+            booleanAttrF1 = new FunctionArgumentAttributeValue(
+                                                               DataTypes.DT_BOOLEAN
+                                                                   .createAttributeValue(false));
+            booleanAttrF2 = new FunctionArgumentAttributeValue(
+                                                               DataTypes.DT_BOOLEAN
+                                                                   .createAttributeValue(false));
 
             intAttr1 = new FunctionArgumentAttributeValue(DataTypes.DT_INTEGER.createAttributeValue(1));
             intAttr1a = new FunctionArgumentAttributeValue(DataTypes.DT_INTEGER.createAttributeValue(1));
@@ -124,12 +118,9 @@ public class FunctionDefinitionEqualityTest {
             intAttr0 = new FunctionArgumentAttributeValue(DataTypes.DT_INTEGER.createAttributeValue(0));
             intAttrNeg1 = new FunctionArgumentAttributeValue(DataTypes.DT_INTEGER.createAttributeValue(-1));
         } catch (Exception e) {
-            fail("creating attribute e="+ e);
+            fail("creating attribute e=" + e);
         }
     }
-
-
-
 
     /**
      * String (matching case)
@@ -138,13 +129,13 @@ public class FunctionDefinitionEqualityTest {
     public void testString_Equal() {
 
         // String exact match
-        FunctionDefinitionEquality<?> fd = (FunctionDefinitionEquality<?>) StdFunctions.FD_STRING_EQUAL;
+        FunctionDefinitionEquality<?> fd = (FunctionDefinitionEquality<?>)StdFunctions.FD_STRING_EQUAL;
 
         // check identity and type of the thing created
         assertEquals(XACML3.ID_FUNCTION_STRING_EQUAL, fd.getId());
         assertEquals(DataTypes.DT_STRING.getId(), fd.getDataTypeArgs().getId());
 
-        // just to be safe...  If tests take too long these can probably be eliminated
+        // just to be safe... If tests take too long these can probably be eliminated
         assertEquals(DataTypes.DT_BOOLEAN.getId(), fd.getDataTypeId());
         assertFalse(fd.returnsBag());
         assertEquals(new Integer(2), fd.getNumArgs());
@@ -167,7 +158,7 @@ public class FunctionDefinitionEqualityTest {
         resValue = (Boolean)res.getValue().getValue();
         assertFalse(resValue);
 
-        // test bad args data types?  Not needed?
+        // test bad args data types? Not needed?
         arguments.clear();
         arguments.add(stringAttr1);
         arguments.add(intAttr1);
@@ -176,8 +167,6 @@ public class FunctionDefinitionEqualityTest {
 
     }
 
-
-
     /**
      * Boolean
      */
@@ -185,13 +174,13 @@ public class FunctionDefinitionEqualityTest {
     public void testBoolean_Equal() {
 
         // String exact match
-        FunctionDefinitionEquality<?> fd = (FunctionDefinitionEquality<?>) StdFunctions.FD_BOOLEAN_EQUAL;
+        FunctionDefinitionEquality<?> fd = (FunctionDefinitionEquality<?>)StdFunctions.FD_BOOLEAN_EQUAL;
 
         // check identity and type of the thing created
         assertEquals(XACML3.ID_FUNCTION_BOOLEAN_EQUAL, fd.getId());
         assertEquals(DataTypes.DT_BOOLEAN.getId(), fd.getDataTypeArgs().getId());
 
-        // just to be safe...  If tests take too long these can probably be eliminated
+        // just to be safe... If tests take too long these can probably be eliminated
         assertEquals(DataTypes.DT_BOOLEAN.getId(), fd.getDataTypeId());
         assertFalse(fd.returnsBag());
         assertEquals(new Integer(2), fd.getNumArgs());
@@ -214,7 +203,7 @@ public class FunctionDefinitionEqualityTest {
         resValue = (Boolean)res.getValue().getValue();
         assertFalse(resValue);
 
-        // test bad args data types?  Not needed?
+        // test bad args data types? Not needed?
         arguments.clear();
         arguments.add(stringAttr1);
         arguments.add(intAttr1);
@@ -223,7 +212,6 @@ public class FunctionDefinitionEqualityTest {
 
     }
 
-
     /**
      * Integer
      */
@@ -231,13 +219,13 @@ public class FunctionDefinitionEqualityTest {
     public void testInteger_Equal() {
 
         // String exact match
-        FunctionDefinitionEquality<?> fd = (FunctionDefinitionEquality<?>) StdFunctions.FD_INTEGER_EQUAL;
+        FunctionDefinitionEquality<?> fd = (FunctionDefinitionEquality<?>)StdFunctions.FD_INTEGER_EQUAL;
 
         // check identity and type of the thing created
         assertEquals(XACML3.ID_FUNCTION_INTEGER_EQUAL, fd.getId());
         assertEquals(DataTypes.DT_INTEGER.getId(), fd.getDataTypeArgs().getId());
 
-        // just to be safe...  If tests take too long these can probably be eliminated
+        // just to be safe... If tests take too long these can probably be eliminated
         assertEquals(DataTypes.DT_BOOLEAN.getId(), fd.getDataTypeId());
         assertFalse(fd.returnsBag());
         assertEquals(new Integer(2), fd.getNumArgs());
@@ -268,8 +256,7 @@ public class FunctionDefinitionEqualityTest {
         resValue = (Boolean)res.getValue().getValue();
         assertFalse(resValue);
 
-
-        // test bad args data types?  Not needed?
+        // test bad args data types? Not needed?
         arguments.clear();
         arguments.add(stringAttr1);
         arguments.add(intAttr1);
@@ -277,8 +264,6 @@ public class FunctionDefinitionEqualityTest {
         assertFalse(res.isOk());
 
     }
-
-
 
     /**
      * Double
@@ -295,17 +280,17 @@ public class FunctionDefinitionEqualityTest {
             attr2 = new FunctionArgumentAttributeValue(DataTypes.DT_DOUBLE.createAttributeValue(2.4));
             attrNeg1 = new FunctionArgumentAttributeValue(DataTypes.DT_DOUBLE.createAttributeValue(-1.0));
         } catch (Exception e) {
-            fail("creating attribute e="+ e);
+            fail("creating attribute e=" + e);
         }
 
         // String exact match
-        FunctionDefinitionEquality<?> fd = (FunctionDefinitionEquality<?>) StdFunctions.FD_DOUBLE_EQUAL;
+        FunctionDefinitionEquality<?> fd = (FunctionDefinitionEquality<?>)StdFunctions.FD_DOUBLE_EQUAL;
 
         // check identity and type of the thing created
         assertEquals(XACML3.ID_FUNCTION_DOUBLE_EQUAL, fd.getId());
         assertEquals(DataTypes.DT_DOUBLE.getId(), fd.getDataTypeArgs().getId());
 
-        // just to be safe...  If tests take too long these can probably be eliminated
+        // just to be safe... If tests take too long these can probably be eliminated
         assertEquals(DataTypes.DT_BOOLEAN.getId(), fd.getDataTypeId());
         assertFalse(fd.returnsBag());
         assertEquals(new Integer(2), fd.getNumArgs());
@@ -336,8 +321,7 @@ public class FunctionDefinitionEqualityTest {
         resValue = (Boolean)res.getValue().getValue();
         assertFalse(resValue);
 
-
-        // test bad args data types?  Not needed?
+        // test bad args data types? Not needed?
         arguments.clear();
         arguments.add(stringAttr1);
         arguments.add(intAttr1);
@@ -345,10 +329,6 @@ public class FunctionDefinitionEqualityTest {
         assertFalse(res.isOk());
 
     }
-
-
-
-
 
     /**
      * Date
@@ -366,7 +346,6 @@ public class FunctionDefinitionEqualityTest {
         }
         Date todayPlus = calendar.getTime();
 
-
         FunctionArgumentAttributeValue attrToday = null;
         FunctionArgumentAttributeValue attrToday2 = null;
         FunctionArgumentAttributeValue attrLaterToday = null;
@@ -374,20 +353,24 @@ public class FunctionDefinitionEqualityTest {
         try {
             attrToday = new FunctionArgumentAttributeValue(DataTypes.DT_DATE.createAttributeValue(today));
             attrToday2 = new FunctionArgumentAttributeValue(DataTypes.DT_DATE.createAttributeValue(today));
-            attrLaterToday = new FunctionArgumentAttributeValue(DataTypes.DT_DATE.createAttributeValue(todayPlus));
-            attrYesterday = new FunctionArgumentAttributeValue(DataTypes.DT_DATE.createAttributeValue(longAgo));
+            attrLaterToday = new FunctionArgumentAttributeValue(
+                                                                DataTypes.DT_DATE
+                                                                    .createAttributeValue(todayPlus));
+            attrYesterday = new FunctionArgumentAttributeValue(
+                                                               DataTypes.DT_DATE
+                                                                   .createAttributeValue(longAgo));
         } catch (Exception e) {
-            fail("creating attribute e="+ e);
+            fail("creating attribute e=" + e);
         }
 
         // String exact match
-        FunctionDefinitionEquality<?> fd = (FunctionDefinitionEquality<?>) StdFunctions.FD_DATE_EQUAL;
+        FunctionDefinitionEquality<?> fd = (FunctionDefinitionEquality<?>)StdFunctions.FD_DATE_EQUAL;
 
         // check identity and type of the thing created
         assertEquals(XACML3.ID_FUNCTION_DATE_EQUAL, fd.getId());
         assertEquals(DataTypes.DT_DATE.getId(), fd.getDataTypeArgs().getId());
 
-        // just to be safe...  If tests take too long these can probably be eliminated
+        // just to be safe... If tests take too long these can probably be eliminated
         assertEquals(DataTypes.DT_BOOLEAN.getId(), fd.getDataTypeId());
         assertFalse(fd.returnsBag());
         assertEquals(new Integer(2), fd.getNumArgs());
@@ -419,7 +402,7 @@ public class FunctionDefinitionEqualityTest {
         resValue = (Boolean)res.getValue().getValue();
         assertTrue(resValue);
 
-        // test bad args data types?  Not needed?
+        // test bad args data types? Not needed?
         arguments.clear();
         arguments.add(stringAttr1);
         arguments.add(intAttr1);
@@ -427,9 +410,6 @@ public class FunctionDefinitionEqualityTest {
         assertFalse(res.isOk());
 
     }
-
-
-
 
     /**
      * Time
@@ -449,17 +429,17 @@ public class FunctionDefinitionEqualityTest {
             attrNow2 = new FunctionArgumentAttributeValue(DataTypes.DT_TIME.createAttributeValue(now2));
             attrNotNow = new FunctionArgumentAttributeValue(DataTypes.DT_TIME.createAttributeValue(notNow));
         } catch (Exception e) {
-            fail("creating attribute e="+ e);
+            fail("creating attribute e=" + e);
         }
 
         // String exact match
-        FunctionDefinitionEquality<?> fd = (FunctionDefinitionEquality<?>) StdFunctions.FD_TIME_EQUAL;
+        FunctionDefinitionEquality<?> fd = (FunctionDefinitionEquality<?>)StdFunctions.FD_TIME_EQUAL;
 
         // check identity and type of the thing created
         assertEquals(XACML3.ID_FUNCTION_TIME_EQUAL, fd.getId());
         assertEquals(DataTypes.DT_TIME.getId(), fd.getDataTypeArgs().getId());
 
-        // just to be safe...  If tests take too long these can probably be eliminated
+        // just to be safe... If tests take too long these can probably be eliminated
         assertEquals(DataTypes.DT_BOOLEAN.getId(), fd.getDataTypeId());
         assertFalse(fd.returnsBag());
         assertEquals(new Integer(2), fd.getNumArgs());
@@ -482,7 +462,7 @@ public class FunctionDefinitionEqualityTest {
         resValue = (Boolean)res.getValue().getValue();
         assertFalse(resValue);
 
-        // test bad args data types?  Not needed?
+        // test bad args data types? Not needed?
         arguments.clear();
         arguments.add(stringAttr1);
         arguments.add(intAttr1);
@@ -490,9 +470,6 @@ public class FunctionDefinitionEqualityTest {
         assertFalse(res.isOk());
 
     }
-
-
-
 
     /**
      * DateTime
@@ -510,7 +487,6 @@ public class FunctionDefinitionEqualityTest {
         }
         Date todayPlus = calendar.getTime();
 
-
         FunctionArgumentAttributeValue attrToday = null;
         FunctionArgumentAttributeValue attrToday2 = null;
         FunctionArgumentAttributeValue attrLaterToday = null;
@@ -518,20 +494,24 @@ public class FunctionDefinitionEqualityTest {
         try {
             attrToday = new FunctionArgumentAttributeValue(DataTypes.DT_DATETIME.createAttributeValue(today));
             attrToday2 = new FunctionArgumentAttributeValue(DataTypes.DT_DATETIME.createAttributeValue(today));
-            attrLaterToday = new FunctionArgumentAttributeValue(DataTypes.DT_DATETIME.createAttributeValue(todayPlus));
-            attrYesterday = new FunctionArgumentAttributeValue(DataTypes.DT_DATETIME.createAttributeValue(longAgo));
+            attrLaterToday = new FunctionArgumentAttributeValue(
+                                                                DataTypes.DT_DATETIME
+                                                                    .createAttributeValue(todayPlus));
+            attrYesterday = new FunctionArgumentAttributeValue(
+                                                               DataTypes.DT_DATETIME
+                                                                   .createAttributeValue(longAgo));
         } catch (Exception e) {
-            fail("creating attribute e="+ e);
+            fail("creating attribute e=" + e);
         }
 
         // String exact match
-        FunctionDefinitionEquality<?> fd = (FunctionDefinitionEquality<?>) StdFunctions.FD_DATETIME_EQUAL;
+        FunctionDefinitionEquality<?> fd = (FunctionDefinitionEquality<?>)StdFunctions.FD_DATETIME_EQUAL;
 
         // check identity and type of the thing created
         assertEquals(XACML3.ID_FUNCTION_DATETIME_EQUAL, fd.getId());
         assertEquals(DataTypes.DT_DATETIME.getId(), fd.getDataTypeArgs().getId());
 
-        // just to be safe...  If tests take too long these can probably be eliminated
+        // just to be safe... If tests take too long these can probably be eliminated
         assertEquals(DataTypes.DT_BOOLEAN.getId(), fd.getDataTypeId());
         assertFalse(fd.returnsBag());
         assertEquals(new Integer(2), fd.getNumArgs());
@@ -563,7 +543,7 @@ public class FunctionDefinitionEqualityTest {
         resValue = (Boolean)res.getValue().getValue();
         assertFalse(resValue);
 
-        // test bad args data types?  Not needed?
+        // test bad args data types? Not needed?
         arguments.clear();
         arguments.add(stringAttr1);
         arguments.add(intAttr1);
@@ -571,7 +551,6 @@ public class FunctionDefinitionEqualityTest {
         assertFalse(res.isOk());
 
     }
-
 
     /**
      * dayTimeDuration - Version1
@@ -587,20 +566,26 @@ public class FunctionDefinitionEqualityTest {
         FunctionArgumentAttributeValue attrDur2 = null;
         FunctionArgumentAttributeValue attrDifferentDur = null;
         try {
-            attrDur1 = new FunctionArgumentAttributeValue(DataTypes.DT_DAYTIMEDURATION.createAttributeValue(dur1));
-            attrDur2 = new FunctionArgumentAttributeValue(DataTypes.DT_DAYTIMEDURATION.createAttributeValue(dur2));
-            attrDifferentDur = new FunctionArgumentAttributeValue(DataTypes.DT_DAYTIMEDURATION.createAttributeValue(differentDur));
+            attrDur1 = new FunctionArgumentAttributeValue(
+                                                          DataTypes.DT_DAYTIMEDURATION
+                                                              .createAttributeValue(dur1));
+            attrDur2 = new FunctionArgumentAttributeValue(
+                                                          DataTypes.DT_DAYTIMEDURATION
+                                                              .createAttributeValue(dur2));
+            attrDifferentDur = new FunctionArgumentAttributeValue(
+                                                                  DataTypes.DT_DAYTIMEDURATION
+                                                                      .createAttributeValue(differentDur));
         } catch (Exception e) {
-            fail("creating attribute e="+ e);
+            fail("creating attribute e=" + e);
         }
 
-        FunctionDefinitionEquality<?> fd = (FunctionDefinitionEquality<?>) StdFunctions.FD_DAYTIMEDURATION_EQUAL_VERSION1;
+        FunctionDefinitionEquality<?> fd = (FunctionDefinitionEquality<?>)StdFunctions.FD_DAYTIMEDURATION_EQUAL_VERSION1;
 
         // check identity and type of the thing created
         assertEquals(XACML1.ID_FUNCTION_DAYTIMEDURATION_EQUAL, fd.getId());
         assertEquals(DataTypes.DT_DAYTIMEDURATION.getId(), fd.getDataTypeArgs().getId());
 
-        // just to be safe...  If tests take too long these can probably be eliminated
+        // just to be safe... If tests take too long these can probably be eliminated
         assertEquals(DataTypes.DT_BOOLEAN.getId(), fd.getDataTypeId());
         assertFalse(fd.returnsBag());
         assertEquals(new Integer(2), fd.getNumArgs());
@@ -623,7 +608,7 @@ public class FunctionDefinitionEqualityTest {
         resValue = (Boolean)res.getValue().getValue();
         assertFalse(resValue);
 
-        // test bad args data types?  Not needed?
+        // test bad args data types? Not needed?
         arguments.clear();
         arguments.add(stringAttr1);
         arguments.add(intAttr1);
@@ -631,7 +616,6 @@ public class FunctionDefinitionEqualityTest {
         assertFalse(res.isOk());
 
     }
-
 
     /**
      * dayTimeDuration - Current version
@@ -647,20 +631,26 @@ public class FunctionDefinitionEqualityTest {
         FunctionArgumentAttributeValue attrDur2 = null;
         FunctionArgumentAttributeValue attrDifferentDur = null;
         try {
-            attrDur1 = new FunctionArgumentAttributeValue(DataTypes.DT_DAYTIMEDURATION.createAttributeValue(dur1));
-            attrDur2 = new FunctionArgumentAttributeValue(DataTypes.DT_DAYTIMEDURATION.createAttributeValue(dur2));
-            attrDifferentDur = new FunctionArgumentAttributeValue(DataTypes.DT_DAYTIMEDURATION.createAttributeValue(differentDur));
+            attrDur1 = new FunctionArgumentAttributeValue(
+                                                          DataTypes.DT_DAYTIMEDURATION
+                                                              .createAttributeValue(dur1));
+            attrDur2 = new FunctionArgumentAttributeValue(
+                                                          DataTypes.DT_DAYTIMEDURATION
+                                                              .createAttributeValue(dur2));
+            attrDifferentDur = new FunctionArgumentAttributeValue(
+                                                                  DataTypes.DT_DAYTIMEDURATION
+                                                                      .createAttributeValue(differentDur));
         } catch (Exception e) {
-            fail("creating attribute e="+ e);
+            fail("creating attribute e=" + e);
         }
 
-        FunctionDefinitionEquality<?> fd = (FunctionDefinitionEquality<?>) StdFunctions.FD_DAYTIMEDURATION_EQUAL;
+        FunctionDefinitionEquality<?> fd = (FunctionDefinitionEquality<?>)StdFunctions.FD_DAYTIMEDURATION_EQUAL;
 
         // check identity and type of the thing created
         assertEquals(XACML3.ID_FUNCTION_DAYTIMEDURATION_EQUAL, fd.getId());
         assertEquals(DataTypes.DT_DAYTIMEDURATION.getId(), fd.getDataTypeArgs().getId());
 
-        // just to be safe...  If tests take too long these can probably be eliminated
+        // just to be safe... If tests take too long these can probably be eliminated
         assertEquals(DataTypes.DT_BOOLEAN.getId(), fd.getDataTypeId());
         assertFalse(fd.returnsBag());
         assertEquals(new Integer(2), fd.getNumArgs());
@@ -683,7 +673,7 @@ public class FunctionDefinitionEqualityTest {
         resValue = (Boolean)res.getValue().getValue();
         assertFalse(resValue);
 
-        // test bad args data types?  Not needed?
+        // test bad args data types? Not needed?
         arguments.clear();
         arguments.add(stringAttr1);
         arguments.add(intAttr1);
@@ -691,8 +681,6 @@ public class FunctionDefinitionEqualityTest {
         assertFalse(res.isOk());
 
     }
-
-
 
     /**
      * dayTimeDuration - Version1
@@ -708,20 +696,26 @@ public class FunctionDefinitionEqualityTest {
         FunctionArgumentAttributeValue attrDur2 = null;
         FunctionArgumentAttributeValue attrDifferentDur = null;
         try {
-            attrDur1 = new FunctionArgumentAttributeValue(DataTypes.DT_YEARMONTHDURATION.createAttributeValue(dur1));
-            attrDur2 = new FunctionArgumentAttributeValue(DataTypes.DT_YEARMONTHDURATION.createAttributeValue(dur2));
-            attrDifferentDur = new FunctionArgumentAttributeValue(DataTypes.DT_YEARMONTHDURATION.createAttributeValue(differentDur));
+            attrDur1 = new FunctionArgumentAttributeValue(
+                                                          DataTypes.DT_YEARMONTHDURATION
+                                                              .createAttributeValue(dur1));
+            attrDur2 = new FunctionArgumentAttributeValue(
+                                                          DataTypes.DT_YEARMONTHDURATION
+                                                              .createAttributeValue(dur2));
+            attrDifferentDur = new FunctionArgumentAttributeValue(
+                                                                  DataTypes.DT_YEARMONTHDURATION
+                                                                      .createAttributeValue(differentDur));
         } catch (Exception e) {
-            fail("creating attribute e="+ e);
+            fail("creating attribute e=" + e);
         }
 
-        FunctionDefinitionEquality<?> fd = (FunctionDefinitionEquality<?>) StdFunctions.FD_YEARMONTHDURATION_EQUAL_VERSION1;
+        FunctionDefinitionEquality<?> fd = (FunctionDefinitionEquality<?>)StdFunctions.FD_YEARMONTHDURATION_EQUAL_VERSION1;
 
         // check identity and type of the thing created
         assertEquals(XACML1.ID_FUNCTION_YEARMONTHDURATION_EQUAL, fd.getId());
         assertEquals(DataTypes.DT_YEARMONTHDURATION.getId(), fd.getDataTypeArgs().getId());
 
-        // just to be safe...  If tests take too long these can probably be eliminated
+        // just to be safe... If tests take too long these can probably be eliminated
         assertEquals(DataTypes.DT_BOOLEAN.getId(), fd.getDataTypeId());
         assertFalse(fd.returnsBag());
         assertEquals(new Integer(2), fd.getNumArgs());
@@ -744,7 +738,7 @@ public class FunctionDefinitionEqualityTest {
         resValue = (Boolean)res.getValue().getValue();
         assertFalse(resValue);
 
-        // test bad args data types?  Not needed?
+        // test bad args data types? Not needed?
         arguments.clear();
         arguments.add(stringAttr1);
         arguments.add(intAttr1);
@@ -752,9 +746,6 @@ public class FunctionDefinitionEqualityTest {
         assertFalse(res.isOk());
 
     }
-
-
-
 
     /**
      * dayTimeDuration - Current version
@@ -770,20 +761,26 @@ public class FunctionDefinitionEqualityTest {
         FunctionArgumentAttributeValue attrDur2 = null;
         FunctionArgumentAttributeValue attrDifferentDur = null;
         try {
-            attrDur1 = new FunctionArgumentAttributeValue(DataTypes.DT_YEARMONTHDURATION.createAttributeValue(dur1));
-            attrDur2 = new FunctionArgumentAttributeValue(DataTypes.DT_YEARMONTHDURATION.createAttributeValue(dur2));
-            attrDifferentDur = new FunctionArgumentAttributeValue(DataTypes.DT_YEARMONTHDURATION.createAttributeValue(differentDur));
+            attrDur1 = new FunctionArgumentAttributeValue(
+                                                          DataTypes.DT_YEARMONTHDURATION
+                                                              .createAttributeValue(dur1));
+            attrDur2 = new FunctionArgumentAttributeValue(
+                                                          DataTypes.DT_YEARMONTHDURATION
+                                                              .createAttributeValue(dur2));
+            attrDifferentDur = new FunctionArgumentAttributeValue(
+                                                                  DataTypes.DT_YEARMONTHDURATION
+                                                                      .createAttributeValue(differentDur));
         } catch (Exception e) {
-            fail("creating attribute e="+ e);
+            fail("creating attribute e=" + e);
         }
 
-        FunctionDefinitionEquality<?> fd = (FunctionDefinitionEquality<?>) StdFunctions.FD_YEARMONTHDURATION_EQUAL;
+        FunctionDefinitionEquality<?> fd = (FunctionDefinitionEquality<?>)StdFunctions.FD_YEARMONTHDURATION_EQUAL;
 
         // check identity and type of the thing created
         assertEquals(XACML3.ID_FUNCTION_YEARMONTHDURATION_EQUAL, fd.getId());
         assertEquals(DataTypes.DT_YEARMONTHDURATION.getId(), fd.getDataTypeArgs().getId());
 
-        // just to be safe...  If tests take too long these can probably be eliminated
+        // just to be safe... If tests take too long these can probably be eliminated
         assertEquals(DataTypes.DT_BOOLEAN.getId(), fd.getDataTypeId());
         assertFalse(fd.returnsBag());
         assertEquals(new Integer(2), fd.getNumArgs());
@@ -806,7 +803,7 @@ public class FunctionDefinitionEqualityTest {
         resValue = (Boolean)res.getValue().getValue();
         assertFalse(resValue);
 
-        // test bad args data types?  Not needed?
+        // test bad args data types? Not needed?
         arguments.clear();
         arguments.add(stringAttr1);
         arguments.add(intAttr1);
@@ -814,7 +811,6 @@ public class FunctionDefinitionEqualityTest {
         assertFalse(res.isOk());
 
     }
-
 
     /**
      * URI
@@ -839,18 +835,20 @@ public class FunctionDefinitionEqualityTest {
         try {
             attrUri1 = new FunctionArgumentAttributeValue(DataTypes.DT_ANYURI.createAttributeValue(uri1));
             attrUri2 = new FunctionArgumentAttributeValue(DataTypes.DT_ANYURI.createAttributeValue(uri2));
-            attrUriNotThere = new FunctionArgumentAttributeValue(DataTypes.DT_ANYURI.createAttributeValue(uriNotThere));
+            attrUriNotThere = new FunctionArgumentAttributeValue(
+                                                                 DataTypes.DT_ANYURI
+                                                                     .createAttributeValue(uriNotThere));
         } catch (Exception e) {
-            fail("creating attribute e="+ e);
+            fail("creating attribute e=" + e);
         }
 
-        FunctionDefinitionEquality<?> fd = (FunctionDefinitionEquality<?>) StdFunctions.FD_ANYURI_EQUAL;
+        FunctionDefinitionEquality<?> fd = (FunctionDefinitionEquality<?>)StdFunctions.FD_ANYURI_EQUAL;
 
         // check identity and type of the thing created
         assertEquals(XACML3.ID_FUNCTION_ANYURI_EQUAL, fd.getId());
         assertEquals(DataTypes.DT_ANYURI.getId(), fd.getDataTypeArgs().getId());
 
-        // just to be safe...  If tests take too long these can probably be eliminated
+        // just to be safe... If tests take too long these can probably be eliminated
         assertEquals(DataTypes.DT_BOOLEAN.getId(), fd.getDataTypeId());
         assertFalse(fd.returnsBag());
         assertEquals(new Integer(2), fd.getNumArgs());
@@ -873,7 +871,7 @@ public class FunctionDefinitionEqualityTest {
         resValue = (Boolean)res.getValue().getValue();
         assertFalse(resValue);
 
-        // test bad args data types?  Not needed?
+        // test bad args data types? Not needed?
         arguments.clear();
         arguments.add(stringAttr1);
         arguments.add(intAttr1);
@@ -881,7 +879,6 @@ public class FunctionDefinitionEqualityTest {
         assertFalse(res.isOk());
 
     }
-
 
     /**
      * X500Name
@@ -893,25 +890,26 @@ public class FunctionDefinitionEqualityTest {
         X500Principal name2 = new X500Principal("CN=Duke, OU=JavaSoft, O=Sun Microsystems, C=US");
         X500Principal name3 = new X500Principal("CN=NotDuke, OU=NotThere, O=Oracle, C=US");
 
-
         FunctionArgumentAttributeValue attrName1 = null;
         FunctionArgumentAttributeValue attrName1a = null;
         FunctionArgumentAttributeValue attrNotSameName = null;
         try {
             attrName1 = new FunctionArgumentAttributeValue(DataTypes.DT_X500NAME.createAttributeValue(name1));
             attrName1a = new FunctionArgumentAttributeValue(DataTypes.DT_X500NAME.createAttributeValue(name2));
-            attrNotSameName = new FunctionArgumentAttributeValue(DataTypes.DT_X500NAME.createAttributeValue(name3));
+            attrNotSameName = new FunctionArgumentAttributeValue(
+                                                                 DataTypes.DT_X500NAME
+                                                                     .createAttributeValue(name3));
         } catch (Exception e) {
-            fail("creating attribute e="+ e);
+            fail("creating attribute e=" + e);
         }
 
-        FunctionDefinitionEquality<?> fd = (FunctionDefinitionEquality<?>) StdFunctions.FD_X500NAME_EQUAL;
+        FunctionDefinitionEquality<?> fd = (FunctionDefinitionEquality<?>)StdFunctions.FD_X500NAME_EQUAL;
 
         // check identity and type of the thing created
         assertEquals(XACML3.ID_FUNCTION_X500NAME_EQUAL, fd.getId());
         assertEquals(DataTypes.DT_X500NAME.getId(), fd.getDataTypeArgs().getId());
 
-        // just to be safe...  If tests take too long these can probably be eliminated
+        // just to be safe... If tests take too long these can probably be eliminated
         assertEquals(DataTypes.DT_BOOLEAN.getId(), fd.getDataTypeId());
         assertFalse(fd.returnsBag());
         assertEquals(new Integer(2), fd.getNumArgs());
@@ -934,7 +932,7 @@ public class FunctionDefinitionEqualityTest {
         resValue = (Boolean)res.getValue().getValue();
         assertFalse(resValue);
 
-        // test bad args data types?  Not needed?
+        // test bad args data types? Not needed?
         arguments.clear();
         arguments.add(stringAttr1);
         arguments.add(intAttr1);
@@ -942,8 +940,6 @@ public class FunctionDefinitionEqualityTest {
         assertFalse(res.isOk());
 
     }
-
-
 
     /**
      * RFC822Name
@@ -968,12 +964,11 @@ public class FunctionDefinitionEqualityTest {
             localCaseName = RFC822Name.newInstance("LOCALPart@DomainPart");
             domainCaseName = RFC822Name.newInstance("localPart@DOMAINPart");
 
-
         } catch (Exception e) {
             fail(e.toString());
         }
 
-        // should not be able to create a name without an @.  If you try, newInstance returns null
+        // should not be able to create a name without an @. If you try, newInstance returns null
         Exception exSeen = null;
         try {
             noAtName = RFC822Name.newInstance("nameWithoutAnAtSign");
@@ -982,7 +977,6 @@ public class FunctionDefinitionEqualityTest {
         }
         assertNotNull(exSeen);
 
-
         FunctionArgumentAttributeValue attrName1 = null;
         FunctionArgumentAttributeValue attrName1a = null;
         FunctionArgumentAttributeValue attrDifferentLocalName = null;
@@ -990,23 +984,35 @@ public class FunctionDefinitionEqualityTest {
         FunctionArgumentAttributeValue attrLocalCaseName = null;
         FunctionArgumentAttributeValue attrDomainCaseName = null;
         try {
-            attrName1 = new FunctionArgumentAttributeValue(DataTypes.DT_RFC822NAME.createAttributeValue(name1));
-            attrName1a = new FunctionArgumentAttributeValue(DataTypes.DT_RFC822NAME.createAttributeValue(name1a));
-            attrDifferentLocalName = new FunctionArgumentAttributeValue(DataTypes.DT_RFC822NAME.createAttributeValue(differentLocalName));
-            attrDifferentDomainName = new FunctionArgumentAttributeValue(DataTypes.DT_RFC822NAME.createAttributeValue(differentDomainName));
-            attrLocalCaseName = new FunctionArgumentAttributeValue(DataTypes.DT_RFC822NAME.createAttributeValue(localCaseName));
-            attrDomainCaseName = new FunctionArgumentAttributeValue(DataTypes.DT_RFC822NAME.createAttributeValue(domainCaseName));
+            attrName1 = new FunctionArgumentAttributeValue(
+                                                           DataTypes.DT_RFC822NAME
+                                                               .createAttributeValue(name1));
+            attrName1a = new FunctionArgumentAttributeValue(
+                                                            DataTypes.DT_RFC822NAME
+                                                                .createAttributeValue(name1a));
+            attrDifferentLocalName = new FunctionArgumentAttributeValue(
+                                                                        DataTypes.DT_RFC822NAME
+                                                                            .createAttributeValue(differentLocalName));
+            attrDifferentDomainName = new FunctionArgumentAttributeValue(
+                                                                         DataTypes.DT_RFC822NAME
+                                                                             .createAttributeValue(differentDomainName));
+            attrLocalCaseName = new FunctionArgumentAttributeValue(
+                                                                   DataTypes.DT_RFC822NAME
+                                                                       .createAttributeValue(localCaseName));
+            attrDomainCaseName = new FunctionArgumentAttributeValue(
+                                                                    DataTypes.DT_RFC822NAME
+                                                                        .createAttributeValue(domainCaseName));
         } catch (Exception e) {
-            fail("creating attribute e="+ e);
+            fail("creating attribute e=" + e);
         }
 
-        FunctionDefinitionEquality<?> fd = (FunctionDefinitionEquality<?>) StdFunctions.FD_RFC822NAME_EQUAL;
+        FunctionDefinitionEquality<?> fd = (FunctionDefinitionEquality<?>)StdFunctions.FD_RFC822NAME_EQUAL;
 
         // check identity and type of the thing created
         assertEquals(XACML3.ID_FUNCTION_RFC822NAME_EQUAL, fd.getId());
         assertEquals(DataTypeRFC822Name.newInstance().getId(), fd.getDataTypeArgs().getId());
 
-        // just to be safe...  If tests take too long these can probably be eliminated
+        // just to be safe... If tests take too long these can probably be eliminated
         assertEquals(DataTypes.DT_BOOLEAN.getId(), fd.getDataTypeId());
         assertFalse(fd.returnsBag());
         assertEquals(new Integer(2), fd.getNumArgs());
@@ -1056,7 +1062,7 @@ public class FunctionDefinitionEqualityTest {
         resValue = (Boolean)res.getValue().getValue();
         assertTrue(resValue);
 
-        // test bad args data types?  Not needed?
+        // test bad args data types? Not needed?
         arguments.clear();
         arguments.add(stringAttr1);
         arguments.add(intAttr1);
@@ -1064,7 +1070,6 @@ public class FunctionDefinitionEqualityTest {
         assertFalse(res.isOk());
 
     }
-
 
     /**
      * Hex Binary
@@ -1084,23 +1089,30 @@ public class FunctionDefinitionEqualityTest {
 
         FunctionArgumentAttributeValue attrBinary = null;
         FunctionArgumentAttributeValue attrSameBinary = null;
-        FunctionArgumentAttributeValue attrDifferentBinary = null;;
+        FunctionArgumentAttributeValue attrDifferentBinary = null;
+        ;
         try {
-            attrBinary = new FunctionArgumentAttributeValue(DataTypes.DT_HEXBINARY.createAttributeValue(binary));
-            attrSameBinary = new FunctionArgumentAttributeValue(DataTypes.DT_HEXBINARY.createAttributeValue(sameBinary));
-            attrDifferentBinary = new FunctionArgumentAttributeValue(DataTypes.DT_HEXBINARY.createAttributeValue(differentBinary));
+            attrBinary = new FunctionArgumentAttributeValue(
+                                                            DataTypes.DT_HEXBINARY
+                                                                .createAttributeValue(binary));
+            attrSameBinary = new FunctionArgumentAttributeValue(
+                                                                DataTypes.DT_HEXBINARY
+                                                                    .createAttributeValue(sameBinary));
+            attrDifferentBinary = new FunctionArgumentAttributeValue(
+                                                                     DataTypes.DT_HEXBINARY
+                                                                         .createAttributeValue(differentBinary));
 
         } catch (Exception e) {
-            fail("creating attribute e="+ e);
+            fail("creating attribute e=" + e);
         }
 
-        FunctionDefinitionEquality<?> fd = (FunctionDefinitionEquality<?>) StdFunctions.FD_HEXBINARY_EQUAL;
+        FunctionDefinitionEquality<?> fd = (FunctionDefinitionEquality<?>)StdFunctions.FD_HEXBINARY_EQUAL;
 
         // check identity and type of the thing created
         assertEquals(XACML3.ID_FUNCTION_HEXBINARY_EQUAL, fd.getId());
         assertEquals(DataTypes.DT_HEXBINARY.getId(), fd.getDataTypeArgs().getId());
 
-        // just to be safe...  If tests take too long these can probably be eliminated
+        // just to be safe... If tests take too long these can probably be eliminated
         assertEquals(DataTypes.DT_BOOLEAN.getId(), fd.getDataTypeId());
         assertFalse(fd.returnsBag());
         assertEquals(new Integer(2), fd.getNumArgs());
@@ -1123,7 +1135,7 @@ public class FunctionDefinitionEqualityTest {
         resValue = (Boolean)res.getValue().getValue();
         assertFalse(resValue);
 
-        // test bad args data types?  Not needed?
+        // test bad args data types? Not needed?
         arguments.clear();
         arguments.add(stringAttr1);
         arguments.add(intAttr1);
@@ -1131,7 +1143,6 @@ public class FunctionDefinitionEqualityTest {
         assertFalse(res.isOk());
 
     }
-
 
     /**
      * Base64 Binary
@@ -1142,8 +1153,10 @@ public class FunctionDefinitionEqualityTest {
         Base64Binary sameBinary = null;
         Base64Binary differentBinary = null;
         try {
-            binary = Base64Binary.newInstance("TWFuIGlzIGRpc3Rpbmd1aXNoZWQsIG5vdCBvbmx5IGJ5IGhpcyByZWFzb24sIGJ1dCBieSB0aGlz");
-            sameBinary = Base64Binary.newInstance("TWFuIGlzIGRpc3Rpbmd1aXNoZWQsIG5vdCBvbmx5IGJ5IGhpcyByZWFzb24sIGJ1dCBieSB0aGlz");
+            binary = Base64Binary
+                .newInstance("TWFuIGlzIGRpc3Rpbmd1aXNoZWQsIG5vdCBvbmx5IGJ5IGhpcyByZWFzb24sIGJ1dCBieSB0aGlz");
+            sameBinary = Base64Binary
+                .newInstance("TWFuIGlzIGRpc3Rpbmd1aXNoZWQsIG5vdCBvbmx5IGJ5IGhpcyByZWFzb24sIGJ1dCBieSB0aGlz");
             differentBinary = Base64Binary.newInstance("f123a890ee3d");
         } catch (Exception e) {
             fail(e.toString());
@@ -1153,21 +1166,27 @@ public class FunctionDefinitionEqualityTest {
         FunctionArgumentAttributeValue attrSameBinary = null;
         FunctionArgumentAttributeValue attrDifferentBinary = null;
         try {
-            attrBinary = new FunctionArgumentAttributeValue(DataTypes.DT_BASE64BINARY.createAttributeValue(binary));
-            attrSameBinary = new FunctionArgumentAttributeValue(DataTypes.DT_BASE64BINARY.createAttributeValue(sameBinary));
-            attrDifferentBinary = new FunctionArgumentAttributeValue(DataTypes.DT_BASE64BINARY.createAttributeValue(differentBinary));
+            attrBinary = new FunctionArgumentAttributeValue(
+                                                            DataTypes.DT_BASE64BINARY
+                                                                .createAttributeValue(binary));
+            attrSameBinary = new FunctionArgumentAttributeValue(
+                                                                DataTypes.DT_BASE64BINARY
+                                                                    .createAttributeValue(sameBinary));
+            attrDifferentBinary = new FunctionArgumentAttributeValue(
+                                                                     DataTypes.DT_BASE64BINARY
+                                                                         .createAttributeValue(differentBinary));
 
         } catch (Exception e) {
-            fail("creating attribute e="+ e);
+            fail("creating attribute e=" + e);
         }
 
-        FunctionDefinitionEquality<?> fd = (FunctionDefinitionEquality<?>) StdFunctions.FD_BASE64BINARY_EQUAL;
+        FunctionDefinitionEquality<?> fd = (FunctionDefinitionEquality<?>)StdFunctions.FD_BASE64BINARY_EQUAL;
 
         // check identity and type of the thing created
         assertEquals(XACML3.ID_FUNCTION_BASE64BINARY_EQUAL, fd.getId());
         assertEquals(DataTypes.DT_BASE64BINARY.getId(), fd.getDataTypeArgs().getId());
 
-        // just to be safe...  If tests take too long these can probably be eliminated
+        // just to be safe... If tests take too long these can probably be eliminated
         assertEquals(DataTypes.DT_BOOLEAN.getId(), fd.getDataTypeId());
         assertFalse(fd.returnsBag());
         assertEquals(new Integer(2), fd.getNumArgs());
@@ -1190,7 +1209,7 @@ public class FunctionDefinitionEqualityTest {
         resValue = (Boolean)res.getValue().getValue();
         assertFalse(resValue);
 
-        // test bad args data types?  Not needed?
+        // test bad args data types? Not needed?
         arguments.clear();
         arguments.add(stringAttr1);
         arguments.add(intAttr1);

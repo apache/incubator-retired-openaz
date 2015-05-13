@@ -42,64 +42,63 @@ import org.apache.openaz.xacml.pdp.policy.CombinerParameter;
 import org.apache.openaz.xacml.pdp.policy.CombiningElement;
 
 /**
- *
- * This algorithm was created to support combining a collection of policies in which the permit's are combined into one decision. PermitOverrides
- * itself will stop once a Permit is found. However, some policy makers want every policy in a policy set to be visited by the PDP engine.
- * The result of all the Permits that were found are then combined and returned. If no Permits were found then the result is the same semantics as
- * the PermitOverrides combining algorithm.
+ * This algorithm was created to support combining a collection of policies in which the permit's are combined
+ * into one decision. PermitOverrides itself will stop once a Permit is found. However, some policy makers
+ * want every policy in a policy set to be visited by the PDP engine. The result of all the Permits that were
+ * found are then combined and returned. If no Permits were found then the result is the same semantics as the
+ * PermitOverrides combining algorithm.
  *
  * @param <T>
  */
-public class CombinedPermitOverrides<T extends org.apache.openaz.xacml.pdp.eval.Evaluatable> extends CombiningAlgorithmBase<T> {
+public class CombinedPermitOverrides<T extends org.apache.openaz.xacml.pdp.eval.Evaluatable> extends 
+    CombiningAlgorithmBase<T> {
 
     public CombinedPermitOverrides(Identifier identifierIn) {
         super(identifierIn);
     }
 
     @Override
-    public EvaluationResult combine(EvaluationContext evaluationContext,
-                                    List<CombiningElement<T>> elements,
-                                    List<CombinerParameter> combinerParameters)
-    throws EvaluationException {
-        boolean atLeastOneDeny					= false;
-        boolean atLeastOnePermit				= false;
+    public EvaluationResult combine(EvaluationContext evaluationContext, List<CombiningElement<T>> elements,
+                                    List<CombinerParameter> combinerParameters) throws EvaluationException {
+        boolean atLeastOneDeny = false;
+        boolean atLeastOnePermit = false;
 
-        EvaluationResult combinedResultDeny			= new EvaluationResult(Decision.DENY);
-        EvaluationResult combinedResultPermit		= new EvaluationResult(Decision.PERMIT);
+        EvaluationResult combinedResultDeny = new EvaluationResult(Decision.DENY);
+        EvaluationResult combinedResultPermit = new EvaluationResult(Decision.PERMIT);
 
-        EvaluationResult firstIndeterminateD	= null;
-        EvaluationResult firstIndeterminateP	= null;
-        EvaluationResult firstIndeterminateDP	= null;
+        EvaluationResult firstIndeterminateD = null;
+        EvaluationResult firstIndeterminateP = null;
+        EvaluationResult firstIndeterminateDP = null;
 
-        Iterator<CombiningElement<T>> iterElements	= elements.iterator();
+        Iterator<CombiningElement<T>> iterElements = elements.iterator();
         while (iterElements.hasNext()) {
-            CombiningElement<T> combiningElement		= iterElements.next();
-            EvaluationResult evaluationResultElement	= combiningElement.evaluate(evaluationContext);
+            CombiningElement<T> combiningElement = iterElements.next();
+            EvaluationResult evaluationResultElement = combiningElement.evaluate(evaluationContext);
 
-            assert(evaluationResultElement != null);
-            switch(evaluationResultElement.getDecision()) {
+            assert evaluationResultElement != null;
+            switch (evaluationResultElement.getDecision()) {
             case DENY:
-                atLeastOneDeny	= true;
+                atLeastOneDeny = true;
                 combinedResultDeny.merge(evaluationResultElement);
                 break;
             case INDETERMINATE:
             case INDETERMINATE_DENYPERMIT:
                 if (firstIndeterminateDP == null) {
-                    firstIndeterminateDP	= evaluationResultElement;
+                    firstIndeterminateDP = evaluationResultElement;
                 } else {
                     firstIndeterminateDP.merge(evaluationResultElement);
                 }
                 break;
             case INDETERMINATE_DENY:
                 if (firstIndeterminateD == null) {
-                    firstIndeterminateD		= evaluationResultElement;
+                    firstIndeterminateD = evaluationResultElement;
                 } else {
                     firstIndeterminateD.merge(evaluationResultElement);
                 }
                 break;
             case INDETERMINATE_PERMIT:
                 if (firstIndeterminateP == null) {
-                    firstIndeterminateP		= evaluationResultElement;
+                    firstIndeterminateP = evaluationResultElement;
                 } else {
                     firstIndeterminateP.merge(evaluationResultElement);
                 }
@@ -111,7 +110,8 @@ public class CombinedPermitOverrides<T extends org.apache.openaz.xacml.pdp.eval.
                 combinedResultPermit.merge(evaluationResultElement);
                 break;
             default:
-                throw new EvaluationException("Illegal Decision: \"" + evaluationResultElement.getDecision().toString());
+                throw new EvaluationException("Illegal Decision: \""
+                                              + evaluationResultElement.getDecision().toString());
             }
         }
 

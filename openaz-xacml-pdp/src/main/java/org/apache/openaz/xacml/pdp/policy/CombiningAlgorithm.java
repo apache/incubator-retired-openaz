@@ -39,8 +39,8 @@ import org.apache.openaz.xacml.pdp.eval.EvaluationException;
 import org.apache.openaz.xacml.pdp.eval.EvaluationResult;
 
 /**
- * CombiningAlgorithm is the interface for objects that implement XACML combining algorithms for rules, policies, and policy sets.
- *
+ * CombiningAlgorithm is the interface for objects that implement XACML combining algorithms for rules,
+ * policies, and policy sets.
  *
  * @param <T> the type of object to be combined
  * @param <U> the type of the identifier for <code>T</code>
@@ -51,17 +51,22 @@ public interface CombiningAlgorithm<T extends Evaluatable> {
      *
      * @return the <code>Identifier</code> for this <code>CombiningAlgorithm</code>
      */
-    public Identifier getId();
+    Identifier getId();
 
     /**
-     * Evaluates as many of the <code>CombiningElement</code>s supplied with the given <code>CombinerParameter</code>s based on
-     * the particular combining algorithm and combines their <code>EvaluationResult</code>s into a single <code>EvaluationResult</code>.
+     * Evaluates as many of the <code>CombiningElement</code>s supplied with the given
+     * <code>CombinerParameter</code>s based on the particular combining algorithm and combines their
+     * <code>EvaluationResult</code>s into a single <code>EvaluationResult</code>.
      *
-     * @param evaluationContext the <code>EvaluationContext</code> in which to evaluate each of the <code>CombiningElement</code>s
+     * @param evaluationContext the <code>EvaluationContext</code> in which to evaluate each of the
+     *            <code>CombiningElement</code>s
      * @param elements the <code>List</code> of <code>CombiningElement</code>s to evaluate
-     * @param combinerParameters the <code>List</code> of <code>CombinerParameter</code>s to apply to the combining algorithm
+     * @param combinerParameters the <code>List</code> of <code>CombinerParameter</code>s to apply to the
+     *            combining algorithm
      * @return the combined <code>EvaluationResult</code>
-     * @throws org.apache.openaz.xacml.pdp.eval.EvaluationException if there is an error in the <code>evaluate</code> method of any of the <code>CombiningElement</code>s
+     * @throws com.att.research.xacmlatt.pdp.eval.EvaluationException if there is an error in the
+     *             <code>evaluate</code> method of any of the <code>CombiningElement</code>s
      */
-    public EvaluationResult combine(EvaluationContext evaluationContext, List<CombiningElement<T>> elements, List<CombinerParameter> combinerParameters) throws EvaluationException;
+    EvaluationResult combine(EvaluationContext evaluationContext, List<CombiningElement<T>> elements,
+                                    List<CombinerParameter> combinerParameters) throws EvaluationException;
 }

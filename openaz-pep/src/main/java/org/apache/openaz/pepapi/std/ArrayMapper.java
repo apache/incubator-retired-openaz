@@ -24,12 +24,11 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.openaz.pepapi.*;
 
-
 public final class ArrayMapper implements ObjectMapper {
 
     private static final Log logger = LogFactory.getLog(ArrayMapper.class);
 
-    private PepConfig pepConfig;
+    private PepConfig pepConfig; //NOPMD
 
     private MapperRegistry mapperRegistry;
 
@@ -41,10 +40,10 @@ public final class ArrayMapper implements ObjectMapper {
     @Override
     public void map(Object o, PepRequest pepRequest) {
         Object[] array = (Object[])o;
-        if(array != null && array.length > 0) {
+        if (array != null && array.length > 0) {
             ObjectMapper mapper = mapperRegistry.getMapper(array[0].getClass());
-            if(mapper != null) {
-                for(Object item: array) {
+            if (mapper != null) {
+                for (Object item : array) {
                     mapper.map(item, pepRequest);
                 }
             } else {

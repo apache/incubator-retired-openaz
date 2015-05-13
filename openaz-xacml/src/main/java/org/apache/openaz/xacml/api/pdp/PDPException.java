@@ -31,9 +31,8 @@
 package org.apache.openaz.xacml.api.pdp;
 
 /**
- * PEPException extends <code>Exception</code> to implement exceptions thrown by {@link PDPEngine} and {@link org.apache.openaz.xacml.api.pdp.PDPEngineFactory}
- * classes.
- *
+ * PEPException extends <code>Exception</code> to implement exceptions thrown by {@link PDPEngine} and
+ * {@link org.apache.openaz.xacml.api.pdp.PDPEngineFactory} classes.
  */
 public class PDPException extends Exception {
     private static final long serialVersionUID = -4287919889460770831L;

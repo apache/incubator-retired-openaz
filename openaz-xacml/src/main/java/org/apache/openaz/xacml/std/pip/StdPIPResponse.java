@@ -49,14 +49,14 @@ import org.apache.openaz.xacml.std.StdStatus;
 import org.apache.openaz.xacml.util.Wrapper;
 
 /**
- * Immutable implementation of the {@link org.apache.openaz.xacml.api.pip.PIPResponse} interface.
- *
+ * Immutable implementation of the {@link com.att.research.xacml.api.pip.PIPResponse} interface.
  */
 public class StdPIPResponse extends Wrapper<PIPResponse> implements PIPResponse {
-    public static final PIPResponse	PIP_RESPONSE_EMPTY	= new StdPIPResponse(StdStatus.STATUS_OK);
+    public static final PIPResponse PIP_RESPONSE_EMPTY = new StdPIPResponse(StdStatus.STATUS_OK);
 
     /**
-     * Creates a new immutable <code>StdPIPResponse</code> that wraps the given {@link org.apache.openaz.xacml.api.pip.PIPResponse}.
+     * Creates a new immutable <code>StdPIPResponse</code> that wraps the given
+     * {@link com.att.research.xacml.api.pip.PIPResponse}.
      *
      * @param wrappedObjectIn the <code>PIPResponse</code> to wrap.
      */
@@ -84,8 +84,8 @@ public class StdPIPResponse extends Wrapper<PIPResponse> implements PIPResponse 
     }
 
     /**
-     * Creates a new <code>StdPIPResponse</code> with an OK {@link org.apache.openaz.xacml.api.Status} and a copy
-     * of the given <code>Collection</code> of {@link org.apache.openaz.xacml.api.Attribute}s.
+     * Creates a new <code>StdPIPResponse</code> with an OK {@link com.att.research.xacml.api.Status} and a
+     * copy of the given <code>Collection</code> of {@link com.att.research.xacml.api.Attribute}s.
      *
      * @param attributes the <code>Attribute</code>s for the new <code>StdPIPResponse</code>.
      */
@@ -104,8 +104,9 @@ public class StdPIPResponse extends Wrapper<PIPResponse> implements PIPResponse 
     }
 
     /**
-     * Determines if the given {@link org.apache.openaz.xacml.api.pip.PIPRequest} matches the given {@link org.apache.openaz.xacml.api.Attribute} by
-     * comparing the category, attribute id, and if not null in the <code>PIPRequest</code>, the issuer.
+     * Determines if the given {@link com.att.research.xacml.api.pip.PIPRequest} matches the given
+     * {@link com.att.research.xacml.api.Attribute} by comparing the category, attribute id, and if not null
+     * in the <code>PIPRequest</code>, the issuer.
      *
      * @param pipRequest the <code>PIPRequest</code> to compare against
      * @param attribute the <code>Attribute</code> to compare to
@@ -125,14 +126,17 @@ public class StdPIPResponse extends Wrapper<PIPResponse> implements PIPResponse 
     }
 
     /**
-     * Gets the subset of the {@link org.apache.openaz.xacml.api.AttributeValue}s from the given <code>Collection</code> whose data type
-     * matches the data type in the given {@link org.apache.openaz.xacml.api.pip.PIPRequest}.
+     * Gets the subset of the {@link com.att.research.xacml.api.AttributeValue}s from the given
+     * <code>Collection</code> whose data type matches the data type in the given
+     * {@link com.att.research.xacml.api.pip.PIPRequest}.
      *
      * @param pipRequest the <code>PIPRequest</code> to compare against
      * @param listAttributeValues the <code>Collection</code> of <code>AttributeValue</code>s to select from
-     * @return a <code>Collection</code> of matching <code>AttributeValue</code>s or null if there are no matches
+     * @return a <code>Collection</code> of matching <code>AttributeValue</code>s or null if there are no
+     *         matches
      */
-    public static Collection<AttributeValue<?>> matchingValues(PIPRequest pipRequest, Collection<AttributeValue<?>> listAttributeValues) {
+    public static Collection<AttributeValue<?>> matchingValues(PIPRequest pipRequest,
+                                                               Collection<AttributeValue<?>> listAttributeValues) {
         if (listAttributeValues.size() == 0) {
             return listAttributeValues;
         }
@@ -140,10 +144,12 @@ public class StdPIPResponse extends Wrapper<PIPResponse> implements PIPResponse 
         /*
          * See if all of the values match the requested data type
          */
-        boolean allMatch	= true;
-        for (Iterator<AttributeValue<?>> iterAttributeValues = listAttributeValues.iterator() ; allMatch && iterAttributeValues.hasNext() ; ) {
-            AttributeValue<?> attributeValue	= iterAttributeValues.next();
-            allMatch	= attributeValue.getDataTypeId().equals(pipRequest.getDataTypeId());
+        boolean allMatch = true;
+        for (Iterator<AttributeValue<?>> iterAttributeValues = listAttributeValues.iterator(); allMatch
+                                                                                               && iterAttributeValues
+                                                                                                   .hasNext();) {
+            AttributeValue<?> attributeValue = iterAttributeValues.next();
+            allMatch = attributeValue.getDataTypeId().equals(pipRequest.getDataTypeId());
         }
         if (allMatch) {
             return listAttributeValues;
@@ -156,9 +162,10 @@ public class StdPIPResponse extends Wrapper<PIPResponse> implements PIPResponse 
             return null;
         }
 
-        List<AttributeValue<?>> listAttributeValuesMatching	= new ArrayList<AttributeValue<?>>();
-        for (Iterator<AttributeValue<?>> iterAttributeValues = listAttributeValues.iterator() ; iterAttributeValues.hasNext() ;) {
-            AttributeValue<?> attributeValue	= iterAttributeValues.next();
+        List<AttributeValue<?>> listAttributeValuesMatching = new ArrayList<AttributeValue<?>>();
+        for (Iterator<AttributeValue<?>> iterAttributeValues = listAttributeValues.iterator(); iterAttributeValues
+            .hasNext();) {
+            AttributeValue<?> attributeValue = iterAttributeValues.next();
             if (attributeValue.getDataTypeId().equals(pipRequest.getDataTypeId())) {
                 listAttributeValuesMatching.add(attributeValue);
             }
@@ -171,18 +178,21 @@ public class StdPIPResponse extends Wrapper<PIPResponse> implements PIPResponse 
     }
 
     /**
-     * Returns a {@link org.apache.openaz.xacml.api.pip.PIPResponse} that only contains the {@link org.apache.openaz.xacml.api.Attribute}s
-     * that match the given {@link org.apache.openaz.xacml.api.pip.PIPRequest} with {@link org.apache.openaz.xacml.api.AttributeValue}s that
-     * match the requested data type.
+     * Returns a {@link com.att.research.xacml.api.pip.PIPResponse} that only contains the
+     * {@link com.att.research.xacml.api.Attribute}s that match the given
+     * {@link com.att.research.xacml.api.pip.PIPRequest} with
+     * {@link com.att.research.xacml.api.AttributeValue}s that match the requested data type.
      *
      * @param pipRequest
      * @param pipResponse
      * @return
      * @throws org.apache.openaz.xacml.api.pip.PIPException
      */
-    public static PIPResponse getMatchingResponse(PIPRequest pipRequest, PIPResponse pipResponse) throws PIPException {
+    public static PIPResponse getMatchingResponse(PIPRequest pipRequest, PIPResponse pipResponse)
+        throws PIPException {
         /*
-         * Error responses should not contain any attributes, so just return the error response as is.  Likewise for empty responses
+         * Error responses should not contain any attributes, so just return the error response as is.
+         * Likewise for empty responses
          */
         if (!pipResponse.getStatus().isOk() || pipResponse.getAttributes().size() == 0) {
             return pipResponse;
@@ -193,15 +203,17 @@ public class StdPIPResponse extends Wrapper<PIPResponse> implements PIPResponse 
          */
         if (pipResponse.isSimple()) {
             /*
-             * Get the one Attribute and verify that it matches the request, and that the data type of its values matches the request
+             * Get the one Attribute and verify that it matches the request, and that the data type of its
+             * values matches the request
              */
-            Attribute attributeResponse	= pipResponse.getAttributes().iterator().next();
+            Attribute attributeResponse = pipResponse.getAttributes().iterator().next();
             if (matches(pipRequest, attributeResponse)) {
-                Collection<AttributeValue<?>> attributeValues	= attributeResponse.getValues();
+                Collection<AttributeValue<?>> attributeValues = attributeResponse.getValues();
                 if (attributeValues == null || attributeValues.size() == 0) {
                     return pipResponse;
                 } else {
-                    AttributeValue<?> attributeValueResponse	= attributeResponse.getValues().iterator().next();
+                    AttributeValue<?> attributeValueResponse = attributeResponse.getValues().iterator()
+                        .next();
                     if (attributeValueResponse.getDataTypeId().equals(pipRequest.getDataTypeId())) {
                         return pipResponse;
                     } else {
@@ -213,20 +225,26 @@ public class StdPIPResponse extends Wrapper<PIPResponse> implements PIPResponse 
             }
         } else {
             /*
-             * Iterate over the Attributes and just get the ones that match and collapse any matching AttributeValues
+             * Iterate over the Attributes and just get the ones that match and collapse any matching
+             * AttributeValues
              */
-            StdMutableAttribute	attributeMatch	= null;
-            Iterator<Attribute> iterAttributesResponse	= pipResponse.getAttributes().iterator();
+            StdMutableAttribute attributeMatch = null;
+            Iterator<Attribute> iterAttributesResponse = pipResponse.getAttributes().iterator();
             while (iterAttributesResponse.hasNext()) {
-                Attribute attributeResponse	= iterAttributesResponse.next();
+                Attribute attributeResponse = iterAttributesResponse.next();
                 if (matches(pipRequest, attributeResponse)) {
                     /*
                      * Get subset of the matching attribute values
                      */
-                    Collection<AttributeValue<?>> listAttributeValuesMatch	= matchingValues(pipRequest, attributeResponse.getValues());
+                    Collection<AttributeValue<?>> listAttributeValuesMatch = matchingValues(pipRequest,
+                                                                                            attributeResponse
+                                                                                                .getValues());
                     if (listAttributeValuesMatch != null && listAttributeValuesMatch.size() > 0) {
                         if (attributeMatch == null) {
-                            attributeMatch	= new StdMutableAttribute(pipRequest.getCategory(), pipRequest.getAttributeId(), listAttributeValuesMatch, pipRequest.getIssuer(), false);
+                            attributeMatch = new StdMutableAttribute(pipRequest.getCategory(),
+                                                                     pipRequest.getAttributeId(),
+                                                                     listAttributeValuesMatch,
+                                                                     pipRequest.getIssuer(), false);
                         } else {
                             attributeMatch.addValues(listAttributeValuesMatch);
                         }
@@ -242,25 +260,29 @@ public class StdPIPResponse extends Wrapper<PIPResponse> implements PIPResponse 
     }
 
     /**
-     * Splits an Attribute that may contain multiple data types into a list of Attributes, each with only one data type
+     * Splits an Attribute that may contain multiple data types into a list of Attributes, each with only one
+     * data type
+     * 
      * @param attribute
      * @return
      */
     private static List<Attribute> simplifyAttribute(Attribute attribute) {
-        List<Attribute> listAttributes	= new ArrayList<Attribute>();
+        List<Attribute> listAttributes = new ArrayList<Attribute>();
         if (attribute.getValues() == null || attribute.getValues().size() <= 1) {
             listAttributes.add(attribute);
         } else {
             for (AttributeValue<?> attributeValue : attribute.getValues()) {
-                listAttributes.add(new StdAttribute(attribute.getCategory(), attribute.getAttributeId(), attributeValue, attribute.getIssuer(), attribute.getIncludeInResults()));
+                listAttributes.add(new StdAttribute(attribute.getCategory(), attribute.getAttributeId(),
+                                                    attributeValue, attribute.getIssuer(), attribute
+                                                        .getIncludeInResults()));
             }
         }
         return listAttributes;
     }
 
     /**
-     * Takes a list of simple Attributes and collapses attributes with the same category, id, value data type, and issuer into
-     * a single Attribute and returns the list of collapsed Attributes.
+     * Takes a list of simple Attributes and collapses attributes with the same category, id, value data type,
+     * and issuer into a single Attribute and returns the list of collapsed Attributes.
      *
      * @param listAttributes
      * @return
@@ -269,11 +291,11 @@ public class StdPIPResponse extends Wrapper<PIPResponse> implements PIPResponse 
         if (listAttributes.size() <= 0) {
             return listAttributes;
         }
-        Map<PIPRequest, StdMutableAttribute> map	= new HashMap<PIPRequest, StdMutableAttribute>();
+        Map<PIPRequest, StdMutableAttribute> map = new HashMap<PIPRequest, StdMutableAttribute>();
         for (Attribute attribute : listAttributes) {
-            PIPRequest pipRequest	= new StdPIPRequest(attribute);
+            PIPRequest pipRequest = new StdPIPRequest(attribute);
             if (map.containsKey(pipRequest)) {
-                StdMutableAttribute mutableAttribute	= map.get(pipRequest);
+                StdMutableAttribute mutableAttribute = map.get(pipRequest);
                 mutableAttribute.addValues(attribute.getValues());
             } else {
                 map.put(pipRequest, new StdMutableAttribute(attribute));
@@ -288,29 +310,32 @@ public class StdPIPResponse extends Wrapper<PIPResponse> implements PIPResponse 
     }
 
     /**
-     * Takes a {@link org.apache.openaz.xacml.api.pip.PIPResponse} that may contain {@link org.apache.openaz.xacml.api.Attribute}s, with multiple
-     * identifiers, each of which may contain multiple {@link org.apache.openaz.xacml.api.AttributeValue}s with different data types and creates a collection of
-     * simple <code>PIPResponse</code>s that contain a single <code>Attribute</code> with <code>AttributeValue</code>s of one data type.
+     * Takes a {@link com.att.research.xacml.api.pip.PIPResponse} that may contain
+     * {@link com.att.research.xacml.api.Attribute}s, with multiple identifiers, each of which may contain
+     * multiple {@link com.att.research.xacml.api.AttributeValue}s with different data types and creates a
+     * collection of simple <code>PIPResponse</code>s that contain a single <code>Attribute</code> with
+     * <code>AttributeValue</code>s of one data type.
      *
      * @param pipResponse the <code>PIPResponse</code> to split
      * @return a <code>Collection</code> of simple <code>PIPResponse</code>s
      * @throws org.apache.openaz.xacml.api.pip.PIPException if there is an error splitting the response
      */
-    public static Map<PIPRequest,PIPResponse> splitResponse(PIPResponse pipResponse) throws PIPException {
-        Map<PIPRequest,PIPResponse> map	= new HashMap<PIPRequest,PIPResponse>();
+    public static Map<PIPRequest, PIPResponse> splitResponse(PIPResponse pipResponse) throws PIPException {
+        Map<PIPRequest, PIPResponse> map = new HashMap<PIPRequest, PIPResponse>();
         if (!pipResponse.getStatus().isOk() || pipResponse.isSimple()) {
             map.put(new StdPIPRequest(pipResponse.getAttributes().iterator().next()), pipResponse);
         } else {
-            List<Attribute> listAllAttributesSimple	= new ArrayList<Attribute>();
-            for (Iterator<Attribute> iterAttributes = pipResponse.getAttributes().iterator() ; iterAttributes.hasNext() ; ) {
-                Attribute attribute	= iterAttributes.next();
-                List<Attribute> listAttributesSplit	= simplifyAttribute(attribute);
+            List<Attribute> listAllAttributesSimple = new ArrayList<Attribute>();
+            for (Iterator<Attribute> iterAttributes = pipResponse.getAttributes().iterator(); iterAttributes
+                .hasNext();) {
+                Attribute attribute = iterAttributes.next();
+                List<Attribute> listAttributesSplit = simplifyAttribute(attribute);
                 if (listAttributesSplit != null && listAttributesSplit.size() > 0) {
                     listAllAttributesSimple.addAll(listAttributesSplit);
                 }
             }
             if (listAllAttributesSimple.size() > 0) {
-                Collection<? extends Attribute> listAttributesCollapsed	= collapseAttributes(listAllAttributesSimple);
+                Collection<? extends Attribute> listAttributesCollapsed = collapseAttributes(listAllAttributesSimple);
                 for (Attribute attributeCollapsed : listAttributesCollapsed) {
                     map.put(new StdPIPRequest(attributeCollapsed), new StdPIPResponse(attributeCollapsed));
                 }
@@ -326,9 +351,9 @@ public class StdPIPResponse extends Wrapper<PIPResponse> implements PIPResponse 
 
     @Override
     public String toString() {
-        StringBuilder stringBuilder	= new StringBuilder("{");
+        StringBuilder stringBuilder = new StringBuilder("{");
 
-        boolean needsComma	= false;
+        boolean needsComma = false;
 
         if (this.getStatus() != null) {
             stringBuilder.append(this.getStatus().toString());

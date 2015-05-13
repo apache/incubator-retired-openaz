@@ -46,18 +46,16 @@ import org.apache.openaz.xacml.std.StdMutableObligation;
 import org.apache.openaz.xacml.std.StdStatusCode;
 
 /**
- * ObligationExpression extends {@link PolicyComponent} to implement the XACML
- * ObligationExpression element.
- *
+ * ObligationExpression extends {@link PolicyComponent} to implement the XACML ObligationExpression element.
  */
 public class ObligationExpression extends PolicyComponent {
-    private Identifier							obligationId;
-    private RuleEffect							ruleEffect;
-    private List<AttributeAssignmentExpression>	attributeAssignmentExpressions;
+    private Identifier obligationId;
+    private RuleEffect ruleEffect;
+    private List<AttributeAssignmentExpression> attributeAssignmentExpressions;
 
     protected List<AttributeAssignmentExpression> getAttributeAssignmentExpressionList(boolean bNoNull) {
         if (this.attributeAssignmentExpressions == null && bNoNull) {
-            this.attributeAssignmentExpressions	= new ArrayList<AttributeAssignmentExpression>();
+            this.attributeAssignmentExpressions = new ArrayList<AttributeAssignmentExpression>();
         }
         return this.attributeAssignmentExpressions;
     }
@@ -84,7 +82,7 @@ public class ObligationExpression extends PolicyComponent {
     }
 
     public void setObligationId(Identifier identifier) {
-        this.obligationId	= identifier;
+        this.obligationId = identifier;
     }
 
     public RuleEffect getRuleEffect() {
@@ -92,12 +90,14 @@ public class ObligationExpression extends PolicyComponent {
     }
 
     public void setRuleEffect(RuleEffect ruleEffectIn) {
-        this.ruleEffect	= ruleEffectIn;
+        this.ruleEffect = ruleEffectIn;
     }
 
     public Iterator<AttributeAssignmentExpression> getAttributeAssignmentExpressions() {
-        List<AttributeAssignmentExpression> listAttributeAssignmentExpressions	= this.getAttributeAssignmentExpressionList(false);
-        return (listAttributeAssignmentExpressions == null ? null : listAttributeAssignmentExpressions.iterator());
+        List<AttributeAssignmentExpression> listAttributeAssignmentExpressions = this
+            .getAttributeAssignmentExpressionList(false);
+        return (listAttributeAssignmentExpressions == null ? null : listAttributeAssignmentExpressions
+            .iterator());
     }
 
     public void setAttributeAssignmentExpressions(Collection<AttributeAssignmentExpression> attributeAssignmentExpressionsIn) {
@@ -108,35 +108,45 @@ public class ObligationExpression extends PolicyComponent {
     }
 
     public void addAttributeAssignmentExpression(AttributeAssignmentExpression attributeAssignmentExpression) {
-        List<AttributeAssignmentExpression> listAttributeAssignmentExpressions	= this.getAttributeAssignmentExpressionList(true);
+        List<AttributeAssignmentExpression> listAttributeAssignmentExpressions = this
+            .getAttributeAssignmentExpressionList(true);
         listAttributeAssignmentExpressions.add(attributeAssignmentExpression);
     }
 
     public void addAttributeAssignmentExpressions(Collection<AttributeAssignmentExpression> attributeAssignmentExpressionsIn) {
-        List<AttributeAssignmentExpression> listAttributeAssignmentExpressions	= this.getAttributeAssignmentExpressionList(true);
+        List<AttributeAssignmentExpression> listAttributeAssignmentExpressions = this
+            .getAttributeAssignmentExpressionList(true);
         listAttributeAssignmentExpressions.addAll(attributeAssignmentExpressionsIn);
     }
 
     /**
-     * Evaluates this <code>ObligationExpression</code> in the given {@link org.apache.openaz.xacml.pdp.eval.EvaluationContext}
-     * to get an {@link org.apache.openaz.xacml.api.Obligation} to include in a PDP result.
+     * Evaluates this <code>ObligationExpression</code> in the given
+     * {@link com.att.research.xacmlatt.pdp.eval.EvaluationContext} to get an
+     * {@link com.att.research.xacml.api.Obligation} to include in a PDP result.
      *
-     * @param evaluationContext the <code>EvaluationContext</code> in which to evaluate this <code>ObligationExpression</code>
+     * @param evaluationContext the <code>EvaluationContext</code> in which to evaluate this
+     *            <code>ObligationExpression</code>
      * @param policyDefaults the <code>PolicyDefaults</code> to apply to the evaluation
      * @return a new <code>Obliagion</code> from this <code>ObligationExpression</code>
-     * @throws org.apache.openaz.xacml.pdp.eval.EvaluationException if there is an error evaluating any of the <code>AttributeAssignmentExpression</code>s
+     * @throws com.att.research.xacmlatt.pdp.eval.EvaluationException if there is an error evaluating any of
+     *             the <code>AttributeAssignmentExpression</code>s
      */
-    public Obligation evaluate(EvaluationContext evaluationContext, PolicyDefaults policyDefaults) throws EvaluationException {
+    public Obligation evaluate(EvaluationContext evaluationContext, PolicyDefaults policyDefaults)
+        throws EvaluationException {
         if (!this.validate()) {
             return null;
         }
-        List<AttributeAssignment> listAttributeAssignments							= new ArrayList<AttributeAssignment>();
-        Iterator<AttributeAssignmentExpression> iterAttributeAssignmentExpressions	= this.getAttributeAssignmentExpressions();
+        List<AttributeAssignment> listAttributeAssignments = new ArrayList<AttributeAssignment>();
+        Iterator<AttributeAssignmentExpression> iterAttributeAssignmentExpressions = this
+            .getAttributeAssignmentExpressions();
         if (iterAttributeAssignmentExpressions != null) {
             while (iterAttributeAssignmentExpressions.hasNext()) {
-                AttributeAssignmentResult attributeAssignmentResult	= iterAttributeAssignmentExpressions.next().evaluate(evaluationContext, policyDefaults);
-                if (attributeAssignmentResult.isOk() && attributeAssignmentResult.getNumAttributeAssignments() > 0) {
-                    Iterator<AttributeAssignment> iterAttributeAssignments	= attributeAssignmentResult.getAttributeAssignments();
+                AttributeAssignmentResult attributeAssignmentResult = iterAttributeAssignmentExpressions
+                    .next().evaluate(evaluationContext, policyDefaults);
+                if (attributeAssignmentResult.isOk()
+                    && attributeAssignmentResult.getNumAttributeAssignments() > 0) {
+                    Iterator<AttributeAssignment> iterAttributeAssignments = attributeAssignmentResult
+                        .getAttributeAssignments();
                     while (iterAttributeAssignments.hasNext()) {
                         listAttributeAssignments.add(iterAttributeAssignments.next());
                     }
@@ -147,8 +157,8 @@ public class ObligationExpression extends PolicyComponent {
     }
 
     /**
-     * Evaluates a <code>Collection</code> of <code>ObligationExpression</code>s in the given <code>EvaluationContext</code> and returns
-     * a <code>List</code> of <code>Obligation</code>s.
+     * Evaluates a <code>Collection</code> of <code>ObligationExpression</code>s in the given
+     * <code>EvaluationContext</code> and returns a <code>List</code> of <code>Obligation</code>s.
      *
      * @param evaluationContext
      * @param policyDefaults
@@ -156,17 +166,20 @@ public class ObligationExpression extends PolicyComponent {
      * @return
      * @throws org.apache.openaz.xacml.pdp.eval.EvaluationException
      */
-    public static List<Obligation> evaluate(EvaluationContext evaluationContext, PolicyDefaults policyDefaults, Decision decision, Collection<ObligationExpression> listObligationExpressions) throws EvaluationException {
-        List<Obligation> listObligations	= new ArrayList<Obligation>();
-        Iterator<ObligationExpression> iterObligationExpressions	= listObligationExpressions.iterator();
+    public static List<Obligation> evaluate(EvaluationContext evaluationContext,
+                                            PolicyDefaults policyDefaults, Decision decision,
+                                            Collection<ObligationExpression> listObligationExpressions)
+        throws EvaluationException {
+        List<Obligation> listObligations = new ArrayList<Obligation>();
+        Iterator<ObligationExpression> iterObligationExpressions = listObligationExpressions.iterator();
         while (iterObligationExpressions.hasNext()) {
-            ObligationExpression obligationExpression	= iterObligationExpressions.next();
+            ObligationExpression obligationExpression = iterObligationExpressions.next();
             obligationExpression.validateComponent();
-            if ( ! obligationExpression.isOk()) {
+            if (!obligationExpression.isOk()) {
                 throw new EvaluationException(obligationExpression.getStatusMessage());
             }
             if (decision == null || obligationExpression.getRuleEffect().getDecision().equals(decision)) {
-                Obligation obligation	= obligationExpression.evaluate(evaluationContext, policyDefaults);
+                Obligation obligation = obligationExpression.evaluate(evaluationContext, policyDefaults);
                 if (obligation != null) {
                     listObligations.add(obligation);
                 }

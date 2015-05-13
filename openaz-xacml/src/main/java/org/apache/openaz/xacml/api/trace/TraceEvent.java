@@ -34,8 +34,8 @@ package org.apache.openaz.xacml.api.trace;
 import java.util.Date;
 
 /**
- * Defines the API for objects that represent traceable events during evaluation of a XACML Policy or PolicySet.
- *
+ * Defines the API for objects that represent traceable events during evaluation of a XACML Policy or
+ * PolicySet.
  *
  * @param T the java <code>Class</code> of the traced object wrapped by the <code>TraceEvent</code>
  */
@@ -45,27 +45,27 @@ public interface TraceEvent<T> {
      *
      * @return the timestamp as a <code>Date</code> when this <code>TraceEvent</code> occurred.
      */
-    public Date getTimestamp();
+    Date getTimestamp();
 
     /**
-     * Gets the <code>String</code> message associated with this <code>TraceEvent</code>.  If there is no message,
-     * the implementation may return <code>null</code>.
+     * Gets the <code>String</code> message associated with this <code>TraceEvent</code>. If there is no
+     * message, the implementation may return <code>null</code>.
      *
      * @return the <code>String</code> message associated with this <code>TraceEvent</code>.
      */
-    public String getMessage();
+    String getMessage();
 
     /**
      * Gets the {@link Traceable} that created this <code>TraceEvent</code>
      *
      * @return the <code>Traceable</code> that created this <code>TraceEvent</code>.
      */
-    public Traceable getCause();
+    Traceable getCause();
 
     /**
      * Gets the <code>T</code> object representing the value of this <code>TraceEvent</code>.
      *
      * @return the <code>T</code> object representing the value of this <code>TraceEvent</code>.
      */
-    public T getValue();
+    T getValue();
 }

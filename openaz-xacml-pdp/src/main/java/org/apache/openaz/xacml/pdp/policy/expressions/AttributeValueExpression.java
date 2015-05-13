@@ -43,7 +43,6 @@ import org.apache.openaz.xacml.std.StdStatusCode;
 /**
  * AttributeValueExpression extends {@link org.apache.openaz.xacml.pdp.policy.Expression} to represent XACML
  * AttributeValue elements in an Expression context.
- *
  */
 public class AttributeValueExpression extends Expression {
     private AttributeValue<?> attributeValue;
@@ -60,7 +59,7 @@ public class AttributeValueExpression extends Expression {
     }
 
     public AttributeValueExpression(AttributeValue<?> attributeValueIn) {
-        this.attributeValue	= attributeValueIn;
+        this.attributeValue = attributeValueIn;
     }
 
     public AttributeValue<?> getAttributeValue() {
@@ -68,11 +67,12 @@ public class AttributeValueExpression extends Expression {
     }
 
     public void setAttributeValue(AttributeValue<?> attributeValueIn) {
-        this.attributeValue	= attributeValueIn;
+        this.attributeValue = attributeValueIn;
     }
 
     @Override
-    public ExpressionResult evaluate(EvaluationContext evaluationContext, PolicyDefaults policyDefaults) throws EvaluationException {
+    public ExpressionResult evaluate(EvaluationContext evaluationContext, PolicyDefaults policyDefaults)
+        throws EvaluationException {
         if (!this.validate()) {
             return ExpressionResult.newError(new StdStatus(this.getStatusCode(), this.getStatusMessage()));
         }
@@ -93,7 +93,7 @@ public class AttributeValueExpression extends Expression {
 
     @Override
     public String toString() {
-        StringBuilder stringBuilder	= new StringBuilder("{");
+        StringBuilder stringBuilder = new StringBuilder("{");
 
         Object objectToDump;
         if ((objectToDump = this.getAttributeValue()) != null) {

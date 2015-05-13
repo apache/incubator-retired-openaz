@@ -41,13 +41,13 @@ import org.apache.openaz.xacml.std.StdVersionMatch;
 import oasis.names.tc.xacml._3_0.core.schema.wd_17.IdReferenceType;
 
 /**
- * JaxpIdReferenceMatch extends {@link org.apache.openaz.xacml.std.StdIdReferenceMatch} with methods for creation
- * from JAXP elements.
- *
+ * JaxpIdReferenceMatch extends {@link com.att.research.xacml.std.StdIdReferenceMatch} with methods for
+ * creation from JAXP elements.
  */
 public class JaxpIdReferenceMatch extends StdIdReferenceMatch {
 
-    protected JaxpIdReferenceMatch(Identifier idIn, VersionMatch versionIn, VersionMatch earliestVersionIn, VersionMatch latestVersionIn) {
+    protected JaxpIdReferenceMatch(Identifier idIn, VersionMatch versionIn, VersionMatch earliestVersionIn,
+                                   VersionMatch latestVersionIn) {
         super(idIn, versionIn, earliestVersionIn, latestVersionIn);
     }
 
@@ -58,20 +58,20 @@ public class JaxpIdReferenceMatch extends StdIdReferenceMatch {
             throw new IllegalArgumentException("Null value for IdReferenceType");
         }
 
-        VersionMatch version			= null;
-        VersionMatch earliestVersion	= null;
-        VersionMatch latestVersion		= null;
+        VersionMatch version = null;
+        VersionMatch earliestVersion = null;
+        VersionMatch latestVersion = null;
 
         if (idReferenceType.getVersion() != null) {
             try {
-                version	= StdVersionMatch.newInstance(idReferenceType.getVersion());
+                version = StdVersionMatch.newInstance(idReferenceType.getVersion());
             } catch (ParseException ex) {
                 throw new IllegalArgumentException("Invalid version");
             }
         }
         if (idReferenceType.getEarliestVersion() != null) {
             try {
-                earliestVersion	= StdVersionMatch.newInstance(idReferenceType.getEarliestVersion());
+                earliestVersion = StdVersionMatch.newInstance(idReferenceType.getEarliestVersion());
             } catch (ParseException ex) {
                 throw new IllegalArgumentException("Invalid earliest version");
             }
@@ -79,12 +79,13 @@ public class JaxpIdReferenceMatch extends StdIdReferenceMatch {
 
         if (idReferenceType.getLatestVersion() != null) {
             try {
-                latestVersion	= StdVersionMatch.newInstance(idReferenceType.getLatestVersion());
+                latestVersion = StdVersionMatch.newInstance(idReferenceType.getLatestVersion());
             } catch (ParseException ex) {
                 throw new IllegalArgumentException("Invalid latest version");
             }
         }
 
-        return new JaxpIdReferenceMatch(new IdentifierImpl(idReferenceType.getValue()), version, earliestVersion, latestVersion);
+        return new JaxpIdReferenceMatch(new IdentifierImpl(idReferenceType.getValue()), version,
+                                        earliestVersion, latestVersion);
     }
 }

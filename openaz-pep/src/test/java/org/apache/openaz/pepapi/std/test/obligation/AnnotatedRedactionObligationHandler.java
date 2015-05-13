@@ -30,17 +30,15 @@ import org.apache.openaz.pepapi.ObligationStoreAware;
 
 import java.util.Set;
 
-@MatchAllObligationAttributes(
-    @Attribute(id="urn:oasis:names:tc:xacml:1.0:subject:age")
-)
+@MatchAllObligationAttributes(@Attribute(id = "urn:oasis:names:tc:xacml:1.0:subject:age"))
 public class AnnotatedRedactionObligationHandler implements ObligationStoreAware {
 
     private ObligationStore obligationStore;
 
     public void enforce() {
         Set<Obligation> obligationSet = obligationStore.getHandlerObligations(this.getClass());
-        if(obligationSet.size() == 1) {
-            for(Obligation obligation: obligationSet) {
+        if (obligationSet.size() == 1) {
+            for (Obligation obligation : obligationSet) {
                 Assert.assertEquals("urn:oasis:names:tc:xacml:2.0:obligation:obligation-2",
                                     obligation.getId());
             }

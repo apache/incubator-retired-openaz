@@ -35,15 +35,15 @@ import java.text.ParseException;
 import org.apache.openaz.xacml.api.SemanticString;
 
 /**
- * IPAddress represents either an IPv4 or IPv6 network address with optional (IPv4)masks or (IPv6)prefixes and port range components.
- *
+ * IPAddress represents either an IPv4 or IPv6 network address with optional (IPv4)masks or (IPv6)prefixes and
+ * port range components.
  */
 public abstract class IPAddress implements SemanticString {
 
     /**
-     * Given a string purporting to represent an <code>IPAddress</code>, try to convert it into an object.
-     * The string may represent either an <code>IPv4Address</code> or an <code>IPv6Address</code>,
-     * and may include a mask (for IPv4) or a prefix (for IPv6) and may also include a <code>PortRange</code>
+     * Given a string purporting to represent an <code>IPAddress</code>, try to convert it into an object. The
+     * string may represent either an <code>IPv4Address</code> or an <code>IPv6Address</code>, and may include
+     * a mask (for IPv4) or a prefix (for IPv6) and may also include a <code>PortRange</code>
      *
      * @param addressString
      * @return

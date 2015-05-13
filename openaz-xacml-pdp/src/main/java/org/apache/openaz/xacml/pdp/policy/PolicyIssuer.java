@@ -41,13 +41,12 @@ import org.apache.openaz.xacml.std.StdStatusCode;
 import org.w3c.dom.Node;
 
 /**
- * PolicyIssuer extends {@link org.apache.openaz.xacml.pdp.policy.PolicyComponent} to represent the XACML 3.0
- * PolicyIssuer element in Policies and PolicySets.
- *
+ * PolicyIssuer extends {@link com.att.research.xacmlatt.pdp.policy.PolicyComponent} to represent the XACML
+ * 3.0 PolicyIssuer element in Policies and PolicySets.
  */
 public class PolicyIssuer extends PolicyComponent {
-    private Node			content;
-    private List<Attribute>	attributes;
+    private Node content;
+    private List<Attribute> attributes;
 
     public PolicyIssuer(StatusCode statusCodeIn, String statusMessageIn) {
         super(statusCodeIn, statusMessageIn);
@@ -65,7 +64,7 @@ public class PolicyIssuer extends PolicyComponent {
     }
 
     public void setContent(Node nodeContent) {
-        this.content	= nodeContent;
+        this.content = nodeContent;
     }
 
     public Iterator<Attribute> getAttributes() {
@@ -73,7 +72,7 @@ public class PolicyIssuer extends PolicyComponent {
     }
 
     public void setAttributes(Collection<Attribute> listAttributes) {
-        this.attributes	= null;
+        this.attributes = null;
         if (listAttributes != null) {
             this.add(listAttributes);
         }
@@ -81,7 +80,7 @@ public class PolicyIssuer extends PolicyComponent {
 
     public void add(Attribute attribute) {
         if (this.attributes == null) {
-            this.attributes	= new ArrayList<Attribute>();
+            this.attributes = new ArrayList<Attribute>();
         }
         this.attributes.add(attribute);
     }
@@ -95,7 +94,7 @@ public class PolicyIssuer extends PolicyComponent {
 
     @Override
     public String toString() {
-        StringBuilder stringBuilder	= new StringBuilder("{");
+        StringBuilder stringBuilder = new StringBuilder("{");
 
         stringBuilder.append("super=");
         stringBuilder.append(super.toString());
@@ -105,7 +104,7 @@ public class PolicyIssuer extends PolicyComponent {
             stringBuilder.append(",content=");
             stringBuilder.append(objectToDump.toString());
         }
-        Iterator<Attribute> iterAttributes	= this.getAttributes();
+        Iterator<Attribute> iterAttributes = this.getAttributes();
         if (iterAttributes != null && iterAttributes.hasNext()) {
             stringBuilder.append(",attributes=[");
             stringBuilder.append(iterAttributes.next().toString());

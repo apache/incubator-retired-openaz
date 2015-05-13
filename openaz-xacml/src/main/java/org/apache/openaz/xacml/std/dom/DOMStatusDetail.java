@@ -41,37 +41,39 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 /**
- * DOMStatusDetail extends {@link org.apache.openaz.xacml.std.StdMutableStatusDetail} with methods for construction from
- * DOM {@link org.w3c.dom.Node}s.
- *
+ * DOMStatusDetail extends {@link com.att.research.xacml.std.StdMutableStatusDetail} with methods for
+ * construction from DOM {@link org.w3c.dom.Node}s.
  */
 public class DOMStatusDetail {
-    private static final Log logger	= LogFactory.getLog(DOMStatusDetail.class);
+    private static final Log logger = LogFactory.getLog(DOMStatusDetail.class);
 
     protected DOMStatusDetail() {
     }
 
     /**
-     * Creates a new <code>DOMStatusDetail</code> by parsing the given <code>Node</code> representing a XACML StatusDetail element.
+     * Creates a new <code>DOMStatusDetail</code> by parsing the given <code>Node</code> representing a XACML
+     * StatusDetail element.
      *
      * @param nodeStatusDetail the <code>Node</code> representing the StatusDetail element
      * @return a new <code>DOMStatusDetail</code> parsed from the given <code>Node</code>
      * @throws DOMStructureException if the conversion cannot be made
      */
     public static StatusDetail newInstance(Node nodeStatusDetail) throws DOMStructureException {
-        Element elementStatusDetail	= DOMUtil.getElement(nodeStatusDetail);
-        boolean bLenient			= DOMProperties.isLenient();
+        Element elementStatusDetail = DOMUtil.getElement(nodeStatusDetail);
+        boolean bLenient = DOMProperties.isLenient();
 
-        StdMutableStatusDetail mutableStatusDetail	= new StdMutableStatusDetail();
+        StdMutableStatusDetail mutableStatusDetail = new StdMutableStatusDetail();
 
-        NodeList children	= elementStatusDetail.getChildNodes();
+        NodeList children = elementStatusDetail.getChildNodes();
         int numChildren;
         if (children != null && (numChildren = children.getLength()) > 0) {
-            for (int i = 0 ; i < numChildren ; i++) {
-                Node child	= children.item(i);
+            for (int i = 0; i < numChildren; i++) {
+                Node child = children.item(i);
                 if (DOMUtil.isElement(child)) {
-                    if (DOMUtil.isInNamespace(child, XACML3.XMLNS) && XACML3.ELEMENT_MISSINGATTRIBUTEDETAIL.equals(child.getLocalName())) {
-                        mutableStatusDetail.addMissingAttributeDetail(DOMMissingAttributeDetail.newInstance(child));
+                    if (DOMUtil.isInNamespace(child, XACML3.XMLNS)
+                        && XACML3.ELEMENT_MISSINGATTRIBUTEDETAIL.equals(child.getLocalName())) {
+                        mutableStatusDetail.addMissingAttributeDetail(DOMMissingAttributeDetail
+                            .newInstance(child));
                     } else {
                         if (!bLenient) {
                             throw DOMUtil.newUnexpectedElementException(child, nodeStatusDetail);
@@ -85,21 +87,22 @@ public class DOMStatusDetail {
     }
 
     public static boolean repair(Node nodeStatusDetail) throws DOMStructureException {
-        Element elementStatusDetail	= DOMUtil.getElement(nodeStatusDetail);
-        boolean result				= false;
+        Element elementStatusDetail = DOMUtil.getElement(nodeStatusDetail);
+        boolean result = false;
 
-        NodeList children	= elementStatusDetail.getChildNodes();
+        NodeList children = elementStatusDetail.getChildNodes();
         int numChildren;
         if (children != null && (numChildren = children.getLength()) > 0) {
-            for (int i = 0 ; i < numChildren ; i++) {
-                Node child	= children.item(i);
+            for (int i = 0; i < numChildren; i++) {
+                Node child = children.item(i);
                 if (DOMUtil.isElement(child)) {
-                    if (DOMUtil.isInNamespace(child, XACML3.XMLNS) && XACML3.ELEMENT_MISSINGATTRIBUTEDETAIL.equals(child.getLocalName())) {
-                        result	= DOMMissingAttributeDetail.repair(child) || result;
+                    if (DOMUtil.isInNamespace(child, XACML3.XMLNS)
+                        && XACML3.ELEMENT_MISSINGATTRIBUTEDETAIL.equals(child.getLocalName())) {
+                        result = DOMMissingAttributeDetail.repair(child) || result;
                     } else {
                         logger.warn("Unexpected element " + child.getNodeName());
                         elementStatusDetail.removeChild(child);
-                        result	= true;
+                        result = true;
                     }
                 }
             }

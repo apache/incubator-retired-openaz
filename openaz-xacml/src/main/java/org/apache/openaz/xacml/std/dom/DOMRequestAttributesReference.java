@@ -39,33 +39,37 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 /**
- * DOMRequestAttributesReference extends {@link org.apache.openaz.xacml.std.StdRequestAttributesReference} with methods for creation from
- * DOM {@link org.w3c.dom.Node}s.
- *
+ * DOMRequestAttributesReference extends {@link com.att.research.xacml.std.StdRequestAttributesReference} with
+ * methods for creation from DOM {@link org.w3c.dom.Node}s.
  */
 public class DOMRequestAttributesReference {
-    private static final Log logger	= LogFactory.getLog(DOMRequestAttributesReference.class);
+    private static final Log logger = LogFactory.getLog(DOMRequestAttributesReference.class);
 
     protected DOMRequestAttributesReference() {
     }
 
     /**
-     * Creates a new <code>DOMRequestAttributesReference</code> by parsing the given root <code>Node</code> of a XACML AttributesReference element.
+     * Creates a new <code>DOMRequestAttributesReference</code> by parsing the given root <code>Node</code> of
+     * a XACML AttributesReference element.
      *
      * @param nodeAttributesReference the <code>Node</code> to parse
      * @return a new <code>DOMRequestAttributesReference</code>
      * @throws org.apache.openaz.xacml.std.dom.DOMStructureException if the conversion cannot be made
      */
-    public static RequestAttributesReference newInstance(Node nodeAttributesReference) throws DOMStructureException {
-        Element	elementAttributesReference	= DOMUtil.getElement(nodeAttributesReference);
-        boolean bLenient					= DOMProperties.isLenient();
+    public static RequestAttributesReference newInstance(Node nodeAttributesReference)
+        throws DOMStructureException {
+        Element elementAttributesReference = DOMUtil.getElement(nodeAttributesReference);
+        boolean bLenient = DOMProperties.isLenient();
 
-        return new StdRequestAttributesReference(DOMUtil.getStringAttribute(elementAttributesReference, XACML3.ATTRIBUTE_REFERENCEID, !bLenient));
+        return new StdRequestAttributesReference(DOMUtil.getStringAttribute(elementAttributesReference,
+                                                                            XACML3.ATTRIBUTE_REFERENCEID,
+                                                                            !bLenient));
     }
 
     public static boolean repair(Node nodeAttributesReference) throws DOMStructureException {
-        Element	elementAttributesReference	= DOMUtil.getElement(nodeAttributesReference);
-        return DOMUtil.repairStringAttribute(elementAttributesReference, XACML3.ATTRIBUTE_REFERENCEID, null, logger);
+        Element elementAttributesReference = DOMUtil.getElement(nodeAttributesReference);
+        return DOMUtil.repairStringAttribute(elementAttributesReference, XACML3.ATTRIBUTE_REFERENCEID, null,
+                                             logger);
     }
 
 }

@@ -28,14 +28,13 @@ import java.util.Map;
 public interface Advice {
 
     /**
-     *
      * @return
      */
-    public String getId();
+    String getId();
 
     /**
      *
      */
-    public Map<String, Object[]> getAttributeMap();
+    Map<String, Object[]> getAttributeMap();
 
 }

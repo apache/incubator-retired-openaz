@@ -33,9 +33,11 @@ package org.apache.openaz.xacml.pdp.policy;
 import org.apache.openaz.xacml.api.Status;
 
 /**
- * PolicyFinderResult is the interface for return values of the methods in the {@link org.apache.openaz.xacml.pdp.policy.PolicyFinderFactory} interface.
+ * PolicyFinderResult is the interface for return values of the methods in the
+ * {@link com.att.research.xacmlatt.pdp.policy.PolicyFinderFactory} interface.
  *
- * @param <T> the class extending {@link PolicyDef} contained as a result in this <code>PolicyFinderResult</code>
+ * @param <T> the class extending {@link PolicyDef} contained as a result in this
+ *            <code>PolicyFinderResult</code>
  */
 public interface PolicyFinderResult<T extends PolicyDef> {
     /**
@@ -43,12 +45,12 @@ public interface PolicyFinderResult<T extends PolicyDef> {
      *
      * @return the <code>Status</code> of the method call
      */
-    public Status getStatus();
+    Status getStatus();
 
     /**
      * Gets the {@link PolicyDef} returned by the method if the status is OK.
      *
      * @return the <code>T</code> returned by the method if the status is OK.
      */
-    public T getPolicyDef();
+    T getPolicyDef();
 }

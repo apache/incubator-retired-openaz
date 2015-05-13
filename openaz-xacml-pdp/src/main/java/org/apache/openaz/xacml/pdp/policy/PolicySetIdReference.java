@@ -38,7 +38,6 @@ import org.apache.openaz.xacml.pdp.eval.EvaluationException;
  * PolicySetIdReference extends {@link org.apache.openaz.xacml.pdp.policy.PolicyIdReferenceBase} for
  * {@link com.att.research.xacmlatt.pdp.PolicySet} objects to implement the <code>ensureReferencee</code>
  * method to find <code>PolicySet</code>s.
- *
  */
 public class PolicySetIdReference extends PolicyIdReferenceBase<PolicySet> {
 
@@ -64,7 +63,8 @@ public class PolicySetIdReference extends PolicyIdReferenceBase<PolicySet> {
     @Override
     protected PolicySet ensureReferencee(EvaluationContext evaluationContext) throws EvaluationException {
         if (this.getReferencee() == null) {
-            PolicyFinderResult<PolicySet> policyFactoryResult	= evaluationContext.getPolicySet(this.getIdReferenceMatch());
+            PolicyFinderResult<PolicySet> policyFactoryResult = evaluationContext.getPolicySet(this
+                .getIdReferenceMatch());
             if (policyFactoryResult.getStatus() == null || policyFactoryResult.getStatus().isOk()) {
                 this.setReferencee(policyFactoryResult.getPolicyDef());
             }

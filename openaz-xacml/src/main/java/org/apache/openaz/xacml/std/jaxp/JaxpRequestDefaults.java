@@ -39,7 +39,6 @@ import oasis.names.tc.xacml._3_0.core.schema.wd_17.RequestDefaultsType;
 /**
  * JaxpRequestDefaults extends {@link org.apache.openaz.xacml.std.StdRequestDefaults} with methods for creation
  * from JAXP elements.
- *
  */
 public class JaxpRequestDefaults extends StdRequestDefaults {
 
@@ -51,12 +50,13 @@ public class JaxpRequestDefaults extends StdRequestDefaults {
         if (requestDefaultsType == null) {
             throw new NullPointerException("Null RequestDefaultsType");
         }
-        URI	uriXPathVersion	= null;
+        URI uriXPathVersion = null;
         if (requestDefaultsType.getXPathVersion() != null) {
             try {
-                uriXPathVersion	= new URI(requestDefaultsType.getXPathVersion());
+                uriXPathVersion = new URI(requestDefaultsType.getXPathVersion());
             } catch (Exception ex) {
-                throw new IllegalArgumentException("Invalid URI for XPathVersion \"" + requestDefaultsType.getXPathVersion() + "\"", ex);
+                throw new IllegalArgumentException("Invalid URI for XPathVersion \""
+                                                   + requestDefaultsType.getXPathVersion() + "\"", ex);
             }
         }
         return new JaxpRequestDefaults(uriXPathVersion);

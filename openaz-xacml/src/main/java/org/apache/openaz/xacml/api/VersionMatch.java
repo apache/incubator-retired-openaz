@@ -31,9 +31,8 @@
 package org.apache.openaz.xacml.api;
 
 /**
- * VersionMatch is the interface that objects implementing references to {@link Version} objects
- * must implement.
- *
+ * VersionMatch is the interface that objects implementing references to {@link Version} objects must
+ * implement.
  */
 public interface VersionMatch {
     /**
@@ -41,20 +40,17 @@ public interface VersionMatch {
      *
      * @return the <code>String</code> representation of the <code>Version</code> matching pattern.
      */
-    public String getVersionMatch();
+    String getVersionMatch();
 
     /**
-     * Determines if the pattern in this <code>VersionMatch</code> matches the given <code>Version</code> based on the
-     * given comparison code.  Comparison code values are:
-     * 	0 - match only if version numbers match the pattern
-     * -1 - match if the version numbers <= the pattern
-     *  1 - match if the version numbers >= the pattern
-     *
-     * Wildcard values are considered to match any comparison code
+     * Determines if the pattern in this <code>VersionMatch</code> matches the given <code>Version</code>
+     * based on the given comparison code. Comparison code values are: 0 - match only if version numbers match
+     * the pattern -1 - match if the version numbers <= the pattern 1 - match if the version numbers >= the
+     * pattern Wildcard values are considered to match any comparison code
      *
      * @param version the <code>Version</code> to match against
      * @param cmp integer comparision code
      * @return true if this pattern matches the given <code>Version</code> else false
      */
-    public boolean match(Version version, int cmp);
+    boolean match(Version version, int cmp);
 }

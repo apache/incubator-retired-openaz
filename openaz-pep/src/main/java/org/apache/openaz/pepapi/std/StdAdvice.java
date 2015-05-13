@@ -28,7 +28,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-
 final class StdAdvice implements Advice {
 
     private org.apache.openaz.xacml.api.Advice wrappedAdvice;
@@ -42,6 +41,7 @@ final class StdAdvice implements Advice {
      *
      * @return a string containing the Id of this Advice
      */
+    @Override
     public String getId() {
         return wrappedAdvice.getId().stringValue();
     }
@@ -49,17 +49,17 @@ final class StdAdvice implements Advice {
     @Override
     public Map<String, Object[]> getAttributeMap() {
         Map<String, List<Object>> map = new HashMap<String, List<Object>>();
-        for(AttributeAssignment a: wrappedAdvice.getAttributeAssignments()) {
+        for (AttributeAssignment a : wrappedAdvice.getAttributeAssignments()) {
             String attributeId = a.getAttributeId().stringValue();
             List<Object> values = map.get(attributeId);
-            if(values == null) {
+            if (values == null) {
                 values = new ArrayList<Object>();
                 map.put(attributeId, values);
             }
             values.add(a.getAttributeValue().getValue());
         }
         Map<String, Object[]> attributeMap = new HashMap<String, Object[]>();
-        for(Map.Entry<String, List<Object>> e: map.entrySet()) {
+        for (Map.Entry<String, List<Object>> e : map.entrySet()) {
             attributeMap.put(e.getKey(), e.getValue().toArray(new Object[1]));
         }
         return attributeMap;

@@ -44,9 +44,8 @@ import oasis.names.tc.xacml._3_0.core.schema.wd_17.AdviceType;
 import oasis.names.tc.xacml._3_0.core.schema.wd_17.AttributeAssignmentType;
 
 /**
- * JaxpAdvice extends {@link org.apache.openaz.xacml.std.StdMutableAdvice} with methods for creation from
- * JAXP elements.
- *
+ * JaxpAdvice extends {@link com.att.research.xacml.std.StdMutableAdvice} with methods for creation from JAXP
+ * elements.
  */
 public class JaxpAdvice extends StdMutableAdvice {
 
@@ -60,13 +59,16 @@ public class JaxpAdvice extends StdMutableAdvice {
         } else if (obligationType.getAdviceId() == null) {
             throw new IllegalArgumentException("Null obligationId for AdviceType");
         }
-        Identifier						obligationId			= new IdentifierImpl(obligationType.getAdviceId());
-        List<AttributeAssignment>	attributeAssignments	= null;
-        if (obligationType.getAttributeAssignment() != null && obligationType.getAttributeAssignment().size() > 0) {
-            attributeAssignments	= new ArrayList<AttributeAssignment>();
-            Iterator<AttributeAssignmentType>	iterAttributeAssignmentTypes	= obligationType.getAttributeAssignment().iterator();
+        Identifier obligationId = new IdentifierImpl(obligationType.getAdviceId());
+        List<AttributeAssignment> attributeAssignments = null;
+        if (obligationType.getAttributeAssignment() != null
+            && obligationType.getAttributeAssignment().size() > 0) {
+            attributeAssignments = new ArrayList<AttributeAssignment>();
+            Iterator<AttributeAssignmentType> iterAttributeAssignmentTypes = obligationType
+                .getAttributeAssignment().iterator();
             while (iterAttributeAssignmentTypes.hasNext()) {
-                attributeAssignments.add(JaxpAttributeAssignment.newInstance(iterAttributeAssignmentTypes.next()));
+                attributeAssignments.add(JaxpAttributeAssignment.newInstance(iterAttributeAssignmentTypes
+                    .next()));
             }
         }
         return new JaxpAdvice(obligationId, attributeAssignments);

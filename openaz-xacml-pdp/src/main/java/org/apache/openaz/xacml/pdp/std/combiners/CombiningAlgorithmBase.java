@@ -33,11 +33,13 @@ package org.apache.openaz.xacml.pdp.std.combiners;
 import org.apache.openaz.xacml.api.Identifier;
 import org.apache.openaz.xacml.pdp.policy.CombiningAlgorithm;
 
-public abstract class CombiningAlgorithmBase<T extends org.apache.openaz.xacml.pdp.eval.Evaluatable> implements CombiningAlgorithm<T> {
+public abstract class CombiningAlgorithmBase<T extends org.apache.openaz.xacml.pdp.eval.Evaluatable> implements 
+    CombiningAlgorithm<T> {
+    
     private Identifier id;
 
     public CombiningAlgorithmBase(Identifier identifierIn) {
-        this.id	= identifierIn;
+        this.id = identifierIn;
     }
 
     @Override
@@ -47,7 +49,7 @@ public abstract class CombiningAlgorithmBase<T extends org.apache.openaz.xacml.p
 
     @Override
     public String toString() {
-        StringBuilder stringBuilder	= new StringBuilder("{");
+        StringBuilder stringBuilder = new StringBuilder("{");
 
         Object objectToDump;
         if ((objectToDump = this.getId()) != null) {

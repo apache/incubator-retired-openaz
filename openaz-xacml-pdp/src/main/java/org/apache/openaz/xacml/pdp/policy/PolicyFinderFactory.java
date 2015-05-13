@@ -37,13 +37,12 @@ import org.apache.openaz.xacml.util.FactoryException;
 import org.apache.openaz.xacml.util.FactoryFinder;
 
 /**
- * PolicyFinderFactory provides methods for loading XACML 3.0 policies and policy sets that are used
- * by the {@link com.att.research.xacmlatt.pdp.PDPEngine} to evaluate requests.
- *
+ * PolicyFinderFactory provides methods for loading XACML 3.0 policies and policy sets that are used by the
+ * {@link com.att.research.xacmlatt.pdp.PDPEngine} to evaluate requests.
  */
 public abstract class PolicyFinderFactory {
-    private static final String	FACTORYID					= OpenAZPDPProperties.PROP_POLICYFINDERFACTORY;
-    private static final String DEFAULT_FACTORY_CLASSNAME	= "org.apache.openaz.xacml.pdp.std.StdPolicyFinderFactory";
+    private static final String FACTORYID = OpenAZPDPProperties.PROP_POLICYFINDERFACTORY;
+    private static final String DEFAULT_FACTORY_CLASSNAME = "org.apache.openaz.xacml.pdp.std.StdPolicyFinderFactory";
 
     protected PolicyFinderFactory() {
     }
@@ -56,10 +55,12 @@ public abstract class PolicyFinderFactory {
     }
 
     public static PolicyFinderFactory newInstance(Properties properties) throws FactoryException {
-        return FactoryFinder.find(FACTORYID, DEFAULT_FACTORY_CLASSNAME, PolicyFinderFactory.class, properties);
+        return FactoryFinder
+            .find(FACTORYID, DEFAULT_FACTORY_CLASSNAME, PolicyFinderFactory.class, properties);
     }
 
-    public static PolicyFinderFactory newInstance(String className, ClassLoader classLoader) throws FactoryException {
+    public static PolicyFinderFactory newInstance(String className, ClassLoader classLoader)
+        throws FactoryException {
         return FactoryFinder.newInstance(className, PolicyFinderFactory.class, classLoader, false);
     }
 

@@ -43,40 +43,41 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 /**
- * DOMAllOf extends {@link org.apache.openaz.xacml.pdp.policy.AllOf} with methods for creation from
- * DOM {@link org.w3c.dom.Node}s.
- *
+ * DOMAllOf extends {@link com.att.research.xacmlatt.pdp.policy.AllOf} with methods for creation from DOM
+ * {@link org.w3c.dom.Node}s.
  */
 public class DOMAllOf extends AllOf {
-    private static final Log logger	= LogFactory.getLog(DOMAllOf.class);
+    private static final Log logger = LogFactory.getLog(DOMAllOf.class);
 
     protected DOMAllOf() {
     }
 
     /**
-     * Creates a new <code>DOMAllOf</code> by parsing the given <code>Node</code> representing a XACML AllOf element.
+     * Creates a new <code>DOMAllOf</code> by parsing the given <code>Node</code> representing a XACML AllOf
+     * element.
      *
      * @param nodeAllOf the <code>Node</code> representing the XACML AllOf element
      * @return a new <code>DOMAllOf</code> parsed from the given <code>Node</code>
      * @throws DOMStructureException if there is an error parsing the given <code>Node</code>
      */
     public static AllOf newInstance(Node nodeAllOf) throws DOMStructureException {
-        Element elementAllOf	= DOMUtil.getElement(nodeAllOf);
-        boolean bLenient		= DOMProperties.isLenient();
+        Element elementAllOf = DOMUtil.getElement(nodeAllOf);
+        boolean bLenient = DOMProperties.isLenient();
 
-        DOMAllOf domAllOf		= new DOMAllOf();
+        DOMAllOf domAllOf = new DOMAllOf();
 
         try {
-            NodeList children	= elementAllOf.getChildNodes();
+            NodeList children = elementAllOf.getChildNodes();
             int numChildren;
-            boolean sawMatch	= false;
+            boolean sawMatch = false;
             if (children != null && (numChildren = children.getLength()) > 0) {
-                for (int i = 0 ; i < numChildren ; i++) {
-                    Node child	= children.item(i);
+                for (int i = 0; i < numChildren; i++) {
+                    Node child = children.item(i);
                     if (DOMUtil.isElement(child)) {
-                        if (DOMUtil.isInNamespace(child, XACML3.XMLNS) && XACML3.ELEMENT_MATCH.equals(child.getLocalName())) {
+                        if (DOMUtil.isInNamespace(child, XACML3.XMLNS)
+                            && XACML3.ELEMENT_MATCH.equals(child.getLocalName())) {
                             domAllOf.addMatch(DOMMatch.newInstance(child));
-                            sawMatch	= true;
+                            sawMatch = true;
                         } else if (!bLenient) {
                             throw DOMUtil.newUnexpectedElementException(child, nodeAllOf);
                         }
@@ -96,23 +97,24 @@ public class DOMAllOf extends AllOf {
     }
 
     public static boolean repair(Node nodeAllOf) throws DOMStructureException {
-        Element elementAllOf	= DOMUtil.getElement(nodeAllOf);
-        boolean result			= false;
+        Element elementAllOf = DOMUtil.getElement(nodeAllOf);
+        boolean result = false;
 
-        NodeList children	= elementAllOf.getChildNodes();
+        NodeList children = elementAllOf.getChildNodes();
         int numChildren;
-        boolean sawMatch	= false;
+        boolean sawMatch = false;
         if (children != null && (numChildren = children.getLength()) > 0) {
-            for (int i = 0 ; i < numChildren ; i++) {
-                Node child	= children.item(i);
+            for (int i = 0; i < numChildren; i++) {
+                Node child = children.item(i);
                 if (DOMUtil.isElement(child)) {
-                    if (DOMUtil.isInNamespace(child, XACML3.XMLNS) && XACML3.ELEMENT_MATCH.equals(child.getLocalName())) {
-                        result		= DOMMatch.repair(child) || result;
-                        sawMatch	= true;
+                    if (DOMUtil.isInNamespace(child, XACML3.XMLNS)
+                        && XACML3.ELEMENT_MATCH.equals(child.getLocalName())) {
+                        result = DOMMatch.repair(child) || result;
+                        sawMatch = true;
                     } else {
                         logger.warn("Unexpected element " + child.getNodeName());
                         elementAllOf.removeChild(child);
-                        result	= true;
+                        result = true;
                     }
                 }
             }

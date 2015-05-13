@@ -41,15 +41,6 @@ import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-
-
-
-
-
-
-
-
-//import javax.naming.directory.Attribute;
 import javax.naming.NamingException;
 import javax.naming.directory.SearchResult;
 
@@ -80,18 +71,17 @@ import org.apache.velocity.exception.ResourceNotFoundException;
 
 public class ConfigurableLDAPResolver implements LDAPResolver {
 
-    private static DataTypeFactory dataTypeFactory		= null;
+    private static DataTypeFactory dataTypeFactory = null;
 
     static {
         try {
-            dataTypeFactory	= DataTypeFactory.newInstance();
+            dataTypeFactory = DataTypeFactory.newInstance();
         } catch (FactoryException fx) {
             throw new RuntimeException(fx);
         }
-        Velocity.setProperty( "runtime.log.logsystem.log4j.logger", "MAIN_LOG" );
+        Velocity.setProperty("runtime.log.logsystem.log4j.logger", "MAIN_LOG");
         Velocity.init();
     }
-
 
     private Log logger = LogFactory.getLog(this.getClass());
 
@@ -99,10 +89,9 @@ public class ConfigurableLDAPResolver implements LDAPResolver {
     private String id;
     private String base;
     private String filter;
-    private Map<String,PIPRequest> baseParameters;
-    private Map<String,PIPRequest> filterParameters;
-    private Map<String,PIPRequest> filterView;
-
+    private Map<String, PIPRequest> baseParameters;
+    private Map<String, PIPRequest> filterParameters;
+    private Map<String, PIPRequest> filterView;
 
     public ConfigurableLDAPResolver() {
     }
@@ -122,39 +111,38 @@ public class ConfigurableLDAPResolver implements LDAPResolver {
 
         this.baseParameters = Configurables.getPIPRequestMap(id + ".base", "parameters", properties, null);
 
-        this.filterParameters = Configurables.getPIPRequestMap(id + ".filter", "parameters", properties, null);
+        this.filterParameters = Configurables
+            .getPIPRequestMap(id + ".filter", "parameters", properties, null);
 
-        //make sure we have all required parameters
+        // make sure we have all required parameters
         if (!this.baseParameters.keySet().containsAll(baseParametersNames)) {
-            throw new PIPException("The 'base' template contains parameters that were not specified in its map.");
+            throw new PIPException(
+                                   "The 'base' template contains parameters that were not specified in its map.");
         }
         if (!this.filterParameters.keySet().containsAll(filterParametersNames)) {
-            throw new PIPException("The 'filter' template contains parameters that were not specified in its map.");
+            throw new PIPException(
+                                   "The 'filter' template contains parameters that were not specified in its map.");
         }
         this.filterView = Configurables.getPIPRequestMap(id + ".filter", "view", properties, defaultIssuer);
         if (this.logger.isTraceEnabled()) {
-            this.logger.trace("(" + id + ") " +
-                              "\nbase '" + this.base + "', parameters " + this.baseParameters +
-                              "\nfilter '" + this.filter + "', parameters " + this.filterParameters + ", view " + this.filterView);
+            this.logger.trace("(" + id + ") " + "\nbase '" + this.base + "', parameters "
+                              + this.baseParameters + "\nfilter '" + this.filter + "', parameters "
+                              + this.filterParameters + ", view " + this.filterView);
         }
     }
 
     public void store(String id, Properties properties) throws PIPException {
         properties.setProperty(id + ".base", this.base);
         properties.setProperty(id + ".filter", this.filter);
-        Configurables.setPIPRequestMap(this.baseParameters,
-                                       id + ".base", "parameters", properties);
-        Configurables.setPIPRequestMap(this.filterParameters,
-                                       id + ".filter", "parameters", properties);
-        Configurables.setPIPRequestMap(this.filterView,
-                                       id + ".filter", "view", properties);
+        Configurables.setPIPRequestMap(this.baseParameters, id + ".base", "parameters", properties);
+        Configurables.setPIPRequestMap(this.filterParameters, id + ".filter", "parameters", properties);
+        Configurables.setPIPRequestMap(this.filterView, id + ".filter", "view", properties);
     }
 
     /*
      * @return the set of parameters names required by the given velocity template
      */
-    private Set<String> prepareVelocityTemplate(String template)
-    throws PIPException {
+    private Set<String> prepareVelocityTemplate(String template) throws PIPException {
         VelocityContext vctx = new VelocityContext();
         EventCartridge vec = new EventCartridge();
         VelocityParameterReader reader = new VelocityParameterReader();
@@ -162,17 +150,13 @@ public class ConfigurableLDAPResolver implements LDAPResolver {
         vec.attachToContext(vctx);
 
         try {
-            Velocity.evaluate(vctx, new StringWriter(),
-                              "LdapResolver", template);
+            Velocity.evaluate(vctx, new StringWriter(), "LdapResolver", template);
         } catch (ParseErrorException pex) {
-            throw new PIPException(
-                "Velocity template preparation failed",pex);
+            throw new PIPException("Velocity template preparation failed", pex);
         } catch (MethodInvocationException mix) {
-            throw new PIPException(
-                "Velocity template preparation failed",mix);
+            throw new PIPException("Velocity template preparation failed", mix);
         } catch (ResourceNotFoundException rnfx) {
-            throw new PIPException(
-                "Velocity template preparation failed",rnfx);
+            throw new PIPException("Velocity template preparation failed", rnfx);
         }
         if (this.logger.isTraceEnabled()) {
             this.logger.trace("(" + id + ") " + template + " with parameters " + reader.parameters);
@@ -182,30 +166,24 @@ public class ConfigurableLDAPResolver implements LDAPResolver {
     }
 
     private String evaluateVelocityTemplate(String template,
-                                            final Map<String,PIPRequest> templateParameters,
-                                            final PIPEngine pipEngine,
-                                            final PIPFinder pipFinder)
-    throws PIPException {
+                                            final Map<String, PIPRequest> templateParameters,
+                                            final PIPEngine pipEngine, final PIPFinder pipFinder)
+        throws PIPException {
         StringWriter out = new StringWriter();
         VelocityContext vctx = new VelocityContext();
         EventCartridge vec = new EventCartridge();
-        VelocityParameterWriter writer = new VelocityParameterWriter(
-            pipEngine, pipFinder, templateParameters);
+        VelocityParameterWriter writer = new VelocityParameterWriter(pipEngine, pipFinder, templateParameters);
         vec.addEventHandler(writer);
         vec.attachToContext(vctx);
 
         try {
-            Velocity.evaluate(vctx, out,
-                              "LdapResolver", template);
+            Velocity.evaluate(vctx, out, "LdapResolver", template);
         } catch (ParseErrorException pex) {
-            throw new PIPException(
-                "Velocity template evaluation failed",pex);
+            throw new PIPException("Velocity template evaluation failed", pex);
         } catch (MethodInvocationException mix) {
-            throw new PIPException(
-                "Velocity template evaluation failed",mix);
+            throw new PIPException("Velocity template evaluation failed", mix);
         } catch (ResourceNotFoundException rnfx) {
-            throw new PIPException(
-                "Velocity template evaluation failed",rnfx);
+            throw new PIPException("Velocity template evaluation failed", rnfx);
         }
 
         this.logger.warn("(" + id + ") " + " template yields " + out.toString());
@@ -213,33 +191,36 @@ public class ConfigurableLDAPResolver implements LDAPResolver {
         return out.toString();
     }
 
-    private Object evaluatePIPRequest(PIPRequest pipRequest,
-                                      PIPEngine pipEngine,
-                                      PIPFinder pipFinder)
-    throws PIPException {
+    private Object evaluatePIPRequest(PIPRequest pipRequest, PIPEngine pipEngine, PIPFinder pipFinder)
+        throws PIPException {
         if (this.logger.isTraceEnabled()) {
             this.logger.trace("(" + id + ") " + pipRequest);
         }
         PIPResponse pipResponse = pipFinder.getMatchingAttributes(pipRequest, null);
         if (pipResponse.getStatus() == null || pipResponse.getStatus().isOk()) {
-            Collection<Attribute> listAttributes  = pipResponse.getAttributes();
+            Collection<Attribute> listAttributes = pipResponse.getAttributes();
             if (listAttributes.size() > 0) {
                 if (listAttributes.size() > 1) {
                     if (this.logger.isTraceEnabled()) {
-                        this.logger.trace("(" + id + ") " + "PIPFinder returned more than one Attribute for " + pipRequest);
+                        this.logger.trace("(" + id + ") " + "PIPFinder returned more than one Attribute for "
+                                          + pipRequest);
                     }
-                    throw new PIPException("PIPFinder returned more than one Attribute for " + pipRequest.toString());
+                    throw new PIPException("PIPFinder returned more than one Attribute for "
+                                           + pipRequest.toString());
                 }
-                Collection<AttributeValue<?>> listAttributeValuesReturned = listAttributes.iterator().next().getValues();
+                Collection<AttributeValue<?>> listAttributeValuesReturned = listAttributes.iterator().next()
+                    .getValues();
                 if (listAttributeValuesReturned.size() > 0) {
                     if (listAttributeValuesReturned.size() > 1) {
                         if (this.logger.isTraceEnabled()) {
-                            this.logger.trace("(" + id + ") " + "PIPFinder returned more than one AttributeValue for " + pipRequest);
+                            this.logger.trace("(" + id + ") "
+                                              + "PIPFinder returned more than one AttributeValue for "
+                                              + pipRequest);
                         }
                         return null;
                     }
                     AttributeValue<?> attributeValue = listAttributeValuesReturned.iterator().next();
-                    //this is to hoping the string representation of the value is accurate
+                    // this is to hoping the string representation of the value is accurate
                     try {
                         return DataTypes.DT_STRING.convert(attributeValue.getValue());
                     } catch (DataTypeException dtx) {
@@ -252,9 +233,8 @@ public class ConfigurableLDAPResolver implements LDAPResolver {
     }
 
     @Override
-    public String getBase(PIPEngine pipEngine,
-                          PIPRequest pipRequest,
-                          PIPFinder pipFinder) throws PIPException {
+    public String getBase(PIPEngine pipEngine, PIPRequest pipRequest, PIPFinder pipFinder)
+        throws PIPException {
 
         if (!filterView.containsValue(pipRequest)) {
             if (this.logger.isTraceEnabled()) {
@@ -266,22 +246,22 @@ public class ConfigurableLDAPResolver implements LDAPResolver {
         if (this.logger.isTraceEnabled()) {
             this.logger.trace("(" + id + ") " + pipRequest);
         }
-        return evaluateVelocityTemplate(this.base, this.baseParameters,
-                                        pipEngine, pipFinder);
+        return evaluateVelocityTemplate(this.base, this.baseParameters, pipEngine, pipFinder);
     }
 
     public void setBase(String base) throws PIPException {
         Set<String> baseParametersNames = prepareVelocityTemplate(base);
-        //make sure we have all required parameters
+        // make sure we have all required parameters
         if (!this.baseParameters.keySet().containsAll(baseParametersNames)) {
-            throw new PIPException("The 'base' template contains parameters that were not specified in its map.");
+            throw new PIPException(
+                                   "The 'base' template contains parameters that were not specified in its map.");
         }
         this.base = base;
     }
 
     @Override
-    public String getFilterString(PIPEngine pipEngine, PIPRequest pipRequest,
-                                  PIPFinder pipFinder) throws PIPException {
+    public String getFilterString(PIPEngine pipEngine, PIPRequest pipRequest, PIPFinder pipFinder)
+        throws PIPException {
 
         if (this.logger.isTraceEnabled()) {
             this.logger.trace("(" + id + ") " + pipRequest);
@@ -294,30 +274,27 @@ public class ConfigurableLDAPResolver implements LDAPResolver {
             return null;
         }
 
-        return evaluateVelocityTemplate(this.filter, this.filterParameters,
-                                        pipEngine, pipFinder);
+        return evaluateVelocityTemplate(this.filter, this.filterParameters, pipEngine, pipFinder);
     }
 
     public void setFilterString(String filter) throws PIPException {
         Set<String> filterParametersNames = prepareVelocityTemplate(filter);
-        //make sure we have all required parameters
+        // make sure we have all required parameters
         if (!this.filterParameters.keySet().containsAll(filterParametersNames)) {
-            throw new PIPException("The 'filter' template contains parameters that were not specified in its map.");
+            throw new PIPException(
+                                   "The 'filter' template contains parameters that were not specified in its map.");
         }
         this.filter = filter;
     }
 
-    private Attribute decodeResultValue(SearchResult searchResult,
-                                        String view,
-                                        PIPRequest viewRequest) {
-        AttributeValue<?> attributeValue	= null;
+    private Attribute decodeResultValue(SearchResult searchResult, String view, PIPRequest viewRequest) {
+        AttributeValue<?> attributeValue = null;
         Collection<AttributeValue<?>> attributeMultiValue = null;
         DataType<?> dataType = null;
 
         this.logger.warn("(" + id + ") " + "SearchResult attributes: " + searchResult.getAttributes());
         try {
-            dataType = dataTypeFactory.getDataType(
-                           viewRequest.getDataTypeId());
+            dataType = dataTypeFactory.getDataType(viewRequest.getDataTypeId());
             if (dataType == null) {
                 if (this.logger.isTraceEnabled()) {
                     this.logger.trace("(" + id + ") " + "Unknown data type in " + viewRequest);
@@ -326,33 +303,31 @@ public class ConfigurableLDAPResolver implements LDAPResolver {
             }
 
             if ("dn".equalsIgnoreCase(view)) {
-                attributeValue	= dataType.createAttributeValue(
-                                      searchResult.getNameInNamespace());
+                attributeValue = dataType.createAttributeValue(searchResult.getNameInNamespace());
             } else {
-                javax.naming.directory.Attribute dirAttr =
-                    searchResult.getAttributes().get(view);
+                javax.naming.directory.Attribute dirAttr = searchResult.getAttributes().get(view);
                 if (dirAttr != null) {
                     if (this.logger.isTraceEnabled()) {
-                        this.logger.trace("(" + id + ") " + "directory attribute '" + view + "' value is '" + dirAttr + "'");
+                        this.logger.trace("(" + id + ") " + "directory attribute '" + view + "' value is '"
+                                          + dirAttr + "'");
                     }
-                    //we could guide this more elaborately by object class ..
+                    // we could guide this more elaborately by object class ..
                     if (dirAttr.size() == 1) {
-                        attributeValue	= dataType.createAttributeValue(
-                                              dirAttr.get().toString());
+                        attributeValue = dataType.createAttributeValue(dirAttr.get().toString());
                     } else {
                         if (this.logger.isTraceEnabled()) {
-                            this.logger.trace("(" + id + ") " + "SearchResult yields a multi-valued '" + view+ "'");
+                            this.logger.trace("(" + id + ") " + "SearchResult yields a multi-valued '" + view
+                                              + "'");
                         }
                         attributeMultiValue = new HashSet<AttributeValue<?>>();
-                        //we should
+                        // we should
                         for (int i = 0; i < dirAttr.size(); i++) {
-                            attributeMultiValue.add(
-                                dataType.createAttributeValue(
-                                    dirAttr.get().toString()));
+                            attributeMultiValue.add(dataType.createAttributeValue(dirAttr.get().toString()));
                         }
                     }
                 } else {
-                    this.logger.warn("(" + id + ") " + "SearchResult did not provide a value for '" + view+ "'");
+                    this.logger.warn("(" + id + ") " + "SearchResult did not provide a value for '" + view
+                                     + "'");
                     return null;
                 }
             }
@@ -366,28 +341,22 @@ public class ConfigurableLDAPResolver implements LDAPResolver {
 
         Attribute attr = null;
         if (attributeMultiValue == null) {
-            attr = new StdAttribute(viewRequest.getCategory(),
-                                    viewRequest.getAttributeId(),
-                                    attributeValue,
-                                    viewRequest.getIssuer(),
-                                    false);
+            attr = new StdAttribute(viewRequest.getCategory(), viewRequest.getAttributeId(), attributeValue,
+                                    viewRequest.getIssuer(), false);
         } else {
-            attr = new StdAttribute(viewRequest.getCategory(),
-                                    viewRequest.getAttributeId(),
-                                    attributeMultiValue,
-                                    viewRequest.getIssuer(),
-                                    false);
+            attr = new StdAttribute(viewRequest.getCategory(), viewRequest.getAttributeId(),
+                                    attributeMultiValue, viewRequest.getIssuer(), false);
         }
         this.logger.warn("(" + id + ") " + " providing attribute " + attr);
         return attr;
     }
 
     @Override
-    public List<Attribute> decodeResult(SearchResult searchResult)
-    throws PIPException {
-        List<Attribute> attributes	= new ArrayList<Attribute>();
-        for (Map.Entry<String,PIPRequest> viewEntry: this.filterView.entrySet()) {
-            Attribute attribute	= this.decodeResultValue(searchResult, viewEntry.getKey(), viewEntry.getValue());
+    public List<Attribute> decodeResult(SearchResult searchResult) throws PIPException {
+        List<Attribute> attributes = new ArrayList<Attribute>();
+        for (Map.Entry<String, PIPRequest> viewEntry : this.filterView.entrySet()) {
+            Attribute attribute = this.decodeResultValue(searchResult, viewEntry.getKey(),
+                                                         viewEntry.getValue());
             if (attribute != null) {
                 attributes.add(attribute);
             }
@@ -400,18 +369,20 @@ public class ConfigurableLDAPResolver implements LDAPResolver {
         /* velocity parameter pattern: we're just trying to extract the name */
         private Pattern vpp = Pattern.compile("\\{(\\w)+\\}");
 
+        @Override
         public Object referenceInsert(String theReference, Object theValue) {
-            /* unfortunately Velocity does not give us simply the variable name
-            but it's whole template representation, i.e. ${var_name} or derivatives.
-            We look for whatever is between { and } */
+            /*
+             * unfortunately Velocity does not give us simply the variable name but it's whole template
+             * representation, i.e. ${var_name} or derivatives. We look for whatever is between { and }
+             */
             Matcher vvm = vpp.matcher(theReference);
             String param = null;
             // Check all occurance
             if (vvm.find()) {
                 String vv = vvm.group();
-                param = vv.substring(1,vv.length()-1);
+                param = vv.substring(1, vv.length() - 1);
             } else {
-                //variable name pattern not right?
+                // variable name pattern not right?
                 param = "";
             }
             if (ConfigurableLDAPResolver.this.logger.isTraceEnabled()) {
@@ -426,8 +397,8 @@ public class ConfigurableLDAPResolver implements LDAPResolver {
 
         private Set<String> parameters = new HashSet<String>();
 
-        public Object referenceInsert(String theReference,
-                                      Object theValue) {
+        @Override
+        public Object referenceInsert(String theReference, Object theValue) {
             String param = (String)super.referenceInsert(theReference, theValue);
             parameters.add(param);
             return "";
@@ -436,31 +407,30 @@ public class ConfigurableLDAPResolver implements LDAPResolver {
 
     private class VelocityParameterWriter extends VelocityParameterHandler {
 
-        private PIPEngine	engine;
+        private PIPEngine engine;
         private PIPFinder finder;
-        private Map<String,PIPRequest> parameters;
+        private Map<String, PIPRequest> parameters;
 
-        public VelocityParameterWriter(PIPEngine engine,
-                                       PIPFinder finder,
-                                       Map<String,PIPRequest> parameters) {
+        public VelocityParameterWriter(PIPEngine engine, PIPFinder finder, Map<String, PIPRequest> parameters) {
             this.engine = engine;
             this.finder = finder;
             this.parameters = parameters;
         }
 
-        public Object referenceInsert(String theReference,
-                                      Object theValue) {
+        @Override
+        public Object referenceInsert(String theReference, Object theValue) {
 
             String param = (String)super.referenceInsert(theReference, theValue);
             try {
-                PIPRequest request =	parameters.get(param);
+                PIPRequest request = parameters.get(param);
                 if (ConfigurableLDAPResolver.this.logger.isTraceEnabled()) {
-                    ConfigurableLDAPResolver.this.logger.trace("(" + id + ") " + "Velocity parameter: " + param + " requests " + request);
+                    ConfigurableLDAPResolver.this.logger.trace("(" + id + ") " + "Velocity parameter: "
+                                                               + param + " requests " + request);
                 }
                 if (null == request)
                     throw new RuntimeException("Parameter '" + param + "' is not available");
-                Object val = ConfigurableLDAPResolver.this.evaluatePIPRequest(
-                                 request, this.engine, this.finder);
+                Object val = ConfigurableLDAPResolver.this.evaluatePIPRequest(request, this.engine,
+                                                                              this.finder);
 
                 if (null != val) {
                     return val;
@@ -488,10 +458,10 @@ public class ConfigurableLDAPResolver implements LDAPResolver {
     public void attributesProvided(Collection<PIPRequest> attributes) {
         for (String key : this.filterParameters.keySet()) {
             PIPRequest attribute = this.filterParameters.get(key);
-            attributes.add(new StdPIPRequest(attribute.getCategory(),
-                                             attribute.getAttributeId(),
-                                             attribute.getDataTypeId(),
-                                             (attribute.getIssuer() != null ? attribute.getIssuer() : this.defaultIssuer)));
+            attributes.add(new StdPIPRequest(attribute.getCategory(), attribute.getAttributeId(), attribute
+                .getDataTypeId(),
+                                             (attribute.getIssuer() != null
+                                                 ? attribute.getIssuer() : this.defaultIssuer)));
         }
     }
 

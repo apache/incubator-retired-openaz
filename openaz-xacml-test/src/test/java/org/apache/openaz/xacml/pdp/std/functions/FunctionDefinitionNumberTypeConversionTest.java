@@ -39,12 +39,8 @@ import org.apache.openaz.xacml.std.datatypes.DataTypes;
 import org.junit.Test;
 
 /**
- * Tests for various classes containing only one function.
- *
- * TO RUN - use jUnit
- * In Eclipse select this file or the enclosing directory, right-click and select Run As/JUnit Test
- *
- *
+ * Tests for various classes containing only one function. TO RUN - use jUnit In Eclipse select this file or
+ * the enclosing directory, right-click and select Run As/JUnit Test
  */
 public class FunctionDefinitionNumberTypeConversionTest {
 
@@ -60,20 +56,19 @@ public class FunctionDefinitionNumberTypeConversionTest {
             attr1 = new FunctionArgumentAttributeValue(DataTypes.DT_DOUBLE.createAttributeValue(5.432));
 
         } catch (Exception e) {
-            fail("creating attribute e="+ e);
+            fail("creating attribute e=" + e);
         }
 
-        FunctionDefinitionNumberTypeConversion<?, ?> fd = (FunctionDefinitionNumberTypeConversion<?, ?>) StdFunctions.FD_DOUBLE_TO_INTEGER;
+        FunctionDefinitionNumberTypeConversion<?, ?> fd = (FunctionDefinitionNumberTypeConversion<?, ?>)StdFunctions.FD_DOUBLE_TO_INTEGER;
 
         // check identity and type of the thing created
         assertEquals(XACML3.ID_FUNCTION_DOUBLE_TO_INTEGER, fd.getId());
         assertEquals(DataTypes.DT_DOUBLE.getId(), fd.getDataTypeArgs().getId());
         assertEquals(DataTypes.DT_INTEGER.getId(), fd.getDataTypeId());
 
-        // just to be safe...  If tests take too long these can probably be eliminated
+        // just to be safe... If tests take too long these can probably be eliminated
         assertFalse(fd.returnsBag());
         assertEquals(new Integer(1), fd.getNumArgs());
-
 
         // test normal add
         arguments.add(attr1);
@@ -83,7 +78,6 @@ public class FunctionDefinitionNumberTypeConversionTest {
         assertEquals(BigInteger.valueOf(5), resValue);
     }
 
-
     @Test
     public void testInteger_to_double() {
         FunctionArgumentAttributeValue attr1 = null;
@@ -91,20 +85,19 @@ public class FunctionDefinitionNumberTypeConversionTest {
             attr1 = new FunctionArgumentAttributeValue(DataTypes.DT_INTEGER.createAttributeValue(5));
 
         } catch (Exception e) {
-            fail("creating attribute e="+ e);
+            fail("creating attribute e=" + e);
         }
 
-        FunctionDefinitionNumberTypeConversion<?, ?> fd = (FunctionDefinitionNumberTypeConversion<?, ?>) StdFunctions.FD_INTEGER_TO_DOUBLE;
+        FunctionDefinitionNumberTypeConversion<?, ?> fd = (FunctionDefinitionNumberTypeConversion<?, ?>)StdFunctions.FD_INTEGER_TO_DOUBLE;
 
         // check identity and type of the thing created
         assertEquals(XACML3.ID_FUNCTION_INTEGER_TO_DOUBLE, fd.getId());
         assertEquals(DataTypes.DT_INTEGER.getId(), fd.getDataTypeArgs().getId());
         assertEquals(DataTypes.DT_DOUBLE.getId(), fd.getDataTypeId());
 
-        // just to be safe...  If tests take too long these can probably be eliminated
+        // just to be safe... If tests take too long these can probably be eliminated
         assertFalse(fd.returnsBag());
         assertEquals(new Integer(1), fd.getNumArgs());
-
 
         // test normal add
         arguments.add(attr1);
@@ -113,6 +106,5 @@ public class FunctionDefinitionNumberTypeConversionTest {
         Double resValue = (Double)res.getValue().getValue();
         assertEquals(new Double(5.0), resValue);
     }
-
 
 }

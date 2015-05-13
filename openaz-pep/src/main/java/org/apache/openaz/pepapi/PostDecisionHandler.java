@@ -21,11 +21,8 @@
 package org.apache.openaz.pepapi;
 
 /**
- * An interface that may be implemented to process the
- * PepResponse that is returned from the main decide()
+ * An interface that may be implemented to process the PepResponse that is returned from the main decide()
  * call before the final results are returned to the user.
- *
- *
  */
 public interface PostDecisionHandler {
 
@@ -37,7 +34,6 @@ public interface PostDecisionHandler {
      * @param request
      * @throws org.apache.openaz.pepapi.PepException
      */
-    public void postDecide(PepRequest request, PepResponse response)
-    throws PepException;
+    void postDecide(PepRequest request, PepResponse response) throws PepException;
 
 }

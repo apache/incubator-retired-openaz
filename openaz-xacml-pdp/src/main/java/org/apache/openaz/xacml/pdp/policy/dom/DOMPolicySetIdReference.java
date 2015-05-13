@@ -39,26 +39,29 @@ import org.apache.openaz.xacml.std.dom.DOMStructureException;
 import org.w3c.dom.Node;
 
 /**
- * DOMPolicySetIdReference extends {@link org.apache.openaz.xacml.pdp.policy.PolicySetIdReference} with methods for creation
- * from DOM {@link org.w3c.dom.Node}s.
- *
+ * DOMPolicySetIdReference extends {@link com.att.research.xacmlatt.pdp.policy.PolicySetIdReference} with
+ * methods for creation from DOM {@link org.w3c.dom.Node}s.
  */
 public class DOMPolicySetIdReference {
     protected DOMPolicySetIdReference() {
     }
 
     /**
-     * Creates a new <code>PolicySetIdReference</code> parsed from the given <code>Node</code> representing a XACML PolicySetIdReference element.
+     * Creates a new <code>PolicySetIdReference</code> parsed from the given <code>Node</code> representing a
+     * XACML PolicySetIdReference element.
      *
-     * @param nodePolicySetIdReference the <code>Node</code> representing the XACML PolicySetIdReference element
+     * @param nodePolicySetIdReference the <code>Node</code> representing the XACML PolicySetIdReference
+     *            element
      * @return a new <code>PolicySetIdReference</code> parsed from the given <code>Node</code>
      * @throws DOMStructureException if there is an error parsing the <code>Node</code>
      */
-    public static PolicySetIdReference newInstance(Node nodePolicySetIdReference, PolicySet policySetParent) throws DOMStructureException {
-        PolicySetIdReference domPolicySetIdReference	= new PolicySetIdReference(policySetParent);
+    public static PolicySetIdReference newInstance(Node nodePolicySetIdReference, PolicySet policySetParent)
+        throws DOMStructureException {
+        PolicySetIdReference domPolicySetIdReference = new PolicySetIdReference(policySetParent);
 
         try {
-            domPolicySetIdReference.setIdReferenceMatch(DOMIdReferenceMatch.newInstance(nodePolicySetIdReference));
+            domPolicySetIdReference.setIdReferenceMatch(DOMIdReferenceMatch
+                .newInstance(nodePolicySetIdReference));
         } catch (DOMStructureException ex) {
             domPolicySetIdReference.setStatus(StdStatusCode.STATUS_CODE_SYNTAX_ERROR, ex.getMessage());
             if (DOMProperties.throwsExceptions()) {

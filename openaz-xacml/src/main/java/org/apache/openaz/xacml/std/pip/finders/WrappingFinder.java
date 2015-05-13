@@ -38,10 +38,9 @@ import org.apache.openaz.xacml.api.pip.PIPResponse;
 import org.apache.openaz.xacml.std.pip.StdPIPResponse;
 
 /**
- * WrappingFinder implements {@link org.apache.openaz.xacml.api.pip.PIPFinder} by wrapping another
- * <code>PIPFinder</code> to intercept calls to <code>getAttributes</code> and do some other processing
- * before calling it on the wrapped <code>PIPFinder</code>.
- *
+ * WrappingFinder implements {@link com.att.research.xacml.api.pip.PIPFinder} by wrapping another
+ * <code>PIPFinder</code> to intercept calls to <code>getAttributes</code> and do some other processing before
+ * calling it on the wrapped <code>PIPFinder</code>.
  */
 public abstract class WrappingFinder implements PIPFinder {
     private PIPFinder wrappedFinder;
@@ -51,21 +50,25 @@ public abstract class WrappingFinder implements PIPFinder {
     }
 
     public WrappingFinder(PIPFinder wrappedFinderIn) {
-        this.wrappedFinder	= wrappedFinderIn;
+        this.wrappedFinder = wrappedFinderIn;
     }
 
     /**
-     * Gets the {@link org.apache.openaz.xacml.api.pip.PIPResponse} from the <code>getAttributes</code> call on the wrapped
-     * <code>PIPFinder</code>, using the given <code>PIPFinder</code> as the root for recursive calls.
+     * Gets the {@link com.att.research.xacml.api.pip.PIPResponse} from the <code>getAttributes</code> call on
+     * the wrapped <code>PIPFinder</code>, using the given <code>PIPFinder</code> as the root for recursive
+     * calls.
      *
      * @param pipRequest the <code>PIPRequest</code>
      * @param exclude the <code>PIPEngine</code> to exclude from recursive calls
      * @param pipFinderParent the <code>PIPFinder</code> to start from for recursive calls
-     * @return the <code>PIPResponse</code> from the wrapped <code>PIPFinder</code> or the empty <code>PIPResponse</code> if there is no wrapped <code>PIPFinder</code>
-     * @throws org.apache.openaz.xacml.api.pip.PIPException if there is an error getting attributes from the wrapped <code>PIPFinder</code>
+     * @return the <code>PIPResponse</code> from the wrapped <code>PIPFinder</code> or the empty
+     *         <code>PIPResponse</code> if there is no wrapped <code>PIPFinder</code>
+     * @throws com.att.research.xacml.api.pip.PIPException if there is an error getting attributes from the
+     *             wrapped <code>PIPFinder</code>
      */
-    protected PIPResponse getAttributesWrapped(PIPRequest pipRequest, PIPEngine exclude, PIPFinder pipFinderParent) throws PIPException {
-        PIPFinder thisWrappedFinder	= this.getWrappedFinder();
+    protected PIPResponse getAttributesWrapped(PIPRequest pipRequest, PIPEngine exclude,
+                                               PIPFinder pipFinderParent) throws PIPException {
+        PIPFinder thisWrappedFinder = this.getWrappedFinder();
         if (thisWrappedFinder == null) {
             return StdPIPResponse.PIP_RESPONSE_EMPTY;
         } else {
@@ -73,7 +76,8 @@ public abstract class WrappingFinder implements PIPFinder {
         }
     }
 
-    protected abstract PIPResponse getAttributesInternal(PIPRequest pipRequest, PIPEngine exclude, PIPFinder pipFinderParent) throws PIPException;
+    protected abstract PIPResponse getAttributesInternal(PIPRequest pipRequest, PIPEngine exclude,
+                                                         PIPFinder pipFinderParent) throws PIPException;
 
     @Override
     public PIPResponse getAttributes(PIPRequest pipRequest, PIPEngine exclude) throws PIPException {
@@ -86,13 +90,16 @@ public abstract class WrappingFinder implements PIPFinder {
     }
 
     @Override
-    public PIPResponse getAttributes(PIPRequest pipRequest, PIPEngine exclude, PIPFinder pipFinderParent) throws PIPException {
+    public PIPResponse getAttributes(PIPRequest pipRequest, PIPEngine exclude, PIPFinder pipFinderParent)
+        throws PIPException {
         return this.getAttributesInternal(pipRequest, exclude, pipFinderParent);
     }
 
     @Override
-    public PIPResponse getMatchingAttributes(PIPRequest pipRequest, PIPEngine exclude, PIPFinder pipFinderParent) throws PIPException {
-        return StdPIPResponse.getMatchingResponse(pipRequest, this.getAttributesInternal(pipRequest, exclude, pipFinderParent));
+    public PIPResponse getMatchingAttributes(PIPRequest pipRequest, PIPEngine exclude,
+                                             PIPFinder pipFinderParent) throws PIPException {
+        return StdPIPResponse.getMatchingResponse(pipRequest, this.getAttributesInternal(pipRequest, exclude,
+                                                                                         pipFinderParent));
     }
 
 }

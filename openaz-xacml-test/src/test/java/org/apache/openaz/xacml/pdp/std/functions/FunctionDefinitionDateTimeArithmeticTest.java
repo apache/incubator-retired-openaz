@@ -44,15 +44,10 @@ import org.apache.openaz.xacml.std.datatypes.XPathYearMonthDuration;
 import org.junit.Test;
 
 /**
- * Test of PDP Functions (See XACML core spec section A.3)
- *
- * TO RUN - use jUnit
- * In Eclipse select this file or the enclosing directory, right-click and select Run As/JUnit Test
- *
- *
+ * Test of PDP Functions (See XACML core spec section A.3) TO RUN - use jUnit In Eclipse select this file or
+ * the enclosing directory, right-click and select Run As/JUnit Test
  */
 public class FunctionDefinitionDateTimeArithmeticTest {
-
 
     /*
      * variables useful in the following tests
@@ -61,30 +56,25 @@ public class FunctionDefinitionDateTimeArithmeticTest {
 
     ExpressionResult res;
 
-
     @Test
     public void testDateTime_add_dayTimeDuration() {
         // Date objects to be adjusted
-        ISO8601DateTime dateTimeStdExample1 = new ISO8601DateTime(null,
-                new ISO8601Date(2000, 1, 12),
-                new ISO8601Time(12, 13, 14, 0));
-        ISO8601DateTime dateTimeMsecs = new ISO8601DateTime(null,
-                new ISO8601Date(2000, 1, 12),
-                new ISO8601Time(12, 13, 14, 777));
-        ISO8601DateTime dateTimeCrossover = new ISO8601DateTime(null,
-                new ISO8601Date(2000, 12, 31),
-                new ISO8601Time(23, 59, 30, 1));
-        ISO8601DateTime dateTimeBC = new ISO8601DateTime(null,
-                new ISO8601Date(-2000, 1, 12),
-                new ISO8601Time(12, 13, 14, 0));
+        ISO8601DateTime dateTimeStdExample1 = new ISO8601DateTime(null, new ISO8601Date(2000, 1, 12),
+                                                                  new ISO8601Time(12, 13, 14, 0));
+        ISO8601DateTime dateTimeMsecs = new ISO8601DateTime(null, new ISO8601Date(2000, 1, 12),
+                                                            new ISO8601Time(12, 13, 14, 777));
+        ISO8601DateTime dateTimeCrossover = new ISO8601DateTime(null, new ISO8601Date(2000, 12, 31),
+                                                                new ISO8601Time(23, 59, 30, 1));
+        ISO8601DateTime dateTimeBC = new ISO8601DateTime(null, new ISO8601Date(-2000, 1, 12),
+                                                         new ISO8601Time(12, 13, 14, 0));
         ISO8601TimeZone timeZone0 = new ISO8601TimeZone(0);
         ISO8601TimeZone timeZone5 = new ISO8601TimeZone(5 * 60);
-        ISO8601DateTime dateTimeTimeZone0 = new ISO8601DateTime(timeZone0,
-                new ISO8601Date(timeZone0, 2000, 1, 12),
-                new ISO8601Time(timeZone0, 12, 13, 14, 0));
-        ISO8601DateTime dateTimeTimeZone5 = new ISO8601DateTime(timeZone5,
-                new ISO8601Date(timeZone5, 2000, 1, 12),
-                new ISO8601Time(timeZone5, 12, 13, 14, 0));
+        ISO8601DateTime dateTimeTimeZone0 = new ISO8601DateTime(timeZone0, new ISO8601Date(timeZone0, 2000,
+                                                                                           1, 12),
+                                                                new ISO8601Time(timeZone0, 12, 13, 14, 0));
+        ISO8601DateTime dateTimeTimeZone5 = new ISO8601DateTime(timeZone5, new ISO8601Date(timeZone5, 2000,
+                                                                                           1, 12),
+                                                                new ISO8601Time(timeZone5, 12, 13, 14, 0));
         ISO8601DateTime dateTimeIIC102Result = null;
 
         // Durations
@@ -119,39 +109,70 @@ public class FunctionDefinitionDateTimeArithmeticTest {
         // set values
         try {
             // Date attrs
-            attrDateTimeStdExample1 = new FunctionArgumentAttributeValue(DataTypes.DT_DATETIME.createAttributeValue(dateTimeStdExample1));
-            attrDateTimeMsecs = new FunctionArgumentAttributeValue(DataTypes.DT_DATETIME.createAttributeValue(dateTimeMsecs));
-            attrDateTimeCrossover = new FunctionArgumentAttributeValue(DataTypes.DT_DATETIME.createAttributeValue(dateTimeCrossover));
-            attrDateTimeBC = new FunctionArgumentAttributeValue(DataTypes.DT_DATETIME.createAttributeValue(dateTimeBC));
-            attrDateTimeTimeZone0 = new FunctionArgumentAttributeValue(DataTypes.DT_DATETIME.createAttributeValue(dateTimeTimeZone0));
-            attrDateTimeTimeZone5 = new FunctionArgumentAttributeValue(DataTypes.DT_DATETIME.createAttributeValue(dateTimeTimeZone5));
-            attrDateTimeIIC102 = new FunctionArgumentAttributeValue(DataTypes.DT_DATETIME.createAttributeValue(DataTypes.DT_DATETIME.convert("2002-03-22T08:23:47-05:00")));
+            attrDateTimeStdExample1 = new FunctionArgumentAttributeValue(
+                                                                         DataTypes.DT_DATETIME
+                                                                             .createAttributeValue(dateTimeStdExample1));
+            attrDateTimeMsecs = new FunctionArgumentAttributeValue(
+                                                                   DataTypes.DT_DATETIME
+                                                                       .createAttributeValue(dateTimeMsecs));
+            attrDateTimeCrossover = new FunctionArgumentAttributeValue(
+                                                                       DataTypes.DT_DATETIME
+                                                                           .createAttributeValue(dateTimeCrossover));
+            attrDateTimeBC = new FunctionArgumentAttributeValue(
+                                                                DataTypes.DT_DATETIME
+                                                                    .createAttributeValue(dateTimeBC));
+            attrDateTimeTimeZone0 = new FunctionArgumentAttributeValue(
+                                                                       DataTypes.DT_DATETIME
+                                                                           .createAttributeValue(dateTimeTimeZone0));
+            attrDateTimeTimeZone5 = new FunctionArgumentAttributeValue(
+                                                                       DataTypes.DT_DATETIME
+                                                                           .createAttributeValue(dateTimeTimeZone5));
+            attrDateTimeIIC102 = new FunctionArgumentAttributeValue(
+                                                                    DataTypes.DT_DATETIME
+                                                                        .createAttributeValue(DataTypes.DT_DATETIME
+                                                                            .convert("2002-03-22T08:23:47-05:00")));
 
             dateTimeIIC102Result = DataTypes.DT_DATETIME.convert("2002-03-27T10:23:47-05:00");
 
             // Duration attrs
-            attrDuration0 = new FunctionArgumentAttributeValue(DataTypes.DT_DAYTIMEDURATION.createAttributeValue(duration0));
-            attrDurationStdExample1 = new FunctionArgumentAttributeValue(DataTypes.DT_DAYTIMEDURATION.createAttributeValue(durationStdExample1));
-            attrDurationNStdExample1 = new FunctionArgumentAttributeValue(DataTypes.DT_DAYTIMEDURATION.createAttributeValue(durationNStdExample1));
-            attrDurationMsecs = new FunctionArgumentAttributeValue(DataTypes.DT_DAYTIMEDURATION.createAttributeValue(durationMsecs));
-            attrDurationCrossover = new FunctionArgumentAttributeValue(DataTypes.DT_DAYTIMEDURATION.createAttributeValue(durationCrossover));
-            attrDurationIIC102 = new FunctionArgumentAttributeValue(DataTypes.DT_DAYTIMEDURATION.createAttributeValue("P5DT2H0M0S"));
+            attrDuration0 = new FunctionArgumentAttributeValue(
+                                                               DataTypes.DT_DAYTIMEDURATION
+                                                                   .createAttributeValue(duration0));
+            attrDurationStdExample1 = new FunctionArgumentAttributeValue(
+                                                                         DataTypes.DT_DAYTIMEDURATION
+                                                                             .createAttributeValue(durationStdExample1));
+            attrDurationNStdExample1 = new FunctionArgumentAttributeValue(
+                                                                          DataTypes.DT_DAYTIMEDURATION
+                                                                              .createAttributeValue(durationNStdExample1));
+            attrDurationMsecs = new FunctionArgumentAttributeValue(
+                                                                   DataTypes.DT_DAYTIMEDURATION
+                                                                       .createAttributeValue(durationMsecs));
+            attrDurationCrossover = new FunctionArgumentAttributeValue(
+                                                                       DataTypes.DT_DAYTIMEDURATION
+                                                                           .createAttributeValue(durationCrossover));
+            attrDurationIIC102 = new FunctionArgumentAttributeValue(
+                                                                    DataTypes.DT_DAYTIMEDURATION
+                                                                        .createAttributeValue("P5DT2H0M0S"));
 
             // misc bad
-            attrBlank = new FunctionArgumentAttributeValue(DataTypes.DT_DAYTIMEDURATION.createAttributeValue(""));
-            attrNull = new FunctionArgumentAttributeValue(DataTypes.DT_DAYTIMEDURATION.createAttributeValue(null));
+            attrBlank = new FunctionArgumentAttributeValue(
+                                                           DataTypes.DT_DAYTIMEDURATION
+                                                               .createAttributeValue(""));
+            attrNull = new FunctionArgumentAttributeValue(
+                                                          DataTypes.DT_DAYTIMEDURATION
+                                                              .createAttributeValue(null));
             attrInteger = new FunctionArgumentAttributeValue(DataTypes.DT_INTEGER.createAttributeValue(1234));
         } catch (Exception e) {
-            fail("creating attributes e="+ e);
+            fail("creating attributes e=" + e);
         }
 
-        FunctionDefinitionDateTimeArithmetic<?,?> fd = (FunctionDefinitionDateTimeArithmetic<?,?>) StdFunctions.FD_DATETIME_ADD_DAYTIMEDURATION;
+        FunctionDefinitionDateTimeArithmetic<?, ?> fd = (FunctionDefinitionDateTimeArithmetic<?, ?>)StdFunctions.FD_DATETIME_ADD_DAYTIMEDURATION;
 
         // check identity and type of the thing created
         assertEquals(XACML3.ID_FUNCTION_DATETIME_ADD_DAYTIMEDURATION, fd.getId());
         assertEquals(DataTypes.DT_DATETIME.getId(), fd.getDataTypeId());
 
-        // just to be safe...  If tests take too long these can probably be eliminated
+        // just to be safe... If tests take too long these can probably be eliminated
         assertFalse(fd.returnsBag());
 
         // Duration = 0 => same as original
@@ -164,7 +185,6 @@ public class FunctionDefinitionDateTimeArithmeticTest {
         ISO8601DateTime resValue = (ISO8601DateTime)res.getValue().getValue();
         assertEquals(dateTimeStdExample1, resValue);
 
-
         // simple positive operation
         arguments.clear();
         arguments.add(attrDateTimeStdExample1);
@@ -173,10 +193,8 @@ public class FunctionDefinitionDateTimeArithmeticTest {
         assertTrue(res.isOk());
         assertEquals(ISO8601DateTime.class, res.getValue().getValue().getClass());
         resValue = (ISO8601DateTime)res.getValue().getValue();
-        ISO8601DateTime testResponse = new ISO8601DateTime(
-            null,
-            new ISO8601Date(2000, 1, 17),
-            new ISO8601Time(19, 23, 17, 300) );
+        ISO8601DateTime testResponse = new ISO8601DateTime(null, new ISO8601Date(2000, 1, 17),
+                                                           new ISO8601Time(19, 23, 17, 300));
         assertEquals(testResponse, resValue);
 
         // negative operation
@@ -187,10 +205,7 @@ public class FunctionDefinitionDateTimeArithmeticTest {
         assertTrue(res.isOk());
         assertEquals(ISO8601DateTime.class, res.getValue().getValue().getClass());
         resValue = (ISO8601DateTime)res.getValue().getValue();
-        testResponse = new ISO8601DateTime(
-            null,
-            new ISO8601Date(2000, 1, 7),
-            new ISO8601Time(5, 3, 10, 700) );
+        testResponse = new ISO8601DateTime(null, new ISO8601Date(2000, 1, 7), new ISO8601Time(5, 3, 10, 700));
         assertEquals(testResponse, resValue);
 
         // millisecs work correctly
@@ -201,10 +216,7 @@ public class FunctionDefinitionDateTimeArithmeticTest {
         assertTrue(res.isOk());
         assertEquals(ISO8601DateTime.class, res.getValue().getValue().getClass());
         resValue = (ISO8601DateTime)res.getValue().getValue();
-        testResponse = new ISO8601DateTime(
-            null,
-            new ISO8601Date(2000, 1, 17),
-            new ISO8601Time(19, 23, 18, 0) );
+        testResponse = new ISO8601DateTime(null, new ISO8601Date(2000, 1, 17), new ISO8601Time(19, 23, 18, 0));
         assertEquals(testResponse, resValue);
 
         // cross minute => cross day => cross month => cross year
@@ -215,10 +227,7 @@ public class FunctionDefinitionDateTimeArithmeticTest {
         assertTrue(res.isOk());
         assertEquals(ISO8601DateTime.class, res.getValue().getValue().getClass());
         resValue = (ISO8601DateTime)res.getValue().getValue();
-        testResponse = new ISO8601DateTime(
-            null,
-            new ISO8601Date(2001, 1, 1),
-            new ISO8601Time(0, 0, 0, 0) );
+        testResponse = new ISO8601DateTime(null, new ISO8601Date(2001, 1, 1), new ISO8601Time(0, 0, 0, 0));
         assertEquals(testResponse, resValue);
 
         // negative (BC) original date add goes the right direction
@@ -229,10 +238,8 @@ public class FunctionDefinitionDateTimeArithmeticTest {
         assertTrue(res.isOk());
         assertEquals(ISO8601DateTime.class, res.getValue().getValue().getClass());
         resValue = (ISO8601DateTime)res.getValue().getValue();
-        testResponse = new ISO8601DateTime(
-            null,
-            new ISO8601Date(-2000, 1, 17),
-            new ISO8601Time(19, 23, 17, 300) );
+        testResponse = new ISO8601DateTime(null, new ISO8601Date(-2000, 1, 17), new ISO8601Time(19, 23, 17,
+                                                                                                300));
         assertEquals(testResponse, resValue);
 
         // non-null timezone not changed
@@ -244,10 +251,8 @@ public class FunctionDefinitionDateTimeArithmeticTest {
         assertTrue(res.isOk());
         assertEquals(ISO8601DateTime.class, res.getValue().getValue().getClass());
         resValue = (ISO8601DateTime)res.getValue().getValue();
-        testResponse = new ISO8601DateTime(
-            timeZone0,
-            new ISO8601Date(timeZone0, 2000, 1, 17),
-            new ISO8601Time(timeZone0, 19, 23, 17, 300) );
+        testResponse = new ISO8601DateTime(timeZone0, new ISO8601Date(timeZone0, 2000, 1, 17),
+                                           new ISO8601Time(timeZone0, 19, 23, 17, 300));
         assertEquals(testResponse, resValue);
 
         // original has timezone offset not 0
@@ -258,10 +263,8 @@ public class FunctionDefinitionDateTimeArithmeticTest {
         assertTrue(res.isOk());
         assertEquals(ISO8601DateTime.class, res.getValue().getValue().getClass());
         resValue = (ISO8601DateTime)res.getValue().getValue();
-        testResponse = new ISO8601DateTime(
-            timeZone5,
-            new ISO8601Date(timeZone5, 2000, 1, 17),
-            new ISO8601Time(timeZone5, 19, 23, 17, 300) );
+        testResponse = new ISO8601DateTime(timeZone5, new ISO8601Date(timeZone5, 2000, 1, 17),
+                                           new ISO8601Time(timeZone5, 19, 23, 17, 300));
         assertEquals(testResponse, resValue);
 
         // conformance test IIC102
@@ -280,8 +283,10 @@ public class FunctionDefinitionDateTimeArithmeticTest {
         arguments.add(attrDurationStdExample1);
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
-        assertEquals("function:dateTime-add-dayTimeDuration Got null attribute", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("function:dateTime-add-dayTimeDuration Got null attribute", res.getStatus()
+            .getStatusMessage());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
         // empty non-null second arg
         arguments.clear();
@@ -289,8 +294,10 @@ public class FunctionDefinitionDateTimeArithmeticTest {
         arguments.add(attrBlank);
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
-        assertEquals("function:dateTime-add-dayTimeDuration Got null attribute", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("function:dateTime-add-dayTimeDuration Got null attribute", res.getStatus()
+            .getStatusMessage());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
         // two blanks
         arguments.clear();
@@ -298,8 +305,10 @@ public class FunctionDefinitionDateTimeArithmeticTest {
         arguments.add(attrBlank);
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
-        assertEquals("function:dateTime-add-dayTimeDuration Got null attribute", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("function:dateTime-add-dayTimeDuration Got null attribute", res.getStatus()
+            .getStatusMessage());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
         // null firat arg
         arguments.clear();
@@ -307,8 +316,10 @@ public class FunctionDefinitionDateTimeArithmeticTest {
         arguments.add(attrBlank);
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
-        assertEquals("function:dateTime-add-dayTimeDuration Got null attribute", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("function:dateTime-add-dayTimeDuration Got null attribute", res.getStatus()
+            .getStatusMessage());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
         // null second arg
         arguments.clear();
@@ -316,8 +327,10 @@ public class FunctionDefinitionDateTimeArithmeticTest {
         arguments.add(attrNull);
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
-        assertEquals("function:dateTime-add-dayTimeDuration Got null attribute", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("function:dateTime-add-dayTimeDuration Got null attribute", res.getStatus()
+            .getStatusMessage());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
         // bad arg type
         arguments.clear();
@@ -325,8 +338,10 @@ public class FunctionDefinitionDateTimeArithmeticTest {
         arguments.add(attrDurationStdExample1);
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
-        assertEquals("function:dateTime-add-dayTimeDuration Expected data type 'dateTime' saw 'integer'", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("function:dateTime-add-dayTimeDuration Expected data type 'dateTime' saw 'integer'", res
+            .getStatus().getStatusMessage());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
         // null second arg
         arguments.clear();
@@ -334,35 +349,31 @@ public class FunctionDefinitionDateTimeArithmeticTest {
         arguments.add(attrNull);
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
-        assertEquals("function:dateTime-add-dayTimeDuration Got null attribute", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("function:dateTime-add-dayTimeDuration Got null attribute", res.getStatus()
+            .getStatusMessage());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
     }
-
-
 
     @Test
     public void testDateTime_subtract_dayTimeDuration() {
         // Date objects to be adjusted
-        ISO8601DateTime dateTimeStdExample1 = new ISO8601DateTime(null,
-                new ISO8601Date(2000, 1, 12),
-                new ISO8601Time(12, 13, 14, 0));
-        ISO8601DateTime dateTimeMsecs = new ISO8601DateTime(null,
-                new ISO8601Date(2000, 1, 12),
-                new ISO8601Time(12, 13, 14, 777));
-        ISO8601DateTime dateTimeCrossover = new ISO8601DateTime(null,
-                new ISO8601Date(2001, 1, 1),
-                new ISO8601Time(0, 0, 0, 0) );
-        ISO8601DateTime dateTimeBC = new ISO8601DateTime(null,
-                new ISO8601Date(-2000, 1, 12),
-                new ISO8601Time(12, 13, 14, 0));
+        ISO8601DateTime dateTimeStdExample1 = new ISO8601DateTime(null, new ISO8601Date(2000, 1, 12),
+                                                                  new ISO8601Time(12, 13, 14, 0));
+        ISO8601DateTime dateTimeMsecs = new ISO8601DateTime(null, new ISO8601Date(2000, 1, 12),
+                                                            new ISO8601Time(12, 13, 14, 777));
+        ISO8601DateTime dateTimeCrossover = new ISO8601DateTime(null, new ISO8601Date(2001, 1, 1),
+                                                                new ISO8601Time(0, 0, 0, 0));
+        ISO8601DateTime dateTimeBC = new ISO8601DateTime(null, new ISO8601Date(-2000, 1, 12),
+                                                         new ISO8601Time(12, 13, 14, 0));
         ISO8601TimeZone timeZone0 = new ISO8601TimeZone(0);
         ISO8601TimeZone timeZone5 = new ISO8601TimeZone(5 * 60);
-        ISO8601DateTime dateTimeTimeZone0 = new ISO8601DateTime(timeZone0,
-                new ISO8601Date(timeZone0, 2000, 1, 12),
-                new ISO8601Time(timeZone0, 12, 13, 14, 0));
-        ISO8601DateTime dateTimeTimeZone5 = new ISO8601DateTime(timeZone5,
-                new ISO8601Date(timeZone5, 2000, 1, 12),
-                new ISO8601Time(timeZone5, 12, 13, 14, 0));
+        ISO8601DateTime dateTimeTimeZone0 = new ISO8601DateTime(timeZone0, new ISO8601Date(timeZone0, 2000,
+                                                                                           1, 12),
+                                                                new ISO8601Time(timeZone0, 12, 13, 14, 0));
+        ISO8601DateTime dateTimeTimeZone5 = new ISO8601DateTime(timeZone5, new ISO8601Date(timeZone5, 2000,
+                                                                                           1, 12),
+                                                                new ISO8601Time(timeZone5, 12, 13, 14, 0));
 
         // Durations
         XPathDayTimeDuration duration0 = new XPathDayTimeDuration(1, 0, 0, 0, 0);
@@ -394,35 +405,61 @@ public class FunctionDefinitionDateTimeArithmeticTest {
         // set values
         try {
             // Date attrs
-            attrDateTimeStdExample1 = new FunctionArgumentAttributeValue(DataTypes.DT_DATETIME.createAttributeValue(dateTimeStdExample1));
-            attrDateTimeMsecs = new FunctionArgumentAttributeValue(DataTypes.DT_DATETIME.createAttributeValue(dateTimeMsecs));
-            attrDateTimeCrossover = new FunctionArgumentAttributeValue(DataTypes.DT_DATETIME.createAttributeValue(dateTimeCrossover));
-            attrDateTimeBC = new FunctionArgumentAttributeValue(DataTypes.DT_DATETIME.createAttributeValue(dateTimeBC));
-            attrDateTimeTimeZone0 = new FunctionArgumentAttributeValue(DataTypes.DT_DATETIME.createAttributeValue(dateTimeTimeZone0));
-            attrDateTimeTimeZone5 = new FunctionArgumentAttributeValue(DataTypes.DT_DATETIME.createAttributeValue(dateTimeTimeZone5));
+            attrDateTimeStdExample1 = new FunctionArgumentAttributeValue(
+                                                                         DataTypes.DT_DATETIME
+                                                                             .createAttributeValue(dateTimeStdExample1));
+            attrDateTimeMsecs = new FunctionArgumentAttributeValue(
+                                                                   DataTypes.DT_DATETIME
+                                                                       .createAttributeValue(dateTimeMsecs));
+            attrDateTimeCrossover = new FunctionArgumentAttributeValue(
+                                                                       DataTypes.DT_DATETIME
+                                                                           .createAttributeValue(dateTimeCrossover));
+            attrDateTimeBC = new FunctionArgumentAttributeValue(
+                                                                DataTypes.DT_DATETIME
+                                                                    .createAttributeValue(dateTimeBC));
+            attrDateTimeTimeZone0 = new FunctionArgumentAttributeValue(
+                                                                       DataTypes.DT_DATETIME
+                                                                           .createAttributeValue(dateTimeTimeZone0));
+            attrDateTimeTimeZone5 = new FunctionArgumentAttributeValue(
+                                                                       DataTypes.DT_DATETIME
+                                                                           .createAttributeValue(dateTimeTimeZone5));
 
             // Duration attrs
-            attrDuration0 = new FunctionArgumentAttributeValue(DataTypes.DT_DAYTIMEDURATION.createAttributeValue(duration0));
-            attrDurationStdExample1 = new FunctionArgumentAttributeValue(DataTypes.DT_DAYTIMEDURATION.createAttributeValue(durationStdExample1));
-            attrDurationNStdExample1 = new FunctionArgumentAttributeValue(DataTypes.DT_DAYTIMEDURATION.createAttributeValue(durationNStdExample1));
-            attrDurationMsecs = new FunctionArgumentAttributeValue(DataTypes.DT_DAYTIMEDURATION.createAttributeValue(durationMsecs));
-            attrDurationCrossover = new FunctionArgumentAttributeValue(DataTypes.DT_DAYTIMEDURATION.createAttributeValue(durationCrossover));
+            attrDuration0 = new FunctionArgumentAttributeValue(
+                                                               DataTypes.DT_DAYTIMEDURATION
+                                                                   .createAttributeValue(duration0));
+            attrDurationStdExample1 = new FunctionArgumentAttributeValue(
+                                                                         DataTypes.DT_DAYTIMEDURATION
+                                                                             .createAttributeValue(durationStdExample1));
+            attrDurationNStdExample1 = new FunctionArgumentAttributeValue(
+                                                                          DataTypes.DT_DAYTIMEDURATION
+                                                                              .createAttributeValue(durationNStdExample1));
+            attrDurationMsecs = new FunctionArgumentAttributeValue(
+                                                                   DataTypes.DT_DAYTIMEDURATION
+                                                                       .createAttributeValue(durationMsecs));
+            attrDurationCrossover = new FunctionArgumentAttributeValue(
+                                                                       DataTypes.DT_DAYTIMEDURATION
+                                                                           .createAttributeValue(durationCrossover));
 
             // misc bad
-            attrBlank = new FunctionArgumentAttributeValue(DataTypes.DT_DAYTIMEDURATION.createAttributeValue(""));
-            attrNull = new FunctionArgumentAttributeValue(DataTypes.DT_DAYTIMEDURATION.createAttributeValue(null));
+            attrBlank = new FunctionArgumentAttributeValue(
+                                                           DataTypes.DT_DAYTIMEDURATION
+                                                               .createAttributeValue(""));
+            attrNull = new FunctionArgumentAttributeValue(
+                                                          DataTypes.DT_DAYTIMEDURATION
+                                                              .createAttributeValue(null));
             attrInteger = new FunctionArgumentAttributeValue(DataTypes.DT_INTEGER.createAttributeValue(1234));
         } catch (Exception e) {
-            fail("creating attributes e="+ e);
+            fail("creating attributes e=" + e);
         }
 
-        FunctionDefinitionDateTimeArithmetic<?,?> fd = (FunctionDefinitionDateTimeArithmetic<?,?>) StdFunctions.FD_DATETIME_SUBTRACT_DAYTIMEDURATION;
+        FunctionDefinitionDateTimeArithmetic<?, ?> fd = (FunctionDefinitionDateTimeArithmetic<?, ?>)StdFunctions.FD_DATETIME_SUBTRACT_DAYTIMEDURATION;
 
         // check identity and type of the thing created
         assertEquals(XACML3.ID_FUNCTION_DATETIME_SUBTRACT_DAYTIMEDURATION, fd.getId());
         assertEquals(DataTypes.DT_DATETIME.getId(), fd.getDataTypeId());
 
-        // just to be safe...  If tests take too long these can probably be eliminated
+        // just to be safe... If tests take too long these can probably be eliminated
         assertFalse(fd.returnsBag());
 
         // Duration = 0 => same as original
@@ -435,7 +472,6 @@ public class FunctionDefinitionDateTimeArithmeticTest {
         ISO8601DateTime resValue = (ISO8601DateTime)res.getValue().getValue();
         assertEquals(dateTimeStdExample1, resValue);
 
-
         // simple positive operation
         arguments.clear();
         arguments.add(attrDateTimeStdExample1);
@@ -444,12 +480,9 @@ public class FunctionDefinitionDateTimeArithmeticTest {
         assertTrue(res.isOk());
         assertEquals(ISO8601DateTime.class, res.getValue().getValue().getClass());
         resValue = (ISO8601DateTime)res.getValue().getValue();
-        ISO8601DateTime testResponse = new ISO8601DateTime(
-            null,
-            new ISO8601Date(2000, 1, 7),
-            new ISO8601Time(5, 3, 10, 700) );
+        ISO8601DateTime testResponse = new ISO8601DateTime(null, new ISO8601Date(2000, 1, 7),
+                                                           new ISO8601Time(5, 3, 10, 700));
         assertEquals(testResponse, resValue);
-
 
         // negative operation
         arguments.clear();
@@ -459,10 +492,8 @@ public class FunctionDefinitionDateTimeArithmeticTest {
         assertTrue(res.isOk());
         assertEquals(ISO8601DateTime.class, res.getValue().getValue().getClass());
         resValue = (ISO8601DateTime)res.getValue().getValue();
-        testResponse = new ISO8601DateTime(
-            null,
-            new ISO8601Date(2000, 1, 17),
-            new ISO8601Time(19, 23, 17, 300) );
+        testResponse = new ISO8601DateTime(null, new ISO8601Date(2000, 1, 17), new ISO8601Time(19, 23, 17,
+                                                                                               300));
         assertEquals(testResponse, resValue);
 
         // millisecs work correctly
@@ -473,10 +504,7 @@ public class FunctionDefinitionDateTimeArithmeticTest {
         assertTrue(res.isOk());
         assertEquals(ISO8601DateTime.class, res.getValue().getValue().getClass());
         resValue = (ISO8601DateTime)res.getValue().getValue();
-        testResponse = new ISO8601DateTime(
-            null,
-            new ISO8601Date(2000, 1, 7),
-            new ISO8601Time(5, 2, 59, 999) );
+        testResponse = new ISO8601DateTime(null, new ISO8601Date(2000, 1, 7), new ISO8601Time(5, 2, 59, 999));
         assertEquals(testResponse, resValue);
 
         // cross minute => cross day => cross month => cross year
@@ -487,10 +515,8 @@ public class FunctionDefinitionDateTimeArithmeticTest {
         assertTrue(res.isOk());
         assertEquals(ISO8601DateTime.class, res.getValue().getValue().getClass());
         resValue = (ISO8601DateTime)res.getValue().getValue();
-        testResponse = new ISO8601DateTime(
-            null,
-            new ISO8601Date(2000, 12, 31),
-            new ISO8601Time(23, 59, 30, 1));
+        testResponse = new ISO8601DateTime(null, new ISO8601Date(2000, 12, 31),
+                                           new ISO8601Time(23, 59, 30, 1));
         assertEquals(testResponse, resValue);
 
         // negative (BC) original date add goes the right direction
@@ -501,10 +527,7 @@ public class FunctionDefinitionDateTimeArithmeticTest {
         assertTrue(res.isOk());
         assertEquals(ISO8601DateTime.class, res.getValue().getValue().getClass());
         resValue = (ISO8601DateTime)res.getValue().getValue();
-        testResponse = new ISO8601DateTime(
-            null,
-            new ISO8601Date(-2000, 1, 7),
-            new ISO8601Time(5, 3, 10, 700) );
+        testResponse = new ISO8601DateTime(null, new ISO8601Date(-2000, 1, 7), new ISO8601Time(5, 3, 10, 700));
         assertEquals(testResponse, resValue);
 
         // non-null timezone not changed
@@ -516,10 +539,8 @@ public class FunctionDefinitionDateTimeArithmeticTest {
         assertTrue(res.isOk());
         assertEquals(ISO8601DateTime.class, res.getValue().getValue().getClass());
         resValue = (ISO8601DateTime)res.getValue().getValue();
-        testResponse = new ISO8601DateTime(
-            timeZone0,
-            new ISO8601Date(timeZone0, 2000, 1, 7),
-            new ISO8601Time(timeZone0, 5, 3, 10, 700) );
+        testResponse = new ISO8601DateTime(timeZone0, new ISO8601Date(timeZone0, 2000, 1, 7),
+                                           new ISO8601Time(timeZone0, 5, 3, 10, 700));
         assertEquals(testResponse, resValue);
 
         // original has timezone offset not 0
@@ -530,10 +551,8 @@ public class FunctionDefinitionDateTimeArithmeticTest {
         assertTrue(res.isOk());
         assertEquals(ISO8601DateTime.class, res.getValue().getValue().getClass());
         resValue = (ISO8601DateTime)res.getValue().getValue();
-        testResponse = new ISO8601DateTime(
-            timeZone5,
-            new ISO8601Date(timeZone5, 2000, 1, 7),
-            new ISO8601Time(timeZone5, 5, 3, 10, 700) );
+        testResponse = new ISO8601DateTime(timeZone5, new ISO8601Date(timeZone5, 2000, 1, 7),
+                                           new ISO8601Time(timeZone5, 5, 3, 10, 700));
         assertEquals(testResponse, resValue);
 
         // empty non-null first arg
@@ -542,8 +561,10 @@ public class FunctionDefinitionDateTimeArithmeticTest {
         arguments.add(attrDurationStdExample1);
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
-        assertEquals("function:dateTime-subtract-dayTimeDuration Got null attribute", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("function:dateTime-subtract-dayTimeDuration Got null attribute", res.getStatus()
+            .getStatusMessage());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
         // empty non-null second arg
         arguments.clear();
@@ -551,8 +572,10 @@ public class FunctionDefinitionDateTimeArithmeticTest {
         arguments.add(attrBlank);
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
-        assertEquals("function:dateTime-subtract-dayTimeDuration Got null attribute", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("function:dateTime-subtract-dayTimeDuration Got null attribute", res.getStatus()
+            .getStatusMessage());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
         // two blanks
         arguments.clear();
@@ -560,8 +583,10 @@ public class FunctionDefinitionDateTimeArithmeticTest {
         arguments.add(attrBlank);
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
-        assertEquals("function:dateTime-subtract-dayTimeDuration Got null attribute", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("function:dateTime-subtract-dayTimeDuration Got null attribute", res.getStatus()
+            .getStatusMessage());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
         // null firat arg
         arguments.clear();
@@ -569,8 +594,10 @@ public class FunctionDefinitionDateTimeArithmeticTest {
         arguments.add(attrBlank);
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
-        assertEquals("function:dateTime-subtract-dayTimeDuration Got null attribute", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("function:dateTime-subtract-dayTimeDuration Got null attribute", res.getStatus()
+            .getStatusMessage());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
         // null second arg
         arguments.clear();
@@ -578,8 +605,10 @@ public class FunctionDefinitionDateTimeArithmeticTest {
         arguments.add(attrNull);
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
-        assertEquals("function:dateTime-subtract-dayTimeDuration Got null attribute", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("function:dateTime-subtract-dayTimeDuration Got null attribute", res.getStatus()
+            .getStatusMessage());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
         // bad arg type
         arguments.clear();
@@ -587,8 +616,10 @@ public class FunctionDefinitionDateTimeArithmeticTest {
         arguments.add(attrDurationStdExample1);
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
-        assertEquals("function:dateTime-subtract-dayTimeDuration Expected data type 'dateTime' saw 'integer'", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("function:dateTime-subtract-dayTimeDuration Expected data type 'dateTime' saw 'integer'",
+                     res.getStatus().getStatusMessage());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
         // null second arg
         arguments.clear();
@@ -596,41 +627,31 @@ public class FunctionDefinitionDateTimeArithmeticTest {
         arguments.add(attrNull);
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
-        assertEquals("function:dateTime-subtract-dayTimeDuration Got null attribute", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("function:dateTime-subtract-dayTimeDuration Got null attribute", res.getStatus()
+            .getStatusMessage());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
     }
-
-
-
-
-
-
-
-
 
     @Test
     public void testDateTime_add_yearMonthDuration() {
         // Date objects to be adjusted
-        ISO8601DateTime dateTimeStdExample1 = new ISO8601DateTime(null,
-                new ISO8601Date(2000, 1, 12),
-                new ISO8601Time(12, 13, 14, 0));
-        ISO8601DateTime dateTimeMsecs = new ISO8601DateTime(null,
-                new ISO8601Date(2000, 1, 12),
-                new ISO8601Time(12, 13, 14, 777));
-        ISO8601DateTime dateTimeCrossover = new ISO8601DateTime(null,
-                new ISO8601Date(2000, 12, 31),
-                new ISO8601Time(23, 59, 30, 1));
-        ISO8601DateTime dateTimeBC = new ISO8601DateTime(null,
-                new ISO8601Date(-2000, 1, 12),
-                new ISO8601Time(12, 13, 14, 0));
+        ISO8601DateTime dateTimeStdExample1 = new ISO8601DateTime(null, new ISO8601Date(2000, 1, 12),
+                                                                  new ISO8601Time(12, 13, 14, 0));
+        ISO8601DateTime dateTimeMsecs = new ISO8601DateTime(null, new ISO8601Date(2000, 1, 12),
+                                                            new ISO8601Time(12, 13, 14, 777));
+        ISO8601DateTime dateTimeCrossover = new ISO8601DateTime(null, new ISO8601Date(2000, 12, 31),
+                                                                new ISO8601Time(23, 59, 30, 1));
+        ISO8601DateTime dateTimeBC = new ISO8601DateTime(null, new ISO8601Date(-2000, 1, 12),
+                                                         new ISO8601Time(12, 13, 14, 0));
         ISO8601TimeZone timeZone0 = new ISO8601TimeZone(0);
         ISO8601TimeZone timeZone5 = new ISO8601TimeZone(5 * 60);
-        ISO8601DateTime dateTimeTimeZone0 = new ISO8601DateTime(timeZone0,
-                new ISO8601Date(timeZone0, 2000, 1, 12),
-                new ISO8601Time(timeZone0, 12, 13, 14, 0));
-        ISO8601DateTime dateTimeTimeZone5 = new ISO8601DateTime(timeZone5,
-                new ISO8601Date(timeZone5, 2000, 1, 12),
-                new ISO8601Time(timeZone5, 12, 13, 14, 0));
+        ISO8601DateTime dateTimeTimeZone0 = new ISO8601DateTime(timeZone0, new ISO8601Date(timeZone0, 2000,
+                                                                                           1, 12),
+                                                                new ISO8601Time(timeZone0, 12, 13, 14, 0));
+        ISO8601DateTime dateTimeTimeZone5 = new ISO8601DateTime(timeZone5, new ISO8601Date(timeZone5, 2000,
+                                                                                           1, 12),
+                                                                new ISO8601Time(timeZone5, 12, 13, 14, 0));
 
         // Durations
         XPathYearMonthDuration duration0 = new XPathYearMonthDuration(1, 0, 0);
@@ -662,35 +683,61 @@ public class FunctionDefinitionDateTimeArithmeticTest {
         // set values
         try {
             // Date attrs
-            attrDateTimeStdExample1 = new FunctionArgumentAttributeValue(DataTypes.DT_DATETIME.createAttributeValue(dateTimeStdExample1));
-            attrDateTimeMsecs = new FunctionArgumentAttributeValue(DataTypes.DT_DATETIME.createAttributeValue(dateTimeMsecs));
-            attrDateTimeCrossover = new FunctionArgumentAttributeValue(DataTypes.DT_DATETIME.createAttributeValue(dateTimeCrossover));
-            attrDateTimeBC = new FunctionArgumentAttributeValue(DataTypes.DT_DATETIME.createAttributeValue(dateTimeBC));
-            attrDateTimeTimeZone0 = new FunctionArgumentAttributeValue(DataTypes.DT_DATETIME.createAttributeValue(dateTimeTimeZone0));
-            attrDateTimeTimeZone5 = new FunctionArgumentAttributeValue(DataTypes.DT_DATETIME.createAttributeValue(dateTimeTimeZone5));
+            attrDateTimeStdExample1 = new FunctionArgumentAttributeValue(
+                                                                         DataTypes.DT_DATETIME
+                                                                             .createAttributeValue(dateTimeStdExample1));
+            attrDateTimeMsecs = new FunctionArgumentAttributeValue(
+                                                                   DataTypes.DT_DATETIME
+                                                                       .createAttributeValue(dateTimeMsecs));
+            attrDateTimeCrossover = new FunctionArgumentAttributeValue(
+                                                                       DataTypes.DT_DATETIME
+                                                                           .createAttributeValue(dateTimeCrossover));
+            attrDateTimeBC = new FunctionArgumentAttributeValue(
+                                                                DataTypes.DT_DATETIME
+                                                                    .createAttributeValue(dateTimeBC));
+            attrDateTimeTimeZone0 = new FunctionArgumentAttributeValue(
+                                                                       DataTypes.DT_DATETIME
+                                                                           .createAttributeValue(dateTimeTimeZone0));
+            attrDateTimeTimeZone5 = new FunctionArgumentAttributeValue(
+                                                                       DataTypes.DT_DATETIME
+                                                                           .createAttributeValue(dateTimeTimeZone5));
 
             // Duration attrs
-            attrDuration0 = new FunctionArgumentAttributeValue(DataTypes.DT_YEARMONTHDURATION.createAttributeValue(duration0));
-            attrDurationStdExample1 = new FunctionArgumentAttributeValue(DataTypes.DT_YEARMONTHDURATION.createAttributeValue(durationStdExample1));
-            attrDurationNStdExample1 = new FunctionArgumentAttributeValue(DataTypes.DT_YEARMONTHDURATION.createAttributeValue(durationNStdExample1));
-            attrDurationMsecs = new FunctionArgumentAttributeValue(DataTypes.DT_YEARMONTHDURATION.createAttributeValue(durationMsecs));
-            attrDurationCrossover = new FunctionArgumentAttributeValue(DataTypes.DT_YEARMONTHDURATION.createAttributeValue(durationCrossover));
+            attrDuration0 = new FunctionArgumentAttributeValue(
+                                                               DataTypes.DT_YEARMONTHDURATION
+                                                                   .createAttributeValue(duration0));
+            attrDurationStdExample1 = new FunctionArgumentAttributeValue(
+                                                                         DataTypes.DT_YEARMONTHDURATION
+                                                                             .createAttributeValue(durationStdExample1));
+            attrDurationNStdExample1 = new FunctionArgumentAttributeValue(
+                                                                          DataTypes.DT_YEARMONTHDURATION
+                                                                              .createAttributeValue(durationNStdExample1));
+            attrDurationMsecs = new FunctionArgumentAttributeValue(
+                                                                   DataTypes.DT_YEARMONTHDURATION
+                                                                       .createAttributeValue(durationMsecs));
+            attrDurationCrossover = new FunctionArgumentAttributeValue(
+                                                                       DataTypes.DT_YEARMONTHDURATION
+                                                                           .createAttributeValue(durationCrossover));
 
             // misc bad
-            attrBlank = new FunctionArgumentAttributeValue(DataTypes.DT_YEARMONTHDURATION.createAttributeValue(""));
-            attrNull = new FunctionArgumentAttributeValue(DataTypes.DT_YEARMONTHDURATION.createAttributeValue(null));
+            attrBlank = new FunctionArgumentAttributeValue(
+                                                           DataTypes.DT_YEARMONTHDURATION
+                                                               .createAttributeValue(""));
+            attrNull = new FunctionArgumentAttributeValue(
+                                                          DataTypes.DT_YEARMONTHDURATION
+                                                              .createAttributeValue(null));
             attrInteger = new FunctionArgumentAttributeValue(DataTypes.DT_INTEGER.createAttributeValue(1234));
         } catch (Exception e) {
-            fail("creating attributes e="+ e);
+            fail("creating attributes e=" + e);
         }
 
-        FunctionDefinitionDateTimeArithmetic<?,?> fd = (FunctionDefinitionDateTimeArithmetic<?,?>) StdFunctions.FD_DATETIME_ADD_YEARMONTHDURATION;
+        FunctionDefinitionDateTimeArithmetic<?, ?> fd = (FunctionDefinitionDateTimeArithmetic<?, ?>)StdFunctions.FD_DATETIME_ADD_YEARMONTHDURATION;
 
         // check identity and type of the thing created
         assertEquals(XACML3.ID_FUNCTION_DATETIME_ADD_YEARMONTHDURATION, fd.getId());
         assertEquals(DataTypes.DT_DATETIME.getId(), fd.getDataTypeId());
 
-        // just to be safe...  If tests take too long these can probably be eliminated
+        // just to be safe... If tests take too long these can probably be eliminated
         assertFalse(fd.returnsBag());
 
         // Duration = 0 => same as original
@@ -703,7 +750,6 @@ public class FunctionDefinitionDateTimeArithmeticTest {
         ISO8601DateTime resValue = (ISO8601DateTime)res.getValue().getValue();
         assertEquals(dateTimeStdExample1, resValue);
 
-
         // simple positive operation
         arguments.clear();
         arguments.add(attrDateTimeStdExample1);
@@ -712,10 +758,8 @@ public class FunctionDefinitionDateTimeArithmeticTest {
         assertTrue(res.isOk());
         assertEquals(ISO8601DateTime.class, res.getValue().getValue().getClass());
         resValue = (ISO8601DateTime)res.getValue().getValue();
-        ISO8601DateTime testResponse = new ISO8601DateTime(
-            null,
-            new ISO8601Date(2005, 8, 12),
-            new ISO8601Time(12, 13, 14, 0) );
+        ISO8601DateTime testResponse = new ISO8601DateTime(null, new ISO8601Date(2005, 8, 12),
+                                                           new ISO8601Time(12, 13, 14, 0));
         assertEquals(testResponse, resValue);
 
         // negative operation
@@ -726,10 +770,7 @@ public class FunctionDefinitionDateTimeArithmeticTest {
         assertTrue(res.isOk());
         assertEquals(ISO8601DateTime.class, res.getValue().getValue().getClass());
         resValue = (ISO8601DateTime)res.getValue().getValue();
-        testResponse = new ISO8601DateTime(
-            null,
-            new ISO8601Date(1994, 6, 12),
-            new ISO8601Time(12, 13, 14, 0) );
+        testResponse = new ISO8601DateTime(null, new ISO8601Date(1994, 6, 12), new ISO8601Time(12, 13, 14, 0));
         assertEquals(testResponse, resValue);
 
         // millisecs work correctly (not relevant to YearMonth, but should not break
@@ -740,10 +781,8 @@ public class FunctionDefinitionDateTimeArithmeticTest {
         assertTrue(res.isOk());
         assertEquals(ISO8601DateTime.class, res.getValue().getValue().getClass());
         resValue = (ISO8601DateTime)res.getValue().getValue();
-        testResponse = new ISO8601DateTime(
-            null,
-            new ISO8601Date(2005, 8, 12),
-            new ISO8601Time(12, 13, 14, 777) );
+        testResponse = new ISO8601DateTime(null, new ISO8601Date(2005, 8, 12), new ISO8601Time(12, 13, 14,
+                                                                                               777));
         assertEquals(testResponse, resValue);
 
         // cross minute => cross day => cross month => cross year
@@ -754,10 +793,7 @@ public class FunctionDefinitionDateTimeArithmeticTest {
         assertTrue(res.isOk());
         assertEquals(ISO8601DateTime.class, res.getValue().getValue().getClass());
         resValue = (ISO8601DateTime)res.getValue().getValue();
-        testResponse = new ISO8601DateTime(
-            null,
-            new ISO8601Date(2001, 1, 31),
-            new ISO8601Time(23, 59, 30, 1) );
+        testResponse = new ISO8601DateTime(null, new ISO8601Date(2001, 1, 31), new ISO8601Time(23, 59, 30, 1));
         assertEquals(testResponse, resValue);
 
         // negative (BC) original date add goes the right direction
@@ -768,10 +804,8 @@ public class FunctionDefinitionDateTimeArithmeticTest {
         assertTrue(res.isOk());
         assertEquals(ISO8601DateTime.class, res.getValue().getValue().getClass());
         resValue = (ISO8601DateTime)res.getValue().getValue();
-        testResponse = new ISO8601DateTime(
-            null,
-            new ISO8601Date(-1995, 8, 12),
-            new ISO8601Time(12, 13, 14, 0) );
+        testResponse = new ISO8601DateTime(null, new ISO8601Date(-1995, 8, 12),
+                                           new ISO8601Time(12, 13, 14, 0));
         assertEquals(testResponse, resValue);
 
         // non-null timezone not changed
@@ -783,10 +817,8 @@ public class FunctionDefinitionDateTimeArithmeticTest {
         assertTrue(res.isOk());
         assertEquals(ISO8601DateTime.class, res.getValue().getValue().getClass());
         resValue = (ISO8601DateTime)res.getValue().getValue();
-        testResponse = new ISO8601DateTime(
-            timeZone0,
-            new ISO8601Date(timeZone0, 2005, 8, 12),
-            new ISO8601Time(timeZone0, 12, 13, 14, 0) );
+        testResponse = new ISO8601DateTime(timeZone0, new ISO8601Date(timeZone0, 2005, 8, 12),
+                                           new ISO8601Time(timeZone0, 12, 13, 14, 0));
         assertEquals(testResponse, resValue);
 
         // original has timezone offset not 0
@@ -797,10 +829,8 @@ public class FunctionDefinitionDateTimeArithmeticTest {
         assertTrue(res.isOk());
         assertEquals(ISO8601DateTime.class, res.getValue().getValue().getClass());
         resValue = (ISO8601DateTime)res.getValue().getValue();
-        testResponse = new ISO8601DateTime(
-            timeZone5,
-            new ISO8601Date(timeZone5, 2005, 8, 12),
-            new ISO8601Time(timeZone5, 12, 13, 14, 0) );
+        testResponse = new ISO8601DateTime(timeZone5, new ISO8601Date(timeZone5, 2005, 8, 12),
+                                           new ISO8601Time(timeZone5, 12, 13, 14, 0));
         assertEquals(testResponse, resValue);
 
         // empty non-null first arg
@@ -809,8 +839,10 @@ public class FunctionDefinitionDateTimeArithmeticTest {
         arguments.add(attrDurationStdExample1);
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
-        assertEquals("function:dateTime-add-yearMonthDuration Got null attribute", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("function:dateTime-add-yearMonthDuration Got null attribute", res.getStatus()
+            .getStatusMessage());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
         // empty non-null second arg
         arguments.clear();
@@ -818,8 +850,10 @@ public class FunctionDefinitionDateTimeArithmeticTest {
         arguments.add(attrBlank);
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
-        assertEquals("function:dateTime-add-yearMonthDuration Got null attribute", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("function:dateTime-add-yearMonthDuration Got null attribute", res.getStatus()
+            .getStatusMessage());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
         // two blanks
         arguments.clear();
@@ -827,8 +861,10 @@ public class FunctionDefinitionDateTimeArithmeticTest {
         arguments.add(attrBlank);
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
-        assertEquals("function:dateTime-add-yearMonthDuration Got null attribute", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("function:dateTime-add-yearMonthDuration Got null attribute", res.getStatus()
+            .getStatusMessage());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
         // null firat arg
         arguments.clear();
@@ -836,8 +872,10 @@ public class FunctionDefinitionDateTimeArithmeticTest {
         arguments.add(attrBlank);
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
-        assertEquals("function:dateTime-add-yearMonthDuration Got null attribute", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("function:dateTime-add-yearMonthDuration Got null attribute", res.getStatus()
+            .getStatusMessage());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
         // null second arg
         arguments.clear();
@@ -845,8 +883,10 @@ public class FunctionDefinitionDateTimeArithmeticTest {
         arguments.add(attrNull);
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
-        assertEquals("function:dateTime-add-yearMonthDuration Got null attribute", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("function:dateTime-add-yearMonthDuration Got null attribute", res.getStatus()
+            .getStatusMessage());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
         // bad arg type
         arguments.clear();
@@ -854,8 +894,10 @@ public class FunctionDefinitionDateTimeArithmeticTest {
         arguments.add(attrDurationStdExample1);
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
-        assertEquals("function:dateTime-add-yearMonthDuration Expected data type 'dateTime' saw 'integer'", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("function:dateTime-add-yearMonthDuration Expected data type 'dateTime' saw 'integer'",
+                     res.getStatus().getStatusMessage());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
         // null second arg
         arguments.clear();
@@ -863,36 +905,31 @@ public class FunctionDefinitionDateTimeArithmeticTest {
         arguments.add(attrNull);
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
-        assertEquals("function:dateTime-add-yearMonthDuration Got null attribute", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("function:dateTime-add-yearMonthDuration Got null attribute", res.getStatus()
+            .getStatusMessage());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
     }
-
-
-
 
     @Test
     public void testDateTime_subtract_yearMonthDuration() {
         // Date objects to be adjusted
-        ISO8601DateTime dateTimeStdExample1 = new ISO8601DateTime(null,
-                new ISO8601Date(2000, 1, 12),
-                new ISO8601Time(12, 13, 14, 0));
-        ISO8601DateTime dateTimeMsecs = new ISO8601DateTime(null,
-                new ISO8601Date(2000, 1, 12),
-                new ISO8601Time(12, 13, 14, 777));
-        ISO8601DateTime dateTimeCrossover = new ISO8601DateTime(null,
-                new ISO8601Date(2000, 1, 1),
-                new ISO8601Time(23, 59, 30, 1));
-        ISO8601DateTime dateTimeBC = new ISO8601DateTime(null,
-                new ISO8601Date(-2000, 1, 12),
-                new ISO8601Time(12, 13, 14, 0));
+        ISO8601DateTime dateTimeStdExample1 = new ISO8601DateTime(null, new ISO8601Date(2000, 1, 12),
+                                                                  new ISO8601Time(12, 13, 14, 0));
+        ISO8601DateTime dateTimeMsecs = new ISO8601DateTime(null, new ISO8601Date(2000, 1, 12),
+                                                            new ISO8601Time(12, 13, 14, 777));
+        ISO8601DateTime dateTimeCrossover = new ISO8601DateTime(null, new ISO8601Date(2000, 1, 1),
+                                                                new ISO8601Time(23, 59, 30, 1));
+        ISO8601DateTime dateTimeBC = new ISO8601DateTime(null, new ISO8601Date(-2000, 1, 12),
+                                                         new ISO8601Time(12, 13, 14, 0));
         ISO8601TimeZone timeZone0 = new ISO8601TimeZone(0);
         ISO8601TimeZone timeZone5 = new ISO8601TimeZone(5 * 60);
-        ISO8601DateTime dateTimeTimeZone0 = new ISO8601DateTime(timeZone0,
-                new ISO8601Date(timeZone0, 2000, 1, 12),
-                new ISO8601Time(timeZone0, 12, 13, 14, 0));
-        ISO8601DateTime dateTimeTimeZone5 = new ISO8601DateTime(timeZone5,
-                new ISO8601Date(timeZone5, 2000, 1, 12),
-                new ISO8601Time(timeZone5, 12, 13, 14, 0));
+        ISO8601DateTime dateTimeTimeZone0 = new ISO8601DateTime(timeZone0, new ISO8601Date(timeZone0, 2000,
+                                                                                           1, 12),
+                                                                new ISO8601Time(timeZone0, 12, 13, 14, 0));
+        ISO8601DateTime dateTimeTimeZone5 = new ISO8601DateTime(timeZone5, new ISO8601Date(timeZone5, 2000,
+                                                                                           1, 12),
+                                                                new ISO8601Time(timeZone5, 12, 13, 14, 0));
 
         // Durations
         XPathYearMonthDuration duration0 = new XPathYearMonthDuration(1, 0, 0);
@@ -924,35 +961,61 @@ public class FunctionDefinitionDateTimeArithmeticTest {
         // set values
         try {
             // Date attrs
-            attrDateTimeStdExample1 = new FunctionArgumentAttributeValue(DataTypes.DT_DATETIME.createAttributeValue(dateTimeStdExample1));
-            attrDateTimeMsecs = new FunctionArgumentAttributeValue(DataTypes.DT_DATETIME.createAttributeValue(dateTimeMsecs));
-            attrDateTimeCrossover = new FunctionArgumentAttributeValue(DataTypes.DT_DATETIME.createAttributeValue(dateTimeCrossover));
-            attrDateTimeBC = new FunctionArgumentAttributeValue(DataTypes.DT_DATETIME.createAttributeValue(dateTimeBC));
-            attrDateTimeTimeZone0 = new FunctionArgumentAttributeValue(DataTypes.DT_DATETIME.createAttributeValue(dateTimeTimeZone0));
-            attrDateTimeTimeZone5 = new FunctionArgumentAttributeValue(DataTypes.DT_DATETIME.createAttributeValue(dateTimeTimeZone5));
+            attrDateTimeStdExample1 = new FunctionArgumentAttributeValue(
+                                                                         DataTypes.DT_DATETIME
+                                                                             .createAttributeValue(dateTimeStdExample1));
+            attrDateTimeMsecs = new FunctionArgumentAttributeValue(
+                                                                   DataTypes.DT_DATETIME
+                                                                       .createAttributeValue(dateTimeMsecs));
+            attrDateTimeCrossover = new FunctionArgumentAttributeValue(
+                                                                       DataTypes.DT_DATETIME
+                                                                           .createAttributeValue(dateTimeCrossover));
+            attrDateTimeBC = new FunctionArgumentAttributeValue(
+                                                                DataTypes.DT_DATETIME
+                                                                    .createAttributeValue(dateTimeBC));
+            attrDateTimeTimeZone0 = new FunctionArgumentAttributeValue(
+                                                                       DataTypes.DT_DATETIME
+                                                                           .createAttributeValue(dateTimeTimeZone0));
+            attrDateTimeTimeZone5 = new FunctionArgumentAttributeValue(
+                                                                       DataTypes.DT_DATETIME
+                                                                           .createAttributeValue(dateTimeTimeZone5));
 
             // Duration attrs
-            attrDuration0 = new FunctionArgumentAttributeValue(DataTypes.DT_YEARMONTHDURATION.createAttributeValue(duration0));
-            attrDurationStdExample1 = new FunctionArgumentAttributeValue(DataTypes.DT_YEARMONTHDURATION.createAttributeValue(durationStdExample1));
-            attrDurationNStdExample1 = new FunctionArgumentAttributeValue(DataTypes.DT_YEARMONTHDURATION.createAttributeValue(durationNStdExample1));
-            attrDurationMsecs = new FunctionArgumentAttributeValue(DataTypes.DT_YEARMONTHDURATION.createAttributeValue(durationMsecs));
-            attrDurationCrossover = new FunctionArgumentAttributeValue(DataTypes.DT_YEARMONTHDURATION.createAttributeValue(durationCrossover));
+            attrDuration0 = new FunctionArgumentAttributeValue(
+                                                               DataTypes.DT_YEARMONTHDURATION
+                                                                   .createAttributeValue(duration0));
+            attrDurationStdExample1 = new FunctionArgumentAttributeValue(
+                                                                         DataTypes.DT_YEARMONTHDURATION
+                                                                             .createAttributeValue(durationStdExample1));
+            attrDurationNStdExample1 = new FunctionArgumentAttributeValue(
+                                                                          DataTypes.DT_YEARMONTHDURATION
+                                                                              .createAttributeValue(durationNStdExample1));
+            attrDurationMsecs = new FunctionArgumentAttributeValue(
+                                                                   DataTypes.DT_YEARMONTHDURATION
+                                                                       .createAttributeValue(durationMsecs));
+            attrDurationCrossover = new FunctionArgumentAttributeValue(
+                                                                       DataTypes.DT_YEARMONTHDURATION
+                                                                           .createAttributeValue(durationCrossover));
 
             // misc bad
-            attrBlank = new FunctionArgumentAttributeValue(DataTypes.DT_YEARMONTHDURATION.createAttributeValue(""));
-            attrNull = new FunctionArgumentAttributeValue(DataTypes.DT_YEARMONTHDURATION.createAttributeValue(null));
+            attrBlank = new FunctionArgumentAttributeValue(
+                                                           DataTypes.DT_YEARMONTHDURATION
+                                                               .createAttributeValue(""));
+            attrNull = new FunctionArgumentAttributeValue(
+                                                          DataTypes.DT_YEARMONTHDURATION
+                                                              .createAttributeValue(null));
             attrInteger = new FunctionArgumentAttributeValue(DataTypes.DT_INTEGER.createAttributeValue(1234));
         } catch (Exception e) {
-            fail("creating attributes e="+ e);
+            fail("creating attributes e=" + e);
         }
 
-        FunctionDefinitionDateTimeArithmetic<?,?> fd = (FunctionDefinitionDateTimeArithmetic<?,?>) StdFunctions.FD_DATETIME_SUBTRACT_YEARMONTHDURATION;
+        FunctionDefinitionDateTimeArithmetic<?, ?> fd = (FunctionDefinitionDateTimeArithmetic<?, ?>)StdFunctions.FD_DATETIME_SUBTRACT_YEARMONTHDURATION;
 
         // check identity and type of the thing created
         assertEquals(XACML3.ID_FUNCTION_DATETIME_SUBTRACT_YEARMONTHDURATION, fd.getId());
         assertEquals(DataTypes.DT_DATETIME.getId(), fd.getDataTypeId());
 
-        // just to be safe...  If tests take too long these can probably be eliminated
+        // just to be safe... If tests take too long these can probably be eliminated
         assertFalse(fd.returnsBag());
 
         // Duration = 0 => same as original
@@ -965,7 +1028,6 @@ public class FunctionDefinitionDateTimeArithmeticTest {
         ISO8601DateTime resValue = (ISO8601DateTime)res.getValue().getValue();
         assertEquals(dateTimeStdExample1, resValue);
 
-
         // simple positive operation
         arguments.clear();
         arguments.add(attrDateTimeStdExample1);
@@ -974,10 +1036,8 @@ public class FunctionDefinitionDateTimeArithmeticTest {
         assertTrue(res.isOk());
         assertEquals(ISO8601DateTime.class, res.getValue().getValue().getClass());
         resValue = (ISO8601DateTime)res.getValue().getValue();
-        ISO8601DateTime testResponse = new ISO8601DateTime(
-            null,
-            new ISO8601Date(1994, 6, 12),
-            new ISO8601Time(12, 13, 14, 0) );
+        ISO8601DateTime testResponse = new ISO8601DateTime(null, new ISO8601Date(1994, 6, 12),
+                                                           new ISO8601Time(12, 13, 14, 0));
         assertEquals(testResponse, resValue);
 
         // negative operation
@@ -988,10 +1048,7 @@ public class FunctionDefinitionDateTimeArithmeticTest {
         assertTrue(res.isOk());
         assertEquals(ISO8601DateTime.class, res.getValue().getValue().getClass());
         resValue = (ISO8601DateTime)res.getValue().getValue();
-        testResponse = new ISO8601DateTime(
-            null,
-            new ISO8601Date(2005, 8, 12),
-            new ISO8601Time(12, 13, 14, 0) );
+        testResponse = new ISO8601DateTime(null, new ISO8601Date(2005, 8, 12), new ISO8601Time(12, 13, 14, 0));
         assertEquals(testResponse, resValue);
 
         // millisecs work correctly (not relevant to YearMonth, but should not break
@@ -1002,10 +1059,8 @@ public class FunctionDefinitionDateTimeArithmeticTest {
         assertTrue(res.isOk());
         assertEquals(ISO8601DateTime.class, res.getValue().getValue().getClass());
         resValue = (ISO8601DateTime)res.getValue().getValue();
-        testResponse = new ISO8601DateTime(
-            null,
-            new ISO8601Date(1994, 6, 12),
-            new ISO8601Time(12, 13, 14, 777) );
+        testResponse = new ISO8601DateTime(null, new ISO8601Date(1994, 6, 12), new ISO8601Time(12, 13, 14,
+                                                                                               777));
         assertEquals(testResponse, resValue);
 
         // cross minute => cross day => cross month => cross year
@@ -1016,10 +1071,7 @@ public class FunctionDefinitionDateTimeArithmeticTest {
         assertTrue(res.isOk());
         assertEquals(ISO8601DateTime.class, res.getValue().getValue().getClass());
         resValue = (ISO8601DateTime)res.getValue().getValue();
-        testResponse = new ISO8601DateTime(
-            null,
-            new ISO8601Date(1999, 12, 1),
-            new ISO8601Time(23, 59, 30, 1) );
+        testResponse = new ISO8601DateTime(null, new ISO8601Date(1999, 12, 1), new ISO8601Time(23, 59, 30, 1));
         assertEquals(testResponse, resValue);
 
         // negative (BC) original date add goes the right direction
@@ -1030,10 +1082,8 @@ public class FunctionDefinitionDateTimeArithmeticTest {
         assertTrue(res.isOk());
         assertEquals(ISO8601DateTime.class, res.getValue().getValue().getClass());
         resValue = (ISO8601DateTime)res.getValue().getValue();
-        testResponse = new ISO8601DateTime(
-            null,
-            new ISO8601Date(-2006, 6, 12),
-            new ISO8601Time(12, 13, 14, 0) );
+        testResponse = new ISO8601DateTime(null, new ISO8601Date(-2006, 6, 12),
+                                           new ISO8601Time(12, 13, 14, 0));
         assertEquals(testResponse, resValue);
 
         // non-null timezone not changed
@@ -1045,10 +1095,8 @@ public class FunctionDefinitionDateTimeArithmeticTest {
         assertTrue(res.isOk());
         assertEquals(ISO8601DateTime.class, res.getValue().getValue().getClass());
         resValue = (ISO8601DateTime)res.getValue().getValue();
-        testResponse = new ISO8601DateTime(
-            timeZone0,
-            new ISO8601Date(timeZone0, 1994, 6, 12),
-            new ISO8601Time(timeZone0, 12, 13, 14, 0) );
+        testResponse = new ISO8601DateTime(timeZone0, new ISO8601Date(timeZone0, 1994, 6, 12),
+                                           new ISO8601Time(timeZone0, 12, 13, 14, 0));
         assertEquals(testResponse, resValue);
 
         // original has timezone offset not 0
@@ -1059,10 +1107,8 @@ public class FunctionDefinitionDateTimeArithmeticTest {
         assertTrue(res.isOk());
         assertEquals(ISO8601DateTime.class, res.getValue().getValue().getClass());
         resValue = (ISO8601DateTime)res.getValue().getValue();
-        testResponse = new ISO8601DateTime(
-            timeZone5,
-            new ISO8601Date(timeZone5, 1994, 6, 12),
-            new ISO8601Time(timeZone5, 12, 13, 14, 0) );
+        testResponse = new ISO8601DateTime(timeZone5, new ISO8601Date(timeZone5, 1994, 6, 12),
+                                           new ISO8601Time(timeZone5, 12, 13, 14, 0));
         assertEquals(testResponse, resValue);
 
         // empty non-null first arg
@@ -1071,8 +1117,10 @@ public class FunctionDefinitionDateTimeArithmeticTest {
         arguments.add(attrDurationStdExample1);
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
-        assertEquals("function:dateTime-subtract-yearMonthDuration Got null attribute", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("function:dateTime-subtract-yearMonthDuration Got null attribute", res.getStatus()
+            .getStatusMessage());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
         // empty non-null second arg
         arguments.clear();
@@ -1080,8 +1128,10 @@ public class FunctionDefinitionDateTimeArithmeticTest {
         arguments.add(attrBlank);
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
-        assertEquals("function:dateTime-subtract-yearMonthDuration Got null attribute", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("function:dateTime-subtract-yearMonthDuration Got null attribute", res.getStatus()
+            .getStatusMessage());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
         // two blanks
         arguments.clear();
@@ -1089,8 +1139,10 @@ public class FunctionDefinitionDateTimeArithmeticTest {
         arguments.add(attrBlank);
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
-        assertEquals("function:dateTime-subtract-yearMonthDuration Got null attribute", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("function:dateTime-subtract-yearMonthDuration Got null attribute", res.getStatus()
+            .getStatusMessage());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
         // null firat arg
         arguments.clear();
@@ -1098,8 +1150,10 @@ public class FunctionDefinitionDateTimeArithmeticTest {
         arguments.add(attrBlank);
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
-        assertEquals("function:dateTime-subtract-yearMonthDuration Got null attribute", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("function:dateTime-subtract-yearMonthDuration Got null attribute", res.getStatus()
+            .getStatusMessage());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
         // null second arg
         arguments.clear();
@@ -1107,8 +1161,10 @@ public class FunctionDefinitionDateTimeArithmeticTest {
         arguments.add(attrNull);
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
-        assertEquals("function:dateTime-subtract-yearMonthDuration Got null attribute", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("function:dateTime-subtract-yearMonthDuration Got null attribute", res.getStatus()
+            .getStatusMessage());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
         // bad arg type
         arguments.clear();
@@ -1116,8 +1172,10 @@ public class FunctionDefinitionDateTimeArithmeticTest {
         arguments.add(attrDurationStdExample1);
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
-        assertEquals("function:dateTime-subtract-yearMonthDuration Expected data type 'dateTime' saw 'integer'", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("function:dateTime-subtract-yearMonthDuration Expected data type 'dateTime' saw 'integer'",
+                     res.getStatus().getStatusMessage());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
         // null second arg
         arguments.clear();
@@ -1125,25 +1183,17 @@ public class FunctionDefinitionDateTimeArithmeticTest {
         arguments.add(attrNull);
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
-        assertEquals("function:dateTime-subtract-yearMonthDuration Got null attribute", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("function:dateTime-subtract-yearMonthDuration Got null attribute", res.getStatus()
+            .getStatusMessage());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
     }
-
-
-
-
-
-
-
-
-
-
 
     @Test
     public void testDate_add_yearMonthDuration() {
         // Date objects to be adjusted
         ISO8601Date dateTimeStdExample1 = new ISO8601Date(2000, 1, 12);
-        ISO8601Date dateTimeMsecs =new ISO8601Date(2000, 1, 12);
+        ISO8601Date dateTimeMsecs = new ISO8601Date(2000, 1, 12);
         ISO8601Date dateTimeCrossover = new ISO8601Date(2000, 12, 31);
         ISO8601Date dateTimeBC = new ISO8601Date(-2000, 1, 12);
         ISO8601TimeZone timeZone0 = new ISO8601TimeZone(0);
@@ -1181,35 +1231,61 @@ public class FunctionDefinitionDateTimeArithmeticTest {
         // set values
         try {
             // Date attrs
-            attrDateTimeStdExample1 = new FunctionArgumentAttributeValue(DataTypes.DT_DATE.createAttributeValue(dateTimeStdExample1));
-            attrDateTimeMsecs = new FunctionArgumentAttributeValue(DataTypes.DT_DATE.createAttributeValue(dateTimeMsecs));
-            attrDateTimeCrossover = new FunctionArgumentAttributeValue(DataTypes.DT_DATE.createAttributeValue(dateTimeCrossover));
-            attrDateTimeBC = new FunctionArgumentAttributeValue(DataTypes.DT_DATE.createAttributeValue(dateTimeBC));
-            attrDateTimeTimeZone0 = new FunctionArgumentAttributeValue(DataTypes.DT_DATE.createAttributeValue(dateTimeTimeZone0));
-            attrDateTimeTimeZone5 = new FunctionArgumentAttributeValue(DataTypes.DT_DATE.createAttributeValue(dateTimeTimeZone5));
+            attrDateTimeStdExample1 = new FunctionArgumentAttributeValue(
+                                                                         DataTypes.DT_DATE
+                                                                             .createAttributeValue(dateTimeStdExample1));
+            attrDateTimeMsecs = new FunctionArgumentAttributeValue(
+                                                                   DataTypes.DT_DATE
+                                                                       .createAttributeValue(dateTimeMsecs));
+            attrDateTimeCrossover = new FunctionArgumentAttributeValue(
+                                                                       DataTypes.DT_DATE
+                                                                           .createAttributeValue(dateTimeCrossover));
+            attrDateTimeBC = new FunctionArgumentAttributeValue(
+                                                                DataTypes.DT_DATE
+                                                                    .createAttributeValue(dateTimeBC));
+            attrDateTimeTimeZone0 = new FunctionArgumentAttributeValue(
+                                                                       DataTypes.DT_DATE
+                                                                           .createAttributeValue(dateTimeTimeZone0));
+            attrDateTimeTimeZone5 = new FunctionArgumentAttributeValue(
+                                                                       DataTypes.DT_DATE
+                                                                           .createAttributeValue(dateTimeTimeZone5));
 
             // Duration attrs
-            attrDuration0 = new FunctionArgumentAttributeValue(DataTypes.DT_YEARMONTHDURATION.createAttributeValue(duration0));
-            attrDurationStdExample1 = new FunctionArgumentAttributeValue(DataTypes.DT_YEARMONTHDURATION.createAttributeValue(durationStdExample1));
-            attrDurationNStdExample1 = new FunctionArgumentAttributeValue(DataTypes.DT_YEARMONTHDURATION.createAttributeValue(durationNStdExample1));
-            attrDurationMsecs = new FunctionArgumentAttributeValue(DataTypes.DT_YEARMONTHDURATION.createAttributeValue(durationMsecs));
-            attrDurationCrossover = new FunctionArgumentAttributeValue(DataTypes.DT_YEARMONTHDURATION.createAttributeValue(durationCrossover));
+            attrDuration0 = new FunctionArgumentAttributeValue(
+                                                               DataTypes.DT_YEARMONTHDURATION
+                                                                   .createAttributeValue(duration0));
+            attrDurationStdExample1 = new FunctionArgumentAttributeValue(
+                                                                         DataTypes.DT_YEARMONTHDURATION
+                                                                             .createAttributeValue(durationStdExample1));
+            attrDurationNStdExample1 = new FunctionArgumentAttributeValue(
+                                                                          DataTypes.DT_YEARMONTHDURATION
+                                                                              .createAttributeValue(durationNStdExample1));
+            attrDurationMsecs = new FunctionArgumentAttributeValue(
+                                                                   DataTypes.DT_YEARMONTHDURATION
+                                                                       .createAttributeValue(durationMsecs));
+            attrDurationCrossover = new FunctionArgumentAttributeValue(
+                                                                       DataTypes.DT_YEARMONTHDURATION
+                                                                           .createAttributeValue(durationCrossover));
 
             // misc bad
-            attrBlank = new FunctionArgumentAttributeValue(DataTypes.DT_YEARMONTHDURATION.createAttributeValue(""));
-            attrNull = new FunctionArgumentAttributeValue(DataTypes.DT_YEARMONTHDURATION.createAttributeValue(null));
+            attrBlank = new FunctionArgumentAttributeValue(
+                                                           DataTypes.DT_YEARMONTHDURATION
+                                                               .createAttributeValue(""));
+            attrNull = new FunctionArgumentAttributeValue(
+                                                          DataTypes.DT_YEARMONTHDURATION
+                                                              .createAttributeValue(null));
             attrInteger = new FunctionArgumentAttributeValue(DataTypes.DT_INTEGER.createAttributeValue(1234));
         } catch (Exception e) {
-            fail("creating attributes e="+ e);
+            fail("creating attributes e=" + e);
         }
 
-        FunctionDefinitionDateTimeArithmetic<?,?> fd = (FunctionDefinitionDateTimeArithmetic<?,?>) StdFunctions.FD_DATE_ADD_YEARMONTHDURATION;
+        FunctionDefinitionDateTimeArithmetic<?, ?> fd = (FunctionDefinitionDateTimeArithmetic<?, ?>)StdFunctions.FD_DATE_ADD_YEARMONTHDURATION;
 
         // check identity and type of the thing created
         assertEquals(XACML3.ID_FUNCTION_DATE_ADD_YEARMONTHDURATION, fd.getId());
         assertEquals(DataTypes.DT_DATE.getId(), fd.getDataTypeId());
 
-        // just to be safe...  If tests take too long these can probably be eliminated
+        // just to be safe... If tests take too long these can probably be eliminated
         assertFalse(fd.returnsBag());
 
         // Duration = 0 => same as original
@@ -1221,7 +1297,6 @@ public class FunctionDefinitionDateTimeArithmeticTest {
         assertEquals(ISO8601Date.class, res.getValue().getValue().getClass());
         ISO8601Date resValue = (ISO8601Date)res.getValue().getValue();
         assertEquals(dateTimeStdExample1, resValue);
-
 
         // simple positive operation
         arguments.clear();
@@ -1307,8 +1382,10 @@ public class FunctionDefinitionDateTimeArithmeticTest {
         arguments.add(attrDurationStdExample1);
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
-        assertEquals("function:date-add-yearMonthDuration Got null attribute", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("function:date-add-yearMonthDuration Got null attribute", res.getStatus()
+            .getStatusMessage());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
         // empty non-null second arg
         arguments.clear();
@@ -1316,8 +1393,10 @@ public class FunctionDefinitionDateTimeArithmeticTest {
         arguments.add(attrBlank);
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
-        assertEquals("function:date-add-yearMonthDuration Got null attribute", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("function:date-add-yearMonthDuration Got null attribute", res.getStatus()
+            .getStatusMessage());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
         // two blanks
         arguments.clear();
@@ -1325,8 +1404,10 @@ public class FunctionDefinitionDateTimeArithmeticTest {
         arguments.add(attrBlank);
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
-        assertEquals("function:date-add-yearMonthDuration Got null attribute", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("function:date-add-yearMonthDuration Got null attribute", res.getStatus()
+            .getStatusMessage());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
         // null firat arg
         arguments.clear();
@@ -1334,8 +1415,10 @@ public class FunctionDefinitionDateTimeArithmeticTest {
         arguments.add(attrBlank);
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
-        assertEquals("function:date-add-yearMonthDuration Got null attribute", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("function:date-add-yearMonthDuration Got null attribute", res.getStatus()
+            .getStatusMessage());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
         // null second arg
         arguments.clear();
@@ -1343,8 +1426,10 @@ public class FunctionDefinitionDateTimeArithmeticTest {
         arguments.add(attrNull);
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
-        assertEquals("function:date-add-yearMonthDuration Got null attribute", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("function:date-add-yearMonthDuration Got null attribute", res.getStatus()
+            .getStatusMessage());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
         // bad arg type
         arguments.clear();
@@ -1352,8 +1437,10 @@ public class FunctionDefinitionDateTimeArithmeticTest {
         arguments.add(attrDurationStdExample1);
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
-        assertEquals("function:date-add-yearMonthDuration Expected data type 'date' saw 'integer'", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("function:date-add-yearMonthDuration Expected data type 'date' saw 'integer'", res
+            .getStatus().getStatusMessage());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
         // null second arg
         arguments.clear();
@@ -1361,19 +1448,16 @@ public class FunctionDefinitionDateTimeArithmeticTest {
         arguments.add(attrNull);
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
-        assertEquals("function:date-add-yearMonthDuration Got null attribute", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("function:date-add-yearMonthDuration Got null attribute", res.getStatus()
+            .getStatusMessage());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
     }
-
-
-
-
-
 
     @Test
     public void testDate_subtract_yearMonthDuration() {
         // Date objects to be adjusted
-        ISO8601Date dateTimeStdExample1 =new ISO8601Date(2000, 1, 12);
+        ISO8601Date dateTimeStdExample1 = new ISO8601Date(2000, 1, 12);
         ISO8601Date dateTimeMsecs = new ISO8601Date(2000, 1, 12);
         ISO8601Date dateTimeCrossover = new ISO8601Date(2000, 1, 1);
         ISO8601Date dateTimeBC = new ISO8601Date(-2000, 1, 12);
@@ -1412,35 +1496,61 @@ public class FunctionDefinitionDateTimeArithmeticTest {
         // set values
         try {
             // Date attrs
-            attrDateTimeStdExample1 = new FunctionArgumentAttributeValue(DataTypes.DT_DATE.createAttributeValue(dateTimeStdExample1));
-            attrDateTimeMsecs = new FunctionArgumentAttributeValue(DataTypes.DT_DATE.createAttributeValue(dateTimeMsecs));
-            attrDateTimeCrossover = new FunctionArgumentAttributeValue(DataTypes.DT_DATE.createAttributeValue(dateTimeCrossover));
-            attrDateTimeBC = new FunctionArgumentAttributeValue(DataTypes.DT_DATE.createAttributeValue(dateTimeBC));
-            attrDateTimeTimeZone0 = new FunctionArgumentAttributeValue(DataTypes.DT_DATE.createAttributeValue(dateTimeTimeZone0));
-            attrDateTimeTimeZone5 = new FunctionArgumentAttributeValue(DataTypes.DT_DATE.createAttributeValue(dateTimeTimeZone5));
+            attrDateTimeStdExample1 = new FunctionArgumentAttributeValue(
+                                                                         DataTypes.DT_DATE
+                                                                             .createAttributeValue(dateTimeStdExample1));
+            attrDateTimeMsecs = new FunctionArgumentAttributeValue(
+                                                                   DataTypes.DT_DATE
+                                                                       .createAttributeValue(dateTimeMsecs));
+            attrDateTimeCrossover = new FunctionArgumentAttributeValue(
+                                                                       DataTypes.DT_DATE
+                                                                           .createAttributeValue(dateTimeCrossover));
+            attrDateTimeBC = new FunctionArgumentAttributeValue(
+                                                                DataTypes.DT_DATE
+                                                                    .createAttributeValue(dateTimeBC));
+            attrDateTimeTimeZone0 = new FunctionArgumentAttributeValue(
+                                                                       DataTypes.DT_DATE
+                                                                           .createAttributeValue(dateTimeTimeZone0));
+            attrDateTimeTimeZone5 = new FunctionArgumentAttributeValue(
+                                                                       DataTypes.DT_DATE
+                                                                           .createAttributeValue(dateTimeTimeZone5));
 
             // Duration attrs
-            attrDuration0 = new FunctionArgumentAttributeValue(DataTypes.DT_YEARMONTHDURATION.createAttributeValue(duration0));
-            attrDurationStdExample1 = new FunctionArgumentAttributeValue(DataTypes.DT_YEARMONTHDURATION.createAttributeValue(durationStdExample1));
-            attrDurationNStdExample1 = new FunctionArgumentAttributeValue(DataTypes.DT_YEARMONTHDURATION.createAttributeValue(durationNStdExample1));
-            attrDurationMsecs = new FunctionArgumentAttributeValue(DataTypes.DT_YEARMONTHDURATION.createAttributeValue(durationMsecs));
-            attrDurationCrossover = new FunctionArgumentAttributeValue(DataTypes.DT_YEARMONTHDURATION.createAttributeValue(durationCrossover));
+            attrDuration0 = new FunctionArgumentAttributeValue(
+                                                               DataTypes.DT_YEARMONTHDURATION
+                                                                   .createAttributeValue(duration0));
+            attrDurationStdExample1 = new FunctionArgumentAttributeValue(
+                                                                         DataTypes.DT_YEARMONTHDURATION
+                                                                             .createAttributeValue(durationStdExample1));
+            attrDurationNStdExample1 = new FunctionArgumentAttributeValue(
+                                                                          DataTypes.DT_YEARMONTHDURATION
+                                                                              .createAttributeValue(durationNStdExample1));
+            attrDurationMsecs = new FunctionArgumentAttributeValue(
+                                                                   DataTypes.DT_YEARMONTHDURATION
+                                                                       .createAttributeValue(durationMsecs));
+            attrDurationCrossover = new FunctionArgumentAttributeValue(
+                                                                       DataTypes.DT_YEARMONTHDURATION
+                                                                           .createAttributeValue(durationCrossover));
 
             // misc bad
-            attrBlank = new FunctionArgumentAttributeValue(DataTypes.DT_YEARMONTHDURATION.createAttributeValue(""));
-            attrNull = new FunctionArgumentAttributeValue(DataTypes.DT_YEARMONTHDURATION.createAttributeValue(null));
+            attrBlank = new FunctionArgumentAttributeValue(
+                                                           DataTypes.DT_YEARMONTHDURATION
+                                                               .createAttributeValue(""));
+            attrNull = new FunctionArgumentAttributeValue(
+                                                          DataTypes.DT_YEARMONTHDURATION
+                                                              .createAttributeValue(null));
             attrInteger = new FunctionArgumentAttributeValue(DataTypes.DT_INTEGER.createAttributeValue(1234));
         } catch (Exception e) {
-            fail("creating attributes e="+ e);
+            fail("creating attributes e=" + e);
         }
 
-        FunctionDefinitionDateTimeArithmetic<?,?> fd = (FunctionDefinitionDateTimeArithmetic<?,?>) StdFunctions.FD_DATE_SUBTRACT_YEARMONTHDURATION;
+        FunctionDefinitionDateTimeArithmetic<?, ?> fd = (FunctionDefinitionDateTimeArithmetic<?, ?>)StdFunctions.FD_DATE_SUBTRACT_YEARMONTHDURATION;
 
         // check identity and type of the thing created
         assertEquals(XACML3.ID_FUNCTION_DATE_SUBTRACT_YEARMONTHDURATION, fd.getId());
         assertEquals(DataTypes.DT_DATE.getId(), fd.getDataTypeId());
 
-        // just to be safe...  If tests take too long these can probably be eliminated
+        // just to be safe... If tests take too long these can probably be eliminated
         assertFalse(fd.returnsBag());
 
         // Duration = 0 => same as original
@@ -1452,7 +1562,6 @@ public class FunctionDefinitionDateTimeArithmeticTest {
         assertEquals(ISO8601Date.class, res.getValue().getValue().getClass());
         ISO8601Date resValue = (ISO8601Date)res.getValue().getValue();
         assertEquals(dateTimeStdExample1, resValue);
-
 
         // simple positive operation
         arguments.clear();
@@ -1538,8 +1647,10 @@ public class FunctionDefinitionDateTimeArithmeticTest {
         arguments.add(attrDurationStdExample1);
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
-        assertEquals("function:date-subtract-yearMonthDuration Got null attribute", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("function:date-subtract-yearMonthDuration Got null attribute", res.getStatus()
+            .getStatusMessage());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
         // empty non-null second arg
         arguments.clear();
@@ -1547,8 +1658,10 @@ public class FunctionDefinitionDateTimeArithmeticTest {
         arguments.add(attrBlank);
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
-        assertEquals("function:date-subtract-yearMonthDuration Got null attribute", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("function:date-subtract-yearMonthDuration Got null attribute", res.getStatus()
+            .getStatusMessage());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
         // two blanks
         arguments.clear();
@@ -1556,8 +1669,10 @@ public class FunctionDefinitionDateTimeArithmeticTest {
         arguments.add(attrBlank);
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
-        assertEquals("function:date-subtract-yearMonthDuration Got null attribute", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("function:date-subtract-yearMonthDuration Got null attribute", res.getStatus()
+            .getStatusMessage());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
         // null firat arg
         arguments.clear();
@@ -1565,8 +1680,10 @@ public class FunctionDefinitionDateTimeArithmeticTest {
         arguments.add(attrBlank);
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
-        assertEquals("function:date-subtract-yearMonthDuration Got null attribute", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("function:date-subtract-yearMonthDuration Got null attribute", res.getStatus()
+            .getStatusMessage());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
         // null second arg
         arguments.clear();
@@ -1574,8 +1691,10 @@ public class FunctionDefinitionDateTimeArithmeticTest {
         arguments.add(attrNull);
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
-        assertEquals("function:date-subtract-yearMonthDuration Got null attribute", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("function:date-subtract-yearMonthDuration Got null attribute", res.getStatus()
+            .getStatusMessage());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
         // bad arg type
         arguments.clear();
@@ -1583,8 +1702,10 @@ public class FunctionDefinitionDateTimeArithmeticTest {
         arguments.add(attrDurationStdExample1);
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
-        assertEquals("function:date-subtract-yearMonthDuration Expected data type 'date' saw 'integer'", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("function:date-subtract-yearMonthDuration Expected data type 'date' saw 'integer'", res
+            .getStatus().getStatusMessage());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
         // null second arg
         arguments.clear();
@@ -1592,10 +1713,10 @@ public class FunctionDefinitionDateTimeArithmeticTest {
         arguments.add(attrNull);
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
-        assertEquals("function:date-subtract-yearMonthDuration Got null attribute", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("function:date-subtract-yearMonthDuration Got null attribute", res.getStatus()
+            .getStatusMessage());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
     }
-
-
 
 }

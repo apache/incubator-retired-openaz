@@ -42,11 +42,10 @@ import org.apache.openaz.xacml.std.StdStatusCode;
 
 /**
  * PolicyIdReferenceBase extends {@link PolicySetChild} to implement a XACML PolicyIdReference element.
- *
  */
 public abstract class PolicyIdReferenceBase<T extends PolicyDef> extends PolicySetChild {
-    private IdReferenceMatch	idReferenceMatch;
-    private T					referencee;
+    private IdReferenceMatch idReferenceMatch;
+    private T referencee;
 
     @Override
     protected boolean validateComponent() {
@@ -63,12 +62,13 @@ public abstract class PolicyIdReferenceBase<T extends PolicyDef> extends PolicyS
     }
 
     /**
-     * If the <code>T</code> referencee has not been set, this method will try and find it
-     * in the given <code>EvaluationContext</code> and return it.
+     * If the <code>T</code> referencee has not been set, this method will try and find it in the given
+     * <code>EvaluationContext</code> and return it.
      *
      * @param evaluationContext the <code>EvaluationContext</code> to search for the referencee
      * @return the <code>T</code> referencee if found, else null
-     * @throws org.apache.openaz.xacml.pdp.eval.EvaluationException if there is an error attempting to locate the referenced <code>T</code>.
+     * @throws com.att.research.xacmlatt.pdp.eval.EvaluationException if there is an error attempting to
+     *             locate the referenced <code>T</code>.
      */
     protected abstract T ensureReferencee(EvaluationContext evaluationContext) throws EvaluationException;
 
@@ -92,7 +92,8 @@ public abstract class PolicyIdReferenceBase<T extends PolicyDef> extends PolicyS
     }
 
     /**
-     * Gets the {@link org.apache.openaz.xacml.api.IdReferenceMatch} for this <code>PolicyIdReferenceBase</code>.
+     * Gets the {@link com.att.research.xacml.api.IdReferenceMatch} for this
+     * <code>PolicyIdReferenceBase</code>.
      *
      * @return the <code>IdReferenceMatch</code> for this <code>PolicyIdReference</code>.
      */
@@ -101,7 +102,7 @@ public abstract class PolicyIdReferenceBase<T extends PolicyDef> extends PolicyS
     }
 
     public void setIdReferenceMatch(IdReferenceMatch idReferenceMatchIn) {
-        this.idReferenceMatch	= idReferenceMatchIn;
+        this.idReferenceMatch = idReferenceMatchIn;
     }
 
     /**
@@ -114,14 +115,17 @@ public abstract class PolicyIdReferenceBase<T extends PolicyDef> extends PolicyS
     }
 
     public void setReferencee(T referenceeIn) {
-        this.referencee	= referenceeIn;
+        this.referencee = referenceeIn;
     }
 
     @Override
     public EvaluationResult evaluate(EvaluationContext evaluationContext) throws EvaluationException {
-        T thisReferencee	= this.ensureReferencee(evaluationContext);
+        T thisReferencee = this.ensureReferencee(evaluationContext);
         if (thisReferencee == null) {
-            return new EvaluationResult(Decision.INDETERMINATE, new StdStatus(StdStatusCode.STATUS_CODE_PROCESSING_ERROR, "Could not find referencee for " + this.getIdReferenceMatch().toString()));
+            return new EvaluationResult(Decision.INDETERMINATE,
+                                        new StdStatus(StdStatusCode.STATUS_CODE_PROCESSING_ERROR,
+                                                      "Could not find referencee for "
+                                                          + this.getIdReferenceMatch().toString()));
         } else {
             return thisReferencee.evaluate(evaluationContext);
         }
@@ -129,9 +133,12 @@ public abstract class PolicyIdReferenceBase<T extends PolicyDef> extends PolicyS
 
     @Override
     public MatchResult match(EvaluationContext evaluationContext) throws EvaluationException {
-        T thisReferencee	= this.ensureReferencee(evaluationContext);
+        T thisReferencee = this.ensureReferencee(evaluationContext);
         if (thisReferencee == null) {
-            return new MatchResult(MatchResult.MatchCode.INDETERMINATE, new StdStatus(StdStatusCode.STATUS_CODE_PROCESSING_ERROR, "Could not find referencee for " + this.getIdReferenceMatch().toString()));
+            return new MatchResult(MatchResult.MatchCode.INDETERMINATE,
+                                   new StdStatus(StdStatusCode.STATUS_CODE_PROCESSING_ERROR,
+                                                 "Could not find referencee for "
+                                                     + this.getIdReferenceMatch().toString()));
         } else {
             return thisReferencee.match(evaluationContext);
         }

@@ -33,7 +33,6 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-
 final class StdPepResponse implements PepResponse {
 
     private static final Log logger = LogFactory.getLog(StdPepResponse.class);
@@ -56,17 +55,17 @@ final class StdPepResponse implements PepResponse {
 
     @Override
     public boolean allowed() throws PepException {
-        if(obligationRouter != null) {
+        if (obligationRouter != null) {
             obligationRouter.routeObligations(getObligations());
         }
-        switch(wrappedResult.getDecision()) {
+        switch (wrappedResult.getDecision()) {
         case PERMIT:
             return true;
         case DENY:
             return false;
         case NOTAPPLICABLE:
             return enforceBehavior(pepConfig.getNotApplicableBehavior(), "Not Applicable");
-        //TODO: Handle various indeterminate status codes.
+            // TODO: Handle various indeterminate status codes.
         case INDETERMINATE:
         case INDETERMINATE_DENY:
         case INDETERMINATE_DENYPERMIT:
@@ -109,7 +108,7 @@ final class StdPepResponse implements PepResponse {
     @Override
     public Collection<Attribute> getAttributes() {
         Collection<Attribute> attributes = new ArrayList<Attribute>();
-        for(AttributeCategory category: wrappedResult.getAttributes()) {
+        for (AttributeCategory category : wrappedResult.getAttributes()) {
             attributes.addAll(category.getAttributes());
         }
         return attributes;
@@ -118,7 +117,7 @@ final class StdPepResponse implements PepResponse {
     @Override
     public Map<Identifier, Collection<Attribute>> getAttributesByCategory() {
         Map<Identifier, Collection<Attribute>> attributesByCategory = new HashMap<Identifier, Collection<Attribute>>();
-        for(AttributeCategory category: wrappedResult.getAttributes()) {
+        for (AttributeCategory category : wrappedResult.getAttributes()) {
             attributesByCategory.put(category.getCategory(), category.getAttributes());
         }
         return attributesByCategory;
@@ -129,8 +128,8 @@ final class StdPepResponse implements PepResponse {
         return wrappedResult;
     }
 
-    private boolean enforceBehavior(
-        PepResponseBehavior pepResponseBehavior, String decision) throws PepException {
+    private boolean enforceBehavior(PepResponseBehavior pepResponseBehavior, String decision)
+        throws PepException {
         switch (pepResponseBehavior) {
         case RETURN_YES:
             return true;
@@ -138,8 +137,8 @@ final class StdPepResponse implements PepResponse {
             return false;
         case THROW_EXCEPTION:
             logger.info("Throwing an exception as per configured behavior for decision: " + decision);
-            throw new PepException("Exception being thrown based on configured " +
-                                   "behavior for decision: " + decision);
+            throw new PepException("Exception being thrown based on configured " + "behavior for decision: "
+                                   + decision);
         default:
             throw new PepException("Invalid PepResponseBehavior");
         }

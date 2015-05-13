@@ -54,7 +54,7 @@ import com.google.common.collect.Lists;
 
 public class StdPDPPolicy implements PDPPolicy, Serializable {
     private static final long serialVersionUID = 1L;
-    private static Log	logger	= LogFactory.getLog(StdPDPPolicy.class);
+    private static Log logger = LogFactory.getLog(StdPDPPolicy.class);
 
     private String id = null;
 
@@ -64,14 +64,13 @@ public class StdPDPPolicy implements PDPPolicy, Serializable {
 
     private String description = null;
 
-    private int[]	version = null;
+    private int[] version = null;
 
     private boolean isRoot = false;
 
     private boolean isValid = false;
 
     private URI location = null;
-
 
     public StdPDPPolicy(String id, boolean isRoot) {
         this.id = id;
@@ -82,7 +81,6 @@ public class StdPDPPolicy implements PDPPolicy, Serializable {
         this(id, isRoot);
         this.name = name;
     }
-
 
     public StdPDPPolicy(String id, boolean isRoot, String name, URI location) throws IOException {
         this(id, isRoot);
@@ -115,18 +113,14 @@ public class StdPDPPolicy implements PDPPolicy, Serializable {
         }
     }
 
-
     private String readPolicyData() throws IOException {
         //
         // Extract XACML policy information
         //
         URL url = this.location.toURL();
         Object rootElement = XACMLPolicyScanner.readPolicy(url.openStream());
-        if (rootElement == null ||
-                (
-                    ! (rootElement instanceof PolicySetType) &&
-                    ! (rootElement instanceof PolicyType)
-                )	) {
+        if (rootElement == null
+            || (!(rootElement instanceof PolicySetType) && !(rootElement instanceof PolicyType))) {
             logger.warn("No root policy element in URI: " + this.location.toString() + " : " + rootElement);
             this.isValid = false;
         } else {
@@ -227,8 +221,7 @@ public class StdPDPPolicy implements PDPPolicy, Serializable {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((id == null) ? 0 : id.hashCode());
-        result = prime * result
-                 + ((policyId == null) ? 0 : policyId.hashCode());
+        result = prime * result + ((policyId == null) ? 0 : policyId.hashCode());
         result = prime * result;
         if (version != null) {
             for (int i = 0; i < version.length; i++) {
@@ -246,7 +239,7 @@ public class StdPDPPolicy implements PDPPolicy, Serializable {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        StdPDPPolicy other = (StdPDPPolicy) obj;
+        StdPDPPolicy other = (StdPDPPolicy)obj;
         if (id == null) {
             if (other.id != null)
                 return false;
@@ -264,12 +257,10 @@ public class StdPDPPolicy implements PDPPolicy, Serializable {
 
     @Override
     public String toString() {
-        return "StdPDPPolicy [id=" + id + ", name=" + name + ", policyId="
-               + policyId + ", description=" + description + ", version="
-               + this.getVersion() + ", isRoot=" + isRoot + ", isValid=" + isValid
-               + ", location=" + location + "]";
+        return "StdPDPPolicy [id=" + id + ", name=" + name + ", policyId=" + policyId + ", description="
+               + description + ", version=" + this.getVersion() + ", isRoot=" + isRoot + ", isValid="
+               + isValid + ", location=" + location + "]";
     }
-
 
     /**
      * Given a version string consisting of integers with dots between them, convert it into an array of ints.
@@ -310,28 +301,32 @@ public class StdPDPPolicy implements PDPPolicy, Serializable {
         return versionString;
     }
 
-
-
     //
     // Methods needed for JSON Deserialization
     //
-    public StdPDPPolicy() {}
+    public StdPDPPolicy() {
+    }
 
     public void setPolicyId(String policyId) {
         this.policyId = policyId;
     }
+
     public void setDescription(String description) {
         this.description = description;
     }
+
     public void setVersion(String version) {
         this.version = versionStringToArray(version);
     }
+
     public void setRoot(boolean isRoot) {
         this.isRoot = isRoot;
     }
+
     public void setValid(boolean isValid) {
         this.isValid = isValid;
     }
+
     public void setLocation(URI location) {
         this.location = location;
     }

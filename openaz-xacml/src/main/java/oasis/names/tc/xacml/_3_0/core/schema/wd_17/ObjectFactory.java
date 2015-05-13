@@ -25,7 +25,6 @@
 // Generated on: 2013.05.23 at 02:47:00 PM EDT
 //
 
-
 package oasis.names.tc.xacml._3_0.core.schema.wd_17;
 
 import javax.xml.bind.JAXBElement;
@@ -33,90 +32,175 @@ import javax.xml.bind.annotation.XmlElementDecl;
 import javax.xml.bind.annotation.XmlRegistry;
 import javax.xml.namespace.QName;
 
-
 /**
- * This object contains factory methods for each
- * Java content interface and Java element interface
- * generated in the oasis.names.tc.xacml._3_0.core.schema.wd_17 package.
- * <p>An ObjectFactory allows you to programatically
- * construct new instances of the Java representation
- * for XML content. The Java representation of XML
- * content can consist of schema derived interfaces
- * and classes representing the binding of schema
- * type definitions, element declarations and model
- * groups.  Factory methods for each of these are
- * provided in this class.
- *
+ * This object contains factory methods for each Java content interface and Java element interface generated
+ * in the oasis.names.tc.xacml._3_0.core.schema.wd_17 package.
+ * <p>
+ * An ObjectFactory allows you to programatically construct new instances of the Java representation for XML
+ * content. The Java representation of XML content can consist of schema derived interfaces and classes
+ * representing the binding of schema type definitions, element declarations and model groups. Factory methods
+ * for each of these are provided in this class.
  */
 @XmlRegistry
 public class ObjectFactory {
 
-    private final static QName _PolicySetIdReference_QNAME = new QName("urn:oasis:names:tc:xacml:3.0:core:schema:wd-17", "PolicySetIdReference");
-    private final static QName _PolicyIdReference_QNAME = new QName("urn:oasis:names:tc:xacml:3.0:core:schema:wd-17", "PolicyIdReference");
-    private final static QName _Attributes_QNAME = new QName("urn:oasis:names:tc:xacml:3.0:core:schema:wd-17", "Attributes");
-    private final static QName _Condition_QNAME = new QName("urn:oasis:names:tc:xacml:3.0:core:schema:wd-17", "Condition");
-    private final static QName _StatusCode_QNAME = new QName("urn:oasis:names:tc:xacml:3.0:core:schema:wd-17", "StatusCode");
-    private final static QName _AttributeAssignmentExpression_QNAME = new QName("urn:oasis:names:tc:xacml:3.0:core:schema:wd-17", "AttributeAssignmentExpression");
-    private final static QName _RuleCombinerParameters_QNAME = new QName("urn:oasis:names:tc:xacml:3.0:core:schema:wd-17", "RuleCombinerParameters");
-    private final static QName _AssociatedAdvice_QNAME = new QName("urn:oasis:names:tc:xacml:3.0:core:schema:wd-17", "AssociatedAdvice");
-    private final static QName _Decision_QNAME = new QName("urn:oasis:names:tc:xacml:3.0:core:schema:wd-17", "Decision");
-    private final static QName _ObligationExpression_QNAME = new QName("urn:oasis:names:tc:xacml:3.0:core:schema:wd-17", "ObligationExpression");
-    private final static QName _PolicySetDefaults_QNAME = new QName("urn:oasis:names:tc:xacml:3.0:core:schema:wd-17", "PolicySetDefaults");
-    private final static QName _AdviceExpressions_QNAME = new QName("urn:oasis:names:tc:xacml:3.0:core:schema:wd-17", "AdviceExpressions");
-    private final static QName _Attribute_QNAME = new QName("urn:oasis:names:tc:xacml:3.0:core:schema:wd-17", "Attribute");
-    private final static QName _AttributeDesignator_QNAME = new QName("urn:oasis:names:tc:xacml:3.0:core:schema:wd-17", "AttributeDesignator");
-    private final static QName _AnyOf_QNAME = new QName("urn:oasis:names:tc:xacml:3.0:core:schema:wd-17", "AnyOf");
-    private final static QName _Obligations_QNAME = new QName("urn:oasis:names:tc:xacml:3.0:core:schema:wd-17", "Obligations");
-    private final static QName _Result_QNAME = new QName("urn:oasis:names:tc:xacml:3.0:core:schema:wd-17", "Result");
-    private final static QName _MultiRequests_QNAME = new QName("urn:oasis:names:tc:xacml:3.0:core:schema:wd-17", "MultiRequests");
-    private final static QName _Obligation_QNAME = new QName("urn:oasis:names:tc:xacml:3.0:core:schema:wd-17", "Obligation");
-    private final static QName _Policy_QNAME = new QName("urn:oasis:names:tc:xacml:3.0:core:schema:wd-17", "Policy");
-    private final static QName _StatusDetail_QNAME = new QName("urn:oasis:names:tc:xacml:3.0:core:schema:wd-17", "StatusDetail");
-    private final static QName _StatusMessage_QNAME = new QName("urn:oasis:names:tc:xacml:3.0:core:schema:wd-17", "StatusMessage");
-    private final static QName _PolicySet_QNAME = new QName("urn:oasis:names:tc:xacml:3.0:core:schema:wd-17", "PolicySet");
-    private final static QName _PolicyIssuer_QNAME = new QName("urn:oasis:names:tc:xacml:3.0:core:schema:wd-17", "PolicyIssuer");
-    private final static QName _VariableReference_QNAME = new QName("urn:oasis:names:tc:xacml:3.0:core:schema:wd-17", "VariableReference");
-    private final static QName _CombinerParameter_QNAME = new QName("urn:oasis:names:tc:xacml:3.0:core:schema:wd-17", "CombinerParameter");
-    private final static QName _AttributeValue_QNAME = new QName("urn:oasis:names:tc:xacml:3.0:core:schema:wd-17", "AttributeValue");
-    private final static QName _ObligationExpressions_QNAME = new QName("urn:oasis:names:tc:xacml:3.0:core:schema:wd-17", "ObligationExpressions");
-    private final static QName _PolicySetCombinerParameters_QNAME = new QName("urn:oasis:names:tc:xacml:3.0:core:schema:wd-17", "PolicySetCombinerParameters");
-    private final static QName _Request_QNAME = new QName("urn:oasis:names:tc:xacml:3.0:core:schema:wd-17", "Request");
-    private final static QName _MissingAttributeDetail_QNAME = new QName("urn:oasis:names:tc:xacml:3.0:core:schema:wd-17", "MissingAttributeDetail");
-    private final static QName _RequestReference_QNAME = new QName("urn:oasis:names:tc:xacml:3.0:core:schema:wd-17", "RequestReference");
-    private final static QName _PolicyDefaults_QNAME = new QName("urn:oasis:names:tc:xacml:3.0:core:schema:wd-17", "PolicyDefaults");
-    private final static QName _PolicyIdentifierList_QNAME = new QName("urn:oasis:names:tc:xacml:3.0:core:schema:wd-17", "PolicyIdentifierList");
-    private final static QName _XPathVersion_QNAME = new QName("urn:oasis:names:tc:xacml:3.0:core:schema:wd-17", "XPathVersion");
-    private final static QName _Target_QNAME = new QName("urn:oasis:names:tc:xacml:3.0:core:schema:wd-17", "Target");
-    private final static QName _AttributeAssignment_QNAME = new QName("urn:oasis:names:tc:xacml:3.0:core:schema:wd-17", "AttributeAssignment");
-    private final static QName _Content_QNAME = new QName("urn:oasis:names:tc:xacml:3.0:core:schema:wd-17", "Content");
-    private final static QName _CombinerParameters_QNAME = new QName("urn:oasis:names:tc:xacml:3.0:core:schema:wd-17", "CombinerParameters");
-    private final static QName _Expression_QNAME = new QName("urn:oasis:names:tc:xacml:3.0:core:schema:wd-17", "Expression");
-    private final static QName _Apply_QNAME = new QName("urn:oasis:names:tc:xacml:3.0:core:schema:wd-17", "Apply");
-    private final static QName _VariableDefinition_QNAME = new QName("urn:oasis:names:tc:xacml:3.0:core:schema:wd-17", "VariableDefinition");
-    private final static QName _Function_QNAME = new QName("urn:oasis:names:tc:xacml:3.0:core:schema:wd-17", "Function");
-    private final static QName _Match_QNAME = new QName("urn:oasis:names:tc:xacml:3.0:core:schema:wd-17", "Match");
-    private final static QName _Description_QNAME = new QName("urn:oasis:names:tc:xacml:3.0:core:schema:wd-17", "Description");
-    private final static QName _AdviceExpression_QNAME = new QName("urn:oasis:names:tc:xacml:3.0:core:schema:wd-17", "AdviceExpression");
-    private final static QName _RequestDefaults_QNAME = new QName("urn:oasis:names:tc:xacml:3.0:core:schema:wd-17", "RequestDefaults");
-    private final static QName _AttributeSelector_QNAME = new QName("urn:oasis:names:tc:xacml:3.0:core:schema:wd-17", "AttributeSelector");
-    private final static QName _PolicyCombinerParameters_QNAME = new QName("urn:oasis:names:tc:xacml:3.0:core:schema:wd-17", "PolicyCombinerParameters");
-    private final static QName _Advice_QNAME = new QName("urn:oasis:names:tc:xacml:3.0:core:schema:wd-17", "Advice");
-    private final static QName _Rule_QNAME = new QName("urn:oasis:names:tc:xacml:3.0:core:schema:wd-17", "Rule");
-    private final static QName _Response_QNAME = new QName("urn:oasis:names:tc:xacml:3.0:core:schema:wd-17", "Response");
-    private final static QName _Status_QNAME = new QName("urn:oasis:names:tc:xacml:3.0:core:schema:wd-17", "Status");
-    private final static QName _AllOf_QNAME = new QName("urn:oasis:names:tc:xacml:3.0:core:schema:wd-17", "AllOf");
-    private final static QName _AttributesReference_QNAME = new QName("urn:oasis:names:tc:xacml:3.0:core:schema:wd-17", "AttributesReference");
+    private final static QName _PolicySetIdReference_QNAME = new QName(
+                                                                       "urn:oasis:names:tc:xacml:3.0:core:schema:wd-17",
+                                                                       "PolicySetIdReference");
+    private final static QName _PolicyIdReference_QNAME = new QName(
+                                                                    "urn:oasis:names:tc:xacml:3.0:core:schema:wd-17",
+                                                                    "PolicyIdReference");
+    private final static QName _Attributes_QNAME = new QName(
+                                                             "urn:oasis:names:tc:xacml:3.0:core:schema:wd-17",
+                                                             "Attributes");
+    private final static QName _Condition_QNAME = new QName("urn:oasis:names:tc:xacml:3.0:core:schema:wd-17",
+                                                            "Condition");
+    private final static QName _StatusCode_QNAME = new QName(
+                                                             "urn:oasis:names:tc:xacml:3.0:core:schema:wd-17",
+                                                             "StatusCode");
+    private final static QName _AttributeAssignmentExpression_QNAME = new QName(
+                                                                                "urn:oasis:names:tc:xacml:3.0:core:schema:wd-17",
+                                                                                "AttributeAssignmentExpression");
+    private final static QName _RuleCombinerParameters_QNAME = new QName(
+                                                                         "urn:oasis:names:tc:xacml:3.0:core:schema:wd-17",
+                                                                         "RuleCombinerParameters");
+    private final static QName _AssociatedAdvice_QNAME = new QName(
+                                                                   "urn:oasis:names:tc:xacml:3.0:core:schema:wd-17",
+                                                                   "AssociatedAdvice");
+    private final static QName _Decision_QNAME = new QName("urn:oasis:names:tc:xacml:3.0:core:schema:wd-17",
+                                                           "Decision");
+    private final static QName _ObligationExpression_QNAME = new QName(
+                                                                       "urn:oasis:names:tc:xacml:3.0:core:schema:wd-17",
+                                                                       "ObligationExpression");
+    private final static QName _PolicySetDefaults_QNAME = new QName(
+                                                                    "urn:oasis:names:tc:xacml:3.0:core:schema:wd-17",
+                                                                    "PolicySetDefaults");
+    private final static QName _AdviceExpressions_QNAME = new QName(
+                                                                    "urn:oasis:names:tc:xacml:3.0:core:schema:wd-17",
+                                                                    "AdviceExpressions");
+    private final static QName _Attribute_QNAME = new QName("urn:oasis:names:tc:xacml:3.0:core:schema:wd-17",
+                                                            "Attribute");
+    private final static QName _AttributeDesignator_QNAME = new QName(
+                                                                      "urn:oasis:names:tc:xacml:3.0:core:schema:wd-17",
+                                                                      "AttributeDesignator");
+    private final static QName _AnyOf_QNAME = new QName("urn:oasis:names:tc:xacml:3.0:core:schema:wd-17",
+                                                        "AnyOf");
+    private final static QName _Obligations_QNAME = new QName(
+                                                              "urn:oasis:names:tc:xacml:3.0:core:schema:wd-17",
+                                                              "Obligations");
+    private final static QName _Result_QNAME = new QName("urn:oasis:names:tc:xacml:3.0:core:schema:wd-17",
+                                                         "Result");
+    private final static QName _MultiRequests_QNAME = new QName(
+                                                                "urn:oasis:names:tc:xacml:3.0:core:schema:wd-17",
+                                                                "MultiRequests");
+    private final static QName _Obligation_QNAME = new QName(
+                                                             "urn:oasis:names:tc:xacml:3.0:core:schema:wd-17",
+                                                             "Obligation");
+    private final static QName _Policy_QNAME = new QName("urn:oasis:names:tc:xacml:3.0:core:schema:wd-17",
+                                                         "Policy");
+    private final static QName _StatusDetail_QNAME = new QName(
+                                                               "urn:oasis:names:tc:xacml:3.0:core:schema:wd-17",
+                                                               "StatusDetail");
+    private final static QName _StatusMessage_QNAME = new QName(
+                                                                "urn:oasis:names:tc:xacml:3.0:core:schema:wd-17",
+                                                                "StatusMessage");
+    private final static QName _PolicySet_QNAME = new QName("urn:oasis:names:tc:xacml:3.0:core:schema:wd-17",
+                                                            "PolicySet");
+    private final static QName _PolicyIssuer_QNAME = new QName(
+                                                               "urn:oasis:names:tc:xacml:3.0:core:schema:wd-17",
+                                                               "PolicyIssuer");
+    private final static QName _VariableReference_QNAME = new QName(
+                                                                    "urn:oasis:names:tc:xacml:3.0:core:schema:wd-17",
+                                                                    "VariableReference");
+    private final static QName _CombinerParameter_QNAME = new QName(
+                                                                    "urn:oasis:names:tc:xacml:3.0:core:schema:wd-17",
+                                                                    "CombinerParameter");
+    private final static QName _AttributeValue_QNAME = new QName(
+                                                                 "urn:oasis:names:tc:xacml:3.0:core:schema:wd-17",
+                                                                 "AttributeValue");
+    private final static QName _ObligationExpressions_QNAME = new QName(
+                                                                        "urn:oasis:names:tc:xacml:3.0:core:schema:wd-17",
+                                                                        "ObligationExpressions");
+    private final static QName _PolicySetCombinerParameters_QNAME = new QName(
+                                                                              "urn:oasis:names:tc:xacml:3.0:core:schema:wd-17",
+                                                                              "PolicySetCombinerParameters");
+    private final static QName _Request_QNAME = new QName("urn:oasis:names:tc:xacml:3.0:core:schema:wd-17",
+                                                          "Request");
+    private final static QName _MissingAttributeDetail_QNAME = new QName(
+                                                                         "urn:oasis:names:tc:xacml:3.0:core:schema:wd-17",
+                                                                         "MissingAttributeDetail");
+    private final static QName _RequestReference_QNAME = new QName(
+                                                                   "urn:oasis:names:tc:xacml:3.0:core:schema:wd-17",
+                                                                   "RequestReference");
+    private final static QName _PolicyDefaults_QNAME = new QName(
+                                                                 "urn:oasis:names:tc:xacml:3.0:core:schema:wd-17",
+                                                                 "PolicyDefaults");
+    private final static QName _PolicyIdentifierList_QNAME = new QName(
+                                                                       "urn:oasis:names:tc:xacml:3.0:core:schema:wd-17",
+                                                                       "PolicyIdentifierList");
+    private final static QName _XPathVersion_QNAME = new QName(
+                                                               "urn:oasis:names:tc:xacml:3.0:core:schema:wd-17",
+                                                               "XPathVersion");
+    private final static QName _Target_QNAME = new QName("urn:oasis:names:tc:xacml:3.0:core:schema:wd-17",
+                                                         "Target");
+    private final static QName _AttributeAssignment_QNAME = new QName(
+                                                                      "urn:oasis:names:tc:xacml:3.0:core:schema:wd-17",
+                                                                      "AttributeAssignment");
+    private final static QName _Content_QNAME = new QName("urn:oasis:names:tc:xacml:3.0:core:schema:wd-17",
+                                                          "Content");
+    private final static QName _CombinerParameters_QNAME = new QName(
+                                                                     "urn:oasis:names:tc:xacml:3.0:core:schema:wd-17",
+                                                                     "CombinerParameters");
+    private final static QName _Expression_QNAME = new QName(
+                                                             "urn:oasis:names:tc:xacml:3.0:core:schema:wd-17",
+                                                             "Expression");
+    private final static QName _Apply_QNAME = new QName("urn:oasis:names:tc:xacml:3.0:core:schema:wd-17",
+                                                        "Apply");
+    private final static QName _VariableDefinition_QNAME = new QName(
+                                                                     "urn:oasis:names:tc:xacml:3.0:core:schema:wd-17",
+                                                                     "VariableDefinition");
+    private final static QName _Function_QNAME = new QName("urn:oasis:names:tc:xacml:3.0:core:schema:wd-17",
+                                                           "Function");
+    private final static QName _Match_QNAME = new QName("urn:oasis:names:tc:xacml:3.0:core:schema:wd-17",
+                                                        "Match");
+    private final static QName _Description_QNAME = new QName(
+                                                              "urn:oasis:names:tc:xacml:3.0:core:schema:wd-17",
+                                                              "Description");
+    private final static QName _AdviceExpression_QNAME = new QName(
+                                                                   "urn:oasis:names:tc:xacml:3.0:core:schema:wd-17",
+                                                                   "AdviceExpression");
+    private final static QName _RequestDefaults_QNAME = new QName(
+                                                                  "urn:oasis:names:tc:xacml:3.0:core:schema:wd-17",
+                                                                  "RequestDefaults");
+    private final static QName _AttributeSelector_QNAME = new QName(
+                                                                    "urn:oasis:names:tc:xacml:3.0:core:schema:wd-17",
+                                                                    "AttributeSelector");
+    private final static QName _PolicyCombinerParameters_QNAME = new QName(
+                                                                           "urn:oasis:names:tc:xacml:3.0:core:schema:wd-17",
+                                                                           "PolicyCombinerParameters");
+    private final static QName _Advice_QNAME = new QName("urn:oasis:names:tc:xacml:3.0:core:schema:wd-17",
+                                                         "Advice");
+    private final static QName _Rule_QNAME = new QName("urn:oasis:names:tc:xacml:3.0:core:schema:wd-17",
+                                                       "Rule");
+    private final static QName _Response_QNAME = new QName("urn:oasis:names:tc:xacml:3.0:core:schema:wd-17",
+                                                           "Response");
+    private final static QName _Status_QNAME = new QName("urn:oasis:names:tc:xacml:3.0:core:schema:wd-17",
+                                                         "Status");
+    private final static QName _AllOf_QNAME = new QName("urn:oasis:names:tc:xacml:3.0:core:schema:wd-17",
+                                                        "AllOf");
+    private final static QName _AttributesReference_QNAME = new QName(
+                                                                      "urn:oasis:names:tc:xacml:3.0:core:schema:wd-17",
+                                                                      "AttributesReference");
 
     /**
-     * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: oasis.names.tc.xacml._3_0.core.schema.wd_17
-     *
+     * Create a new ObjectFactory that can be used to create new instances of schema derived classes for
+     * package: oasis.names.tc.xacml._3_0.core.schema.wd_17
      */
     public ObjectFactory() {
     }
 
     /**
      * Create an instance of {@link oasis.names.tc.xacml._3_0.core.schema.wd_17.TargetType }
-     *
      */
     public TargetType createTargetType() {
         return new TargetType();
@@ -124,7 +208,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link PolicySetCombinerParametersType }
-     *
      */
     public PolicySetCombinerParametersType createPolicySetCombinerParametersType() {
         return new PolicySetCombinerParametersType();
@@ -132,7 +215,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link MultiRequestsType }
-     *
      */
     public MultiRequestsType createMultiRequestsType() {
         return new MultiRequestsType();
@@ -140,7 +222,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link ObligationsType }
-     *
      */
     public ObligationsType createObligationsType() {
         return new ObligationsType();
@@ -148,7 +229,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link oasis.names.tc.xacml._3_0.core.schema.wd_17.FunctionType }
-     *
      */
     public FunctionType createFunctionType() {
         return new FunctionType();
@@ -156,7 +236,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link oasis.names.tc.xacml._3_0.core.schema.wd_17.AdviceType }
-     *
      */
     public AdviceType createAdviceType() {
         return new AdviceType();
@@ -164,7 +243,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link AttributeSelectorType }
-     *
      */
     public AttributeSelectorType createAttributeSelectorType() {
         return new AttributeSelectorType();
@@ -172,7 +250,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link RequestDefaultsType }
-     *
      */
     public RequestDefaultsType createRequestDefaultsType() {
         return new RequestDefaultsType();
@@ -180,7 +257,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link PolicyIssuerType }
-     *
      */
     public PolicyIssuerType createPolicyIssuerType() {
         return new PolicyIssuerType();
@@ -188,7 +264,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link oasis.names.tc.xacml._3_0.core.schema.wd_17.StatusType }
-     *
      */
     public StatusType createStatusType() {
         return new StatusType();
@@ -196,7 +271,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link StatusDetailType }
-     *
      */
     public StatusDetailType createStatusDetailType() {
         return new StatusDetailType();
@@ -204,7 +278,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link VariableReferenceType }
-     *
      */
     public VariableReferenceType createVariableReferenceType() {
         return new VariableReferenceType();
@@ -212,7 +285,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link oasis.names.tc.xacml._3_0.core.schema.wd_17.MatchType }
-     *
      */
     public MatchType createMatchType() {
         return new MatchType();
@@ -220,7 +292,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link PolicyCombinerParametersType }
-     *
      */
     public PolicyCombinerParametersType createPolicyCombinerParametersType() {
         return new PolicyCombinerParametersType();
@@ -228,7 +299,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link AttributeDesignatorType }
-     *
      */
     public AttributeDesignatorType createAttributeDesignatorType() {
         return new AttributeDesignatorType();
@@ -236,7 +306,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link oasis.names.tc.xacml._3_0.core.schema.wd_17.DefaultsType }
-     *
      */
     public DefaultsType createDefaultsType() {
         return new DefaultsType();
@@ -244,7 +313,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link RuleCombinerParametersType }
-     *
      */
     public RuleCombinerParametersType createRuleCombinerParametersType() {
         return new RuleCombinerParametersType();
@@ -252,7 +320,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link AssociatedAdviceType }
-     *
      */
     public AssociatedAdviceType createAssociatedAdviceType() {
         return new AssociatedAdviceType();
@@ -260,7 +327,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link CombinerParametersType }
-     *
      */
     public CombinerParametersType createCombinerParametersType() {
         return new CombinerParametersType();
@@ -268,7 +334,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link AttributesType }
-     *
      */
     public AttributesType createAttributesType() {
         return new AttributesType();
@@ -276,7 +341,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link AttributesReferenceType }
-     *
      */
     public AttributesReferenceType createAttributesReferenceType() {
         return new AttributesReferenceType();
@@ -284,7 +348,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link AttributeAssignmentType }
-     *
      */
     public AttributeAssignmentType createAttributeAssignmentType() {
         return new AttributeAssignmentType();
@@ -292,7 +355,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link ObligationType }
-     *
      */
     public ObligationType createObligationType() {
         return new ObligationType();
@@ -300,7 +362,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link ObligationExpressionType }
-     *
      */
     public ObligationExpressionType createObligationExpressionType() {
         return new ObligationExpressionType();
@@ -308,7 +369,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link MissingAttributeDetailType }
-     *
      */
     public MissingAttributeDetailType createMissingAttributeDetailType() {
         return new MissingAttributeDetailType();
@@ -316,7 +376,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link AdviceExpressionType }
-     *
      */
     public AdviceExpressionType createAdviceExpressionType() {
         return new AdviceExpressionType();
@@ -324,7 +383,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link oasis.names.tc.xacml._3_0.core.schema.wd_17.ContentType }
-     *
      */
     public ContentType createContentType() {
         return new ContentType();
@@ -332,7 +390,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link oasis.names.tc.xacml._3_0.core.schema.wd_17.RuleType }
-     *
      */
     public RuleType createRuleType() {
         return new RuleType();
@@ -340,7 +397,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link oasis.names.tc.xacml._3_0.core.schema.wd_17.PolicyType }
-     *
      */
     public PolicyType createPolicyType() {
         return new PolicyType();
@@ -348,7 +404,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link oasis.names.tc.xacml._3_0.core.schema.wd_17.ConditionType }
-     *
      */
     public ConditionType createConditionType() {
         return new ConditionType();
@@ -356,7 +411,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link VariableDefinitionType }
-     *
      */
     public VariableDefinitionType createVariableDefinitionType() {
         return new VariableDefinitionType();
@@ -364,7 +418,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link ObligationExpressionsType }
-     *
      */
     public ObligationExpressionsType createObligationExpressionsType() {
         return new ObligationExpressionsType();
@@ -372,7 +425,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link oasis.names.tc.xacml._3_0.core.schema.wd_17.ResponseType }
-     *
      */
     public ResponseType createResponseType() {
         return new ResponseType();
@@ -380,7 +432,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link StatusCodeType }
-     *
      */
     public StatusCodeType createStatusCodeType() {
         return new StatusCodeType();
@@ -388,7 +439,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link CombinerParameterType }
-     *
      */
     public CombinerParameterType createCombinerParameterType() {
         return new CombinerParameterType();
@@ -396,7 +446,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link oasis.names.tc.xacml._3_0.core.schema.wd_17.RequestType }
-     *
      */
     public RequestType createRequestType() {
         return new RequestType();
@@ -404,7 +453,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link oasis.names.tc.xacml._3_0.core.schema.wd_17.ApplyType }
-     *
      */
     public ApplyType createApplyType() {
         return new ApplyType();
@@ -412,7 +460,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link PolicyIdentifierListType }
-     *
      */
     public PolicyIdentifierListType createPolicyIdentifierListType() {
         return new PolicyIdentifierListType();
@@ -420,7 +467,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link RequestReferenceType }
-     *
      */
     public RequestReferenceType createRequestReferenceType() {
         return new RequestReferenceType();
@@ -428,7 +474,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link IdReferenceType }
-     *
      */
     public IdReferenceType createIdReferenceType() {
         return new IdReferenceType();
@@ -436,7 +481,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link oasis.names.tc.xacml._3_0.core.schema.wd_17.AnyOfType }
-     *
      */
     public AnyOfType createAnyOfType() {
         return new AnyOfType();
@@ -444,7 +488,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link PolicySetType }
-     *
      */
     public PolicySetType createPolicySetType() {
         return new PolicySetType();
@@ -452,7 +495,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link oasis.names.tc.xacml._3_0.core.schema.wd_17.AttributeType }
-     *
      */
     public AttributeType createAttributeType() {
         return new AttributeType();
@@ -460,7 +502,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link AttributeValueType }
-     *
      */
     public AttributeValueType createAttributeValueType() {
         return new AttributeValueType();
@@ -468,7 +509,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link AttributeAssignmentExpressionType }
-     *
      */
     public AttributeAssignmentExpressionType createAttributeAssignmentExpressionType() {
         return new AttributeAssignmentExpressionType();
@@ -476,7 +516,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link oasis.names.tc.xacml._3_0.core.schema.wd_17.AllOfType }
-     *
      */
     public AllOfType createAllOfType() {
         return new AllOfType();
@@ -484,7 +523,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link AdviceExpressionsType }
-     *
      */
     public AdviceExpressionsType createAdviceExpressionsType() {
         return new AdviceExpressionsType();
@@ -492,24 +530,22 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link oasis.names.tc.xacml._3_0.core.schema.wd_17.ResultType }
-     *
      */
     public ResultType createResultType() {
         return new ResultType();
     }
 
     /**
-     * Create an instance of {@link javax.xml.bind.JAXBElement }{@code <}{@link IdReferenceType }{@code >}}
-     *
+     * Create an instance of {@link javax.xml.bind.JAXBElement }{@code <}{@link IdReferenceType }{@code >}
      */
     @XmlElementDecl(namespace = "urn:oasis:names:tc:xacml:3.0:core:schema:wd-17", name = "PolicySetIdReference")
     public JAXBElement<IdReferenceType> createPolicySetIdReference(IdReferenceType value) {
-        return new JAXBElement<IdReferenceType>(_PolicySetIdReference_QNAME, IdReferenceType.class, null, value);
+        return new JAXBElement<IdReferenceType>(_PolicySetIdReference_QNAME, IdReferenceType.class, null,
+                                                value);
     }
 
     /**
-     * Create an instance of {@link javax.xml.bind.JAXBElement }{@code <}{@link IdReferenceType }{@code >}}
-     *
+     * Create an instance of {@link javax.xml.bind.JAXBElement }{@code <}{@link IdReferenceType }{@code >}
      */
     @XmlElementDecl(namespace = "urn:oasis:names:tc:xacml:3.0:core:schema:wd-17", name = "PolicyIdReference")
     public JAXBElement<IdReferenceType> createPolicyIdReference(IdReferenceType value) {
@@ -517,8 +553,7 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link javax.xml.bind.JAXBElement }{@code <}{@link AttributesType }{@code >}}
-     *
+     * Create an instance of {@link javax.xml.bind.JAXBElement }{@code <}{@link AttributesType }{@code >}
      */
     @XmlElementDecl(namespace = "urn:oasis:names:tc:xacml:3.0:core:schema:wd-17", name = "Attributes")
     public JAXBElement<AttributesType> createAttributes(AttributesType value) {
@@ -526,8 +561,8 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link javax.xml.bind.JAXBElement }{@code <}{@link oasis.names.tc.xacml._3_0.core.schema.wd_17.ConditionType }{@code >}}
-     *
+     * Create an instance of {@link javax.xml.bind.JAXBElement }{@code <}
+     * {@link oasis.names.tc.xacml._3_0.core.schema.wd_17.ConditionType }{@code >}
      */
     @XmlElementDecl(namespace = "urn:oasis:names:tc:xacml:3.0:core:schema:wd-17", name = "Condition")
     public JAXBElement<ConditionType> createCondition(ConditionType value) {
@@ -535,8 +570,7 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link javax.xml.bind.JAXBElement }{@code <}{@link StatusCodeType }{@code >}}
-     *
+     * Create an instance of {@link javax.xml.bind.JAXBElement }{@code <}{@link StatusCodeType }{@code >}
      */
     @XmlElementDecl(namespace = "urn:oasis:names:tc:xacml:3.0:core:schema:wd-17", name = "StatusCode")
     public JAXBElement<StatusCodeType> createStatusCode(StatusCodeType value) {
@@ -544,35 +578,38 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link javax.xml.bind.JAXBElement }{@code <}{@link AttributeAssignmentExpressionType }{@code >}}
-     *
+     * Create an instance of {@link javax.xml.bind.JAXBElement }{@code <}
+     * {@link AttributeAssignmentExpressionType }{@code >}
      */
     @XmlElementDecl(namespace = "urn:oasis:names:tc:xacml:3.0:core:schema:wd-17", name = "AttributeAssignmentExpression")
     public JAXBElement<AttributeAssignmentExpressionType> createAttributeAssignmentExpression(AttributeAssignmentExpressionType value) {
-        return new JAXBElement<AttributeAssignmentExpressionType>(_AttributeAssignmentExpression_QNAME, AttributeAssignmentExpressionType.class, null, value);
+        return new JAXBElement<AttributeAssignmentExpressionType>(_AttributeAssignmentExpression_QNAME,
+                                                                  AttributeAssignmentExpressionType.class,
+                                                                  null, value);
     }
 
     /**
-     * Create an instance of {@link javax.xml.bind.JAXBElement }{@code <}{@link RuleCombinerParametersType }{@code >}}
-     *
+     * Create an instance of {@link javax.xml.bind.JAXBElement }{@code <}{@link RuleCombinerParametersType }
+     * {@code >}
      */
     @XmlElementDecl(namespace = "urn:oasis:names:tc:xacml:3.0:core:schema:wd-17", name = "RuleCombinerParameters")
     public JAXBElement<RuleCombinerParametersType> createRuleCombinerParameters(RuleCombinerParametersType value) {
-        return new JAXBElement<RuleCombinerParametersType>(_RuleCombinerParameters_QNAME, RuleCombinerParametersType.class, null, value);
+        return new JAXBElement<RuleCombinerParametersType>(_RuleCombinerParameters_QNAME,
+                                                           RuleCombinerParametersType.class, null, value);
     }
 
     /**
-     * Create an instance of {@link javax.xml.bind.JAXBElement }{@code <}{@link AssociatedAdviceType }{@code >}}
-     *
+     * Create an instance of {@link javax.xml.bind.JAXBElement }{@code <}{@link AssociatedAdviceType }{@code >}
      */
     @XmlElementDecl(namespace = "urn:oasis:names:tc:xacml:3.0:core:schema:wd-17", name = "AssociatedAdvice")
     public JAXBElement<AssociatedAdviceType> createAssociatedAdvice(AssociatedAdviceType value) {
-        return new JAXBElement<AssociatedAdviceType>(_AssociatedAdvice_QNAME, AssociatedAdviceType.class, null, value);
+        return new JAXBElement<AssociatedAdviceType>(_AssociatedAdvice_QNAME, AssociatedAdviceType.class,
+                                                     null, value);
     }
 
     /**
-     * Create an instance of {@link javax.xml.bind.JAXBElement }{@code <}{@link oasis.names.tc.xacml._3_0.core.schema.wd_17.DecisionType }{@code >}}
-     *
+     * Create an instance of {@link javax.xml.bind.JAXBElement }{@code <}
+     * {@link oasis.names.tc.xacml._3_0.core.schema.wd_17.DecisionType }{@code >}
      */
     @XmlElementDecl(namespace = "urn:oasis:names:tc:xacml:3.0:core:schema:wd-17", name = "Decision")
     public JAXBElement<DecisionType> createDecision(DecisionType value) {
@@ -580,17 +617,18 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link javax.xml.bind.JAXBElement }{@code <}{@link ObligationExpressionType }{@code >}}
-     *
+     * Create an instance of {@link javax.xml.bind.JAXBElement }{@code <}{@link ObligationExpressionType }
+     * {@code >}
      */
     @XmlElementDecl(namespace = "urn:oasis:names:tc:xacml:3.0:core:schema:wd-17", name = "ObligationExpression")
     public JAXBElement<ObligationExpressionType> createObligationExpression(ObligationExpressionType value) {
-        return new JAXBElement<ObligationExpressionType>(_ObligationExpression_QNAME, ObligationExpressionType.class, null, value);
+        return new JAXBElement<ObligationExpressionType>(_ObligationExpression_QNAME,
+                                                         ObligationExpressionType.class, null, value);
     }
 
     /**
-     * Create an instance of {@link javax.xml.bind.JAXBElement }{@code <}{@link oasis.names.tc.xacml._3_0.core.schema.wd_17.DefaultsType }{@code >}}
-     *
+     * Create an instance of {@link javax.xml.bind.JAXBElement }{@code <}
+     * {@link oasis.names.tc.xacml._3_0.core.schema.wd_17.DefaultsType }{@code >}
      */
     @XmlElementDecl(namespace = "urn:oasis:names:tc:xacml:3.0:core:schema:wd-17", name = "PolicySetDefaults")
     public JAXBElement<DefaultsType> createPolicySetDefaults(DefaultsType value) {
@@ -598,17 +636,17 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link javax.xml.bind.JAXBElement }{@code <}{@link AdviceExpressionsType }{@code >}}
-     *
+     * Create an instance of {@link javax.xml.bind.JAXBElement }{@code <}{@link AdviceExpressionsType }{@code >}
      */
     @XmlElementDecl(namespace = "urn:oasis:names:tc:xacml:3.0:core:schema:wd-17", name = "AdviceExpressions")
     public JAXBElement<AdviceExpressionsType> createAdviceExpressions(AdviceExpressionsType value) {
-        return new JAXBElement<AdviceExpressionsType>(_AdviceExpressions_QNAME, AdviceExpressionsType.class, null, value);
+        return new JAXBElement<AdviceExpressionsType>(_AdviceExpressions_QNAME, AdviceExpressionsType.class,
+                                                      null, value);
     }
 
     /**
-     * Create an instance of {@link javax.xml.bind.JAXBElement }{@code <}{@link oasis.names.tc.xacml._3_0.core.schema.wd_17.AttributeType }{@code >}}
-     *
+     * Create an instance of {@link javax.xml.bind.JAXBElement }{@code <}
+     * {@link oasis.names.tc.xacml._3_0.core.schema.wd_17.AttributeType }{@code >}
      */
     @XmlElementDecl(namespace = "urn:oasis:names:tc:xacml:3.0:core:schema:wd-17", name = "Attribute")
     public JAXBElement<AttributeType> createAttribute(AttributeType value) {
@@ -616,17 +654,18 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link javax.xml.bind.JAXBElement }{@code <}{@link AttributeDesignatorType }{@code >}}
-     *
+     * Create an instance of {@link javax.xml.bind.JAXBElement }{@code <}{@link AttributeDesignatorType }
+     * {@code >}
      */
     @XmlElementDecl(namespace = "urn:oasis:names:tc:xacml:3.0:core:schema:wd-17", name = "AttributeDesignator", substitutionHeadNamespace = "urn:oasis:names:tc:xacml:3.0:core:schema:wd-17", substitutionHeadName = "Expression")
     public JAXBElement<AttributeDesignatorType> createAttributeDesignator(AttributeDesignatorType value) {
-        return new JAXBElement<AttributeDesignatorType>(_AttributeDesignator_QNAME, AttributeDesignatorType.class, null, value);
+        return new JAXBElement<AttributeDesignatorType>(_AttributeDesignator_QNAME,
+                                                        AttributeDesignatorType.class, null, value);
     }
 
     /**
-     * Create an instance of {@link javax.xml.bind.JAXBElement }{@code <}{@link oasis.names.tc.xacml._3_0.core.schema.wd_17.AnyOfType }{@code >}}
-     *
+     * Create an instance of {@link javax.xml.bind.JAXBElement }{@code <}
+     * {@link oasis.names.tc.xacml._3_0.core.schema.wd_17.AnyOfType }{@code >}
      */
     @XmlElementDecl(namespace = "urn:oasis:names:tc:xacml:3.0:core:schema:wd-17", name = "AnyOf")
     public JAXBElement<AnyOfType> createAnyOf(AnyOfType value) {
@@ -634,8 +673,7 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link javax.xml.bind.JAXBElement }{@code <}{@link ObligationsType }{@code >}}
-     *
+     * Create an instance of {@link javax.xml.bind.JAXBElement }{@code <}{@link ObligationsType }{@code >}
      */
     @XmlElementDecl(namespace = "urn:oasis:names:tc:xacml:3.0:core:schema:wd-17", name = "Obligations")
     public JAXBElement<ObligationsType> createObligations(ObligationsType value) {
@@ -643,8 +681,8 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link javax.xml.bind.JAXBElement }{@code <}{@link oasis.names.tc.xacml._3_0.core.schema.wd_17.ResultType }{@code >}}
-     *
+     * Create an instance of {@link javax.xml.bind.JAXBElement }{@code <}
+     * {@link oasis.names.tc.xacml._3_0.core.schema.wd_17.ResultType }{@code >}
      */
     @XmlElementDecl(namespace = "urn:oasis:names:tc:xacml:3.0:core:schema:wd-17", name = "Result")
     public JAXBElement<ResultType> createResult(ResultType value) {
@@ -652,8 +690,7 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link javax.xml.bind.JAXBElement }{@code <}{@link MultiRequestsType }{@code >}}
-     *
+     * Create an instance of {@link javax.xml.bind.JAXBElement }{@code <}{@link MultiRequestsType }{@code >}
      */
     @XmlElementDecl(namespace = "urn:oasis:names:tc:xacml:3.0:core:schema:wd-17", name = "MultiRequests")
     public JAXBElement<MultiRequestsType> createMultiRequests(MultiRequestsType value) {
@@ -661,8 +698,7 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link javax.xml.bind.JAXBElement }{@code <}{@link ObligationType }{@code >}}
-     *
+     * Create an instance of {@link javax.xml.bind.JAXBElement }{@code <}{@link ObligationType }{@code >}
      */
     @XmlElementDecl(namespace = "urn:oasis:names:tc:xacml:3.0:core:schema:wd-17", name = "Obligation")
     public JAXBElement<ObligationType> createObligation(ObligationType value) {
@@ -670,8 +706,8 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link javax.xml.bind.JAXBElement }{@code <}{@link oasis.names.tc.xacml._3_0.core.schema.wd_17.PolicyType }{@code >}}
-     *
+     * Create an instance of {@link javax.xml.bind.JAXBElement }{@code <}
+     * {@link oasis.names.tc.xacml._3_0.core.schema.wd_17.PolicyType }{@code >}
      */
     @XmlElementDecl(namespace = "urn:oasis:names:tc:xacml:3.0:core:schema:wd-17", name = "Policy")
     public JAXBElement<PolicyType> createPolicy(PolicyType value) {
@@ -679,8 +715,7 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link javax.xml.bind.JAXBElement }{@code <}{@link StatusDetailType }{@code >}}
-     *
+     * Create an instance of {@link javax.xml.bind.JAXBElement }{@code <}{@link StatusDetailType }{@code >}
      */
     @XmlElementDecl(namespace = "urn:oasis:names:tc:xacml:3.0:core:schema:wd-17", name = "StatusDetail")
     public JAXBElement<StatusDetailType> createStatusDetail(StatusDetailType value) {
@@ -688,8 +723,7 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link javax.xml.bind.JAXBElement }{@code <}{@link String }{@code >}}
-     *
+     * Create an instance of {@link javax.xml.bind.JAXBElement }{@code <}{@link String }{@code >}
      */
     @XmlElementDecl(namespace = "urn:oasis:names:tc:xacml:3.0:core:schema:wd-17", name = "StatusMessage")
     public JAXBElement<String> createStatusMessage(String value) {
@@ -697,8 +731,7 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link javax.xml.bind.JAXBElement }{@code <}{@link PolicySetType }{@code >}}
-     *
+     * Create an instance of {@link javax.xml.bind.JAXBElement }{@code <}{@link PolicySetType }{@code >}
      */
     @XmlElementDecl(namespace = "urn:oasis:names:tc:xacml:3.0:core:schema:wd-17", name = "PolicySet")
     public JAXBElement<PolicySetType> createPolicySet(PolicySetType value) {
@@ -706,8 +739,7 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link javax.xml.bind.JAXBElement }{@code <}{@link PolicyIssuerType }{@code >}}
-     *
+     * Create an instance of {@link javax.xml.bind.JAXBElement }{@code <}{@link PolicyIssuerType }{@code >}
      */
     @XmlElementDecl(namespace = "urn:oasis:names:tc:xacml:3.0:core:schema:wd-17", name = "PolicyIssuer")
     public JAXBElement<PolicyIssuerType> createPolicyIssuer(PolicyIssuerType value) {
@@ -715,53 +747,56 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link javax.xml.bind.JAXBElement }{@code <}{@link VariableReferenceType }{@code >}}
-     *
+     * Create an instance of {@link javax.xml.bind.JAXBElement }{@code <}{@link VariableReferenceType }{@code >}
      */
     @XmlElementDecl(namespace = "urn:oasis:names:tc:xacml:3.0:core:schema:wd-17", name = "VariableReference", substitutionHeadNamespace = "urn:oasis:names:tc:xacml:3.0:core:schema:wd-17", substitutionHeadName = "Expression")
     public JAXBElement<VariableReferenceType> createVariableReference(VariableReferenceType value) {
-        return new JAXBElement<VariableReferenceType>(_VariableReference_QNAME, VariableReferenceType.class, null, value);
+        return new JAXBElement<VariableReferenceType>(_VariableReference_QNAME, VariableReferenceType.class,
+                                                      null, value);
     }
 
     /**
-     * Create an instance of {@link javax.xml.bind.JAXBElement }{@code <}{@link CombinerParameterType }{@code >}}
-     *
+     * Create an instance of {@link javax.xml.bind.JAXBElement }{@code <}{@link CombinerParameterType }{@code >}
      */
     @XmlElementDecl(namespace = "urn:oasis:names:tc:xacml:3.0:core:schema:wd-17", name = "CombinerParameter")
     public JAXBElement<CombinerParameterType> createCombinerParameter(CombinerParameterType value) {
-        return new JAXBElement<CombinerParameterType>(_CombinerParameter_QNAME, CombinerParameterType.class, null, value);
+        return new JAXBElement<CombinerParameterType>(_CombinerParameter_QNAME, CombinerParameterType.class,
+                                                      null, value);
     }
 
     /**
-     * Create an instance of {@link javax.xml.bind.JAXBElement }{@code <}{@link AttributeValueType }{@code >}}
-     *
+     * Create an instance of {@link javax.xml.bind.JAXBElement }{@code <}{@link AttributeValueType }{@code >}
      */
     @XmlElementDecl(namespace = "urn:oasis:names:tc:xacml:3.0:core:schema:wd-17", name = "AttributeValue", substitutionHeadNamespace = "urn:oasis:names:tc:xacml:3.0:core:schema:wd-17", substitutionHeadName = "Expression")
     public JAXBElement<AttributeValueType> createAttributeValue(AttributeValueType value) {
-        return new JAXBElement<AttributeValueType>(_AttributeValue_QNAME, AttributeValueType.class, null, value);
+        return new JAXBElement<AttributeValueType>(_AttributeValue_QNAME, AttributeValueType.class, null,
+                                                   value);
     }
 
     /**
-     * Create an instance of {@link javax.xml.bind.JAXBElement }{@code <}{@link ObligationExpressionsType }{@code >}}
-     *
+     * Create an instance of {@link javax.xml.bind.JAXBElement }{@code <}{@link ObligationExpressionsType }
+     * {@code >}
      */
     @XmlElementDecl(namespace = "urn:oasis:names:tc:xacml:3.0:core:schema:wd-17", name = "ObligationExpressions")
     public JAXBElement<ObligationExpressionsType> createObligationExpressions(ObligationExpressionsType value) {
-        return new JAXBElement<ObligationExpressionsType>(_ObligationExpressions_QNAME, ObligationExpressionsType.class, null, value);
+        return new JAXBElement<ObligationExpressionsType>(_ObligationExpressions_QNAME,
+                                                          ObligationExpressionsType.class, null, value);
     }
 
     /**
-     * Create an instance of {@link javax.xml.bind.JAXBElement }{@code <}{@link PolicySetCombinerParametersType }{@code >}}
-     *
+     * Create an instance of {@link javax.xml.bind.JAXBElement }{@code <}
+     * {@link PolicySetCombinerParametersType }{@code >}
      */
     @XmlElementDecl(namespace = "urn:oasis:names:tc:xacml:3.0:core:schema:wd-17", name = "PolicySetCombinerParameters")
     public JAXBElement<PolicySetCombinerParametersType> createPolicySetCombinerParameters(PolicySetCombinerParametersType value) {
-        return new JAXBElement<PolicySetCombinerParametersType>(_PolicySetCombinerParameters_QNAME, PolicySetCombinerParametersType.class, null, value);
+        return new JAXBElement<PolicySetCombinerParametersType>(_PolicySetCombinerParameters_QNAME,
+                                                                PolicySetCombinerParametersType.class, null,
+                                                                value);
     }
 
     /**
-     * Create an instance of {@link javax.xml.bind.JAXBElement }{@code <}{@link oasis.names.tc.xacml._3_0.core.schema.wd_17.RequestType }{@code >}}
-     *
+     * Create an instance of {@link javax.xml.bind.JAXBElement }{@code <}
+     * {@link oasis.names.tc.xacml._3_0.core.schema.wd_17.RequestType }{@code >}
      */
     @XmlElementDecl(namespace = "urn:oasis:names:tc:xacml:3.0:core:schema:wd-17", name = "Request")
     public JAXBElement<RequestType> createRequest(RequestType value) {
@@ -769,26 +804,27 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link javax.xml.bind.JAXBElement }{@code <}{@link MissingAttributeDetailType }{@code >}}
-     *
+     * Create an instance of {@link javax.xml.bind.JAXBElement }{@code <}{@link MissingAttributeDetailType }
+     * {@code >}
      */
     @XmlElementDecl(namespace = "urn:oasis:names:tc:xacml:3.0:core:schema:wd-17", name = "MissingAttributeDetail")
     public JAXBElement<MissingAttributeDetailType> createMissingAttributeDetail(MissingAttributeDetailType value) {
-        return new JAXBElement<MissingAttributeDetailType>(_MissingAttributeDetail_QNAME, MissingAttributeDetailType.class, null, value);
+        return new JAXBElement<MissingAttributeDetailType>(_MissingAttributeDetail_QNAME,
+                                                           MissingAttributeDetailType.class, null, value);
     }
 
     /**
-     * Create an instance of {@link javax.xml.bind.JAXBElement }{@code <}{@link RequestReferenceType }{@code >}}
-     *
+     * Create an instance of {@link javax.xml.bind.JAXBElement }{@code <}{@link RequestReferenceType }{@code >}
      */
     @XmlElementDecl(namespace = "urn:oasis:names:tc:xacml:3.0:core:schema:wd-17", name = "RequestReference")
     public JAXBElement<RequestReferenceType> createRequestReference(RequestReferenceType value) {
-        return new JAXBElement<RequestReferenceType>(_RequestReference_QNAME, RequestReferenceType.class, null, value);
+        return new JAXBElement<RequestReferenceType>(_RequestReference_QNAME, RequestReferenceType.class,
+                                                     null, value);
     }
 
     /**
-     * Create an instance of {@link javax.xml.bind.JAXBElement }{@code <}{@link oasis.names.tc.xacml._3_0.core.schema.wd_17.DefaultsType }{@code >}}
-     *
+     * Create an instance of {@link javax.xml.bind.JAXBElement }{@code <}
+     * {@link oasis.names.tc.xacml._3_0.core.schema.wd_17.DefaultsType }{@code >}
      */
     @XmlElementDecl(namespace = "urn:oasis:names:tc:xacml:3.0:core:schema:wd-17", name = "PolicyDefaults")
     public JAXBElement<DefaultsType> createPolicyDefaults(DefaultsType value) {
@@ -796,17 +832,17 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link javax.xml.bind.JAXBElement }{@code <}{@link PolicyIdentifierListType }{@code >}}
-     *
+     * Create an instance of {@link javax.xml.bind.JAXBElement }{@code <}{@link PolicyIdentifierListType }
+     * {@code >}
      */
     @XmlElementDecl(namespace = "urn:oasis:names:tc:xacml:3.0:core:schema:wd-17", name = "PolicyIdentifierList")
     public JAXBElement<PolicyIdentifierListType> createPolicyIdentifierList(PolicyIdentifierListType value) {
-        return new JAXBElement<PolicyIdentifierListType>(_PolicyIdentifierList_QNAME, PolicyIdentifierListType.class, null, value);
+        return new JAXBElement<PolicyIdentifierListType>(_PolicyIdentifierList_QNAME,
+                                                         PolicyIdentifierListType.class, null, value);
     }
 
     /**
-     * Create an instance of {@link javax.xml.bind.JAXBElement }{@code <}{@link String }{@code >}}
-     *
+     * Create an instance of {@link javax.xml.bind.JAXBElement }{@code <}{@link String }{@code >}
      */
     @XmlElementDecl(namespace = "urn:oasis:names:tc:xacml:3.0:core:schema:wd-17", name = "XPathVersion")
     public JAXBElement<String> createXPathVersion(String value) {
@@ -814,8 +850,8 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link javax.xml.bind.JAXBElement }{@code <}{@link oasis.names.tc.xacml._3_0.core.schema.wd_17.TargetType }{@code >}}
-     *
+     * Create an instance of {@link javax.xml.bind.JAXBElement }{@code <}
+     * {@link oasis.names.tc.xacml._3_0.core.schema.wd_17.TargetType }{@code >}
      */
     @XmlElementDecl(namespace = "urn:oasis:names:tc:xacml:3.0:core:schema:wd-17", name = "Target")
     public JAXBElement<TargetType> createTarget(TargetType value) {
@@ -823,17 +859,18 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link javax.xml.bind.JAXBElement }{@code <}{@link AttributeAssignmentType }{@code >}}
-     *
+     * Create an instance of {@link javax.xml.bind.JAXBElement }{@code <}{@link AttributeAssignmentType }
+     * {@code >}
      */
     @XmlElementDecl(namespace = "urn:oasis:names:tc:xacml:3.0:core:schema:wd-17", name = "AttributeAssignment")
     public JAXBElement<AttributeAssignmentType> createAttributeAssignment(AttributeAssignmentType value) {
-        return new JAXBElement<AttributeAssignmentType>(_AttributeAssignment_QNAME, AttributeAssignmentType.class, null, value);
+        return new JAXBElement<AttributeAssignmentType>(_AttributeAssignment_QNAME,
+                                                        AttributeAssignmentType.class, null, value);
     }
 
     /**
-     * Create an instance of {@link javax.xml.bind.JAXBElement }{@code <}{@link oasis.names.tc.xacml._3_0.core.schema.wd_17.ContentType }{@code >}}
-     *
+     * Create an instance of {@link javax.xml.bind.JAXBElement }{@code <}
+     * {@link oasis.names.tc.xacml._3_0.core.schema.wd_17.ContentType }{@code >}
      */
     @XmlElementDecl(namespace = "urn:oasis:names:tc:xacml:3.0:core:schema:wd-17", name = "Content")
     public JAXBElement<ContentType> createContent(ContentType value) {
@@ -841,17 +878,16 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link javax.xml.bind.JAXBElement }{@code <}{@link CombinerParametersType }{@code >}}
-     *
+     * Create an instance of {@link javax.xml.bind.JAXBElement }{@code <}{@link CombinerParametersType }{@code >}
      */
     @XmlElementDecl(namespace = "urn:oasis:names:tc:xacml:3.0:core:schema:wd-17", name = "CombinerParameters")
     public JAXBElement<CombinerParametersType> createCombinerParameters(CombinerParametersType value) {
-        return new JAXBElement<CombinerParametersType>(_CombinerParameters_QNAME, CombinerParametersType.class, null, value);
+        return new JAXBElement<CombinerParametersType>(_CombinerParameters_QNAME,
+                                                       CombinerParametersType.class, null, value);
     }
 
     /**
-     * Create an instance of {@link javax.xml.bind.JAXBElement }{@code <}{@link ExpressionType }{@code >}}
-     *
+     * Create an instance of {@link javax.xml.bind.JAXBElement }{@code <}{@link ExpressionType }{@code >}
      */
     @XmlElementDecl(namespace = "urn:oasis:names:tc:xacml:3.0:core:schema:wd-17", name = "Expression")
     public JAXBElement<ExpressionType> createExpression(ExpressionType value) {
@@ -859,8 +895,8 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link javax.xml.bind.JAXBElement }{@code <}{@link oasis.names.tc.xacml._3_0.core.schema.wd_17.ApplyType }{@code >}}
-     *
+     * Create an instance of {@link javax.xml.bind.JAXBElement }{@code <}
+     * {@link oasis.names.tc.xacml._3_0.core.schema.wd_17.ApplyType }{@code >}
      */
     @XmlElementDecl(namespace = "urn:oasis:names:tc:xacml:3.0:core:schema:wd-17", name = "Apply", substitutionHeadNamespace = "urn:oasis:names:tc:xacml:3.0:core:schema:wd-17", substitutionHeadName = "Expression")
     public JAXBElement<ApplyType> createApply(ApplyType value) {
@@ -868,17 +904,17 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link javax.xml.bind.JAXBElement }{@code <}{@link VariableDefinitionType }{@code >}}
-     *
+     * Create an instance of {@link javax.xml.bind.JAXBElement }{@code <}{@link VariableDefinitionType }{@code >}
      */
     @XmlElementDecl(namespace = "urn:oasis:names:tc:xacml:3.0:core:schema:wd-17", name = "VariableDefinition")
     public JAXBElement<VariableDefinitionType> createVariableDefinition(VariableDefinitionType value) {
-        return new JAXBElement<VariableDefinitionType>(_VariableDefinition_QNAME, VariableDefinitionType.class, null, value);
+        return new JAXBElement<VariableDefinitionType>(_VariableDefinition_QNAME,
+                                                       VariableDefinitionType.class, null, value);
     }
 
     /**
-     * Create an instance of {@link javax.xml.bind.JAXBElement }{@code <}{@link oasis.names.tc.xacml._3_0.core.schema.wd_17.FunctionType }{@code >}}
-     *
+     * Create an instance of {@link javax.xml.bind.JAXBElement }{@code <}
+     * {@link oasis.names.tc.xacml._3_0.core.schema.wd_17.FunctionType }{@code >}
      */
     @XmlElementDecl(namespace = "urn:oasis:names:tc:xacml:3.0:core:schema:wd-17", name = "Function", substitutionHeadNamespace = "urn:oasis:names:tc:xacml:3.0:core:schema:wd-17", substitutionHeadName = "Expression")
     public JAXBElement<FunctionType> createFunction(FunctionType value) {
@@ -886,8 +922,8 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link javax.xml.bind.JAXBElement }{@code <}{@link oasis.names.tc.xacml._3_0.core.schema.wd_17.MatchType }{@code >}}
-     *
+     * Create an instance of {@link javax.xml.bind.JAXBElement }{@code <}
+     * {@link oasis.names.tc.xacml._3_0.core.schema.wd_17.MatchType }{@code >}
      */
     @XmlElementDecl(namespace = "urn:oasis:names:tc:xacml:3.0:core:schema:wd-17", name = "Match")
     public JAXBElement<MatchType> createMatch(MatchType value) {
@@ -895,8 +931,7 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link javax.xml.bind.JAXBElement }{@code <}{@link String }{@code >}}
-     *
+     * Create an instance of {@link javax.xml.bind.JAXBElement }{@code <}{@link String }{@code >}
      */
     @XmlElementDecl(namespace = "urn:oasis:names:tc:xacml:3.0:core:schema:wd-17", name = "Description")
     public JAXBElement<String> createDescription(String value) {
@@ -904,44 +939,45 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link javax.xml.bind.JAXBElement }{@code <}{@link AdviceExpressionType }{@code >}}
-     *
+     * Create an instance of {@link javax.xml.bind.JAXBElement }{@code <}{@link AdviceExpressionType }{@code >}
      */
     @XmlElementDecl(namespace = "urn:oasis:names:tc:xacml:3.0:core:schema:wd-17", name = "AdviceExpression")
     public JAXBElement<AdviceExpressionType> createAdviceExpression(AdviceExpressionType value) {
-        return new JAXBElement<AdviceExpressionType>(_AdviceExpression_QNAME, AdviceExpressionType.class, null, value);
+        return new JAXBElement<AdviceExpressionType>(_AdviceExpression_QNAME, AdviceExpressionType.class,
+                                                     null, value);
     }
 
     /**
-     * Create an instance of {@link javax.xml.bind.JAXBElement }{@code <}{@link RequestDefaultsType }{@code >}}
-     *
+     * Create an instance of {@link javax.xml.bind.JAXBElement }{@code <}{@link RequestDefaultsType }{@code >}
      */
     @XmlElementDecl(namespace = "urn:oasis:names:tc:xacml:3.0:core:schema:wd-17", name = "RequestDefaults")
     public JAXBElement<RequestDefaultsType> createRequestDefaults(RequestDefaultsType value) {
-        return new JAXBElement<RequestDefaultsType>(_RequestDefaults_QNAME, RequestDefaultsType.class, null, value);
+        return new JAXBElement<RequestDefaultsType>(_RequestDefaults_QNAME, RequestDefaultsType.class, null,
+                                                    value);
     }
 
     /**
-     * Create an instance of {@link javax.xml.bind.JAXBElement }{@code <}{@link AttributeSelectorType }{@code >}}
-     *
+     * Create an instance of {@link javax.xml.bind.JAXBElement }{@code <}{@link AttributeSelectorType }{@code >}
      */
     @XmlElementDecl(namespace = "urn:oasis:names:tc:xacml:3.0:core:schema:wd-17", name = "AttributeSelector", substitutionHeadNamespace = "urn:oasis:names:tc:xacml:3.0:core:schema:wd-17", substitutionHeadName = "Expression")
     public JAXBElement<AttributeSelectorType> createAttributeSelector(AttributeSelectorType value) {
-        return new JAXBElement<AttributeSelectorType>(_AttributeSelector_QNAME, AttributeSelectorType.class, null, value);
+        return new JAXBElement<AttributeSelectorType>(_AttributeSelector_QNAME, AttributeSelectorType.class,
+                                                      null, value);
     }
 
     /**
-     * Create an instance of {@link javax.xml.bind.JAXBElement }{@code <}{@link PolicyCombinerParametersType }{@code >}}
-     *
+     * Create an instance of {@link javax.xml.bind.JAXBElement }{@code <}{@link PolicyCombinerParametersType }
+     * {@code >}
      */
     @XmlElementDecl(namespace = "urn:oasis:names:tc:xacml:3.0:core:schema:wd-17", name = "PolicyCombinerParameters")
     public JAXBElement<PolicyCombinerParametersType> createPolicyCombinerParameters(PolicyCombinerParametersType value) {
-        return new JAXBElement<PolicyCombinerParametersType>(_PolicyCombinerParameters_QNAME, PolicyCombinerParametersType.class, null, value);
+        return new JAXBElement<PolicyCombinerParametersType>(_PolicyCombinerParameters_QNAME,
+                                                             PolicyCombinerParametersType.class, null, value);
     }
 
     /**
-     * Create an instance of {@link javax.xml.bind.JAXBElement }{@code <}{@link oasis.names.tc.xacml._3_0.core.schema.wd_17.AdviceType }{@code >}}
-     *
+     * Create an instance of {@link javax.xml.bind.JAXBElement }{@code <}
+     * {@link oasis.names.tc.xacml._3_0.core.schema.wd_17.AdviceType }{@code >}
      */
     @XmlElementDecl(namespace = "urn:oasis:names:tc:xacml:3.0:core:schema:wd-17", name = "Advice")
     public JAXBElement<AdviceType> createAdvice(AdviceType value) {
@@ -949,8 +985,8 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link javax.xml.bind.JAXBElement }{@code <}{@link oasis.names.tc.xacml._3_0.core.schema.wd_17.RuleType }{@code >}}
-     *
+     * Create an instance of {@link javax.xml.bind.JAXBElement }{@code <}
+     * {@link oasis.names.tc.xacml._3_0.core.schema.wd_17.RuleType }{@code >}
      */
     @XmlElementDecl(namespace = "urn:oasis:names:tc:xacml:3.0:core:schema:wd-17", name = "Rule")
     public JAXBElement<RuleType> createRule(RuleType value) {
@@ -958,8 +994,8 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link javax.xml.bind.JAXBElement }{@code <}{@link oasis.names.tc.xacml._3_0.core.schema.wd_17.ResponseType }{@code >}}
-     *
+     * Create an instance of {@link javax.xml.bind.JAXBElement }{@code <}
+     * {@link oasis.names.tc.xacml._3_0.core.schema.wd_17.ResponseType }{@code >}
      */
     @XmlElementDecl(namespace = "urn:oasis:names:tc:xacml:3.0:core:schema:wd-17", name = "Response")
     public JAXBElement<ResponseType> createResponse(ResponseType value) {
@@ -967,8 +1003,8 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link javax.xml.bind.JAXBElement }{@code <}{@link oasis.names.tc.xacml._3_0.core.schema.wd_17.StatusType }{@code >}}
-     *
+     * Create an instance of {@link javax.xml.bind.JAXBElement }{@code <}
+     * {@link oasis.names.tc.xacml._3_0.core.schema.wd_17.StatusType }{@code >}
      */
     @XmlElementDecl(namespace = "urn:oasis:names:tc:xacml:3.0:core:schema:wd-17", name = "Status")
     public JAXBElement<StatusType> createStatus(StatusType value) {
@@ -976,8 +1012,8 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link javax.xml.bind.JAXBElement }{@code <}{@link oasis.names.tc.xacml._3_0.core.schema.wd_17.AllOfType }{@code >}}
-     *
+     * Create an instance of {@link javax.xml.bind.JAXBElement }{@code <}
+     * {@link oasis.names.tc.xacml._3_0.core.schema.wd_17.AllOfType }{@code >}
      */
     @XmlElementDecl(namespace = "urn:oasis:names:tc:xacml:3.0:core:schema:wd-17", name = "AllOf")
     public JAXBElement<AllOfType> createAllOf(AllOfType value) {
@@ -985,12 +1021,13 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link javax.xml.bind.JAXBElement }{@code <}{@link AttributesReferenceType }{@code >}}
-     *
+     * Create an instance of {@link javax.xml.bind.JAXBElement }{@code <}{@link AttributesReferenceType }
+     * {@code >}
      */
     @XmlElementDecl(namespace = "urn:oasis:names:tc:xacml:3.0:core:schema:wd-17", name = "AttributesReference")
     public JAXBElement<AttributesReferenceType> createAttributesReference(AttributesReferenceType value) {
-        return new JAXBElement<AttributesReferenceType>(_AttributesReference_QNAME, AttributesReferenceType.class, null, value);
+        return new JAXBElement<AttributesReferenceType>(_AttributesReference_QNAME,
+                                                        AttributesReferenceType.class, null, value);
     }
 
 }

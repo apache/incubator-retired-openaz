@@ -32,12 +32,11 @@ package org.apache.openaz.xacml.api;
 
 /**
  * Extends <code>Exception</code> to represent errors thrown by methods in the {@link DataType} interface.
- *
  */
 public class DataTypeException extends Exception {
     private static final long serialVersionUID = -6308818179904447096L;
 
-    private DataType<?>	dataType;
+    private DataType<?> dataType;
 
     /**
      * Creates a new <code>DataTypeException</code> for an error thrown by the given {@link DataType}.
@@ -45,36 +44,36 @@ public class DataTypeException extends Exception {
      * @param dataTypeIn the <code>DataType</code> throwing the error.
      */
     public DataTypeException(DataType<?> dataTypeIn) {
-        this.dataType	= dataTypeIn;
+        this.dataType = dataTypeIn;
     }
 
     /**
-     * Creates a new <code>DataTypeException</code> for an error thrown by the given {@link DataType} with
-     * a <code>String</code> message.
+     * Creates a new <code>DataTypeException</code> for an error thrown by the given {@link DataType} with a
+     * <code>String</code> message.
      *
      * @param dataTypeIn the <code>DataType</code> throwing the error
      * @param message the <code>String</code> error message
      */
     public DataTypeException(DataType<?> dataTypeIn, String message) {
         super(message);
-        this.dataType	= dataTypeIn;
+        this.dataType = dataTypeIn;
     }
 
     /**
-     * Creates a new <code>DataTypeException</code> for an error thrown by the given {@link DataType} with
-     * a <code>Throwable</code> cause.
+     * Creates a new <code>DataTypeException</code> for an error thrown by the given {@link DataType} with a
+     * <code>Throwable</code> cause.
      *
      * @param dataTypeIn the <code>DataType</code> throwing the error
      * @param cause the <code>Throwable</code> cause of the error
      */
     public DataTypeException(DataType<?> dataTypeIn, Throwable cause) {
         super(cause);
-        this.dataType	= dataTypeIn;
+        this.dataType = dataTypeIn;
     }
 
     /**
-     * Creates a new <code>DataTypeException</code> for an error thrown by the given {@link DataType} with
-     * the given <code>String</code> message and <code>Throwable</code> cause.
+     * Creates a new <code>DataTypeException</code> for an error thrown by the given {@link DataType} with the
+     * given <code>String</code> message and <code>Throwable</code> cause.
      *
      * @param dataTypeIn the <code>DataType</code> throwing the error
      * @param message the <code>String</code> error message
@@ -82,7 +81,7 @@ public class DataTypeException extends Exception {
      */
     public DataTypeException(DataType<?> dataTypeIn, String message, Throwable cause) {
         super(message, cause);
-        this.dataType	= dataTypeIn;
+        this.dataType = dataTypeIn;
     }
 
     /**

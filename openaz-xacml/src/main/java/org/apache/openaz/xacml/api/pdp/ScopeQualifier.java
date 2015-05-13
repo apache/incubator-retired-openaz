@@ -32,18 +32,16 @@ package org.apache.openaz.xacml.api.pdp;
 
 /**
  * ScopeQualifier enumerates the values of the "scope" attribute in requests.
- *
  */
 public enum ScopeQualifier {
     CHILDREN("Children"),
     DESCENDANTS("Descendants"),
-    IMMEDIATE("Immediate")
-    ;
+    IMMEDIATE("Immediate");
 
     private String name;
 
     private ScopeQualifier(String nameIn) {
-        this.name	= nameIn;
+        this.name = nameIn;
     }
 
     public String getName() {
@@ -51,7 +49,7 @@ public enum ScopeQualifier {
     }
 
     public static ScopeQualifier getScopeQualifier(String name) {
-        for (ScopeQualifier sc: ScopeQualifier.values()) {
+        for (ScopeQualifier sc : ScopeQualifier.values()) {
             if (sc.getName().equals(name)) {
                 return sc;
             }

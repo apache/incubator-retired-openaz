@@ -44,30 +44,22 @@ import org.apache.commons.logging.LogFactory;
 import org.apache.openaz.xacml.util.XACMLProperties;
 
 /**
- * This static class is used by both the PDP and PAP servlet's. It contains some common
- * static functions and objects used by both the servlet's.
- *
- *
+ * This static class is used by both the PDP and PAP servlet's. It contains some common static functions and
+ * objects used by both the servlet's.
  */
 public class XACMLRest {
-    private static final Log logger	= LogFactory.getLog(XACMLRest.class);
+    private static final Log logger = LogFactory.getLog(XACMLRest.class);
     private static Properties restProperties = new Properties();
 
     /**
-     * This must be called during servlet initialization. It sets up the xacml.?.properties
-     * file as a system property. If the System property is already set, then it does not
-     * do anything. This allows the developer to specify their own xacml.properties file to be
-     * used. They can 1) modify the default properties that comes with the project, or 2) change
-     * the WebInitParam annotation, or 3) specify an alternative path in the web.xml, or 4) set
-     * the Java System property to point to their xacml.properties file.
-     *
-     * The recommended way of overriding the default xacml.properties file is using a Java System
-     * property:
-     *
-     * -Dxacml.properties=/opt/app/xacml/etc/xacml.admin.properties
-     *
-     * This way one does not change any actual code or files in the project and can leave the
-     * defaults alone.
+     * This must be called during servlet initialization. It sets up the xacml.?.properties file as a system
+     * property. If the System property is already set, then it does not do anything. This allows the
+     * developer to specify their own xacml.properties file to be used. They can 1) modify the default
+     * properties that comes with the project, or 2) change the WebInitParam annotation, or 3) specify an
+     * alternative path in the web.xml, or 4) set the Java System property to point to their xacml.properties
+     * file. The recommended way of overriding the default xacml.properties file is using a Java System
+     * property: -Dxacml.properties=/opt/app/xacml/etc/xacml.admin.properties This way one does not change any
+     * actual code or files in the project and can leave the defaults alone.
      *
      * @param config - The servlet config file passed from the javax servlet init() function
      */
@@ -101,7 +93,7 @@ public class XACMLRest {
         Enumeration<String> params = config.getInitParameterNames();
         while (params.hasMoreElements()) {
             String param = params.nextElement();
-            if (! param.equals("XACML_PROPERTIES_NAME")) {
+            if (!param.equals("XACML_PROPERTIES_NAME")) {
                 String value = config.getInitParameter(param);
                 logger.info(param + "=" + config.getInitParameter(param));
                 restProperties.setProperty(param, value);
@@ -110,15 +102,13 @@ public class XACMLRest {
     }
 
     /**
-     * Reset's the XACMLProperties internal properties object so we start
-     * in a fresh environment. Then adds back in our Servlet init properties that were
-     * passed in the javax Servlet init() call.
-     *
-     * This function is primarily used when a new configuration is passed in and the
-     * PDP servlet needs to load a new PDP engine instance.
+     * Reset's the XACMLProperties internal properties object so we start in a fresh environment. Then adds
+     * back in our Servlet init properties that were passed in the javax Servlet init() call. This function is
+     * primarily used when a new configuration is passed in and the PDP servlet needs to load a new PDP engine
+     * instance.
      *
      * @param pipProperties - PIP configuration properties
-     * @param policyProperties  - Policy configuration properties
+     * @param policyProperties - Policy configuration properties
      */
     public static void loadXacmlProperties(Properties policyProperties, Properties pipProperties) {
         try {
@@ -164,13 +154,16 @@ public class XACMLRest {
      */
     public static void dumpRequest(HttpServletRequest request) {
         if (logger.isDebugEnabled()) {
-            // special-case for receiving heartbeat - don't need to repeatedly output all of the information in multiple lines
-            if (request.getMethod().equals("GET") && "hb".equals(request.getParameter("type"))  ) {
+            // special-case for receiving heartbeat - don't need to repeatedly output all of the information
+            // in multiple lines
+            if (request.getMethod().equals("GET") && "hb".equals(request.getParameter("type"))) {
                 logger.debug("GET type=hb : heartbeat received");
                 return;
             }
-            logger.debug(request.getMethod() + ":" + request.getRemoteAddr() + " " + request.getRemoteHost() + " " + request.getRemotePort());
-            logger.debug(request.getLocalAddr() + " " + request.getLocalName() + " " + request.getLocalPort());
+            logger.debug(request.getMethod() + ":" + request.getRemoteAddr() + " " + request.getRemoteHost()
+                         + " " + request.getRemotePort());
+            logger
+                .debug(request.getLocalAddr() + " " + request.getLocalName() + " " + request.getLocalPort());
             Enumeration<String> en = request.getHeaderNames();
             logger.debug("Headers:");
             while (en.hasMoreElements()) {
@@ -189,11 +182,15 @@ public class XACMLRest {
             }
             logger.debug("ContextPath: " + request.getContextPath());
             if (request.getMethod().equals("PUT") || request.getMethod().equals("POST")) {
-                // POST and PUT are allowed to have parameters in the content, but in our usage the parameters are always in the Query string.
-                // More importantly, there are cases where the POST and PUT content is NOT parameters (e.g. it might contain a Policy file).
-                // Unfortunately the request.getParameterMap method reads the content to see if there are any parameters,
+                // POST and PUT are allowed to have parameters in the content, but in our usage the parameters
+                // are always in the Query string.
+                // More importantly, there are cases where the POST and PUT content is NOT parameters (e.g. it
+                // might contain a Policy file).
+                // Unfortunately the request.getParameterMap method reads the content to see if there are any
+                // parameters,
                 // and once the content is read it cannot be read again.
-                // Thus for PUT and POST we must avoid reading the content here so that the main code can read it.
+                // Thus for PUT and POST we must avoid reading the content here so that the main code can read
+                // it.
                 logger.debug("Query String:" + request.getQueryString());
                 try {
                     if (request.getInputStream() == null) {
@@ -202,7 +199,8 @@ public class XACMLRest {
                         logger.debug("Content available: " + request.getInputStream().available());
                     }
                 } catch (Exception e) {
-                    logger.debug("Content: inputStream exception: " + e.getMessage() + ";  (May not be relevant)");
+                    logger.debug("Content: inputStream exception: " + e.getMessage()
+                                 + ";  (May not be relevant)");
                 }
             } else {
                 logger.debug("Parameters:");

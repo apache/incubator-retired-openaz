@@ -31,14 +31,13 @@
 package org.apache.openaz.xacml.util;
 
 /**
- * Defines an object that delegates its <code>equals</code>, <code>hashCode</code> and <code>toString</code> methods to
- * a wrapped object.
- *
+ * Defines an object that delegates its <code>equals</code>, <code>hashCode</code> and <code>toString</code>
+ * methods to a wrapped object.
  *
  * @param <T> the Class of the wrapped object
  */
 public class Wrapper<T> {
-    private T	wrappedObject;
+    private T wrappedObject;
 
     /**
      * Gets the <code>T</code> wrapped object.
@@ -55,7 +54,7 @@ public class Wrapper<T> {
      * @param wrappedObjectIn the <code>T</code> wrapped object.
      */
     public Wrapper(T wrappedObjectIn) {
-        this.wrappedObject	= wrappedObjectIn;
+        this.wrappedObject = wrappedObjectIn;
     }
 
     @Override

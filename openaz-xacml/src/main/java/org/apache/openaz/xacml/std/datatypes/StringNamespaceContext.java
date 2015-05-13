@@ -38,14 +38,11 @@ import java.util.Map;
 
 import javax.xml.XMLConstants;
 
-
-
 /**
- * StringNamespaceContext extends {@link javax.xml.namespace.NamespaceContext} by
- * keeping the Namespace definitions as Strings.
- * This NamespaceContext applies to only a single scope and therefore can have at most one default unbound (i.e. with no Prefix) Namespace.
- * All other Namespaces in this context must have a prefix.
- *
+ * StringNamespaceContext extends {@link javax.xml.namespace.NamespaceContext} by keeping the Namespace
+ * definitions as Strings. This NamespaceContext applies to only a single scope and therefore can have at most
+ * one default unbound (i.e. with no Prefix) Namespace. All other Namespaces in this context must have a
+ * prefix.
  */
 public class StringNamespaceContext extends ExtendedNamespaceContext {
 
@@ -54,11 +51,12 @@ public class StringNamespaceContext extends ExtendedNamespaceContext {
         private String prefix;
         private String namespace;
 
-// if we make this a first-class object, do not let people create it without args
-//		private Namespace(){}
+        // if we make this a first-class object, do not let people create it without args
+        // private Namespace(){}
 
         /**
          * Create a new Namespace with only a namespaceURI
+         * 
          * @param namespace
          */
         public Namespace(String namespace) {
@@ -68,6 +66,7 @@ public class StringNamespaceContext extends ExtendedNamespaceContext {
 
         /**
          * Create a new Namespace with both prefix and namespace URI
+         * 
          * @param prefix
          * @param namespace
          */
@@ -79,6 +78,7 @@ public class StringNamespaceContext extends ExtendedNamespaceContext {
         public String getPrefix() {
             return this.prefix;
         }
+
         public String getNamespace() {
             return this.namespace;
         }
@@ -89,22 +89,24 @@ public class StringNamespaceContext extends ExtendedNamespaceContext {
         }
     }
 
-
     /*
-     * The access methods make it simpler to store Namespaces that have prefixes (which is all of them except the default, if any) in a Map
+     * The access methods make it simpler to store Namespaces that have prefixes (which is all of them except
+     * the default, if any) in a Map
      */
-    private Map<String,Namespace> namespaceMap = new HashMap<String,Namespace>();
+    private Map<String, Namespace> namespaceMap = new HashMap<String, Namespace>();
 
     private Namespace defaultNamespace = null;
-
 
     /**
      * Basic constructor
      */
-    public StringNamespaceContext() {}
+    public StringNamespaceContext() {
+    }
 
     /**
-     * Constructor with a single entry consisting of only a Namespace URI without a Prefix (ie. the default namespace)
+     * Constructor with a single entry consisting of only a Namespace URI without a Prefix (ie. the default
+     * namespace)
+     * 
      * @param namespaceURI
      * @throws Exception
      */
@@ -122,7 +124,6 @@ public class StringNamespaceContext extends ExtendedNamespaceContext {
     public StringNamespaceContext(String prefix, String namespaceURI) throws Exception {
         this.add(prefix, namespaceURI);
     }
-
 
     /**
      * Add a default Namespace to the list using just the Namespace URI (without a prefix).
@@ -156,17 +157,15 @@ public class StringNamespaceContext extends ExtendedNamespaceContext {
         }
         // prefix is non-null
         if (namespaceMap.get(prefix) != null) {
-            throw new Exception("Namespace prefix '" + prefix + "' already in use (value='" + namespaceMap.get(prefix) + "'");
+            throw new Exception("Namespace prefix '" + prefix + "' already in use (value='"
+                                + namespaceMap.get(prefix) + "'");
         }
         namespaceMap.put(prefix, new Namespace(prefix, namespace));
     }
 
-
-
     //
     // Methods implementing NamespaceContext interface
     //
-
 
     @Override
     public String getNamespaceURI(String prefix) {
@@ -202,7 +201,7 @@ public class StringNamespaceContext extends ExtendedNamespaceContext {
         } else if (namespaceURI.equals(XMLConstants.XML_NS_URI)) {
             return XMLConstants.XML_NS_PREFIX;
         }
-        //  search the map looking for an entry that matches
+        // search the map looking for an entry that matches
         for (String key : namespaceMap.keySet()) {
             Namespace namespace = namespaceMap.get(key);
             if (namespace.getNamespace().equals(namespaceURI)) {
@@ -212,7 +211,6 @@ public class StringNamespaceContext extends ExtendedNamespaceContext {
         // if we get here then the URI was not in the map
         return null;
     }
-
 
     @SuppressWarnings("rawtypes")
     @Override
@@ -238,10 +236,6 @@ public class StringNamespaceContext extends ExtendedNamespaceContext {
 
         return prefixList.iterator();
     }
-
-
-
-
 
     @Override
     public Iterator<String> getAllPrefixes() {

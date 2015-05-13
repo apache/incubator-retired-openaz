@@ -38,19 +38,17 @@ import org.w3c.dom.NodeList;
 
 /**
  * ObjUtil provides utilities for comparing objects in various circumstances.
- *
  */
 public class ObjUtil {
 
-    private static final Log logger	= LogFactory.getLog(ObjUtil.class);
-
+    private static final Log logger = LogFactory.getLog(ObjUtil.class);
 
     protected ObjUtil() {
     }
 
     /**
-     * Determines if two objects of the same class are equivalent, including the case where
-     * both are <code>null</code>.
+     * Determines if two objects of the same class are equivalent, including the case where both are
+     * <code>null</code>.
      *
      * @param obj1 the first object to compare
      * @param obj2 the second object to compare
@@ -58,33 +56,28 @@ public class ObjUtil {
      */
     public static <T> boolean equalsAllowNull(T obj1, T obj2) {
         if (obj1 == null) {
-            return (obj2 == null);
-        } else {
-            return obj1.equals(obj2);
+            return obj2 == null;
         }
+        return obj1.equals(obj2);
     }
 
-
     /**
-     * Determines if two XML Nodes are equivalent, including the case where
-     * both are <code>null</code>.
-     * For XML Nodes the .equals() method does not work (the objects must actually be the same Node).
-     * In this project we want to allow XML with different textual layout (newlines and spaces) to be equal
-     * because the text formatting is not significant to the meaning of the content.  Therefore the (Node).isEqualNode() method is not appropriate either.
-     *
-     * This method looks at the Node elements and each of their children:
-     * 	- ignoring empty text nodes
-     * 	- ignoring comment nodes
-     * 	- checking that all attributes on the nodes are the same
-     * 	- checking that each non-empty-text child is in the same order
+     * Determines if two XML Nodes are equivalent, including the case where both are <code>null</code>. For
+     * XML Nodes the .equals() method does not work (the objects must actually be the same Node). In this
+     * project we want to allow XML with different textual layout (newlines and spaces) to be equal because
+     * the text formatting is not significant to the meaning of the content. Therefore the
+     * (Node).isEqualNode() method is not appropriate either. This method looks at the Node elements and each
+     * of their children: - ignoring empty text nodes - ignoring comment nodes - checking that all attributes
+     * on the nodes are the same - checking that each non-empty-text child is in the same order
      *
      * @param node1 the first Node object to compare
      * @param node2 the second Node object to compare
-     * @return true if both objects are null, or the first is non-null and <code>equals</code> the second as described in the method description.
+     * @return true if both objects are null, or the first is non-null and <code>equals</code> the second as
+     *         described in the method description.
      */
     public static boolean xmlEqualsAllowNull(Node node1, Node node2) {
         if (node1 == null) {
-            return (node2 == null);
+            return node2 == null;
         } else if (node2 == null) {
             return false;
         }
@@ -95,18 +88,13 @@ public class ObjUtil {
         Node clone2 = node2.cloneNode(true);
         cleanXMLNode(clone2);
 
-        boolean compareReturn = compareXML(clone1,clone2);
+        boolean compareReturn = compareXML(clone1, clone2);
         return compareReturn;
     }
 
-
-
     /**
-     * Recursively clean up this node and all its children,
-     * where "clean" means
-     * 	- remove comments
-     * 	- remove empty nodes
-     * 	- remove xmlns (Namespace) attributes
+     * Recursively clean up this node and all its children, where "clean" means - remove comments - remove
+     * empty nodes - remove xmlns (Namespace) attributes
      *
      * @param node
      */
@@ -145,9 +133,7 @@ public class ObjUtil {
             cleanXMLNode(child);
         }
 
-
     }
-
 
     /**
      * Recursively compare these two nodes and then compare their children.
@@ -158,11 +144,12 @@ public class ObjUtil {
      */
     private static boolean compareXML(Node node1, Node node2) {
         // compare the nodes
-        if (equalsAllowNull(node1.getNodeName(), node2.getNodeName()) == false ||
-                equalsAllowNull(node1.getNodeValue(), node2.getNodeValue()) == false ||
-                node1.getNodeType() != node2.getNodeType()) {
+        if (equalsAllowNull(node1.getNodeName(), node2.getNodeName()) == false
+            || equalsAllowNull(node1.getNodeValue(), node2.getNodeValue()) == false
+            || node1.getNodeType() != node2.getNodeType()) {
             // these two nodes to not match their basic information
-            logger.info("Node1 '" + node1.getNodeName() + "' type: " + node1.getNodeType() + "  != Node2 '" + node2.getNodeName()+"' type: " + node2.getNodeType() );
+            logger.info("Node1 '" + node1.getNodeName() + "' type: " + node1.getNodeType() + "  != Node2 '"
+                        + node2.getNodeName() + "' type: " + node2.getNodeType());
             return false;
         }
 
@@ -173,13 +160,15 @@ public class ObjUtil {
         // null attributes == attributes with length 0
         if (node1Attributes == null) {
             if (node2Attributes != null && node2Attributes.getLength() > 0) {
-                logger.info("Node1 '" + node1.getNodeName() + "' attrs null != Node2 '" + node2.getNodeName()+"' attrs non-null");
+                logger.info("Node1 '" + node1.getNodeName() + "' attrs null != Node2 '" + node2.getNodeName()
+                            + "' attrs non-null");
                 return false;
             }
         } else {
             // node1 Attributes is not null
             if (node2Attributes == null || node2Attributes.getLength() != node1Attributes.getLength()) {
-                logger.info("Node1 '" + node1.getNodeName() + "' attrs non-null  != Node2 '" + node2.getNodeName()+"' attrs null or length not same");
+                logger.info("Node1 '" + node1.getNodeName() + "' attrs non-null  != Node2 '"
+                            + node2.getNodeName() + "' attrs null or length not same");
                 return false;
             }
 
@@ -190,13 +179,13 @@ public class ObjUtil {
             for (int i = 0; i < node1Attributes.getLength(); i++) {
                 if (node2Attributes.getNamedItem(node1Attributes.item(i).getNodeName()) == null) {
                     // attribute in node 1 does not exist in node 2
-                    logger.info("Node1 '" + node1.getNodeName() + "' attr: '" +node1Attributes.item(i).getNodeName() + "'  != Node2 '" + node2.getNodeName()+"' (missing attr)");
+                    logger.info("Node1 '" + node1.getNodeName() + "' attr: '"
+                                + node1Attributes.item(i).getNodeName() + "'  != Node2 '"
+                                + node2.getNodeName() + "' (missing attr)");
                     return false;
                 }
             }
         }
-
-
 
         // compare the children of the nodes
         NodeList children1 = node1.getChildNodes();
@@ -204,21 +193,20 @@ public class ObjUtil {
 
         if (children1.getLength() != children2.getLength()) {
             // they cannot be the same because the length is different
-            logger.info("Node1 '" + node1.getNodeName() + "' children: " + children1.getLength() + " != Node2 '" + node2.getNodeName()+"' children: " + children2.getLength());
+            logger.info("Node1 '" + node1.getNodeName() + "' children: " + children1.getLength()
+                        + " != Node2 '" + node2.getNodeName() + "' children: " + children2.getLength());
             return false;
         }
 
         // children are supposed to be in the same order
         for (int index1 = 0; index1 < children1.getLength(); index1++) {
             if (compareXML(children1.item(index1), children2.item(index1)) == false) {
-                logger.info("Node1 '" + node1.getNodeName() + "' != Node2 '" + node2.getNodeName()+"'");
+                logger.info("Node1 '" + node1.getNodeName() + "' != Node2 '" + node2.getNodeName() + "'");
                 return false;
             }
         }
 
         return true;
     }
-
-
 
 }

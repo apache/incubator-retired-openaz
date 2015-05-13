@@ -48,23 +48,22 @@ import org.apache.openaz.xacml.pdp.policy.CombiningElement;
  *
  * @param <T> the java class of the object to be combined
  */
-public class FirstApplicable<T extends org.apache.openaz.xacml.pdp.eval.Evaluatable> extends CombiningAlgorithmBase<T> {
+public class FirstApplicable<T extends org.apache.openaz.xacml.pdp.eval.Evaluatable> extends 
+    CombiningAlgorithmBase<T> {
 
     public FirstApplicable(Identifier identifierIn) {
         super(identifierIn);
     }
 
     @Override
-    public EvaluationResult combine(EvaluationContext evaluationContext,
-                                    List<CombiningElement<T>> elements,
-                                    List<CombinerParameter> combinerParameters)
-    throws EvaluationException {
-        Iterator<CombiningElement<T>> iterElements	= elements.iterator();
+    public EvaluationResult combine(EvaluationContext evaluationContext, List<CombiningElement<T>> elements,
+                                    List<CombinerParameter> combinerParameters) throws EvaluationException {
+        Iterator<CombiningElement<T>> iterElements = elements.iterator();
         while (iterElements.hasNext()) {
-            CombiningElement<T> combiningElement		= iterElements.next();
-            EvaluationResult evaluationResultElement	= combiningElement.evaluate(evaluationContext);
+            CombiningElement<T> combiningElement = iterElements.next();
+            EvaluationResult evaluationResultElement = combiningElement.evaluate(evaluationContext);
 
-            assert(evaluationResultElement != null);
+            assert evaluationResultElement != null;
             if (evaluationResultElement.getDecision() != Decision.NOTAPPLICABLE) {
                 return evaluationResultElement;
             }

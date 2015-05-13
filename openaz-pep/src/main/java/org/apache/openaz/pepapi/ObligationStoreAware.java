@@ -20,7 +20,6 @@
 
 package org.apache.openaz.pepapi;
 
-
 /**
  *
  *
@@ -28,9 +27,8 @@ package org.apache.openaz.pepapi;
 public interface ObligationStoreAware {
 
     /**
-     *
      * @param oStore
      */
-    public void setObligationStore(ObligationStore oStore);
+    void setObligationStore(ObligationStore oStore);
 
 }

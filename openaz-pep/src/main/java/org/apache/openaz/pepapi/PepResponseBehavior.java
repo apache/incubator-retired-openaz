@@ -30,12 +30,21 @@ package org.apache.openaz.pepapi;
  */
 public enum PepResponseBehavior {
 
-    /** The behavior is to allow (Permit) access by returning true when the condition for which this behavior is assigned occurs  */
+    /**
+     * The behavior is to allow (Permit) access by returning true when the condition for which this behavior
+     * is assigned occurs
+     */
     RETURN_YES,
 
-    /** The behavior is to disallow (Deny) access by returning false when the condition for which this behavior is assigned occurs  */
+    /**
+     * The behavior is to disallow (Deny) access by returning false when the condition for which this behavior
+     * is assigned occurs
+     */
     RETURN_NO,
 
-    /** The behavior is to disallow (Deny) access by throwing a PepException when the condition for which this behavior is assigned occurs  */
+    /**
+     * The behavior is to disallow (Deny) access by throwing a PepException when the condition for which this
+     * behavior is assigned occurs
+     */
     THROW_EXCEPTION
 }

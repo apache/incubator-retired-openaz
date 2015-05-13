@@ -37,8 +37,8 @@ import org.apache.openaz.xacml.api.XACML;
 import org.apache.openaz.xacml.util.ObjUtil;
 
 /**
- * Immutable implementation of the {@link org.apache.openaz.xacml.api.RequestDefaults} interface for the XACML RequestDefaults element.
- *
+ * Immutable implementation of the {@link com.att.research.xacml.api.RequestDefaults} interface for the XACML
+ * RequestDefaults element.
  */
 public class StdRequestDefaults implements RequestDefaults {
     private URI xpathVersion;
@@ -46,13 +46,13 @@ public class StdRequestDefaults implements RequestDefaults {
     public StdRequestDefaults(URI xpathVersionIn) {
         this();
         if (xpathVersionIn != null) {
-            this.xpathVersion	= xpathVersionIn;
+            this.xpathVersion = xpathVersionIn;
         }
     }
 
     public StdRequestDefaults() {
         try {
-            this.xpathVersion	= new URI(XACML.XPATHVERSION_2_0);
+            this.xpathVersion = new URI(XACML.XPATHVERSION_2_0);
         } catch (Exception ex) {
 
         }
@@ -70,15 +70,15 @@ public class StdRequestDefaults implements RequestDefaults {
         } else if (obj == null || !(obj instanceof RequestDefaults)) {
             return false;
         } else {
-            RequestDefaults objRequestDefaults	= (RequestDefaults)obj;
+            RequestDefaults objRequestDefaults = (RequestDefaults)obj;
             return ObjUtil.equalsAllowNull(this.getXPathVersion(), objRequestDefaults.getXPathVersion());
         }
     }
 
     @Override
     public String toString() {
-        StringBuilder	stringBuilder	= new StringBuilder("{");
-        Object			objectToDump;
+        StringBuilder stringBuilder = new StringBuilder("{");
+        Object objectToDump;
         if ((objectToDump = this.getXPathVersion()) != null) {
             stringBuilder.append("xpatherVersion=");
             stringBuilder.append(objectToDump.toString());

@@ -46,8 +46,8 @@ import org.apache.openaz.xacml.std.StdStatusCode;
 import org.apache.openaz.xacml.std.datatypes.DataTypes;
 
 /**
- * Function extends {@link org.apache.openaz.xacml.pdp.policy.Expression} to implement the XACML Function element.
- *
+ * Function extends {@link com.att.research.xacmlatt.pdp.policy.Expression} to implement the XACML Function
+ * element.
  */
 public class Function extends Expression {
     private Identifier functionId;
@@ -56,7 +56,7 @@ public class Function extends Expression {
 
     protected ExpressionResult getExpressionResultOk() {
         if (this.expressionResultOk == null) {
-            this.expressionResultOk	= ExpressionResult.newSingle(this.getAttributeValue());
+            this.expressionResultOk = ExpressionResult.newSingle(this.getAttributeValue());
         }
         return this.expressionResultOk;
     }
@@ -73,7 +73,7 @@ public class Function extends Expression {
     }
 
     public Function(Identifier functionIdIn) {
-        this.functionId	= functionIdIn;
+        this.functionId = functionIdIn;
     }
 
     public Identifier getFunctionId() {
@@ -81,19 +81,19 @@ public class Function extends Expression {
     }
 
     public void setFunctionId(Identifier identifier) {
-        this.functionId	= identifier;
-        this.attributeValue	= null;
-        this.expressionResultOk	= null;
+        this.functionId = identifier;
+        this.attributeValue = null;
+        this.expressionResultOk = null;
     }
 
     public AttributeValue<URI> getAttributeValue() {
         if (this.attributeValue == null) {
-            Identifier thisFunctionId	= this.getFunctionId();
+            Identifier thisFunctionId = this.getFunctionId();
             if (thisFunctionId != null) {
                 try {
-                    this.attributeValue	= DataTypes.DT_ANYURI.createAttributeValue(thisFunctionId);
+                    this.attributeValue = DataTypes.DT_ANYURI.createAttributeValue(thisFunctionId);
                 } catch (DataTypeException ex) {
-                    this.attributeValue	= null;
+                    this.attributeValue = null;
                 }
             }
         }
@@ -101,7 +101,8 @@ public class Function extends Expression {
     }
 
     @Override
-    public ExpressionResult evaluate(EvaluationContext evaluationContext, PolicyDefaults policyDefaults) throws EvaluationException {
+    public ExpressionResult evaluate(EvaluationContext evaluationContext, PolicyDefaults policyDefaults)
+        throws EvaluationException {
         if (!this.validate()) {
             return ExpressionResult.newError(new StdStatus(this.getStatusCode(), this.getStatusMessage()));
         } else {

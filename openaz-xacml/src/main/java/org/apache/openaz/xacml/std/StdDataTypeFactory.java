@@ -39,13 +39,12 @@ import org.apache.openaz.xacml.api.Identifier;
 import org.apache.openaz.xacml.std.datatypes.DataTypes;
 
 /**
- * Implements the {@link org.apache.openaz.xacml.api.DataTypeFactory} interface to support all of the data types in the XACML 3.0
- * specification.
- *
+ * Implements the {@link com.att.research.xacml.api.DataTypeFactory} interface to support all of the data
+ * types in the XACML 3.0 specification.
  */
 public class StdDataTypeFactory extends DataTypeFactory {
-    private static final Map<Identifier,DataType<?>> mapIdentifiersToDataTypes	= new HashMap<Identifier,DataType<?>>();
-    private static boolean mapNeedsInit												= true;
+    private static final Map<Identifier, DataType<?>> mapIdentifiersToDataTypes = new HashMap<Identifier, DataType<?>>();
+    private static boolean mapNeedsInit = true;
 
     private static void registerDataType(DataType<?> dataType) {
         if (dataType != null && dataType.getId() != null) {
@@ -55,7 +54,7 @@ public class StdDataTypeFactory extends DataTypeFactory {
 
     private static void initMap() {
         if (mapNeedsInit) {
-            synchronized(mapIdentifiersToDataTypes) {
+            synchronized (mapIdentifiersToDataTypes) {
                 if (mapNeedsInit) {
                     registerDataType(DataTypes.DT_ANYURI);
                     registerDataType(DataTypes.DT_BASE64BINARY);
@@ -74,15 +73,16 @@ public class StdDataTypeFactory extends DataTypeFactory {
                     registerDataType(DataTypes.DT_X500NAME);
                     registerDataType(DataTypes.DT_XPATHEXPRESSION);
                     registerDataType(DataTypes.DT_YEARMONTHDURATION);
-                    mapNeedsInit	= false;
+                    mapNeedsInit = false;
                 }
             }
         }
     }
 
     /**
-     * Creates a new <code>StdDataTypeFactory</code> and initializes the mapping from {@link org.apache.openaz.xacml.api.Identifier}s for XACML
-     * data types to the {@link org.apache.openaz.xacml.api.DataType} class instance that implements that data type.
+     * Creates a new <code>StdDataTypeFactory</code> and initializes the mapping from
+     * {@link com.att.research.xacml.api.Identifier}s for XACML data types to the
+     * {@link com.att.research.xacml.api.DataType} class instance that implements that data type.
      */
     public StdDataTypeFactory() {
         initMap();

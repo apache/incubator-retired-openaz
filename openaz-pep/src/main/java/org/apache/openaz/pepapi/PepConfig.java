@@ -27,44 +27,37 @@ import java.util.List;
 public interface PepConfig {
 
     /**
-     *
      * @return
      */
-    public String getIssuer();
+    String getIssuer();
 
     /**
-     *
      * @return
      */
-    public String getDefaultSubjectId();
+    String getDefaultSubjectId();
 
     /**
-     *
      * @return
      */
-    public String getDefaultResourceId();
+    String getDefaultResourceId();
 
     /**
-     *
      * @return
      */
-    public String getDefaultActionId();
+    String getDefaultActionId();
 
     /**
-     *
      * @return
      */
-    public PepResponseBehavior getIndeterminateBehavior();
+    PepResponseBehavior getIndeterminateBehavior();
 
     /**
-     *
      * @return
      */
-    public PepResponseBehavior getNotApplicableBehavior();
+    PepResponseBehavior getNotApplicableBehavior();
 
     /**
-     *
      * @return
      */
-    public List<String> getMapperClassNames();
+    List<String> getMapperClassNames();
 }

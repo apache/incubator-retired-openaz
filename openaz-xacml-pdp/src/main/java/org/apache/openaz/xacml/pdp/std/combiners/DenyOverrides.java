@@ -48,49 +48,51 @@ import org.apache.openaz.xacml.pdp.policy.CombiningElement;
  * @param <T> the java class for the {@link org.apache.openaz.xacml.pdp.eval.Evaluatable}
  * @param <U> the java class for the identifier
  */
-public class DenyOverrides<T extends org.apache.openaz.xacml.pdp.eval.Evaluatable> extends CombiningAlgorithmBase<T> {
+public class DenyOverrides<T extends org.apache.openaz.xacml.pdp.eval.Evaluatable> extends 
+    CombiningAlgorithmBase<T> {
 
     public DenyOverrides(Identifier identifierIn) {
         super(identifierIn);
     }
 
     @Override
-    public EvaluationResult combine(EvaluationContext evaluationContext, List<CombiningElement<T>> elements, List<CombinerParameter> combinerParameters) throws EvaluationException {
-        boolean atLeastOnePermit				= false;
+    public EvaluationResult combine(EvaluationContext evaluationContext, List<CombiningElement<T>> elements,
+                                    List<CombinerParameter> combinerParameters) throws EvaluationException {
+        boolean atLeastOnePermit = false;
 
-        EvaluationResult combinedResult			= new EvaluationResult(Decision.PERMIT);
+        EvaluationResult combinedResult = new EvaluationResult(Decision.PERMIT);
 
-        EvaluationResult firstIndeterminateD	= null;
-        EvaluationResult firstIndeterminateP	= null;
-        EvaluationResult firstIndeterminateDP	= null;
+        EvaluationResult firstIndeterminateD = null;
+        EvaluationResult firstIndeterminateP = null;
+        EvaluationResult firstIndeterminateDP = null;
 
-        Iterator<CombiningElement<T>> iterElements	= elements.iterator();
+        Iterator<CombiningElement<T>> iterElements = elements.iterator();
         while (iterElements.hasNext()) {
-            CombiningElement<T> combiningElement		= iterElements.next();
-            EvaluationResult evaluationResultElement	= combiningElement.evaluate(evaluationContext);
+            CombiningElement<T> combiningElement = iterElements.next();
+            EvaluationResult evaluationResultElement = combiningElement.evaluate(evaluationContext);
 
-            assert(evaluationResultElement != null);
-            switch(evaluationResultElement.getDecision()) {
+            assert evaluationResultElement != null;
+            switch (evaluationResultElement.getDecision()) {
             case DENY:
                 return evaluationResultElement;
             case INDETERMINATE:
             case INDETERMINATE_DENYPERMIT:
                 if (firstIndeterminateDP == null) {
-                    firstIndeterminateDP	= evaluationResultElement;
+                    firstIndeterminateDP = evaluationResultElement;
                 } else {
                     firstIndeterminateDP.merge(evaluationResultElement);
                 }
                 break;
             case INDETERMINATE_DENY:
                 if (firstIndeterminateD == null) {
-                    firstIndeterminateD		= evaluationResultElement;
+                    firstIndeterminateD = evaluationResultElement;
                 } else {
                     firstIndeterminateD.merge(evaluationResultElement);
                 }
                 break;
             case INDETERMINATE_PERMIT:
                 if (firstIndeterminateP == null) {
-                    firstIndeterminateP		= evaluationResultElement;
+                    firstIndeterminateP = evaluationResultElement;
                 } else {
                     firstIndeterminateP.merge(evaluationResultElement);
                 }
@@ -98,11 +100,12 @@ public class DenyOverrides<T extends org.apache.openaz.xacml.pdp.eval.Evaluatabl
             case NOTAPPLICABLE:
                 break;
             case PERMIT:
-                atLeastOnePermit	= true;
+                atLeastOnePermit = true;
                 combinedResult.merge(evaluationResultElement);
                 break;
             default:
-                throw new EvaluationException("Illegal Decision: \"" + evaluationResultElement.getDecision().toString());
+                throw new EvaluationException("Illegal Decision: \""
+                                              + evaluationResultElement.getDecision().toString());
             }
         }
 

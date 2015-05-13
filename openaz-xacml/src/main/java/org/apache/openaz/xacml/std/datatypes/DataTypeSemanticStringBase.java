@@ -33,7 +33,8 @@ package org.apache.openaz.xacml.std.datatypes;
 import org.apache.openaz.xacml.api.DataTypeException;
 import org.apache.openaz.xacml.api.Identifier;
 
-public abstract class DataTypeSemanticStringBase<T extends org.apache.openaz.xacml.api.SemanticString> extends DataTypeBase<T> {
+public abstract class DataTypeSemanticStringBase<T extends org.apache.openaz.xacml.api.SemanticString> extends 
+    DataTypeBase<T> {
 
     public DataTypeSemanticStringBase(Identifier identifierIn, Class<T> classConvertIn) {
         super(identifierIn, classConvertIn);

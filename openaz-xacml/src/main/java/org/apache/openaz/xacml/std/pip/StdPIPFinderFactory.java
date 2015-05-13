@@ -43,7 +43,7 @@ import org.apache.openaz.xacml.util.XACMLProperties;
 public class StdPIPFinderFactory extends PIPFinderFactory {
     private PIPFinder pipFinder;
 
-    private Log logger	= LogFactory.getLog(this.getClass());
+    private Log logger = LogFactory.getLog(this.getClass());
 
     public StdPIPFinderFactory() {
     }
@@ -54,12 +54,12 @@ public class StdPIPFinderFactory extends PIPFinderFactory {
     @Override
     public PIPFinder getFinder() throws PIPException {
         if (pipFinder == null) {
-            synchronized(this) {
+            synchronized (this) {
                 if (pipFinder == null) {
-                    pipFinder					= new ConfigurableEngineFinder();
-                    Properties xacmlProperties	= null;
+                    pipFinder = new ConfigurableEngineFinder();
+                    Properties xacmlProperties = null;
                     try {
-                        xacmlProperties	= XACMLProperties.getProperties();
+                        xacmlProperties = XACMLProperties.getProperties();
                     } catch (Exception ex) {
                         this.logger.error("Exception getting XACML properties: " + ex.getMessage(), ex);
                         return null;
@@ -76,9 +76,9 @@ public class StdPIPFinderFactory extends PIPFinderFactory {
     @Override
     public PIPFinder getFinder(Properties properties) throws PIPException {
         if (pipFinder == null) {
-            synchronized(this) {
+            synchronized (this) {
                 if (pipFinder == null) {
-                    pipFinder					= new ConfigurableEngineFinder();
+                    pipFinder = new ConfigurableEngineFinder();
                     ((ConfigurableEngineFinder)pipFinder).configure(properties);
                 }
             }

@@ -32,9 +32,8 @@
 package org.apache.openaz.xacml.api.trace;
 
 /**
- * Defines the API for objects that serve as handlers for {@link TraceEvent}s.  <code>TraceEngine</code>s
- * are instantiated with {@link org.apache.openaz.xacml.api.trace.TraceEngineFactory} objects.
- *
+ * Defines the API for objects that serve as handlers for {@link TraceEvent}s. <code>TraceEngine</code>s are
+ * instantiated with {@link com.att.research.xacml.api.trace.TraceEngineFactory} objects.
  */
 public interface TraceEngine {
     /**
@@ -42,13 +41,13 @@ public interface TraceEngine {
      *
      * @param traceEvent the <code>TraceEvent</code> to process
      */
-    public void trace(TraceEvent<?> traceEvent);
+    void trace(TraceEvent<?> traceEvent);
 
     /**
-     * Returns true if this <code>TraceEngine</code> would actually process a {@link TraceEvent}.  This
-     * is useful to avoid creating new <code>TraceEvent</code> objects that will just be ignored.
+     * Returns true if this <code>TraceEngine</code> would actually process a {@link TraceEvent}. This is
+     * useful to avoid creating new <code>TraceEvent</code> objects that will just be ignored.
      *
      * @return true if this <code>TraceEngine</code> would perform an action on a <code>TraceEvent</code>.
      */
-    public boolean isTracing();
+    boolean isTracing();
 }

@@ -38,12 +38,13 @@ import org.apache.openaz.xacml.std.StdStatus;
 import org.apache.openaz.xacml.std.StdStatusCode;
 
 /**
- * FunctionArgumentExpression implements the {@link FunctionArgument} interface for
- * unevaluated {@link Expression}s.
- *
+ * FunctionArgumentExpression implements the {@link FunctionArgument} interface for unevaluated
+ * {@link Expression}s.
  */
 public class FunctionArgumentExpression implements FunctionArgument {
-    private static final Status STATUS_NULL_EXPRESSION_RESULT	= new StdStatus(StdStatusCode.STATUS_CODE_PROCESSING_ERROR, "Null expression result");
+    private static final Status STATUS_NULL_EXPRESSION_RESULT = new StdStatus(
+                                                                              StdStatusCode.STATUS_CODE_PROCESSING_ERROR,
+                                                                              "Null expression result");
 
     private Expression expression;
     private EvaluationContext evaluationContext;
@@ -53,9 +54,11 @@ public class FunctionArgumentExpression implements FunctionArgument {
     protected ExpressionResult evaluateExpression() {
         if (this.getExpression() != null && this.getEvaluationContext() != null) {
             try {
-                this.expressionResult	= this.getExpression().evaluate(this.getEvaluationContext(), this.getPolicyDefaults());
+                this.expressionResult = this.getExpression().evaluate(this.getEvaluationContext(),
+                                                                      this.getPolicyDefaults());
             } catch (EvaluationException ex) {
-                this.expressionResult	= ExpressionResult.newError(new StdStatus(StdStatusCode.STATUS_CODE_PROCESSING_ERROR, ex.getMessage()));
+                this.expressionResult = ExpressionResult
+                    .newError(new StdStatus(StdStatusCode.STATUS_CODE_PROCESSING_ERROR, ex.getMessage()));
             }
         }
         return this.expressionResult;
@@ -64,10 +67,11 @@ public class FunctionArgumentExpression implements FunctionArgument {
     public FunctionArgumentExpression() {
     }
 
-    public FunctionArgumentExpression(Expression expressionIn, EvaluationContext evaluationContextIn, PolicyDefaults policyDefaultsIn) {
-        this.expression			= expressionIn;
-        this.evaluationContext	= evaluationContextIn;
-        this.policyDefaults		= policyDefaultsIn;
+    public FunctionArgumentExpression(Expression expressionIn, EvaluationContext evaluationContextIn,
+                                      PolicyDefaults policyDefaultsIn) {
+        this.expression = expressionIn;
+        this.evaluationContext = evaluationContextIn;
+        this.policyDefaults = policyDefaultsIn;
     }
 
     protected ExpressionResult getExpressionResult() {
@@ -89,42 +93,43 @@ public class FunctionArgumentExpression implements FunctionArgument {
 
     @Override
     public Status getStatus() {
-        ExpressionResult thisExpressionResult	= this.getExpressionResult();
+        ExpressionResult thisExpressionResult = this.getExpressionResult();
         if (thisExpressionResult == null) {
-            thisExpressionResult	= this.evaluateExpression();
+            thisExpressionResult = this.evaluateExpression();
         }
-        return (thisExpressionResult == null ? STATUS_NULL_EXPRESSION_RESULT : thisExpressionResult.getStatus());
+        return (thisExpressionResult == null ? STATUS_NULL_EXPRESSION_RESULT : thisExpressionResult
+            .getStatus());
     }
 
     @Override
     public boolean isOk() {
-        Status thisStatus	= this.getStatus();
+        Status thisStatus = this.getStatus();
         return (thisStatus == null ? true : thisStatus.isOk());
     }
 
     @Override
     public boolean isBag() {
-        ExpressionResult thisExpressionResult	= this.getExpressionResult();
+        ExpressionResult thisExpressionResult = this.getExpressionResult();
         if (thisExpressionResult == null) {
-            thisExpressionResult	= this.evaluateExpression();
+            thisExpressionResult = this.evaluateExpression();
         }
         return (thisExpressionResult == null ? false : thisExpressionResult.isBag());
     }
 
     @Override
     public AttributeValue<?> getValue() {
-        ExpressionResult thisExpressionResult	= this.getExpressionResult();
+        ExpressionResult thisExpressionResult = this.getExpressionResult();
         if (thisExpressionResult == null) {
-            thisExpressionResult	= this.evaluateExpression();
+            thisExpressionResult = this.evaluateExpression();
         }
         return (thisExpressionResult == null ? null : thisExpressionResult.getValue());
     }
 
     @Override
     public Bag getBag() {
-        ExpressionResult thisExpressionResult	= this.getExpressionResult();
+        ExpressionResult thisExpressionResult = this.getExpressionResult();
         if (thisExpressionResult == null) {
-            thisExpressionResult	= this.evaluateExpression();
+            thisExpressionResult = this.evaluateExpression();
         }
         return (thisExpressionResult == null ? null : thisExpressionResult.getBag());
     }

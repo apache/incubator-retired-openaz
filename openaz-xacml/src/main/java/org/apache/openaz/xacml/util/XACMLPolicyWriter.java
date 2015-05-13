@@ -48,16 +48,12 @@ import oasis.names.tc.xacml._3_0.core.schema.wd_17.PolicyType;
 
 /**
  * Helper static class for policy writing.
- *
- *
  */
 public class XACMLPolicyWriter {
-    private static final Log logger				= LogFactory.getLog(XACMLPolicyWriter.class);
+    private static final Log logger = LogFactory.getLog(XACMLPolicyWriter.class);
 
     /**
      * Helper static class that does the work to write a policy set to a file on disk.
-     *
-     *
      */
     public static Path writePolicyFile(Path filename, PolicySetType policySet) {
         JAXBElement<PolicySetType> policySetElement = new ObjectFactory().createPolicySet(policySet);
@@ -82,8 +78,6 @@ public class XACMLPolicyWriter {
 
     /**
      * Helper static class that does the work to write a policy set to an output stream.
-     *
-     *
      */
     public static void writePolicyFile(OutputStream os, PolicySetType policySet) {
         JAXBElement<PolicySetType> policySetElement = new ObjectFactory().createPolicySet(policySet);
@@ -99,8 +93,6 @@ public class XACMLPolicyWriter {
 
     /**
      * Helper static class that does the work to write a policy to a file on disk.
-     *
-     *
      */
     public static Path writePolicyFile(Path filename, PolicyType policy) {
         JAXBElement<PolicyType> policyElement = new ObjectFactory().createPolicy(policy);
@@ -122,10 +114,9 @@ public class XACMLPolicyWriter {
             return null;
         }
     }
+
     /**
      * Helper static class that does the work to write a policy set to an output stream.
-     *
-     *
      */
     public static void writePolicyFile(OutputStream os, PolicyType policy) {
         JAXBElement<PolicyType> policySetElement = new ObjectFactory().createPolicy(policy);

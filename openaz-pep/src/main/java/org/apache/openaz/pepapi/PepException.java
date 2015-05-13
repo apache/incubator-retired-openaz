@@ -11,21 +11,19 @@
  * limitations under the License.
  *
  * Authors:
- * 	  1.1 (2011): Rich Levinson, Prateek Mishra (Oracle)
- * 	  1.0 (2009): Josh Bregman, Rich Levinson, Prateek Mishra (Oracle)
+ *        1.1 (2011): Rich Levinson, Prateek Mishra (Oracle)
+ *        1.0 (2009): Josh Bregman, Rich Levinson, Prateek Mishra (Oracle)
  * Contributor:
- * 	  Rich Levinson (Oracle)
+ *        Rich Levinson (Oracle)
  */
 package org.apache.openaz.pepapi;
 
 /**
- * The PepException is used to provide additional
- * information to callers of the PepApi when
- * exception conditions occur.
+ * The PepException is used to provide additional information to callers of the PepApi when exception
+ * conditions occur.
  * <p>
- * PepApi 1.1: now extends RuntimeException in order
- *  that users do not require try/catch blocks
- *  when using PepApi 1.1.
+ * PepApi 1.1: now extends RuntimeException in order that users do not require try/catch blocks when using
+ * PepApi 1.1.
  * <p>
  */
 public class PepException extends RuntimeException {
@@ -33,8 +31,8 @@ public class PepException extends RuntimeException {
     private static final long serialVersionUID = 1L;
 
     /**
-     * Create a PepException containing a Throwable that
-     * specifies the cause of this PepException.
+     * Create a PepException containing a Throwable that specifies the cause of this PepException.
+     * 
      * @param cause
      */
     public PepException(Throwable cause) {
@@ -42,9 +40,9 @@ public class PepException extends RuntimeException {
     }
 
     /**
-     * Create a PepException containing the message provided
-     * and a Throwable containing further information as to
-     * the cause of the PepException.
+     * Create a PepException containing the message provided and a Throwable containing further information as
+     * to the cause of the PepException.
+     * 
      * @param message
      * @param cause
      */
@@ -54,6 +52,7 @@ public class PepException extends RuntimeException {
 
     /**
      * Create a PepException containing the message provided.
+     * 
      * @param message
      */
     public PepException(String message) {
@@ -64,4 +63,3 @@ public class PepException extends RuntimeException {
         super();
     }
 }
-

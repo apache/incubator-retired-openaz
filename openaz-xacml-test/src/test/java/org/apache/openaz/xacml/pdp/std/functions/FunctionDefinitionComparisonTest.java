@@ -54,12 +54,8 @@ import org.apache.openaz.xacml.std.datatypes.ISO8601Time;
 import org.junit.Test;
 
 /**
- * Test FunctionDefinitionComparison
- *
- * TO RUN - use jUnit
- * In Eclipse select this file or the enclosing directory, right-click and select Run As/JUnit Test
- *
- *
+ * Test FunctionDefinitionComparison TO RUN - use jUnit In Eclipse select this file or the enclosing
+ * directory, right-click and select Run As/JUnit Test
  */
 public class FunctionDefinitionComparisonTest {
 
@@ -72,7 +68,6 @@ public class FunctionDefinitionComparisonTest {
     FunctionArgumentAttributeValue stringAttr1a = null;
     FunctionArgumentAttributeValue stringAttr2 = null;
     FunctionArgumentAttributeValue stringAttrNeg1 = null;
-
 
     FunctionArgumentAttributeValue intAttr1 = null;
     FunctionArgumentAttributeValue intAttr1a = null;
@@ -91,7 +86,6 @@ public class FunctionDefinitionComparisonTest {
     FunctionArgumentAttributeValue attrDateYesterday = null;
     FunctionArgumentAttributeValue attrDateWithTimeZone = null;
     FunctionArgumentAttributeValue attrDateNoTimeZone = null;
-
 
     FunctionArgumentAttributeValue attrTimeToday = null;
     FunctionArgumentAttributeValue attrTimeSameDay = null;
@@ -115,8 +109,9 @@ public class FunctionDefinitionComparisonTest {
             stringAttr1 = new FunctionArgumentAttributeValue(DataTypes.DT_STRING.createAttributeValue("abc"));
             stringAttr1a = new FunctionArgumentAttributeValue(DataTypes.DT_STRING.createAttributeValue("abc"));
             stringAttr2 = new FunctionArgumentAttributeValue(DataTypes.DT_STRING.createAttributeValue("def"));
-            stringAttrNeg1 = new FunctionArgumentAttributeValue(DataTypes.DT_STRING.createAttributeValue("AAA"));
-
+            stringAttrNeg1 = new FunctionArgumentAttributeValue(
+                                                                DataTypes.DT_STRING
+                                                                    .createAttributeValue("AAA"));
 
             intAttr1 = new FunctionArgumentAttributeValue(DataTypes.DT_INTEGER.createAttributeValue(1));
             intAttr1a = new FunctionArgumentAttributeValue(DataTypes.DT_INTEGER.createAttributeValue(1));
@@ -133,7 +128,8 @@ public class FunctionDefinitionComparisonTest {
             Calendar calendar = Calendar.getInstance();
             Date today = calendar.getTime();
             Date longAgo = new Date(1234);
-            // create a date that is different than "today" but within the same day (i.e. has a different hour)
+            // create a date that is different than "today" but within the same day (i.e. has a different
+            // hour)
             if (calendar.get(Calendar.HOUR_OF_DAY) > 3) {
                 calendar.set(Calendar.HOUR_OF_DAY, 3);
             } else {
@@ -143,52 +139,83 @@ public class FunctionDefinitionComparisonTest {
             calendar.add(Calendar.DATE, 1);
             Date tommorrow = calendar.getTime();
             attrDateToday = new FunctionArgumentAttributeValue(DataTypes.DT_DATE.createAttributeValue(today));
-            attrDateSameDay = new FunctionArgumentAttributeValue(DataTypes.DT_DATE.createAttributeValue(todayPlus));
-            attrDateTommorrow = new FunctionArgumentAttributeValue(DataTypes.DT_DATE.createAttributeValue(tommorrow));
-            attrDateYesterday = new FunctionArgumentAttributeValue(DataTypes.DT_DATE.createAttributeValue(longAgo));
+            attrDateSameDay = new FunctionArgumentAttributeValue(
+                                                                 DataTypes.DT_DATE
+                                                                     .createAttributeValue(todayPlus));
+            attrDateTommorrow = new FunctionArgumentAttributeValue(
+                                                                   DataTypes.DT_DATE
+                                                                       .createAttributeValue(tommorrow));
+            attrDateYesterday = new FunctionArgumentAttributeValue(
+                                                                   DataTypes.DT_DATE
+                                                                       .createAttributeValue(longAgo));
             ISO8601Date isoDate = new ISO8601Date(1920, 5, 8);
-            attrDateNoTimeZone = new FunctionArgumentAttributeValue(DataTypes.DT_DATE.createAttributeValue(isoDate));
+            attrDateNoTimeZone = new FunctionArgumentAttributeValue(
+                                                                    DataTypes.DT_DATE
+                                                                        .createAttributeValue(isoDate));
             isoDate = new ISO8601Date("GMT+00:02", 1920, 5, 8);
-            attrDateWithTimeZone = new FunctionArgumentAttributeValue(DataTypes.DT_DATE.createAttributeValue(isoDate));
+            attrDateWithTimeZone = new FunctionArgumentAttributeValue(
+                                                                      DataTypes.DT_DATE
+                                                                          .createAttributeValue(isoDate));
 
             // create Times
             ISO8601Time isoTime = new ISO8601Time(14, 43, 12, 145);
-            attrTimeToday = new FunctionArgumentAttributeValue(DataTypes.DT_TIME.createAttributeValue(isoTime));
-            attrTimeSameDay = new FunctionArgumentAttributeValue(DataTypes.DT_TIME.createAttributeValue(isoTime));
+            attrTimeToday = new FunctionArgumentAttributeValue(
+                                                               DataTypes.DT_TIME
+                                                                   .createAttributeValue(isoTime));
+            attrTimeSameDay = new FunctionArgumentAttributeValue(
+                                                                 DataTypes.DT_TIME
+                                                                     .createAttributeValue(isoTime));
             isoTime = new ISO8601Time(18, 53, 34, 423);
-            attrTimeTommorrow = new FunctionArgumentAttributeValue(DataTypes.DT_TIME.createAttributeValue(isoTime));
-            isoTime = new ISO8601Time(7, 34, 6,543);
-            attrTimeYesterday = new FunctionArgumentAttributeValue(DataTypes.DT_TIME.createAttributeValue(isoTime));
+            attrTimeTommorrow = new FunctionArgumentAttributeValue(
+                                                                   DataTypes.DT_TIME
+                                                                       .createAttributeValue(isoTime));
+            isoTime = new ISO8601Time(7, 34, 6, 543);
+            attrTimeYesterday = new FunctionArgumentAttributeValue(
+                                                                   DataTypes.DT_TIME
+                                                                       .createAttributeValue(isoTime));
             isoTime = new ISO8601Time(12, 12, 12, 12);
-            attrTimeNoTimeZone = new FunctionArgumentAttributeValue(DataTypes.DT_TIME.createAttributeValue(isoTime));
+            attrTimeNoTimeZone = new FunctionArgumentAttributeValue(
+                                                                    DataTypes.DT_TIME
+                                                                        .createAttributeValue(isoTime));
             isoTime = new ISO8601Time("GMT:+00:03", 12, 12, 12, 12);
-            attrTimeWithTimeZone = new FunctionArgumentAttributeValue(DataTypes.DT_TIME.createAttributeValue(isoTime));
+            attrTimeWithTimeZone = new FunctionArgumentAttributeValue(
+                                                                      DataTypes.DT_TIME
+                                                                          .createAttributeValue(isoTime));
 
             // create DateTimes
             isoDate = new ISO8601Date(1920, 5, 8);
-            isoTime = new ISO8601Time( 18, 53, 34, 423);
+            isoTime = new ISO8601Time(18, 53, 34, 423);
             ISO8601DateTime isoDateTime = new ISO8601DateTime((String)null, 1920, 5, 8, 18, 53, 34, 423);
-            attrDateTimeToday = new FunctionArgumentAttributeValue(DataTypes.DT_DATETIME.createAttributeValue(isoDateTime));
-            attrDateTimeSameDay = new FunctionArgumentAttributeValue(DataTypes.DT_DATETIME.createAttributeValue(isoDateTime));
+            attrDateTimeToday = new FunctionArgumentAttributeValue(
+                                                                   DataTypes.DT_DATETIME
+                                                                       .createAttributeValue(isoDateTime));
+            attrDateTimeSameDay = new FunctionArgumentAttributeValue(
+                                                                     DataTypes.DT_DATETIME
+                                                                         .createAttributeValue(isoDateTime));
             isoTime = new ISO8601Time(20, 53, 34, 423);
             isoDateTime = new ISO8601DateTime((String)null, 1920, 5, 8, 20, 53, 34, 423);
-            attrDateTimeTommorrow = new FunctionArgumentAttributeValue(DataTypes.DT_DATETIME.createAttributeValue(isoDateTime));
-            isoTime = new ISO8601Time(7, 34, 6,543);
+            attrDateTimeTommorrow = new FunctionArgumentAttributeValue(
+                                                                       DataTypes.DT_DATETIME
+                                                                           .createAttributeValue(isoDateTime));
+            isoTime = new ISO8601Time(7, 34, 6, 543);
             isoDateTime = new ISO8601DateTime((String)null, 1920, 5, 8, 7, 34, 6, 543);
-            attrDateTimeYesterday = new FunctionArgumentAttributeValue(DataTypes.DT_DATETIME.createAttributeValue(isoDateTime));
+            attrDateTimeYesterday = new FunctionArgumentAttributeValue(
+                                                                       DataTypes.DT_DATETIME
+                                                                           .createAttributeValue(isoDateTime));
             isoTime = new ISO8601Time(12, 12, 12, 12);
             isoDateTime = new ISO8601DateTime((String)null, 1920, 5, 8, 12, 12, 12, 12);
-            attrDateTimeNoTimeZone = new FunctionArgumentAttributeValue(DataTypes.DT_DATETIME.createAttributeValue(isoDateTime));
+            attrDateTimeNoTimeZone = new FunctionArgumentAttributeValue(
+                                                                        DataTypes.DT_DATETIME
+                                                                            .createAttributeValue(isoDateTime));
             isoTime = new ISO8601Time("GMT:+00:03", 12, 12, 12, 12);
             isoDate = new ISO8601Date("GMT:+00:03", 1920, 5, 8);
             isoDateTime = new ISO8601DateTime("GMT:+00:03", 1920, 5, 8, 12, 12, 12, 12);
-            attrDateTimeWithTimeZone = new FunctionArgumentAttributeValue(DataTypes.DT_DATETIME.createAttributeValue(isoDateTime));
-
-
-
+            attrDateTimeWithTimeZone = new FunctionArgumentAttributeValue(
+                                                                          DataTypes.DT_DATETIME
+                                                                              .createAttributeValue(isoDateTime));
 
         } catch (Exception e) {
-            fail("Error creating values e="+ e);
+            fail("Error creating values e=" + e);
         }
     }
 
@@ -198,13 +225,13 @@ public class FunctionDefinitionComparisonTest {
     @Test
     public void testString_GT() {
 
-        FunctionDefinitionComparison<?> fd = (FunctionDefinitionComparison<?>) StdFunctions.FD_STRING_GREATER_THAN;
+        FunctionDefinitionComparison<?> fd = (FunctionDefinitionComparison<?>)StdFunctions.FD_STRING_GREATER_THAN;
 
         // check identity and type of the thing created
         assertEquals(XACML3.ID_FUNCTION_STRING_GREATER_THAN, fd.getId());
         assertEquals(DataTypes.DT_STRING.getId(), fd.getDataTypeArgs().getId());
 
-        // just to be safe...  If tests take too long these can probably be eliminated
+        // just to be safe... If tests take too long these can probably be eliminated
         assertEquals(DataTypes.DT_BOOLEAN.getId(), fd.getDataTypeId());
         assertFalse(fd.returnsBag());
         assertEquals(new Integer(2), fd.getNumArgs());
@@ -235,7 +262,7 @@ public class FunctionDefinitionComparisonTest {
         resValue = (Boolean)res.getValue().getValue();
         assertTrue(resValue);
 
-        // test bad args data types?  Not needed?
+        // test bad args data types? Not needed?
         arguments.clear();
         arguments.add(intAttr1);
         arguments.add(stringAttr1);
@@ -246,13 +273,13 @@ public class FunctionDefinitionComparisonTest {
     @Test
     public void testString_GTE() {
 
-        FunctionDefinitionComparison<?> fd = (FunctionDefinitionComparison<?>) StdFunctions.FD_STRING_GREATER_THAN_OR_EQUAL;
+        FunctionDefinitionComparison<?> fd = (FunctionDefinitionComparison<?>)StdFunctions.FD_STRING_GREATER_THAN_OR_EQUAL;
 
         // check identity and type of the thing created
         assertEquals(XACML3.ID_FUNCTION_STRING_GREATER_THAN_OR_EQUAL, fd.getId());
         assertEquals(DataTypes.DT_STRING.getId(), fd.getDataTypeArgs().getId());
 
-        // just to be safe...  If tests take too long these can probably be eliminated
+        // just to be safe... If tests take too long these can probably be eliminated
         assertEquals(DataTypes.DT_BOOLEAN.getId(), fd.getDataTypeId());
         assertFalse(fd.returnsBag());
         assertEquals(new Integer(2), fd.getNumArgs());
@@ -287,13 +314,13 @@ public class FunctionDefinitionComparisonTest {
     @Test
     public void testString_LT() {
 
-        FunctionDefinitionComparison<?> fd = (FunctionDefinitionComparison<?>) StdFunctions.FD_STRING_LESS_THAN;
+        FunctionDefinitionComparison<?> fd = (FunctionDefinitionComparison<?>)StdFunctions.FD_STRING_LESS_THAN;
 
         // check identity and type of the thing created
         assertEquals(XACML3.ID_FUNCTION_STRING_LESS_THAN, fd.getId());
         assertEquals(DataTypes.DT_STRING.getId(), fd.getDataTypeArgs().getId());
 
-        // just to be safe...  If tests take too long these can probably be eliminated
+        // just to be safe... If tests take too long these can probably be eliminated
         assertEquals(DataTypes.DT_BOOLEAN.getId(), fd.getDataTypeId());
         assertFalse(fd.returnsBag());
         assertEquals(new Integer(2), fd.getNumArgs());
@@ -328,13 +355,13 @@ public class FunctionDefinitionComparisonTest {
     @Test
     public void testString_LTE() {
 
-        FunctionDefinitionComparison<?> fd = (FunctionDefinitionComparison<?>) StdFunctions.FD_STRING_LESS_THAN_OR_EQUAL;
+        FunctionDefinitionComparison<?> fd = (FunctionDefinitionComparison<?>)StdFunctions.FD_STRING_LESS_THAN_OR_EQUAL;
 
         // check identity and type of the thing created
         assertEquals(XACML3.ID_FUNCTION_STRING_LESS_THAN_OR_EQUAL, fd.getId());
         assertEquals(DataTypes.DT_STRING.getId(), fd.getDataTypeArgs().getId());
 
-        // just to be safe...  If tests take too long these can probably be eliminated
+        // just to be safe... If tests take too long these can probably be eliminated
         assertEquals(DataTypes.DT_BOOLEAN.getId(), fd.getDataTypeId());
         assertFalse(fd.returnsBag());
         assertEquals(new Integer(2), fd.getNumArgs());
@@ -366,21 +393,19 @@ public class FunctionDefinitionComparisonTest {
         assertFalse(resValue);
     }
 
-
-
     /**
      * Integer
      */
     @Test
     public void testInteger_GT() {
 
-        FunctionDefinitionComparison<?> fd = (FunctionDefinitionComparison<?>) StdFunctions.FD_INTEGER_GREATER_THAN;
+        FunctionDefinitionComparison<?> fd = (FunctionDefinitionComparison<?>)StdFunctions.FD_INTEGER_GREATER_THAN;
 
         // check identity and type of the thing created
         assertEquals(XACML3.ID_FUNCTION_INTEGER_GREATER_THAN, fd.getId());
         assertEquals(DataTypes.DT_INTEGER.getId(), fd.getDataTypeArgs().getId());
 
-        // just to be safe...  If tests take too long these can probably be eliminated
+        // just to be safe... If tests take too long these can probably be eliminated
         assertEquals(DataTypes.DT_BOOLEAN.getId(), fd.getDataTypeId());
         assertFalse(fd.returnsBag());
         assertEquals(new Integer(2), fd.getNumArgs());
@@ -411,7 +436,7 @@ public class FunctionDefinitionComparisonTest {
         resValue = (Boolean)res.getValue().getValue();
         assertTrue(resValue);
 
-        // test bad args data types?  Not needed?
+        // test bad args data types? Not needed?
         arguments.clear();
         arguments.add(stringAttr1);
         arguments.add(intAttr1);
@@ -422,13 +447,13 @@ public class FunctionDefinitionComparisonTest {
     @Test
     public void testInteger_GTE() {
 
-        FunctionDefinitionComparison<?> fd = (FunctionDefinitionComparison<?>) StdFunctions.FD_INTEGER_GREATER_THAN_OR_EQUAL;
+        FunctionDefinitionComparison<?> fd = (FunctionDefinitionComparison<?>)StdFunctions.FD_INTEGER_GREATER_THAN_OR_EQUAL;
 
         // check identity and type of the thing created
         assertEquals(XACML3.ID_FUNCTION_INTEGER_GREATER_THAN_OR_EQUAL, fd.getId());
         assertEquals(DataTypes.DT_INTEGER.getId(), fd.getDataTypeArgs().getId());
 
-        // just to be safe...  If tests take too long these can probably be eliminated
+        // just to be safe... If tests take too long these can probably be eliminated
         assertEquals(DataTypes.DT_BOOLEAN.getId(), fd.getDataTypeId());
         assertFalse(fd.returnsBag());
         assertEquals(new Integer(2), fd.getNumArgs());
@@ -463,13 +488,13 @@ public class FunctionDefinitionComparisonTest {
     @Test
     public void testInteger_LT() {
 
-        FunctionDefinitionComparison<?> fd = (FunctionDefinitionComparison<?>) StdFunctions.FD_INTEGER_LESS_THAN;
+        FunctionDefinitionComparison<?> fd = (FunctionDefinitionComparison<?>)StdFunctions.FD_INTEGER_LESS_THAN;
 
         // check identity and type of the thing created
         assertEquals(XACML3.ID_FUNCTION_INTEGER_LESS_THAN, fd.getId());
         assertEquals(DataTypes.DT_INTEGER.getId(), fd.getDataTypeArgs().getId());
 
-        // just to be safe...  If tests take too long these can probably be eliminated
+        // just to be safe... If tests take too long these can probably be eliminated
         assertEquals(DataTypes.DT_BOOLEAN.getId(), fd.getDataTypeId());
         assertFalse(fd.returnsBag());
         assertEquals(new Integer(2), fd.getNumArgs());
@@ -504,13 +529,13 @@ public class FunctionDefinitionComparisonTest {
     @Test
     public void testInteger_LTE() {
 
-        FunctionDefinitionComparison<?> fd = (FunctionDefinitionComparison<?>) StdFunctions.FD_INTEGER_LESS_THAN_OR_EQUAL;
+        FunctionDefinitionComparison<?> fd = (FunctionDefinitionComparison<?>)StdFunctions.FD_INTEGER_LESS_THAN_OR_EQUAL;
 
         // check identity and type of the thing created
         assertEquals(XACML3.ID_FUNCTION_INTEGER_LESS_THAN_OR_EQUAL, fd.getId());
         assertEquals(DataTypes.DT_INTEGER.getId(), fd.getDataTypeArgs().getId());
 
-        // just to be safe...  If tests take too long these can probably be eliminated
+        // just to be safe... If tests take too long these can probably be eliminated
         assertEquals(DataTypes.DT_BOOLEAN.getId(), fd.getDataTypeId());
         assertFalse(fd.returnsBag());
         assertEquals(new Integer(2), fd.getNumArgs());
@@ -542,22 +567,19 @@ public class FunctionDefinitionComparisonTest {
         assertFalse(resValue);
     }
 
-
-
-
     /**
      * Double
      */
     @Test
     public void testDouble_GT() {
 
-        FunctionDefinitionComparison<?> fd = (FunctionDefinitionComparison<?>) StdFunctions.FD_DOUBLE_GREATER_THAN;
+        FunctionDefinitionComparison<?> fd = (FunctionDefinitionComparison<?>)StdFunctions.FD_DOUBLE_GREATER_THAN;
 
         // check identity and type of the thing created
         assertEquals(XACML3.ID_FUNCTION_DOUBLE_GREATER_THAN, fd.getId());
         assertEquals(DataTypes.DT_DOUBLE.getId(), fd.getDataTypeArgs().getId());
 
-        // just to be safe...  If tests take too long these can probably be eliminated
+        // just to be safe... If tests take too long these can probably be eliminated
         assertEquals(DataTypes.DT_BOOLEAN.getId(), fd.getDataTypeId());
         assertFalse(fd.returnsBag());
         assertEquals(new Integer(2), fd.getNumArgs());
@@ -588,7 +610,7 @@ public class FunctionDefinitionComparisonTest {
         resValue = (Boolean)res.getValue().getValue();
         assertTrue(resValue);
 
-        // test bad args data types?  Not needed?
+        // test bad args data types? Not needed?
         arguments.clear();
         arguments.add(stringAttr1);
         arguments.add(intAttr1);
@@ -600,13 +622,13 @@ public class FunctionDefinitionComparisonTest {
     @Test
     public void testDouble_GTE() {
 
-        FunctionDefinitionComparison<?> fd = (FunctionDefinitionComparison<?>) StdFunctions.FD_DOUBLE_GREATER_THAN_OR_EQUAL;
+        FunctionDefinitionComparison<?> fd = (FunctionDefinitionComparison<?>)StdFunctions.FD_DOUBLE_GREATER_THAN_OR_EQUAL;
 
         // check identity and type of the thing created
         assertEquals(XACML3.ID_FUNCTION_DOUBLE_GREATER_THAN_OR_EQUAL, fd.getId());
         assertEquals(DataTypes.DT_DOUBLE.getId(), fd.getDataTypeArgs().getId());
 
-        // just to be safe...  If tests take too long these can probably be eliminated
+        // just to be safe... If tests take too long these can probably be eliminated
         assertEquals(DataTypes.DT_BOOLEAN.getId(), fd.getDataTypeId());
         assertFalse(fd.returnsBag());
         assertEquals(new Integer(2), fd.getNumArgs());
@@ -641,13 +663,13 @@ public class FunctionDefinitionComparisonTest {
     @Test
     public void testDouble_LT() {
 
-        FunctionDefinitionComparison<?> fd = (FunctionDefinitionComparison<?>) StdFunctions.FD_DOUBLE_LESS_THAN;
+        FunctionDefinitionComparison<?> fd = (FunctionDefinitionComparison<?>)StdFunctions.FD_DOUBLE_LESS_THAN;
 
         // check identity and type of the thing created
         assertEquals(XACML3.ID_FUNCTION_DOUBLE_LESS_THAN, fd.getId());
         assertEquals(DataTypes.DT_DOUBLE.getId(), fd.getDataTypeArgs().getId());
 
-        // just to be safe...  If tests take too long these can probably be eliminated
+        // just to be safe... If tests take too long these can probably be eliminated
         assertEquals(DataTypes.DT_BOOLEAN.getId(), fd.getDataTypeId());
         assertFalse(fd.returnsBag());
         assertEquals(new Integer(2), fd.getNumArgs());
@@ -682,13 +704,13 @@ public class FunctionDefinitionComparisonTest {
     @Test
     public void testDouble_LTE() {
 
-        FunctionDefinitionComparison<?> fd = (FunctionDefinitionComparison<?>) StdFunctions.FD_DOUBLE_LESS_THAN_OR_EQUAL;
+        FunctionDefinitionComparison<?> fd = (FunctionDefinitionComparison<?>)StdFunctions.FD_DOUBLE_LESS_THAN_OR_EQUAL;
 
         // check identity and type of the thing created
         assertEquals(XACML3.ID_FUNCTION_DOUBLE_LESS_THAN_OR_EQUAL, fd.getId());
         assertEquals(DataTypes.DT_DOUBLE.getId(), fd.getDataTypeArgs().getId());
 
-        // just to be safe...  If tests take too long these can probably be eliminated
+        // just to be safe... If tests take too long these can probably be eliminated
         assertEquals(DataTypes.DT_BOOLEAN.getId(), fd.getDataTypeId());
         assertFalse(fd.returnsBag());
         assertEquals(new Integer(2), fd.getNumArgs());
@@ -720,8 +742,6 @@ public class FunctionDefinitionComparisonTest {
         assertFalse(resValue);
     }
 
-
-
     /**
      * Date
      */
@@ -729,13 +749,13 @@ public class FunctionDefinitionComparisonTest {
     @Test
     public void testDate_GT() {
 
-        FunctionDefinitionComparison<?> fd = (FunctionDefinitionComparison<?>) StdFunctions.FD_DATE_GREATER_THAN;
+        FunctionDefinitionComparison<?> fd = (FunctionDefinitionComparison<?>)StdFunctions.FD_DATE_GREATER_THAN;
 
         // check identity and type of the thing created
         assertEquals(XACML3.ID_FUNCTION_DATE_GREATER_THAN, fd.getId());
         assertEquals(DataTypes.DT_DATE.getId(), fd.getDataTypeArgs().getId());
 
-        // just to be safe...  If tests take too long these can probably be eliminated
+        // just to be safe... If tests take too long these can probably be eliminated
         assertEquals(DataTypes.DT_BOOLEAN.getId(), fd.getDataTypeId());
         assertFalse(fd.returnsBag());
         assertEquals(new Integer(2), fd.getNumArgs());
@@ -766,7 +786,7 @@ public class FunctionDefinitionComparisonTest {
         resValue = (Boolean)res.getValue().getValue();
         assertTrue(resValue);
 
-        // test bad args data types?  One with TimeZone and one without
+        // test bad args data types? One with TimeZone and one without
         arguments.clear();
         arguments.add(stringAttr1);
         arguments.add(intAttr1);
@@ -779,22 +799,23 @@ public class FunctionDefinitionComparisonTest {
         arguments.add(attrDateNoTimeZone);
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
-        assertEquals("function:date-greater-than Cannot compare this ISO8601DateTime with non-time-zoned ISO8601DateTime", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
-
+        assertEquals("function:date-greater-than Cannot compare this ISO8601DateTime with non-time-zoned ISO8601DateTime",
+                     res.getStatus().getStatusMessage());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
     }
 
     @Test
     public void testDate_GTE() {
 
-        FunctionDefinitionComparison<?> fd = (FunctionDefinitionComparison<?>) StdFunctions.FD_DATE_GREATER_THAN_OR_EQUAL;
+        FunctionDefinitionComparison<?> fd = (FunctionDefinitionComparison<?>)StdFunctions.FD_DATE_GREATER_THAN_OR_EQUAL;
 
         // check identity and type of the thing created
         assertEquals(XACML3.ID_FUNCTION_DATE_GREATER_THAN_OR_EQUAL, fd.getId());
         assertEquals(DataTypes.DT_DATE.getId(), fd.getDataTypeArgs().getId());
 
-        // just to be safe...  If tests take too long these can probably be eliminated
+        // just to be safe... If tests take too long these can probably be eliminated
         assertEquals(DataTypes.DT_BOOLEAN.getId(), fd.getDataTypeId());
         assertFalse(fd.returnsBag());
         assertEquals(new Integer(2), fd.getNumArgs());
@@ -829,13 +850,13 @@ public class FunctionDefinitionComparisonTest {
     @Test
     public void testDate_LT() {
 
-        FunctionDefinitionComparison<?> fd = (FunctionDefinitionComparison<?>) StdFunctions.FD_DATE_LESS_THAN;
+        FunctionDefinitionComparison<?> fd = (FunctionDefinitionComparison<?>)StdFunctions.FD_DATE_LESS_THAN;
 
         // check identity and type of the thing created
         assertEquals(XACML3.ID_FUNCTION_DATE_LESS_THAN, fd.getId());
         assertEquals(DataTypes.DT_DATE.getId(), fd.getDataTypeArgs().getId());
 
-        // just to be safe...  If tests take too long these can probably be eliminated
+        // just to be safe... If tests take too long these can probably be eliminated
         assertEquals(DataTypes.DT_BOOLEAN.getId(), fd.getDataTypeId());
         assertFalse(fd.returnsBag());
         assertEquals(new Integer(2), fd.getNumArgs());
@@ -870,13 +891,13 @@ public class FunctionDefinitionComparisonTest {
     @Test
     public void testDate_LTE() {
 
-        FunctionDefinitionComparison<?> fd = (FunctionDefinitionComparison<?>) StdFunctions.FD_DATE_LESS_THAN_OR_EQUAL;
+        FunctionDefinitionComparison<?> fd = (FunctionDefinitionComparison<?>)StdFunctions.FD_DATE_LESS_THAN_OR_EQUAL;
 
         // check identity and type of the thing created
         assertEquals(XACML3.ID_FUNCTION_DATE_LESS_THAN_OR_EQUAL, fd.getId());
         assertEquals(DataTypes.DT_DATE.getId(), fd.getDataTypeArgs().getId());
 
-        // just to be safe...  If tests take too long these can probably be eliminated
+        // just to be safe... If tests take too long these can probably be eliminated
         assertEquals(DataTypes.DT_BOOLEAN.getId(), fd.getDataTypeId());
         assertFalse(fd.returnsBag());
         assertEquals(new Integer(2), fd.getNumArgs());
@@ -908,12 +929,6 @@ public class FunctionDefinitionComparisonTest {
         assertFalse(resValue);
     }
 
-
-
-
-
-
-
     /**
      * Time
      */
@@ -921,13 +936,13 @@ public class FunctionDefinitionComparisonTest {
     @Test
     public void testTime_GT() {
 
-        FunctionDefinitionComparison<?> fd = (FunctionDefinitionComparison<?>) StdFunctions.FD_TIME_GREATER_THAN;
+        FunctionDefinitionComparison<?> fd = (FunctionDefinitionComparison<?>)StdFunctions.FD_TIME_GREATER_THAN;
 
         // check identity and type of the thing created
         assertEquals(XACML3.ID_FUNCTION_TIME_GREATER_THAN, fd.getId());
         assertEquals(DataTypes.DT_TIME.getId(), fd.getDataTypeArgs().getId());
 
-        // just to be safe...  If tests take too long these can probably be eliminated
+        // just to be safe... If tests take too long these can probably be eliminated
         assertEquals(DataTypes.DT_BOOLEAN.getId(), fd.getDataTypeId());
         assertFalse(fd.returnsBag());
         assertEquals(new Integer(2), fd.getNumArgs());
@@ -958,7 +973,7 @@ public class FunctionDefinitionComparisonTest {
         resValue = (Boolean)res.getValue().getValue();
         assertTrue(resValue);
 
-        // test bad args data types?  One with TimeZone and one without
+        // test bad args data types? One with TimeZone and one without
         arguments.clear();
         arguments.add(stringAttr1);
         arguments.add(intAttr1);
@@ -971,22 +986,23 @@ public class FunctionDefinitionComparisonTest {
         arguments.add(attrTimeNoTimeZone);
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
-        assertEquals("function:time-greater-than Cannot compare this ISO8601DateTime with non-time-zoned ISO8601DateTime", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
-
+        assertEquals("function:time-greater-than Cannot compare this ISO8601DateTime with non-time-zoned ISO8601DateTime",
+                     res.getStatus().getStatusMessage());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
     }
 
     @Test
     public void testTime_GTE() {
 
-        FunctionDefinitionComparison<?> fd = (FunctionDefinitionComparison<?>) StdFunctions.FD_TIME_GREATER_THAN_OR_EQUAL;
+        FunctionDefinitionComparison<?> fd = (FunctionDefinitionComparison<?>)StdFunctions.FD_TIME_GREATER_THAN_OR_EQUAL;
 
         // check identity and type of the thing created
         assertEquals(XACML3.ID_FUNCTION_TIME_GREATER_THAN_OR_EQUAL, fd.getId());
         assertEquals(DataTypes.DT_TIME.getId(), fd.getDataTypeArgs().getId());
 
-        // just to be safe...  If tests take too long these can probably be eliminated
+        // just to be safe... If tests take too long these can probably be eliminated
         assertEquals(DataTypes.DT_BOOLEAN.getId(), fd.getDataTypeId());
         assertFalse(fd.returnsBag());
         assertEquals(new Integer(2), fd.getNumArgs());
@@ -1021,13 +1037,13 @@ public class FunctionDefinitionComparisonTest {
     @Test
     public void testTime_LT() {
 
-        FunctionDefinitionComparison<?> fd = (FunctionDefinitionComparison<?>) StdFunctions.FD_TIME_LESS_THAN;
+        FunctionDefinitionComparison<?> fd = (FunctionDefinitionComparison<?>)StdFunctions.FD_TIME_LESS_THAN;
 
         // check identity and type of the thing created
         assertEquals(XACML3.ID_FUNCTION_TIME_LESS_THAN, fd.getId());
         assertEquals(DataTypes.DT_TIME.getId(), fd.getDataTypeArgs().getId());
 
-        // just to be safe...  If tests take too long these can probably be eliminated
+        // just to be safe... If tests take too long these can probably be eliminated
         assertEquals(DataTypes.DT_BOOLEAN.getId(), fd.getDataTypeId());
         assertFalse(fd.returnsBag());
         assertEquals(new Integer(2), fd.getNumArgs());
@@ -1062,13 +1078,13 @@ public class FunctionDefinitionComparisonTest {
     @Test
     public void testTime_LTE() {
 
-        FunctionDefinitionComparison<?> fd = (FunctionDefinitionComparison<?>) StdFunctions.FD_TIME_LESS_THAN_OR_EQUAL;
+        FunctionDefinitionComparison<?> fd = (FunctionDefinitionComparison<?>)StdFunctions.FD_TIME_LESS_THAN_OR_EQUAL;
 
         // check identity and type of the thing created
         assertEquals(XACML3.ID_FUNCTION_TIME_LESS_THAN_OR_EQUAL, fd.getId());
         assertEquals(DataTypes.DT_TIME.getId(), fd.getDataTypeArgs().getId());
 
-        // just to be safe...  If tests take too long these can probably be eliminated
+        // just to be safe... If tests take too long these can probably be eliminated
         assertEquals(DataTypes.DT_BOOLEAN.getId(), fd.getDataTypeId());
         assertFalse(fd.returnsBag());
         assertEquals(new Integer(2), fd.getNumArgs());
@@ -1100,23 +1116,19 @@ public class FunctionDefinitionComparisonTest {
         assertFalse(resValue);
     }
 
-
-
-
-
     /**
      * Time-in-range
      */
     @Test
     public void testTime_in_range() {
 
-        FunctionDefinitionTimeInRange<?> fd = (FunctionDefinitionTimeInRange<?>) StdFunctions.FD_TIME_IN_RANGE;
+        FunctionDefinitionTimeInRange<?> fd = (FunctionDefinitionTimeInRange<?>)StdFunctions.FD_TIME_IN_RANGE;
 
         // check identity and type of the thing created
         assertEquals(XACML3.ID_FUNCTION_TIME_IN_RANGE, fd.getId());
         assertEquals(DataTypes.DT_TIME.getId(), fd.getDataTypeArgs().getId());
 
-        // just to be safe...  If tests take too long these can probably be eliminated
+        // just to be safe... If tests take too long these can probably be eliminated
         assertEquals(DataTypes.DT_BOOLEAN.getId(), fd.getDataTypeId());
         assertFalse(fd.returnsBag());
         assertEquals(new Integer(3), fd.getNumArgs());
@@ -1167,7 +1179,8 @@ public class FunctionDefinitionComparisonTest {
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
         assertEquals("function:time-in-range Expected 3 arguments, got 2", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
         arguments.clear();
         arguments.add(attrDateTimeWithTimeZone);
@@ -1175,15 +1188,12 @@ public class FunctionDefinitionComparisonTest {
         arguments.add(intAttr1);
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
-        assertEquals("function:time-in-range Expected data type 'time' saw 'dateTime' at arg index 0", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
+        assertEquals("function:time-in-range Expected data type 'time' saw 'dateTime' at arg index 0", res
+            .getStatus().getStatusMessage());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
     }
-
-
-
-
-
 
     /**
      * DateTime
@@ -1192,13 +1202,13 @@ public class FunctionDefinitionComparisonTest {
     @Test
     public void testDateTime_GT() {
 
-        FunctionDefinitionComparison<?> fd = (FunctionDefinitionComparison<?>) StdFunctions.FD_DATETIME_GREATER_THAN;
+        FunctionDefinitionComparison<?> fd = (FunctionDefinitionComparison<?>)StdFunctions.FD_DATETIME_GREATER_THAN;
 
         // check identity and type of the thing created
         assertEquals(XACML3.ID_FUNCTION_DATETIME_GREATER_THAN, fd.getId());
         assertEquals(DataTypes.DT_DATETIME.getId(), fd.getDataTypeArgs().getId());
 
-        // just to be safe...  If tests take too long these can probably be eliminated
+        // just to be safe... If tests take too long these can probably be eliminated
         assertEquals(DataTypes.DT_BOOLEAN.getId(), fd.getDataTypeId());
         assertFalse(fd.returnsBag());
         assertEquals(new Integer(2), fd.getNumArgs());
@@ -1229,7 +1239,7 @@ public class FunctionDefinitionComparisonTest {
         resValue = (Boolean)res.getValue().getValue();
         assertTrue(resValue);
 
-        // test bad args data types?  One with TimeZone and one without
+        // test bad args data types? One with TimeZone and one without
         arguments.clear();
         arguments.add(stringAttr1);
         arguments.add(intAttr1);
@@ -1242,22 +1252,23 @@ public class FunctionDefinitionComparisonTest {
         arguments.add(attrDateTimeNoTimeZone);
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
-        assertEquals("function:dateTime-greater-than Cannot compare this ISO8601DateTime with non-time-zoned ISO8601DateTime", res.getStatus().getStatusMessage());
-        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode().getStatusCodeValue().stringValue());
-
+        assertEquals("function:dateTime-greater-than Cannot compare this ISO8601DateTime with non-time-zoned ISO8601DateTime",
+                     res.getStatus().getStatusMessage());
+        assertEquals("urn:oasis:names:tc:xacml:1.0:status:processing-error", res.getStatus().getStatusCode()
+            .getStatusCodeValue().stringValue());
 
     }
 
     @Test
     public void testDateTime_GTE() {
 
-        FunctionDefinitionComparison<?> fd = (FunctionDefinitionComparison<?>) StdFunctions.FD_DATETIME_GREATER_THAN_OR_EQUAL;
+        FunctionDefinitionComparison<?> fd = (FunctionDefinitionComparison<?>)StdFunctions.FD_DATETIME_GREATER_THAN_OR_EQUAL;
 
         // check identity and type of the thing created
         assertEquals(XACML3.ID_FUNCTION_DATETIME_GREATER_THAN_OR_EQUAL, fd.getId());
         assertEquals(DataTypes.DT_DATETIME.getId(), fd.getDataTypeArgs().getId());
 
-        // just to be safe...  If tests take too long these can probably be eliminated
+        // just to be safe... If tests take too long these can probably be eliminated
         assertEquals(DataTypes.DT_BOOLEAN.getId(), fd.getDataTypeId());
         assertFalse(fd.returnsBag());
         assertEquals(new Integer(2), fd.getNumArgs());
@@ -1292,13 +1303,13 @@ public class FunctionDefinitionComparisonTest {
     @Test
     public void testDateTime_LT() {
 
-        FunctionDefinitionComparison<?> fd = (FunctionDefinitionComparison<?>) StdFunctions.FD_DATETIME_LESS_THAN;
+        FunctionDefinitionComparison<?> fd = (FunctionDefinitionComparison<?>)StdFunctions.FD_DATETIME_LESS_THAN;
 
         // check identity and type of the thing created
         assertEquals(XACML3.ID_FUNCTION_DATETIME_LESS_THAN, fd.getId());
         assertEquals(DataTypes.DT_DATETIME.getId(), fd.getDataTypeArgs().getId());
 
-        // just to be safe...  If tests take too long these can probably be eliminated
+        // just to be safe... If tests take too long these can probably be eliminated
         assertEquals(DataTypes.DT_BOOLEAN.getId(), fd.getDataTypeId());
         assertFalse(fd.returnsBag());
         assertEquals(new Integer(2), fd.getNumArgs());
@@ -1333,13 +1344,13 @@ public class FunctionDefinitionComparisonTest {
     @Test
     public void testDateTime_LTE() {
 
-        FunctionDefinitionComparison<?> fd = (FunctionDefinitionComparison<?>) StdFunctions.FD_DATETIME_LESS_THAN_OR_EQUAL;
+        FunctionDefinitionComparison<?> fd = (FunctionDefinitionComparison<?>)StdFunctions.FD_DATETIME_LESS_THAN_OR_EQUAL;
 
         // check identity and type of the thing created
         assertEquals(XACML3.ID_FUNCTION_DATETIME_LESS_THAN_OR_EQUAL, fd.getId());
         assertEquals(DataTypes.DT_DATETIME.getId(), fd.getDataTypeArgs().getId());
 
-        // just to be safe...  If tests take too long these can probably be eliminated
+        // just to be safe... If tests take too long these can probably be eliminated
         assertEquals(DataTypes.DT_BOOLEAN.getId(), fd.getDataTypeId());
         assertFalse(fd.returnsBag());
         assertEquals(new Integer(2), fd.getNumArgs());
@@ -1370,7 +1381,5 @@ public class FunctionDefinitionComparisonTest {
         resValue = (Boolean)res.getValue().getValue();
         assertFalse(resValue);
     }
-
-
 
 }

@@ -42,17 +42,14 @@ import org.apache.openaz.xacml.pdp.policy.PolicySetChild;
 import org.apache.openaz.xacml.pdp.policy.Rule;
 
 /**
- * StdCombiningAlgorithmFactory extends {@link org.apache.openaz.xacml.pdp.policy.CombiningAlgorithmFactory} to implement
- * a mapping from {@link org.apache.openaz.xacml.api.Identifier}s to
- * the standard {@link org.apache.openaz.xacml.pdp.policy.CombiningAlgorithm} implementations.
- *
+ * StdCombiningAlgorithmFactory extends {@link com.att.research.xacmlatt.pdp.policy.CombiningAlgorithmFactory}
+ * to implement a mapping from {@link com.att.research.xacml.api.Identifier}s to the standard
+ * {@link com.att.research.xacmlatt.pdp.policy.CombiningAlgorithm} implementations.
  */
 public class StdCombiningAlgorithmFactory extends CombiningAlgorithmFactory {
-    private static Map<Identifier,CombiningAlgorithm<Rule>> 				mapRuleCombiningAlgorithms
-        = new HashMap<Identifier,CombiningAlgorithm<Rule>>();
-    private static Map<Identifier,CombiningAlgorithm<PolicySetChild>> 		mapPolicyCombiningAlgorithms
-        = new HashMap<Identifier,CombiningAlgorithm<PolicySetChild>>();
-    private static boolean needInit	= true;
+    private static Map<Identifier, CombiningAlgorithm<Rule>> mapRuleCombiningAlgorithms = new HashMap<Identifier, CombiningAlgorithm<Rule>>();
+    private static Map<Identifier, CombiningAlgorithm<PolicySetChild>> mapPolicyCombiningAlgorithms = new HashMap<Identifier, CombiningAlgorithm<PolicySetChild>>();
+    private static boolean needInit = true;
 
     protected static void registerRuleCombiningAlgorithm(CombiningAlgorithm<Rule> ruleCombiningAlgorithm) {
         mapRuleCombiningAlgorithms.put(ruleCombiningAlgorithm.getId(), ruleCombiningAlgorithm);
@@ -65,24 +62,24 @@ public class StdCombiningAlgorithmFactory extends CombiningAlgorithmFactory {
     @SuppressWarnings("unchecked")
     private static void initMap() {
         if (needInit) {
-            synchronized(mapRuleCombiningAlgorithms) {
+            synchronized (mapRuleCombiningAlgorithms) {
                 if (needInit) {
-                    needInit	= false;
-                    Field[]	declaredFields	= StdCombiningAlgorithms.class.getFields();
+                    needInit = false;
+                    Field[] declaredFields = StdCombiningAlgorithms.class.getFields();
                     for (Field field : declaredFields) {
-                        if (Modifier.isStatic(field.getModifiers()) &&
-                                Modifier.isPublic(field.getModifiers()) &&
-                                field.getName().startsWith(StdCombiningAlgorithms.PREFIX_CA) &&
-                                CombiningAlgorithm.class.isAssignableFrom(field.getType())
-                           ) {
+                        if (Modifier.isStatic(field.getModifiers())
+                            && Modifier.isPublic(field.getModifiers())
+                            && field.getName().startsWith(StdCombiningAlgorithms.PREFIX_CA)
+                            && CombiningAlgorithm.class.isAssignableFrom(field.getType())) {
                             try {
                                 if (field.getName().startsWith(StdCombiningAlgorithms.PREFIX_RULE)) {
                                     registerRuleCombiningAlgorithm((CombiningAlgorithm<Rule>)field.get(null));
                                 } else if (field.getName().startsWith(StdCombiningAlgorithms.PREFIX_POLICY)) {
-                                    registerPolicyCombiningAlgorithm((CombiningAlgorithm<PolicySetChild>)field.get(null));
+                                    registerPolicyCombiningAlgorithm((CombiningAlgorithm<PolicySetChild>)field
+                                        .get(null));
                                 }
-                            } catch (IllegalAccessException ex) {
-
+                            } catch (IllegalAccessException ex) { // NOPMD
+                                // TODO
                             }
                         }
                     }

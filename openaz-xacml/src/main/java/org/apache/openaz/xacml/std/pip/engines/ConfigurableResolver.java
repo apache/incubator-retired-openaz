@@ -43,22 +43,23 @@ public interface ConfigurableResolver {
      * @param id the <code>String</code> identifier for locating properties for this <code>JDBCResolver</code>
      * @param properties the <code>Properties</code> to search for properties
      * @param defaultIssuer the default issuer value if none is defined specifically.
-     * @throws org.apache.openaz.xacml.api.pip.PIPException if there is an error configuring this <code>JDBCResolver</code>
+     * @throws com.att.research.xacml.api.pip.PIPException if there is an error configuring this
+     *             <code>JDBCResolver</code>
      */
-    public void configure(String id, Properties properties, String defaultIssuer) throws PIPException;
+    void configure(String id, Properties properties, String defaultIssuer) throws PIPException;
 
     /**
      * Adds attributes required by the resolver to return an attribute.
      *
      * @param attributes - A modifiable collection
      */
-    public void	attributesRequired(Collection<PIPRequest> attributes);
+    void attributesRequired(Collection<PIPRequest> attributes);
 
     /**
      * Adds attributes provided by the resolver.
      *
      * @param attributes - A modifiable collection
      */
-    public void	attributesProvided(Collection<PIPRequest> attributes);
+    void attributesProvided(Collection<PIPRequest> attributes);
 
 }

@@ -35,9 +35,8 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 
 /**
- * DOMDocumentRepair provides methods for examining a DOM {@link org.w3c.dom.Document} for XACML document types and doing repair on them.
- * This class supports XACML Request and Response documents.
- *
+ * DOMDocumentRepair provides methods for examining a DOM {@link org.w3c.dom.Document} for XACML document
+ * types and doing repair on them. This class supports XACML Request and Response documents.
  */
 public class DOMDocumentRepair {
     public static class UnsupportedDocumentTypeException extends Exception {
@@ -64,29 +63,32 @@ public class DOMDocumentRepair {
     }
 
     /**
-     * Determines what kind of XACML document is represented by the given <code>Document</code> and
-     * attempts to repair it.
+     * Determines what kind of XACML document is represented by the given <code>Document</code> and attempts
+     * to repair it.
      *
      * @param document the <code>Document</code> to check
      * @return true if any repairs were made in the <code>Document</code>, else false
      * @throws DOMStructureException if there were unrecoverable errors found
-     * @throws org.apache.openaz.xacml.std.dom.DOMDocumentRepair.UnsupportedDocumentTypeException if the root element is not a XACML Request or Response.
+     * @throws com.att.research.xacml.std.dom.DOMDocumentRepair.UnsupportedDocumentTypeException if the root
+     *             element is not a XACML Request or Response.
      */
     public boolean repair(Document document) throws DOMStructureException, UnsupportedDocumentTypeException {
-        Node firstChild	= DOMUtil.getFirstChildElement(document);
+        Node firstChild = DOMUtil.getFirstChildElement(document);
         if (firstChild == null || !DOMUtil.isElement(firstChild)) {
             return false;
         }
 
         if (!DOMUtil.isInNamespace(firstChild, XACML3.XMLNS)) {
-            throw new UnsupportedDocumentTypeException("Not a XACML document: " + DOMUtil.getNodeLabel(firstChild));
+            throw new UnsupportedDocumentTypeException("Not a XACML document: "
+                                                       + DOMUtil.getNodeLabel(firstChild));
         }
         if (XACML3.ELEMENT_REQUEST.equals(firstChild.getLocalName())) {
             return this.repairRequest(firstChild);
         } else if (XACML3.ELEMENT_RESPONSE.equals(firstChild.getLocalName())) {
             return this.repairResponse(firstChild);
         } else {
-            throw new UnsupportedDocumentTypeException("Not a XACML Request or Response: " + DOMUtil.getNodeLabel(firstChild));
+            throw new UnsupportedDocumentTypeException("Not a XACML Request or Response: "
+                                                       + DOMUtil.getNodeLabel(firstChild));
         }
     }
 

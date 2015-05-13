@@ -45,16 +45,16 @@ import org.apache.openaz.xacml.std.StdStatusCode;
 import org.apache.openaz.xacml.util.StringUtils;
 
 /**
- * AnyOf extends {@link org.apache.openaz.xacml.pdp.policy.PolicyComponent} and implements the {@link com.att.research.xacmlatt.pdp.policy.Matchable}
- * interface to represent XACML AllOf elements in a XACML Target.
- *
+ * AnyOf extends {@link com.att.research.xacmlatt.pdp.policy.PolicyComponent} and implements the
+ * {@link com.att.research.xacmlatt.pdp.policy.Matchable} interface to represent XACML AllOf elements in a
+ * XACML Target.
  */
 public class AllOf extends PolicyComponent implements Matchable {
-    private List<Match>	matches;
+    private List<Match> matches;
 
     protected List<Match> getMatchList(boolean bNoNulls) {
         if (this.matches == null && bNoNulls) {
-            this.matches	= new ArrayList<Match>();
+            this.matches = new ArrayList<Match>();
         }
         return this.matches;
     }
@@ -88,12 +88,12 @@ public class AllOf extends PolicyComponent implements Matchable {
     }
 
     public void addMatch(Match match) {
-        List<Match> matchList	= this.getMatchList(true);
+        List<Match> matchList = this.getMatchList(true);
         matchList.add(match);
     }
 
     public void addMatches(Collection<Match> matchesIn) {
-        List<Match> matchList	= this.getMatchList(true);
+        List<Match> matchList = this.getMatchList(true);
         matchList.addAll(matchesIn);
     }
 
@@ -102,17 +102,17 @@ public class AllOf extends PolicyComponent implements Matchable {
         if (!this.validate()) {
             return new MatchResult(new StdStatus(this.getStatusCode(), this.getStatusMessage()));
         }
-        Iterator<Match> iterMatches	= this.getMatches();
-        assert(iterMatches != null && iterMatches.hasNext());
+        Iterator<Match> iterMatches = this.getMatches();
+        assert iterMatches != null && iterMatches.hasNext();
 
-        MatchResult matchResultFallThrough	= MatchResult.MM_MATCH;
+        MatchResult matchResultFallThrough = MatchResult.MM_MATCH;
         while (iterMatches.hasNext()) {
-            MatchResult matchResultMatch	= iterMatches.next().match(evaluationContext);
-            assert(matchResultMatch != null);
-            switch(matchResultMatch.getMatchCode()) {
+            MatchResult matchResultMatch = iterMatches.next().match(evaluationContext);
+            assert matchResultMatch != null;
+            switch (matchResultMatch.getMatchCode()) {
             case INDETERMINATE:
                 if (matchResultFallThrough.getMatchCode() != MatchResult.MatchCode.INDETERMINATE) {
-                    matchResultFallThrough	= matchResultMatch;
+                    matchResultFallThrough = matchResultMatch;
                 }
                 break;
             case MATCH:
@@ -126,7 +126,7 @@ public class AllOf extends PolicyComponent implements Matchable {
 
     @Override
     protected boolean validateComponent() {
-        Iterator<Match>	iterMatches	= this.getMatches();
+        Iterator<Match> iterMatches = this.getMatches();
         if (iterMatches == null || !iterMatches.hasNext()) {
             this.setStatus(StdStatusCode.STATUS_CODE_SYNTAX_ERROR, "Missing matches");
             return false;
@@ -138,11 +138,11 @@ public class AllOf extends PolicyComponent implements Matchable {
 
     @Override
     public String toString() {
-        StringBuilder stringBuilder	= new StringBuilder("{");
+        StringBuilder stringBuilder = new StringBuilder("{");
         stringBuilder.append("super=");
         stringBuilder.append(super.toString());
 
-        String stringMatches	= StringUtils.toString(this.getMatches());
+        String stringMatches = StringUtils.toString(this.getMatches());
         if (stringMatches != null) {
             stringBuilder.append(",matches=");
             stringBuilder.append(stringMatches);

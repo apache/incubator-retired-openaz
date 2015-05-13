@@ -30,18 +30,18 @@ import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class TestDataTypes {
 
     private PepAgentFactory pepAgentFactory;
 
     @Before
     public void setup() {
-        /*System.setProperty("xacml.properties" ,
-                        getClass().getClassLoader().getResource("properties/testdatatypes.xacml.properties").getPath());*/
+        /*
+         * System.setProperty("xacml.properties" ,
+         * getClass().getClassLoader().getResource("properties/testdatatypes.xacml.properties").getPath());
+         */
         pepAgentFactory = new StdPepAgentFactory("/properties/testdatatypes.xacml.properties");
     }
-
 
     /**
      *
@@ -50,7 +50,6 @@ public class TestDataTypes {
     public void testPepAgent() {
         Assert.assertNotNull(getPepAgent());
     }
-
 
     /**
      *
@@ -65,7 +64,6 @@ public class TestDataTypes {
         Assert.assertEquals(true, response.allowed());
     }
 
-
     /**
      *
      */
@@ -78,7 +76,6 @@ public class TestDataTypes {
         Assert.assertNotNull(response);
         Assert.assertEquals(true, response.allowed());
     }
-
 
     /**
      *
@@ -94,7 +91,7 @@ public class TestDataTypes {
 
         List<PepResponse> responses = getPepAgent().bulkDecide(resources, action, subject);
         Assert.assertNotNull(responses);
-        for(PepResponse response: responses) {
+        for (PepResponse response : responses) {
             Assert.assertEquals(true, response.allowed());
         }
     }

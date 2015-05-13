@@ -11,10 +11,10 @@
  * limitations under the License.
  *
  * Authors:
- * 	  1.1 (2011): Rich Levinson, Prateek Mishra (Oracle)
- * 	  1.0 (2009): Josh Bregman, Rich Levinson, Prateek Mishra (Oracle)
+ *        1.1 (2011): Rich Levinson, Prateek Mishra (Oracle)
+ *        1.0 (2009): Josh Bregman, Rich Levinson, Prateek Mishra (Oracle)
  * Contributor:
- * 	  Rich Levinson (Oracle)
+ *        Rich Levinson (Oracle)
  */
 package org.apache.openaz.pepapi;
 
@@ -27,21 +27,19 @@ import java.util.List;
 public interface PepRequestFactory {
 
     /**
-     *
      * @return
      * @throws org.apache.openaz.pepapi.PepException, if no ObjectMappers found.
      * @throws IllegalArgumentException,, if any argument is null.
      */
-    public PepRequest newPepRequest(Object[] objects);
+    PepRequest newPepRequest(Object[] objects);
 
     /**
-     *
      * @param associations
      * @param objects
      * @return
      * @throws org.apache.openaz.pepapi.PepException, if ObjectMappers are not found.
      * @throws IllegalArgumentException,, if the arguments are null.
      */
-    public PepRequest newBulkPepRequest(List<?> associations, Object[] objects);
+    PepRequest newBulkPepRequest(List<?> associations, Object[] objects);
 
 }

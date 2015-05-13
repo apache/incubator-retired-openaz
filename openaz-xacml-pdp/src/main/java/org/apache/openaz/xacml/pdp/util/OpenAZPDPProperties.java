@@ -35,10 +35,10 @@ import org.apache.openaz.xacml.std.IdentifierImpl;
 import org.apache.openaz.xacml.util.XACMLProperties;
 
 public class OpenAZPDPProperties extends XACMLProperties {
-    public static final String PROP_EVALUATIONCONTEXTFACTORY	= "xacml.openaz.evaluationContextFactory";
-    public static final String PROP_COMBININGALGORITHMFACTORY	= "xacml.openaz.combiningAlgorithmFactory";
-    public static final String PROP_FUNCTIONDEFINITIONFACTORY	= "xacml.openaz.functionDefinitionFactory";
-    public static final String PROP_POLICYFINDERFACTORY			= "xacml.openaz.policyFinderFactory";
+    public static final String PROP_EVALUATIONCONTEXTFACTORY = "xacml.openaz.evaluationContextFactory";
+    public static final String PROP_COMBININGALGORITHMFACTORY = "xacml.openaz.combiningAlgorithmFactory";
+    public static final String PROP_FUNCTIONDEFINITIONFACTORY = "xacml.openaz.functionDefinitionFactory";
+    public static final String PROP_POLICYFINDERFACTORY = "xacml.openaz.policyFinderFactory";
     public static final String PROP_POLICYFINDERFACTORY_COMBINEROOTPOLICIES = "xacml.openaz.policyFinderFactory.combineRootPolicies";
 
     public static final Identifier ID_POLICY_COMBINEDPERMITOVERRIDES = new IdentifierImpl("urn:org:apache:openaz:xacml:3.0:policy-combining-algorithm:combined-permit-overrides");

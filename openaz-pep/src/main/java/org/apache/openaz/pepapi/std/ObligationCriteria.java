@@ -38,8 +38,8 @@ public final class ObligationCriteria implements Matchable<Obligation> {
 
     @Override
     public boolean match(Obligation obligation) {
-        for(ObligationCriterion criterion: criteria) {
-            if(!criterion.match(obligation)) {
+        for (ObligationCriterion criterion : criteria) {
+            if (!criterion.match(obligation)) {
                 return false;
             }
         }

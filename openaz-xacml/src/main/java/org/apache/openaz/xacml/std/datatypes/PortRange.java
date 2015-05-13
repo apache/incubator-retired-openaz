@@ -25,13 +25,12 @@ import java.text.ParseException;
 import org.apache.openaz.xacml.api.SemanticString;
 
 /**
- * PortRange represents the optional range of port values for an <code>IPAddress</code>.  A value of -1
- * for either port represents the limit for port numbers (min or max) in the given addressing scheme.
- *
+ * PortRange represents the optional range of port values for an <code>IPAddress</code>. A value of -1 for
+ * either port represents the limit for port numbers (min or max) in the given addressing scheme.
  */
 public final class PortRange implements SemanticString {
-    private int	portMin;
-    private int	portMax;
+    private int portMin;
+    private int portMax;
 
     /**
      * Creates a new <code>PortRange</code> with the given range of ports.
@@ -40,8 +39,8 @@ public final class PortRange implements SemanticString {
      * @param portMaxIn the maximum port number of the range
      */
     public PortRange(int portMinIn, int portMaxIn) {
-        this.portMin	= portMinIn;
-        this.portMax	= portMaxIn;
+        this.portMin = portMinIn;
+        this.portMax = portMaxIn;
     }
 
     /**
@@ -55,19 +54,19 @@ public final class PortRange implements SemanticString {
         if (stringPortRange == null) {
             return null;
         }
-        String[]	portParts	= stringPortRange.split("[-]", -1);
+        String[] portParts = stringPortRange.split("[-]", -1);
         if (portParts == null || portParts.length == 0) {
             return null;
         } else if (portParts.length > 2) {
             throw new ParseException("Invalid PortRange \"" + stringPortRange + "\": too many ranges", 0);
         }
-        int[]		rangeParts	= new int[portParts.length];
+        int[] rangeParts = new int[portParts.length];
         try {
-            for (int i = 0 ; i < portParts.length ; i++) {
+            for (int i = 0; i < portParts.length; i++) {
                 if (portParts[i].length() == 0) {
-                    rangeParts[i]	= -1;
+                    rangeParts[i] = -1;
                 } else {
-                    rangeParts[i]	= Integer.parseInt(portParts[i]);
+                    rangeParts[i] = Integer.parseInt(portParts[i]);
                 }
             }
         } catch (NumberFormatException ex) {
@@ -83,6 +82,7 @@ public final class PortRange implements SemanticString {
     public int getPortMin() {
         return this.portMin;
     }
+
     public int getPortMax() {
         return this.portMax;
     }
@@ -97,9 +97,9 @@ public final class PortRange implements SemanticString {
 
     @Override
     public String stringValue() {
-        StringBuilder	stringBuilder	= new StringBuilder();
-        int	pMin	= this.getPortMin();
-        int pMax	= this.getPortMax();
+        StringBuilder stringBuilder = new StringBuilder();
+        int pMin = this.getPortMin();
+        int pMax = this.getPortMax();
         if (pMin >= 0) {
             stringBuilder.append(pMin);
         }
@@ -112,12 +112,12 @@ public final class PortRange implements SemanticString {
 
     @Override
     public int hashCode() {
-        int	hc	= 0;
+        int hc = 0;
         if (this.getPortMax() > 0) {
-            hc	+= this.getPortMax();
+            hc += this.getPortMax();
         }
         if (this.getPortMin() > 0) {
-            hc	+= this.getPortMax();
+            hc += this.getPortMax();
         }
         return hc;
     }
@@ -129,16 +129,14 @@ public final class PortRange implements SemanticString {
         } else if (obj == this) {
             return true;
         } else {
-            PortRange	portRange	= (PortRange)obj;
-            return (this.getPortMax() == portRange.getPortMax() && this.getPortMin() == portRange.getPortMin());
+            PortRange portRange = (PortRange)obj;
+            return (this.getPortMax() == portRange.getPortMax() && this.getPortMin() == portRange
+                .getPortMin());
         }
     }
 
     @Override
     public String toString() {
-        return "{" +
-               "portMin=" + this.getPortMin() +
-               "portMax=" + this.getPortMax() +
-               "}";
+        return "{" + "portMin=" + this.getPortMin() + "portMax=" + this.getPortMax() + "}";
     }
 }

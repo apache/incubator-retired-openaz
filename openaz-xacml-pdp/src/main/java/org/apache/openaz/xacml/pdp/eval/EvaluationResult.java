@@ -42,8 +42,8 @@ import org.apache.openaz.xacml.api.Status;
 import org.apache.openaz.xacml.std.StdMutableResult;
 
 /**
- * EvaluationResult extends {@link org.apache.openaz.xacml.std.StdMutableResult} with methods useful within a PDP implementation
- *
+ * EvaluationResult extends {@link com.att.research.xacml.std.StdMutableResult} with methods useful within a
+ * PDP implementation
  */
 public class EvaluationResult extends StdMutableResult {
     public EvaluationResult() {
@@ -62,24 +62,23 @@ public class EvaluationResult extends StdMutableResult {
         super(decisionIn);
     }
 
-    public EvaluationResult(Decision decisionIn,
-                            Collection<Obligation> obligationsIn,
-                            Collection<Advice> adviceIn,
-                            Collection<AttributeCategory> attributesIn,
+    public EvaluationResult(Decision decisionIn, Collection<Obligation> obligationsIn,
+                            Collection<Advice> adviceIn, Collection<AttributeCategory> attributesIn,
                             Collection<IdReference> policyIdentifiersIn,
                             Collection<IdReference> policySetIdentifiersIn) {
         super(decisionIn, obligationsIn, adviceIn, attributesIn, policyIdentifiersIn, policySetIdentifiersIn);
     }
 
     /**
-     * Creates an <code>EvaluationResult</code> generally from a {@link org.apache.openaz.xacml.pdp.policy.Rule} <code>evaluation</code>
-     * call.
+     * Creates an <code>EvaluationResult</code> generally from a
+     * {@link com.att.research.xacmlatt.pdp.policy.Rule} <code>evaluation</code> call.
      *
      * @param decisionIn the <code>Decision</code>
      * @param obligationsIn the <code>Collection</code> of <code>Obligation</code>s
      * @param adviceIn the <code>Collection</code> of <code>Advice</code> objects
      */
-    public EvaluationResult(Decision decisionIn, Collection<Obligation> obligationsIn, Collection<Advice> adviceIn) {
+    public EvaluationResult(Decision decisionIn, Collection<Obligation> obligationsIn,
+                            Collection<Advice> adviceIn) {
         super(decisionIn, obligationsIn, adviceIn, null, null, null);
     }
 

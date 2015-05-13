@@ -25,7 +25,6 @@
 // Generated on: 2013.05.23 at 02:47:00 PM EDT
 //
 
-
 package oasis.names.tc.xacml._3_0.core.schema.wd_17;
 
 import java.util.ArrayList;
@@ -37,11 +36,11 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
-
 /**
- * <p>Java class for RequestType complex type.
- *
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>
+ * Java class for RequestType complex type.
+ * <p>
+ * The following schema fragment specifies the expected content contained within this class.
  *
  * <pre>
  * &lt;complexType name="RequestType">
@@ -58,14 +57,10 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- *
- *
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "RequestType", propOrder = {
-    "requestDefaults",
-    "attributes",
-    "multiRequests"
+                                            "requestDefaults", "attributes", "multiRequests"
 })
 public class RequestType {
 
@@ -83,10 +78,7 @@ public class RequestType {
     /**
      * Gets the value of the requestDefaults property.
      *
-     * @return
-     *     possible object is
-     *     {@link RequestDefaultsType }
-     *
+     * @return possible object is {@link RequestDefaultsType }
      */
     public RequestDefaultsType getRequestDefaults() {
         return requestDefaults;
@@ -95,10 +87,7 @@ public class RequestType {
     /**
      * Sets the value of the requestDefaults property.
      *
-     * @param value
-     *     allowed object is
-     *     {@link RequestDefaultsType }
-     *
+     * @param value allowed object is {@link RequestDefaultsType }
      */
     public void setRequestDefaults(RequestDefaultsType value) {
         this.requestDefaults = value;
@@ -106,25 +95,18 @@ public class RequestType {
 
     /**
      * Gets the value of the attributes property.
-     *
      * <p>
-     * This accessor method returns a reference to the live list,
-     * not a snapshot. Therefore any modification you make to the
-     * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the attributes property.
-     *
+     * This accessor method returns a reference to the live list, not a snapshot. Therefore any modification
+     * you make to the returned list will be present inside the JAXB object. This is why there is not a
+     * <CODE>set</CODE> method for the attributes property.
      * <p>
      * For example, to add a new item, do as follows:
+     * 
      * <pre>
-     *    getAttributes().add(newItem);
+     * getAttributes().add(newItem);
      * </pre>
-     *
-     *
      * <p>
-     * Objects of the following type(s) are allowed in the list
-     * {@link AttributesType }
-     *
-     *
+     * Objects of the following type(s) are allowed in the list {@link AttributesType }
      */
     public List<AttributesType> getAttributes() {
         if (attributes == null) {
@@ -136,10 +118,7 @@ public class RequestType {
     /**
      * Gets the value of the multiRequests property.
      *
-     * @return
-     *     possible object is
-     *     {@link MultiRequestsType }
-     *
+     * @return possible object is {@link MultiRequestsType }
      */
     public MultiRequestsType getMultiRequests() {
         return multiRequests;
@@ -148,10 +127,7 @@ public class RequestType {
     /**
      * Sets the value of the multiRequests property.
      *
-     * @param value
-     *     allowed object is
-     *     {@link MultiRequestsType }
-     *
+     * @param value allowed object is {@link MultiRequestsType }
      */
     public void setMultiRequests(MultiRequestsType value) {
         this.multiRequests = value;
@@ -159,7 +135,6 @@ public class RequestType {
 
     /**
      * Gets the value of the returnPolicyIdList property.
-     *
      */
     public boolean isReturnPolicyIdList() {
         return returnPolicyIdList;
@@ -167,7 +142,6 @@ public class RequestType {
 
     /**
      * Sets the value of the returnPolicyIdList property.
-     *
      */
     public void setReturnPolicyIdList(boolean value) {
         this.returnPolicyIdList = value;
@@ -175,7 +149,6 @@ public class RequestType {
 
     /**
      * Gets the value of the combinedDecision property.
-     *
      */
     public boolean isCombinedDecision() {
         return combinedDecision;
@@ -183,7 +156,6 @@ public class RequestType {
 
     /**
      * Sets the value of the combinedDecision property.
-     *
      */
     public void setCombinedDecision(boolean value) {
         this.combinedDecision = value;

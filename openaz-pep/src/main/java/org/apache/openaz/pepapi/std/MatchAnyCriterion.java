@@ -20,7 +20,6 @@
 
 package org.apache.openaz.pepapi.std;
 
-
 import org.apache.openaz.pepapi.Obligation;
 
 public final class MatchAnyCriterion implements ObligationCriterion {

@@ -44,25 +44,25 @@ import org.apache.openaz.xacml.util.StringUtils;
 import org.apache.openaz.xacml.util.XACMLProperties;
 
 /**
- * ConformanceRepository represents one or more policies for a single policy test, which will include one or more root policies, and
- * zero or more referenced policies.
- *
+ * ConformanceRepository represents one or more policies for a single policy test, which will include one or
+ * more root policies, and zero or more referenced policies.
  */
 public class ConformanceRepository {
-    private List<File> rootPolicies			= new ArrayList<File>();
-    private List<File> referencedPolicies	= new ArrayList<File>();
+    private List<File> rootPolicies = new ArrayList<File>();
+    private List<File> referencedPolicies = new ArrayList<File>();
 
     private void setXACMLProperty(String propertyName, List<File> listFiles) {
-        Iterator<File> iterFiles			= listFiles.iterator();
-        StringBuilder stringBuilderIdList	= new StringBuilder();
+        Iterator<File> iterFiles = listFiles.iterator();
+        StringBuilder stringBuilderIdList = new StringBuilder();
         while (iterFiles.hasNext()) {
-            File file	= iterFiles.next();
+            File file = iterFiles.next();
             if (stringBuilderIdList.length() > 0) {
                 stringBuilderIdList.append(',');
             }
             stringBuilderIdList.append(file.getName());
 
-            XACMLProperties.setProperty(file.getName() + StdPolicyFinderFactory.PROP_FILE, file.getAbsolutePath());
+            XACMLProperties.setProperty(file.getName() + StdPolicyFinderFactory.PROP_FILE,
+                                        file.getAbsolutePath());
         }
         XACMLProperties.setProperty(propertyName, stringBuilderIdList.toString());
     }
@@ -80,12 +80,12 @@ public class ConformanceRepository {
     }
 
     private void loadProperty(File fileDir, Properties properties, String propertyName, List<File> listFiles) {
-        String fileNameList	= properties.getProperty(propertyName);
+        String fileNameList = properties.getProperty(propertyName);
         if (fileNameList != null) {
-            String[] fileNameArray	= fileNameList.split("[,]",0);
+            String[] fileNameArray = fileNameList.split("[,]", 0);
             if (fileNameArray != null && fileNameArray.length > 0) {
                 for (String fileName : fileNameArray) {
-                    File file	= new File(fileDir, fileName);
+                    File file = new File(fileDir, fileName);
                     if (file.exists() && file.canRead()) {
                         listFiles.add(file);
                     }
@@ -95,12 +95,14 @@ public class ConformanceRepository {
     }
 
     public void load(File fileRepository) throws IOException {
-        Properties propertiesRepository	= new Properties();
+        Properties propertiesRepository = new Properties();
         try (InputStream is = new FileInputStream(fileRepository)) {
             propertiesRepository.load(is);
         }
-        this.loadProperty(fileRepository.getParentFile(), propertiesRepository, XACMLProperties.PROP_ROOTPOLICIES, this.rootPolicies);
-        this.loadProperty(fileRepository.getParentFile(), propertiesRepository, XACMLProperties.PROP_REFERENCEDPOLICIES, this.referencedPolicies);
+        this.loadProperty(fileRepository.getParentFile(), propertiesRepository,
+                          XACMLProperties.PROP_ROOTPOLICIES, this.rootPolicies);
+        this.loadProperty(fileRepository.getParentFile(), propertiesRepository,
+                          XACMLProperties.PROP_REFERENCEDPOLICIES, this.referencedPolicies);
     }
 
     public void addRootPolicy(File filePolicy) {
@@ -113,13 +115,13 @@ public class ConformanceRepository {
 
     @Override
     public String toString() {
-        StringBuilder stringBuilder	= new StringBuilder("{");
-        boolean needComma			= false;
+        StringBuilder stringBuilder = new StringBuilder("{");
+        boolean needComma = false;
 
         if (this.rootPolicies != null && this.rootPolicies.size() > 0) {
             stringBuilder.append("rootPolicies=");
             stringBuilder.append(StringUtils.toString(this.rootPolicies.iterator()));
-            needComma	= true;
+            needComma = true;
         }
         if (this.referencedPolicies != null && this.referencedPolicies.size() > 0) {
             if (needComma) {
@@ -127,7 +129,7 @@ public class ConformanceRepository {
             }
             stringBuilder.append("referencedPolicies=");
             stringBuilder.append(StringUtils.toString(this.referencedPolicies.iterator()));
-            needComma	= true;
+            needComma = true;
         }
         stringBuilder.append('}');
         return stringBuilder.toString();

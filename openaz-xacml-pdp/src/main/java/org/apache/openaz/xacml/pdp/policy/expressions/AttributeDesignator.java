@@ -54,9 +54,8 @@ import org.apache.openaz.xacml.std.StdStatusDetail;
 import org.apache.openaz.xacml.std.pip.StdPIPRequest;
 
 /**
- * AttributeDesignator extends {@link com.att.research.xacmlatt.pdp.policy.expression.AttributeRetrievalBase} to represent the
- * XACML AttributeDesignator element.
- *
+ * AttributeDesignator extends {@link com.att.research.xacmlatt.pdp.policy.expression.AttributeRetrievalBase}
+ * to represent the XACML AttributeDesignator element.
  */
 public class AttributeDesignator extends AttributeRetrievalBase {
     private Identifier attributeId;
@@ -67,21 +66,25 @@ public class AttributeDesignator extends AttributeRetrievalBase {
 
     protected PIPRequest getPIPRequest() {
         if (this.pipRequestCached == null) {
-            this.pipRequestCached	= new StdPIPRequest(this.getCategory(), this.getAttributeId(), this.getDataTypeId(), this.getIssuer());
+            this.pipRequestCached = new StdPIPRequest(this.getCategory(), this.getAttributeId(),
+                                                      this.getDataTypeId(), this.getIssuer());
         }
         return this.pipRequestCached;
     }
 
     protected MissingAttributeDetail getMissingAttributeDetail() {
         if (this.missingAttributeDetail == null) {
-            this.missingAttributeDetail	= new StdMutableMissingAttributeDetail(this.getCategory(), this.getAttributeId(), this.getDataTypeId(), this.getIssuer());
+            this.missingAttributeDetail = new StdMutableMissingAttributeDetail(this.getCategory(),
+                                                                               this.getAttributeId(),
+                                                                               this.getDataTypeId(),
+                                                                               this.getIssuer());
         }
         return this.missingAttributeDetail;
     }
 
     protected StatusDetail getStatusDetail() {
         if (this.statusDetail == null) {
-            this.statusDetail	= new StdStatusDetail(this.getMissingAttributeDetail());
+            this.statusDetail = new StdStatusDetail(this.getMissingAttributeDetail());
         }
         return this.statusDetail;
     }
@@ -102,7 +105,7 @@ public class AttributeDesignator extends AttributeRetrievalBase {
     }
 
     public void setAttributeId(Identifier identifierAttributeId) {
-        this.attributeId	= identifierAttributeId;
+        this.attributeId = identifierAttributeId;
     }
 
     public String getIssuer() {
@@ -110,7 +113,7 @@ public class AttributeDesignator extends AttributeRetrievalBase {
     }
 
     public void setIssuer(String issuerIn) {
-        this.issuer	= issuerIn;
+        this.issuer = issuerIn;
     }
 
     @Override
@@ -160,7 +163,8 @@ public class AttributeDesignator extends AttributeRetrievalBase {
     }
 
     @Override
-    public ExpressionResult evaluate(EvaluationContext evaluationContext, PolicyDefaults policyDefaults) throws EvaluationException {
+    public ExpressionResult evaluate(EvaluationContext evaluationContext, PolicyDefaults policyDefaults)
+        throws EvaluationException {
         if (!this.validate()) {
             return ExpressionResult.newInstance(new StdStatus(this.getStatusCode(), this.getStatusMessage()));
         }
@@ -168,24 +172,24 @@ public class AttributeDesignator extends AttributeRetrievalBase {
         /*
          * Set up the PIPRequest representing this
          */
-        PIPRequest pipRequest	= this.getPIPRequest();
-        assert(pipRequest != null);
+        PIPRequest pipRequest = this.getPIPRequest();
+        assert pipRequest != null;
 
         /*
          * Query the evaluation context for results
          */
-        PIPResponse pipResponse	= null;
+        PIPResponse pipResponse = null;
         try {
-            pipResponse	= evaluationContext.getAttributes(pipRequest);
+            pipResponse = evaluationContext.getAttributes(pipRequest);
         } catch (PIPException ex) {
             throw new EvaluationException("PIPException getting Attributes", ex);
         }
-        assert(pipResponse != null);
+        assert pipResponse != null;
 
         /*
          * See if the request was successful
          */
-        Status pipStatus		= pipResponse.getStatus();
+        Status pipStatus = pipResponse.getStatus();
         if (pipStatus != null && !pipStatus.getStatusCode().equals(StdStatusCode.STATUS_CODE_OK)) {
             return ExpressionResult.newInstance(pipStatus);
         }
@@ -193,11 +197,11 @@ public class AttributeDesignator extends AttributeRetrievalBase {
         /*
          * See if there were any results
          */
-        Bag bagAttributeValues				= new Bag();
-        Collection<Attribute> listAttributes	= pipResponse.getAttributes();
+        Bag bagAttributeValues = new Bag();
+        Collection<Attribute> listAttributes = pipResponse.getAttributes();
         for (Attribute attribute : listAttributes) {
             if (this.match(attribute)) {
-                for (AttributeValue<?> attributeValue: attribute.getValues()) {
+                for (AttributeValue<?> attributeValue : attribute.getValues()) {
                     if (this.match(attributeValue)) {
                         bagAttributeValues.add(attributeValue);
                     }
@@ -205,7 +209,10 @@ public class AttributeDesignator extends AttributeRetrievalBase {
             }
         }
         if (this.getMustBePresent() && bagAttributeValues.size() == 0) {
-            return ExpressionResult.newError(new StdStatus(StdStatusCode.STATUS_CODE_MISSING_ATTRIBUTE, "Missing required attribute", new StdStatusDetail(this.getMissingAttributeDetail())));
+            return ExpressionResult.newError(new StdStatus(StdStatusCode.STATUS_CODE_MISSING_ATTRIBUTE,
+                                                           "Missing required attribute",
+                                                           new StdStatusDetail(this
+                                                               .getMissingAttributeDetail())));
         } else {
             return ExpressionResult.newBag(bagAttributeValues);
         }
@@ -213,7 +220,7 @@ public class AttributeDesignator extends AttributeRetrievalBase {
 
     @Override
     public String toString() {
-        StringBuilder stringBuilder	= new StringBuilder("{");
+        StringBuilder stringBuilder = new StringBuilder("{");
 
         stringBuilder.append("super=");
         stringBuilder.append(super.toString());

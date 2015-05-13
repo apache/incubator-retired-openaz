@@ -32,7 +32,6 @@ import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
-
 public class TestAnnotatedHandlerRegistration {
 
     @SuppressWarnings("unused")
@@ -40,22 +39,19 @@ public class TestAnnotatedHandlerRegistration {
 
     private PepAgentFactory pepAgentFactory;
 
-    //TODO: Need to wire
+    // TODO: Need to wire
     private AnnotatedFilteringObligationHandler filterHandler;
 
-    //TODO: Need to wire
+    // TODO: Need to wire
     private AnnotatedRedactionObligationHandler redactionHandler;
 
-    //TODO: Need to wire
+    // TODO: Need to wire
     private AnnotatedCatchAllObligationHandler catchAllHandler;
-
 
     @Before
     public void setup() {
         pepAgentFactory = new StdPepAgentFactory("xacml.properties");
     }
-
-
 
     /**
      *
@@ -66,8 +62,6 @@ public class TestAnnotatedHandlerRegistration {
         Assert.assertNotNull(getPepAgent());
     }
 
-
-
     /**
      *
      */
@@ -77,7 +71,7 @@ public class TestAnnotatedHandlerRegistration {
         Subject subject = Subject.newInstance("John Smith");
         subject.addAttribute("urn:oasis:names:tc:xacml:1.0:subject:age", "45");
         PepResponse response = getPepAgent().decide(subject, Action.newInstance("view"),
-                               Resource.newInstance("resource1"));
+                                                    Resource.newInstance("resource1"));
         Assert.assertNotNull(response);
         Assert.assertEquals(true, response.allowed());
         filterHandler.enforce();

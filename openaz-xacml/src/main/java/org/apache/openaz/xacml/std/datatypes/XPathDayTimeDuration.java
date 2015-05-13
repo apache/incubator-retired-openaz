@@ -33,12 +33,11 @@ package org.apache.openaz.xacml.std.datatypes;
 import java.text.ParseException;
 
 /**
- * XPathDayTimeDuration extends {@link ISO8601Duration} to restrict values
- * to day and time components only, and then provides for ordering based on canonical duration in fractional seconds.
- *
+ * XPathDayTimeDuration extends {@link ISO8601Duration} to restrict values to day and time components only,
+ * and then provides for ordering based on canonical duration in fractional seconds.
  */
 public class XPathDayTimeDuration extends ISO8601Duration implements Comparable<XPathDayTimeDuration> {
-    private double	fractionalSeconds;
+    private double fractionalSeconds;
 
     /**
      * Creates a new XPathDayTimeDuration with the given sign, days, hours, minutes, and seconds.
@@ -51,12 +50,9 @@ public class XPathDayTimeDuration extends ISO8601Duration implements Comparable<
      */
     public XPathDayTimeDuration(int durationSignIn, int daysIn, int hoursIn, int minutesIn, double secondsIn) {
         super(durationSignIn, 0, 0, daysIn, hoursIn, minutesIn, secondsIn);
-        fractionalSeconds	= this.getDurationSign() * (
-                                  this.getDays() * 24 * 60 * 60 +
-                                  this.getHours() * 60 * 60 +
-                                  this.getMinutes() * 60 +
-                                  this.getFractionalSecs()
-                              );
+        fractionalSeconds = this.getDurationSign()
+                            * (this.getDays() * 24 * 60 * 60 + this.getHours() * 60 * 60 + this.getMinutes()
+                               * 60 + this.getFractionalSecs());
     }
 
     public double getFractionalSeconds() {
@@ -75,8 +71,8 @@ public class XPathDayTimeDuration extends ISO8601Duration implements Comparable<
     }
 
     /**
-     * Creates a new <code>XPathDayTimeDuration</code> by parsing the given ISO8601 duration string and validating that
-     * it only contains days, hours, minutes, and seconds components.
+     * Creates a new <code>XPathDayTimeDuration</code> by parsing the given ISO8601 duration string and
+     * validating that it only contains days, hours, minutes, and seconds components.
      *
      * @param iso8601DurationString
      * @return
@@ -87,8 +83,8 @@ public class XPathDayTimeDuration extends ISO8601Duration implements Comparable<
     }
 
     /**
-     * Creates a new <code>XPathDayTimeDuration</code> from an existing <code>ISO8601Duration</code> by validating
-     * that it only contains the day and time components.
+     * Creates a new <code>XPathDayTimeDuration</code> from an existing <code>ISO8601Duration</code> by
+     * validating that it only contains the day and time components.
      *
      * @param iso8601Duration
      * @return
@@ -99,31 +95,34 @@ public class XPathDayTimeDuration extends ISO8601Duration implements Comparable<
             return null;
         }
         if (iso8601Duration.getYears() > 0 || iso8601Duration.getMonths() > 0) {
-            throw new ParseException("Invalid XPath dayTimeDuration \"" + iso8601Duration.toString() + "\": includes years or months component", 0);
+            throw new ParseException("Invalid XPath dayTimeDuration \"" + iso8601Duration.toString()
+                                     + "\": includes years or months component", 0);
         }
-        return new XPathDayTimeDuration(iso8601Duration.getDurationSign(), iso8601Duration.getDays(), iso8601Duration.getHours(), iso8601Duration.getMinutes(), iso8601Duration.getFractionalSecs());
+        return new XPathDayTimeDuration(iso8601Duration.getDurationSign(), iso8601Duration.getDays(),
+                                        iso8601Duration.getHours(), iso8601Duration.getMinutes(),
+                                        iso8601Duration.getFractionalSecs());
     }
 
     /**
-     * Computes the canonical <code>XPathDayTimeDuration</code> by converting the fractional seconds to canonical
-     * days, hours, minutes, and seconds.
+     * Computes the canonical <code>XPathDayTimeDuration</code> by converting the fractional seconds to
+     * canonical days, hours, minutes, and seconds.
      *
      * @return the canonical <code>XPathDayTimeDuration</code> for this <code>XPathDayTimeDuration</code>
      */
     public XPathDayTimeDuration getCanonicalDuration() {
-        double	fractionalSecondsLeft	= Math.abs(this.getFractionalSeconds());
-        int		days					= (int)(fractionalSecondsLeft/(24*60*60));
-        fractionalSecondsLeft			-= (days*24*60*60);
-        int		hours					= (int)(fractionalSecondsLeft/(60*60));
-        fractionalSecondsLeft			-= (hours*60*60);
-        int		minutes					= (int)(fractionalSecondsLeft/60);
-        fractionalSecondsLeft			-= (minutes*60);
+        double fractionalSecondsLeft = Math.abs(this.getFractionalSeconds());
+        int days = (int)(fractionalSecondsLeft / (24 * 60 * 60));
+        fractionalSecondsLeft -= (days * 24 * 60 * 60);
+        int hours = (int)(fractionalSecondsLeft / (60 * 60));
+        fractionalSecondsLeft -= (hours * 60 * 60);
+        int minutes = (int)(fractionalSecondsLeft / 60);
+        fractionalSecondsLeft -= (minutes * 60);
         return new XPathDayTimeDuration(this.getDurationSign(), days, hours, minutes, fractionalSecondsLeft);
     }
 
     @Override
     public String toString() {
-        StringBuilder stringBuilder	= new StringBuilder("{super=");
+        StringBuilder stringBuilder = new StringBuilder("{super=");
         stringBuilder.append(super.toString());
         stringBuilder.append(",factionalSeconds=");
         stringBuilder.append(this.getFractionalSecs());

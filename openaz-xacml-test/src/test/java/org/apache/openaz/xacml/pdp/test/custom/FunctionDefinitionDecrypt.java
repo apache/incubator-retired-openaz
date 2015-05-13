@@ -58,7 +58,8 @@ import org.apache.openaz.xacml.std.datatypes.DataTypeString;
 import org.apache.openaz.xacml.std.datatypes.HexBinary;
 
 public class FunctionDefinitionDecrypt implements FunctionDefinition {
-    public static final Identifier FD_RSA_DECRYPT = new IdentifierImpl("urn:com:att:research:xacml:custom:function:3.0:rsa:decrypt");
+    public static final Identifier FD_RSA_DECRYPT = new IdentifierImpl(
+                                                                       "urn:com:att:research:xacml:custom:function:3.0:rsa:decrypt");
     private static final FunctionDefinitionDecrypt singleInstance = new FunctionDefinitionDecrypt();
 
     public static FunctionDefinitionDecrypt newInstance() {
@@ -83,7 +84,8 @@ public class FunctionDefinitionDecrypt implements FunctionDefinition {
     @Override
     public ExpressionResult evaluate(EvaluationContext evaluationContext, List<FunctionArgument> arguments) {
         if (arguments == null || arguments.size() < 2) {
-            return ExpressionResult.newError(new StdStatus(StdStatusCode.STATUS_CODE_PROCESSING_ERROR, "Decrypt failed, expecting 2 arguments."));
+            return ExpressionResult.newError(new StdStatus(StdStatusCode.STATUS_CODE_PROCESSING_ERROR,
+                                                           "Decrypt failed, expecting 2 arguments."));
         }
         //
         // What is the first argument?
@@ -93,20 +95,28 @@ public class FunctionDefinitionDecrypt implements FunctionDefinition {
             //
             // We don't support bags right now
             //
-            return ExpressionResult.newError(new StdStatus(StdStatusCode.STATUS_CODE_PROCESSING_ERROR, "Decrypt failed, not expecting a bag for argument 0."));
+            return ExpressionResult
+                .newError(new StdStatus(StdStatusCode.STATUS_CODE_PROCESSING_ERROR,
+                                        "Decrypt failed, not expecting a bag for argument 0."));
         }
         if (arg0.getValue().getDataTypeId().equals(XACML3.ID_DATATYPE_HEXBINARY) == false) {
             //
             // Should be a String
             //
-            return ExpressionResult.newError(new StdStatus(StdStatusCode.STATUS_CODE_PROCESSING_ERROR, "Decrypt failed, expected a Hex Binary for argument 0."));
+            return ExpressionResult
+                .newError(new StdStatus(StdStatusCode.STATUS_CODE_PROCESSING_ERROR,
+                                        "Decrypt failed, expected a Hex Binary for argument 0."));
         }
         //
         // Convert the argument
         //
-        ConvertedArgument<HexBinary> data = new ConvertedArgument<HexBinary>(arg0, DataTypeHexBinary.newInstance(), false);
-        if (! data.isOk()) {
-            return ExpressionResult.newError(new StdStatus(StdStatusCode.STATUS_CODE_PROCESSING_ERROR, "Decrypt failed, argument 0 failed to convert to Hex Binary."));
+        ConvertedArgument<HexBinary> data = new ConvertedArgument<HexBinary>(arg0,
+                                                                             DataTypeHexBinary.newInstance(),
+                                                                             false);
+        if (!data.isOk()) {
+            return ExpressionResult
+                .newError(new StdStatus(StdStatusCode.STATUS_CODE_PROCESSING_ERROR,
+                                        "Decrypt failed, argument 0 failed to convert to Hex Binary."));
         }
         //
         // Ok - check the 2nd argument
@@ -116,10 +126,12 @@ public class FunctionDefinitionDecrypt implements FunctionDefinition {
             //
             // We don't support bags right now
             //
-            return ExpressionResult.newError(new StdStatus(StdStatusCode.STATUS_CODE_PROCESSING_ERROR, "Decrypt failed, not expecting a bag for argument 1."));
+            return ExpressionResult
+                .newError(new StdStatus(StdStatusCode.STATUS_CODE_PROCESSING_ERROR,
+                                        "Decrypt failed, not expecting a bag for argument 1."));
         }
-        if (arg1.getValue().getDataTypeId().equals(DataTypePrivateKey.DT_PRIVATEKEY) ||
-                arg1.getValue().getDataTypeId().equals(DataTypePublicKey.DT_PUBLICKEY)) {
+        if (arg1.getValue().getDataTypeId().equals(DataTypePrivateKey.DT_PRIVATEKEY)
+            || arg1.getValue().getDataTypeId().equals(DataTypePublicKey.DT_PUBLICKEY)) {
             //
             // Ok - let's try to decrypt
             //
@@ -131,9 +143,13 @@ public class FunctionDefinitionDecrypt implements FunctionDefinition {
                     // Using the private key
                     //
                     DataType<PrivateKey> pkDatatype = DataTypePrivateKey.newInstance();
-                    ConvertedArgument<PrivateKey> privateKey = new ConvertedArgument<PrivateKey>(arg1, pkDatatype, false);
-                    if ( ! privateKey.isOk()) {
-                        return ExpressionResult.newError(new StdStatus(privateKey.getStatus().getStatusCode(), "Decrypt: " + privateKey.getStatus().getStatusMessage()));
+                    ConvertedArgument<PrivateKey> privateKey = new ConvertedArgument<PrivateKey>(arg1,
+                                                                                                 pkDatatype,
+                                                                                                 false);
+                    if (!privateKey.isOk()) {
+                        return ExpressionResult
+                            .newError(new StdStatus(privateKey.getStatus().getStatusCode(),
+                                                    "Decrypt: " + privateKey.getStatus().getStatusMessage()));
                     }
                     //
                     // Setup decryption
@@ -144,9 +160,14 @@ public class FunctionDefinitionDecrypt implements FunctionDefinition {
                     // Using the private key
                     //
                     DataType<PublicKey> pkDatatype = DataTypePublicKey.newInstance();
-                    ConvertedArgument<PublicKey> publicKey = new ConvertedArgument<PublicKey>(arg1, pkDatatype, false);
-                    if ( ! publicKey.isOk()) {
-                        return ExpressionResult.newError(new StdStatus(publicKey.getStatus().getStatusCode(), "Decrypt: " + publicKey.getStatus().getStatusMessage()));
+                    ConvertedArgument<PublicKey> publicKey = new ConvertedArgument<PublicKey>(arg1,
+                                                                                              pkDatatype,
+                                                                                              false);
+                    if (!publicKey.isOk()) {
+                        return ExpressionResult.newError(new StdStatus(publicKey.getStatus().getStatusCode(),
+                                                                       "Decrypt: "
+                                                                           + publicKey.getStatus()
+                                                                               .getStatusMessage()));
                     }
                     //
                     // Setup decryption
@@ -161,12 +182,17 @@ public class FunctionDefinitionDecrypt implements FunctionDefinition {
                 //
                 // All good, return the decrypted string
                 //
-                return ExpressionResult.newSingle(DataTypeString.newInstance().createAttributeValue(decryptedString));
-            } catch (NoSuchAlgorithmException | NoSuchPaddingException | InvalidKeyException | IllegalBlockSizeException | BadPaddingException | DataTypeException e) {
-                return ExpressionResult.newError(new StdStatus(StdStatusCode.STATUS_CODE_PROCESSING_ERROR, "Decrypt failed: " + e.getLocalizedMessage()));
+                return ExpressionResult.newSingle(DataTypeString.newInstance()
+                    .createAttributeValue(decryptedString));
+            } catch (NoSuchAlgorithmException | NoSuchPaddingException | InvalidKeyException
+                | IllegalBlockSizeException | BadPaddingException | DataTypeException e) {
+                return ExpressionResult.newError(new StdStatus(StdStatusCode.STATUS_CODE_PROCESSING_ERROR,
+                                                               "Decrypt failed: " + e.getLocalizedMessage()));
             }
         }
-        return ExpressionResult.newError(new StdStatus(StdStatusCode.STATUS_CODE_PROCESSING_ERROR, "Decrypt failed, expecting public/private key datatype for argument 1."));
+        return ExpressionResult
+            .newError(new StdStatus(StdStatusCode.STATUS_CODE_PROCESSING_ERROR,
+                                    "Decrypt failed, expecting public/private key datatype for argument 1."));
     }
 
 }

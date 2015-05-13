@@ -41,35 +41,36 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 /**
- * DOMStatusCode extends {@link com.att.research.xacml.comomon.std.StdStatusCode} with methods for creation from
- * DOM {@link org.w3c.dom.Node}s.
- *
+ * DOMStatusCode extends {@link com.att.research.xacml.comomon.std.StdStatusCode} with methods for creation
+ * from DOM {@link org.w3c.dom.Node}s.
  */
 public class DOMStatusCode {
-    private static final Log logger	= LogFactory.getLog(DOMStatusCode.class);
+    private static final Log logger = LogFactory.getLog(DOMStatusCode.class);
 
     protected DOMStatusCode() {
     }
 
     /**
-     * Creates a new <code>DOMStatusCode</code> by parsing the given <code>Node</code> representing a XACML StatusCode element.
+     * Creates a new <code>DOMStatusCode</code> by parsing the given <code>Node</code> representing a XACML
+     * StatusCode element.
      *
      * @param nodeStatusCode the <code>Node</code> representing a StatusCode element
      * @return a new <code>DOMStatusCode</code> parsed from the given <code>Node</code>
      * @throws DOMStructureException if the conversion cannot be made
      */
     public static StatusCode newInstance(Node nodeStatusCode) throws DOMStructureException {
-        Element elementStatusCode	= DOMUtil.getElement(nodeStatusCode);
-        boolean bLenient			= DOMProperties.isLenient();
+        Element elementStatusCode = DOMUtil.getElement(nodeStatusCode);
+        boolean bLenient = DOMProperties.isLenient();
 
-        Identifier identifierStatusCode	= DOMUtil.getIdentifierAttribute(elementStatusCode, XACML3.ATTRIBUTE_VALUE, !bLenient);
-        StatusCode statusCodeChild		= null;
+        Identifier identifierStatusCode = DOMUtil.getIdentifierAttribute(elementStatusCode,
+                                                                         XACML3.ATTRIBUTE_VALUE, !bLenient);
+        StatusCode statusCodeChild = null;
 
-        NodeList children	= elementStatusCode.getChildNodes();
+        NodeList children = elementStatusCode.getChildNodes();
         int numChildren;
         if (children != null && (numChildren = children.getLength()) > 0) {
-            for (int i = 0 ; i < numChildren ; i++) {
-                Node child	= children.item(i);
+            for (int i = 0; i < numChildren; i++) {
+                Node child = children.item(i);
                 if (DOMUtil.isElement(child)) {
                     if (DOMUtil.isInNamespace(child, XACML3.XMLNS)) {
                         if (child.getLocalName().equals(XACML3.ELEMENT_STATUSCODE)) {
@@ -78,7 +79,7 @@ public class DOMStatusCode {
                                     throw DOMUtil.newUnexpectedElementException(child, nodeStatusCode);
                                 }
                             } else {
-                                statusCodeChild	= DOMStatusCode.newInstance(child);
+                                statusCodeChild = DOMStatusCode.newInstance(child);
                             }
                         } else {
                             if (!bLenient) {
@@ -97,23 +98,24 @@ public class DOMStatusCode {
     }
 
     public static boolean repair(Node nodeStatusCode) throws DOMStructureException {
-        Element elementStatusCode	= DOMUtil.getElement(nodeStatusCode);
-        boolean result				= false;
+        Element elementStatusCode = DOMUtil.getElement(nodeStatusCode);
+        boolean result = false;
 
-        result						= DOMUtil.repairIdentifierAttribute(elementStatusCode, XACML3.ATTRIBUTE_VALUE, logger) || result;
+        result = DOMUtil.repairIdentifierAttribute(elementStatusCode, XACML3.ATTRIBUTE_VALUE, logger)
+                 || result;
 
-        NodeList children	= elementStatusCode.getChildNodes();
+        NodeList children = elementStatusCode.getChildNodes();
         int numChildren;
         if (children != null && (numChildren = children.getLength()) > 0) {
-            for (int i = 0 ; i < numChildren ; i++) {
-                Node child	= children.item(i);
+            for (int i = 0; i < numChildren; i++) {
+                Node child = children.item(i);
                 if (DOMUtil.isElement(child)) {
                     if (DOMUtil.isInNamespace(child, XACML3.XMLNS)) {
-                        result		= DOMStatusCode.repair(child) || result;
+                        result = DOMStatusCode.repair(child) || result;
                     } else {
                         logger.warn("Unexpected element " + child.getNodeName());
                         elementStatusCode.removeChild(child);
-                        result	= true;
+                        result = true;
                     }
                 }
             }

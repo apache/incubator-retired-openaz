@@ -48,17 +48,11 @@ import org.apache.openaz.xacml.std.datatypes.DataTypes;
 import org.junit.Test;
 
 /**
- * Only one function to test here.  Code copy/pasted from FunctionDefinitionEqualityTest
- *
- * TO RUN - use jUnit
- * In Eclipse select this file or the enclosing directory, right-click and select Run As/JUnit Test
- *
- * In the first implementation of XACML we had separate files for each XACML Function.
- * This release combines multiple Functions in fewer files to minimize code duplication.
- * This file supports the following XACML codes:
- * 		string-equal-ignore-case
- *
- *
+ * Only one function to test here. Code copy/pasted from FunctionDefinitionEqualityTest TO RUN - use jUnit In
+ * Eclipse select this file or the enclosing directory, right-click and select Run As/JUnit Test In the first
+ * implementation of XACML we had separate files for each XACML Function. This release combines multiple
+ * Functions in fewer files to minimize code duplication. This file supports the following XACML codes:
+ * string-equal-ignore-case
  */
 public class FunctionDefinitionStringEqualIgnoreCaseTest {
 
@@ -82,10 +76,9 @@ public class FunctionDefinitionStringEqualIgnoreCaseTest {
             stringAttr4 = new FunctionArgumentAttributeValue(DataTypes.DT_STRING.createAttributeValue("def"));
             intAttr1 = new FunctionArgumentAttributeValue(DataTypes.DT_INTEGER.createAttributeValue(1));
         } catch (Exception e) {
-            fail("creating attribute e="+ e);
+            fail("creating attribute e=" + e);
         }
     }
-
 
     /**
      * String match even when Case is different
@@ -93,18 +86,16 @@ public class FunctionDefinitionStringEqualIgnoreCaseTest {
     @Test
     public void testFunctionDefinitionStringEqualIgnoreCase() {
 
-        FunctionDefinitionEquality<?> fd = (FunctionDefinitionEquality<?>) StdFunctions.FD_STRING_EQUAL_IGNORE_CASE;
+        FunctionDefinitionEquality<?> fd = (FunctionDefinitionEquality<?>)StdFunctions.FD_STRING_EQUAL_IGNORE_CASE;
 
         // check identity and type of the thing created
         assertEquals(XACML3.ID_FUNCTION_STRING_EQUAL_IGNORE_CASE, fd.getId());
         assertEquals(DataTypes.DT_STRING.getId(), fd.getDataTypeArgs().getId());
 
-        // just to be safe...  If tests take too long these can probably be eliminated
+        // just to be safe... If tests take too long these can probably be eliminated
         assertEquals(DataTypes.DT_BOOLEAN.getId(), fd.getDataTypeId());
         assertFalse(fd.returnsBag());
         assertEquals(new Integer(2), fd.getNumArgs());
-
-
 
         // test normal equals and non-equals
         // check "abc" with "abc"
@@ -124,15 +115,14 @@ public class FunctionDefinitionStringEqualIgnoreCaseTest {
         resValue = (Boolean)res.getValue().getValue();
         assertTrue(resValue);
 
-        // test bad args data types?  Not needed?
+        // test bad args data types? Not needed?
         arguments.clear();
         arguments.add(stringAttr1);
         arguments.add(intAttr1);
         res = fd.evaluate(null, arguments);
         assertFalse(res.isOk());
 
-
-//TODO - null in either first or 2nd arg => NullPointerException
+        // TODO - null in either first or 2nd arg => NullPointerException
     }
 
 }

@@ -42,10 +42,15 @@ import java.lang.annotation.Target;
 @Inherited
 @Retention(RetentionPolicy.RUNTIME)
 public @interface XACMLResource {
-String	category() default "urn:oasis:names:tc:xacml:3.0:attribute-category:resource";
-String	attributeId() default "urn:oasis:names:tc:xacml:1.0:resource:resource-id";
-String	datatype() default XACMLRequest.nullString;
-String	issuer() default XACMLRequest.nullString;
-String	id() default XACMLRequest.nullString;
-boolean includeInResults() default false;
+    String category() default "urn:oasis:names:tc:xacml:3.0:attribute-category:resource";
+
+    String attributeId() default "urn:oasis:names:tc:xacml:1.0:resource:resource-id";
+
+    String datatype() default XACMLRequest.nullString;
+
+    String issuer() default XACMLRequest.nullString;
+
+    String id() default XACMLRequest.nullString;
+
+    boolean includeInResults() default false;
 }

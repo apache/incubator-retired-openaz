@@ -30,7 +30,6 @@
  */
 package org.apache.openaz.xacml.rest;
 
-
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.base.Splitter;
 
@@ -65,52 +64,43 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * Servlet implementation class XacmlPapServlet
- *
- *
  */
-@WebServlet(
-    description = "Implements the XACML PAP RESTful API.",
-    urlPatterns = { "/" },
-    loadOnStartup=1,
-initParams = {
-    @WebInitParam(name = "XACML_PROPERTIES_NAME", value = "xacml.pap.properties", description = "The location of the properties file holding configuration information.")
-})
-
+@WebServlet(description = "Implements the XACML PAP RESTful API.", urlPatterns = {
+    "/"
+}, loadOnStartup = 1, initParams = {
+                          @WebInitParam(name = "XACML_PROPERTIES_NAME", value = "xacml.pap.properties", description = "The location of the properties file holding configuration information.")
+            })
 public class XACMLPapServlet extends HttpServlet implements StdItemSetChangeListener, Runnable {
     private static final long serialVersionUID = 1L;
-    private static final Log logger	= LogFactory.getLog(XACMLPapServlet.class);
+    private static final Log logger = LogFactory.getLog(XACMLPapServlet.class);
 
     /*
-     *
      * papEngine - This is our engine workhorse that manages the PDP Groups and Nodes.
      */
     private PAPEngine papEngine = null;
 
     /*
-     * This PAP instance's own URL.
-     *
-     * Need this when creating URLs to send to the PDPs so they can GET the Policy files from this process.
+     * This PAP instance's own URL. Need this when creating URLs to send to the PDPs so they can GET the
+     * Policy files from this process.
      */
     private static String papURL = null;
 
     /*
-     * List of Admin Console URLs.
-     * Used to send notifications when configuration changes.
-     *
-     * The CopyOnWriteArrayList *should* protect from concurrency errors.
-     * This list is seldom changed but often read, so the costs of this approach make sense.
+     * List of Admin Console URLs. Used to send notifications when configuration changes. The
+     * CopyOnWriteArrayList *should* protect from concurrency errors. This list is seldom changed but often
+     * read, so the costs of this approach make sense.
      */
     private static final CopyOnWriteArrayList<String> adminConsoleURLStringList = new CopyOnWriteArrayList<String>();
 
     /*
-     * This thread may be invoked upon startup to initiate sending PDP policy/pip configuration when
-     * this servlet starts. Its configurable by the admin.
+     * This thread may be invoked upon startup to initiate sending PDP policy/pip configuration when this
+     * servlet starts. Its configurable by the admin.
      */
     private Thread initiateThread = null;
 
     /*
-    // The heartbeat thread.
-    */
+     * // The heartbeat thread.
+     */
     private static Heartbeat heartbeat = null;
     private static Thread heartbeatThread = null;
 
@@ -124,6 +114,7 @@ public class XACMLPapServlet extends HttpServlet implements StdItemSetChangeList
     /**
      * @see Servlet#init(ServletConfig)
      */
+    @Override
     public void init(ServletConfig config) throws ServletException {
         try {
             //
@@ -137,7 +128,8 @@ public class XACMLPapServlet extends HttpServlet implements StdItemSetChangeList
             //
             // Load our PAP engine, first create a factory
             //
-            PAPEngineFactory factory = PAPEngineFactory.newInstance(XACMLProperties.getProperty(XACMLProperties.PROP_PAP_PAPENGINEFACTORY));
+            PAPEngineFactory factory = PAPEngineFactory.newInstance(XACMLProperties
+                .getProperty(XACMLProperties.PROP_PAP_PAPENGINEFACTORY));
             //
             // The factory knows how to go about creating a PAP Engine
             //
@@ -156,15 +148,18 @@ public class XACMLPapServlet extends HttpServlet implements StdItemSetChangeList
             // request to this servlet.
             //
             if (XACMLPapServlet.papURL == null) {
-                throw new PAPException("The property " + XACMLRestProperties.PROP_PAP_URL + " is not valid: " + XACMLPapServlet.papURL);
+                throw new PAPException("The property " + XACMLRestProperties.PROP_PAP_URL + " is not valid: "
+                                       + XACMLPapServlet.papURL);
             }
             //
             // Configurable - have the PAP servlet initiate sending the latest PDP policy/pip configuration
             // to all its known PDP nodes.
             //
-            // Note: parseBoolean will return false if there is no property defined. This is fine for a default.
+            // Note: parseBoolean will return false if there is no property defined. This is fine for a
+            // default.
             //
-            if (Boolean.parseBoolean(XACMLProperties.getProperty(XACMLRestProperties.PROP_PAP_INITIATE_PDP_CONFIG))) {
+            if (Boolean.parseBoolean(XACMLProperties
+                .getProperty(XACMLRestProperties.PROP_PAP_INITIATE_PDP_CONFIG))) {
                 this.initiateThread = new Thread(this);
                 this.initiateThread.start();
             }
@@ -176,16 +171,16 @@ public class XACMLPapServlet extends HttpServlet implements StdItemSetChangeList
             XACMLPapServlet.heartbeatThread.start();
         } catch (FactoryException | PAPException e) {
             logger.error("Failed to create engine", e);
-            throw new ServletException ("PAP not initialized; error: "+e);
+            throw new ServletException("PAP not initialized; error: " + e);
         } catch (Exception e) {
             logger.error("Failed to create engine - unexpected error: ", e);
-            throw new ServletException ("PAP not initialized; unexpected error: "+e);
+            throw new ServletException("PAP not initialized; unexpected error: " + e);
         }
     }
 
     /**
-     * Thread used only during PAP startup to initiate change messages to all known PDPs.
-     * This must be on a separate thread so that any GET requests from the PDPs during this update can be serviced.
+     * Thread used only during PAP startup to initiate change messages to all known PDPs. This must be on a
+     * separate thread so that any GET requests from the PDPs during this update can be serviced.
      */
     @Override
     public void run() {
@@ -195,13 +190,11 @@ public class XACMLPapServlet extends HttpServlet implements StdItemSetChangeList
         changed();
     }
 
-
     /**
-     * @see Servlet#destroy()
-     *
-     * Depending on how this servlet is run, we may or may not care about cleaning up the resources.
-     * For now we assume that we do care.
+     * @see Servlet#destroy() Depending on how this servlet is run, we may or may not care about cleaning up
+     *      the resources. For now we assume that we do care.
      */
+    @Override
     public void destroy() {
         //
         // Make sure our threads are destroyed
@@ -231,14 +224,14 @@ public class XACMLPapServlet extends HttpServlet implements StdItemSetChangeList
     }
 
     /**
-     *
-     * Called by:
-     * 	- PDP nodes to register themselves with the PAP, and
-     * 	- Admin Console to make changes in the PDP Groups.
+     * Called by: - PDP nodes to register themselves with the PAP, and - Admin Console to make changes in the
+     * PDP Groups.
      *
      * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
      */
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException,
+        IOException {
         try {
 
             XACMLRest.dumpRequest(request);
@@ -260,8 +253,8 @@ public class XACMLPapServlet extends HttpServlet implements StdItemSetChangeList
             }
 
             //
-            //  Request is from a PDP.
-            //	It is coming up and asking for its config
+            // Request is from a PDP.
+            // It is coming up and asking for its config
             //
 
             //
@@ -279,7 +272,8 @@ public class XACMLPapServlet extends HttpServlet implements StdItemSetChangeList
             if (pdp == null) {
                 logger.info("Unknown PDP: " + id);
                 try {
-                    this.papEngine.newPDP(id, this.papEngine.getDefaultGroup(), id, "Registered on first startup");
+                    this.papEngine.newPDP(id, this.papEngine.getDefaultGroup(), id,
+                                          "Registered on first startup");
                 } catch (NullPointerException | PAPException e) {
                     logger.error("Failed to create new PDP", e);
                     response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, e.getMessage());
@@ -299,7 +293,8 @@ public class XACMLPapServlet extends HttpServlet implements StdItemSetChangeList
             //
             PDPGroup group = this.papEngine.getPDPGroup(pdp);
             if (group == null) {
-                response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "PDP not associated with any group, even the default");
+                response.sendError(HttpServletResponse.SC_UNAUTHORIZED,
+                                   "PDP not associated with any group, even the default");
                 return;
             }
             //
@@ -349,7 +344,7 @@ public class XACMLPapServlet extends HttpServlet implements StdItemSetChangeList
                 // We are good - and we are sending them information
                 //
                 response.setStatus(HttpServletResponse.SC_OK);
-//TODO - Correct?
+                // TODO - Correct?
                 setPDPSummaryStatus(pdp, PDPStatus.Status.OUT_OF_SYNCH);
             } else {
                 //
@@ -357,7 +352,7 @@ public class XACMLPapServlet extends HttpServlet implements StdItemSetChangeList
                 //
                 response.setStatus(HttpServletResponse.SC_NO_CONTENT);
 
-//TODO - Correct?
+                // TODO - Correct?
                 setPDPSummaryStatus(pdp, PDPStatus.Status.UP_TO_DATE);
 
             }
@@ -372,11 +367,12 @@ public class XACMLPapServlet extends HttpServlet implements StdItemSetChangeList
         }
     }
 
-
     /**
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
      */
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException,
+        IOException {
         try {
             XACMLRest.dumpRequest(request);
 
@@ -403,11 +399,12 @@ public class XACMLPapServlet extends HttpServlet implements StdItemSetChangeList
                 //
                 // Check if request came from localhost
                 //
-                String message = "Unknown PDP: " + id + " from " + request.getRemoteHost() + " us: " + request.getLocalAddr();
+                String message = "Unknown PDP: " + id + " from " + request.getRemoteHost() + " us: "
+                                 + request.getLocalAddr();
                 logger.info(message);
-                if (request.getRemoteHost().equals("localhost") ||
-                        request.getRemoteHost().equals("127.0.0.1") ||
-                        request.getRemoteHost().equals(request.getLocalAddr())) {
+                if (request.getRemoteHost().equals("localhost")
+                    || request.getRemoteHost().equals("127.0.0.1") //NOPMD
+                    || request.getRemoteHost().equals(request.getLocalAddr())) {
                     //
                     // Return status information - basically all the groups
                     //
@@ -415,7 +412,7 @@ public class XACMLPapServlet extends HttpServlet implements StdItemSetChangeList
 
                     // convert response object to JSON and include in the response
                     ObjectMapper mapper = new ObjectMapper();
-                    mapper.writeValue(response.getOutputStream(),  groups);
+                    mapper.writeValue(response.getOutputStream(), groups);
                     response.setHeader("content-type", "application/json");
                     response.setStatus(HttpServletResponse.SC_OK);
                     return;
@@ -465,14 +462,14 @@ public class XACMLPapServlet extends HttpServlet implements StdItemSetChangeList
                 logger.error(message);
                 response.sendError(HttpServletResponse.SC_NOT_FOUND, message);
             }
-        }  catch (PAPException e) {
+        } catch (PAPException e) {
             logger.error("GET exception: " + e, e);
             response.sendError(500, e.getMessage());
             return;
         }
     }
 
-    protected String	getPDPID(HttpServletRequest request) {
+    protected String getPDPID(HttpServletRequest request) {
         String pdpURL = request.getHeader(XACMLRestProperties.PROP_PDP_HTTP_HEADER_ID);
         if (pdpURL == null || pdpURL.isEmpty()) {
             //
@@ -481,14 +478,15 @@ public class XACMLPapServlet extends HttpServlet implements StdItemSetChangeList
             logger.warn("PDP did not send custom header");
             pdpURL = "";
         }
-        return  pdpURL;
+        return pdpURL;
     }
 
     private boolean isPDPCurrent(Properties policies, Properties pipconfig, Properties pdpProperties) {
         String localRootPolicies = policies.getProperty(XACMLProperties.PROP_ROOTPOLICIES);
         String localReferencedPolicies = policies.getProperty(XACMLProperties.PROP_REFERENCEDPOLICIES);
         if (localRootPolicies == null || localReferencedPolicies == null) {
-            logger.warn("Missing property on PAP server: RootPolicies="+localRootPolicies+"  ReferencedPolicies="+localReferencedPolicies);
+            logger.warn("Missing property on PAP server: RootPolicies=" + localRootPolicies
+                        + "  ReferencedPolicies=" + localReferencedPolicies);
             return false;
         }
         //
@@ -501,18 +499,19 @@ public class XACMLPapServlet extends HttpServlet implements StdItemSetChangeList
             //
             Properties pdpPolicies = XACMLProperties.getPolicyProperties(pdpProperties, false);
             Properties pdpPipConfig = XACMLProperties.getPipProperties(pdpProperties);
-            if (localRootPolicies.equals(pdpPolicies.getProperty(XACMLProperties.PROP_ROOTPOLICIES)) &&
-                    localReferencedPolicies.equals(pdpPolicies.getProperty(XACMLProperties.PROP_REFERENCEDPOLICIES)) &&
-                    pdpPipConfig.equals(pipconfig)) {
+            if (localRootPolicies.equals(pdpPolicies.getProperty(XACMLProperties.PROP_ROOTPOLICIES))
+                && localReferencedPolicies.equals(pdpPolicies
+                    .getProperty(XACMLProperties.PROP_REFERENCEDPOLICIES)) && pdpPipConfig.equals(pipconfig)) {
                 //
                 // The PDP is current
                 //
                 return true;
             }
-        } catch (Exception e) {
+        } catch (Exception e) { //NOPMD
             // we get here if the PDP did not include either xacml.rootPolicies or xacml.pip.engines,
             // or if there are policies that do not have a corresponding ".url" property.
-            // Either of these cases means that the PDP is not up-to-date, so just drop-through to return false.
+            // Either of these cases means that the PDP is not up-to-date, so just drop-through to return
+            // false.
         }
         return false;
     }
@@ -532,11 +531,12 @@ public class XACMLPapServlet extends HttpServlet implements StdItemSetChangeList
         }
     }
 
-
     /**
      * @see HttpServlet#doPut(HttpServletRequest request, HttpServletResponse response)
      */
-    protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    @Override
+    protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException,
+        IOException {
         XACMLRest.dumpRequest(request);
         //
         // since getParameter reads the content string, explicitly get the content before doing that.
@@ -551,7 +551,7 @@ public class XACMLPapServlet extends HttpServlet implements StdItemSetChangeList
             //
             // remember this Admin Console for future updates
             //
-            if ( ! adminConsoleURLStringList.contains(acURLString)) {
+            if (!adminConsoleURLStringList.contains(acURLString)) {
                 adminConsoleURLStringList.add(acURLString);
             }
             if (logger.isDebugEnabled()) {
@@ -581,7 +581,9 @@ public class XACMLPapServlet extends HttpServlet implements StdItemSetChangeList
     /**
      * @see HttpServlet#doDelete(HttpServletRequest request, HttpServletResponse response)
      */
-    protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    @Override
+    protected void doDelete(HttpServletRequest request, HttpServletResponse response)
+        throws ServletException, IOException {
         XACMLRest.dumpRequest(request);
         //
         // Is this from the Admin Console?
@@ -600,6 +602,7 @@ public class XACMLPapServlet extends HttpServlet implements StdItemSetChangeList
         //
         response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Request does not have groupId");
     }
+
     //
     // Admin Console request handling
     //
@@ -613,7 +616,8 @@ public class XACMLPapServlet extends HttpServlet implements StdItemSetChangeList
      * @throws ServletException
      * @throws java.io.IOException
      */
-    private void doACGet(HttpServletRequest request, HttpServletResponse response, String groupId) throws ServletException, IOException {
+    private void doACGet(HttpServletRequest request, HttpServletResponse response, String groupId)
+        throws ServletException, IOException {
         try {
             String parameterDefault = request.getParameter("default");
             String pdpId = request.getParameter("pdpId");
@@ -626,7 +630,7 @@ public class XACMLPapServlet extends HttpServlet implements StdItemSetChangeList
 
                     // convert response object to JSON and include in the response
                     ObjectMapper mapper = new ObjectMapper();
-                    mapper.writeValue(response.getOutputStream(),  group);
+                    mapper.writeValue(response.getOutputStream(), group);
 
                     if (logger.isDebugEnabled()) {
                         logger.debug("GET Default group req from '" + request.getRequestURL() + "'");
@@ -645,10 +649,11 @@ public class XACMLPapServlet extends HttpServlet implements StdItemSetChangeList
 
                         // convert response object to JSON and include in the response
                         ObjectMapper mapper = new ObjectMapper();
-                        mapper.writeValue(response.getOutputStream(),  pdp);
+                        mapper.writeValue(response.getOutputStream(), pdp);
 
                         if (logger.isDebugEnabled()) {
-                            logger.debug("GET pdp '" + pdpId + "' req from '" + request.getRequestURL() + "'");
+                            logger
+                                .debug("GET pdp '" + pdpId + "' req from '" + request.getRequestURL() + "'");
                         }
                         response.setStatus(HttpServletResponse.SC_OK);
                         response.setHeader("content-type", "application/json");
@@ -662,10 +667,11 @@ public class XACMLPapServlet extends HttpServlet implements StdItemSetChangeList
 
                         // convert response object to JSON and include in the response
                         ObjectMapper mapper = new ObjectMapper();
-                        mapper.writeValue(response.getOutputStream(),  group);
+                        mapper.writeValue(response.getOutputStream(), group);
 
                         if (logger.isDebugEnabled()) {
-                            logger.debug("GET PDP '" + pdpId + "' Group req from '" + request.getRequestURL() + "'");
+                            logger.debug("GET PDP '" + pdpId + "' Group req from '" + request.getRequestURL()
+                                         + "'");
                         }
                         response.setStatus(HttpServletResponse.SC_OK);
                         response.setHeader("content-type", "application/json");
@@ -679,11 +685,13 @@ public class XACMLPapServlet extends HttpServlet implements StdItemSetChangeList
 
                     // convert response object to JSON and include in the response
                     ObjectMapper mapper = new ObjectMapper();
-                    mapper.writeValue(response.getOutputStream(),  groups);
+                    mapper.writeValue(response.getOutputStream(), groups);
 
-//TODO
-// In "notification" section, ALSO need to tell AC about other changes (made by other ACs)?'
-//TODO add new PDP notification (or just "config changed" notification) in appropriate place
+                    // TODO
+                    // In "notification" section, ALSO need to tell AC about other changes (made by other
+                    // ACs)?'
+                    // TODO add new PDP notification (or just "config changed" notification) in appropriate
+                    // place
                     if (logger.isDebugEnabled()) {
                         logger.debug("GET All groups req");
                     }
@@ -698,27 +706,27 @@ public class XACMLPapServlet extends HttpServlet implements StdItemSetChangeList
             PDPGroup group = papEngine.getGroup(groupId);
             if (group == null) {
                 logger.error("Unknown groupId '" + groupId + "'");
-                response.sendError(HttpServletResponse.SC_NOT_FOUND, "Unknown groupId '" + groupId +"'");
+                response.sendError(HttpServletResponse.SC_NOT_FOUND, "Unknown groupId '" + groupId + "'");
                 return;
             }
-
 
             // Figure out which request this is based on the parameters
             String policyId = request.getParameter("policyId");
 
             if (policyId != null) {
-//				// retrieve a policy
-//				PDPPolicy policy = papEngine.getPDPPolicy(policyId);
-//
-//				// convert response object to JSON and include in the response
-//	            ObjectMapper mapper = new ObjectMapper();
-//	            mapper.writeValue(response.getOutputStream(),  pdp);
-//
-//	        	logger.debug("GET group '" + group.getId() + "' req from '" + request.getRequestURL() + "'");
-//				response.setStatus(HttpServletResponse.SC_OK);
-//				response.setHeader("content-type", "application/json");
-//				response.getOutputStream().close();
-//				return;
+                // // retrieve a policy
+                // PDPPolicy policy = papEngine.getPDPPolicy(policyId);
+                //
+                // // convert response object to JSON and include in the response
+                // ObjectMapper mapper = new ObjectMapper();
+                // mapper.writeValue(response.getOutputStream(), pdp);
+                //
+                // logger.debug("GET group '" + group.getId() + "' req from '" + request.getRequestURL() +
+                // "'");
+                // response.setStatus(HttpServletResponse.SC_OK);
+                // response.setHeader("content-type", "application/json");
+                // response.getOutputStream().close();
+                // return;
                 response.sendError(HttpServletResponse.SC_BAD_REQUEST, "GET Policy not implemented");
 
             } else {
@@ -726,10 +734,11 @@ public class XACMLPapServlet extends HttpServlet implements StdItemSetChangeList
 
                 // convert response object to JSON and include in the response
                 ObjectMapper mapper = new ObjectMapper();
-                mapper.writeValue(response.getOutputStream(),  group);
+                mapper.writeValue(response.getOutputStream(), group);
 
                 if (logger.isDebugEnabled()) {
-                    logger.debug("GET group '" + group.getId() + "' req from '" + request.getRequestURL() + "'");
+                    logger.debug("GET group '" + group.getId() + "' req from '" + request.getRequestURL()
+                                 + "'");
                 }
                 response.setStatus(HttpServletResponse.SC_OK);
                 response.setHeader("content-type", "application/json");
@@ -739,13 +748,14 @@ public class XACMLPapServlet extends HttpServlet implements StdItemSetChangeList
 
             //
             // Currently there are no other GET calls from the AC.
-            // The AC uses the "GET All Groups" operation to fill its local cache and uses that cache for all other GETs without calling the PAP.
+            // The AC uses the "GET All Groups" operation to fill its local cache and uses that cache for all
+            // other GETs without calling the PAP.
             // Other GETs that could be called:
-            //				Specific Group	(groupId=<groupId>)
-            //				A Policy		(groupId=<groupId> policyId=<policyId>)
-            //				A PDP			(groupId=<groupId> pdpId=<pdpId>)
+            // Specific Group (groupId=<groupId>)
+            // A Policy (groupId=<groupId> policyId=<policyId>)
+            // A PDP (groupId=<groupId> pdpId=<pdpId>)
 
-            //TODO - implement other GET operations if needed
+            // TODO - implement other GET operations if needed
 
             logger.error("UNIMPLEMENTED ");
             response.sendError(HttpServletResponse.SC_BAD_REQUEST, "UNIMPLEMENTED");
@@ -757,7 +767,6 @@ public class XACMLPapServlet extends HttpServlet implements StdItemSetChangeList
 
     }
 
-
     /**
      * Requests from the Admin Console for operations not on single specific objects
      *
@@ -767,12 +776,13 @@ public class XACMLPapServlet extends HttpServlet implements StdItemSetChangeList
      * @throws ServletException
      * @throws java.io.IOException
      */
-    private void doACPost(HttpServletRequest request, HttpServletResponse response, String groupId) throws ServletException, IOException {
+    private void doACPost(HttpServletRequest request, HttpServletResponse response, String groupId)
+        throws ServletException, IOException {
         try {
             String groupName = request.getParameter("groupName");
             String groupDescription = request.getParameter("groupDescription");
             if (groupName != null && groupDescription != null) {
-                // Args:	      group=<groupId> groupName=<name> groupDescription=<description>            <= create a new group
+                // Args: group=<groupId> groupName=<name> groupDescription=<description> <= create a new group
                 String unescapedName = URLDecoder.decode(groupName, "UTF-8");
                 String unescapedDescription = URLDecoder.decode(groupDescription, "UTF-8");
                 try {
@@ -796,19 +806,20 @@ public class XACMLPapServlet extends HttpServlet implements StdItemSetChangeList
             PDPGroup group = papEngine.getGroup(groupId);
             if (group == null) {
                 logger.error("Unknown groupId '" + groupId + "'");
-                response.sendError(HttpServletResponse.SC_NOT_FOUND, "Unknown groupId '" + groupId +"'");
+                response.sendError(HttpServletResponse.SC_NOT_FOUND, "Unknown groupId '" + groupId + "'");
                 return;
             }
 
             // determine the operation needed based on the parameters in the request
             if (request.getParameter("policyId") != null) {
-                //	Args:        group=<groupId> policy=<policyId>		<= copy file
-                // copy a policy from the request contents into a file in the group's directory on this machine
+                // Args: group=<groupId> policy=<policyId> <= copy file
+                // copy a policy from the request contents into a file in the group's directory on this
+                // machine
                 String policyId = request.getParameter("policyId");
                 try {
-                    ((StdPDPGroup) group).copyPolicyToFile(policyId, request.getInputStream());
+                    ((StdPDPGroup)group).copyPolicyToFile(policyId, request.getInputStream());
                 } catch (Exception e) {
-                    String message = "Policy '" + policyId + "' not copied to group '" + groupId +"': " + e;
+                    String message = "Policy '" + policyId + "' not copied to group '" + groupId + "': " + e;
                     logger.error(message);
                     response.sendError(500, message);
                     return;
@@ -821,11 +832,13 @@ public class XACMLPapServlet extends HttpServlet implements StdItemSetChangeList
                 return;
 
             } else if (request.getParameter("default") != null) {
-                // Args:       group=<groupId> default=true               <= make default
+                // Args: group=<groupId> default=true <= make default
                 // change the current default group to be the one identified in the request.
                 //
-                // This is a POST operation rather than a PUT "update group" because of the side-effect that the current default group is also changed.
-                // It should never be the case that multiple groups are currently marked as the default, but protect against that anyway.
+                // This is a POST operation rather than a PUT "update group" because of the side-effect that
+                // the current default group is also changed.
+                // It should never be the case that multiple groups are currently marked as the default, but
+                // protect against that anyway.
                 try {
                     papEngine.SetDefaultGroup(group);
                 } catch (Exception e) {
@@ -839,14 +852,17 @@ public class XACMLPapServlet extends HttpServlet implements StdItemSetChangeList
                     logger.debug("Group '" + groupId + "' set to be default");
                 }
                 // Notify the Admin Consoles that something changed
-                // For now the AC cannot handle anything more detailed than the whole set of PDPGroups, so just notify on that
-//TODO - Future: FIGURE OUT WHAT LEVEL TO NOTIFY: 2 groups or entire set - currently notify AC to update whole configuration of all groups
+                // For now the AC cannot handle anything more detailed than the whole set of PDPGroups, so
+                // just notify on that
+                // TODO - Future: FIGURE OUT WHAT LEVEL TO NOTIFY: 2 groups or entire set - currently notify
+                // AC to update whole configuration of all groups
                 notifyAC();
-                // This does not affect any PDPs in the existing groups, so no need to notify them of this change
+                // This does not affect any PDPs in the existing groups, so no need to notify them of this
+                // change
                 return;
 
             } else if (request.getParameter("pdpId") != null) {
-                // Args:       group=<groupId> pdpId=<pdpId>               <= move PDP to group
+                // Args: group=<groupId> pdpId=<pdpId> <= move PDP to group
                 String pdpId = request.getParameter("pdpId");
                 PDP pdp = papEngine.getPDP(pdpId);
 
@@ -856,7 +872,8 @@ public class XACMLPapServlet extends HttpServlet implements StdItemSetChangeList
 
                 response.setStatus(HttpServletResponse.SC_NO_CONTENT);
                 if (logger.isDebugEnabled()) {
-                    logger.debug("PDP '" + pdp.getId() +"' moved to group '" + group.getId() + "' set to be default");
+                    logger.debug("PDP '" + pdp.getId() + "' moved to group '" + group.getId()
+                                 + "' set to be default");
                 }
 
                 // update the status of both the original group and the new one
@@ -864,12 +881,12 @@ public class XACMLPapServlet extends HttpServlet implements StdItemSetChangeList
                 ((StdPDPGroup)group).resetStatus();
 
                 // Notify the Admin Consoles that something changed
-                // For now the AC cannot handle anything more detailed than the whole set of PDPGroups, so just notify on that
+                // For now the AC cannot handle anything more detailed than the whole set of PDPGroups, so
+                // just notify on that
                 notifyAC();
                 // Need to notify the PDP that it's config may have changed
                 pdpChanged(pdp);
                 return;
-
 
             }
         } catch (PAPException e) {
@@ -888,9 +905,9 @@ public class XACMLPapServlet extends HttpServlet implements StdItemSetChangeList
      * @throws ServletException
      * @throws java.io.IOException
      */
-    private void doACPut(HttpServletRequest request, HttpServletResponse response, String groupId) throws ServletException, IOException {
+    private void doACPut(HttpServletRequest request, HttpServletResponse response, String groupId)
+        throws ServletException, IOException {
         try {
-
 
             // for PUT operations the group may or may not need to exist before the operation can be done
             PDPGroup group = papEngine.getGroup(groupId);
@@ -900,26 +917,29 @@ public class XACMLPapServlet extends HttpServlet implements StdItemSetChangeList
             // for remaining operations the group must exist before the operation can be done
             if (group == null) {
                 logger.error("Unknown groupId '" + groupId + "'");
-                response.sendError(HttpServletResponse.SC_NOT_FOUND, "Unknown groupId '" + groupId +"'");
+                response.sendError(HttpServletResponse.SC_NOT_FOUND, "Unknown groupId '" + groupId + "'");
                 return;
             }
             if (request.getParameter("policy") != null) {
-                //        group=<groupId> policy=<policyId> contents=policy file               <= Create new policy file in group dir, or replace it if it already exists (do not touch properties)
-                //TODO - currently this is done by the AC, but it should be done here by getting the policy file out of the contents and saving to disk
+                // group=<groupId> policy=<policyId> contents=policy file <= Create new policy file in group
+                // dir, or replace it if it already exists (do not touch properties)
+                // TODO - currently this is done by the AC, but it should be done here by getting the policy
+                // file out of the contents and saving to disk
                 logger.error("PARTIALLY IMPLEMENTED!!!  ACTUAL CHANGES SHOULD BE MADE BY PAP SERVLET!!! ");
                 response.setStatus(HttpServletResponse.SC_NO_CONTENT);
                 return;
             } else if (request.getParameter("pdpId") != null) {
-                // ARGS:        group=<groupId> pdpId=<pdpId/URL>          <= create a new PDP or Update an Existing one
+                // ARGS: group=<groupId> pdpId=<pdpId/URL> <= create a new PDP or Update an Existing one
 
                 String pdpId = request.getParameter("pdpId");
 
                 // get the request content into a String
                 String json = null;
-                // read the inputStream into a buffer (trick found online scans entire input looking for end-of-file)
-                java.util.Scanner scanner = new java.util.Scanner(request.getInputStream());
+                // read the inputStream into a buffer (trick found online scans entire input looking for
+                // end-of-file)
+                Scanner scanner = new Scanner(request.getInputStream());
                 scanner.useDelimiter("\\A");
-                json =  scanner.hasNext() ? scanner.next() : "";
+                json = scanner.hasNext() ? scanner.next() : "";
                 scanner.close();
                 logger.info("JSON request from AC: " + json);
 
@@ -928,15 +948,14 @@ public class XACMLPapServlet extends HttpServlet implements StdItemSetChangeList
 
                 Object objectFromJSON = mapper.readValue(json, StdPDP.class);
 
-                if (pdpId == null ||
-                        objectFromJSON == null ||
-                        ! (objectFromJSON instanceof StdPDP) ||
-                        ((StdPDP)objectFromJSON).getId() == null ||
-                        ! ((StdPDP)objectFromJSON).getId().equals(pdpId)) {
-                    logger.error("PDP new/update had bad input. pdpId=" + pdpId + " objectFromJSON="+objectFromJSON);
-                    response.sendError(500, "Bad input, pdpid="+pdpId+" object="+objectFromJSON);
+                if (pdpId == null || objectFromJSON == null || !(objectFromJSON instanceof StdPDP)
+                    || ((StdPDP)objectFromJSON).getId() == null
+                    || !((StdPDP)objectFromJSON).getId().equals(pdpId)) {
+                    logger.error("PDP new/update had bad input. pdpId=" + pdpId + " objectFromJSON="
+                                 + objectFromJSON);
+                    response.sendError(500, "Bad input, pdpid=" + pdpId + " object=" + objectFromJSON);
                 }
-                StdPDP pdp = (StdPDP) objectFromJSON;
+                StdPDP pdp = (StdPDP)objectFromJSON;
 
                 if (papEngine.getPDP(pdpId) == null) {
                     // this is a request to create a new PDP object
@@ -960,34 +979,36 @@ public class XACMLPapServlet extends HttpServlet implements StdItemSetChangeList
                 pdpChanged(pdp);
                 return;
             } else if (request.getParameter("pipId") != null) {
-                //                group=<groupId> pipId=<pipEngineId> contents=pip properties              <= add a PIP to pip config, or replace it if it already exists (lenient operation)
-                //TODO
+                // group=<groupId> pipId=<pipEngineId> contents=pip properties <= add a PIP to pip config, or
+                // replace it if it already exists (lenient operation)
+                // TODO
                 logger.error("UNIMPLEMENTED ");
                 response.sendError(HttpServletResponse.SC_BAD_REQUEST, "UNIMPLEMENTED");
                 return;
             } else {
                 // Assume that this is an update of an existing PDP Group
-                // ARGS:        group=<groupId>         <= Update an Existing Group
+                // ARGS: group=<groupId> <= Update an Existing Group
 
                 // get the request content into a String
                 String json = null;
-                // read the inputStream into a buffer (trick found online scans entire input looking for end-of-file)
-                java.util.Scanner scanner = new java.util.Scanner(request.getInputStream());
+                // read the inputStream into a buffer (trick found online scans entire input looking for
+                // end-of-file)
+                Scanner scanner = new Scanner(request.getInputStream());
                 scanner.useDelimiter("\\A");
-                json =  scanner.hasNext() ? scanner.next() : "";
+                json = scanner.hasNext() ? scanner.next() : "";
                 scanner.close();
                 logger.info("JSON request from AC: " + json);
 
                 // convert Object sent as JSON into local object
                 ObjectMapper mapper = new ObjectMapper();
 
-                Object objectFromJSON  = mapper.readValue(json, StdPDPGroup.class);
+                Object objectFromJSON = mapper.readValue(json, StdPDPGroup.class);
 
-                if (objectFromJSON == null ||
-                        ! (objectFromJSON instanceof StdPDPGroup) ||
-                        ! ((StdPDPGroup)objectFromJSON).getId().equals(group.getId())) {
-                    logger.error("Group update had bad input. id=" + group.getId() + " objectFromJSON="+objectFromJSON);
-                    response.sendError(500, "Bad input, id="+group.getId() +" object="+objectFromJSON);
+                if (objectFromJSON == null || !(objectFromJSON instanceof StdPDPGroup)
+                    || !((StdPDPGroup)objectFromJSON).getId().equals(group.getId())) {
+                    logger.error("Group update had bad input. id=" + group.getId() + " objectFromJSON="
+                                 + objectFromJSON);
+                    response.sendError(500, "Bad input, id=" + group.getId() + " object=" + objectFromJSON);
                 }
 
                 // The Path on the PAP side is not carried on the RESTful interface with the AC
@@ -996,7 +1017,6 @@ public class XACMLPapServlet extends HttpServlet implements StdItemSetChangeList
                 ((StdPDPGroup)objectFromJSON).setDirectory(((StdPDPGroup)group).getDirectory());
 
                 papEngine.updateGroup((StdPDPGroup)objectFromJSON);
-
 
                 response.setStatus(HttpServletResponse.SC_NO_CONTENT);
                 if (logger.isDebugEnabled()) {
@@ -1024,24 +1044,25 @@ public class XACMLPapServlet extends HttpServlet implements StdItemSetChangeList
      * @throws ServletException
      * @throws java.io.IOException
      */
-    private void doACDelete(HttpServletRequest request, HttpServletResponse response, String groupId) throws ServletException, IOException {
+    private void doACDelete(HttpServletRequest request, HttpServletResponse response, String groupId)
+        throws ServletException, IOException {
         try {
             // for all DELETE operations the group must exist before the operation can be done
             PDPGroup group = papEngine.getGroup(groupId);
             if (group == null) {
                 logger.error("Unknown groupId '" + groupId + "'");
-                response.sendError(HttpServletResponse.SC_NOT_FOUND, "Unknown groupId '" + groupId +"'");
+                response.sendError(HttpServletResponse.SC_NOT_FOUND, "Unknown groupId '" + groupId + "'");
                 return;
             }
             // determine the operation needed based on the parameters in the request
             if (request.getParameter("policy") != null) {
-                //        group=<groupId> policy=<policyId>  [delete=<true|false>]       <= delete policy file from group
-                //TODO
+                // group=<groupId> policy=<policyId> [delete=<true|false>] <= delete policy file from group
+                // TODO
                 logger.error("UNIMPLEMENTED ");
                 response.sendError(HttpServletResponse.SC_BAD_REQUEST, "UNIMPLEMENTED");
                 return;
             } else if (request.getParameter("pdpId") != null) {
-                // ARGS:        group=<groupId> pdpId=<pdpId>                  <= delete PDP
+                // ARGS: group=<groupId> pdpId=<pdpId> <= delete PDP
                 String pdpId = request.getParameter("pdpId");
                 PDP pdp = papEngine.getPDP(pdpId);
 
@@ -1053,17 +1074,19 @@ public class XACMLPapServlet extends HttpServlet implements StdItemSetChangeList
                 response.setStatus(HttpServletResponse.SC_NO_CONTENT);
                 notifyAC();
 
-                // update the PDP and tell it that it has NO Policies (which prevents it from serving PEP Requests)
+                // update the PDP and tell it that it has NO Policies (which prevents it from serving PEP
+                // Requests)
                 pdpChanged(pdp);
                 return;
             } else if (request.getParameter("pipId") != null) {
-                //        group=<groupId> pipId=<pipEngineId> <= delete PIP config for given engine
-                //TODO
+                // group=<groupId> pipId=<pipEngineId> <= delete PIP config for given engine
+                // TODO
                 logger.error("UNIMPLEMENTED ");
                 response.sendError(HttpServletResponse.SC_BAD_REQUEST, "UNIMPLEMENTED");
                 return;
             } else {
-                // ARGS:      group=<groupId> movePDPsToGroupId=<movePDPsToGroupId>            <= delete a group and move all its PDPs to the given group
+                // ARGS: group=<groupId> movePDPsToGroupId=<movePDPsToGroupId> <= delete a group and move all
+                // its PDPs to the given group
                 String moveToGroupId = request.getParameter("movePDPsToGroupId");
                 PDPGroup moveToGroup = null;
                 if (moveToGroupId != null) {
@@ -1098,27 +1121,15 @@ public class XACMLPapServlet extends HttpServlet implements StdItemSetChangeList
     //
 
     /**
-     * Heartbeat with all known PDPs.
-     *
-     * Implementation note:
-     *
-     * The PDPs are contacted Sequentially, not in Parallel.
-     *
-     * If we did this in parallel using multiple threads we would simultaneously use
-     * 		- 1 thread and
-     * 		- 1 connection
-     * for EACH PDP.
-     * This could become a resource problem since we already use multiple threads and connections for updating the PDPs
-     * when user changes occur.
-     * Using separate threads can also make it tricky dealing with timeouts on PDPs that are non-responsive.
-     *
-     * The Sequential operation does a heartbeat request to each PDP one at a time.
-     * This has the flaw that any PDPs that do not respond will hold up the entire heartbeat sequence until they timeout.
-     * If there are a lot of non-responsive PDPs and the timeout is large-ish (the default is 20 seconds)
-     * it could take a long time to cycle through all of the PDPs.
+     * Heartbeat with all known PDPs. Implementation note: The PDPs are contacted Sequentially, not in
+     * Parallel. If we did this in parallel using multiple threads we would simultaneously use - 1 thread and
+     * - 1 connection for EACH PDP. This could become a resource problem since we already use multiple threads
+     * and connections for updating the PDPs when user changes occur. Using separate threads can also make it
+     * tricky dealing with timeouts on PDPs that are non-responsive. The Sequential operation does a heartbeat
+     * request to each PDP one at a time. This has the flaw that any PDPs that do not respond will hold up the
+     * entire heartbeat sequence until they timeout. If there are a lot of non-responsive PDPs and the timeout
+     * is large-ish (the default is 20 seconds) it could take a long time to cycle through all of the PDPs.
      * That means that this may not notice a PDP being down in a predictable time.
-     *
-     *
      */
     private class Heartbeat implements Runnable {
         private PAPEngine papEngine;
@@ -1138,8 +1149,10 @@ public class XACMLPapServlet extends HttpServlet implements StdItemSetChangeList
 
         public Heartbeat(PAPEngine engine) {
             this.papEngine = engine;
-            this.heartbeatInterval = Integer.parseInt(XACMLProperties.getProperty(XACMLRestProperties.PROP_PAP_HEARTBEAT_INTERVAL, "10000"));
-            this.heartbeatTimeout = Integer.parseInt(XACMLProperties.getProperty(XACMLRestProperties.PROP_PAP_HEARTBEAT_TIMEOUT, "10000"));
+            this.heartbeatInterval = Integer.parseInt(XACMLProperties
+                .getProperty(XACMLRestProperties.PROP_PAP_HEARTBEAT_INTERVAL, "10000"));
+            this.heartbeatTimeout = Integer.parseInt(XACMLProperties
+                .getProperty(XACMLRestProperties.PROP_PAP_HEARTBEAT_TIMEOUT, "10000"));
         }
 
         @Override
@@ -1147,7 +1160,7 @@ public class XACMLPapServlet extends HttpServlet implements StdItemSetChangeList
             //
             // Set ourselves as running
             //
-            synchronized(this) {
+            synchronized (this) {
                 this.isRunning = true;
             }
             HashMap<String, URL> idToURLMap = new HashMap<String, URL>();
@@ -1158,7 +1171,7 @@ public class XACMLPapServlet extends HttpServlet implements StdItemSetChangeList
 
                     // get the list of PDPs (may have changed since last time)
                     pdps.clear();
-                    synchronized(papEngine) {
+                    synchronized (papEngine) {
                         try {
                             for (PDPGroup g : papEngine.getPDPGroups()) {
                                 for (PDP p : g.getPdps()) {
@@ -1166,7 +1179,8 @@ public class XACMLPapServlet extends HttpServlet implements StdItemSetChangeList
                                 }
                             }
                         } catch (PAPException e) {
-                            logger.error("Heartbeat unable to read PDPs from PAPEngine: " + e.getMessage(), e);
+                            logger
+                                .error("Heartbeat unable to read PDPs from PAPEngine: " + e.getMessage(), e);
                         }
                     }
                     //
@@ -1222,24 +1236,27 @@ public class XACMLPapServlet extends HttpServlet implements StdItemSetChangeList
                             //
                             connection.connect();
                             if (connection.getResponseCode() == 204) {
-                                newStatus = connection.getHeaderField(XACMLRestProperties.PROP_PDP_HTTP_HEADER_HB);
+                                newStatus = connection
+                                    .getHeaderField(XACMLRestProperties.PROP_PDP_HTTP_HEADER_HB);
                                 if (logger.isDebugEnabled()) {
-                                    logger.debug("Heartbeat '" + pdp.getId() + "' status='" + newStatus + "'");
+                                    logger
+                                        .debug("Heartbeat '" + pdp.getId() + "' status='" + newStatus + "'");
                                 }
                             } else {
                                 // anything else is an unexpected result
                                 newStatus = PDPStatus.Status.UNKNOWN.toString();
-                                logger.error("Heartbeat connect response code " + connection.getResponseCode() + ": " + pdp.getId());
+                                logger.error("Heartbeat connect response code "
+                                             + connection.getResponseCode() + ": " + pdp.getId());
                             }
                         } catch (UnknownHostException e) {
                             newStatus = PDPStatus.Status.NO_SUCH_HOST.toString();
                             logger.error("Heartbeat '" + pdp.getId() + "' NO_SUCH_HOST");
                         } catch (SocketTimeoutException e) {
                             newStatus = PDPStatus.Status.CANNOT_CONNECT.toString();
-                            logger.error("Heartbeat '" + pdp.getId() + "' connection timeout: " + e );
+                            logger.error("Heartbeat '" + pdp.getId() + "' connection timeout: " + e);
                         } catch (ConnectException e) {
                             newStatus = PDPStatus.Status.CANNOT_CONNECT.toString();
-                            logger.error("Heartbeat '" + pdp.getId() + "' cannot connect: " + e );
+                            logger.error("Heartbeat '" + pdp.getId() + "' cannot connect: " + e);
                         } catch (Exception e) {
                             newStatus = PDPStatus.Status.UNKNOWN.toString();
                             logger.error("Heartbeat '" + pdp.getId() + "' connect exception: " + e, e);
@@ -1248,9 +1265,10 @@ public class XACMLPapServlet extends HttpServlet implements StdItemSetChangeList
                             connection.disconnect();
                         }
 
-                        if ( ! pdp.getStatus().getStatus().toString().equals(newStatus)) {
+                        if (!pdp.getStatus().getStatus().toString().equals(newStatus)) {
                             if (logger.isDebugEnabled()) {
-                                logger.debug("previous status='" + pdp.getStatus().getStatus()+"'  new Status='" + newStatus + "'");
+                                logger.debug("previous status='" + pdp.getStatus().getStatus()
+                                             + "'  new Status='" + newStatus + "'");
                             }
                             try {
                                 setPDPSummaryStatus(pdp, newStatus);
@@ -1282,7 +1300,6 @@ public class XACMLPapServlet extends HttpServlet implements StdItemSetChangeList
         }
     }
 
-
     //
     // HELPER to change Group status when PDP status is changed
     //
@@ -1294,7 +1311,7 @@ public class XACMLPapServlet extends HttpServlet implements StdItemSetChangeList
     }
 
     private void setPDPSummaryStatus(PDP pdp, String newStatus) throws PAPException {
-        synchronized(papEngine) {
+        synchronized (papEngine) {
             StdPDPStatus status = (StdPDPStatus)pdp.getStatus();
             status.setStatus(PDPStatus.Status.valueOf(newStatus));
             ((StdPDP)pdp).setStatus(status);
@@ -1308,10 +1325,9 @@ public class XACMLPapServlet extends HttpServlet implements StdItemSetChangeList
         }
     }
 
-
     //
     // Callback methods telling this servlet to notify PDPs of changes made by the PAP StdEngine
-    //	in the PDP group directories
+    // in the PDP group directories
     //
 
     @Override
@@ -1341,7 +1357,8 @@ public class XACMLPapServlet extends HttpServlet implements StdItemSetChangeList
     public void pdpChanged(PDP pdp) {
         // kick off a thread to do an event notification for each PDP.
         // This needs to be on a separate thread so that PDPs that do not respond (down, non-existent, etc)
-        // do not block the PSP response to the AC, which would freeze the GUI until all PDPs sequentially respond or time-out.
+        // do not block the PSP response to the AC, which would freeze the GUI until all PDPs sequentially
+        // respond or time-out.
         Thread t = new Thread(new UpdatePDPThread(pdp));
         t.start();
     }
@@ -1354,6 +1371,7 @@ public class XACMLPapServlet extends HttpServlet implements StdItemSetChangeList
             this.pdp = pdp;
         }
 
+        @Override
         public void run() {
             // send the current configuration to one PDP
             HttpURLConnection connection = null;
@@ -1365,8 +1383,9 @@ public class XACMLPapServlet extends HttpServlet implements StdItemSetChangeList
                 if (logger.isDebugEnabled()) {
                     logger.debug("creating url for id '" + pdp.getId() + "'");
                 }
-                //TODO - currently always send both policies and pips.  Do we care enough to add code to allow sending just one or the other?
-                //TODO		(need to change "cache=", implying getting some input saying which to change)
+                // TODO - currently always send both policies and pips. Do we care enough to add code to allow
+                // sending just one or the other?
+                // TODO (need to change "cache=", implying getting some input saying which to change)
                 URL url = new URL(pdp.getId() + "?cache=all");
 
                 //
@@ -1377,9 +1396,9 @@ public class XACMLPapServlet extends HttpServlet implements StdItemSetChangeList
                 // Setup our method and headers
                 //
                 connection.setRequestMethod("PUT");
-                //			connection.setRequestProperty("Accept", "text/x-java-properties");
+                // connection.setRequestProperty("Accept", "text/x-java-properties");
                 connection.setRequestProperty("Content-Type", "text/x-java-properties");
-                //            connection.setUseCaches(false);
+                // connection.setUseCaches(false);
                 //
                 // Adding this in. It seems the HttpUrlConnection class does NOT
                 // properly forward our headers for POST re-direction. It does so
@@ -1387,14 +1406,14 @@ public class XACMLPapServlet extends HttpServlet implements StdItemSetChangeList
                 //
                 // So we need to handle this ourselves.
                 //
-                //TODO - is this needed for a PUT?  seems better to leave in for now?
-//	            connection.setInstanceFollowRedirects(false);
+                // TODO - is this needed for a PUT? seems better to leave in for now?
+                // connection.setInstanceFollowRedirects(false);
                 //
                 // PLD - MUST be able to handle re-directs.
                 //
                 connection.setInstanceFollowRedirects(true);
                 connection.setDoOutput(true);
-                //			connection.setDoInput(true);
+                // connection.setDoInput(true);
                 try (OutputStream os = connection.getOutputStream()) {
 
                     PDPGroup group = papEngine.getPDPGroup(pdp);
@@ -1415,7 +1434,8 @@ public class XACMLPapServlet extends HttpServlet implements StdItemSetChangeList
                         group.getPolicyProperties().store(os, "");
                         Properties policyLocations = new Properties();
                         for (PDPPolicy policy : group.getPolicies()) {
-                            policyLocations.put(policy.getId() + ".url", XACMLPapServlet.papURL + "?id=" + policy.getId());
+                            policyLocations.put(policy.getId() + ".url", XACMLPapServlet.papURL + "?id="
+                                                                         + policy.getId());
                         }
                         policyLocations.store(os, "");
                         group.getPipConfigProperties().store(os, "");
@@ -1423,7 +1443,8 @@ public class XACMLPapServlet extends HttpServlet implements StdItemSetChangeList
 
                 } catch (Exception e) {
                     logger.error("Failed to send property file to " + pdp.getId(), e);
-                    // Since this is a server-side error, it probably does not reflect a problem on the client,
+                    // Since this is a server-side error, it probably does not reflect a problem on the
+                    // client,
                     // so do not change the PDP status.
                     return;
                 }
@@ -1438,7 +1459,8 @@ public class XACMLPapServlet extends HttpServlet implements StdItemSetChangeList
                     logger.info("Success. PDP needs to update its configuration.");
                     setPDPSummaryStatus(pdp, PDPStatus.Status.OUT_OF_SYNCH);
                 } else {
-                    logger.warn("Failed: " + connection.getResponseCode() + "  message: " + connection.getResponseMessage());
+                    logger.warn("Failed: " + connection.getResponseCode() + "  message: "
+                                + connection.getResponseMessage());
                     setPDPSummaryStatus(pdp, PDPStatus.Status.UNKNOWN);
                 }
             } catch (Exception e) {
@@ -1465,7 +1487,8 @@ public class XACMLPapServlet extends HttpServlet implements StdItemSetChangeList
 
     private void notifyAC() {
         // kick off a thread to do one event notification for all registered ACs
-        // This needs to be on a separate thread so that ACs can make calls back to PAP to get the updated Group data
+        // This needs to be on a separate thread so that ACs can make calls back to PAP to get the updated
+        // Group data
         // as part of processing this message on their end.
         Thread t = new Thread(new NotifyACThread());
         t.start();
@@ -1473,9 +1496,10 @@ public class XACMLPapServlet extends HttpServlet implements StdItemSetChangeList
 
     private class NotifyACThread implements Runnable {
 
+        @Override
         public void run() {
             List<String> disconnectedACs = new ArrayList<String>();
-// logger.debug("LIST SIZE="+adminConsoleURLStringList.size());
+            // logger.debug("LIST SIZE="+adminConsoleURLStringList.size());
 
             // There should be no Concurrent exception here because the list is a CopyOnWriteArrayList.
             // The "for each" loop uses the collection's iterator under the covers, so it should be correct.
@@ -1485,17 +1509,19 @@ public class XACMLPapServlet extends HttpServlet implements StdItemSetChangeList
 
                     acURL += "?PAPNotification=true";
 
-//TODO - Currently we just tell AC that "Something changed" without being specific.  Do we want to tell it which group/pdp changed?
-//TODO - If so, put correct parameters into the Query string here
+                    // TODO - Currently we just tell AC that "Something changed" without being specific. Do we
+                    // want to tell it which group/pdp changed?
+                    // TODO - If so, put correct parameters into the Query string here
                     acURL += "&objectType=all" + "&action=update";
 
                     if (logger.isDebugEnabled()) {
                         logger.debug("creating url for id '" + acURL + "'");
                     }
-//TODO - currently always send both policies and pips.  Do we care enough to add code to allow sending just one or the other?
-//TODO		(need to change "cache=", implying getting some input saying which to change)
+                    // TODO - currently always send both policies and pips. Do we care enough to add code to
+                    // allow sending just one or the other?
+                    // TODO (need to change "cache=", implying getting some input saying which to change)
 
-                    URL url = new URL(acURL );
+                    URL url = new URL(acURL);
 
                     //
                     // Open up the connection
@@ -1513,7 +1539,7 @@ public class XACMLPapServlet extends HttpServlet implements StdItemSetChangeList
                     //
                     // So we need to handle this ourselves.
                     //
-                    //TODO - is this needed for a PUT?  seems better to leave in for now?
+                    // TODO - is this needed for a PUT? seems better to leave in for now?
                     connection.setInstanceFollowRedirects(false);
                     //
                     // Do not include any data in the PUT because this is just a
@@ -1529,7 +1555,8 @@ public class XACMLPapServlet extends HttpServlet implements StdItemSetChangeList
                     if (connection.getResponseCode() == 204) {
                         logger.info("Success. We updated correctly.");
                     } else {
-                        logger.warn("Failed: " + connection.getResponseCode() + "  message: " + connection.getResponseMessage());
+                        logger.warn("Failed: " + connection.getResponseCode() + "  message: "
+                                    + connection.getResponseMessage());
                     }
 
                 } catch (Exception e) {

@@ -32,25 +32,26 @@
 package org.apache.openaz.xacml.api.trace;
 
 /**
- * Defines the API for objects that can be set as the "cause" in a {@link org.apache.openaz.xacml.api.trace.TraceEvent}.  Objects
- * cause a <code>TraceEvent</code> through methods called during the evaluation of a XACML Policy or PolicySet.
- *
+ * Defines the API for objects that can be set as the "cause" in a
+ * {@link com.att.research.xacml.api.trace.TraceEvent}. Objects cause a <code>TraceEvent</code> through
+ * methods called during the evaluation of a XACML Policy or PolicySet.
  */
 public interface Traceable {
     /**
-     * Gets the <code>String</code> identifier for the object that caused the {@link org.apache.openaz.xacml.api.trace.TraceEvent} as a result
-     * of a policy evaluation method.
+     * Gets the <code>String</code> identifier for the object that caused the
+     * {@link com.att.research.xacml.api.trace.TraceEvent} as a result of a policy evaluation method.
      * Implementations must not return <code>null</code>.
      *
      * @return the <code>String</code> identifier for the object that caused the <code>TraceEvent</code>.
      */
-    public String getTraceId();
+    String getTraceId();
 
     /**
-     * Gets the <code>Traceable</code> that caused the evaluation method on this <code>Traceable</code> to be called.  If
-     * there is no known causing object, this method should return <code>null</code>.
+     * Gets the <code>Traceable</code> that caused the evaluation method on this <code>Traceable</code> to be
+     * called. If there is no known causing object, this method should return <code>null</code>.
      *
-     * @return the <code>Traceable</code> that caused the evaluation method on this <code>Traceable</code> to be called.
+     * @return the <code>Traceable</code> that caused the evaluation method on this <code>Traceable</code> to
+     *         be called.
      */
-    public Traceable getCause();
+    Traceable getCause();
 }

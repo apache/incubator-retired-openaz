@@ -25,7 +25,6 @@
 // Generated on: 2013.05.23 at 02:47:00 PM EDT
 //
 
-
 package oasis.names.tc.xacml._3_0.core.schema.wd_17;
 
 import java.util.ArrayList;
@@ -40,11 +39,11 @@ import javax.xml.bind.annotation.XmlElementRef;
 import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 
-
 /**
- * <p>Java class for ApplyType complex type.
- *
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>
+ * Java class for ApplyType complex type.
+ * <p>
+ * The following schema fragment specifies the expected content contained within this class.
  *
  * <pre>
  * &lt;complexType name="ApplyType">
@@ -59,16 +58,12 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- *
- *
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "ApplyType", propOrder = {
-    "description",
-    "expression"
+                                          "description", "expression"
 })
-public class ApplyType
-    extends ExpressionType {
+public class ApplyType extends ExpressionType {
 
     @XmlElement(name = "Description")
     protected String description;
@@ -81,10 +76,7 @@ public class ApplyType
     /**
      * Gets the value of the description property.
      *
-     * @return
-     *     possible object is
-     *     {@link String }
-     *
+     * @return possible object is {@link String }
      */
     public String getDescription() {
         return description;
@@ -93,10 +85,7 @@ public class ApplyType
     /**
      * Sets the value of the description property.
      *
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *
+     * @param value allowed object is {@link String }
      */
     public void setDescription(String value) {
         this.description = value;
@@ -104,31 +93,25 @@ public class ApplyType
 
     /**
      * Gets the value of the expression property.
-     *
      * <p>
-     * This accessor method returns a reference to the live list,
-     * not a snapshot. Therefore any modification you make to the
-     * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the expression property.
-     *
+     * This accessor method returns a reference to the live list, not a snapshot. Therefore any modification
+     * you make to the returned list will be present inside the JAXB object. This is why there is not a
+     * <CODE>set</CODE> method for the expression property.
      * <p>
      * For example, to add a new item, do as follows:
+     * 
      * <pre>
-     *    getExpression().add(newItem);
+     * getExpression().add(newItem);
      * </pre>
-     *
-     *
      * <p>
-     * Objects of the following type(s) are allowed in the list
-     * {@link javax.xml.bind.JAXBElement }{@code <}{@link FunctionType }{@code >}
-     * {@link javax.xml.bind.JAXBElement }{@code <}{@link AttributeDesignatorType }{@code >}
-     * {@link javax.xml.bind.JAXBElement }{@code <}{@link VariableReferenceType }{@code >}
-     * {@link javax.xml.bind.JAXBElement }{@code <}{@link ExpressionType }{@code >}
-     * {@link javax.xml.bind.JAXBElement }{@code <}{@link AttributeSelectorType }{@code >}
-     * {@link javax.xml.bind.JAXBElement }{@code <}{@link oasis.names.tc.xacml._3_0.core.schema.wd_17.ApplyType }{@code >}
+     * Objects of the following type(s) are allowed in the list {@link javax.xml.bind.JAXBElement }{@code <}
+     * {@link FunctionType }{@code >} {@link javax.xml.bind.JAXBElement }{@code <}
+     * {@link AttributeDesignatorType }{@code >} {@link javax.xml.bind.JAXBElement }{@code <}
+     * {@link VariableReferenceType }{@code >} {@link javax.xml.bind.JAXBElement }{@code <}
+     * {@link ExpressionType }{@code >} {@link javax.xml.bind.JAXBElement }{@code <}
+     * {@link AttributeSelectorType }{@code >} {@link javax.xml.bind.JAXBElement }{@code <}
+     * {@link oasis.names.tc.xacml._3_0.core.schema.wd_17.ApplyType }{@code >}
      * {@link javax.xml.bind.JAXBElement }{@code <}{@link AttributeValueType }{@code >}
-     *
-     *
      */
     public List<JAXBElement<?>> getExpression() {
         if (expression == null) {
@@ -140,10 +123,7 @@ public class ApplyType
     /**
      * Gets the value of the functionId property.
      *
-     * @return
-     *     possible object is
-     *     {@link String }
-     *
+     * @return possible object is {@link String }
      */
     public String getFunctionId() {
         return functionId;
@@ -152,10 +132,7 @@ public class ApplyType
     /**
      * Sets the value of the functionId property.
      *
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *
+     * @param value allowed object is {@link String }
      */
     public void setFunctionId(String value) {
         this.functionId = value;

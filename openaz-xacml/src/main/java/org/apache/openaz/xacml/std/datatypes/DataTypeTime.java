@@ -38,12 +38,11 @@ import org.apache.openaz.xacml.api.DataTypeException;
 import org.apache.openaz.xacml.api.XACML;
 
 /**
- * DataTypeTime extends {@link DataTypeBase} to implement the XACML Time
- * data time mapping to a {@link ISO8601Time} java object.
- *
+ * DataTypeTime extends {@link DataTypeBase} to implement the XACML Time data time mapping to a
+ * {@link ISO8601Time} java object.
  */
 public class DataTypeTime extends DataTypeSemanticStringBase<ISO8601Time> {
-    private static final DataTypeTime	singleInstance	= new DataTypeTime();
+    private static final DataTypeTime singleInstance = new DataTypeTime();
 
     private DataTypeTime() {
         super(XACML.ID_DATATYPE_TIME, ISO8601Time.class);
@@ -62,12 +61,14 @@ public class DataTypeTime extends DataTypeSemanticStringBase<ISO8601Time> {
         } else if (source instanceof Calendar) {
             return ISO8601Time.fromCalendar((Calendar)source);
         } else {
-            String 	stringValue	= this.convertToString(source);
-            ISO8601Time	timeValue	= null;
+            String stringValue = this.convertToString(source);
+            ISO8601Time timeValue = null;
             try {
-                timeValue	= ISO8601Time.fromISO8601TimeString(stringValue);
+                timeValue = ISO8601Time.fromISO8601TimeString(stringValue);
             } catch (ParseException ex) {
-                throw new DataTypeException(this, "Failed to convert \"" + source.getClass().getCanonicalName() + "\" with value \"" + stringValue + "\" to Time", ex);
+                throw new DataTypeException(this, "Failed to convert \""
+                                                  + source.getClass().getCanonicalName() + "\" with value \""
+                                                  + stringValue + "\" to Time", ex);
             }
             return timeValue;
         }

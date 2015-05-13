@@ -36,9 +36,8 @@ import org.apache.openaz.xacml.api.trace.TraceEngine;
 import org.apache.openaz.xacml.api.trace.TraceEngineFactory;
 
 /**
- * Extends the {@link org.apache.openaz.xacml.api.trace.TraceEngineFactory} class to implement the <code>getTraceEngine</code> method to return
- * an instance of the {@link NullTraceEngine} class.
- *
+ * Extends the {@link com.att.research.xacml.api.trace.TraceEngineFactory} class to implement the
+ * <code>getTraceEngine</code> method to return an instance of the {@link NullTraceEngine} class.
  */
 public class NullTraceEngineFactory extends TraceEngineFactory {
     /**
