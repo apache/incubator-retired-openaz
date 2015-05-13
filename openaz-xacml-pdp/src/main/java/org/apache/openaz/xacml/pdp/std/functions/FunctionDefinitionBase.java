@@ -40,12 +40,12 @@ import org.apache.openaz.xacml.std.datatypes.DataTypeBoolean;
 
 /**
  * /** FunctionDefinitionBase provides a common base for
- * {@link com.att.research.xacmlatt.pdp.policy.FunctionDefinition}s. The child classes derived from this are
+ * {@link org.apache.openaz.xacml.pdp.policy.FunctionDefinition}s. The child classes derived from this are
  * of two types:
  * <UL>
  * <LI>Functions returning a single simple value of a type defined in
- * {@link com.att.research.xacml.std.datatypes.DataTypes}. These functions will all derive from
- * {@link com.att.research.xacmlatt.pdp.std.functions.FunctionDefinitionSimple}.
+ * {@link org.apache.openaz.xacml.std.datatypes.DataTypes}. These functions will all derive from
+ * {@link org.apache.openaz.xacml.pdp.std.functions.FunctionDefinitionSimple}.
  * <LI>Functions returning a single bag with elements of a single type.
  * <UL>
  * <P>
@@ -91,7 +91,7 @@ public abstract class FunctionDefinitionBase<O, I> implements FunctionDefinition
 
     /**
      * Creates a new <code>FunctionDefinitionBase</code> with the
-     * {@link com.att.research.xacml.api.Identifier} <code>idIn</code> as the function id.
+     * {@link org.apache.openaz.xacml.api.Identifier} <code>idIn</code> as the function id.
      *
      * @param idIn the <code>Identifier</code> for this <code>FunctionDefinitionBase</code>
      */

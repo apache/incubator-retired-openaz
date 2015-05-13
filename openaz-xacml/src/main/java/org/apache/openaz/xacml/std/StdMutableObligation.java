@@ -42,7 +42,7 @@ import org.apache.openaz.xacml.util.ListUtil;
 import org.apache.openaz.xacml.util.ObjUtil;
 
 /**
- * Mutable implementation of the {@link com.att.research.xacml.api.Obligation} interface for XACML Obligation
+ * Mutable implementation of the {@link org.apache.openaz.xacml.api.Obligation} interface for XACML Obligation
  * elements.
  */
 public class StdMutableObligation implements Obligation {
@@ -61,8 +61,8 @@ public class StdMutableObligation implements Obligation {
 
     /**
      * Creates a new <code>StdMutableObligation</code> with the given
-     * {@link com.att.research.xacml.api.Identifier} representing the XACML ObligationId and the given
-     * <code>Collection</code> of {@link com.att.research.xacml.api.AttributeAssignment}s representing the
+     * {@link org.apache.openaz.xacml.api.Identifier} representing the XACML ObligationId and the given
+     * <code>Collection</code> of {@link org.apache.openaz.xacml.api.AttributeAssignment}s representing the
      * XACML AttributeAssignments for the Obligation.
      *
      * @param idIn the <code>Identifier</code> representing the XACML ObligationId
@@ -81,7 +81,7 @@ public class StdMutableObligation implements Obligation {
 
     /**
      * Creates a new <code>StdMutableObligation</code> with the given
-     * {@link com.att.research.xacml.api.Identifier} representing the XACML ObligationId.
+     * {@link org.apache.openaz.xacml.api.Identifier} representing the XACML ObligationId.
      *
      * @param idIn the <code>Identifier</code> representing the XACML ObligationId
      */
@@ -95,7 +95,7 @@ public class StdMutableObligation implements Obligation {
     }
 
     /**
-     * Sets the {@link com.att.research.xacml.api.Identifier} representing the XACML ObligationId for the
+     * Sets the {@link org.apache.openaz.xacml.api.Identifier} representing the XACML ObligationId for the
      * Obligation represented by this <code>StdMutableObligation</code>.
      *
      * @param identifier the <code>Identifier</code> representing the XACML ObligationId for the Obligation
@@ -111,7 +111,7 @@ public class StdMutableObligation implements Obligation {
     }
 
     /**
-     * Adds an {@link com.att.research.xacmo.api.AttributeAssignment} to this
+     * Adds an {@link org.apache.openaz.xacmo.api.AttributeAssignment} to this
      * <code>StdMutableObligation</code>.
      *
      * @param attributeAssignment the <code>AttributeAssignment</code> to add to this
@@ -126,7 +126,7 @@ public class StdMutableObligation implements Obligation {
 
     /**
      * Adds a copy of the given <code>Collection</code> of
-     * {@link com.att.research.xacml.api.AttributeAssignment}s to this <code>StdMutableObligation</code>.
+     * {@link org.apache.openaz.xacml.api.AttributeAssignment}s to this <code>StdMutableObligation</code>.
      *
      * @param attributeAssignmentsIn the <code>Collection</code> of <code>AttributeAssignment</code>s to add
      *            to this <code>StdMutableObligation</code>.
@@ -137,7 +137,7 @@ public class StdMutableObligation implements Obligation {
     }
 
     /**
-     * Sets the {@link com.att.research.xacml.api.AttributeAssignment}s in this
+     * Sets the {@link org.apache.openaz.xacml.api.AttributeAssignment}s in this
      * <code>StdMutableObligation</code> to a copy of the given <code>Collection</code>.
      *
      * @param attributeAssignmentsIn the <code>Collection</code> of <code>AttributeAssignment</code>s to set

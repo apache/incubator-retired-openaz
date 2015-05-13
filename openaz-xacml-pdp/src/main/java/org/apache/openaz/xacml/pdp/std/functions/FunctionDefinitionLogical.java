@@ -43,7 +43,7 @@ import org.apache.openaz.xacml.std.datatypes.DataTypes;
 
 /**
  * FunctionDefinitionLogical extends
- * {@link com.att.research.xacmlatt.pdp.std.functions.FunctionDefinitionHomogeneousSimple} to implement the
+ * {@link org.apache.openaz.xacml.pdp.std.functions.FunctionDefinitionHomogeneousSimple} to implement the
  * XACML Logic predicates as functions taking zero, one, or multiple arguments of type <code>Boolean</code>
  * and returning a <code>Boolean</code>. In the first implementation of XACML we had separate files for each
  * XACML Function. This release combines multiple Functions in fewer files to minimize code duplication. This

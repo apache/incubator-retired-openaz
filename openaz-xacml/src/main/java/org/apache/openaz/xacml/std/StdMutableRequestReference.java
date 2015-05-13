@@ -40,7 +40,7 @@ import org.apache.openaz.xacml.api.RequestReference;
 import org.apache.openaz.xacml.util.ListUtil;
 
 /**
- * Mutable implementation of the {@link com.att.research.xacml.api.RequestReference} interface.
+ * Mutable implementation of the {@link org.apache.openaz.xacml.api.RequestReference} interface.
  */
 public class StdMutableRequestReference implements RequestReference {
     private static final List<RequestAttributesReference> EMPTY_LIST = Collections
@@ -49,7 +49,7 @@ public class StdMutableRequestReference implements RequestReference {
 
     /**
      * Creates a new <code>StdMutableRequestReference</code> with no
-     * {@link com.att.research.xacml.api.RequestAttributesReference}s.
+     * {@link org.apache.openaz.xacml.api.RequestAttributesReference}s.
      */
     public StdMutableRequestReference() {
     }
@@ -69,7 +69,7 @@ public class StdMutableRequestReference implements RequestReference {
     }
 
     /**
-     * Adds a {@link com.att.research.xacml.api.RequestAttributesReference} to this
+     * Adds a {@link org.apache.openaz.xacml.api.RequestAttributesReference} to this
      * <code>StdMutableRequestReference</code>>
      *
      * @param requestAttributesReference the <code>RequestAttributesReference</code> to add

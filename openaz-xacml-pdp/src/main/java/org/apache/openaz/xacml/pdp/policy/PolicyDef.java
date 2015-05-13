@@ -53,7 +53,7 @@ import org.apache.openaz.xacml.std.StdStatusCode;
 import org.apache.openaz.xacml.util.StringUtils;
 
 /**
- * PolicyDef extends {@link com.att.research.xacmlatt.pdp.policy.PolicySetChild} with members and methods
+ * PolicyDef extends {@link org.apache.openaz.xacml.pdp.policy.PolicySetChild} with members and methods
  * common to XACML 3.0 Policies and PolicySets.
  */
 public abstract class PolicyDef extends PolicySetChild {

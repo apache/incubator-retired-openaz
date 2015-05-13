@@ -35,7 +35,7 @@ package org.apache.openaz.xacml.api;
  */
 public interface StatusCode {
     /**
-     * Retrieves the major status {@link com.att.research.xacmo.common.Identifier} for this
+     * Retrieves the major status {@link org.apache.openaz.xacmo.common.Identifier} for this
      * <code>StatusCode</code>.
      *
      * @return the major status <code>Identifier</code> for this <code>StatusCode</code>

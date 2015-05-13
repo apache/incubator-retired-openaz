@@ -53,9 +53,9 @@ import org.apache.openaz.xacml.std.trace.StdTraceEvent;
 import org.apache.openaz.xacml.util.StringUtils;
 
 /**
- * Rule extends {@link com.att.research.xacmlatt.pdp.policy.PolicyComponent} to represent a XACML Rule within
- * a Policy. It implements {@link com.att.research.xacmlatt.pdp.eval.Matchable} and
- * {@link com.att.research.xacmlatt.pdp.eval.Evaluatable} for matching and evaluation a request.
+ * Rule extends {@link org.apache.openaz.xacml.pdp.policy.PolicyComponent} to represent a XACML Rule within
+ * a Policy. It implements {@link org.apache.openaz.xacml.pdp.eval.Matchable} and
+ * {@link org.apache.openaz.xacml.pdp.eval.Evaluatable} for matching and evaluation a request.
  */
 public class Rule extends PolicyComponent implements Matchable, Evaluatable, Traceable {
     private Policy policy;

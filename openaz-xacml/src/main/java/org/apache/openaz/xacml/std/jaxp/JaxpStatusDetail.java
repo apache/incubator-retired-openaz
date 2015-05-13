@@ -42,7 +42,7 @@ import oasis.names.tc.xacml._3_0.core.schema.wd_17.MissingAttributeDetailType;
 import oasis.names.tc.xacml._3_0.core.schema.wd_17.StatusDetailType;
 
 /**
- * JaxpStatusDetail extends {@link com.att.research.xacml.std.StdMutableStatusDetail} with methods for
+ * JaxpStatusDetail extends {@link org.apache.openaz.xacml.std.StdMutableStatusDetail} with methods for
  * creation from JAXP elements.
  */
 public class JaxpStatusDetail extends StdMutableStatusDetail {

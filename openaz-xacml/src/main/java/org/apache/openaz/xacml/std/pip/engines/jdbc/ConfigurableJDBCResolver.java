@@ -96,7 +96,7 @@ public class ConfigurableJDBCResolver implements JDBCResolver {
     }
 
     /**
-     * Determines if the given {@link com.att.research.xacml.api.pip.PIPRequest} can be answered with this
+     * Determines if the given {@link org.apache.openaz.xacml.api.pip.PIPRequest} can be answered with this
      * <code>ConfigurableJDBCResolver</code>.
      *
      * @param pipRequest the <code>PIPRequest</code> to check
@@ -113,7 +113,7 @@ public class ConfigurableJDBCResolver implements JDBCResolver {
 
     /**
      * Creates a new <code>ConfigurableJDBCResolver</code> that can provide XACML Attributes for the given
-     * <code>Collection</code> of {@link com.att.research.xacml.api.pip.PIPRequests}s. The mapping from
+     * <code>Collection</code> of {@link org.apache.openaz.xacml.api.pip.PIPRequests}s. The mapping from
      * database table field names to XACML Attributes is provided by the <code>fieldsIn</code>
      * <code>Map</code>. The SQL query <code>String</code> is provided by <code>sqlQueryIn</code>. The query
      * string may contain prepared statement parameter place-holders <code>('?')</code>. The XACML Attributes
@@ -384,12 +384,12 @@ public class ConfigurableJDBCResolver implements JDBCResolver {
     }
 
     /**
-     * Creates an {@link com.att.research.xacml.api.Attribute} from the value associated with the field with
+     * Creates an {@link org.apache.openaz.xacml.api.Attribute} from the value associated with the field with
      * the given <code>fieldName</code>.
      *
      * @param resultSet the {@link java.sql.ResultSet} containing the current row from the database
      * @param fieldName the <code>String</code> name of the field containing the attribute value
-     * @param pipRequestAttribute the {@link com.att.research.xacml.api.pip.PIPRequest} for the
+     * @param pipRequestAttribute the {@link org.apache.openaz.xacml.api.pip.PIPRequest} for the
      *            <code>Attribute</code> to create
      * @return a new <code>Attribute</code> with the value of the given <code>fieldName</code>.
      */

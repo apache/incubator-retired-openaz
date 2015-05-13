@@ -47,7 +47,7 @@ import org.apache.openaz.xacml.std.datatypes.DataTypes;
 
 /**
  * FunctionDefinitionStringNormalize extends
- * {@link com.att.research.xacmlatt.pdp.std.functions.FunctionDefinitionHomogeneousSimple} to implement the
+ * {@link org.apache.openaz.xacml.pdp.std.functions.FunctionDefinitionHomogeneousSimple} to implement the
  * XACML String normalization predicates as functions taking one <code>String</code> arg and returning a
  * single value of the same type. In the first implementation of XACML we had separate files for each XACML
  * Function. This release combines multiple Functions in fewer files to minimize code duplication. This file

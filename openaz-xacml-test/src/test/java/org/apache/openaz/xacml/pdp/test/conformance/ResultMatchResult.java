@@ -35,7 +35,7 @@ import org.apache.openaz.xacml.std.StdStatusCode;
 import org.apache.openaz.xacml.util.ListUtil;
 
 /**
- * ResultMatchResult provides information about how well a {@link com.att.research.xacml.api.Result} object
+ * ResultMatchResult provides information about how well a {@link org.apache.openaz.xacml.api.Result} object
  * matches another <code>Result</code> object.
  */
 public class ResultMatchResult {

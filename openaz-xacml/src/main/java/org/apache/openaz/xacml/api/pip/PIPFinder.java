@@ -34,13 +34,13 @@ import java.util.Collection;
 
 /**
  * PIPFinder is the interface objects implement that can query multiple sources of
- * {@link com.att.research.xacml.api.Attribute}s based on a {@link com.att.research.xacml.api.pip.PIPRequest}.
+ * {@link org.apache.openaz.xacml.api.Attribute}s based on a {@link org.apache.openaz.xacml.api.pip.PIPRequest}.
  */
 public interface PIPFinder {
     /**
      * Retrieves <code>Attribute</code>s that based on the given
-     * {@link com.att.research.xacml.api.pip.PIPRequest}. The
-     * {@link com.att.research.xacml.api.pip.PIPResponse} may contain multiple <code>Attribute</code>s and
+     * {@link org.apache.openaz.xacml.api.pip.PIPRequest}. The
+     * {@link org.apache.openaz.xacml.api.pip.PIPResponse} may contain multiple <code>Attribute</code>s and
      * they do not need to match the <code>PIPRequest</code>. In this way, a <code>PIPFinder</code> may
      * compute multiple related <code>Attribute</code>s at once.
      *
@@ -48,23 +48,23 @@ public interface PIPFinder {
      *            retrieved
      * @param excude the (optional) <code>PIPEngine</code> to exclude from searches for the given
      *            <code>PIPRequest</code>
-     * @return a {@link com.att.research.xacml.pip.PIPResponse} with the results of the request
+     * @return a {@link org.apache.openaz.xacml.pip.PIPResponse} with the results of the request
      * @throws PIPException if there is an error retrieving the <code>Attribute</code>s.
      */
     PIPResponse getAttributes(PIPRequest pipRequest, PIPEngine exclude) throws PIPException;
 
     /**
      * Retrieves <code>Attribute</code>s that match the given
-     * {@link com.att.research.xacml.api.pip.PIPRequest}. The
-     * {@link com.att.research.xacml.api.pip.PIPResponse} should only include a single
-     * {@link com.att.research.xacml.api.Attribute} with {@link com.att.research.xacml.api.AttributeValue}s
+     * {@link org.apache.openaz.xacml.api.pip.PIPRequest}. The
+     * {@link org.apache.openaz.xacml.api.pip.PIPResponse} should only include a single
+     * {@link org.apache.openaz.xacml.api.Attribute} with {@link org.apache.openaz.xacml.api.AttributeValue}s
      * whose data type matches the request.
      *
      * @param pipRequest the <code>PIPRequest</code> defining which <code>Attribute</code>s should be
      *            retrieved
      * @param excude the (optional) <code>PIPEngine</code> to exclude from searches for the given
      *            <code>PIPRequest</code>
-     * @return a {@link com.att.research.xacml.pip.PIPResponse} with the results of the request
+     * @return a {@link org.apache.openaz.xacml.pip.PIPResponse} with the results of the request
      * @throws PIPException if there is an error retrieving the <code>Attribute</code>s.
      */
     PIPResponse getMatchingAttributes(PIPRequest pipRequest, PIPEngine exclude) throws PIPException;

@@ -52,7 +52,7 @@ import org.apache.openaz.xacml.std.StdStatusCode;
 import org.apache.openaz.xacml.std.datatypes.DataTypes;
 
 /**
- * ConformanceScopeResolver implements {@link com.att.research.xacml.pdp.ScopeResolver} for the conformance
+ * ConformanceScopeResolver implements {@link org.apache.openaz.xacml.pdp.ScopeResolver} for the conformance
  * tests using a fixed set of hierarchical resources defined in a map.
  */
 public class ConformanceScopeResolver implements ScopeResolver {

@@ -45,7 +45,7 @@ import org.apache.openaz.xacml.util.ListUtil;
 import org.apache.openaz.xacml.util.ObjUtil;
 
 /**
- * Mutable implementation of the {@link com.att.research.xacml.Attribute} interface.
+ * Mutable implementation of the {@link org.apache.openaz.xacml.Attribute} interface.
  */
 public class StdMutableAttribute implements Attribute {
     private static final List<AttributeValue<?>> EMPTY_ATTRIBUTE_VALUE_LIST = Collections
@@ -59,16 +59,16 @@ public class StdMutableAttribute implements Attribute {
 
     /**
      * Creates a new <code>StdMutableAttribute</code> with an empty list of
-     * {@link com.att.research.xacom.api.AttributeValue}s.
+     * {@link org.apache.openaz.xacom.api.AttributeValue}s.
      */
     public StdMutableAttribute() {
         this.values = EMPTY_ATTRIBUTE_VALUE_LIST;
     }
 
     /**
-     * Creates a new <code>StdMutableAttribute</code> with the given {@link com.att.research.xacml.Identifier}
+     * Creates a new <code>StdMutableAttribute</code> with the given {@link org.apache.openaz.xacml.Identifier}
      * s for the XACML 3.0 Category and AttributeId properties, and the given <code>Collection</code> of
-     * {@link com.att.research.xacml.AttributeValue}s. The <code>String</code> issuer may be null.
+     * {@link org.apache.openaz.xacml.AttributeValue}s. The <code>String</code> issuer may be null.
      *
      * @param categoryIdIn the <code>Identifier</code> for the XACML 3.0 Category of the new
      *            <code>StdMutableAttribute</code>
@@ -97,9 +97,9 @@ public class StdMutableAttribute implements Attribute {
     }
 
     /**
-     * Creates a new <code>StdMutableAttribute</code> with the given {@link com.att.research.xacml.Identifier}
+     * Creates a new <code>StdMutableAttribute</code> with the given {@link org.apache.openaz.xacml.Identifier}
      * s for the XACML 3.0 Category and AttributeId properties, and the given
-     * {@link com.att.research.xacml.AttributeValue} as its only value. The <code>String</code> issuer may be
+     * {@link org.apache.openaz.xacml.AttributeValue} as its only value. The <code>String</code> issuer may be
      * null.
      *
      * @param categoryIdIn the <code>Identifier</code> for the XACML 3.0 Category of the new
@@ -124,9 +124,9 @@ public class StdMutableAttribute implements Attribute {
     }
 
     /**
-     * Creates a new <code>StdMutableAttribute</code> with the given {@link com.att.research.xacml.Identifier}
+     * Creates a new <code>StdMutableAttribute</code> with the given {@link org.apache.openaz.xacml.Identifier}
      * s for the XACML 3.0 Category and AttributeId properties and the given
-     * {@link com.att.research.xacml.AttributeValue} as its only value. The issuer is null and the
+     * {@link org.apache.openaz.xacml.AttributeValue} as its only value. The issuer is null and the
      * <code>StdMutableAttribute</code> will not be included in XACML 3.0 responses.
      *
      * @param categoryIdIn the <code>Identifier</code> for the XACML 3.0 Category of the new
@@ -141,7 +141,7 @@ public class StdMutableAttribute implements Attribute {
 
     /**
      * Creates a new <code>StdMutableAttribute</code> that is a copy of the given
-     * {@link com.att.research.xacml.api.Attribute}.
+     * {@link org.apache.openaz.xacml.api.Attribute}.
      *
      * @param attribute the <code>Attribute</code> to copy
      * @return a new <code>StdMutableAttribute</code> that is a copy of the given <code>Attribute</code>.
@@ -158,7 +158,7 @@ public class StdMutableAttribute implements Attribute {
     }
 
     /**
-     * Sets the {@link com.att.research.xacml.api.Identifier} representing the XACML AttributeId of the
+     * Sets the {@link org.apache.openaz.xacml.api.Identifier} representing the XACML AttributeId of the
      * Attribute represented by this <code>StdMutableAttribute</code>>
      *
      * @param identifier the <code>Identifier</code> representing the XACML AttributeId of the Attribute
@@ -174,7 +174,7 @@ public class StdMutableAttribute implements Attribute {
     }
 
     /**
-     * Sets the {@link com.att.research.xacml.api.Identifier} representing the XACML Category of the Attribute
+     * Sets the {@link org.apache.openaz.xacml.api.Identifier} representing the XACML Category of the Attribute
      * represented by this <code>StdMutableAttribute</code>.
      *
      * @param identifier the <code>Identifier</code> representing the XACML Category of the Attribute
@@ -203,7 +203,7 @@ public class StdMutableAttribute implements Attribute {
     }
 
     /**
-     * Adds a copy of the given <code>Collection</code> of {@link com.att.research.xacml.api.AttributeValue}s
+     * Adds a copy of the given <code>Collection</code> of {@link org.apache.openaz.xacml.api.AttributeValue}s
      * to this <code>StdMutableAttribute</code>.
      *
      * @param listAttributeValues the <code>Collection</code> of <code>AttributeValue</code>s to add to this
@@ -219,7 +219,7 @@ public class StdMutableAttribute implements Attribute {
     }
 
     /**
-     * Sets the {@link com.att.research.xacml.api.AttributeValue}s in this <code>StdMutableAttribute</code> to
+     * Sets the {@link org.apache.openaz.xacml.api.AttributeValue}s in this <code>StdMutableAttribute</code> to
      * a copy of the given <code>Collection</code>.
      *
      * @param listAttributeValues the <code>Collection</code> of <code>AttributValue</code>s to set in this

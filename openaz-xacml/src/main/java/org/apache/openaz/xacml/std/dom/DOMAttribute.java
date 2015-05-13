@@ -42,7 +42,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 /**
- * DOMAttribute extends {@link com.att.research.xacml.std.StdMutableAttribute} with methods for creation from
+ * DOMAttribute extends {@link org.apache.openaz.xacml.std.StdMutableAttribute} with methods for creation from
  * DOM <code>Node</code>s.
  */
 public class DOMAttribute {
@@ -55,7 +55,7 @@ public class DOMAttribute {
     /**
      * Creates a new <code>DOMAttribute</code> by parsing the given {@link org.w3c.dom.Node}.
      *
-     * @param category the {@link com.att.research.xacml.common.Identfier} for the category of the new
+     * @param category the {@link org.apache.openaz.xacml.common.Identfier} for the category of the new
      *            <code>DOMAttribute</code>.
      * @param nodeAttribute the <code>Node</code> for the <code>DOMAttribute</code>
      * @return a new <code>DOMAttribute</code> parsed from the given <code>Node</code>.

@@ -41,7 +41,7 @@ import org.apache.openaz.xacml.pdp.policy.FunctionDefinitionFactory;
 
 /**
  * StdFunctionDefinitionFactory is the default
- * {@link com.att.research.xacmlatt.pdp.policy.FunctionDefinitionFactory} implementation used if no other
+ * {@link org.apache.openaz.xacml.pdp.policy.FunctionDefinitionFactory} implementation used if no other
  * <code>FunctionDefinitionFactory</code> implementation is supplied. It contains all of the standard XACML
  * 3.0 functions.
  */

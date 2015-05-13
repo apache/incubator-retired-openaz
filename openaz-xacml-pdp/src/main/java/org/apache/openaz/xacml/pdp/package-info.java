@@ -32,7 +32,7 @@
 package org.apache.openaz.xacml.pdp;
 
 /**
- * com.att.research.xacmlatt.pdp contains a reference implementation of the {@link com.att.research.xacml.pdp.PDPEngine} interface
+ * org.apache.openaz.xacml.pdp contains a reference implementation of the {@link org.apache.openaz.xacml.pdp.PDPEngine} interface
  * developed at AT&T Laboratories.
  *
  */

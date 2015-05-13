@@ -43,7 +43,7 @@ import oasis.names.tc.xacml._3_0.core.schema.wd_17.AttributeType;
 import oasis.names.tc.xacml._3_0.core.schema.wd_17.AttributeValueType;
 
 /**
- * JaxpAttribute extends {@link com.att.research.xacml.std.StdMutableAttribute} with methods for creation from
+ * JaxpAttribute extends {@link org.apache.openaz.xacml.std.StdMutableAttribute} with methods for creation from
  * JAXP elements.
  */
 public class JaxpAttribute extends StdMutableAttribute {

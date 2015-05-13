@@ -149,7 +149,7 @@ public class TestCustom extends TestBase {
     /*
      * (non-Javadoc) Simply look for command line option: -generate This generates the public/private key.
      * Shouldn't need to call it again, the keys have already been generated and saved.
-     * @see com.att.research.xacmlatt.pdp.test.TestBase#parseCommands(java.lang.String[])
+     * @see org.apache.openaz.xacml.pdp.test.TestBase#parseCommands(java.lang.String[])
      */
     @Override
     protected void parseCommands(String[] args) throws ParseException, MalformedURLException, HelpException {
@@ -173,7 +173,7 @@ public class TestCustom extends TestBase {
     /*
      * (non-Javadoc) After our parent class configure's itself, all this needs to do is read in the
      * public/private key's into objects.
-     * @see com.att.research.xacmlatt.pdp.test.TestBase#configure()
+     * @see org.apache.openaz.xacml.pdp.test.TestBase#configure()
      */
     @Override
     protected void configure() throws FactoryException {
@@ -206,7 +206,7 @@ public class TestCustom extends TestBase {
      * (non-Javadoc) Here we add 2 attributes into the request: 1) the private key, and 2) a String that was
      * encrypted using the public key. The goal is to have the custom decrypt function use the private key to
      * decrypt that string.
-     * @see com.att.research.xacmlatt.pdp.test.TestBase#generateRequest(java.nio.file.Path, java.lang.String)
+     * @see org.apache.openaz.xacml.pdp.test.TestBase#generateRequest(java.nio.file.Path, java.lang.String)
      */
     @Override
     protected Request generateRequest(Path file, String group) throws JSONStructureException,

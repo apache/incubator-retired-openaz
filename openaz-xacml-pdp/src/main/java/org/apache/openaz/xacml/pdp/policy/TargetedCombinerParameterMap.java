@@ -39,7 +39,7 @@ import java.util.Map;
 
 /**
  * TargetedCombinerParameterMap is a utility for maintaining a collection of
- * {@link com.att.research.xacmlatt.policy.TargetedCombinerParameter} objects with the mappings to their
+ * {@link org.apache.openaz.xacml.policy.TargetedCombinerParameter} objects with the mappings to their
  * targets.
  *
  * @param <T> the type of the identifier for the <code>TargetedCombinerParameter</code>s in the map

@@ -40,7 +40,7 @@ import org.apache.openaz.xacml.api.SemanticString;
 
 /**
  * ISO8601Datetime is a combination of an {@link ISO8601Date} and a {@link ISO8601Time} with a common
- * {@link com.att.research.xacml.std.datatypes.ISO8601TimeZone}. Note: This is a temporary implementation. It
+ * {@link org.apache.openaz.xacml.std.datatypes.ISO8601TimeZone}. Note: This is a temporary implementation. It
  * appears Java 8 will have better classes for dealing with ISO8601 dates and times.
  */
 public class ISO8601DateTime implements IDateTime<ISO8601DateTime>, Comparable<ISO8601DateTime>,

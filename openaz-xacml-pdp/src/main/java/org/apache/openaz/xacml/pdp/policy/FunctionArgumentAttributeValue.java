@@ -36,7 +36,7 @@ import org.apache.openaz.xacml.std.StdStatus;
 
 /**
  * FunctionArgumentAttributeValue implements {@link FunctionArgument} for a single
- * {@link com.att.research.xacml.api.AttributeValue}
+ * {@link org.apache.openaz.xacml.api.AttributeValue}
  */
 public class FunctionArgumentAttributeValue implements FunctionArgument {
     private AttributeValue<?> attributeValue;

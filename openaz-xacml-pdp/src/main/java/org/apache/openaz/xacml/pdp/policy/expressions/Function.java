@@ -46,7 +46,7 @@ import org.apache.openaz.xacml.std.StdStatusCode;
 import org.apache.openaz.xacml.std.datatypes.DataTypes;
 
 /**
- * Function extends {@link com.att.research.xacmlatt.pdp.policy.Expression} to implement the XACML Function
+ * Function extends {@link org.apache.openaz.xacml.pdp.policy.Expression} to implement the XACML Function
  * element.
  */
 public class Function extends Expression {

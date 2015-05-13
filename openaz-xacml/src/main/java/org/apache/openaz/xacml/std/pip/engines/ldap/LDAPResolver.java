@@ -44,7 +44,7 @@ import org.apache.openaz.xacml.std.pip.engines.ConfigurableResolver;
 /**
  * LDAPResolver is the interface used by the {@link LDAPEngine} to convert a request for a XACML attribute
  * into an LDAP query string, including retrieving any required attributes needed to construct the query
- * string, and convert the response into a collection of {@link com.att.research.xacml.api.Attribute}s.
+ * string, and convert the response into a collection of {@link org.apache.openaz.xacml.api.Attribute}s.
  */
 public interface LDAPResolver extends ConfigurableResolver {
     /**
@@ -53,7 +53,7 @@ public interface LDAPResolver extends ConfigurableResolver {
      *
      * @param pipEngine the {@link org.apache.openaz.xacml.api.pip.PIPEngine} making the request
      * @param pipRequest the <code>PIPRequest</code> to convert
-     * @param pipFinder the {@link com.att.research.xacml.api.pip.PIPFinder} to use when resolving required
+     * @param pipFinder the {@link org.apache.openaz.xacml.api.pip.PIPFinder} to use when resolving required
      *            attributes
      * @return the base <code>String</code> or null if the <code>PIPRequest</code> cannot be satisfied by this
      *         <code>LDAPResolver</code>
@@ -70,7 +70,7 @@ public interface LDAPResolver extends ConfigurableResolver {
      * @param pipFinder the <code>PIPFinder</code> to use when resolving required attributes
      * @return the filter string to use or null if the given <code>PIPRequest</code> cannot be satisfied by
      *         this <code>LDAPResolver</code>
-     * @throws com.att.research.xacml.api.pip.PIPException if there is an error retrieving any required
+     * @throws org.apache.openaz.xacml.api.pip.PIPException if there is an error retrieving any required
      *             attributes
      */
     public String getFilterString(PIPEngine pipEngine, PIPRequest pipRequest, PIPFinder pipFinder)
@@ -78,12 +78,12 @@ public interface LDAPResolver extends ConfigurableResolver {
 
     /**
      * Converts a {@link javax.naming.directory.SearchResult} into a <code>List</code> of
-     * {@link com.att.research.xacml.api.Attribute}s.
+     * {@link org.apache.openaz.xacml.api.Attribute}s.
      *
      * @param searchResult the <code>SearchResult</code> to convert
      * @return a <code>List</code> of <code>Attribute</code>s or null if the <code>SearchResult</code> connot
      *         be converted.
-     * @throws com.att.research.xacml.api.pip.PIPException if there is an error decoding the
+     * @throws org.apache.openaz.xacml.api.pip.PIPException if there is an error decoding the
      *             <code>SearchResult</code>
      */
     public List<Attribute> decodeResult(SearchResult searchResult) throws PIPException;

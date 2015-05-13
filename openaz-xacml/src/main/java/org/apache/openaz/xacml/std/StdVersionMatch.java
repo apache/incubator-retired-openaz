@@ -37,7 +37,7 @@ import org.apache.openaz.xacml.api.VersionMatch;
 import org.apache.openaz.xacml.util.ObjUtil;
 
 /**
- * StdVersionMatch implements {@link com.att.research.xacml.api.VersionMatch} as an array of integers.
+ * StdVersionMatch implements {@link org.apache.openaz.xacml.api.VersionMatch} as an array of integers.
  */
 public class StdVersionMatch implements VersionMatch {
     private int[] matchComponents;

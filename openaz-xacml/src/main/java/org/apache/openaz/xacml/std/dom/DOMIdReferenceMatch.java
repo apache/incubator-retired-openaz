@@ -44,7 +44,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 /**
- * DOMIdReferenceMatch extends {@link com.att.research.xacml.std.StdIdReferenceMatch} with methods for
+ * DOMIdReferenceMatch extends {@link org.apache.openaz.xacml.std.StdIdReferenceMatch} with methods for
  * creation from DOM {@link org.w3c.dom.Node}s.
  */
 public class DOMIdReferenceMatch extends StdIdReferenceMatch {

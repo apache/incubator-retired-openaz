@@ -116,9 +116,9 @@ public class AdviceExpression extends PolicyComponent {
 
     /**
      * Evaluates the <code>AttributeAssignmentExpression</code>s in this <code>AdviceExpression</code> to
-     * generate an {@link com.att.research.xacml.api.Advice} object.
+     * generate an {@link org.apache.openaz.xacml.api.Advice} object.
      *
-     * @param evaluationContext the {@link com.att.research.xacmlatt.pdp.eval.EvaluationContext} in which to
+     * @param evaluationContext the {@link org.apache.openaz.xacml.pdp.eval.EvaluationContext} in which to
      *            evaluate the <code>AttributeAssignmentExpression</code>s
      * @param policyDefaults the {@link PolicyDefaults} for the evaluation
      * @return a new <code>Advice</code> evaluated from this <code>AdviceExpression</code>

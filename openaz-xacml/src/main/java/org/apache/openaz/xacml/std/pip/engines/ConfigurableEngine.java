@@ -36,7 +36,7 @@ import org.apache.openaz.xacml.api.pip.PIPEngine;
 import org.apache.openaz.xacml.api.pip.PIPException;
 
 /**
- * ConfigurableEngine extends the {@link com.att.research.xacml.api.pip.PIPEngine} interface with methods for
+ * ConfigurableEngine extends the {@link org.apache.openaz.xacml.api.pip.PIPEngine} interface with methods for
  * configuring the engine from a <code>Properties</code> object.
  */
 public interface ConfigurableEngine extends PIPEngine {
@@ -47,7 +47,7 @@ public interface ConfigurableEngine extends PIPEngine {
      *            properties
      * @param properties the <code>Properties</code> containing the configuration parameters for this
      *            <code>ConfigurableEngine</code>
-     * @throws com.att.research.xacml.api.pip.PIPException if there is an error configuring the
+     * @throws org.apache.openaz.xacml.api.pip.PIPException if there is an error configuring the
      *             <code>ConfigurableEngine</code>
      */
     public void configure(String id, Properties properties) throws PIPException;

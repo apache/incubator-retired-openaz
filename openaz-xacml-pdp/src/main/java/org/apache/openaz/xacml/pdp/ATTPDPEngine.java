@@ -68,7 +68,7 @@ import org.apache.openaz.xacml.std.trace.StdTraceEvent;
 import org.apache.openaz.xacml.util.FactoryException;
 
 /**
- * ATTPDPEngine implements the {@link com.att.research.xacml.api.pdp.PDPEngine} interface using the XACML 3.0
+ * ATTPDPEngine implements the {@link org.apache.openaz.xacml.api.pdp.PDPEngine} interface using the XACML 3.0
  * specification.
  */
 public class ATTPDPEngine implements PDPEngine, Traceable {

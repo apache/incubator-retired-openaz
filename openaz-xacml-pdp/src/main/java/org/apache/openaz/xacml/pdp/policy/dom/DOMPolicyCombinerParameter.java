@@ -46,8 +46,8 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 /**
- * DOMPolicyCombinerParameter extends {@link com.att.research.xacmlatt.pdp.policy.TargetedCombinerParameter}
- * for {@link com.att.research.xacmlatt.pdp.policy.Policy}s with methods for creation from DOM
+ * DOMPolicyCombinerParameter extends {@link org.apache.openaz.xacml.pdp.policy.TargetedCombinerParameter}
+ * for {@link org.apache.openaz.xacml.pdp.policy.Policy}s with methods for creation from DOM
  * {@link org.w3c.dom.Node}s.
  */
 public class DOMPolicyCombinerParameter extends TargetedCombinerParameter<Identifier, PolicySetChild> {

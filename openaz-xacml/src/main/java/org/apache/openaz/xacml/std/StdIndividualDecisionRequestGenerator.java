@@ -60,7 +60,7 @@ import org.w3c.dom.NodeList;
 
 /**
  * StdIndividualDecisionRequestGenerator is a utility that PDP developers can use to take an original
- * {@link com.att.research.xacml.api.Request} and turn it into a sequence of individual decision
+ * {@link org.apache.openaz.xacml.api.Request} and turn it into a sequence of individual decision
  * <code>Request</code>s. This class implements all of the multiple-decision profiles specified in
  * "XACML v3.0 Multiple Decision Profile Version 1.0"
  */

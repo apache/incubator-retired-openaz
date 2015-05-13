@@ -36,9 +36,9 @@ import org.apache.openaz.xacml.api.trace.TraceEngine;
 import org.apache.openaz.xacml.api.trace.TraceEvent;
 
 /**
- * Implements the {@link com.att.research.xacml.api.trace.TraceEngine} interface to just ignore
- * {@link com.att.research.xacml.api.trace.TraceEvent}s. This is the default implementation, returned by the
- * default {@link com.att.research.xacml.api.trace.TraceEngineFactory}.
+ * Implements the {@link org.apache.openaz.xacml.api.trace.TraceEngine} interface to just ignore
+ * {@link org.apache.openaz.xacml.api.trace.TraceEvent}s. This is the default implementation, returned by the
+ * default {@link org.apache.openaz.xacml.api.trace.TraceEngineFactory}.
  */
 public class NullTraceEngine implements TraceEngine {
     private static final NullTraceEngine nullTraceEngine = new NullTraceEngine();

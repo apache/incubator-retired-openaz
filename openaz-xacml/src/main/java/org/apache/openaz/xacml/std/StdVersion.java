@@ -36,7 +36,7 @@ import java.util.Arrays;
 import org.apache.openaz.xacml.api.Version;
 
 /**
- * StdVersion implements the {@link com.att.research.xacml.api.Version} interface to represent XACML version
+ * StdVersion implements the {@link org.apache.openaz.xacml.api.Version} interface to represent XACML version
  * identifiers.
  */
 public class StdVersion implements Version {

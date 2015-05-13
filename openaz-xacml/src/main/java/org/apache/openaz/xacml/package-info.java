@@ -35,8 +35,8 @@ package org.apache.openaz.xacml;
  * Provides base interfaces and standard implementation classes for applications using the "eXtensible Access Control Markup Language (XACML) Version 3.0"
  * to provide ABAC access control for resources and actions.
  *
- * The packages in com.att.research.api define Java Interfaces only.
+ * The packages in org.apache.openaz.api define Java Interfaces only.
  *
- * The packages in com.att.research.std define standard implementations of the com.att.research.api interfaces.
+ * The packages in org.apache.openaz.std define standard implementations of the org.apache.openaz.api interfaces.
  *
  */

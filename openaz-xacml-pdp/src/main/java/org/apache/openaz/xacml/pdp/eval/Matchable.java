@@ -37,8 +37,8 @@ package org.apache.openaz.xacml.pdp.eval;
 public interface Matchable {
     /**
      * Matches this <code>Matchable</code> in the given
-     * {@link com.att.research.xacmlatt.pdp.eval.EvaluationContext} and returns a
-     * {@link com.att.research.xacmlatt.pdp.eval.MatchResult}.
+     * {@link org.apache.openaz.xacml.pdp.eval.EvaluationContext} and returns a
+     * {@link org.apache.openaz.xacml.pdp.eval.MatchResult}.
      *
      * @param evaluationContext the <code>EvaluationContext</code> to use in matching
      * @return a <code>MatchResult</code> indicating whether this <code>Matchable</code> matches against the

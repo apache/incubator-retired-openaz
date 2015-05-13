@@ -51,7 +51,7 @@ import org.apache.openaz.xacml.std.StdStatusCode;
 import org.apache.openaz.xacml.util.FactoryException;
 
 /**
- * Apply extends {@link com.att.research.xacmlatt.pdp.policy.Expression} to implement the XACML Apply
+ * Apply extends {@link org.apache.openaz.xacml.pdp.policy.Expression} to implement the XACML Apply
  * Expression element.
  */
 public class Apply extends Expression {

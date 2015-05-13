@@ -36,7 +36,7 @@ import org.apache.openaz.xacml.api.StatusDetail;
 import org.apache.openaz.xacml.util.ObjUtil;
 
 /**
- * Mutable implementation of the {@link com.att.research.xacml.api.Status} interface to represent a XACML
+ * Mutable implementation of the {@link org.apache.openaz.xacml.api.Status} interface to represent a XACML
  * Status element.
  */
 public class StdMutableStatus implements Status {
@@ -46,8 +46,8 @@ public class StdMutableStatus implements Status {
 
     /**
      * Creates a new <code>StdMutableStatus</code> with the given
-     * {@link com.att.research.xacml.api.StatusCode}, <code>String</code> status message, and
-     * {@link com.att.research.xacml.api.StatusDetail}.
+     * {@link org.apache.openaz.xacml.api.StatusCode}, <code>String</code> status message, and
+     * {@link org.apache.openaz.xacml.api.StatusDetail}.
      *
      * @param statusCodeIn the <code>StatusCode</code> representing the XACML StatusCode.
      * @param statusMessageIn the <code>String</code> representing the XACML StatusMessage
@@ -61,8 +61,8 @@ public class StdMutableStatus implements Status {
 
     /**
      * Creates a new <code>StdMutableStatus</code> with the given
-     * {@link com.att.research.xacml.api.StatusCode}, <code>String</code> status message and no
-     * {@link com.att.research.xacml.api.StatusDetail}.
+     * {@link org.apache.openaz.xacml.api.StatusCode}, <code>String</code> status message and no
+     * {@link org.apache.openaz.xacml.api.StatusDetail}.
      *
      * @param statusCodeIn the <code>StatusCode</code> representing the XACML StatusCode.
      * @param statusMessageIn the <code>String</code> representing the XACML StatusMessage
@@ -73,8 +73,8 @@ public class StdMutableStatus implements Status {
 
     /**
      * Creates a new <code>StdMutableStatus</code> with the given
-     * {@link com.att.research.xacml.api.StatusCode}, a null status message and no
-     * {@link com.att.research.xacml.api.StatusDetail}.
+     * {@link org.apache.openaz.xacml.api.StatusCode}, a null status message and no
+     * {@link org.apache.openaz.xacml.api.StatusDetail}.
      *
      * @param statusCodeIn the <code>StatusCode</code> representing the XACML StatusCode.
      */
@@ -90,7 +90,7 @@ public class StdMutableStatus implements Status {
 
     /**
      * Creates a new <code>StdMutableStatus</code> that is a copy of the given
-     * {@link com.att.research.xacml.api.Status}.
+     * {@link org.apache.openaz.xacml.api.Status}.
      *
      * @param status the <code>Status</code> to copy
      * @return a new <code>StdMutableStatus</code> that is a copy of the given <code>Status</code>.
@@ -106,7 +106,7 @@ public class StdMutableStatus implements Status {
     }
 
     /**
-     * Sets the {@link com.att.research.xacml.api.StatusCode} representing the XACML StatusCode for the Status
+     * Sets the {@link org.apache.openaz.xacml.api.StatusCode} representing the XACML StatusCode for the Status
      * represented by this <code>StdMutableStatus</code>.
      *
      * @param statusCodeIn the <code>StatusCode</code> representing the XACML StatusCode for the Status
@@ -136,7 +136,7 @@ public class StdMutableStatus implements Status {
     }
 
     /**
-     * Sets the {@link com.att.research.xacml.api.StatusDetail} representing the XACML StatusDetail for the
+     * Sets the {@link org.apache.openaz.xacml.api.StatusDetail} representing the XACML StatusDetail for the
      * Status represented by this <code>StdMutableStatus</code>.
      *
      * @param statusDetailIn the <code>StatusDetail</code> representing the XACML StatusDetail for the Status

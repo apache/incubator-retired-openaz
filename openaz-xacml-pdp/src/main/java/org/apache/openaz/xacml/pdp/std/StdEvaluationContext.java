@@ -48,7 +48,7 @@ import java.util.Collection;
 import java.util.Properties;
 
 /**
- * StdEvaluationContext implements the {@link com.att.research.xacmlatt.pdp.eval.EvaluationContext} interface
+ * StdEvaluationContext implements the {@link org.apache.openaz.xacml.pdp.eval.EvaluationContext} interface
  * using default factories to load the XACML policies, and get the PIP engines.
  */
 public class StdEvaluationContext implements EvaluationContext {
@@ -61,7 +61,7 @@ public class StdEvaluationContext implements EvaluationContext {
 
     /**
      * Creates a new <code>StdEvaluationContext</code> with the given
-     * {@link com.att.research.xacml.api.Request} and {@link com.att.research.xacmlatt.pdp.policy.PolicyDef}.
+     * {@link org.apache.openaz.xacml.api.Request} and {@link org.apache.openaz.xacml.pdp.policy.PolicyDef}.
      *
      * @param requestIn the <code>Request</code>
      * @param policyDef the <code>PolicyDef</code>

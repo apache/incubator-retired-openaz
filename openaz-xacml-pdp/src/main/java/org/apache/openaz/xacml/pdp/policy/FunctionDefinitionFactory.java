@@ -39,7 +39,7 @@ import org.apache.openaz.xacml.util.FactoryFinder;
 
 /**
  * FunctionDefinitionFactory is an abstract class for mapping function
- * {@link com.att.research.xacml.api.Identifier} ids to {@link FunctionDefinition} objects.
+ * {@link org.apache.openaz.xacml.api.Identifier} ids to {@link FunctionDefinition} objects.
  */
 public abstract class FunctionDefinitionFactory {
      private static final String FACTORYID = OpenAZPDPProperties.PROP_FUNCTIONDEFINITIONFACTORY;

@@ -45,7 +45,7 @@ import org.apache.openaz.xacml.std.datatypes.DataTypes;
 
 /**
  * FunctionDefinitionX500NameMatch extends
- * {@link com.att.research.xacmlatt.pdp.std.functions.FunctionDefinitionHomogeneousSimple} to implement the
+ * {@link org.apache.openaz.xacml.pdp.std.functions.FunctionDefinitionHomogeneousSimple} to implement the
  * XACML X500Name match predicate as functions taking two <code>X500Name</code> arguments and returning a
  * single <code>Boolean</code> value. In the first implementation of XACML we had separate files for each
  * XACML Function. This release combines multiple Functions in fewer files to minimize code duplication. This

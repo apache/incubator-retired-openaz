@@ -46,7 +46,7 @@ import org.apache.openaz.xacml.std.datatypes.DataTypes;
 
 /**
  * FunctionDefinitionNumberTypeConversion extends
- * {@link com.att.research.xacmlatt.pdp.std.functions.FunctionDefinitionHomogeneousSimple} to implement the
+ * {@link org.apache.openaz.xacml.pdp.std.functions.FunctionDefinitionHomogeneousSimple} to implement the
  * XACML predicates for converting <code>String</code> to <code>DataType<?></code> and vice versa. In the
  * first implementation of XACML we had separate files for each XACML Function. This release combines multiple
  * Functions in fewer files to minimize code duplication. This file supports the following XACML codes:

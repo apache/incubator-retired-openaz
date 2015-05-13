@@ -44,10 +44,10 @@ import org.apache.openaz.xacml.api.pep.PEPException;
 import org.apache.openaz.xacml.util.FactoryException;
 
 /**
- * StdEngine implements the {@link com.att.research.xacml.api.pep.PEPEngine} interface by creating an instance
- * of the {@link com.att.research.xacml.api.pdp.PDPEngine} interface using the
- * {@link com.att.research.xacml.api.pdp.PDPEngineFactory} and passing requests through to that engine,
- * forwarding the {@link com.att.research.xacml.api.Response} object back to the caller.
+ * StdEngine implements the {@link org.apache.openaz.xacml.api.pep.PEPEngine} interface by creating an instance
+ * of the {@link org.apache.openaz.xacml.api.pdp.PDPEngine} interface using the
+ * {@link org.apache.openaz.xacml.api.pdp.PDPEngineFactory} and passing requests through to that engine,
+ * forwarding the {@link org.apache.openaz.xacml.api.Response} object back to the caller.
  */
 public class StdEngine implements PEPEngine {
     private Log logger = LogFactory.getLog(this.getClass());

@@ -60,8 +60,8 @@ public class StdMutableAttributeCategory implements AttributeCategory {
     private Map<Identifier, List<Attribute>> attributesById = new HashMap<Identifier, List<Attribute>>();
 
     /**
-     * Builds the <code>Map</code> from {@link com.att.research.xacml.api.Identifier}s for XACML AttributeIds
-     * to {@link com.att.research.xacml.api.Attribute}s.
+     * Builds the <code>Map</code> from {@link org.apache.openaz.xacml.api.Identifier}s for XACML AttributeIds
+     * to {@link org.apache.openaz.xacml.api.Attribute}s.
      */
     private void buildMap() {
         for (Attribute attribute : this.attributes) {
@@ -83,8 +83,8 @@ public class StdMutableAttributeCategory implements AttributeCategory {
 
     /**
      * Creates a new <code>StdMutableAttributeCategory</code> with the given
-     * {@link com.att.research.xacml.api.Identifier} representing its XACML Category, and the given
-     * <code>Collection</code> of {@link com.att.research.xacml.api.Attribute}s as its XACML Attributes. The
+     * {@link org.apache.openaz.xacml.api.Identifier} representing its XACML Category, and the given
+     * <code>Collection</code> of {@link org.apache.openaz.xacml.api.Attribute}s as its XACML Attributes. The
      * <code>Collection</code> is copied; changes made to the <code>Collection</code> after creating the new
      * <code>StdMutableAttributeCategory</code> are not reflected in the
      * <code>StdMutableAttributeCategory</code>.
@@ -104,7 +104,7 @@ public class StdMutableAttributeCategory implements AttributeCategory {
 
     /**
      * Creates a new <code>StdMutableAttributeCategory</code> that is a copy of the given
-     * {@link com.att.research.xacml.api.AttributeCategory}.
+     * {@link org.apache.openaz.xacml.api.AttributeCategory}.
      *
      * @param attributeCategory the <code>AttributeCategory</code> to copy
      */
@@ -120,7 +120,7 @@ public class StdMutableAttributeCategory implements AttributeCategory {
     }
 
     /**
-     * Sets the {@link com.att.research.xacml.api.Identifier} representing the XACML Category of this
+     * Sets the {@link org.apache.openaz.xacml.api.Identifier} representing the XACML Category of this
      * <code>StdMutableAttributeCategory</code>.
      *
      * @param identifierCategory the <code>Identifier</code> representing the XACML Category of this

@@ -45,8 +45,8 @@ import org.apache.openaz.xacml.std.StdStatusCode;
 import org.apache.openaz.xacml.util.StringUtils;
 
 /**
- * AnyOf extends {@link com.att.research.xacmlatt.pdp.policy.PolicyComponent} and implements the
- * {@link com.att.research.xacmlatt.pdp.policy.Matchable} interface to represent XACML AllOf elements in a
+ * AnyOf extends {@link org.apache.openaz.xacml.pdp.policy.PolicyComponent} and implements the
+ * {@link org.apache.openaz.xacml.pdp.policy.Matchable} interface to represent XACML AllOf elements in a
  * XACML Target.
  */
 public class AllOf extends PolicyComponent implements Matchable {

@@ -32,6 +32,6 @@
 package org.apache.openaz.xacml.std.pip.finders;
 
 /**
- * com.att.research.xacml.std.pip.finders contains the standard implementation of the PIPFinder interface
+ * org.apache.openaz.xacml.std.pip.finders contains the standard implementation of the PIPFinder interface
  *
  */

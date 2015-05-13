@@ -32,7 +32,7 @@
 package org.apache.openaz.xacml.std;
 
 /**
- * Provides standard implementations of the interfaces from the {@link com.att.research.xacml} package.  All of the standard classes implement
+ * Provides standard implementations of the interfaces from the {@link org.apache.openaz.xacml} package.  All of the standard classes implement
  * immutable objects.
  *
  */

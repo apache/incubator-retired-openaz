@@ -36,7 +36,7 @@ import org.apache.openaz.xacml.pdp.eval.EvaluationException;
 
 /**
  * PolicySetIdReference extends {@link org.apache.openaz.xacml.pdp.policy.PolicyIdReferenceBase} for
- * {@link com.att.research.xacmlatt.pdp.PolicySet} objects to implement the <code>ensureReferencee</code>
+ * {@link org.apache.openaz.xacml.pdp.PolicySet} objects to implement the <code>ensureReferencee</code>
  * method to find <code>PolicySet</code>s.
  */
 public class PolicySetIdReference extends PolicyIdReferenceBase<PolicySet> {

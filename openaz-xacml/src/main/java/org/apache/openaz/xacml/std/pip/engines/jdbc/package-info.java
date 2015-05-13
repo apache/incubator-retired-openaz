@@ -32,7 +32,7 @@
 package org.apache.openaz.xacml.std.pip.engines.jdbc;
 
 /**
- * com.att.research.xacml.std.pip.engines contains an implementation of the {@link com.att.research.xacml.api.pip.PIPEngine}
+ * org.apache.openaz.xacml.std.pip.engines contains an implementation of the {@link org.apache.openaz.xacml.api.pip.PIPEngine}
  * interface that uses a JDBC connection to a database to retrieve XACML AttributeValues.
  *
  */

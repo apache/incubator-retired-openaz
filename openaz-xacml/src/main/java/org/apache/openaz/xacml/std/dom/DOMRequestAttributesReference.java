@@ -39,7 +39,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 /**
- * DOMRequestAttributesReference extends {@link com.att.research.xacml.std.StdRequestAttributesReference} with
+ * DOMRequestAttributesReference extends {@link org.apache.openaz.xacml.std.StdRequestAttributesReference} with
  * methods for creation from DOM {@link org.w3c.dom.Node}s.
  */
 public class DOMRequestAttributesReference {

@@ -39,7 +39,7 @@ import org.apache.openaz.xacml.api.Response;
 import org.apache.openaz.xacml.api.Result;
 
 /**
- * ResponseMatchResult provides information about how a {@link com.att.research.xacml.api.Response} object
+ * ResponseMatchResult provides information about how a {@link org.apache.openaz.xacml.api.Response} object
  * matches another <code>Response</code> object.
  */
 public class ResponseMatchResult {

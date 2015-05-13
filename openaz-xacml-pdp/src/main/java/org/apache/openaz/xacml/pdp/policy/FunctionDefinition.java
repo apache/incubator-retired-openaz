@@ -68,7 +68,7 @@ public interface FunctionDefinition {
      * Evaluates this <code>FunctionDefinition</code> on the given <code>List</code> of
      * {@link FunctionArgument}s.
      *
-     * @param evaluationContext the {@link com.att.research.xacmlatt.pdp.eval.EvaluationContext} to use in the
+     * @param evaluationContext the {@link org.apache.openaz.xacml.pdp.eval.EvaluationContext} to use in the
      *            evaluation
      * @param arguments the <code>List</code> of <code>FunctionArgument</code>s for the evaluation
      * @return an {@link ExpressionResult} with the results of the call

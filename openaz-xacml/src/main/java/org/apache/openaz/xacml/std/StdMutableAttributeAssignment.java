@@ -36,7 +36,7 @@ import org.apache.openaz.xacml.api.Identifier;
 import org.apache.openaz.xacml.util.ObjUtil;
 
 /**
- * Mutable implementation of the {@link com.att.research.xacml.api.AttributeAssignment} interface.
+ * Mutable implementation of the {@link org.apache.openaz.xacml.api.AttributeAssignment} interface.
  */
 public class StdMutableAttributeAssignment implements AttributeAssignment {
     private Identifier attributeId;
@@ -53,8 +53,8 @@ public class StdMutableAttributeAssignment implements AttributeAssignment {
 
     /**
      * Creates a new <code>StdMutableAttributeAssignment</code> with the given
-     * {@link com.att.research.xacml.api.Identifier}s for the XACML Category and AttributeId, the given
-     * <code>String</code> issuer, and the given {@link com.att.research.xacml.api.AttributeValue}.
+     * {@link org.apache.openaz.xacml.api.Identifier}s for the XACML Category and AttributeId, the given
+     * <code>String</code> issuer, and the given {@link org.apache.openaz.xacml.api.AttributeValue}.
      *
      * @param categoryIn the <code>Identifier</code> for the XACML Category of the new
      *            <code>StdMutableAttributeAssignment</code>
@@ -82,7 +82,7 @@ public class StdMutableAttributeAssignment implements AttributeAssignment {
     }
 
     /**
-     * Sets the {@link com.att.research.xacml.api.AttributeValue} representing the value to be assigned to the
+     * Sets the {@link org.apache.openaz.xacml.api.AttributeValue} representing the value to be assigned to the
      * XACML AttributeId associated with this <code>StdMutableAttributeAssignment</code>.
      *
      * @param attributeValueIn the <code>AttributeValue</code> representing the value to be assigned to the
@@ -98,7 +98,7 @@ public class StdMutableAttributeAssignment implements AttributeAssignment {
     }
 
     /**
-     * Sets the {@link com.att.research.xacml.api.Identifier} representing the XACML AttributeId to be
+     * Sets the {@link org.apache.openaz.xacml.api.Identifier} representing the XACML AttributeId to be
      * assigned in this <code>StdMutableAttributeAssignment</code>.
      *
      * @param identifier the <code>Identifier</code> representing the XACML AttributeId to be assigned in this
@@ -114,7 +114,7 @@ public class StdMutableAttributeAssignment implements AttributeAssignment {
     }
 
     /**
-     * Sets the {@link com.att.research.xacml.api.Identifier} representing the XACML Category of the
+     * Sets the {@link org.apache.openaz.xacml.api.Identifier} representing the XACML Category of the
      * AttributeId to be assigned in this <code>StdMutableAttributeAssignment</code>.
      *
      * @param identifier the <code>Identifier</code> representing the XACML Category of the AttributeId to be

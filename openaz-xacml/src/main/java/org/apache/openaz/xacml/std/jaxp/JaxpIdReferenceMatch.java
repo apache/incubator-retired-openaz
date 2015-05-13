@@ -41,7 +41,7 @@ import org.apache.openaz.xacml.std.StdVersionMatch;
 import oasis.names.tc.xacml._3_0.core.schema.wd_17.IdReferenceType;
 
 /**
- * JaxpIdReferenceMatch extends {@link com.att.research.xacml.std.StdIdReferenceMatch} with methods for
+ * JaxpIdReferenceMatch extends {@link org.apache.openaz.xacml.std.StdIdReferenceMatch} with methods for
  * creation from JAXP elements.
  */
 public class JaxpIdReferenceMatch extends StdIdReferenceMatch {

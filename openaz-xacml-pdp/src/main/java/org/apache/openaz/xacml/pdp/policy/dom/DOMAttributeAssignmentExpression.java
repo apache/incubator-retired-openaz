@@ -45,7 +45,7 @@ import org.w3c.dom.Node;
 
 /**
  * DOMAttributeAssignmentExpression extends
- * {@link com.att.research.xacmlatt.pdp.policy.AttributeAssignmentExpression} with methods for creation from
+ * {@link org.apache.openaz.xacml.pdp.policy.AttributeAssignmentExpression} with methods for creation from
  * {@link org.w3c.dom.Node}s.
  */
 public class DOMAttributeAssignmentExpression extends AttributeAssignmentExpression {

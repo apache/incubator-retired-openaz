@@ -64,7 +64,7 @@ public interface CombiningAlgorithm<T extends Evaluatable> {
      * @param combinerParameters the <code>List</code> of <code>CombinerParameter</code>s to apply to the
      *            combining algorithm
      * @return the combined <code>EvaluationResult</code>
-     * @throws com.att.research.xacmlatt.pdp.eval.EvaluationException if there is an error in the
+     * @throws org.apache.openaz.xacml.pdp.eval.EvaluationException if there is an error in the
      *             <code>evaluate</code> method of any of the <code>CombiningElement</code>s
      */
     EvaluationResult combine(EvaluationContext evaluationContext, List<CombiningElement<T>> elements,

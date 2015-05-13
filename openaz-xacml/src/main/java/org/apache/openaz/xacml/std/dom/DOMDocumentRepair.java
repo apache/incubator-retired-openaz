@@ -69,7 +69,7 @@ public class DOMDocumentRepair {
      * @param document the <code>Document</code> to check
      * @return true if any repairs were made in the <code>Document</code>, else false
      * @throws DOMStructureException if there were unrecoverable errors found
-     * @throws com.att.research.xacml.std.dom.DOMDocumentRepair.UnsupportedDocumentTypeException if the root
+     * @throws org.apache.openaz.xacml.std.dom.DOMDocumentRepair.UnsupportedDocumentTypeException if the root
      *             element is not a XACML Request or Response.
      */
     public boolean repair(Document document) throws DOMStructureException, UnsupportedDocumentTypeException {

@@ -39,7 +39,7 @@ import org.apache.openaz.xacml.std.dom.DOMStructureException;
 import org.w3c.dom.Node;
 
 /**
- * DOMPolicySetIdReference extends {@link com.att.research.xacmlatt.pdp.policy.PolicySetIdReference} with
+ * DOMPolicySetIdReference extends {@link org.apache.openaz.xacml.pdp.policy.PolicySetIdReference} with
  * methods for creation from DOM {@link org.w3c.dom.Node}s.
  */
 public class DOMPolicySetIdReference {

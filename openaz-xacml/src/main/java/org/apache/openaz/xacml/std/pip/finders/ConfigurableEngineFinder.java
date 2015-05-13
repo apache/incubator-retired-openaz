@@ -115,11 +115,11 @@ public class ConfigurableEngineFinder extends EngineFinder {
     }
 
     /**
-     * Gets the "com.att.research.xacml.pip.engines" property from the given <code>Properties</code> to find
+     * Gets the "org.apache.openaz.xacml.pip.engines" property from the given <code>Properties</code> to find
      * the list of PIP engines that should be created, configured, and registered.
      *
      * @param properties the <code>Properties</code> containing the engine configurations
-     * @throws com.att.research.xacml.api.pip.PIPException if there is an error creating and configuring the
+     * @throws org.apache.openaz.xacml.api.pip.PIPException if there is an error creating and configuring the
      *             engines
      */
     public void configure(Properties properties) throws PIPException {

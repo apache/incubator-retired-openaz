@@ -43,7 +43,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 /**
- * DOMAllOf extends {@link com.att.research.xacmlatt.pdp.policy.AllOf} with methods for creation from DOM
+ * DOMAllOf extends {@link org.apache.openaz.xacml.pdp.policy.AllOf} with methods for creation from DOM
  * {@link org.w3c.dom.Node}s.
  */
 public class DOMAllOf extends AllOf {

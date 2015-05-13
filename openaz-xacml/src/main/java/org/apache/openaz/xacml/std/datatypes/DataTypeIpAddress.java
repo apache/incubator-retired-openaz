@@ -36,7 +36,7 @@ import org.apache.openaz.xacml.api.DataTypeException;
 import org.apache.openaz.xacml.api.XACML2;
 
 /**
- * DataTypeIpAddress extends {@link com.att.research.xacml.common.datatypes.DatatypeBase} to implement the
+ * DataTypeIpAddress extends {@link org.apache.openaz.xacml.common.datatypes.DatatypeBase} to implement the
  * XACML ipAddress data type.
  */
 public class DataTypeIpAddress extends DataTypeSemanticStringBase<IPAddress> {

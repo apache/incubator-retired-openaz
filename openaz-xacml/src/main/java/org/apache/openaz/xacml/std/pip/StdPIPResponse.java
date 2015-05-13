@@ -49,14 +49,14 @@ import org.apache.openaz.xacml.std.StdStatus;
 import org.apache.openaz.xacml.util.Wrapper;
 
 /**
- * Immutable implementation of the {@link com.att.research.xacml.api.pip.PIPResponse} interface.
+ * Immutable implementation of the {@link org.apache.openaz.xacml.api.pip.PIPResponse} interface.
  */
 public class StdPIPResponse extends Wrapper<PIPResponse> implements PIPResponse {
     public static final PIPResponse PIP_RESPONSE_EMPTY = new StdPIPResponse(StdStatus.STATUS_OK);
 
     /**
      * Creates a new immutable <code>StdPIPResponse</code> that wraps the given
-     * {@link com.att.research.xacml.api.pip.PIPResponse}.
+     * {@link org.apache.openaz.xacml.api.pip.PIPResponse}.
      *
      * @param wrappedObjectIn the <code>PIPResponse</code> to wrap.
      */
@@ -84,8 +84,8 @@ public class StdPIPResponse extends Wrapper<PIPResponse> implements PIPResponse 
     }
 
     /**
-     * Creates a new <code>StdPIPResponse</code> with an OK {@link com.att.research.xacml.api.Status} and a
-     * copy of the given <code>Collection</code> of {@link com.att.research.xacml.api.Attribute}s.
+     * Creates a new <code>StdPIPResponse</code> with an OK {@link org.apache.openaz.xacml.api.Status} and a
+     * copy of the given <code>Collection</code> of {@link org.apache.openaz.xacml.api.Attribute}s.
      *
      * @param attributes the <code>Attribute</code>s for the new <code>StdPIPResponse</code>.
      */
@@ -104,8 +104,8 @@ public class StdPIPResponse extends Wrapper<PIPResponse> implements PIPResponse 
     }
 
     /**
-     * Determines if the given {@link com.att.research.xacml.api.pip.PIPRequest} matches the given
-     * {@link com.att.research.xacml.api.Attribute} by comparing the category, attribute id, and if not null
+     * Determines if the given {@link org.apache.openaz.xacml.api.pip.PIPRequest} matches the given
+     * {@link org.apache.openaz.xacml.api.Attribute} by comparing the category, attribute id, and if not null
      * in the <code>PIPRequest</code>, the issuer.
      *
      * @param pipRequest the <code>PIPRequest</code> to compare against
@@ -126,9 +126,9 @@ public class StdPIPResponse extends Wrapper<PIPResponse> implements PIPResponse 
     }
 
     /**
-     * Gets the subset of the {@link com.att.research.xacml.api.AttributeValue}s from the given
+     * Gets the subset of the {@link org.apache.openaz.xacml.api.AttributeValue}s from the given
      * <code>Collection</code> whose data type matches the data type in the given
-     * {@link com.att.research.xacml.api.pip.PIPRequest}.
+     * {@link org.apache.openaz.xacml.api.pip.PIPRequest}.
      *
      * @param pipRequest the <code>PIPRequest</code> to compare against
      * @param listAttributeValues the <code>Collection</code> of <code>AttributeValue</code>s to select from
@@ -178,10 +178,10 @@ public class StdPIPResponse extends Wrapper<PIPResponse> implements PIPResponse 
     }
 
     /**
-     * Returns a {@link com.att.research.xacml.api.pip.PIPResponse} that only contains the
-     * {@link com.att.research.xacml.api.Attribute}s that match the given
-     * {@link com.att.research.xacml.api.pip.PIPRequest} with
-     * {@link com.att.research.xacml.api.AttributeValue}s that match the requested data type.
+     * Returns a {@link org.apache.openaz.xacml.api.pip.PIPResponse} that only contains the
+     * {@link org.apache.openaz.xacml.api.Attribute}s that match the given
+     * {@link org.apache.openaz.xacml.api.pip.PIPRequest} with
+     * {@link org.apache.openaz.xacml.api.AttributeValue}s that match the requested data type.
      *
      * @param pipRequest
      * @param pipResponse
@@ -310,9 +310,9 @@ public class StdPIPResponse extends Wrapper<PIPResponse> implements PIPResponse 
     }
 
     /**
-     * Takes a {@link com.att.research.xacml.api.pip.PIPResponse} that may contain
-     * {@link com.att.research.xacml.api.Attribute}s, with multiple identifiers, each of which may contain
-     * multiple {@link com.att.research.xacml.api.AttributeValue}s with different data types and creates a
+     * Takes a {@link org.apache.openaz.xacml.api.pip.PIPResponse} that may contain
+     * {@link org.apache.openaz.xacml.api.Attribute}s, with multiple identifiers, each of which may contain
+     * multiple {@link org.apache.openaz.xacml.api.AttributeValue}s with different data types and creates a
      * collection of simple <code>PIPResponse</code>s that contain a single <code>Attribute</code> with
      * <code>AttributeValue</code>s of one data type.
      *

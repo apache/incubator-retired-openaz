@@ -39,7 +39,7 @@ import org.apache.openaz.xacml.util.FactoryFinder;
 import org.apache.openaz.xacml.util.XACMLProperties;
 
 /**
- * PDPEngineFactory provides the interface for creating {@link com.att.research.xacml.pep.PDPEngine}
+ * PDPEngineFactory provides the interface for creating {@link org.apache.openaz.xacml.pep.PDPEngine}
  * instances.
  */
 public abstract class PDPEngineFactory {
@@ -155,7 +155,7 @@ public abstract class PDPEngineFactory {
      * Creates a new <code>PDPEngine</code> using the default policy set and {@link org.apache.openaz.xacml.api.pip.PIPFinder}.
 =======
      * Creates a new <code>PDPEngine</code> using the default policy set and
-     * {@link com.att.research.xacml.api.pip.PIPFinder}.
+     * {@link org.apache.openaz.xacml.api.pip.PIPFinder}.
 >>>>>>> fbf04a9381a2cdc18cbbe04bdc63b86b9772f14b:openaz-xacml/src/main/java/com/att/research/xacml/api/pdp/PDPEngineFactory.java
      *
      * @return a new <code>PDPEngine</code>
@@ -167,7 +167,7 @@ public abstract class PDPEngineFactory {
      * Creates a new <code>PDPEngine</code> using the default policy set and {@link org.apache.openaz.xacml.api.pip.PIPFinder}.
 =======
      * Creates a new <code>PDPEngine</code> using the default policy set and
-     * {@link com.att.research.xacml.api.pip.PIPFinder}.
+     * {@link org.apache.openaz.xacml.api.pip.PIPFinder}.
 >>>>>>> fbf04a9381a2cdc18cbbe04bdc63b86b9772f14b:openaz-xacml/src/main/java/com/att/research/xacml/api/pdp/PDPEngineFactory.java
      *
      * @return a new <code>PDPEngine</code>

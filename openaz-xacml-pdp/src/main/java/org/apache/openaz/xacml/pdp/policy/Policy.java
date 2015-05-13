@@ -49,7 +49,7 @@ import org.apache.openaz.xacml.std.trace.StdTraceEvent;
 import org.apache.openaz.xacml.util.StringUtils;
 
 /**
- * Policy extends {@link com.att.research.xacmlatt.pdp.policy.PolicyDef} to represent a XACML 3.0 Policy
+ * Policy extends {@link org.apache.openaz.xacml.pdp.policy.PolicyDef} to represent a XACML 3.0 Policy
  * element.
  */
 public class Policy extends PolicyDef {
@@ -114,7 +114,7 @@ public class Policy extends PolicyDef {
 
     /**
      * Gets an <code>Iterator</code> over the
-     * {@link com.att.research.xacmlatt.pdp.policy.TargetedCombinerParameter}s for the {@link Rule}s in this
+     * {@link org.apache.openaz.xacml.pdp.policy.TargetedCombinerParameter}s for the {@link Rule}s in this
      * <code>Policy</code>.
      *
      * @return an <code>Iterator</code> over the <code>TargetedCombinerParameter</code>s for this
@@ -157,7 +157,7 @@ public class Policy extends PolicyDef {
     }
 
     /**
-     * Gets an <code>Iterator</code> over the {@link com.att.research.xacmlatt.pdp.policy.VariableDefinition}s
+     * Gets an <code>Iterator</code> over the {@link org.apache.openaz.xacml.pdp.policy.VariableDefinition}s
      * in this <code>Policy</code>.
      *
      * @return an <code>Iterator</code> over the <code>VariableDefinition</code>s in this <code>Policy</code>

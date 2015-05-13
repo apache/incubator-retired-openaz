@@ -50,8 +50,8 @@ import org.apache.openaz.xacml.std.pip.StdMutablePIPResponse;
 import org.apache.openaz.xacml.std.pip.StdPIPResponse;
 
 /**
- * EngineFinder implements the {@link com.att.research.xacml.api.pip.PIPFinder} interface by maintaining a
- * simple list of registered {@link com.att.research.xacml.api.pip.PIPEngine} objects.
+ * EngineFinder implements the {@link org.apache.openaz.xacml.api.pip.PIPFinder} interface by maintaining a
+ * simple list of registered {@link org.apache.openaz.xacml.api.pip.PIPEngine} objects.
  */
 public class EngineFinder implements PIPFinder {
     private Map<String, List<PIPEngine>> pipEngines = new HashMap<String, List<PIPEngine>>();

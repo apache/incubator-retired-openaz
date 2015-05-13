@@ -44,7 +44,7 @@ import org.apache.openaz.xacml.std.StdStatusCode;
 import org.apache.openaz.xacml.std.trace.StdTraceEvent;
 
 /**
- * VariableReference extends {@link com.att.research.xacmlatt.pdp.policy.Expression} to implement the XACML
+ * VariableReference extends {@link org.apache.openaz.xacml.pdp.policy.Expression} to implement the XACML
  * VariableReference element.
  */
 public class VariableReference extends Expression implements Traceable {

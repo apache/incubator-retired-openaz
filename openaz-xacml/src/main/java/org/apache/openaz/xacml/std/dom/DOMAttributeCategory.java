@@ -45,7 +45,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 /**
- * DOMAttributeCategory extends {@link com.att.research.xacml.std.StdAttributeCategory} with methods for
+ * DOMAttributeCategory extends {@link org.apache.openaz.xacml.std.StdAttributeCategory} with methods for
  * creation from DOM {@link org.w3c.dom.Node}s.
  */
 public class DOMAttributeCategory {

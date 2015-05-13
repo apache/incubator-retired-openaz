@@ -57,7 +57,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 /**
- * DOMPolicySet extends {@link com.att.research.xacmlatt.pdp.policy.PolicySet} with methods for creation from
+ * DOMPolicySet extends {@link org.apache.openaz.xacml.pdp.policy.PolicySet} with methods for creation from
  * DOM {@link org.w3c.dom.Node}s.
  */
 public class DOMPolicySet {
@@ -71,7 +71,7 @@ public class DOMPolicySet {
      * PolicySet element.
      *
      * @param nodePolicySet the <code>Node</code> representing the XACML PolicySetelement
-     * @param policyDefaultsParent the {@link com.att.research.xacmlatt.pdp.policy.PolicyDefaults} from the
+     * @param policyDefaultsParent the {@link org.apache.openaz.xacml.pdp.policy.PolicyDefaults} from the
      *            parent element
      * @return a new <code>PolicySet</code> parsed from the given <code>Node</code>
      * @throws DOMStructureException if there is an error parsing the <code>Node</code>

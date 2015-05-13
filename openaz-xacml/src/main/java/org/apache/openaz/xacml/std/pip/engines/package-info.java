@@ -32,6 +32,6 @@
 package org.apache.openaz.xacml.std.pip.engines;
 
 /**
- * com.att.research.xacml.std.pip.engines contains the standard implementation of the PIPEngine interface
+ * org.apache.openaz.xacml.std.pip.engines contains the standard implementation of the PIPEngine interface
  *
  */

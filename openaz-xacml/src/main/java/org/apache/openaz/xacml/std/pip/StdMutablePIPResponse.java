@@ -41,9 +41,9 @@ import org.apache.openaz.xacml.api.pip.PIPResponse;
 import org.apache.openaz.xacml.std.StdStatus;
 
 /**
- * Mutable implementation of the {@link com.att.research.xacml.api.pip.PIPResponse} interface with methods for
- * keeping a collection of {@link com.att.research.xacml.api.Attribute}s with a
- * {@link com.att.research.xacml.api.Status}.
+ * Mutable implementation of the {@link org.apache.openaz.xacml.api.pip.PIPResponse} interface with methods for
+ * keeping a collection of {@link org.apache.openaz.xacml.api.Attribute}s with a
+ * {@link org.apache.openaz.xacml.api.Status}.
  */
 public class StdMutablePIPResponse implements PIPResponse {
     private static final List<Attribute> EMPTY_LIST = Collections
@@ -55,7 +55,7 @@ public class StdMutablePIPResponse implements PIPResponse {
 
     /**
      * Creates a new <code>StdMutablePIPResponse</code> with the given
-     * {@link com.att.research.xacml.api.Status}.
+     * {@link org.apache.openaz.xacml.api.Status}.
      *
      * @param statusIn the <code>Status</code> of the new <code>StdMutablePIPResponse</code>
      */
@@ -65,8 +65,8 @@ public class StdMutablePIPResponse implements PIPResponse {
     }
 
     /**
-     * Creates a new <code>StdMutablePIPResponse</code> with an OK {@link com.att.research.xacml.api.Status}
-     * and the single given {@link com.att.research.xacml.api.Attribute}.
+     * Creates a new <code>StdMutablePIPResponse</code> with an OK {@link org.apache.openaz.xacml.api.Status}
+     * and the single given {@link org.apache.openaz.xacml.api.Attribute}.
      *
      * @param attribute the <code>Attribute</code> for the new <code>StdMutablePIPResponse</code>>
      */
@@ -78,8 +78,8 @@ public class StdMutablePIPResponse implements PIPResponse {
     }
 
     /**
-     * Creates a new <code>StdMutablePIPResponse</code> with an OK {@link com.att.research.xacml.api.Status}
-     * and a copy of the given <code>Collection</code> of {@link com.att.research.xacml.api.Attribute}s.
+     * Creates a new <code>StdMutablePIPResponse</code> with an OK {@link org.apache.openaz.xacml.api.Status}
+     * and a copy of the given <code>Collection</code> of {@link org.apache.openaz.xacml.api.Attribute}s.
      *
      * @param attributesIn the <code>Collection</code> of <code>Attribute</code>s for the new
      *            <code>StdMutablePIPResponse</code>.
@@ -144,7 +144,7 @@ public class StdMutablePIPResponse implements PIPResponse {
     }
 
     /**
-     * Adds a copy of the given <code>Collection</code> of {@link com.att.research.xacml.api.Attribute}s to
+     * Adds a copy of the given <code>Collection</code> of {@link org.apache.openaz.xacml.api.Attribute}s to
      * this <code>StdMutablePIPResponse</code>.
      *
      * @param attributesIn the <code>Collection</code> of <code>Attribute</code>s to add to this
@@ -165,7 +165,7 @@ public class StdMutablePIPResponse implements PIPResponse {
     }
 
     /**
-     * Sets the {@link com.att.research.xacml.api.Attribute}s in this <code>StdMutablePIPResponse</code> to a
+     * Sets the {@link org.apache.openaz.xacml.api.Attribute}s in this <code>StdMutablePIPResponse</code> to a
      * copy of the given <code>Collection</code>.
      *
      * @param attributesIn the <code>Collection</code> of <code>Attribute</code>s to set in this

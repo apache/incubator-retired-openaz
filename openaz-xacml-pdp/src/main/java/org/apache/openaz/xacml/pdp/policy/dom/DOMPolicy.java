@@ -58,7 +58,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 /**
- * DOMPolicy extends {@link com.att.research.xacmlatt.pdp.policy.Policy} with methods for creation from a DOM
+ * DOMPolicy extends {@link org.apache.openaz.xacml.pdp.policy.Policy} with methods for creation from a DOM
  * {@link org.w3c.dom.Node}.
  */
 public class DOMPolicy {

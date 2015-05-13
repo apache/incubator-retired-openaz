@@ -45,7 +45,7 @@ import org.apache.openaz.xacml.std.StdStatusCode;
 import org.apache.openaz.xacml.std.datatypes.DataTypes;
 
 /**
- * FunctionDefinitionBagIsIn implements {@link com.att.research.xacmlatt.pdp.policy.FunctionDefinition} to
+ * FunctionDefinitionBagIsIn implements {@link org.apache.openaz.xacml.pdp.policy.FunctionDefinition} to
  * implement the XACML 'type'-is-in predicates as functions taking two arguments, the first of
  * <code>type</code> and the second of type <code>Bag</code>, and returning a <code>Boolean</code> for whether
  * the first argument is contained in the second. In the first implementation of XACML we had separate files
@@ -73,9 +73,9 @@ public class FunctionDefinitionBagIsIn<I> extends FunctionDefinitionBase<Boolean
 
     /**
      * Evaluates this <code>FunctionDefinition</code> on the given <code>List</code> of
-     * {@link com.att.research.xacmlatt.pdp.policy.FunctionArgument}s.
+     * {@link org.apache.openaz.xacml.pdp.policy.FunctionArgument}s.
      *
-     * @param evaluationContext the {@link com.att.research.xacmlatt.pdp.eval.EvaluationContext} to use in the
+     * @param evaluationContext the {@link org.apache.openaz.xacml.pdp.eval.EvaluationContext} to use in the
      *            evaluation
      * @param arguments the <code>List</code> of <code>FunctionArgument</code>s for the evaluation
      * @return an {@link org.apache.openaz.xacml.pdp.policy.ExpressionResult} with the results of the call

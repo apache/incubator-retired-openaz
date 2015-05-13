@@ -41,13 +41,13 @@ import org.apache.openaz.xacml.std.StdStatusCode;
 
 /**
  * A ConvertedArgument is the result of processing an
- * {@link com.att.research.xacmlatt.pdp.policy.FunctionArgument} to validate its correctness and to convert it
+ * {@link org.apache.openaz.xacml.pdp.policy.FunctionArgument} to validate its correctness and to convert it
  * into an object of the required type. It is returned by the <code>validateArguments</code> method in
- * {@link com.att.research.xacmlatt.pdp.std.functions.FunctionDefinitionHomogeneousSimple} and should only be
+ * {@link org.apache.openaz.xacml.pdp.std.functions.FunctionDefinitionHomogeneousSimple} and should only be
  * used by other Functions in that same package. This is a data holder with no processing. It contains two
  * elements:
  * <UL>
- * <LI>A {@link com.att.research.xacml.api.Status} object, and
+ * <LI>A {@link org.apache.openaz.xacml.api.Status} object, and
  * <LI>An object containing the value of the FunctionArgument processed by validateArguments. This object will
  * only exist if status.isOk() (or the isOk() method in this class that calls status.isOk()) is true.
  * </UL>
@@ -147,7 +147,7 @@ public class ConvertedArgument<I> {
      *
      * @param listFunctionArguments the <code>List</code> of <code>FunctionArgument</code>s to validate
      * @param convertedValues the <code>List</code> of <code>U</code> that the converted value is added to.
-     * @return a {@link com.att.research.xacml.api.Status} indication with an error if the arguments are not
+     * @return a {@link org.apache.openaz.xacml.api.Status} indication with an error if the arguments are not
      *         valid, or an object of the correct DataType containing the value.
      */
     @SuppressWarnings("unchecked")

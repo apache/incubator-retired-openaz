@@ -42,7 +42,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 /**
- * DOMAttributeDesignator extends {@link com.att.research.xacmlatt.pdp.policy.expressions.AttributeDesignator}
+ * DOMAttributeDesignator extends {@link org.apache.openaz.xacml.pdp.policy.expressions.AttributeDesignator}
  * with methods for creation from DOM {@link org.w3c.dom.Node}s.
  */
 public class DOMAttributeDesignator extends AttributeDesignator {

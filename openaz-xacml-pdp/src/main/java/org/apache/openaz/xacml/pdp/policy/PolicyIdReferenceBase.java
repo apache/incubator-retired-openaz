@@ -67,7 +67,7 @@ public abstract class PolicyIdReferenceBase<T extends PolicyDef> extends PolicyS
      *
      * @param evaluationContext the <code>EvaluationContext</code> to search for the referencee
      * @return the <code>T</code> referencee if found, else null
-     * @throws com.att.research.xacmlatt.pdp.eval.EvaluationException if there is an error attempting to
+     * @throws org.apache.openaz.xacml.pdp.eval.EvaluationException if there is an error attempting to
      *             locate the referenced <code>T</code>.
      */
     protected abstract T ensureReferencee(EvaluationContext evaluationContext) throws EvaluationException;
@@ -92,7 +92,7 @@ public abstract class PolicyIdReferenceBase<T extends PolicyDef> extends PolicyS
     }
 
     /**
-     * Gets the {@link com.att.research.xacml.api.IdReferenceMatch} for this
+     * Gets the {@link org.apache.openaz.xacml.api.IdReferenceMatch} for this
      * <code>PolicyIdReferenceBase</code>.
      *
      * @return the <code>IdReferenceMatch</code> for this <code>PolicyIdReference</code>.

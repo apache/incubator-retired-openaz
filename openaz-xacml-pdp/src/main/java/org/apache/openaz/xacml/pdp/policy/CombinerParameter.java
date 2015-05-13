@@ -57,7 +57,7 @@ public class CombinerParameter extends PolicyComponent {
 
     /**
      * Creates a new <code>CombinerParameter</code> with the given <code>String</code> name,
-     * <code>AttributeValue</code>, {@link com.att.research.xacml.api.StatusCode} and <code>String</code>
+     * <code>AttributeValue</code>, {@link org.apache.openaz.xacml.api.StatusCode} and <code>String</code>
      * status message.
      *
      * @param nameIn the <code>String</code> name of the <code>CombinerParameter</code>

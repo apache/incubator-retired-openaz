@@ -54,7 +54,7 @@ import org.apache.openaz.xacml.std.StdStatusDetail;
 import org.apache.openaz.xacml.std.pip.StdPIPRequest;
 
 /**
- * AttributeDesignator extends {@link com.att.research.xacmlatt.pdp.policy.expression.AttributeRetrievalBase}
+ * AttributeDesignator extends {@link org.apache.openaz.xacml.pdp.policy.expression.AttributeRetrievalBase}
  * to represent the XACML AttributeDesignator element.
  */
 public class AttributeDesignator extends AttributeRetrievalBase {

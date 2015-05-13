@@ -41,10 +41,10 @@ import org.apache.openaz.xacml.std.StdStatusCode;
 import org.apache.openaz.xacml.std.datatypes.DataTypes;
 
 /**
- * AttributeRetrievalBase extends {@link com.att.research.xacmlatt.pdp.policy.PolicyComponent} and implements
- * {@link com.att.research.xacmlatt.pdp.eval.Evaluatable} to serve as an abstract base class for the
- * {@link com.att.research.xacmlatt.pdp.policy.AttributeSelector} and
- * {@link com.att.research.xacmlatt.pdp.policy.AttributeDesignator} classes.
+ * AttributeRetrievalBase extends {@link org.apache.openaz.xacml.pdp.policy.PolicyComponent} and implements
+ * {@link org.apache.openaz.xacml.pdp.eval.Evaluatable} to serve as an abstract base class for the
+ * {@link org.apache.openaz.xacml.pdp.policy.AttributeSelector} and
+ * {@link org.apache.openaz.xacml.pdp.policy.AttributeDesignator} classes.
  */
 public abstract class AttributeRetrievalBase extends Expression {
     private Identifier category;
@@ -179,7 +179,7 @@ public abstract class AttributeRetrievalBase extends Expression {
     }
 
     /**
-     * Creates the appropriate {@link com.att.research.xacmlatt.pdp.policy.ExpressionResult} for an empty list
+     * Creates the appropriate {@link org.apache.openaz.xacml.pdp.policy.ExpressionResult} for an empty list
      * based on the <code>getMustBePresent</code> value.
      *
      * @return an appropriate <code>ExpressionResult</code>

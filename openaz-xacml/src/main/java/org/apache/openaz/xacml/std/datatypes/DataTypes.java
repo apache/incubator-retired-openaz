@@ -32,7 +32,7 @@
 package org.apache.openaz.xacml.std.datatypes;
 
 /**
- * DataTypes provides constant instances of the built-in {@link com.att.research.xacml.api.DataType}
+ * DataTypes provides constant instances of the built-in {@link org.apache.openaz.xacml.api.DataType}
  * implementation classes.
  */
 public class DataTypes {

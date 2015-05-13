@@ -42,7 +42,7 @@ import org.apache.openaz.xacml.util.FactoryFinder;
  * places (in order): 1. System properties 2. The xacml.properties file which is located by: a)
  * {@code System.getProperty("xacml.properties")} b) {@code java.home/xacml.properties} 3. If the class name
  * is not found in one of these properties, the default is:
- * {@code com.att.research.xacml.std.StdDataTypeFactory}
+ * {@code org.apache.openaz.xacml.std.StdDataTypeFactory}
  */
 public abstract class DataTypeFactory {
     private static final String	FACTORYID					= "xacml.dataTypeFactory";

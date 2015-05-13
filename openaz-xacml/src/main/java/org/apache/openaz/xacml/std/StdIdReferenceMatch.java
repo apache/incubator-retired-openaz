@@ -36,7 +36,7 @@ import org.apache.openaz.xacml.api.VersionMatch;
 import org.apache.openaz.xacml.util.ObjUtil;
 
 /**
- * Immutable implementation of the {@link com.att.research.xacml.api.IdReferenceMatch} interface.
+ * Immutable implementation of the {@link org.apache.openaz.xacml.api.IdReferenceMatch} interface.
  */
 public class StdIdReferenceMatch implements IdReferenceMatch {
     private Identifier id;
@@ -46,8 +46,8 @@ public class StdIdReferenceMatch implements IdReferenceMatch {
 
     /**
      * Creates a new <code>StdIdReferenceMatch</code> with the given
-     * {@link com.att.research.xacml.api.Identifier} representing the PolicyId or PolicySetId to match, and
-     * the given set of {@link com.att.research.xacml.api.VersionMatch} objects specifying which XACML
+     * {@link org.apache.openaz.xacml.api.Identifier} representing the PolicyId or PolicySetId to match, and
+     * the given set of {@link org.apache.openaz.xacml.api.VersionMatch} objects specifying which XACML
      * Versions are acceptable.
      *
      * @param idIn the <code>Identifier</code> representing the PolicyId or PolicySetId.

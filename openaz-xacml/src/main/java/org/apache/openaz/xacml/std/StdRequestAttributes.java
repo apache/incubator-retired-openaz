@@ -46,7 +46,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 /**
- * Immutable implementation of the {@link com.att.research.xacml.api.RequestAttributes} interface.
+ * Immutable implementation of the {@link org.apache.openaz.xacml.api.RequestAttributes} interface.
  */
 public class StdRequestAttributes extends StdAttributeCategory implements RequestAttributes {
     private Log logger = LogFactory.getLog(this.getClass());
@@ -56,8 +56,8 @@ public class StdRequestAttributes extends StdAttributeCategory implements Reques
 
     /**
      * Creates a new <code>StdRequestAttributes</code> with the given
-     * {@link com.att.research.xacml.api.Identifier} representing its XACML Category, the given
-     * <code>Collection</code> of {@link com.att.research.xacml.api.Attribute}s, the given
+     * {@link org.apache.openaz.xacml.api.Identifier} representing its XACML Category, the given
+     * <code>Collection</code> of {@link org.apache.openaz.xacml.api.Attribute}s, the given
      * {@link org.w3c.dom.Node} representing the XACML Content element and the given <code>String</code> as
      * the optional xml:Id.
      *
@@ -79,7 +79,7 @@ public class StdRequestAttributes extends StdAttributeCategory implements Reques
 
     /**
      * Creates a new <code>StdRequestAttributes</code> by copying the given
-     * {@link com.att.research.xacml.api.RequestAttributes}.
+     * {@link org.apache.openaz.xacml.api.RequestAttributes}.
      *
      * @param requestAttributes the <code>RequestAttributes</code> to copy
      */

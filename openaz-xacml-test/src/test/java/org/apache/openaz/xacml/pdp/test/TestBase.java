@@ -435,7 +435,7 @@ public class TestBase extends SimpleFileVisitor<Path> {
      * each request to the PDP engine.
      *
      * @throws java.io.IOException
-     * @throws com.att.research.xacml.util.FactoryException
+     * @throws org.apache.openaz.xacml.util.FactoryException
      */
     public void run() throws IOException, FactoryException {
         //

@@ -44,7 +44,7 @@ import org.apache.openaz.xacml.std.StdStatus;
 import org.apache.openaz.xacml.util.StringUtils;
 
 /**
- * Target extends {@link com.att.research.xacmlatt.pdp.policy.PolicyComponent} to implement XACML 3.0 Target
+ * Target extends {@link org.apache.openaz.xacml.pdp.policy.PolicyComponent} to implement XACML 3.0 Target
  * elements for Policies, PolicySets, and Rules.
  */
 public class Target extends PolicyComponent implements Matchable {

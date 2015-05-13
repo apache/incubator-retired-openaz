@@ -121,14 +121,14 @@ public class ObligationExpression extends PolicyComponent {
 
     /**
      * Evaluates this <code>ObligationExpression</code> in the given
-     * {@link com.att.research.xacmlatt.pdp.eval.EvaluationContext} to get an
-     * {@link com.att.research.xacml.api.Obligation} to include in a PDP result.
+     * {@link org.apache.openaz.xacml.pdp.eval.EvaluationContext} to get an
+     * {@link org.apache.openaz.xacml.api.Obligation} to include in a PDP result.
      *
      * @param evaluationContext the <code>EvaluationContext</code> in which to evaluate this
      *            <code>ObligationExpression</code>
      * @param policyDefaults the <code>PolicyDefaults</code> to apply to the evaluation
      * @return a new <code>Obliagion</code> from this <code>ObligationExpression</code>
-     * @throws com.att.research.xacmlatt.pdp.eval.EvaluationException if there is an error evaluating any of
+     * @throws org.apache.openaz.xacml.pdp.eval.EvaluationException if there is an error evaluating any of
      *             the <code>AttributeAssignmentExpression</code>s
      */
     public Obligation evaluate(EvaluationContext evaluationContext, PolicyDefaults policyDefaults)

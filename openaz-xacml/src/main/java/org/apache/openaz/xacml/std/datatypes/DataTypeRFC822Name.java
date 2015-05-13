@@ -36,7 +36,7 @@ import org.apache.openaz.xacml.api.DataTypeException;
 import org.apache.openaz.xacml.api.XACML1;
 
 /**
- * DataTypeRFC822Name extends {@link com.att.research.xacml.common.datatypes.DataTypeBase> for the XACML
+ * DataTypeRFC822Name extends {@link org.apache.openaz.xacml.common.datatypes.DataTypeBase> for the XACML
  * rfc822Name data type. *
  */
 public class DataTypeRFC822Name extends DataTypeSemanticStringBase<RFC822Name> {

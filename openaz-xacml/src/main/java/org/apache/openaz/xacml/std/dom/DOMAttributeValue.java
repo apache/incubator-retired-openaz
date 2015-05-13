@@ -46,7 +46,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 /**
- * DOMAttributeValue extends {@link com.att.research.xacml.std.StdAttributeValue} with methods for creation
+ * DOMAttributeValue extends {@link org.apache.openaz.xacml.std.StdAttributeValue} with methods for creation
  * from DOM elements.
  *
  * @param <T> the Java type implementing the value for the Attribute

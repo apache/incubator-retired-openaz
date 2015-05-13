@@ -175,7 +175,7 @@ public abstract class ExpressionResult implements FunctionArgument {
     }
 
     /**
-     * Gets the single {@link com.att.research.xacml.api.AttributeValue} from this
+     * Gets the single {@link org.apache.openaz.xacml.api.AttributeValue} from this
      * <code>ExpressionResult</code>. If this <code>ExpressionResult</code> represents a bag, the first
      * element in the bag is returned.
      *

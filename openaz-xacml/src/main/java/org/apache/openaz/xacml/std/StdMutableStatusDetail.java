@@ -40,7 +40,7 @@ import org.apache.openaz.xacml.api.StatusDetail;
 import org.apache.openaz.xacml.util.ListUtil;
 
 /**
- * Mutable implementation of the {@link com.att.research.xacml.api.StatusDetail} interface to implement the
+ * Mutable implementation of the {@link org.apache.openaz.xacml.api.StatusDetail} interface to implement the
  * XACML StatusDetail element.
  */
 public class StdMutableStatusDetail implements StatusDetail {
@@ -58,7 +58,7 @@ public class StdMutableStatusDetail implements StatusDetail {
 
     /**
      * Creates a new <code>StdMutableStatusDetail</code> with a copy of the given <code>Collection</code> of
-     * {@link com.att.research.xacml.api.MissingAttributeDetail}s.
+     * {@link org.apache.openaz.xacml.api.MissingAttributeDetail}s.
      *
      * @param missingAttributeDetailsIn the <code>Collection</code> of <code>MissingAttributeDetail</code>s to
      *            copy
@@ -70,7 +70,7 @@ public class StdMutableStatusDetail implements StatusDetail {
 
     /**
      * Creates a new <code>StdMutableStatusDetail</code> with the given single
-     * {@link com.att.research.xacml.api.MissingAttributeDetail}.
+     * {@link org.apache.openaz.xacml.api.MissingAttributeDetail}.
      *
      * @param missingAttributeDetail the <code>MissingAttributeDetail</code> for the new
      *            <code>StdMutableStatusDetail</code>.
@@ -82,7 +82,7 @@ public class StdMutableStatusDetail implements StatusDetail {
 
     /**
      * Creates a new <code>StdMutableStatusDetail</code> that is a copy of the given
-     * {@link com.att.research.xacml.api.StatusDetail}.
+     * {@link org.apache.openaz.xacml.api.StatusDetail}.
      *
      * @param statusDetail the <code>StatusDetail</code> to copy
      * @return a new <code>StdMutableStatusDetail</code> that is a copy of the given <code>StatusDetail</code>
@@ -99,7 +99,7 @@ public class StdMutableStatusDetail implements StatusDetail {
     }
 
     /**
-     * Adds a {@link com.att.research.xacml.api.MissingAttributeDetail} to this
+     * Adds a {@link org.apache.openaz.xacml.api.MissingAttributeDetail} to this
      * <code>StdMutableStatusDetail</code>.
      *
      * @param missingAttributeDetail the <code>MissingAttributeDetail</code> to add to this
@@ -114,7 +114,7 @@ public class StdMutableStatusDetail implements StatusDetail {
 
     /**
      * Adds a copy of the given <code>Collection</code> of
-     * {@link com.att.research.xacml.api.MissingAttributeDetail}s to this <code>StdMutableStatusDetail</code>.
+     * {@link org.apache.openaz.xacml.api.MissingAttributeDetail}s to this <code>StdMutableStatusDetail</code>.
      *
      * @param missingAttributeDetailsIn the <code>Collection</code> of <code>MissingAttributeDetail</code>s to
      *            add to this <code>StdMutableStatusDetail</code>.
@@ -129,7 +129,7 @@ public class StdMutableStatusDetail implements StatusDetail {
     }
 
     /**
-     * Sets the {@link com.att.research.xacml.api.MissingAttributeDetail}s for this
+     * Sets the {@link org.apache.openaz.xacml.api.MissingAttributeDetail}s for this
      * <code>StdMutableStatusDetail</code> to a copy of the given <code>Collection</code>.
      *
      * @param missingAttributeDetailsIn the <code>Collection</code> of <code>MissingAttributeDetail</code>s to

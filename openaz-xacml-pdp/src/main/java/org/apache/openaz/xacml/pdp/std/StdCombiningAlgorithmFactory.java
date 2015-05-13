@@ -42,9 +42,9 @@ import org.apache.openaz.xacml.pdp.policy.PolicySetChild;
 import org.apache.openaz.xacml.pdp.policy.Rule;
 
 /**
- * StdCombiningAlgorithmFactory extends {@link com.att.research.xacmlatt.pdp.policy.CombiningAlgorithmFactory}
- * to implement a mapping from {@link com.att.research.xacml.api.Identifier}s to the standard
- * {@link com.att.research.xacmlatt.pdp.policy.CombiningAlgorithm} implementations.
+ * StdCombiningAlgorithmFactory extends {@link org.apache.openaz.xacml.pdp.policy.CombiningAlgorithmFactory}
+ * to implement a mapping from {@link org.apache.openaz.xacml.api.Identifier}s to the standard
+ * {@link org.apache.openaz.xacml.pdp.policy.CombiningAlgorithm} implementations.
  */
 public class StdCombiningAlgorithmFactory extends CombiningAlgorithmFactory {
     private static Map<Identifier, CombiningAlgorithm<Rule>> mapRuleCombiningAlgorithms = new HashMap<Identifier, CombiningAlgorithm<Rule>>();

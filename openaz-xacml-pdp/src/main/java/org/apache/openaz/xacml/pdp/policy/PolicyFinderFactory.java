@@ -38,7 +38,7 @@ import org.apache.openaz.xacml.util.FactoryFinder;
 
 /**
  * PolicyFinderFactory provides methods for loading XACML 3.0 policies and policy sets that are used by the
- * {@link com.att.research.xacmlatt.pdp.PDPEngine} to evaluate requests.
+ * {@link org.apache.openaz.xacml.pdp.PDPEngine} to evaluate requests.
  */
 public abstract class PolicyFinderFactory {
     private static final String FACTORYID = OpenAZPDPProperties.PROP_POLICYFINDERFACTORY;

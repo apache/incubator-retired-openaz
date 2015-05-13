@@ -39,7 +39,7 @@ import org.apache.openaz.xacml.api.Identifier;
 import org.apache.openaz.xacml.std.datatypes.DataTypes;
 
 /**
- * Implements the {@link com.att.research.xacml.api.DataTypeFactory} interface to support all of the data
+ * Implements the {@link org.apache.openaz.xacml.api.DataTypeFactory} interface to support all of the data
  * types in the XACML 3.0 specification.
  */
 public class StdDataTypeFactory extends DataTypeFactory {
@@ -81,8 +81,8 @@ public class StdDataTypeFactory extends DataTypeFactory {
 
     /**
      * Creates a new <code>StdDataTypeFactory</code> and initializes the mapping from
-     * {@link com.att.research.xacml.api.Identifier}s for XACML data types to the
-     * {@link com.att.research.xacml.api.DataType} class instance that implements that data type.
+     * {@link org.apache.openaz.xacml.api.Identifier}s for XACML data types to the
+     * {@link org.apache.openaz.xacml.api.DataType} class instance that implements that data type.
      */
     public StdDataTypeFactory() {
         initMap();

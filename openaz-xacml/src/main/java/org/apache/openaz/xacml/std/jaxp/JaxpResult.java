@@ -45,7 +45,7 @@ import oasis.names.tc.xacml._3_0.core.schema.wd_17.ObligationType;
 import oasis.names.tc.xacml._3_0.core.schema.wd_17.ResultType;
 
 /**
- * JaxpResult extends {@link com.att.research.xacml.std.StdMutableResult} with methods for creation from JAXP
+ * JaxpResult extends {@link org.apache.openaz.xacml.std.StdMutableResult} with methods for creation from JAXP
  * elements.
  */
 public class JaxpResult extends StdMutableResult {

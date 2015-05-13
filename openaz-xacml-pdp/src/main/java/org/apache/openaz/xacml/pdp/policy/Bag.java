@@ -60,7 +60,7 @@ public class Bag {
     }
 
     /**
-     * Creates a new <code>Bag</code> by copying the {@link com.att.research.xacml.api.AttributeValue}s from
+     * Creates a new <code>Bag</code> by copying the {@link org.apache.openaz.xacml.api.AttributeValue}s from
      * the given <code>Collection</code>.
      *
      * @param attributeValuesIn the <code>Collection</code> of <code>AttributeValue</code>s for this

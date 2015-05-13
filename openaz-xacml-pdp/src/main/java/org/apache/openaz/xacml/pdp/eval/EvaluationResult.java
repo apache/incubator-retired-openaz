@@ -42,7 +42,7 @@ import org.apache.openaz.xacml.api.Status;
 import org.apache.openaz.xacml.std.StdMutableResult;
 
 /**
- * EvaluationResult extends {@link com.att.research.xacml.std.StdMutableResult} with methods useful within a
+ * EvaluationResult extends {@link org.apache.openaz.xacml.std.StdMutableResult} with methods useful within a
  * PDP implementation
  */
 public class EvaluationResult extends StdMutableResult {
@@ -71,7 +71,7 @@ public class EvaluationResult extends StdMutableResult {
 
     /**
      * Creates an <code>EvaluationResult</code> generally from a
-     * {@link com.att.research.xacmlatt.pdp.policy.Rule} <code>evaluation</code> call.
+     * {@link org.apache.openaz.xacml.pdp.policy.Rule} <code>evaluation</code> call.
      *
      * @param decisionIn the <code>Decision</code>
      * @param obligationsIn the <code>Collection</code> of <code>Obligation</code>s

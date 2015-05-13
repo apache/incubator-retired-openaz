@@ -45,7 +45,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 /**
- * DOMRequestAttributes extends {@link com.att.research.xacml.std.StdRequestAttributes} with methods for
+ * DOMRequestAttributes extends {@link org.apache.openaz.xacml.std.StdRequestAttributes} with methods for
  * creation from DOM {@link org.w3c.dom.Node}s.
  */
 public class DOMRequestAttributes {

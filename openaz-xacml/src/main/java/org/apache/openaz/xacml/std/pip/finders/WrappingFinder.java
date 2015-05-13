@@ -38,7 +38,7 @@ import org.apache.openaz.xacml.api.pip.PIPResponse;
 import org.apache.openaz.xacml.std.pip.StdPIPResponse;
 
 /**
- * WrappingFinder implements {@link com.att.research.xacml.api.pip.PIPFinder} by wrapping another
+ * WrappingFinder implements {@link org.apache.openaz.xacml.api.pip.PIPFinder} by wrapping another
  * <code>PIPFinder</code> to intercept calls to <code>getAttributes</code> and do some other processing before
  * calling it on the wrapped <code>PIPFinder</code>.
  */
@@ -54,7 +54,7 @@ public abstract class WrappingFinder implements PIPFinder {
     }
 
     /**
-     * Gets the {@link com.att.research.xacml.api.pip.PIPResponse} from the <code>getAttributes</code> call on
+     * Gets the {@link org.apache.openaz.xacml.api.pip.PIPResponse} from the <code>getAttributes</code> call on
      * the wrapped <code>PIPFinder</code>, using the given <code>PIPFinder</code> as the root for recursive
      * calls.
      *
@@ -63,7 +63,7 @@ public abstract class WrappingFinder implements PIPFinder {
      * @param pipFinderParent the <code>PIPFinder</code> to start from for recursive calls
      * @return the <code>PIPResponse</code> from the wrapped <code>PIPFinder</code> or the empty
      *         <code>PIPResponse</code> if there is no wrapped <code>PIPFinder</code>
-     * @throws com.att.research.xacml.api.pip.PIPException if there is an error getting attributes from the
+     * @throws org.apache.openaz.xacml.api.pip.PIPException if there is an error getting attributes from the
      *             wrapped <code>PIPFinder</code>
      */
     protected PIPResponse getAttributesWrapped(PIPRequest pipRequest, PIPEngine exclude,

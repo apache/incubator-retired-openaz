@@ -41,7 +41,7 @@ import org.apache.openaz.xacml.std.StdStatusCode;
 import org.w3c.dom.Node;
 
 /**
- * PolicyIssuer extends {@link com.att.research.xacmlatt.pdp.policy.PolicyComponent} to represent the XACML
+ * PolicyIssuer extends {@link org.apache.openaz.xacml.pdp.policy.PolicyComponent} to represent the XACML
  * 3.0 PolicyIssuer element in Policies and PolicySets.
  */
 public class PolicyIssuer extends PolicyComponent {

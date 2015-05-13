@@ -44,7 +44,7 @@ import org.apache.openaz.xacml.std.StdStatusCode;
 import org.apache.openaz.xacml.std.datatypes.DataTypes;
 
 /**
- * FunctionDefinitionComparison implements {@link com.att.research.xacmlatt.pdp.policy.FunctionDefinition} to
+ * FunctionDefinitionComparison implements {@link org.apache.openaz.xacml.pdp.policy.FunctionDefinition} to
  * implement the XACML comparison predicates as functions taking two arguments of the same type and returning
  * a <code>Boolean</code>. In the first implementation of XACML we had separate files for each XACML Function.
  * This release combines multiple Functions in fewer files to minimize code duplication. This file supports

@@ -42,9 +42,9 @@ import org.apache.openaz.xacml.util.StringUtils;
 
 /**
  * AttributeAssignmentResult is the object returned by the <code>evaluate</code> method of an
- * {@link com.att.research.xacmlatt.pdp.policy.AttributeAssignmentExpression}. It contains a
- * {@link com.att.research.xacml.api.Status} and an optional collection of
- * {@link com.att.research.xacml.api.AttributeAssignment} elements.
+ * {@link org.apache.openaz.xacml.pdp.policy.AttributeAssignmentExpression}. It contains a
+ * {@link org.apache.openaz.xacml.api.Status} and an optional collection of
+ * {@link org.apache.openaz.xacml.api.AttributeAssignment} elements.
  */
 public class AttributeAssignmentResult {
     private Status status;

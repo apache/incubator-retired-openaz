@@ -65,7 +65,7 @@ import org.apache.openaz.xacml.std.pip.engines.ConfigurableEngine;
 import org.apache.openaz.xacml.util.FactoryException;
 
 /**
- * ConformancePIPEngine implements the {@link com.att.research.xacml.api.pip.PIPFinder} interface to find
+ * ConformancePIPEngine implements the {@link org.apache.openaz.xacml.api.pip.PIPFinder} interface to find
  * attributes loaded from a text file containing the following fields:
  * category-id,attribute-id,datatype-id,issuer,value
  */

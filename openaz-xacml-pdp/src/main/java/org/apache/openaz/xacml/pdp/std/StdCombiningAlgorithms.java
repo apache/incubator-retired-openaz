@@ -50,8 +50,8 @@ import org.apache.openaz.xacml.pdp.util.OpenAZPDPProperties;
 
 /**
  * StdCombiningAlgorithms contains single instances of each of the
- * {@link com.att.research.xacmlatt.pdp.policy.CombiningAlgorithm} implementations in the
- * {@link com.att.research.xacmlatt.pdp.std.combiners} package.
+ * {@link org.apache.openaz.xacml.pdp.policy.CombiningAlgorithm} implementations in the
+ * {@link org.apache.openaz.xacml.pdp.std.combiners} package.
  */
 public class StdCombiningAlgorithms {
 

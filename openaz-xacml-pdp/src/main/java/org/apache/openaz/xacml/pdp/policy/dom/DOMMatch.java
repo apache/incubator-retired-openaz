@@ -44,7 +44,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 /**
- * DOMMatch extends {@link com.att.research.xacmlatt.pdp.policy.Match} with methods for creation from DOM
+ * DOMMatch extends {@link org.apache.openaz.xacml.pdp.policy.Match} with methods for creation from DOM
  * {@link org.w3c.dom.Node}s.
  */
 public class DOMMatch extends Match {

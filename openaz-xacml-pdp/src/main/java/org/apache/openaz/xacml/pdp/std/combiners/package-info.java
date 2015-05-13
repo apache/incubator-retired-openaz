@@ -32,7 +32,7 @@
 package org.apache.openaz.xacml.pdp.std.combiners;
 
 /**
- * com.att.research.xacmlatt.pdp.std.combiners contains implementations of the {@link com.att.research.xacmlatt.pdp.policy.CombiningAlgorithm}
+ * org.apache.openaz.xacml.pdp.std.combiners contains implementations of the {@link org.apache.openaz.xacml.pdp.policy.CombiningAlgorithm}
  * interface.
  *
  */

@@ -63,7 +63,7 @@ import com.google.common.base.Splitter;
 import com.google.common.cache.Cache;
 
 /**
- * PIPEgineJDBC extends {@link com.att.research.xacml.std.pip.engines.StdConfigurableEngine} to implement a
+ * PIPEgineJDBC extends {@link org.apache.openaz.xacml.std.pip.engines.StdConfigurableEngine} to implement a
  * PIP that retrieves XACML attributes from a database using JDBC. This is a minimal implementation that does
  * not do any caching of results. It does not perform JDBC connection pooling either.
  */
@@ -111,7 +111,7 @@ public class JDBCEngine extends StdConfigurableEngine {
      * class can perform connection pooling or other connection reuse optimizations here.
      *
      * @return a <code>Connection</code> to use to execute the query
-     * @throws com.att.research.xacml.api.pip.PIPException if there is an error creating the JDBC
+     * @throws org.apache.openaz.xacml.api.pip.PIPException if there is an error creating the JDBC
      *             <code>Connection</code>.
      */
     protected Connection getConnection() throws PIPException {
@@ -292,14 +292,14 @@ public class JDBCEngine extends StdConfigurableEngine {
     }
 
     /**
-     * Creates a new {@link com.att.research.xacml.std.pip.engines.jdbc.JDBCResolver} by looking up the
+     * Creates a new {@link org.apache.openaz.xacml.std.pip.engines.jdbc.JDBCResolver} by looking up the
      * "classname" property for the given <code>String</code> resolver ID and then calling its
      * <code>configure</code> method.
      *
      * @param resolverId the <code>String</code> identifier of the resolver to configure
      * @param properties the <code>Properties</code> to search for the "classname" and any resolver-specific
      *            properties
-     * @throws com.att.research.xacml.api.pip.PIPException if there is an error creating the
+     * @throws org.apache.openaz.xacml.api.pip.PIPException if there is an error creating the
      *             <code>JDBCResolver</code>.
      */
     protected void createResolver(String resolverId, Properties properties) throws PIPException {

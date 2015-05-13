@@ -37,7 +37,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 
 /**
- * DOMDocumentRepair extends {@link com.att.research.xacml.std.dom.DOMDocumentRepair} to repair Policy
+ * DOMDocumentRepair extends {@link org.apache.openaz.xacml.std.dom.DOMDocumentRepair} to repair Policy
  * documents as well as Request and Response documents.
  */
 public class DOMDocumentRepair extends org.apache.openaz.xacml.std.dom.DOMDocumentRepair {

@@ -41,7 +41,7 @@ import org.apache.openaz.xacml.api.pdp.ScopeResolverResult;
 import org.apache.openaz.xacml.util.StringUtils;
 
 /**
- * StdScopeResolverResult implements the {@link com.att.research.xacml.api.pdp.ScopeResolverResult} interface.
+ * StdScopeResolverResult implements the {@link org.apache.openaz.xacml.api.pdp.ScopeResolverResult} interface.
  */
 public class StdScopeResolverResult implements ScopeResolverResult {
     private Status status;

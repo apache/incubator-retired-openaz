@@ -40,7 +40,7 @@ import org.apache.openaz.xacml.api.Status;
  */
 public interface PIPResponse {
     /**
-     * Gets the {@link com.att.research.xacml.api.Status} of the request to retrieve attributes from a
+     * Gets the {@link org.apache.openaz.xacml.api.Status} of the request to retrieve attributes from a
      * <code>PIPEngine</code>.
      *
      * @return the <code>Status</code> of the request to retrieve attributes from a <code>PIPEngine</code>
@@ -48,7 +48,7 @@ public interface PIPResponse {
     Status getStatus();
 
     /**
-     * Gets the <code>Collection</code> of {@link com.att.research.xacml.api.Attribute}s returned from a
+     * Gets the <code>Collection</code> of {@link org.apache.openaz.xacml.api.Attribute}s returned from a
      * {@link PIPEngine}. The caller must not modify the returned <code>Collection</code>. The implementation
      * is free to enforce this with unmodifiable collections.
      *
@@ -59,8 +59,8 @@ public interface PIPResponse {
 
     /**
      * Determines if this <code>PIPResponse</code> is simple or not. A simple <code>PIPResponse</code>
-     * contains a single {@link com.att.research.xacml.api.Attribute} whose
-     * {@link com.att.research.xacml.api.AttributeValue}s are all of the same data type.
+     * contains a single {@link org.apache.openaz.xacml.api.Attribute} whose
+     * {@link org.apache.openaz.xacml.api.AttributeValue}s are all of the same data type.
      *
      * @return true if this <code>PIPResponse</code> is simple, else false.
      */

@@ -75,7 +75,7 @@ import org.apache.openaz.xacml.std.datatypes.XPathDayTimeDuration;
 import org.apache.openaz.xacml.std.datatypes.XPathYearMonthDuration;
 
 /**
- * StdFunctions contains the {@link com.att.research.xacml.api.Identifier} values for the standard XACML
+ * StdFunctions contains the {@link org.apache.openaz.xacml.api.Identifier} values for the standard XACML
  * functions.
  */
 @SuppressWarnings("deprecation")

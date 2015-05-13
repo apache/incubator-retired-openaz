@@ -41,7 +41,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 /**
- * DOMStatusCode extends {@link com.att.research.xacml.comomon.std.StdStatusCode} with methods for creation
+ * DOMStatusCode extends {@link org.apache.openaz.xacml.comomon.std.StdStatusCode} with methods for creation
  * from DOM {@link org.w3c.dom.Node}s.
  */
 public class DOMStatusCode {

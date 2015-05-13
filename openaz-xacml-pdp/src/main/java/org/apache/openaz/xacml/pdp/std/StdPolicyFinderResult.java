@@ -36,10 +36,10 @@ import org.apache.openaz.xacml.pdp.policy.PolicyFinderResult;
 import org.apache.openaz.xacml.std.StdStatus;
 
 /**
- * StdPolicyFinderResult implements the {@link com.att.research.xacmlatt.pdp.policy.PolicyFinderResult}
+ * StdPolicyFinderResult implements the {@link org.apache.openaz.xacml.pdp.policy.PolicyFinderResult}
  * interface.
  *
- * @param <T> the java class extending {@link com.att.research.xacmlatt.pdp.policy.PolicyDef} held by the
+ * @param <T> the java class extending {@link org.apache.openaz.xacml.pdp.policy.PolicyDef} held by the
  *            <code>StdPolicyFinderResult</code>
  */
 public class StdPolicyFinderResult<T extends PolicyDef> implements PolicyFinderResult<T> {

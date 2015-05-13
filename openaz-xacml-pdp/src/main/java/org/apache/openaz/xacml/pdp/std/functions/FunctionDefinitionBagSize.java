@@ -47,7 +47,7 @@ import org.apache.openaz.xacml.std.StdStatusCode;
 import org.apache.openaz.xacml.std.datatypes.DataTypes;
 
 /**
- * FunctionDefinitionBagSize implements {@link com.att.research.xacmlatt.pdp.policy.FunctionDefinition} to
+ * FunctionDefinitionBagSize implements {@link org.apache.openaz.xacml.pdp.policy.FunctionDefinition} to
  * implement the XACML 'type'-bag-size predicates as functions taking one <code>Bag</code> argument and
  * returning an <code>Integer</code> representing the number of elements in the bag. In the first
  * implementation of XACML we had separate files for each XACML Function. This release combines multiple
@@ -73,9 +73,9 @@ public class FunctionDefinitionBagSize<I> extends FunctionDefinitionBase<BigInte
 
     /**
      * Evaluates this <code>FunctionDefinition</code> on the given <code>List</code> of
-     * {@link com.att.research.xacmlatt.pdp.policy.FunctionArgument}s.
+     * {@link org.apache.openaz.xacml.pdp.policy.FunctionArgument}s.
      *
-     * @param evaluationContext the {@link com.att.research.xacmlatt.pdp.eval.EvaluationContext} to use in the
+     * @param evaluationContext the {@link org.apache.openaz.xacml.pdp.eval.EvaluationContext} to use in the
      *            evaluation
      * @param arguments the <code>List</code> of <code>FunctionArgument</code>s for the evaluation
      * @return an {@link org.apache.openaz.xacml.pdp.policy.ExpressionResult} with the results of the call

@@ -44,8 +44,8 @@ import org.apache.openaz.xacml.pdp.policy.PolicySetChild;
 
 /**
  * LegacyPermitOverridesPolicy extends
- * {@link com.att.research.xacmlatt.pdp.policy.combiners.CombiningAlgorithmBase} for
- * {@link com.att.research.xacmlatt.pdp.policy.PolicySetChild} elements implementing the XACML 1.0
+ * {@link org.apache.openaz.xacml.pdp.policy.combiners.CombiningAlgorithmBase} for
+ * {@link org.apache.openaz.xacml.pdp.policy.PolicySetChild} elements implementing the XACML 1.0
  * permit-overrides policy combining algorithm.
  */
 public class LegacyPermitOverridesPolicy extends CombiningAlgorithmBase<PolicySetChild> {

@@ -40,12 +40,12 @@ import org.apache.openaz.xacml.api.Identifier;
 import org.apache.openaz.xacml.util.Wrapper;
 
 /**
- * Immutable implementation of the {@link com.att.research.xacml.api.Attribute} interface.
+ * Immutable implementation of the {@link org.apache.openaz.xacml.api.Attribute} interface.
  */
 public class StdAttribute extends Wrapper<Attribute> implements Attribute {
     /**
      * Creates an immutable <code>StdAttribute</code> that wraps the given
-     * {@link com.att.research.xacml.api.Attribute}.
+     * {@link org.apache.openaz.xacml.api.Attribute}.
      *
      * @param attribute the <code>Attribute</code> wrapped by this <code>StdAttribute</code>.
      */
@@ -55,8 +55,8 @@ public class StdAttribute extends Wrapper<Attribute> implements Attribute {
 
     /**
      * Creates an immutable <code>StdAttribute</code> with the given
-     * {@link com.att.research.xacml.api.Identifier}s representing the XACML Category and AttributeId, a copy
-     * of the given <code>Collection</code> of {@link com.att.research.xacml.api.AttributeValue}s representing
+     * {@link org.apache.openaz.xacml.api.Identifier}s representing the XACML Category and AttributeId, a copy
+     * of the given <code>Collection</code> of {@link org.apache.openaz.xacml.api.AttributeValue}s representing
      * the XACML AttributeValue elements, the given <code>String</code> Issuer, and the given
      * <code>boolean</code> indicating whether the new <code>StdAttribute</code> should be returned as part of
      * a decision Result.
@@ -74,8 +74,8 @@ public class StdAttribute extends Wrapper<Attribute> implements Attribute {
 
     /**
      * Creates an immutable <code>StdAttribute</code> with the given
-     * {@link com.att.research.xacml.api.Identifier}s representing the XACML Category and AttributeId, the
-     * {@link com.att.research.xacml.api.AttributeValue}s representing a single XACML AttributeValue element,
+     * {@link org.apache.openaz.xacml.api.Identifier}s representing the XACML Category and AttributeId, the
+     * {@link org.apache.openaz.xacml.api.AttributeValue}s representing a single XACML AttributeValue element,
      * the given <code>String</code> Issuer, and the given <code>boolean</code> indicating whether the new
      * <code>StdAttribute</code> should be returned as part of a decision Result.
      *
@@ -92,8 +92,8 @@ public class StdAttribute extends Wrapper<Attribute> implements Attribute {
 
     /**
      * Creates an immutable <code>StdAttribute</code> with the given
-     * {@link com.att.research.xacml.api.Identifier}s representing the XACML Category and AttributeId, and the
-     * {@link com.att.research.xacml.api.AttributeValue}s representing a single XACML AttributeValue element.
+     * {@link org.apache.openaz.xacml.api.Identifier}s representing the XACML Category and AttributeId, and the
+     * {@link org.apache.openaz.xacml.api.AttributeValue}s representing a single XACML AttributeValue element.
      *
      * @param categoryIdIn the <code>Identifier</code> representing the XACML Category
      * @param attributeIdIn the <code>Identifier</code> representing the XACML AttributeId
@@ -105,7 +105,7 @@ public class StdAttribute extends Wrapper<Attribute> implements Attribute {
 
     /**
      * Gets a new <code>StdAttribute</code> that is a copy of the given
-     * {@link com.att.research.xacml.api.Attribute}.
+     * {@link org.apache.openaz.xacml.api.Attribute}.
      *
      * @param attribute the <code>Attribute</code> to copy
      * @return a new <code>StdAttribute</code> that is a copy of the given <code>Attribute</code>

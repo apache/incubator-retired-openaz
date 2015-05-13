@@ -72,8 +72,8 @@ public abstract class EvaluationContextFactory {
     }
 
     /**
-     * Gets a new {@link com.att.research.xacml.pdp.eval.EvaluationContext} for the given
-     * {@link com.att.research.xacml.api.Request}.
+     * Gets a new {@link org.apache.openaz.xacml.pdp.eval.EvaluationContext} for the given
+     * {@link org.apache.openaz.xacml.api.Request}.
      *
      * @param request the <code>Request</code> for the new <code>EvaluationContext</code>
      * @return a new <code>EvaluationContext</code> for the given <code>Request</code>
@@ -81,7 +81,7 @@ public abstract class EvaluationContextFactory {
     public abstract EvaluationContext getEvaluationContext(Request request);
 
     /**
-     * Sets the {@link com.att.research.xacmlatt.pdp.policy.PolicyFinder} for this
+     * Sets the {@link org.apache.openaz.xacml.pdp.policy.PolicyFinder} for this
      * <code>EvaluationContextFactory</code> to an explicit instance instead of the default or configured
      * value.
      *
@@ -91,7 +91,7 @@ public abstract class EvaluationContextFactory {
     public abstract void setPolicyFinder(PolicyFinder policyFinder);
 
     /**
-     * Sets the {@link com.att.research.xacml.api.pip.PIPFinder} for this
+     * Sets the {@link org.apache.openaz.xacml.api.pip.PIPFinder} for this
      * <code>EvaluationContextFactory</code> to an explicit instance instaed of the default or configured
      * value.
      *

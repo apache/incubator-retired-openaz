@@ -32,7 +32,7 @@
 package org.apache.openaz.xacml.std.datatypes;
 
 /**
- * com.att.research.xacml.std.datatypes contains implementations of the {@link com.att.research.xacml.api.DataType} interface
+ * org.apache.openaz.xacml.std.datatypes contains implementations of the {@link org.apache.openaz.xacml.api.DataType} interface
  * for standard XACML 3.0 data types.
  *
  */

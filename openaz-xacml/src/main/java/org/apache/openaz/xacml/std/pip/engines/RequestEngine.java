@@ -54,8 +54,8 @@ import org.apache.openaz.xacml.std.pip.StdPIPRequest;
 import org.apache.openaz.xacml.std.pip.StdPIPResponse;
 
 /**
- * StdRequestEngine implements the {@link com.att.research.xacml.api.pip.PIPEngine} interface to retrieve
- * matching {@link com.att.reserach.xacml.api.Attribute}s from a {@link com.att.research.xacml.pip.Request}
+ * StdRequestEngine implements the {@link org.apache.openaz.xacml.api.pip.PIPEngine} interface to retrieve
+ * matching {@link com.att.reserach.xacml.api.Attribute}s from a {@link org.apache.openaz.xacml.pip.Request}
  * object.
  */
 public class RequestEngine implements PIPEngine {

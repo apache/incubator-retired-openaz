@@ -65,9 +65,9 @@ import org.apache.openaz.xacml.util.XACMLProperties;
 import com.google.common.base.Splitter;
 
 /**
- * StdPolicyFinderFactory extends {@link com.att.research.xacmlatt.pdp.policy.PolicyFinderFactory} with the
+ * StdPolicyFinderFactory extends {@link org.apache.openaz.xacml.pdp.policy.PolicyFinderFactory} with the
  * <code>getPolicyFinder</code> method to get a single instance of the {@link StdPolicyFinder}. The root
- * {@link com.att.research.xacmlatt.pdp.policy.PolicyDef} is loaded from a file whose name is specified as a
+ * {@link org.apache.openaz.xacml.pdp.policy.PolicyDef} is loaded from a file whose name is specified as a
  * system property or in the $java.home/lib/xacml.properties property set.
  */
 public class StdPolicyFinderFactory extends PolicyFinderFactory {

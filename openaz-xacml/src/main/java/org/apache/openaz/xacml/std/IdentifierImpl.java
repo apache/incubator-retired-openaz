@@ -38,7 +38,7 @@ import org.apache.openaz.xacml.api.Identifier;
 import org.apache.openaz.xacml.util.ObjUtil;
 
 /**
- * IdentifierImpl provides a common implementation of the {@link com.att.research.xacml.api.Identifier}
+ * IdentifierImpl provides a common implementation of the {@link org.apache.openaz.xacml.api.Identifier}
  * interface with a stored, fixed <code>URI</code>.
  */
 public class IdentifierImpl implements Identifier {

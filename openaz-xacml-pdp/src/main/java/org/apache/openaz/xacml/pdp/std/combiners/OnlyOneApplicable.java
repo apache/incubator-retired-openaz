@@ -46,7 +46,7 @@ import org.apache.openaz.xacml.std.StdStatus;
 import org.apache.openaz.xacml.std.StdStatusCode;
 
 /**
- * OnlyOneApplicable extends {@link com.att.research.xacmlatt.pdp.std.combiners.CombiningAlgorithmBase} to
+ * OnlyOneApplicable extends {@link org.apache.openaz.xacml.pdp.std.combiners.CombiningAlgorithmBase} to
  * implement the XACML 1.0 "only-one-applicable" combining algorithm for policies and rules.
  *
  * @param <T> the java class of the object to be combined

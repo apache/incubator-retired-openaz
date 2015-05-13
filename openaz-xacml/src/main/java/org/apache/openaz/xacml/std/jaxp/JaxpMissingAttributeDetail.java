@@ -44,7 +44,7 @@ import oasis.names.tc.xacml._3_0.core.schema.wd_17.AttributeValueType;
 import oasis.names.tc.xacml._3_0.core.schema.wd_17.MissingAttributeDetailType;
 
 /**
- * JaxpMissingAttributeDetail extends {@link com.att.research.xacml.std.StdMutableMissingAttributeDetail} with
+ * JaxpMissingAttributeDetail extends {@link org.apache.openaz.xacml.std.StdMutableMissingAttributeDetail} with
  * methods for creation from JAXP elements.
  */
 public class JaxpMissingAttributeDetail extends StdMutableMissingAttributeDetail {

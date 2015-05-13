@@ -32,7 +32,7 @@
 package org.apache.openaz.xacml.std.dom;
 
 /**
- * com.att.research.xacml.std.dom contains the implementation of interfaces in {@link com.att.research.xacml.api} using DOM nodes.
+ * org.apache.openaz.xacml.std.dom contains the implementation of interfaces in {@link org.apache.openaz.xacml.api} using DOM nodes.
  * This package represents DOM parsing classes for the XACML 3.0 schema.
  *
  */

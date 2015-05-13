@@ -44,7 +44,7 @@ import org.apache.openaz.xacml.std.dom.DOMUtil;
 import org.w3c.dom.Node;
 
 /**
- * DataTypeBase provides common implementation components of the {@link com.att.research.xacml.api.DataType}
+ * DataTypeBase provides common implementation components of the {@link org.apache.openaz.xacml.api.DataType}
  * interface that is used by the specific instance implementations.
  *
  * @param <T> the value type for conversion

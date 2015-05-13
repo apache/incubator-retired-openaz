@@ -38,7 +38,7 @@ import org.apache.openaz.xacml.std.StdStatusCode;
 import oasis.names.tc.xacml._3_0.core.schema.wd_17.StatusCodeType;
 
 /**
- * JaxpStatusCode extends {@link com.att.research.xacml.std.StdStatusCode} with static methods for creating a
+ * JaxpStatusCode extends {@link org.apache.openaz.xacml.std.StdStatusCode} with static methods for creating a
  * <code>StatusCode</code> object by parsing JAXP elements based on the XACML 3.0 schema.
  */
 public class JaxpStatusCode extends StdStatusCode {

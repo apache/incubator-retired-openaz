@@ -47,7 +47,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 /**
- * DOMCombinerParameter extends {@link com.att.research.xacmlatt.pdp.policy.CombinerParameter} with methods
+ * DOMCombinerParameter extends {@link org.apache.openaz.xacml.pdp.policy.CombinerParameter} with methods
  * for creation from DOM {@link org.w3c.dom.Node}s.
  */
 public class DOMCombinerParameter extends CombinerParameter {

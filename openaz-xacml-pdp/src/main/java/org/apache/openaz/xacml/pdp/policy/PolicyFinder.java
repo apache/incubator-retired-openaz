@@ -36,14 +36,14 @@ import org.apache.openaz.xacml.pdp.eval.EvaluationContext;
 /**
  * PolicyFinder is the interface for objects that can locate XACML Policies and PolicySets by identifier and
  * contains the root Policy or Policy set. The interface is designed to allow for finders that can retrieve a
- * root policy from a repository based on matching a {@link com.att.research.xacml.api.Request}.
+ * root policy from a repository based on matching a {@link org.apache.openaz.xacml.api.Request}.
  */
 public interface PolicyFinder {
     /**
      * Gets the root {@link PolicyDef} from the policy store configured by the particular implementation of
      * the <code>PolicyFinderFactory</code> class that is applicable to the
-     * {@link com.att.research.xacml.api.Request} in the given
-     * {@link com.att.research.xacmlatt.pdp.eval.EvaluationContext}.
+     * {@link org.apache.openaz.xacml.api.Request} in the given
+     * {@link org.apache.openaz.xacml.pdp.eval.EvaluationContext}.
      *
      * @return a <code>PolicyFinderResult</code> with the root <code>PolicyDef</code>
      */

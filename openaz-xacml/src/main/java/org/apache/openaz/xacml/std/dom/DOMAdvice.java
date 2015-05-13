@@ -44,7 +44,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 /**
- * DOMAdvice provides a static method for creating an instance of the {@link com.att.research.xacml.Advice}
+ * DOMAdvice provides a static method for creating an instance of the {@link org.apache.openaz.xacml.Advice}
  * interface from a {@link org.w3c.dom.Node} representing a XACML 3.0 Advice element, and for creating a
  * <code>List</code> of <code>Advice</code> objects from a <code>Node</code> representing a XACML 3.0
  * AssociatedAdvice element.

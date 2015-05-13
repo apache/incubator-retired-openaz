@@ -48,7 +48,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 /**
- * DOMObligationExpression extends {@link com.att.research.xacmlatt.pdp.policy.ObligationExpression} with
+ * DOMObligationExpression extends {@link org.apache.openaz.xacml.pdp.policy.ObligationExpression} with
  * methods for creation from {@link org.w3c.dom.Node}s.
  */
 public class DOMObligationExpression extends ObligationExpression {
@@ -63,7 +63,7 @@ public class DOMObligationExpression extends ObligationExpression {
      *
      * @param nodeObligationExpression the <code>Node</code> representing the XACML ObligationExpression
      *            element
-     * @param policy the {@link com.att.research.xacmlatt.pdp.policy.Policy} encompassing the
+     * @param policy the {@link org.apache.openaz.xacml.pdp.policy.Policy} encompassing the
      *            ObligationExpression element
      * @return a new <code>ObligationExpression</code> parsed from the given <code>Node</code>
      * @throws DOMStructureException if there is an error parsing the <code>Node</code>

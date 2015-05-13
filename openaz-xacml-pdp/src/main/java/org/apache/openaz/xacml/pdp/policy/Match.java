@@ -50,8 +50,8 @@ import org.apache.openaz.xacml.std.datatypes.DataTypes;
 import org.apache.openaz.xacml.util.FactoryException;
 
 /**
- * Match extends {@link com.att.research.xacmlatt.pdp.policy.PolicyComponent} and implements the
- * {@link com.att.research.xacmlatt.pdp.eval.Matchable} interface to represent a XACML Match element.
+ * Match extends {@link org.apache.openaz.xacml.pdp.policy.PolicyComponent} and implements the
+ * {@link org.apache.openaz.xacml.pdp.eval.Matchable} interface to represent a XACML Match element.
  */
 public class Match extends PolicyComponent implements Matchable {
     private Identifier matchId;

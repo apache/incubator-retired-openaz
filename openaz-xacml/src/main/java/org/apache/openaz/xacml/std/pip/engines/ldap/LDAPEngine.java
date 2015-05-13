@@ -61,7 +61,7 @@ import com.google.common.base.Splitter;
 import com.google.common.cache.Cache;
 
 /**
- * LDAPEngine extends {@link com.att.research.xacml.std.pip.engines.StdConfigurableEngine} to implement a
+ * LDAPEngine extends {@link org.apache.openaz.xacml.std.pip.engines.StdConfigurableEngine} to implement a
  * generic PIP for accessing data from and LDAP server, including a configurable cache to avoid repeat
  * queries.
  */

@@ -44,7 +44,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 /**
- * Provides static methods for creating {@link com.att.research.xacml.api.Obligation} objects from a
+ * Provides static methods for creating {@link org.apache.openaz.xacml.api.Obligation} objects from a
  * {@link org.w3c.dom.Node}.
  */
 public class DOMObligation {

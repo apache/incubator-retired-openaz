@@ -50,9 +50,9 @@ import org.apache.openaz.xacml.std.pip.engines.EnvironmentEngine;
 import org.apache.openaz.xacml.std.pip.engines.RequestEngine;
 
 /**
- * RequestFinder implements the {@link com.att.research.xacml.api.pip.PIPFinder} interface by wrapping another
- * <code>PIPFinder</code> a {@link com.att.research.xacml.std.pip.engines.RequestEngine} and a
- * {@link com.att.research.xacml.std.pip.engines.EnvironmentEngine}. When attributes are requested, the
+ * RequestFinder implements the {@link org.apache.openaz.xacml.api.pip.PIPFinder} interface by wrapping another
+ * <code>PIPFinder</code> a {@link org.apache.openaz.xacml.std.pip.engines.RequestEngine} and a
+ * {@link org.apache.openaz.xacml.std.pip.engines.EnvironmentEngine}. When attributes are requested, the
  * <code>RequestEngine</code> is searched first, followed by the <code>EnvironmentEngine</code> and if no
  * results are found, the wrapped <code>PIPFinder</code> is searched.
  */

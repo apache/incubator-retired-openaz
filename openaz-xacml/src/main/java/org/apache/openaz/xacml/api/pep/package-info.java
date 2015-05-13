@@ -32,6 +32,6 @@
 package org.apache.openaz.xacml.api.pep;
 
 /**
- * com.att.research.xacml.api.pep contains the XACML API for the PEP interface
+ * org.apache.openaz.xacml.api.pep contains the XACML API for the PEP interface
  *
  */

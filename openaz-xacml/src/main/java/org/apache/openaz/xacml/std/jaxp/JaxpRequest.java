@@ -55,7 +55,7 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 /**
- * JaxpRequest extends {@link com.att.research.xacml.std.StdMutableRequest} with methods for creation from
+ * JaxpRequest extends {@link org.apache.openaz.xacml.std.StdMutableRequest} with methods for creation from
  * JAXP elements.
  */
 public class JaxpRequest extends StdMutableRequest {

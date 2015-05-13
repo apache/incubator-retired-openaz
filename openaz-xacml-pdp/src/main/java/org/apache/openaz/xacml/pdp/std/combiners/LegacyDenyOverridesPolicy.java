@@ -46,7 +46,7 @@ import org.apache.openaz.xacml.std.StdStatus;
 /**
  * DenyOverrides implements the XACML 1.0 "deny-overrides" combining algorithm for policies and policy sets.
  *
- * @param <T> the java class for the {@link com.att.research.xacmlatt.pdp.eval.Evaluatable}
+ * @param <T> the java class for the {@link org.apache.openaz.xacml.pdp.eval.Evaluatable}
  * @param <U> the java class for the identifier
  */
 public class LegacyDenyOverridesPolicy extends CombiningAlgorithmBase<PolicySetChild> {

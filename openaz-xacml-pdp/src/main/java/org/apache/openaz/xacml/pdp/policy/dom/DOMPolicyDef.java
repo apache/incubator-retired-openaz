@@ -45,7 +45,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 
 /**
- * DOMPolicyDef extends {@link com.att.research.xacmlatt.pdp.policy.PolicyDef} with methods for loading them
+ * DOMPolicyDef extends {@link org.apache.openaz.xacml.pdp.policy.PolicyDef} with methods for loading them
  * from a <code>File</code>.
  */
 public abstract class DOMPolicyDef {

@@ -33,8 +33,8 @@ package org.apache.openaz.xacml.pdp.eval;
 
 /**
  * Evaluatable is the interface objects implement to indicate they can be evaluated with an
- * {@link com.att.research.xacmlatt.pdp.eval.EvaluationContext} and return an
- * {@link com.att.research.xacmlatt.pdp.eval.EvaluationResult}.
+ * {@link org.apache.openaz.xacml.pdp.eval.EvaluationContext} and return an
+ * {@link org.apache.openaz.xacml.pdp.eval.EvaluationResult}.
  */
 public interface Evaluatable {
     EvaluationResult evaluate(EvaluationContext evaluationContext) throws EvaluationException;

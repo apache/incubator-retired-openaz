@@ -45,9 +45,9 @@ import org.apache.openaz.xacml.pdp.policy.PolicyFinder;
 import org.apache.openaz.xacml.pdp.policy.PolicyFinderFactory;
 
 /**
- * StdEvaluationContextFactory extends {@link com.att.research.xacmlatt.pdp.eval.EvaluationContextFactory} to
+ * StdEvaluationContextFactory extends {@link org.apache.openaz.xacml.pdp.eval.EvaluationContextFactory} to
  * implement the <code>getEvaluationContext</code> method with a standard
- * {@link com.att.research.xacmlatt.pdp.eval.EvaluationContext}.
+ * {@link org.apache.openaz.xacml.pdp.eval.EvaluationContext}.
  */
 public class StdEvaluationContextFactory extends EvaluationContextFactory {
     private Log logger = LogFactory.getLog(this.getClass());

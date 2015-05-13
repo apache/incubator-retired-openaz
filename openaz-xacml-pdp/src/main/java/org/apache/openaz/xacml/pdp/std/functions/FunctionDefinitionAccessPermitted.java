@@ -53,7 +53,7 @@ import org.w3c.dom.Node;
 
 /**
  * FunctionDefinitionAccessPermitted implements
- * {@link com.att.research.xacmlatt.pdp.policy.FunctionDefinition} to implement the XACML access-permitted
+ * {@link org.apache.openaz.xacml.pdp.policy.FunctionDefinition} to implement the XACML access-permitted
  * predicate. WARNING: This code is unfinished. Initially we did not complete the implementation because we
  * did not understand how to handle XML Namespaces (from the &lt;Request&gt; or &lt;Policy&gt;). Later we
  * understood that any Namespaces used within this function must be explicitly listed in &lt;Content&gt; XML

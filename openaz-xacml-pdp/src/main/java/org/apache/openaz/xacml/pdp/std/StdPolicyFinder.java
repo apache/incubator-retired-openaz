@@ -61,7 +61,7 @@ import org.apache.openaz.xacml.std.StdStatus;
 import org.apache.openaz.xacml.std.StdStatusCode;
 
 /**
- * StdPolicyFinder implements the {@link com.att.research.xacmlatt.pdp.policy.PolicyFinder} interface to look
+ * StdPolicyFinder implements the {@link org.apache.openaz.xacml.pdp.policy.PolicyFinder} interface to look
  * up policies by their internal ID or an externally visible ID.
  */
 public class StdPolicyFinder implements PolicyFinder {
@@ -207,7 +207,7 @@ public class StdPolicyFinder implements PolicyFinder {
     }
 
     /**
-     * Looks up the given {@link com.att.research.xacml.api.Identifier} in the map first. If not found, and
+     * Looks up the given {@link org.apache.openaz.xacml.api.Identifier} in the map first. If not found, and
      * the <code>Identifier</code> contains a URL, then attempts to retrieve the document from the URL and
      * caches it.
      *
@@ -254,7 +254,7 @@ public class StdPolicyFinder implements PolicyFinder {
     }
 
     /**
-     * Looks up the given {@link com.att.research.xacml.api.Identifier} in the map first. If not found, and
+     * Looks up the given {@link org.apache.openaz.xacml.api.Identifier} in the map first. If not found, and
      * the <code>Identifier</code> contains a URL, then attempts to retrieve the document from the URL and
      * caches it.
      *

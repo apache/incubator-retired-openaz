@@ -48,7 +48,7 @@ import org.apache.openaz.xacml.std.datatypes.DataTypes;
 
 /**
  * FunctionDefinitionStringFunctions implements
- * {@link com.att.research.xacmlatt.pdp.policy.FunctionDefinition} to implement the XACML String Functions
+ * {@link org.apache.openaz.xacml.pdp.policy.FunctionDefinition} to implement the XACML String Functions
  * predicates except for the conversions between <code>String</code> and <code>DataType</code> which are
  * contained in <code>FunctionDefinitionStringConversion</code>. The functions in this file do not have a lot
  * in common except that the return data type is known and the input argument types are either known or of the

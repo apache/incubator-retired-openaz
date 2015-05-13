@@ -45,7 +45,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 /**
- * DOMRuleCombinerParameters extends {@link com.att.research.xacmlatt.pdp.policy.TargetedCombinerParameter}
+ * DOMRuleCombinerParameters extends {@link org.apache.openaz.xacml.pdp.policy.TargetedCombinerParameter}
  * with methods for creation from DOM {@link org.w3c.dom.Node}s.
  */
 public class DOMRuleCombinerParameters extends TargetedCombinerParameter<String, Rule> {
@@ -56,7 +56,7 @@ public class DOMRuleCombinerParameters extends TargetedCombinerParameter<String,
 
     /**
      * Creates a new <code>TargetedCombinerParameter</code> for
-     * {@link com.att.research.xacmlatt.pdp.policy.Rule}s by parsing the given <code>Node</code> representing
+     * {@link org.apache.openaz.xacml.pdp.policy.Rule}s by parsing the given <code>Node</code> representing
      * a XACML RuleCombinerParameters element.
      *
      * @param nodeRuleCombinerParameters the <code>Node</code> representing the XACML RuleCombinerParameters

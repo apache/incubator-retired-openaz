@@ -49,7 +49,7 @@ import org.apache.openaz.xacml.std.datatypes.DataTypes;
 
 /**
  * FunctionDefinitionArithmetic extends
- * {@link com.att.research.xacmlatt.pdp.std.functions.FunctionDefinitionHomogeneousSimple} to implement the
+ * {@link org.apache.openaz.xacml.pdp.std.functions.FunctionDefinitionHomogeneousSimple} to implement the
  * XACML Arithmetic predicates as functions taking one or two arguments of the same data type and returning a
  * single value of the same type. In Java there is no way to do arithmetic operations generically, so we need
  * to have individual code for each operation on each class within this class. In the first implementation of

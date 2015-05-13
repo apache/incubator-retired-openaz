@@ -41,7 +41,7 @@ import org.apache.openaz.xacml.std.StdStatusCode;
 import org.apache.openaz.xacml.std.datatypes.DataTypes;
 
 /**
- * Condition extends {@link com.att.research.xacmlatt.pdp.policy.PolicyComponent} to represent the XACML
+ * Condition extends {@link org.apache.openaz.xacml.pdp.policy.PolicyComponent} to represent the XACML
  * Condition element in a XACML Rule.
  */
 public class Condition extends PolicyComponent {
@@ -69,7 +69,7 @@ public class Condition extends PolicyComponent {
     private Expression expression;
 
     /**
-     * Creates a <code>Condition</code> with the given {@link com.att.research.xacml.api.StatusCode} and
+     * Creates a <code>Condition</code> with the given {@link org.apache.openaz.xacml.api.StatusCode} and
      * <code>String</code> status message.
      *
      * @param statusCodeIn the <code>StatusCode</code> for the <code>Condition</code>
@@ -96,7 +96,7 @@ public class Condition extends PolicyComponent {
 
     /**
      * Creates a new <code>Condition</code> with the given
-     * {@link com.att.research.xacmlatt.pdp.policy.Expression} and a default OK <code>StatusCode</code>.
+     * {@link org.apache.openaz.xacml.pdp.policy.Expression} and a default OK <code>StatusCode</code>.
      *
      * @param expressionIn the <code>Expression</code> for the <code>Condition</code>
      */
@@ -125,14 +125,14 @@ public class Condition extends PolicyComponent {
 
     /**
      * Evaluates the <code>Expression</code> in this <code>Condition</code> in the given
-     * {@link com.att.research.xacmlatt.pdp.eval.EvaluationContext}. and validates that the result is a
+     * {@link org.apache.openaz.xacml.pdp.eval.EvaluationContext}. and validates that the result is a
      * boolean.
      *
      * @param evaluationContext the <code>EvaluationContext</code> in which to evaluate this
      *            <code>Expression</code>
-     * @param policyDefaults the {@link com.att.research.xacml.pdp.policy.PolicyDefaults} to use in evaluating
+     * @param policyDefaults the {@link org.apache.openaz.xacml.pdp.policy.PolicyDefaults} to use in evaluating
      *            this <code>Expression</code>
-     * @return a {@link com.att.research.xacmlatt.pdp.policy.ExpressionResult}
+     * @return a {@link org.apache.openaz.xacml.pdp.policy.ExpressionResult}
      */
     public ExpressionResultBoolean evaluate(EvaluationContext evaluationContext, PolicyDefaults policyDefaults)
         throws EvaluationException {

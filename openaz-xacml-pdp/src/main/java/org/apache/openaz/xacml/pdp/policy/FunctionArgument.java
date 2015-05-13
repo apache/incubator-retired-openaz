@@ -35,11 +35,11 @@ import org.apache.openaz.xacml.api.Status;
 
 /**
  * FunctionArgument is the interface implemented by objects that can serve as arguments to a
- * {@link com.att.research.xacmlatt.pdp.policy.FunctionDefinition} <code>evaluate</code> call.
+ * {@link org.apache.openaz.xacml.pdp.policy.FunctionDefinition} <code>evaluate</code> call.
  */
 public interface FunctionArgument {
     /**
-     * Gets the {@link com.att.research.xacml.api.Status} from the evaluation of this
+     * Gets the {@link org.apache.openaz.xacml.api.Status} from the evaluation of this
      * <code>FunctionArgument</code>.
      *
      * @return the <code>Status</code> from the evaluation of this <code>FunctionArgument</code>>

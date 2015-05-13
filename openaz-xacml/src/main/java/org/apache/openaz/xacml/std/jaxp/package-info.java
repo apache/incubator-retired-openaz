@@ -32,6 +32,6 @@
 package org.apache.openaz.xacml.std.jaxp;
 
 /**
- * com.att.research.xacml.std.jaxp contains the implementation of interfaces in {@link com.att.research.xacml.api} using JAXP elements.
+ * org.apache.openaz.xacml.std.jaxp contains the implementation of interfaces in {@link org.apache.openaz.xacml.api} using JAXP elements.
  *
  */

@@ -32,6 +32,6 @@
 package org.apache.openaz.xacml.std.pip;
 
 /**
- * com.att.research.xacml.std.pip contains the standard implementation of the PIP interface
+ * org.apache.openaz.xacml.std.pip contains the standard implementation of the PIP interface
  *
  */

@@ -37,7 +37,7 @@ import org.apache.openaz.xacml.std.StdMutableStatus;
 import oasis.names.tc.xacml._3_0.core.schema.wd_17.StatusType;
 
 /**
- * JaxpStatus extends {@link com.att.research.StdMutableStatus.common.std.StdStatus} with methods for creation
+ * JaxpStatus extends {@link org.apache.openaz.StdMutableStatus.common.std.StdStatus} with methods for creation
  * from JAXP elements.
  */
 public class JaxpStatus extends StdMutableStatus {

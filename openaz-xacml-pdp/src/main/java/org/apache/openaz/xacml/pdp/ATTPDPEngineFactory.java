@@ -40,7 +40,7 @@ import org.apache.openaz.xacml.pdp.eval.EvaluationContextFactory;
 import org.apache.openaz.xacml.util.FactoryException;
 
 /**
- * ATTPDPEngineFactory extends {@link com.att.research.xacml.api.pdp.PDPEngineFactory} by implementing the
+ * ATTPDPEngineFactory extends {@link org.apache.openaz.xacml.api.pdp.PDPEngineFactory} by implementing the
  * abstract <code>newEngine</code> method to create a {@link ATTPDPEngine} instance and initialize it with
  * policies and PIP instances based on configuration information provided to the factory.
  */

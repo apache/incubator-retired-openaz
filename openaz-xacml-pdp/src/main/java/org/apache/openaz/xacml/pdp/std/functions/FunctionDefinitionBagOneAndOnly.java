@@ -43,7 +43,7 @@ import org.apache.openaz.xacml.std.StdStatus;
 import org.apache.openaz.xacml.std.StdStatusCode;
 
 /**
- * FunctionDefinitionBagOneAndOnly implements {@link com.att.research.xacmlatt.pdp.policy.FunctionDefinition}
+ * FunctionDefinitionBagOneAndOnly implements {@link org.apache.openaz.xacml.pdp.policy.FunctionDefinition}
  * to implement the XACML 'type'-one-and-only predicates as functions taking one <code>Bag</code> argument and
  * returning the single element in that bag of the 'type'. In the first implementation of XACML we had
  * separate files for each XACML Function. This release combines multiple Functions in fewer files to minimize
@@ -70,9 +70,9 @@ public class FunctionDefinitionBagOneAndOnly<I> extends FunctionDefinitionBase<I
 
     /**
      * Evaluates this <code>FunctionDefinition</code> on the given <code>List</code> of
-     * {@link com.att.research.xacmlatt.pdp.policy.FunctionArgument}s.
+     * {@link org.apache.openaz.xacml.pdp.policy.FunctionArgument}s.
      *
-     * @param evaluationContext the {@link com.att.research.xacmlatt.pdp.eval.EvaluationContext} to use in the
+     * @param evaluationContext the {@link org.apache.openaz.xacml.pdp.eval.EvaluationContext} to use in the
      *            evaluation
      * @param arguments the <code>List</code> of <code>FunctionArgument</code>s for the evaluation
      * @return an {@link org.apache.openaz.xacml.pdp.policy.ExpressionResult} with the results of the call

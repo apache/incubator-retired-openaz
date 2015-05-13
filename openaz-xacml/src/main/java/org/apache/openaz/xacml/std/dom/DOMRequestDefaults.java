@@ -42,7 +42,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 /**
- * DOMRequestDefaults extends {@link com.att.research.xacml.std.StdRequestDefaults} with methods for creation
+ * DOMRequestDefaults extends {@link org.apache.openaz.xacml.std.StdRequestDefaults} with methods for creation
  * from DOM {@link org.w3c.dom.Node}s.
  */
 public class DOMRequestDefaults {

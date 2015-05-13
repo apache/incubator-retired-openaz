@@ -35,7 +35,7 @@ import org.apache.openaz.xacml.std.StdRequestAttributesReference;
 import oasis.names.tc.xacml._3_0.core.schema.wd_17.AttributesReferenceType;
 
 /**
- * JaxpRequestAttributesReference extends {@link com.att.research.xacml.std.StdRequestAttributesReference}
+ * JaxpRequestAttributesReference extends {@link org.apache.openaz.xacml.std.StdRequestAttributesReference}
  * with methods for creation using JAXP elements.
  */
 public class JaxpRequestAttributesReference extends StdRequestAttributesReference {

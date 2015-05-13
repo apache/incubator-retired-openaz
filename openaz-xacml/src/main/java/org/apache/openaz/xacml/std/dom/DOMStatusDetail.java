@@ -41,7 +41,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 /**
- * DOMStatusDetail extends {@link com.att.research.xacml.std.StdMutableStatusDetail} with methods for
+ * DOMStatusDetail extends {@link org.apache.openaz.xacml.std.StdMutableStatusDetail} with methods for
  * construction from DOM {@link org.w3c.dom.Node}s.
  */
 public class DOMStatusDetail {

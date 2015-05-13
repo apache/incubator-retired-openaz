@@ -43,7 +43,7 @@ import org.apache.openaz.xacml.std.StdStatusCode;
 import org.apache.openaz.xacml.std.datatypes.DataTypes;
 
 /**
- * FunctionDefinitionRegexMatch implements {@link com.att.research.xacmlatt.pdp.policy.FunctionDefinition} to
+ * FunctionDefinitionRegexMatch implements {@link org.apache.openaz.xacml.pdp.policy.FunctionDefinition} to
  * implement the XACML 'type'-regex-match predicates as functions taking two arguments, the first of
  * <code>String</code>, representing a regular expression, and the second of the type for that specific
  * predicate, and returning a <code>Boolean</code> for whether the regular expression matches the string
@@ -51,7 +51,7 @@ import org.apache.openaz.xacml.std.datatypes.DataTypes;
  * XACML Function. This release combines multiple Functions in fewer files to minimize code duplication. This
  * file supports the following XACML codes: string-regexp-match anyURI-regexp-match x500Name-regexp-match
  * rfc822Name-regexp-match (in sub-class
- * {@link com.att.research.xacmlatt.pdp.policy.FunctionDefinition.FunctionDefinitionRegexpMatchRFC822} )
+ * {@link org.apache.openaz.xacml.pdp.policy.FunctionDefinition.FunctionDefinitionRegexpMatchRFC822} )
  * ipAddress-regexp-match dnsName-regexp-match
  *
  * @param <I> the java class for the data type of the function Input arguments

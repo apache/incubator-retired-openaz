@@ -41,10 +41,10 @@ import org.apache.openaz.xacml.pdp.eval.EvaluationException;
 import org.apache.openaz.xacml.pdp.eval.EvaluationResult;
 
 /**
- * CombiningElement wraps an {@link com.att.research.xacmlatt.pdp.evl.Evaluatable} with a set of
- * {@link com.att.research.xacmlatt.pdp.policy.TargetedCombinerParameter}s for use with a
- * {@link com.att.research.xacmlatt.pdp.policy.CombiningAlgorithm} to get a combined
- * {@link com.att.research.xacmlatt.pdp.eval.EvaluationResult}
+ * CombiningElement wraps an {@link org.apache.openaz.xacml.pdp.evl.Evaluatable} with a set of
+ * {@link org.apache.openaz.xacml.pdp.policy.TargetedCombinerParameter}s for use with a
+ * {@link org.apache.openaz.xacml.pdp.policy.CombiningAlgorithm} to get a combined
+ * {@link org.apache.openaz.xacml.pdp.eval.EvaluationResult}
  *
  * @param <T> the java class extending <code>Evaluatable</code> of the objects to be combined
  */
@@ -89,12 +89,12 @@ public class CombiningElement<T extends Evaluatable> {
 
     /**
      * Evaluates this <code>CombiningElement</code> in the given
-     * {@link com.att.research.xacmlatt.pdp.eval.EvaluationContext}.
+     * {@link org.apache.openaz.xacml.pdp.eval.EvaluationContext}.
      *
      * @param evaluationContext the <code>EvaluationContext</code>
-     * @return the {@link com.att.research.xacmlatt.pdp.eval.EvaluationResult} from the
+     * @return the {@link org.apache.openaz.xacml.pdp.eval.EvaluationResult} from the
      *         <code>Evaluatable</code>
-     * @throws com.att.research.xacmlatt.pdp.eval.EvaluationException if there is an error in the
+     * @throws org.apache.openaz.xacml.pdp.eval.EvaluationException if there is an error in the
      *             <code>evaluate</code> method of the <code>Evaluatable</code>
      */
     public EvaluationResult evaluate(EvaluationContext evaluationContext) throws EvaluationException {

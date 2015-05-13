@@ -37,7 +37,7 @@ import org.apache.openaz.xacml.api.XACML;
 import org.apache.openaz.xacml.util.ObjUtil;
 
 /**
- * Immutable implementation of the {@link com.att.research.xacml.api.RequestDefaults} interface for the XACML
+ * Immutable implementation of the {@link org.apache.openaz.xacml.api.RequestDefaults} interface for the XACML
  * RequestDefaults element.
  */
 public class StdRequestDefaults implements RequestDefaults {

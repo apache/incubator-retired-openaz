@@ -117,7 +117,7 @@ public class PolicySet extends PolicyDef {
 
     /**
      * Gets an <code>Iterator</code> over the
-     * {@link com.att.research.xacmlatt.pdp.policy.TargetedCombinerParameter}s for {@link Policy} elements in
+     * {@link org.apache.openaz.xacml.pdp.policy.TargetedCombinerParameter}s for {@link Policy} elements in
      * this <code>PolicySet</code>.
      *
      * @return an <code>Iterator</code> over the <code>TargetedCombinerParameter</code>s for
@@ -175,7 +175,7 @@ public class PolicySet extends PolicyDef {
     }
 
     /**
-     * Gets the {@link com.att.research.xacmlatt.pdp.policy.CombiningAlgorithm} for
+     * Gets the {@link org.apache.openaz.xacml.pdp.policy.CombiningAlgorithm} for
      * <code>PolicySetChild</code> children for this <code>PolicySet</code>.
      *
      * @return the <code>CombiningAlgorithm</code> for <code>PolicySetChild</code> children for this

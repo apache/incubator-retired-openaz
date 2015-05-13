@@ -41,7 +41,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 /**
- * DOMRequestReference extends {@link com.att.research.xacml.std.StdMutableRequestReference} with methods for
+ * DOMRequestReference extends {@link org.apache.openaz.xacml.std.StdMutableRequestReference} with methods for
  * creation from DOM {@link org.w3c.dom.Node}s.
  */
 public class DOMRequestReference {

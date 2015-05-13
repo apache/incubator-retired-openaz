@@ -44,7 +44,7 @@ import org.apache.openaz.xacml.util.FactoryException;
 import oasis.names.tc.xacml._3_0.core.schema.wd_17.AttributeAssignmentType;
 
 /**
- * JaxpAttributeAssignment extends {@link com.att.research.xacml.std.StdMutableAttributeAssignment} with
+ * JaxpAttributeAssignment extends {@link org.apache.openaz.xacml.std.StdMutableAttributeAssignment} with
  * methods for creation from JAXP elements.
  *
  * @param <T> the java class of the value type for the assignment

@@ -44,7 +44,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 /**
- * DOMApply extends {@link com.att.research.xacmlatt.pdp.policy.expressions.Apply} with methods for creation
+ * DOMApply extends {@link org.apache.openaz.xacml.pdp.policy.expressions.Apply} with methods for creation
  * from DOM {@link org.w3c.dom.Node}s.
  */
 public class DOMApply extends Apply {

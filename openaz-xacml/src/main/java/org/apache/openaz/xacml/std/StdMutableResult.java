@@ -46,7 +46,7 @@ import org.apache.openaz.xacml.util.ListUtil;
 import org.apache.openaz.xacml.util.ObjUtil;
 
 /**
- * Mutable implementation of the {@link com.att.research.xacml.api.Result}
+ * Mutable implementation of the {@link org.apache.openaz.xacml.api.Result}
  */
 public class StdMutableResult implements Result {
     private static final List<Obligation> EMPTY_OBLIGATION_LIST = Collections
@@ -90,8 +90,8 @@ public class StdMutableResult implements Result {
 <<<<<<< HEAD:openaz-xacml/src/main/java/org/apache/openaz/xacml/std/StdMutableResult.java
      * Creates a new <code>StdMutableResult</code> with the given {@link org.apache.openaz.xacml.api.Decision} and {@link org.apache.openaz.xacml.api.Status}.
 =======
-     * Creates a new <code>StdMutableResult</code> with the given {@link com.att.research.xacml.api.Decision}
-     * and {@link com.att.research.xacml.api.Status}.
+     * Creates a new <code>StdMutableResult</code> with the given {@link org.apache.openaz.xacml.api.Decision}
+     * and {@link org.apache.openaz.xacml.api.Status}.
 >>>>>>> fbf04a9381a2cdc18cbbe04bdc63b86b9772f14b:openaz-xacml/src/main/java/com/att/research/xacml/std/StdMutableResult.java
      *
      * @param decisionIn the <code>Decision</code> for the new <code>StdMutableResult</code>
@@ -108,8 +108,8 @@ public class StdMutableResult implements Result {
      * Creates a new <code>StdMutableResult</code> with a {@link org.apache.openaz.xacml.api.Decision} of <code>INDETERMINATE</code> and
      * the given {@link org.apache.openaz.xacml.api.Status}.
 =======
-     * Creates a new <code>StdMutableResult</code> with a {@link com.att.research.xacml.api.Decision} of
-     * <code>INDETERMINATE</code> and the given {@link com.att.research.xacml.api.Status}.
+     * Creates a new <code>StdMutableResult</code> with a {@link org.apache.openaz.xacml.api.Decision} of
+     * <code>INDETERMINATE</code> and the given {@link org.apache.openaz.xacml.api.Status}.
 >>>>>>> fbf04a9381a2cdc18cbbe04bdc63b86b9772f14b:openaz-xacml/src/main/java/com/att/research/xacml/std/StdMutableResult.java
      *
      * @param statusIn the <code>Status</code> for the new <code>StdMutableResult</code>
@@ -123,8 +123,8 @@ public class StdMutableResult implements Result {
      * Creates a new <code>StdMutableResult</code> with the given {@link org.apache.openaz.xacml.api.Decision} and a {@link org.apache.openaz.xacml.api.Status}
      * of OK.
 =======
-     * Creates a new <code>StdMutableResult</code> with the given {@link com.att.research.xacml.api.Decision}
-     * and a {@link com.att.research.xacml.api.Status} of OK.
+     * Creates a new <code>StdMutableResult</code> with the given {@link org.apache.openaz.xacml.api.Decision}
+     * and a {@link org.apache.openaz.xacml.api.Status} of OK.
 >>>>>>> fbf04a9381a2cdc18cbbe04bdc63b86b9772f14b:openaz-xacml/src/main/java/com/att/research/xacml/std/StdMutableResult.java
      *
      * @param decisionIn the <code>Decision</code> for the new <code>StdMutableResult</code>
@@ -134,20 +134,20 @@ public class StdMutableResult implements Result {
     }
 
     /**
-     * Creates a new <code>StdMutableResult</code> with the given {@link com.att.research.xacml.api.Decision}
+     * Creates a new <code>StdMutableResult</code> with the given {@link org.apache.openaz.xacml.api.Decision}
      * and the given set of <code>Collection</code>s with the details of the result.
      *
      * @param decisionIn the <code>Decision</code> for the new <code>StdMutableResult</code>
-     * @param obligationsIn a <code>Collection</code> of {@link com.att.research.xacml.api.Obligation}s for
+     * @param obligationsIn a <code>Collection</code> of {@link org.apache.openaz.xacml.api.Obligation}s for
      *            the new <code>StdMutableResult</code>
-     * @param adviceIn a <code>Collection</code> of {@link com.att.research.xacml.api.Advice} objects for the
+     * @param adviceIn a <code>Collection</code> of {@link org.apache.openaz.xacml.api.Advice} objects for the
      *            new <code>StdMutableResult</code>
-     * @param attributesIn a <code>Collection</code> of {@link com.att.research.xacml.api.AttributeCategory}
+     * @param attributesIn a <code>Collection</code> of {@link org.apache.openaz.xacml.api.AttributeCategory}
      *            objects for the new <code>StdMutableResult</code>
-     * @param policyIdentifiersIn a <code>Collection</code> of {@link com.att.research.xacml.api.IdReference}
+     * @param policyIdentifiersIn a <code>Collection</code> of {@link org.apache.openaz.xacml.api.IdReference}
      *            objects for the Policy identifiers
      * @param policySetIdentifiersIn a <code>Collection</code> of
-     *            {@link com.att.research.xacml.api.IdReference} objects for the PolicySet identifiers
+     *            {@link org.apache.openaz.xacml.api.IdReference} objects for the PolicySet identifiers
      */
     public StdMutableResult(Decision decisionIn, Collection<Obligation> obligationsIn,
                             Collection<Advice> adviceIn, Collection<AttributeCategory> attributesIn,
@@ -211,7 +211,7 @@ public class StdMutableResult implements Result {
 <<<<<<< HEAD:openaz-xacml/src/main/java/org/apache/openaz/xacml/std/StdMutableResult.java
      * Adds a copy of the given <code>Collection</code> of {@link org.apache.openaz.xacml.api.Obligation}s to this <code>StdMutableResult</code>.
 =======
-     * Adds a copy of the given <code>Collection</code> of {@link com.att.research.xacml.api.Obligation}s to
+     * Adds a copy of the given <code>Collection</code> of {@link org.apache.openaz.xacml.api.Obligation}s to
      * this <code>StdMutableResult</code>.
 >>>>>>> fbf04a9381a2cdc18cbbe04bdc63b86b9772f14b:openaz-xacml/src/main/java/com/att/research/xacml/std/StdMutableResult.java
      *
@@ -227,7 +227,7 @@ public class StdMutableResult implements Result {
     }
 
     /**
-     * Clears any existing {@link com.att.research.xacml.api.Obligation}s from this
+     * Clears any existing {@link org.apache.openaz.xacml.api.Obligation}s from this
      * <code>StdMutableResult</code> and adds the given <code>Collection</code> of <code>Obligation</code>s.
      *
      * @param obligationsIn the <code>Collection</code> of <code>Obligation</code>s to set in this
@@ -257,7 +257,7 @@ public class StdMutableResult implements Result {
     }
 
     /**
-     * Adds a copy of the {@link com.att.research.xacml.api.Advice} objects in the given
+     * Adds a copy of the {@link org.apache.openaz.xacml.api.Advice} objects in the given
      * <code>Collection</code> to this <code>StdMutableResult</code>>
      *
      * @param adviceIn the <code>Collection</code> of <code>Advice</code> objects to add to this
@@ -273,7 +273,7 @@ public class StdMutableResult implements Result {
     }
 
     /**
-     * Sets the {@link com.att.research.xacml.api.Advice} objects in this <code>StdMutableResult</code> to a
+     * Sets the {@link org.apache.openaz.xacml.api.Advice} objects in this <code>StdMutableResult</code> to a
      * copy of the given <code>Collection</code>.
      *
      * @param adviceIn the <code>Collection</code> of <code>Advice</code> objects to set in this
@@ -304,7 +304,7 @@ public class StdMutableResult implements Result {
 
     /**
      * Adds a copy of the given <code>Collection</code> of
-     * {@link com.att.research.xacml.api.AttributeCategory}s to this <code>StdMutableResult</code>.
+     * {@link org.apache.openaz.xacml.api.AttributeCategory}s to this <code>StdMutableResult</code>.
      *
      * @param listAttributeCategories the <code>Collection</code> of <code>AttributeCategory</code>s to add to
      *            this <code>StdMutableResult</code>.
@@ -319,7 +319,7 @@ public class StdMutableResult implements Result {
     }
 
     /**
-     * Sets the {@link com.att.research.xacml.api.AttributeCategory}s in this <code>StdMutableResult</code> to
+     * Sets the {@link org.apache.openaz.xacml.api.AttributeCategory}s in this <code>StdMutableResult</code> to
      * be a copy of the given <code>Collection</code> or to an empty list if the <code>Collection</code> is
      * null.
      *
@@ -338,7 +338,7 @@ public class StdMutableResult implements Result {
     }
 
     /**
-     * Adds an {@link com.att.research.xacml.api.IdReference} as a XACML Policy ID to this
+     * Adds an {@link org.apache.openaz.xacml.api.IdReference} as a XACML Policy ID to this
      * <code>StdMutableResult</code>.
      *
      * @param policyIdentifier the <code>Identifier</code> of the Policy to add to this
@@ -352,7 +352,7 @@ public class StdMutableResult implements Result {
     }
 
     /**
-     * Adds a copy of the given <code>Collection</code> of {@link com.att.research.xacml.api.IdReference}s
+     * Adds a copy of the given <code>Collection</code> of {@link org.apache.openaz.xacml.api.IdReference}s
      * representing PolicyIds to this <code>StdMutableResult</code>.
      *
      * @param policyIdentifierList the <code>Collection</code> of <code>IdReference</code> to add
@@ -367,7 +367,7 @@ public class StdMutableResult implements Result {
     }
 
     /**
-     * Sets the {@link com.att.research.xacml.api.IdReference}s representing PolicyIds in this
+     * Sets the {@link org.apache.openaz.xacml.api.IdReference}s representing PolicyIds in this
      * <code>StdMutableResult</code> to a copy of the given <code>Collection</code>.
      *
      * @param policyIdentifierList the <code>Collection</code> of <code>IdReference</code>s representing
@@ -385,7 +385,7 @@ public class StdMutableResult implements Result {
     }
 
     /**
-     * Adds an {@link com.att.research.xacml.api.IdReference} as a XACML Policy ID to this
+     * Adds an {@link org.apache.openaz.xacml.api.IdReference} as a XACML Policy ID to this
      * <code>StdMutableResult</code>.
      *
      * @param policyIdentifier the <code>Identifier</code> of the Policy to add to this
@@ -399,7 +399,7 @@ public class StdMutableResult implements Result {
     }
 
     /**
-     * Adds a copy of the given <code>Collection</code> of {@link com.att.research.xacml.api.IdReference}s
+     * Adds a copy of the given <code>Collection</code> of {@link org.apache.openaz.xacml.api.IdReference}s
      * representing PolicySetIds to this <code>StdMutableResult</code>.
      *
      * @param policyIdentifierList the <code>Collection</code> of <code>IdReference</code> to add
@@ -414,7 +414,7 @@ public class StdMutableResult implements Result {
     }
 
     /**
-     * Sets the {@link com.att.research.xacml.api.IdReference}s representing PolicySetIds in this
+     * Sets the {@link org.apache.openaz.xacml.api.IdReference}s representing PolicySetIds in this
      * <code>StdMutableResult</code> to a copy of the given <code>Collection</code>.
      *
      * @param policyIdentifierList the <code>Collection</code> of <code>IdReference</code>s representing

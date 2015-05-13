@@ -44,7 +44,7 @@ import oasis.names.tc.xacml._3_0.core.schema.wd_17.AttributeType;
 import oasis.names.tc.xacml._3_0.core.schema.wd_17.AttributesType;
 
 /**
- * JaxpAttributeCategory extends {@link com.att.research.xacml.std.StdAttributeCategory} with methods for
+ * JaxpAttributeCategory extends {@link org.apache.openaz.xacml.std.StdAttributeCategory} with methods for
  * creation from JAXP elements.
  */
 public class JaxpAttributeCategory {

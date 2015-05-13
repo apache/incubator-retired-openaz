@@ -40,7 +40,7 @@ import java.util.Map;
 import org.apache.openaz.xacml.util.StringUtils;
 
 /**
- * VariableMap is a collection of {@link com.att.research.xacmlatt.pdp.policy.VariableDefinition}s that are
+ * VariableMap is a collection of {@link org.apache.openaz.xacml.pdp.policy.VariableDefinition}s that are
  * accessible by the variable identifier.
  */
 public class VariableMap {

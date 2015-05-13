@@ -66,7 +66,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 /**
- * AttributeSelector extends {@link com.att.research.xacmlatt.pdp.policy.expressions.AttributeRetrievalBase}
+ * AttributeSelector extends {@link org.apache.openaz.xacml.pdp.policy.expressions.AttributeRetrievalBase}
  * to implement the XACML AttributeSelector element.
  */
 public class AttributeSelector extends AttributeRetrievalBase {

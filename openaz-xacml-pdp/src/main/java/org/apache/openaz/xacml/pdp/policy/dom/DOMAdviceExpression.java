@@ -48,7 +48,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 /**
- * DOMAdviceExpression extends {@link com.att.research.xacmlatt.pdp.policy.AdviceExpression} with methods for
+ * DOMAdviceExpression extends {@link org.apache.openaz.xacml.pdp.policy.AdviceExpression} with methods for
  * creation from {@link org.w3c.dom.Node}s.
  */
 public class DOMAdviceExpression extends AdviceExpression {
@@ -62,7 +62,7 @@ public class DOMAdviceExpression extends AdviceExpression {
      * AdviceExpression element.
      *
      * @param nodeAdviceExpression the <code>Node</code> representing the XACML AdviceExpression element
-     * @param policy the {@link com.att.research.xacmlatt.pdp.policy.Policy} encompassing the AdviceExpression
+     * @param policy the {@link org.apache.openaz.xacml.pdp.policy.Policy} encompassing the AdviceExpression
      *            element
      * @return a new <code>AdviceExpression</code> parsed from the given <code>Node</code>
      * @throws DOMStructureException if there is an error parsing the <code>Node</code>

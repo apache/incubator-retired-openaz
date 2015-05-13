@@ -51,7 +51,7 @@ import org.apache.openaz.xacml.std.StdStatusCode;
 import org.apache.openaz.xacml.std.datatypes.DataTypes;
 
 /**
- * FunctionDefinitionSet implements {@link com.att.research.xacmlatt.pdp.policy.FunctionDefinition} to
+ * FunctionDefinitionSet implements {@link org.apache.openaz.xacml.pdp.policy.FunctionDefinition} to
  * implement the XACML Set predicates as functions taking two arguments of <code>Bag</code> the same primitive
  * type and returning either a <code>Boolean</code> or a <code>Bag</code> of the same primitive type.
  * <P>

@@ -33,8 +33,8 @@ package org.apache.openaz.xacml.std.pip;
 import org.apache.openaz.xacml.api.Attribute;
 
 /**
- * StdSinglePIPResponse extends {@link com.att.research.xacml.std.pip.StdMutablePIPResponse} with methods for
- * retrieving a single {@link com.att.research.xacml.api.Attribute}.
+ * StdSinglePIPResponse extends {@link org.apache.openaz.xacml.std.pip.StdMutablePIPResponse} with methods for
+ * retrieving a single {@link org.apache.openaz.xacml.api.Attribute}.
  */
 public class StdSinglePIPResponse extends StdMutablePIPResponse {
     private Attribute singleAttribute;

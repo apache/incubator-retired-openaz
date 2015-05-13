@@ -44,7 +44,7 @@ import oasis.names.tc.xacml._3_0.core.schema.wd_17.AdviceType;
 import oasis.names.tc.xacml._3_0.core.schema.wd_17.AttributeAssignmentType;
 
 /**
- * JaxpAdvice extends {@link com.att.research.xacml.std.StdMutableAdvice} with methods for creation from JAXP
+ * JaxpAdvice extends {@link org.apache.openaz.xacml.std.StdMutableAdvice} with methods for creation from JAXP
  * elements.
  */
 public class JaxpAdvice extends StdMutableAdvice {

@@ -44,7 +44,7 @@ import org.apache.openaz.xacml.std.datatypes.RFC822Name;
 
 /**
  * FunctionDefinitionRFC822NameMatch extends
- * {@link com.att.research.xacmlatt.pdp.std.functions.FunctionDefinitionHomogeneousSimple} to implement the
+ * {@link org.apache.openaz.xacml.pdp.std.functions.FunctionDefinitionHomogeneousSimple} to implement the
  * XACML RFC822Name match predicate as functions taking one <code>String</code> and one
  * <code>RFC822Name</code> arguments and returning a single <code>Boolean</code> value. In the first
  * implementation of XACML we had separate files for each XACML Function. This release combines multiple

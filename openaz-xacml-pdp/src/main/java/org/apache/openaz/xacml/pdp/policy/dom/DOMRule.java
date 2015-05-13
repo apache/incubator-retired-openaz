@@ -49,7 +49,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 /**
- * DOMRule extends {@link com.att.research.xacmlatt.pdp.policy.Rule} with methods for creation from DOM
+ * DOMRule extends {@link org.apache.openaz.xacml.pdp.policy.Rule} with methods for creation from DOM
  * {@link org.w3c.dom.Node}s.
  */
 public class DOMRule extends Rule {

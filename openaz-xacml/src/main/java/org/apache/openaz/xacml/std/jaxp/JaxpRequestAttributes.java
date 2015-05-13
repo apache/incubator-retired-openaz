@@ -45,7 +45,7 @@ import org.apache.openaz.xacml.std.StdRequestAttributes;
 import org.w3c.dom.Node;
 
 /**
- * JaxpRequestAttributes extends {@link com.att.research.xacml.std.StdRequestAttributes} with methods for
+ * JaxpRequestAttributes extends {@link org.apache.openaz.xacml.std.StdRequestAttributes} with methods for
  * creation from JAXP elements.
  */
 public class JaxpRequestAttributes {

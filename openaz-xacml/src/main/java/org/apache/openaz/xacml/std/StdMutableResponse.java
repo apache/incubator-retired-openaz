@@ -41,7 +41,7 @@ import org.apache.openaz.xacml.api.Status;
 import org.apache.openaz.xacml.util.ListUtil;
 
 /**
- * Mutable implementation of the {@link com.att.research.xacml.api.Response} interface.
+ * Mutable implementation of the {@link org.apache.openaz.xacml.api.Response} interface.
  */
 public class StdMutableResponse implements Response {
     private static final List<Result> EMPTY_LIST = Collections.unmodifiableList(new ArrayList<Result>());
@@ -75,7 +75,7 @@ public class StdMutableResponse implements Response {
      * the given <code>Collection</code>>
 =======
      * Creates a new <code>StdMutableResponse</code> with a copy of the
-     * {@link com.att.research.xacml.api.Result}s in the given <code>Collection</code>>
+     * {@link org.apache.openaz.xacml.api.Result}s in the given <code>Collection</code>>
 >>>>>>> fbf04a9381a2cdc18cbbe04bdc63b86b9772f14b:openaz-xacml/src/main/java/com/att/research/xacml/std/StdMutableResponse.java
      *
      * @param listResults the <code>Collection</code> of <code>Result</code>s for the new
@@ -92,7 +92,7 @@ public class StdMutableResponse implements Response {
 
     /**
      * Creates a new <code>StdMutableResponse</code> that is a copy of the given
-     * {@link com.att.research.xacml.api.Response}.
+     * {@link org.apache.openaz.xacml.api.Response}.
      *
      * @param copy the <code>Response</code> to copy
      */
@@ -101,8 +101,8 @@ public class StdMutableResponse implements Response {
     }
 
     /**
-     * Creates a new <code>StdMutableResponse</code> with a single {@link com.att.research.xacml.api.Result}
-     * defined by the given {@link com.att.research.xacml.api.Status}.
+     * Creates a new <code>StdMutableResponse</code> with a single {@link org.apache.openaz.xacml.api.Result}
+     * defined by the given {@link org.apache.openaz.xacml.api.Status}.
      *
      * @param status the <code>Status</code> of the <code>Result</code> for the new
      *            <code>StdMutableResponse</code>.

@@ -52,7 +52,7 @@ import org.apache.openaz.xacml.std.pip.StdPIPResponse;
 import org.apache.openaz.xacml.std.pip.StdSinglePIPResponse;
 
 /**
- * EnvironmentEngine implements the {@link com.att.research.xacml.api.pip.PipEngine} interface to provide
+ * EnvironmentEngine implements the {@link org.apache.openaz.xacml.api.pip.PipEngine} interface to provide
  * values for standard environment attributes.
  */
 public class EnvironmentEngine implements PIPEngine {

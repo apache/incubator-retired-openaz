@@ -46,7 +46,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 /**
- * DOMPolicyDefaults extends {@link com.att.research.xacmlatt.pdp.policy.PolicyDefaults} with methods for
+ * DOMPolicyDefaults extends {@link org.apache.openaz.xacml.pdp.policy.PolicyDefaults} with methods for
  * creation from DOM {@org.w3c.dom.Node}s.
  */
 public class DOMPolicyDefaults extends PolicyDefaults {

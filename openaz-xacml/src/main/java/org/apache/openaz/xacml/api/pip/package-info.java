@@ -32,6 +32,6 @@
 package org.apache.openaz.xacml.api.pip;
 
 /**
- * com.att.research.xacml.api.pip contains an API for PIP providers and PIP users
+ * org.apache.openaz.xacml.api.pip contains an API for PIP providers and PIP users
  *
  */

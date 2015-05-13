@@ -43,7 +43,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 /**
- * DOMAnyOf extends {@link com.att.research.xacmlatt.pdp.policy.AnyOf} with methods for creation from DOM
+ * DOMAnyOf extends {@link org.apache.openaz.xacml.pdp.policy.AnyOf} with methods for creation from DOM
  * {@link org.w3c.dom.Node}s.
  */
 public class DOMAnyOf extends AnyOf {

@@ -44,7 +44,7 @@ import oasis.names.tc.xacml._3_0.core.schema.wd_17.AttributeAssignmentType;
 import oasis.names.tc.xacml._3_0.core.schema.wd_17.ObligationType;
 
 /**
- * JaxpObligation extends {@link com.att.research.xacml.std.StdMutableObligation} with methods for creation
+ * JaxpObligation extends {@link org.apache.openaz.xacml.std.StdMutableObligation} with methods for creation
  * from JAXP elements.
  */
 public class JaxpObligation extends StdMutableObligation {

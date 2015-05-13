@@ -44,7 +44,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 /**
- * DOMIdReference extends {@link com.att.research.xacml.std.StdIdReference} with methods for creation from DOM
+ * DOMIdReference extends {@link org.apache.openaz.xacml.std.StdIdReference} with methods for creation from DOM
  * {@link org.w3c.dom.Node}s.
  */
 public class DOMIdReference extends StdIdReference {

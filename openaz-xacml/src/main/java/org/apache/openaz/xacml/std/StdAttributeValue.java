@@ -47,7 +47,7 @@ public class StdAttributeValue<T> implements AttributeValue<T> {
 
     /**
      * Creates a new <code>StdAttributeValue</code> with the given
-     * {@link com.att.research.xacml.api.Identifier} representing the XACML data type id and the given object
+     * {@link org.apache.openaz.xacml.api.Identifier} representing the XACML data type id and the given object
      * representing the value. The <code>xpathCategoryIn</code> is optional and is only needed for
      * <code>StdAttributeValue</code>s whose <code>dataTypeIdIn</code> is XPathExpression.
      *
@@ -66,7 +66,7 @@ public class StdAttributeValue<T> implements AttributeValue<T> {
 
     /**
      * Creates a new <code>StdAttributeValue</code> with the given
-     * {@link com.att.research.xacml.api.Identifier} representing the XACML data type id and the given object
+     * {@link org.apache.openaz.xacml.api.Identifier} representing the XACML data type id and the given object
      * representing the value.
      *
      * @param dataTypeIdIn the <code>Identifier</code> representing the XACML data type id for the new

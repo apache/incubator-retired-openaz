@@ -39,7 +39,7 @@ import org.apache.openaz.xacml.util.FactoryFinder;
 
 /**
  * CombiningAlgorithmFactory is an abstract class for mapping function
- * {@link com.att.research.xacml.api.Identifier} ids to {@link CombiningAlgorithm} objects.
+ * {@link org.apache.openaz.xacml.api.Identifier} ids to {@link CombiningAlgorithm} objects.
  */
 public abstract class CombiningAlgorithmFactory {
      private static final String FACTORYID = OpenAZPDPProperties.PROP_COMBININGALGORITHMFACTORY;

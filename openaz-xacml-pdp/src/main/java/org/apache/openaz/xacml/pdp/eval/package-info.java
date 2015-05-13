@@ -32,6 +32,6 @@
 package org.apache.openaz.xacml.pdp.eval;
 
 /**
- * com.att.research.xacmlatt.pdp.eval contains interfaces and classes used in evaluating and matching XACML policy components.
+ * org.apache.openaz.xacml.pdp.eval contains interfaces and classes used in evaluating and matching XACML policy components.
  *
  */

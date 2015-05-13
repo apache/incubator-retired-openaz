@@ -248,14 +248,14 @@ public class CSVEngine extends StdConfigurableEngine {
     }
 
     /**
-     * Creates a new {@link com.att.research.xacml.std.pip.engines.csv.CSVResolver} by looking up the
+     * Creates a new {@link org.apache.openaz.xacml.std.pip.engines.csv.CSVResolver} by looking up the
      * "classname" property for the given <code>String</code> resolver ID and then calling its
      * <code>configure</code> method.
      *
      * @param resolverId the <code>String</code> identifier of the resolver to configure
      * @param properties the <code>Properties</code> to search for the "classname" and any resolver-specific
      *            properties
-     * @throws com.att.research.xacml.api.pip.PIPException if there is an error creating the
+     * @throws org.apache.openaz.xacml.api.pip.PIPException if there is an error creating the
      *             <code>CSVResolver</code>.
      */
     protected void createResolver(String resolverId, Properties properties) throws PIPException {

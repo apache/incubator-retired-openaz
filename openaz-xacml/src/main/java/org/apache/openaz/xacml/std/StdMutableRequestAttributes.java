@@ -44,7 +44,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 /**
- * Mutable implementation of the {@link com.att.research.xacml.api.RequestAttributes} interface.
+ * Mutable implementation of the {@link org.apache.openaz.xacml.api.RequestAttributes} interface.
  */
 public class StdMutableRequestAttributes extends StdMutableAttributeCategory implements RequestAttributes {
     private Node contentRoot;
@@ -59,8 +59,8 @@ public class StdMutableRequestAttributes extends StdMutableAttributeCategory imp
 
     /**
      * Creates a new <code>StdMutableRequestAttributes</code> with the given
-     * {@link com.att.research.xacml.api.Identifier} representing its XACML Category, the given
-     * <code>Collection</code> of {@link com.att.research.xacml.api.Attribute}s, the given
+     * {@link org.apache.openaz.xacml.api.Identifier} representing its XACML Category, the given
+     * <code>Collection</code> of {@link org.apache.openaz.xacml.api.Attribute}s, the given
      * {@link org.w3c.dom.Node} representing the XACML Content element and the given <code>String</code> as
      * the optional xml:Id.
      *
@@ -82,7 +82,7 @@ public class StdMutableRequestAttributes extends StdMutableAttributeCategory imp
 
     /**
      * Creates a new <code>StdMutableRequestAttributes</code> by copying the given
-     * {@link com.att.research.xacml.api.RequestAttributes}.
+     * {@link org.apache.openaz.xacml.api.RequestAttributes}.
      *
      * @param requestAttributes the <code>RequestAttributes</code> to copy
      */

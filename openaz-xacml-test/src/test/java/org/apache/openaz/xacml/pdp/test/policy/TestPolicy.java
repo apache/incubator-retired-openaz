@@ -128,7 +128,7 @@ public class TestPolicy extends TestBase {
     /*
      * Look for the -policy command line argument. This application needs a pointer to a specific policy in
      * order to run. (non-Javadoc)
-     * @see com.att.research.xacmlatt.pdp.test.TestBase#parseCommands(java.lang.String[])
+     * @see org.apache.openaz.xacml.pdp.test.TestBase#parseCommands(java.lang.String[])
      */
     @Override
     protected void parseCommands(String[] args) throws ParseException, MalformedURLException, HelpException {
@@ -164,7 +164,7 @@ public class TestPolicy extends TestBase {
      * attributes that are defined within the policy. This routine will then dump all the possible requests
      * into the requests sub-directory. Thus, when this method returns the TestBase can proceed to iterate
      * each generated request and run it against the PDP engine. (non-Javadoc)
-     * @see com.att.research.xacmlatt.pdp.test.TestBase#configure()
+     * @see org.apache.openaz.xacml.pdp.test.TestBase#configure()
      */
     @Override
     protected void configure() throws FactoryException {

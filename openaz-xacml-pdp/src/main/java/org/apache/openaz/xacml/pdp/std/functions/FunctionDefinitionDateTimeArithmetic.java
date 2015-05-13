@@ -45,7 +45,7 @@ import org.apache.openaz.xacml.std.datatypes.ISO8601Duration;
 
 /**
  * FunctionDefinitionDateTimeArithmetic implements
- * {@link com.att.research.xacmlatt.pdp.policy.FunctionDefinition} to implement the XACML Date and Time
+ * {@link org.apache.openaz.xacml.pdp.policy.FunctionDefinition} to implement the XACML Date and Time
  * Arithmetic predicates. In the first implementation of XACML we had separate files for each XACML Function.
  * This release combines multiple Functions in fewer files to minimize code duplication. This file supports
  * the following XACML codes: dateTime-add-dayTimeDuration dateTime-add-yearMonthDuration

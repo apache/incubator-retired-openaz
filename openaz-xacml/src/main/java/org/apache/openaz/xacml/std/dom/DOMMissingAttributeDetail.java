@@ -41,7 +41,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 /**
- * DOMMissingAttributeDetail extends {@link com.att.research.xacml.std.StdMutableMissingAttributeDetail} with
+ * DOMMissingAttributeDetail extends {@link org.apache.openaz.xacml.std.StdMutableMissingAttributeDetail} with
  * methods for creation from DOM {@link org.w3c.dom.Node}s.
  */
 public class DOMMissingAttributeDetail {

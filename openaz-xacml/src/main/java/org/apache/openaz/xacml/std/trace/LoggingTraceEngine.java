@@ -39,8 +39,8 @@ import org.apache.openaz.xacml.api.trace.TraceEvent;
 import org.apache.openaz.xacml.api.trace.Traceable;
 
 /**
- * Implements the {@link com.att.research.xacml.api.trace.TraceEngine} interface to log
- * {@link com.att.research.xacml.api.trace.TraceEvent}s using the Apache Commons logging system with debug
+ * Implements the {@link org.apache.openaz.xacml.api.trace.TraceEngine} interface to log
+ * {@link org.apache.openaz.xacml.api.trace.TraceEvent}s using the Apache Commons logging system with debug
  * messages.
  */
 public class LoggingTraceEngine implements TraceEngine {

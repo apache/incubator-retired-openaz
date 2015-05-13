@@ -38,13 +38,13 @@ import org.apache.openaz.xacml.api.MissingAttributeDetail;
 import org.apache.openaz.xacml.util.Wrapper;
 
 /**
- * Immutable implementation of the {@link com.att.research.xacml.api.MissingAttributeDetail} interface.
+ * Immutable implementation of the {@link org.apache.openaz.xacml.api.MissingAttributeDetail} interface.
  */
 public class StdMissingAttributeDetail extends Wrapper<MissingAttributeDetail> implements
     MissingAttributeDetail {
     /**
      * Creates a new immutable <code>StdMissingAttributeDetail</code> that wraps the given
-     * {@link com.att.research.xacml.api.MissingAttributeDetail}. The caller agrees not to modify the
+     * {@link org.apache.openaz.xacml.api.MissingAttributeDetail}. The caller agrees not to modify the
      * <code>MissingAttributeDetail</code> as long as the new <code>StdMissingAttributeDetail</code> refers to
      * it.
      *
@@ -57,9 +57,9 @@ public class StdMissingAttributeDetail extends Wrapper<MissingAttributeDetail> i
 
     /**
      * Creates a new immutable <code>StdMissingAttributeDetail</code> with the given
-     * {@link com.att.research.xacml.api.Identifier}s for the XACML Category, AttributeId, and DataType of the
+     * {@link org.apache.openaz.xacml.api.Identifier}s for the XACML Category, AttributeId, and DataType of the
      * missing Attribute, and the given <code>String</code> Issuer. If not null, the <code>Collection</code>
-     * of {@link com.att.research.xacml.api.AttributeValue}s is copied into the new
+     * of {@link org.apache.openaz.xacml.api.AttributeValue}s is copied into the new
      * <code>StdMutableMissingAttributeDetail</code>.
      *
      * @param categoryIn the <code>Identifier</code> representing the XACML Category of the missing Attribute
@@ -80,7 +80,7 @@ public class StdMissingAttributeDetail extends Wrapper<MissingAttributeDetail> i
 
     /**
      * Creates a new immutable <code>StdMissingAttributeDetail</code> with the given
-     * {@link com.att.research.xacml.api.Identifier}s for the XACML Category, AttributeId, and DataType of the
+     * {@link org.apache.openaz.xacml.api.Identifier}s for the XACML Category, AttributeId, and DataType of the
      * missing Attribute, and the given <code>String</code> Issuer.
      *
      * @param categoryIn the <code>Identifier</code> representing the XACML Category of the missing Attribute
@@ -97,7 +97,7 @@ public class StdMissingAttributeDetail extends Wrapper<MissingAttributeDetail> i
 
     /**
      * Creates a new immutable <code>StdMissingAttributeDetail</code> with the given
-     * {@link com.att.research.xacml.api.Identifier}s for the XACML Category, AttributeId, and DataType of the
+     * {@link org.apache.openaz.xacml.api.Identifier}s for the XACML Category, AttributeId, and DataType of the
      * missing Attribute.
      *
      * @param categoryIn the <code>Identifier</code> representing the XACML Category of the missing Attribute
@@ -111,7 +111,7 @@ public class StdMissingAttributeDetail extends Wrapper<MissingAttributeDetail> i
     }
 
     /**
-     * Creates a new <code>StdMissingAttributeDetail</code> that is a copy of the given {@link com.att.research.xacml.api.MissingAttributeDetail</code>.
+     * Creates a new <code>StdMissingAttributeDetail</code> that is a copy of the given {@link org.apache.openaz.xacml.api.MissingAttributeDetail</code>.
      *
      * @param missingAttributeDetail the <code>MissingAttributeDetail</code> to copy
      * @return a new <code>StdMissingAttributeDetail</code> that is a copy of the given <code>MissingAttributeDetail</code>.

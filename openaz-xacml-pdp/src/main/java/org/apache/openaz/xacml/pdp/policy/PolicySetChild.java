@@ -38,7 +38,7 @@ import org.apache.openaz.xacml.pdp.eval.Matchable;
 import org.apache.openaz.xacml.std.StdStatusCode;
 
 /**
- * PolicySetChild extends {@link com.att.research.xacmlatt.pdp.PolicyComponent} to represent XACML 3.0
+ * PolicySetChild extends {@link org.apache.openaz.xacml.pdp.PolicyComponent} to represent XACML 3.0
  * Policies, PolicySets, PolicyReferences, and PolicySetReferences.
  */
 public abstract class PolicySetChild extends PolicyComponent implements Evaluatable, Matchable, Traceable {
@@ -48,7 +48,7 @@ public abstract class PolicySetChild extends PolicyComponent implements Evaluata
 
     /**
      * Creates a new <code>PolicySetChild</code> with the given given
-     * {@link com.att.research.xacml.api.StatusCode} and <code>String</code> status message.
+     * {@link org.apache.openaz.xacml.api.StatusCode} and <code>String</code> status message.
      *
      * @param statusCodeIn the <code>StatusCode</code> for the new <code>PolicySetChild</code>
      * @param statusMessageIn the <code>String</code> status message for the new <code>PolicySetChild</code>
