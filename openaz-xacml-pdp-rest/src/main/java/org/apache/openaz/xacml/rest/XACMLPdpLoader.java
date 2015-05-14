@@ -59,8 +59,6 @@ import org.apache.openaz.xacml.api.pip.PIPFinderFactory;
 import org.apache.openaz.xacml.pdp.policy.PolicyDef;
 import org.apache.openaz.xacml.pdp.policy.dom.DOMPolicyDef;
 import org.apache.openaz.xacml.pdp.std.StdPolicyFinderFactory;
-import org.apache.openaz.xacml.rest.XACMLRest;
-import org.apache.openaz.xacml.rest.XACMLRestProperties;
 import org.apache.openaz.xacml.std.pap.StdPDPPIPConfig;
 import org.apache.openaz.xacml.std.pap.StdPDPPolicy;
 import org.apache.openaz.xacml.std.pap.StdPDPStatus;

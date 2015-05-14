@@ -42,7 +42,6 @@ import java.util.Properties;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.apache.openaz.xacml.rest.XACMLRestProperties;
 import org.apache.openaz.xacml.rest.XACMLPdpServlet.PutRequest;
 import org.apache.openaz.xacml.util.XACMLProperties;
 

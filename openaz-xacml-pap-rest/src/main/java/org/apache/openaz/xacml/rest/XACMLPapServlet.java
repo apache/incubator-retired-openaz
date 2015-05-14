@@ -30,21 +30,24 @@
  */
 package org.apache.openaz.xacml.rest;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.common.base.Splitter;
-
-import org.apache.commons.io.IOUtils;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-import org.apache.openaz.xacml.api.pap.*;
-import org.apache.openaz.xacml.rest.XACMLRest;
-import org.apache.openaz.xacml.rest.XACMLRestProperties;
-import org.apache.openaz.xacml.std.pap.StdPDP;
-import org.apache.openaz.xacml.std.pap.StdPDPGroup;
-import org.apache.openaz.xacml.std.pap.StdPDPStatus;
-import org.apache.openaz.xacml.std.pap.StdPDPItemSetChangeNotifier.StdItemSetChangeListener;
-import org.apache.openaz.xacml.util.FactoryException;
-import org.apache.openaz.xacml.util.XACMLProperties;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.ConnectException;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.SocketTimeoutException;
+import java.net.URL;
+import java.net.URLDecoder;
+import java.net.UnknownHostException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Properties;
+import java.util.Scanner;
+import java.util.Set;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import javax.servlet.Servlet;
 import javax.servlet.ServletConfig;
@@ -55,12 +58,25 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.net.*;
-import java.util.*;
-import java.util.concurrent.CopyOnWriteArrayList;
+import org.apache.commons.io.IOUtils;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.apache.openaz.xacml.api.pap.PAPEngine;
+import org.apache.openaz.xacml.api.pap.PAPEngineFactory;
+import org.apache.openaz.xacml.api.pap.PAPException;
+import org.apache.openaz.xacml.api.pap.PDP;
+import org.apache.openaz.xacml.api.pap.PDPGroup;
+import org.apache.openaz.xacml.api.pap.PDPPolicy;
+import org.apache.openaz.xacml.api.pap.PDPStatus;
+import org.apache.openaz.xacml.std.pap.StdPDP;
+import org.apache.openaz.xacml.std.pap.StdPDPGroup;
+import org.apache.openaz.xacml.std.pap.StdPDPItemSetChangeNotifier.StdItemSetChangeListener;
+import org.apache.openaz.xacml.std.pap.StdPDPStatus;
+import org.apache.openaz.xacml.util.FactoryException;
+import org.apache.openaz.xacml.util.XACMLProperties;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.common.base.Splitter;
 
 /**
  * Servlet implementation class XacmlPapServlet

@@ -20,18 +20,25 @@
 
 package org.apache.openaz.pepapi.std;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-import org.apache.openaz.pepapi.*;
-import org.apache.openaz.pepapi.Advice;
-import org.apache.openaz.pepapi.Obligation;
-import org.apache.openaz.xacml.api.*;
-import org.apache.openaz.xacml.api.Attribute;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.apache.openaz.pepapi.Advice;
+import org.apache.openaz.pepapi.Obligation;
+import org.apache.openaz.pepapi.ObligationRouter;
+import org.apache.openaz.pepapi.PepConfig;
+import org.apache.openaz.pepapi.PepException;
+import org.apache.openaz.pepapi.PepResponse;
+import org.apache.openaz.pepapi.PepResponseBehavior;
+import org.apache.openaz.xacml.api.Attribute;
+import org.apache.openaz.xacml.api.AttributeCategory;
+import org.apache.openaz.xacml.api.Identifier;
+import org.apache.openaz.xacml.api.Result;
+import org.apache.openaz.xacml.api.Status;
 
 final class StdPepResponse implements PepResponse {
 

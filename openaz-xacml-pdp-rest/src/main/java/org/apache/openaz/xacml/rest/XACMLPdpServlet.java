@@ -59,8 +59,6 @@ import org.apache.openaz.xacml.api.Response;
 import org.apache.openaz.xacml.api.pap.PDPStatus.Status;
 import org.apache.openaz.xacml.api.pdp.PDPEngine;
 import org.apache.openaz.xacml.api.pdp.PDPException;
-import org.apache.openaz.xacml.rest.XACMLRest;
-import org.apache.openaz.xacml.rest.XACMLRestProperties;
 import org.apache.openaz.xacml.std.dom.DOMRequest;
 import org.apache.openaz.xacml.std.dom.DOMResponse;
 import org.apache.openaz.xacml.std.json.JSONRequest;
