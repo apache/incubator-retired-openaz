@@ -58,7 +58,7 @@ public interface LDAPResolver extends ConfigurableResolver {
      * @return the base <code>String</code> or null if the <code>PIPRequest</code> cannot be satisfied by this
      *         <code>LDAPResolver</code>
      */
-    public String getBase(PIPEngine pipEngine, PIPRequest pipRequest, PIPFinder pipFinder)
+    String getBase(PIPEngine pipEngine, PIPRequest pipRequest, PIPFinder pipFinder)
         throws PIPException;
 
     /**
@@ -73,7 +73,7 @@ public interface LDAPResolver extends ConfigurableResolver {
      * @throws org.apache.openaz.xacml.api.pip.PIPException if there is an error retrieving any required
      *             attributes
      */
-    public String getFilterString(PIPEngine pipEngine, PIPRequest pipRequest, PIPFinder pipFinder)
+    String getFilterString(PIPEngine pipEngine, PIPRequest pipRequest, PIPFinder pipFinder)
         throws PIPException;
 
     /**
@@ -86,6 +86,6 @@ public interface LDAPResolver extends ConfigurableResolver {
      * @throws org.apache.openaz.xacml.api.pip.PIPException if there is an error decoding the
      *             <code>SearchResult</code>
      */
-    public List<Attribute> decodeResult(SearchResult searchResult) throws PIPException;
+    List<Attribute> decodeResult(SearchResult searchResult) throws PIPException;
 
 }

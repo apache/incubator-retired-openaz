@@ -163,7 +163,7 @@ public class XacmlCSVEngine implements ConfigurableEngine {
     protected Attribute findAttribute(PIPRequest pipRequest) {
         Attribute attributeResult = null;
         Iterator<Attribute> iterAttributes = this.listAttributes.iterator();
-        while ((attributeResult == null) && iterAttributes.hasNext()) {
+        while (attributeResult == null && iterAttributes.hasNext()) {
             Attribute attributeTest = iterAttributes.next();
             if (pipRequest.getCategory().equals(attributeTest.getCategory())
                 && pipRequest.getAttributeId().equals(attributeTest.getAttributeId())

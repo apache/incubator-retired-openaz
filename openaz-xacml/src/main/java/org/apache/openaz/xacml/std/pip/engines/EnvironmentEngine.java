@@ -136,7 +136,7 @@ public class EnvironmentEngine implements PIPEngine {
          * Make sure this is a request for an environment attribute and no issuer has been set
          */
         if (!XACML3.ID_ATTRIBUTE_CATEGORY_ENVIRONMENT.equals(pipRequest.getCategory())
-            || (pipRequest.getIssuer() != null && pipRequest.getIssuer().length() > 0)) {
+            || pipRequest.getIssuer() != null && pipRequest.getIssuer().length() > 0) {
             return StdPIPResponse.PIP_RESPONSE_EMPTY;
         }
 

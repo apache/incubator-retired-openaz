@@ -237,7 +237,7 @@ public class StdPDPGroup extends StdPDPItemSetChangeNotifier implements PDPGroup
                 //
                 // Parse the pips
                 //
-                this.readPIPProperties(directory, pipProperties);
+                this.readPIPProperties(pipProperties);
             } catch (IOException e) {
                 logger.warn("Failed to open group PIP Config properties file: " + file, e);
                 this.status.addLoadError("Not PIP config properties defined");
@@ -415,7 +415,7 @@ public class StdPDPGroup extends StdPDPItemSetChangeNotifier implements PDPGroup
                 return Collections.enumeration(new TreeSet<Object>(super.keySet()));
             }
         };
-        ;
+        
         List<String> roots = new ArrayList<String>();
         List<String> refs = new ArrayList<String>();
 
@@ -459,7 +459,7 @@ public class StdPDPGroup extends StdPDPItemSetChangeNotifier implements PDPGroup
             logger.info("Copied " + num + " bytes for policy " + name);
 
             StdPDPPolicy tempRootPolicy = new StdPDPPolicy(id, isRoot, name, tempFile.toUri());
-            if (tempRootPolicy.isValid() == false) {
+            if (!tempRootPolicy.isValid()) {
                 try {
                     Files.delete(tempFile);
                 } catch (Exception ee) {
@@ -563,7 +563,7 @@ public class StdPDPGroup extends StdPDPItemSetChangeNotifier implements PDPGroup
 
             // policy is new to this group
             StdPDPPolicy tempRootPolicy = new StdPDPPolicy(id, true, name, policyFile.toUri());
-            if (tempRootPolicy.isValid() == false) {
+            if (!tempRootPolicy.isValid()) {
                 try {
                     Files.delete(policyFile);
                 } catch (Exception ee) {
@@ -584,7 +584,6 @@ public class StdPDPGroup extends StdPDPItemSetChangeNotifier implements PDPGroup
             logger.error("Failed to copyPolicyToFile: ", e);
             throw new PAPException("Failed to copy policy to file: " + e);
         }
-        return;
     }
 
     public boolean removePolicy(PDPPolicy policy) {
@@ -775,7 +774,7 @@ public class StdPDPGroup extends StdPDPItemSetChangeNotifier implements PDPGroup
         }
     }
 
-    private void readPIPProperties(Path directory, Properties properties) {
+    private void readPIPProperties(Properties properties) {
         String list = properties.getProperty(XACMLProperties.PROP_PIP_ENGINES);
         if (list == null || list.length() == 0) {
             return;
@@ -802,18 +801,23 @@ public class StdPDPGroup extends StdPDPItemSetChangeNotifier implements PDPGroup
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj)
+        if (this == obj) {
             return true;
-        if (obj == null)
+        }
+        if (obj == null) {
             return false;
-        if (getClass() != obj.getClass())
+        }
+        if (getClass() != obj.getClass()) {
             return false;
+        }
         StdPDPGroup other = (StdPDPGroup)obj;
         if (id == null) {
-            if (other.id != null)
+            if (other.id != null) {
                 return false;
-        } else if (!id.equals(other.id))
+            }
+        } else if (!id.equals(other.id)) {
             return false;
+        }
         return true;
     }
 

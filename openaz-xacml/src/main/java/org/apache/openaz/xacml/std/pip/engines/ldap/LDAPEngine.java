@@ -206,7 +206,7 @@ public class LDAPEngine extends StdConfigurableEngine {
                 throw new PIPException("Exception instantiating LDAPResolver for class '" + resolverClassName
                                        + "'", ex);
             }
-            assert (ldapResolverNew != null);
+            assert ldapResolverNew != null;
             ldapResolverNew.configure(propertyPrefix + PROP_RESOLVER + "." + resolver, properties,
                                       this.getIssuer());
 

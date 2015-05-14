@@ -147,7 +147,7 @@ public class StdRequestAttributes extends StdAttributeCategory implements Reques
             // they are the same object, and
             // content.isEqualNode(content) only works if the nodes have identical newlines and spaces, which
             // is not what we care about.
-            if (ObjUtil.xmlEqualsAllowNull(this.getContentRoot(), objRequestAttributes.getContentRoot()) == false) {
+            if (!ObjUtil.xmlEqualsAllowNull(this.getContentRoot(), objRequestAttributes.getContentRoot())) {
                 return false;
             }
 

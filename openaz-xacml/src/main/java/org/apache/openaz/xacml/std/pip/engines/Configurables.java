@@ -192,9 +192,9 @@ public class Configurables {
 
         // no that we know there was intent, check that mandatory information is
         // present
-        if ((attributeId == null || attributeId.length() == 0)
-            || (dataTypeId == null || dataTypeId.length() == 0)
-            || (categoryId == null || categoryId.length() == 0)) {
+        if (attributeId == null || attributeId.length() == 0
+            || dataTypeId == null || dataTypeId.length() == 0
+            || categoryId == null || categoryId.length() == 0) {
             StringBuilder errMsg = new StringBuilder();
             errMsg.append("Incomplete PIPRequest specification, missing property (").append("attributeId=")
                 .append(attributeId).append(",").append("dataTypeId=").append(dataTypeId).append(",")

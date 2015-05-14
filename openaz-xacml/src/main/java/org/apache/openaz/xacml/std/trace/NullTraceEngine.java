@@ -46,9 +46,6 @@ public class NullTraceEngine implements TraceEngine {
     protected NullTraceEngine() {
     }
 
-    protected NullTraceEngine(Properties properties) {
-    }
-
     /**
      * Gets the single instance of the <code>NullTraceEngine</code> class.
      *

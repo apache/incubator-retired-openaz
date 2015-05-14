@@ -129,14 +129,8 @@ public class StdEvaluationContextFactory extends EvaluationContextFactory {
             synchronized (this) {
                 if (this.traceEngine == null) {
                     try {
-                        if (this.properties == null) {
-                            TraceEngineFactory traceEngineFactory = TraceEngineFactory.newInstance();
-                            this.traceEngine = traceEngineFactory.getTraceEngine();
-                        } else {
-                            TraceEngineFactory traceEngineFactory = TraceEngineFactory
-                                .newInstance(this.properties);
-                            this.traceEngine = traceEngineFactory.getTraceEngine(this.properties);
-                        }
+                        TraceEngineFactory traceEngineFactory = TraceEngineFactory.newInstance();
+                        this.traceEngine = traceEngineFactory.getTraceEngine();
                     } catch (Exception ex) {
                         this.logger.error("Exception getting TraceEngine: " + ex.toString(), ex);
                     }
@@ -155,13 +149,8 @@ public class StdEvaluationContextFactory extends EvaluationContextFactory {
 
     @Override
     public EvaluationContext getEvaluationContext(Request request) {
-        if (this.properties == null) {
-            return new StdEvaluationContext(request, this.getPolicyFinder(), this.getPIPFinder(),
-                                            this.getTraceEngine());
-        } else {
-            return new StdEvaluationContext(request, this.getPolicyFinder(), this.getPIPFinder(),
-                                            this.getTraceEngine(), this.properties);
-        }
+        return new StdEvaluationContext(request, this.getPolicyFinder(), this.getPIPFinder(),
+                                        this.getTraceEngine());
     }
 
     @Override

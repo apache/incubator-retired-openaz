@@ -35,7 +35,6 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Iterator;
-import java.util.Properties;
 import java.util.Set;
 
 import org.apache.commons.logging.Log;
@@ -129,11 +128,6 @@ public class ATTPDPEngine implements PDPEngine, Traceable {
                         ScopeResolver scopeResolverIn) {
         this(evaluationContextFactoryIn, scopeResolverIn);
         this.defaultDecision = defaultDecisionIn;
-    }
-
-    public ATTPDPEngine(EvaluationContextFactory evaluationContextFactoryIn, Decision defaultDecisionIn,
-                        ScopeResolver scopeResolverIn, Properties properties) {
-        this(evaluationContextFactoryIn, defaultDecisionIn, scopeResolverIn);
     }
 
     protected Result processRequest(EvaluationContext evaluationContext) {

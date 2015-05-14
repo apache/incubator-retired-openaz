@@ -345,7 +345,7 @@ public class TestBase extends SimpleFileVisitor<Path> {
         //
         // If we are embedded, create our engine
         //
-        if (this.isREST == false) {
+        if (!this.isREST) {
             PDPEngineFactory factory = PDPEngineFactory.newInstance();
             this.engine = factory.newEngine();
         }
@@ -486,7 +486,7 @@ public class TestBase extends SimpleFileVisitor<Path> {
                         break;
                     }
                 }
-                if (found == false) {
+                if (!found) {
                     //
                     // this test is not in the list to be run, so skip it
                     //
@@ -743,7 +743,7 @@ public class TestBase extends SimpleFileVisitor<Path> {
                             break;
                         }
                     }
-                    if (added == false) {
+                    if (!added) {
                         //
                         // New category - create it and add it in
                         //
@@ -1016,25 +1016,25 @@ public class TestBase extends SimpleFileVisitor<Path> {
                 }
                 if (decision.equals(Decision.PERMIT)) {
                     this.permits++;
-                    if (group.equals("Permit") == false) {
+                    if (!group.equals("Permit")) {
                         succeeded = false;
                         logger.error("Expected " + group + " got " + decision);
                     }
                 } else if (decision.equals(Decision.DENY)) {
                     this.denies++;
-                    if (group.equals("Deny") == false) {
+                    if (!group.equals("Deny")) {
                         succeeded = false;
                         logger.error("Expected " + group + " got " + decision);
                     }
                 } else if (decision.equals(Decision.NOTAPPLICABLE)) {
                     this.notapplicables++;
-                    if (group.equals("NA") == false) {
+                    if (!group.equals("NA")) {
                         succeeded = false;
                         logger.error("Expected " + group + " got " + decision);
                     }
                 } else if (decision.equals(Decision.INDETERMINATE)) {
                     this.indeterminates++;
-                    if (group.equals("Indeterminate") == false) {
+                    if (!group.equals("Indeterminate")) {
                         succeeded = false;
                         logger.error("Expected " + group + " got " + decision);
                     }

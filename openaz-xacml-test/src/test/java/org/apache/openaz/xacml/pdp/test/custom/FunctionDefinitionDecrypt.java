@@ -99,7 +99,7 @@ public class FunctionDefinitionDecrypt implements FunctionDefinition {
                 .newError(new StdStatus(StdStatusCode.STATUS_CODE_PROCESSING_ERROR,
                                         "Decrypt failed, not expecting a bag for argument 0."));
         }
-        if (arg0.getValue().getDataTypeId().equals(XACML3.ID_DATATYPE_HEXBINARY) == false) {
+        if (!arg0.getValue().getDataTypeId().equals(XACML3.ID_DATATYPE_HEXBINARY)) {
             //
             // Should be a String
             //

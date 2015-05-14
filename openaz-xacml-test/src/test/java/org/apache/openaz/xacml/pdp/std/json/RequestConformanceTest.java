@@ -303,7 +303,7 @@ public class RequestConformanceTest {
                     Iterator<RequestAttributes> rait = xmlAttrCollection.iterator();
                     while (rait.hasNext()) {
                         RequestAttributes ra = rait.next();
-                        if (jsonAttrCollection.contains(ra) == false) {
+                        if (!jsonAttrCollection.contains(ra)) {
                             attrName = ra.toString();
                         }
                     }

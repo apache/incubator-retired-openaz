@@ -89,7 +89,7 @@ public class RequestParser {
         //
         stdMutableRequest.setReturnPolicyIdList(requestAnnotation.ReturnPolicyIdList());
         stdMutableRequest.setCombinedDecision(requestAnnotation.CombinedDecision());
-        if (requestAnnotation.Defaults().equals(XACMLRequest.nullString) == false) {
+        if (!requestAnnotation.Defaults().equals(XACMLRequest.nullString)) {
             stdMutableRequest.setRequestDefaults(new StdRequestDefaults(URI.create(requestAnnotation
                 .Defaults())));
         }
@@ -103,7 +103,7 @@ public class RequestParser {
                 for (String id : reference.values()) {
                     refs.add(new StdRequestAttributesReference(id));
                 }
-                if (refs.isEmpty() == false) {
+                if (!refs.isEmpty()) {
                     stdMutableRequest.add(new StdRequestReference(refs));
                 }
             }
@@ -201,7 +201,7 @@ public class RequestParser {
         mutableAttribute.setCategory(category);
         mutableAttribute.setAttributeId(attributeId);
         mutableAttribute.setIncludeInResults(includeInResults);
-        if (issuer != null && issuer.isEmpty() == false) {
+        if (issuer != null && !issuer.isEmpty()) {
             mutableAttribute.setIssuer(issuer);
         }
         //
@@ -232,7 +232,7 @@ public class RequestParser {
         //
         // Was it added?
         //
-        if (added == false) {
+        if (!added) {
             //
             // No the category does not exist yet or this has a different xml:id
             //

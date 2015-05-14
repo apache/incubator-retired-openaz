@@ -30,22 +30,29 @@
  */
 package org.apache.openaz.xacml.pdp.std;
 
+import java.util.Collection;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.openaz.xacml.api.IdReferenceMatch;
 import org.apache.openaz.xacml.api.Request;
-import org.apache.openaz.xacml.api.pip.*;
+import org.apache.openaz.xacml.api.pip.PIPEngine;
+import org.apache.openaz.xacml.api.pip.PIPException;
+import org.apache.openaz.xacml.api.pip.PIPFinder;
+import org.apache.openaz.xacml.api.pip.PIPRequest;
+import org.apache.openaz.xacml.api.pip.PIPResponse;
 import org.apache.openaz.xacml.api.trace.TraceEngine;
 import org.apache.openaz.xacml.api.trace.TraceEngineFactory;
 import org.apache.openaz.xacml.api.trace.TraceEvent;
 import org.apache.openaz.xacml.pdp.eval.EvaluationContext;
-import org.apache.openaz.xacml.pdp.policy.*;
+import org.apache.openaz.xacml.pdp.policy.Policy;
+import org.apache.openaz.xacml.pdp.policy.PolicyDef;
+import org.apache.openaz.xacml.pdp.policy.PolicyFinder;
+import org.apache.openaz.xacml.pdp.policy.PolicyFinderResult;
+import org.apache.openaz.xacml.pdp.policy.PolicySet;
 import org.apache.openaz.xacml.std.pip.engines.RequestEngine;
 import org.apache.openaz.xacml.std.pip.finders.RequestFinder;
 import org.apache.openaz.xacml.util.FactoryException;
-
-import java.util.Collection;
-import java.util.Properties;
 
 /**
  * StdEvaluationContext implements the {@link org.apache.openaz.xacml.pdp.eval.EvaluationContext} interface
@@ -53,7 +60,6 @@ import java.util.Properties;
  */
 public class StdEvaluationContext implements EvaluationContext {
     private Log logger = LogFactory.getLog(this.getClass());
-    private Properties properties;
     private Request request;
     private RequestFinder requestFinder;
     private PolicyFinder policyFinder;
@@ -67,20 +73,14 @@ public class StdEvaluationContext implements EvaluationContext {
      * @param policyDef the <code>PolicyDef</code>
      */
     public StdEvaluationContext(Request requestIn, PolicyFinder policyFinderIn, PIPFinder pipFinder,
-                                TraceEngine traceEngineIn, Properties properties) {
-        this.properties = properties;
+                                TraceEngine traceEngineIn) {
         this.request = requestIn;
         this.policyFinder = policyFinderIn;
         if (traceEngineIn != null) {
             this.traceEngine = traceEngineIn;
         } else {
             try {
-                if (this.properties == null) {
-                    this.traceEngine = TraceEngineFactory.newInstance().getTraceEngine();
-                } else {
-                    this.traceEngine = TraceEngineFactory.newInstance(this.properties)
-                        .getTraceEngine(this.properties);
-                }
+                this.traceEngine = TraceEngineFactory.newInstance().getTraceEngine();
             } catch (FactoryException ex) {
                 this.logger.error("FactoryException creating TraceEngine: " + ex.toString(), ex);
             }
@@ -95,11 +95,6 @@ public class StdEvaluationContext implements EvaluationContext {
                 this.requestFinder = new RequestFinder(pipFinder, new RequestEngine(requestIn));
             }
         }
-    }
-
-    public StdEvaluationContext(Request requestIn, PolicyFinder policyFinderIn, PIPFinder pipFinder,
-                                TraceEngine traceEngineIn) {
-        this(requestIn, policyFinderIn, pipFinder, traceEngineIn, null);
     }
 
     public StdEvaluationContext(Request requestIn, PolicyFinder policyFinderIn, PIPFinder pipFinder) {

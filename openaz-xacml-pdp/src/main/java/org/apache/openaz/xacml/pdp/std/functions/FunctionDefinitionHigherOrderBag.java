@@ -260,7 +260,7 @@ public class FunctionDefinitionHigherOrderBag<O, I> extends FunctionDefinitionBa
                         .newError(new StdStatus(StdStatusCode.STATUS_CODE_PROCESSING_ERROR, this
                             .getShortFunctionId() + " Predicate error: " + res.getStatus().getStatusMessage()));
                 }
-                if ((Boolean)(res.getValue().getValue()) == true) {
+                if ((Boolean)(res.getValue().getValue()) == Boolean.TRUE) {
                     return ER_TRUE;
                 }
             }
@@ -299,7 +299,7 @@ public class FunctionDefinitionHigherOrderBag<O, I> extends FunctionDefinitionBa
                         .newError(new StdStatus(StdStatusCode.STATUS_CODE_PROCESSING_ERROR, this
                             .getShortFunctionId() + " Predicate error: " + res.getStatus().getStatusMessage()));
                 }
-                if ((Boolean)(res.getValue().getValue()) == false) {
+                if ((Boolean)(res.getValue().getValue()) == Boolean.FALSE) {
                     return ER_FALSE;
                 }
             }
@@ -341,7 +341,7 @@ public class FunctionDefinitionHigherOrderBag<O, I> extends FunctionDefinitionBa
                         .newError(new StdStatus(StdStatusCode.STATUS_CODE_PROCESSING_ERROR, this
                             .getShortFunctionId() + " Predicate error: " + res.getStatus().getStatusMessage()));
                 }
-                if ((Boolean)(res.getValue().getValue()) == true) {
+                if ((Boolean)(res.getValue().getValue()) == Boolean.TRUE) {
                     return ER_TRUE;
                 }
             }
@@ -374,7 +374,7 @@ public class FunctionDefinitionHigherOrderBag<O, I> extends FunctionDefinitionBa
                                                     this.getShortFunctionId() + " Predicate error: "
                                                         + res.getStatus().getStatusMessage()));
                     }
-                    if ((Boolean)(res.getValue().getValue()) == false) {
+                    if ((Boolean)(res.getValue().getValue()) == Boolean.FALSE) {
                         allMatch = false;
                         break;
                     }
@@ -413,7 +413,7 @@ public class FunctionDefinitionHigherOrderBag<O, I> extends FunctionDefinitionBa
                                                     this.getShortFunctionId() + " Predicate error: "
                                                         + res.getStatus().getStatusMessage()));
                     }
-                    if ((Boolean)(res.getValue().getValue()) == false) {
+                    if ((Boolean)(res.getValue().getValue()) == Boolean.FALSE) {
                         allMatch = false;
                         break;
                     }
@@ -452,7 +452,7 @@ public class FunctionDefinitionHigherOrderBag<O, I> extends FunctionDefinitionBa
                                                         + res.getStatus().getStatusMessage()));
                     }
 
-                    if ((Boolean)(res.getValue().getValue()) == false) {
+                    if ((Boolean)(res.getValue().getValue()) == Boolean.FALSE) {
                         return ER_FALSE;
                     }
                 }

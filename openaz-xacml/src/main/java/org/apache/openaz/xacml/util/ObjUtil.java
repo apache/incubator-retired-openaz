@@ -144,8 +144,8 @@ public class ObjUtil {
      */
     private static boolean compareXML(Node node1, Node node2) {
         // compare the nodes
-        if (equalsAllowNull(node1.getNodeName(), node2.getNodeName()) == false
-            || equalsAllowNull(node1.getNodeValue(), node2.getNodeValue()) == false
+        if (!equalsAllowNull(node1.getNodeName(), node2.getNodeName())
+            || !equalsAllowNull(node1.getNodeValue(), node2.getNodeValue())
             || node1.getNodeType() != node2.getNodeType()) {
             // these two nodes to not match their basic information
             logger.info("Node1 '" + node1.getNodeName() + "' type: " + node1.getNodeType() + "  != Node2 '"
@@ -200,7 +200,7 @@ public class ObjUtil {
 
         // children are supposed to be in the same order
         for (int index1 = 0; index1 < children1.getLength(); index1++) {
-            if (compareXML(children1.item(index1), children2.item(index1)) == false) {
+            if (!compareXML(children1.item(index1), children2.item(index1))) {
                 logger.info("Node1 '" + node1.getNodeName() + "' != Node2 '" + node2.getNodeName() + "'");
                 return false;
             }

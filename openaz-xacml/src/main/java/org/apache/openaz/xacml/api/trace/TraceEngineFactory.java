@@ -67,17 +67,6 @@ public abstract class TraceEngineFactory {
     }
 
     /**
-     * Gets an instance of the <code>TraceEngineFactory</code> class using standard factory lookup methods defined by
-     * the {@link org.apache.openaz.xacml.util.FactoryFinder} class.
-     *
-     * @return an instance of the <code>TraceEngineFactory</code> class.
-     * @throws FactoryException if there is an error finding a <code>TraceEngineFactory</code>
-     */
-    public static TraceEngineFactory newInstance(Properties properties) throws FactoryException {
-        return FactoryFinder.find(FACTORYID, DEFAULT_FACTORY_CLASSNAME, TraceEngineFactory.class, properties);
-    }
-
-    /**
      * Gets an instance of the <code>TraceEngineFactory</code> class using the given <code>String</code> class
      * name, and <code>ClassLoader</code>>
      *
@@ -114,10 +103,4 @@ public abstract class TraceEngineFactory {
      */
     public abstract TraceEngine getTraceEngine();
 
-    /**
-     * Gets an instance of the {@link TraceEngine} interface to use for posting {@link TraceEvent}s.
-     *
-     * @return an instance of the <code>TraceEngine</code> interface
-     */
-    public abstract TraceEngine getTraceEngine(Properties properties);
 }

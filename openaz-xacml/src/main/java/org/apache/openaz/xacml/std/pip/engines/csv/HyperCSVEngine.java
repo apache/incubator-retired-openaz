@@ -155,11 +155,13 @@ public class HyperCSVEngine extends JDBCEngine {
             throw new PIPException("Failed to inititialize HyperSQL", sqlx);
         } finally {
             try {
-                if (stmt != null)
+                if (stmt != null) {
                     stmt.close();
-                if (conn != null)
+                }
+                if (conn != null) {
                     conn.close();
-            } catch (SQLException sqlx) {
+                }
+            } catch (SQLException sqlx) { //NOPMD
             }
         }
 

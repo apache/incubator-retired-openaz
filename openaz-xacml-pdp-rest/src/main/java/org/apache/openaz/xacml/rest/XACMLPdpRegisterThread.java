@@ -215,7 +215,7 @@ public class XACMLPdpRegisterThread implements Runnable {
             // Wait a little while to try again
             //
             try {
-                if (registered == false) {
+                if (!registered) {
                     if (retries > 0) {
                         retries--;
                     } else if (retries == 0) {

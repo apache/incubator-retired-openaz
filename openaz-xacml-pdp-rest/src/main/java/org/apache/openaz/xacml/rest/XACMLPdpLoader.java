@@ -355,7 +355,7 @@ public class XACMLPdpLoader {
                     // Does it exist?
                     //
                     policyExists = Files.exists(Paths.get(propLocation));
-                    if (policyExists == false) {
+                    if (!policyExists) {
                         logger.warn("Policy file " + policy + " expected at " + propLocation
                                     + " does NOT exist.");
                     }
@@ -363,7 +363,7 @@ public class XACMLPdpLoader {
 
                 // If ".file" property does not exist, try looking for the local file anyway
                 // (it might exist without having a ".file" property set for it)
-                if (policyExists == false) {
+                if (!policyExists) {
                     //
                     // Now construct the output file name
                     //

@@ -129,7 +129,7 @@ public class DOMAttributeValue<T> extends StdAttributeValue<T> {
             }
             dataTypeExtended.createAttributeValue(nodeAttributeValue);
 
-            if (result == true) {
+            if (result) {
                 // reset the DataType attribute of the node
                 nodeAttributeValue.getAttributes().getNamedItem("DataType")
                     .setNodeValue(dataTypeExtended.getId().stringValue());

@@ -270,7 +270,7 @@ public class TestPolicy extends TestBase {
                         // Check for the boolean datatype, in that case we can safely
                         // assume the true/false are ALL the possible values.
                         //
-                        if (datatypeEntry.getKey().equals(XACML3.ID_DATATYPE_BOOLEAN) == false) {
+                        if (!datatypeEntry.getKey().equals(XACML3.ID_DATATYPE_BOOLEAN)) {
                             //
                             // Not boolean, so skip it
                             //

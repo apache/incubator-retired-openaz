@@ -320,16 +320,16 @@ public class StdPDPGroupStatus implements PDPGroupStatus {
     @Override
     @JsonIgnore
     public boolean isGroupOk() {
-        if (this.policiesOK() == false) {
+        if (!this.policiesOK()) {
             return false;
         }
-        if (this.pipConfigOK() == false) {
+        if (!this.pipConfigOK()) {
             return false;
         }
-        if (this.pdpsOK() == false) {
+        if (!this.pdpsOK()) {
             return false;
         }
-        if (this.loadErrors.isEmpty() == false) {
+        if (!this.loadErrors.isEmpty()) {
             return false;
         }
         return (this.status == Status.OK);
@@ -356,57 +356,73 @@ public class StdPDPGroupStatus implements PDPGroupStatus {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + (failedPDPs.hashCode());
-        result = prime * result + (failedPIPConfigs.hashCode());
-        result = prime * result + (failedPolicies.hashCode());
-        result = prime * result + (inSynchPDPs.hashCode());
-        result = prime * result + (lastUpdateFailedPDPs.hashCode());
-        result = prime * result + (loadErrors.hashCode());
-        result = prime * result + (loadWarnings.hashCode());
-        result = prime * result + (loadedPIPConfigs.hashCode());
-        result = prime * result + (loadedPolicies.hashCode());
-        result = prime * result + (outOfSynchPDPs.hashCode());
-        result = prime * result + (status.hashCode());
-        result = prime * result + (unknownPDPs.hashCode());
-        result = prime * result + (updatingPDPs.hashCode());
+        result = prime * result + failedPDPs.hashCode();
+        result = prime * result + failedPIPConfigs.hashCode();
+        result = prime * result + failedPolicies.hashCode();
+        result = prime * result + inSynchPDPs.hashCode();
+        result = prime * result + lastUpdateFailedPDPs.hashCode();
+        result = prime * result + loadErrors.hashCode();
+        result = prime * result + loadWarnings.hashCode();
+        result = prime * result + loadedPIPConfigs.hashCode();
+        result = prime * result + loadedPolicies.hashCode();
+        result = prime * result + outOfSynchPDPs.hashCode();
+        result = prime * result + status.hashCode();
+        result = prime * result + unknownPDPs.hashCode();
+        result = prime * result + updatingPDPs.hashCode();
         return result;
     }
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj)
+        if (this == obj) {
             return true;
-        if (obj == null)
+        }
+        if (obj == null) {
             return false;
-        if (getClass() != obj.getClass())
+        }
+        if (getClass() != obj.getClass()) {
             return false;
+        }
         StdPDPGroupStatus other = (StdPDPGroupStatus)obj;
-        if (!failedPDPs.equals(other.failedPDPs))
+        if (!failedPDPs.equals(other.failedPDPs)) {
             return false;
-        if (!failedPIPConfigs.equals(other.failedPIPConfigs))
+        }
+        if (!failedPIPConfigs.equals(other.failedPIPConfigs)) {
             return false;
-        if (!failedPolicies.equals(other.failedPolicies))
+        }
+        if (!failedPolicies.equals(other.failedPolicies)) {
             return false;
-        if (!inSynchPDPs.equals(other.inSynchPDPs))
+        }
+        if (!inSynchPDPs.equals(other.inSynchPDPs)) {
             return false;
-        if (!lastUpdateFailedPDPs.equals(other.lastUpdateFailedPDPs))
+        }
+        if (!lastUpdateFailedPDPs.equals(other.lastUpdateFailedPDPs)) {
             return false;
-        if (!loadErrors.equals(other.loadErrors))
+        }
+        if (!loadErrors.equals(other.loadErrors)) {
             return false;
-        if (!loadWarnings.equals(other.loadWarnings))
+        }
+        if (!loadWarnings.equals(other.loadWarnings)) {
             return false;
-        if (!loadedPIPConfigs.equals(other.loadedPIPConfigs))
+        }
+        if (!loadedPIPConfigs.equals(other.loadedPIPConfigs)) {
             return false;
-        if (!loadedPolicies.equals(other.loadedPolicies))
+        }
+        if (!loadedPolicies.equals(other.loadedPolicies)) {
             return false;
-        if (!outOfSynchPDPs.equals(other.outOfSynchPDPs))
+        }
+        if (!outOfSynchPDPs.equals(other.outOfSynchPDPs)) {
             return false;
-        if (status != other.status)
+        }
+        if (status != other.status) {
             return false;
-        if (!unknownPDPs.equals(other.unknownPDPs))
+        }
+        if (!unknownPDPs.equals(other.unknownPDPs)) {
             return false;
-        if (!updatingPDPs.equals(other.updatingPDPs))
+        }
+        if (!updatingPDPs.equals(other.updatingPDPs)) {
             return false;
+        }
         return true;
     }
 

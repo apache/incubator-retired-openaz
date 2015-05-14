@@ -375,7 +375,7 @@ public class CSVEngine extends StdConfigurableEngine {
                 //
                 // Does the line match?
                 //
-                if (this.doesLineMatch(line, listParameters) == false) {
+                if (!this.doesLineMatch(line, listParameters)) {
                     continue;
                 }
                 //
@@ -463,7 +463,7 @@ public class CSVEngine extends StdConfigurableEngine {
                 //
                 // Did a match happen?
                 //
-                if (foundMatch == false) {
+                if (!foundMatch) {
                     /*
                      * if (this.logger.isDebugEnabled()) {
                      * this.logger.debug("Failed to find value for column " + column); }

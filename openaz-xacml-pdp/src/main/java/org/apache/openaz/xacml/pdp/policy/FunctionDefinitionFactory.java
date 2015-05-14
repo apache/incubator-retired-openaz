@@ -48,9 +48,6 @@ public abstract class FunctionDefinitionFactory {
     protected FunctionDefinitionFactory() {
     }
 
-    protected FunctionDefinitionFactory(Properties properties) {
-    }
-
     /**
      * Maps the given <code>Identifier</code> representing a XACML function to a
      * <code>FunctionDefinition</code> object.

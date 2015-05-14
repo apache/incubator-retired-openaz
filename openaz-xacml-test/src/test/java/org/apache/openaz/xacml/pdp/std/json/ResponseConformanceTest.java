@@ -190,7 +190,7 @@ public class ResponseConformanceTest {
                         fail(f.getName() + " Obligations has null \nXML=" + xmlObligations + "\nJSON="
                              + jsonObligations);
                     }
-                    if (ListUtil.equalsAllowNulls(xmlObligations, jsonObligations) == false) {
+                    if (!ListUtil.equalsAllowNulls(xmlObligations, jsonObligations)) {
                         // collections are not equal, so need to examine further
                         fail(f.getName() + " Obligation collections not equal\nXML=" + xmlObligations
                              + "\nJSON=" + jsonObligations);
@@ -205,7 +205,7 @@ public class ResponseConformanceTest {
                     if (xmlAdvice == null || jsonAdvice == null) {
                         fail(f.getName() + " Advice has null \nXML=" + xmlAdvice + "\nJSON=" + jsonAdvice);
                     }
-                    if (ListUtil.equalsAllowNulls(xmlAdvice, jsonAdvice) == false) {
+                    if (!ListUtil.equalsAllowNulls(xmlAdvice, jsonAdvice)) {
                         // collections are not equal, so need to examine further
                         fail(f.getName() + " Advice collections not equal\nXML=" + xmlAdvice + "\nJSON="
                              + jsonAdvice);
@@ -301,7 +301,7 @@ public class ResponseConformanceTest {
                         fail(f.getName() + " PolicyIdentifiers has null \nXML=" + xmlIdReferences + "\nJSON="
                              + jsonIdReferences);
                     }
-                    if (ListUtil.equalsAllowNulls(xmlIdReferences, jsonIdReferences) == false) {
+                    if (!ListUtil.equalsAllowNulls(xmlIdReferences, jsonIdReferences)) {
                         // collections are not equal, so need to examine further
                         fail(f.getName() + " PolicyIdentifiers collections not equal\nXML=" + xmlIdReferences
                              + "\nJSON=" + jsonIdReferences);
@@ -317,7 +317,7 @@ public class ResponseConformanceTest {
                         fail(f.getName() + " PolicySetIdentifiers has null \nXML=" + xmlIdReferences
                              + "\nJSON=" + jsonIdReferences);
                     }
-                    if (ListUtil.equalsAllowNulls(xmlIdReferences, jsonIdReferences) == false) {
+                    if (!ListUtil.equalsAllowNulls(xmlIdReferences, jsonIdReferences)) {
                         // collections are not equal, so need to examine further
                         fail(f.getName() + " PolicySetIdentifiers collections not equal\nXML="
                              + xmlIdReferences + "\nJSON=" + jsonIdReferences);

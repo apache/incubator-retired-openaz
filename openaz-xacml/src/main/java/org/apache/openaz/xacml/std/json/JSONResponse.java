@@ -1507,7 +1507,7 @@ public class JSONResponse {
                         ArrayList<HashMap<String, Object>> arrayAttributes = new ArrayList<HashMap<String, Object>>();
                         while (iterAttrs.hasNext()) {
                             Attribute attribute = iterAttrs.next();
-                            if (attribute.getIncludeInResults() == false) {
+                            if (!attribute.getIncludeInResults()) {
                                 // Would this be an error? This is an internal matter and we arbitrarily
                                 // decided to just ignore it.
                                 // The attribute will not be included in the output, so the receiver won't

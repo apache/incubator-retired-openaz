@@ -225,9 +225,6 @@ public class StdPolicyFinderFactory extends PolicyFinderFactory {
     public StdPolicyFinderFactory() {
     }
 
-    public StdPolicyFinderFactory(Properties properties) {
-    }
-
     @Override
     public PolicyFinder getPolicyFinder() throws FactoryException {
         try {
@@ -241,6 +238,6 @@ public class StdPolicyFinderFactory extends PolicyFinderFactory {
     @Override
     public PolicyFinder getPolicyFinder(Properties properties) throws FactoryException {
         this.init(properties);
-        return new StdPolicyFinder(this.rootPolicies, this.referencedPolicies, properties);
+        return new StdPolicyFinder(this.rootPolicies, this.referencedPolicies);
     }
 }

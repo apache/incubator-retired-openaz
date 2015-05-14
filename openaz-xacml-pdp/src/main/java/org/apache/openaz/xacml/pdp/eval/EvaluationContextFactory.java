@@ -50,9 +50,6 @@ public abstract class EvaluationContextFactory {
     protected EvaluationContextFactory() {
     }
 
-    protected EvaluationContextFactory(Properties properties) {
-    }
-
     public static EvaluationContextFactory newInstance() throws FactoryException {
         return FactoryFinder.find(FACTORYID, DEFAULT_FACTORY_CLASSNAME, EvaluationContextFactory.class);
     }

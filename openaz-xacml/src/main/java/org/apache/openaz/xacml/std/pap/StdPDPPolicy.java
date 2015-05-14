@@ -120,7 +120,7 @@ public class StdPDPPolicy implements PDPPolicy, Serializable {
         URL url = this.location.toURL();
         Object rootElement = XACMLPolicyScanner.readPolicy(url.openStream());
         if (rootElement == null
-            || (!(rootElement instanceof PolicySetType) && !(rootElement instanceof PolicyType))) {
+            || !(rootElement instanceof PolicySetType) && !(rootElement instanceof PolicyType)) {
             logger.warn("No root policy element in URI: " + this.location.toString() + " : " + rootElement);
             this.isValid = false;
         } else {
@@ -141,7 +141,7 @@ public class StdPDPPolicy implements PDPPolicy, Serializable {
         }
         if (this.policyId != null) {
             ArrayList<String> foo = Lists.newArrayList(Splitter.on(':').split(this.policyId));
-            if (foo.isEmpty() == false) {
+            if (!foo.isEmpty()) {
                 return foo.get(foo.size() - 1);
             }
         }

@@ -63,7 +63,7 @@ public interface JDBCResolver extends ConfigurableResolver {
      * @throws org.apache.openaz.xacml.api.pip.PIPException if there is an error creating the
      *             <code>PreparedStatement</code>
      */
-    public PreparedStatement getPreparedStatement(PIPEngine pipEngine, PIPRequest pipRequest,
+    PreparedStatement getPreparedStatement(PIPEngine pipEngine, PIPRequest pipRequest,
                                                   PIPFinder pipFinder, Connection connection)
         throws PIPException;
 
@@ -79,5 +79,5 @@ public interface JDBCResolver extends ConfigurableResolver {
      *         <code>ResultSet</code> or an empty <code>List</code> if there are no results.
      * @throws org.apache.openaz.xacml.api.pip.PIPException
      */
-    public List<Attribute> decodeResult(ResultSet resultSet) throws PIPException;
+    List<Attribute> decodeResult(ResultSet resultSet) throws PIPException;
 }

@@ -191,7 +191,7 @@ public class ConfigurableLDAPResolver implements LDAPResolver {
         return out.toString();
     }
 
-    private Object evaluatePIPRequest(PIPRequest pipRequest, PIPEngine pipEngine, PIPFinder pipFinder)
+    private Object evaluatePIPRequest(PIPRequest pipRequest, PIPFinder pipFinder)
         throws PIPException {
         if (this.logger.isTraceEnabled()) {
             this.logger.trace("(" + id + ") " + pipRequest);
@@ -429,8 +429,7 @@ public class ConfigurableLDAPResolver implements LDAPResolver {
                 }
                 if (null == request)
                     throw new RuntimeException("Parameter '" + param + "' is not available");
-                Object val = ConfigurableLDAPResolver.this.evaluatePIPRequest(request, this.engine,
-                                                                              this.finder);
+                Object val = ConfigurableLDAPResolver.this.evaluatePIPRequest(request, this.finder);
 
                 if (null != val) {
                     return val;

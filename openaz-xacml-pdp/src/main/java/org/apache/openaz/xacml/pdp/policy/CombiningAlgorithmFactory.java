@@ -48,9 +48,6 @@ public abstract class CombiningAlgorithmFactory {
     protected CombiningAlgorithmFactory() {
     }
 
-    protected CombiningAlgorithmFactory(Properties properties) {
-    }
-
     /**
      * Maps the given <code>Identifier</code> representing a XACML rule combining algorithm to a
      * <code>CombiningAlgorithm</code> object.

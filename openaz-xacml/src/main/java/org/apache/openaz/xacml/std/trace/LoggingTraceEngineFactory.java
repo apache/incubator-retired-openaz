@@ -30,8 +30,6 @@
  */
 package org.apache.openaz.xacml.std.trace;
 
-import java.util.Properties;
-
 import org.apache.openaz.xacml.api.trace.TraceEngine;
 import org.apache.openaz.xacml.api.trace.TraceEngineFactory;
 
@@ -46,20 +44,9 @@ public class LoggingTraceEngineFactory extends TraceEngineFactory {
     public LoggingTraceEngineFactory() {
     }
 
-    /**
-     * Creates a new <code>LoggingTraceEngineFactory</code>
-     */
-    public LoggingTraceEngineFactory(Properties properties) {
-    }
-
     @Override
     public TraceEngine getTraceEngine() {
         return LoggingTraceEngine.newInstance();
-    }
-
-    @Override
-    public TraceEngine getTraceEngine(Properties properties) {
-        return LoggingTraceEngine.newInstance(properties);
     }
 
 }

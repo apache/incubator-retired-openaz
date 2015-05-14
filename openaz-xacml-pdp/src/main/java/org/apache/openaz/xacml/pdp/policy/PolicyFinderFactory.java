@@ -47,9 +47,6 @@ public abstract class PolicyFinderFactory {
     protected PolicyFinderFactory() {
     }
 
-    protected PolicyFinderFactory(Properties properties) {
-    }
-
     public static PolicyFinderFactory newInstance() throws FactoryException {
         return FactoryFinder.find(FACTORYID, DEFAULT_FACTORY_CLASSNAME, PolicyFinderFactory.class);
     }

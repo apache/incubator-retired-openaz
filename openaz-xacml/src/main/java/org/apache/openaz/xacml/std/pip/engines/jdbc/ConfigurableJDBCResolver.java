@@ -464,7 +464,7 @@ public class ConfigurableJDBCResolver implements JDBCResolver {
         List<Attribute> listAttributes = new ArrayList<Attribute>();
         for (String fieldName : this.mapFields.keySet()) {
             PIPRequest pipRequestField = this.mapFields.get(fieldName);
-            assert (pipRequestField != null);
+            assert pipRequestField != null;
 
             Attribute attribute = this.getAttributeFromResultSet(resultSet, fieldName, pipRequestField);
             if (attribute != null) {

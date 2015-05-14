@@ -50,5 +50,5 @@ public interface ConfigurableEngine extends PIPEngine {
      * @throws org.apache.openaz.xacml.api.pip.PIPException if there is an error configuring the
      *             <code>ConfigurableEngine</code>
      */
-    public void configure(String id, Properties properties) throws PIPException;
+    void configure(String id, Properties properties) throws PIPException;
 }

@@ -135,10 +135,8 @@ public class StdMutablePIPResponse implements PIPResponse {
         /*
          * Determine if the simple status should be changed or not
          */
-        if (this.simple) {
-            if (this.attributes.size() > 0) {
-                this.simple = false;
-            }
+        if (this.simple && this.attributes.size() > 0) {
+            this.simple = false;
         }
         this.attributes.add(attributeIn);
     }
@@ -155,10 +153,8 @@ public class StdMutablePIPResponse implements PIPResponse {
             if (this.attributes == EMPTY_LIST) {
                 this.attributes = new ArrayList<Attribute>();
             }
-            if (this.simple) {
-                if (this.attributes.size() > 0 || attributesIn.size() > 1) {
-                    this.simple = false;
-                }
+            if (this.simple && (this.attributes.size() > 0 || attributesIn.size() > 1)) {
+                this.simple = false;
             }
             this.attributes.addAll(attributesIn);
         }

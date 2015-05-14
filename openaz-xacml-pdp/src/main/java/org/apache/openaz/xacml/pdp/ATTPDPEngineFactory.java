@@ -67,7 +67,6 @@ public class ATTPDPEngineFactory extends PDPEngineFactory {
             this.logger.error("Null EvaluationContextFactory");
             throw new FactoryException("Null EvaluationContextFactory");
         }
-        return new ATTPDPEngine(evaluationContextFactory, this.getDefaultBehavior(), this.getScopeResolver(),
-                                properties);
+        return new ATTPDPEngine(evaluationContextFactory, this.getDefaultBehavior(), this.getScopeResolver());
     }
 }

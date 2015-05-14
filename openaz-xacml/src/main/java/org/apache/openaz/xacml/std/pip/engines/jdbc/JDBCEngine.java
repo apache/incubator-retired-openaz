@@ -60,7 +60,6 @@ import org.apache.openaz.xacml.std.pip.engines.StdConfigurableEngine;
 import org.apache.openaz.xacml.util.AttributeUtils;
 
 import com.google.common.base.Splitter;
-import com.google.common.cache.Cache;
 
 /**
  * PIPEgineJDBC extends {@link org.apache.openaz.xacml.std.pip.engines.StdConfigurableEngine} to implement a
@@ -180,7 +179,7 @@ public class JDBCEngine extends StdConfigurableEngine {
                 if (connection != null) {
                     connection.close();
                 }
-            } catch (Exception e) {
+            } catch (Exception e) { //NOPMD
             }
             return;
         }
@@ -189,10 +188,10 @@ public class JDBCEngine extends StdConfigurableEngine {
          * Is it in the cache?
          */
         this.logger.debug(preparedStatement.toString());
-        Cache<String, PIPResponse> cache = this.getCache();
-        if (cache != null) {
+        // Cache<String, PIPResponse> cache = this.getCache();
+        //if (cache != null) {
             // TODO - a cache key
-        }
+        //}
 
         /*
          * Execute the prepared statement
@@ -214,7 +213,7 @@ public class JDBCEngine extends StdConfigurableEngine {
                 if (connection != null) {
                     connection.close();
                 }
-            } catch (Exception e) {
+            } catch (Exception e) { //NOPMD
             }
             return;
         }
@@ -231,9 +230,9 @@ public class JDBCEngine extends StdConfigurableEngine {
             /*
              * Save it in the cache
              */
-            if (cache != null) {
+            //if (cache != null) {
                 // TODO
-            }
+            //}
         } catch (SQLException ex) {
             this.logger.error("SQLException decoding results: " + ex.toString());
             // TODO: Should we re-throw the exception or just continue
@@ -282,11 +281,11 @@ public class JDBCEngine extends StdConfigurableEngine {
                 for (Attribute attribute : mutablePIPResponse.getAttributes()) {
                     this.logger.debug(AttributeUtils.prettyPrint(attribute));
                 }
-            } else if (this.logger.isDebugEnabled()) {
+            } /*else if (this.logger.isDebugEnabled()) {
                 // this.logger.debug("Returning " + mutablePIPResponse.getAttributes().size() +
                 // " attributes");
                 // this.logger.debug(mutablePIPResponse.getAttributes());
-            }
+            }*/
             return new StdPIPResponse(mutablePIPResponse);
         }
     }

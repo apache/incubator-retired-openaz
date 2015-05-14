@@ -196,7 +196,8 @@ public class FactoryFinder {
                         }
                     }
                     if (instance == null) {
-                        throw new Exception("No constructor that takes a Properties object.");
+                        logger.warn("No constructor that takes a Properties object.");
+                        instance = providerClass.newInstance();
                     }
                 }
                 if (logger.isTraceEnabled()) {

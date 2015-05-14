@@ -334,7 +334,7 @@ public class XACMLPapServlet extends HttpServlet implements StdItemSetChangeList
             //
             // Send back current configuration
             //
-            if (isCurrent == false) {
+            if (!isCurrent) {
                 //
                 // Tell the PDP we are sending back the current policies/pip config
                 //
@@ -537,7 +537,7 @@ public class XACMLPapServlet extends HttpServlet implements StdItemSetChangeList
         lists[0] = policies.getProperty(XACMLProperties.PROP_ROOTPOLICIES);
         lists[1] = policies.getProperty(XACMLProperties.PROP_REFERENCEDPOLICIES);
         for (String list : lists) {
-            if (list != null && list.isEmpty() == false) {
+            if (list != null && !list.isEmpty()) {
                 for (String id : Splitter.on(',').trimResults().omitEmptyStrings().split(list)) {
                     String url = urlPath + "?id=" + id;
                     logger.info("Policy URL for " + id + ": " + url);
@@ -1202,7 +1202,7 @@ public class XACMLPapServlet extends HttpServlet implements StdItemSetChangeList
                     //
                     // Check for shutdown
                     //
-                    if (this.isRunning() == false) {
+                    if (!this.isRunning()) {
                         logger.info("isRunning is false, getting out of loop.");
                         break;
                     }
@@ -1213,7 +1213,7 @@ public class XACMLPapServlet extends HttpServlet implements StdItemSetChangeList
                         //
                         // Check for shutdown
                         //
-                        if (this.isRunning() == false) {
+                        if (!this.isRunning()) {
                             logger.info("isRunning is false, getting out of loop.");
                             break;
                         }
@@ -1298,7 +1298,7 @@ public class XACMLPapServlet extends HttpServlet implements StdItemSetChangeList
                     //
                     // Check for shutdown
                     //
-                    if (this.isRunning() == false) {
+                    if (!this.isRunning()) {
                         logger.info("isRunning is false, getting out of loop.");
                         break;
                     }

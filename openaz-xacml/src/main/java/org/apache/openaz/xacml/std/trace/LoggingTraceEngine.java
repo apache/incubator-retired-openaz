@@ -51,9 +51,6 @@ public class LoggingTraceEngine implements TraceEngine {
     protected LoggingTraceEngine() {
     }
 
-    protected LoggingTraceEngine(Properties properties) {
-    }
-
     /**
      * Gets the single instance of the <code>LoggingTraceEngine</code>.
      *

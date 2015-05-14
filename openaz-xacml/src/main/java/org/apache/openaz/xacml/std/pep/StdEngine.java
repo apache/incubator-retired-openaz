@@ -73,7 +73,7 @@ public class StdEngine implements PEPEngine {
             this.logger.error("FactoryException creating the PDPEngineFactory", ex);
             throw new PEPException("FactoryException creating the PDPEngineFactory", ex);
         }
-        assert (pdpEngineFactory != null);
+        assert pdpEngineFactory != null;
 
         PDPEngine pdpEngine = null;
         try {
@@ -82,7 +82,7 @@ public class StdEngine implements PEPEngine {
             this.logger.error("PDPException creating the PDPEngine", ex);
             throw new PEPException("PDPException creating the PDPEngine", ex);
         }
-        assert (pdpEngine != null);
+        assert pdpEngine != null;
 
         Response response = null;
         try {

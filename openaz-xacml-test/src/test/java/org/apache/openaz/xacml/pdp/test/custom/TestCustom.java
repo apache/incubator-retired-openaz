@@ -266,7 +266,7 @@ public class TestCustom extends TestBase {
                     break;
                 }
             }
-            if (added == false) {
+            if (!added) {
                 //
                 // New category - create it and add it in
                 //
@@ -361,7 +361,7 @@ public class TestCustom extends TestBase {
                     break;
                 }
             }
-            if (added == false) {
+            if (!added) {
                 //
                 // New category - create it and add it in
                 //

@@ -204,13 +204,13 @@ public class StdPDPStatus implements Serializable, PDPStatus {
     @Override
     @JsonIgnore
     public boolean isOk() {
-        if (this.policiesOK() == false) {
+        if (!this.policiesOK()) {
             return false;
         }
-        if (this.pipConfigOK() == false) {
+        if (!this.pipConfigOK()) {
             return false;
         }
-        return (this.status == Status.UP_TO_DATE);
+        return this.status == Status.UP_TO_DATE;
     }
 
     @Override

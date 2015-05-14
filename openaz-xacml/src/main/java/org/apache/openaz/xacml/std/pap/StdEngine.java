@@ -121,10 +121,10 @@ public class StdEngine extends StdPDPItemSetChangeNotifier implements PAPEngine 
         if (Files.notExists(this.repository)) {
             Files.createDirectory(repository);
         }
-        if (Files.isDirectory(this.repository) == false) {
+        if (!Files.isDirectory(this.repository)) {
             throw new PAPException("Repository is NOT a directory: " + this.repository.toAbsolutePath());
         }
-        if (Files.isWritable(this.repository) == false) {
+        if (!Files.isWritable(this.repository)) {
             throw new PAPException("Repository is NOT writable: " + this.repository.toAbsolutePath());
         }
         //
@@ -294,8 +294,6 @@ public class StdEngine extends StdPDPItemSetChangeNotifier implements PAPEngine 
         if (changesMade) {
             this.doSave();
         }
-
-        return;
     }
 
     @Override
@@ -526,7 +524,7 @@ public class StdEngine extends StdPDPItemSetChangeNotifier implements PAPEngine 
         //
         // Does this group exist?
         //
-        if (this.groups.contains(group) == false) {
+        if (!this.groups.contains(group)) {
             logger.error("This group doesn't exist.");
             throw new PAPException("The group '" + group.getId() + "' does not exist");
         }
@@ -540,14 +538,14 @@ public class StdEngine extends StdPDPItemSetChangeNotifier implements PAPEngine 
         //
         // Are there PDPs? If so, then we need a target group
         //
-        if (pdps.isEmpty() == false && newGroup == null) {
+        if (!pdps.isEmpty() && newGroup == null) {
             throw new NullPointerException(
                                            "Group targeted for deletion has PDPs, you must provide a new group for them.");
         }
         //
         // Move the PDPs
         //
-        if (pdps.isEmpty() == false) {
+        if (!pdps.isEmpty()) {
             if (!(newGroup instanceof StdPDPGroup)) {
                 throw new PAPException("Unexpected class for newGroup: "
                                        + newGroup.getClass().getCanonicalName());
@@ -603,7 +601,6 @@ public class StdEngine extends StdPDPItemSetChangeNotifier implements PAPEngine 
         //
         changed();
         this.doSave();
-        return;
     }
 
     @Override
@@ -646,7 +643,7 @@ public class StdEngine extends StdPDPItemSetChangeNotifier implements PAPEngine 
         if (group == null) {
             throw new PAPException("You must specify which group the PDP will belong to.");
         }
-        if (this.groups.contains(group) == false) {
+        if (!this.groups.contains(group)) {
             throw new PAPException("Unknown group, not in our list.");
         }
         for (PDP p : group.getPdps()) {
@@ -664,7 +661,6 @@ public class StdEngine extends StdPDPItemSetChangeNotifier implements PAPEngine 
                 return;
             }
         }
-        return;
     }
 
     @Override
@@ -690,7 +686,7 @@ public class StdEngine extends StdPDPItemSetChangeNotifier implements PAPEngine 
                     this.doSave();
                 } else {
                     logger.error("Failed to add to new group, putting back into original group.");
-                    if (((StdPDPGroup)currentGroup).removePDP(pdp) == false) {
+                    if (!((StdPDPGroup)currentGroup).removePDP(pdp)) {
                         logger.error("Failed to put PDP back into original group.");
                     }
                 }
@@ -913,11 +909,11 @@ public class StdEngine extends StdPDPItemSetChangeNotifier implements PAPEngine 
                 inList = true;
             }
         }
-        if (inList == false) {
+        if (!inList) {
             Set<String> grps = Sets.newHashSet(groups);
             grps.add(group.getId());
             String newGroupList = "";
-            ;
+            
             if (grps.size() == 1) {
                 newGroupList = grps.iterator().next();
             } else if (grps.size() > 1) {

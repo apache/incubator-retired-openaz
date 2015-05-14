@@ -101,7 +101,7 @@ public class XACMLPolicyAggregator extends SimpleCallback {
         //
         // Does the category exist?
         //
-        if (this.attributeMap.containsKey(attribute.getCategory()) == false) {
+        if (!this.attributeMap.containsKey(attribute.getCategory())) {
             if (logger.isDebugEnabled()) {
                 logger.debug("New category: " + attribute.getCategory());
             }
@@ -120,7 +120,7 @@ public class XACMLPolicyAggregator extends SimpleCallback {
             //
             // Does the datatype exist?
             //
-            if (map.containsKey(value.getDataTypeId()) == false) {
+            if (!map.containsKey(value.getDataTypeId())) {
                 if (logger.isDebugEnabled()) {
                     logger.debug("New Datatype: " + value.getDataTypeId());
                 }
@@ -132,7 +132,7 @@ public class XACMLPolicyAggregator extends SimpleCallback {
             //
             // Does the attribute exist?
             //
-            if (map.get(value.getDataTypeId()).containsKey(attribute.getAttributeId()) == false) {
+            if (!map.get(value.getDataTypeId()).containsKey(attribute.getAttributeId())) {
                 if (logger.isDebugEnabled()) {
                     logger.debug("New attribute: " + attribute.getAttributeId());
                 }
@@ -187,7 +187,7 @@ public class XACMLPolicyAggregator extends SimpleCallback {
         //
         // Does this obligation already exist?
         //
-        if (this.obligationMap.containsKey(obligation.getId()) == false) {
+        if (!this.obligationMap.containsKey(obligation.getId())) {
             //
             // Nope, add it in
             //
@@ -206,7 +206,7 @@ public class XACMLPolicyAggregator extends SimpleCallback {
         //
         // Does the obligation exist?
         //
-        if (this.obligationMap.get(obligation.getId()).get(expression.getFulfillOn()).contains(obligation) == false) {
+        if (!this.obligationMap.get(obligation.getId()).get(expression.getFulfillOn()).contains(obligation)) {
             //
             // Nope, add it in
             //
@@ -221,13 +221,13 @@ public class XACMLPolicyAggregator extends SimpleCallback {
         if (this.adviceMap == null) {
             this.adviceMap = new HashMap<Identifier, Map<EffectType, List<Advice>>>();
         }
-        if (this.adviceMap.containsKey(advice.getId()) == false) {
+        if (!this.adviceMap.containsKey(advice.getId())) {
             this.adviceMap.put(advice.getId(), new HashMap<EffectType, List<Advice>>());
         }
         if (this.adviceMap.get(advice.getId()).get(expression.getAppliesTo()) == null) {
             this.adviceMap.get(advice.getId()).put(expression.getAppliesTo(), new ArrayList<Advice>());
         }
-        if (this.adviceMap.get(advice.getId()).get(expression.getAppliesTo()).contains(advice) == false) {
+        if (!this.adviceMap.get(advice.getId()).get(expression.getAppliesTo()).contains(advice)) {
             this.adviceMap.get(advice.getId()).get(expression.getAppliesTo()).add(advice);
         }
 
@@ -240,7 +240,7 @@ public class XACMLPolicyAggregator extends SimpleCallback {
             this.variableDefinitionMap = new HashMap<PolicyType, List<VariableDefinitionType>>();
         }
 
-        if (this.variableDefinitionMap.containsKey(policy) == false) {
+        if (!this.variableDefinitionMap.containsKey(policy)) {
             this.variableDefinitionMap.put(policy, new ArrayList<VariableDefinitionType>());
         }
         this.variableDefinitionMap.get(policy).add(variable);

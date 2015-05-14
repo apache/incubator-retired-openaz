@@ -754,7 +754,7 @@ public class DOMResponse {
                     sb.append("<Attributes Category=\"" + category.getCategory().stringValue() + "\">");
 
                     for (Attribute attr : category.getAttributes()) {
-                        if (attr.getIncludeInResults() == false) {
+                        if (!attr.getIncludeInResults()) {
                             // skip this one - do not include in results
                             continue;
                         }

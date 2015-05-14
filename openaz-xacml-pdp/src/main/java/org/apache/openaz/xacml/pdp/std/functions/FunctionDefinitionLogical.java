@@ -88,7 +88,7 @@ public class FunctionDefinitionLogical extends FunctionDefinitionHomogeneousSimp
                         // return a decorated message
                         return ExpressionResult.newError(getFunctionStatus(argument.getStatus()));
                     }
-                    if (argument.getValue() == true) {
+                    if (argument.getValue()) {
                         return ER_TRUE;
                     }
                 }
@@ -116,7 +116,7 @@ public class FunctionDefinitionLogical extends FunctionDefinitionHomogeneousSimp
                     if (!argument.isOk()) {
                         return ExpressionResult.newError(getFunctionStatus(argument.getStatus()));
                     }
-                    if (argument.getValue() == false) {
+                    if (!argument.getValue()) {
                         return ER_FALSE;
                     }
                 }
@@ -233,7 +233,7 @@ public class FunctionDefinitionLogical extends FunctionDefinitionHomogeneousSimp
                 if (!argument.isOk()) {
                     return ExpressionResult.newError(getFunctionStatus(argument.getStatus()));
                 }
-                if (argument.getValue() == true) {
+                if (argument.getValue()) {
                     return ER_FALSE;
                 } else {
                     return ER_TRUE;

@@ -79,101 +79,98 @@ public class RequestFinder extends WrappingFinder {
     protected PIPResponse getAttributesInternal(PIPRequest pipRequest, PIPEngine exclude,
                                                 PIPFinder pipFinderRoot) throws PIPException {
         // long tStart = 0, tEnd = 0;
-        try {
-            /*
-             * First try the RequestEngine
-             */
-            PIPResponse pipResponse = null;
-            RequestEngine thisRequestEngine = this.getRequestEngine();
-            Status status = null;
-            if (thisRequestEngine != null && thisRequestEngine != exclude) {
-                // tStart = System.nanoTime();
-                pipResponse = thisRequestEngine.getAttributes(pipRequest, (pipFinderRoot == null
-                    ? this : pipFinderRoot));
-                // tEnd = System.nanoTime();
-                if (pipResponse.getStatus() == null || pipResponse.getStatus().isOk()) {
-                    /*
-                     * We know how the RequestEngine works. It does not return multiple results and all of the
-                     * results should match the request.
-                     */
-                    if (pipResponse.getAttributes().size() > 0) {
-                        return pipResponse;
-                    }
-                } else {
+        /*
+         * First try the RequestEngine
+         */
+        PIPResponse pipResponse = null;
+        RequestEngine thisRequestEngine = this.getRequestEngine();
+        Status status = null;
+        if (thisRequestEngine != null && thisRequestEngine != exclude) {
+            // tStart = System.nanoTime();
+            pipResponse = thisRequestEngine.getAttributes(pipRequest, (pipFinderRoot == null
+                ? this : pipFinderRoot));
+            // tEnd = System.nanoTime();
+            if (pipResponse.getStatus() == null || pipResponse.getStatus().isOk()) {
+                /*
+                 * We know how the RequestEngine works. It does not return multiple results and all of the
+                 * results should match the request.
+                 */
+                if (pipResponse.getAttributes().size() > 0) {
+                    return pipResponse;
+                }
+            } else {
+                status = pipResponse.getStatus();
+            }
+        }
+
+        /*
+         * Next try the EnvironmentEngine if no issuer has been specified
+         */
+        if (XACML3.ID_ATTRIBUTE_CATEGORY_ENVIRONMENT.equals(pipRequest.getCategory())
+            && (pipRequest.getIssuer() == null || pipRequest.getIssuer().length() == 0)) {
+            EnvironmentEngine thisEnvironmentEngine = this.getEnvironmentEngine();
+            pipResponse = thisEnvironmentEngine.getAttributes(pipRequest, this);
+            if (pipResponse.getStatus() == null || pipResponse.getStatus().isOk()) {
+                /*
+                 * We know how the EnvironmentEngine works. It does not return multiple results and all of
+                 * the results should match the request.
+                 */
+                if (pipResponse.getAttributes().size() > 0) {
+                    return pipResponse;
+                }
+            } else {
+                if (status == null) {
                     status = pipResponse.getStatus();
                 }
             }
+        }
 
-            /*
-             * Next try the EnvironmentEngine if no issuer has been specified
-             */
-            if (XACML3.ID_ATTRIBUTE_CATEGORY_ENVIRONMENT.equals(pipRequest.getCategory())
-                && (pipRequest.getIssuer() == null || pipRequest.getIssuer().length() == 0)) {
-                EnvironmentEngine thisEnvironmentEngine = this.getEnvironmentEngine();
-                pipResponse = thisEnvironmentEngine.getAttributes(pipRequest, this);
+        /*
+         * Try the cache
+         */
+        if (this.mapCache.containsKey(pipRequest)) {
+            return this.mapCache.get(pipRequest);
+        }
+
+        /*
+         * Delegate to the wrapped Finder
+         */
+        PIPFinder thisWrappedFinder = this.getWrappedFinder();
+        if (thisWrappedFinder != null) {
+            pipResponse = thisWrappedFinder.getAttributes(pipRequest, exclude, (pipFinderRoot == null
+                ? this : pipFinderRoot));
+            if (pipResponse != null) {
                 if (pipResponse.getStatus() == null || pipResponse.getStatus().isOk()) {
-                    /*
-                     * We know how the EnvironmentEngine works. It does not return multiple results and all of
-                     * the results should match the request.
-                     */
                     if (pipResponse.getAttributes().size() > 0) {
+                        /*
+                         * Cache all of the returned attributes
+                         */
+                        Map<PIPRequest, PIPResponse> mapResponses = StdPIPResponse
+                            .splitResponse(pipResponse);
+                        if (mapResponses != null && mapResponses.size() > 0) {
+                            for (PIPRequest pipRequestSplit : mapResponses.keySet()) {
+                                this.mapCache.put(pipRequestSplit, mapResponses.get(pipRequestSplit));
+                            }
+                        }
                         return pipResponse;
                     }
-                } else {
-                    if (status == null) {
-                        status = pipResponse.getStatus();
-                    }
+                } else if (status == null || status.isOk()) {
+                    status = pipResponse.getStatus();
                 }
             }
-
-            /*
-             * Try the cache
-             */
-            if (this.mapCache.containsKey(pipRequest)) {
-                return this.mapCache.get(pipRequest);
-            }
-
-            /*
-             * Delegate to the wrapped Finder
-             */
-            PIPFinder thisWrappedFinder = this.getWrappedFinder();
-            if (thisWrappedFinder != null) {
-                pipResponse = thisWrappedFinder.getAttributes(pipRequest, exclude, (pipFinderRoot == null
-                    ? this : pipFinderRoot));
-                if (pipResponse != null) {
-                    if (pipResponse.getStatus() == null || pipResponse.getStatus().isOk()) {
-                        if (pipResponse.getAttributes().size() > 0) {
-                            /*
-                             * Cache all of the returned attributes
-                             */
-                            Map<PIPRequest, PIPResponse> mapResponses = StdPIPResponse
-                                .splitResponse(pipResponse);
-                            if (mapResponses != null && mapResponses.size() > 0) {
-                                for (PIPRequest pipRequestSplit : mapResponses.keySet()) {
-                                    this.mapCache.put(pipRequestSplit, mapResponses.get(pipRequestSplit));
-                                }
-                            }
-                            return pipResponse;
-                        }
-                    } else if (status == null || status.isOk()) {
-                        status = pipResponse.getStatus();
-                    }
-                }
-            }
-
-            /*
-             * We did not get a valid, non-empty response back from either the Request or the wrapped
-             * PIPFinder. If there was an error using the RequestEngine, use that as the status of the
-             * response, otherwise return an empty response.
-             */
-            if (status != null && !status.isOk()) {
-                return new StdPIPResponse(status);
-            } else {
-                return StdPIPResponse.PIP_RESPONSE_EMPTY;
-            }
-        } finally {
-            // System.out.println("RequestFinder.getAttributesInternal() = " + (tEnd - tStart));
         }
+
+        /*
+         * We did not get a valid, non-empty response back from either the Request or the wrapped
+         * PIPFinder. If there was an error using the RequestEngine, use that as the status of the
+         * response, otherwise return an empty response.
+         */
+        if (status != null && !status.isOk()) {
+            return new StdPIPResponse(status);
+        } else {
+            return StdPIPResponse.PIP_RESPONSE_EMPTY;
+        }
+        // System.out.println("RequestFinder.getAttributesInternal() = " + (tEnd - tStart));
     }
 
     @Override

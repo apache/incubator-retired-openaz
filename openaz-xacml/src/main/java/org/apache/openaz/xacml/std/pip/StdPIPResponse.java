@@ -359,7 +359,7 @@ public class StdPIPResponse extends Wrapper<PIPResponse> implements PIPResponse 
             stringBuilder.append(this.getStatus().toString());
             needsComma = true;
         }
-        if (this.getAttributes().isEmpty() == false) {
+        if (!this.getAttributes().isEmpty()) {
             if (needsComma) {
                 stringBuilder.append(",");
             }
