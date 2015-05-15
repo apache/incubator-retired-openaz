@@ -103,7 +103,7 @@ public class VariableDefinitionType {
      *            {@link oasis.names.tc.xacml._3_0.core.schema.wd_17.AttributeValueType }{@code >}
      */
     public void setExpression(JAXBElement<?> value) {
-        this.expression = (value);
+        this.expression = value;
     }
 
     /**

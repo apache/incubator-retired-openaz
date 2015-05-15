@@ -188,7 +188,7 @@ public class DOMResponse {
                 if (is != null) {
                     is.close();
                 }
-            } catch (Exception idontcare) {
+            } catch (Exception idontcare) { //NOPMD
             }
         }
         return response;
@@ -336,7 +336,7 @@ public class DOMResponse {
                 if (os != null) {
                     os.close();
                 }
-            } catch (Exception idontcare) {
+            } catch (Exception idontcare) { //NOPMD 
             }
         }
         return outputString;
@@ -547,16 +547,14 @@ public class DOMResponse {
                     // if there is a status code, it must agree with the decision
                     // Permit/Deny/NotAllowed must all be OK
                     // Indeterminate must not be OK
-                    if ((statusCodeId.equals(StdStatusCode.STATUS_CODE_OK.getStatusCodeValue()) && !(result
-                        .getDecision() == Decision.DENY || result.getDecision() == Decision.PERMIT || result
-                        .getDecision() == Decision.NOTAPPLICABLE))
-                        || (!statusCodeId.equals(StdStatusCode.STATUS_CODE_OK.getStatusCodeValue()) && !(result
-                            .getDecision() == Decision.INDETERMINATE
-                                                                                                         || result
-                                                                                                             .getDecision() == Decision.INDETERMINATE_DENY
-                                                                                                         || result
-                                                                                                             .getDecision() == Decision.INDETERMINATE_DENYPERMIT || result
-                            .getDecision() == Decision.INDETERMINATE_PERMIT))) {
+                    if (statusCodeId.equals(StdStatusCode.STATUS_CODE_OK.getStatusCodeValue()) 
+                        && !(result.getDecision() == Decision.DENY || result.getDecision() == Decision.PERMIT 
+                            || result.getDecision() == Decision.NOTAPPLICABLE)
+                        || !statusCodeId.equals(StdStatusCode.STATUS_CODE_OK.getStatusCodeValue()) 
+                            && !(result.getDecision() == Decision.INDETERMINATE
+                                || result.getDecision() == Decision.INDETERMINATE_DENY
+                                || result.getDecision() == Decision.INDETERMINATE_DENYPERMIT 
+                                || result.getDecision() == Decision.INDETERMINATE_PERMIT)) {
                         throw new DOMStructureException("StatusCode '" + statusCodeId.stringValue()
                                                         + "' does not match Decision '"
                                                         + result.getDecision().toString());
@@ -898,9 +896,9 @@ public class DOMResponse {
                 System.out.println(fileXml.getAbsolutePath() + ":");
                 try {
                     DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
-                    assert (documentBuilder.isNamespaceAware());
+                    assert documentBuilder.isNamespaceAware();
                     Document documentResponse = documentBuilder.parse(fileXml);
-                    assert (documentResponse != null);
+                    assert documentResponse != null;
 
                     NodeList children = documentResponse.getChildNodes();
                     if (children == null || children.getLength() == 0) {

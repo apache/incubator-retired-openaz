@@ -146,9 +146,9 @@ public class StdStatusCode implements StatusCode {
         StatusCode statusCodeChildThis = this.getChild();
         StatusCode statusCodeChildObj = statusCodeObj.getChild();
         if (statusCodeChildThis == null) {
-            return (statusCodeChildObj == null);
+            return statusCodeChildObj == null;
         } else {
-            return (statusCodeChildThis.equals(statusCodeChildObj));
+            return statusCodeChildThis.equals(statusCodeChildObj);
         }
     }
 }

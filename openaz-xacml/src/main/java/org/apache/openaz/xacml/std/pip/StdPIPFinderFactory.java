@@ -48,9 +48,6 @@ public class StdPIPFinderFactory extends PIPFinderFactory {
     public StdPIPFinderFactory() {
     }
 
-    public StdPIPFinderFactory(Properties properties) {
-    }
-
     @Override
     public PIPFinder getFinder() throws PIPException {
         if (pipFinder == null) {

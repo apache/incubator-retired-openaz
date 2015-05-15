@@ -72,12 +72,6 @@ public abstract class PDPEngineFactory {
     }
 
     /**
-     * The constructor is protected to prevent instantiation of the class.
-     */
-    protected PDPEngineFactory(Properties properties) {
-    }
-
-    /**
      * Creates a new <code>PDPEngineFactory</code> instance by examining initialization resources from various
      * places to determine the class to instantiate and return.
      *

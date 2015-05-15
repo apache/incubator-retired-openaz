@@ -115,7 +115,7 @@ public class DOMStatus {
                         if (XACML3.ELEMENT_STATUSCODE.equals(childName)) {
                             result = DOMStatusCode.repair(child) || result;
                             sawStatusCode = true;
-                        } else if (XACML3.ELEMENT_STATUSMESSAGE.equals(childName)) {
+                        //} else if (XACML3.ELEMENT_STATUSMESSAGE.equals(childName)) {
                         } else if (XACML3.ELEMENT_STATUSDETAIL.equals(childName)) {
                             result = DOMStatusDetail.repair(child) || result;
                         } else {

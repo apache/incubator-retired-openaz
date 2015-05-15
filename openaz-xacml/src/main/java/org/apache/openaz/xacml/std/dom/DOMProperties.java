@@ -50,7 +50,7 @@ public class DOMProperties {
         if (result == null) {
             try {
                 result = XACMLProperties.getProperties().getProperty(propertyName);
-            } catch (Exception ex) {
+            } catch (Exception ex) { //NOPMD
 
             }
         }
@@ -63,7 +63,7 @@ public class DOMProperties {
             cachedProperty = getSourceProperty(propertyName);
             cachedProperties.put(propertyName, cachedProperty);
         }
-        return (cachedProperty instanceof String ? (String)cachedProperty : cachedProperty.toString());
+        return cachedProperty instanceof String ? (String)cachedProperty : cachedProperty.toString();
     }
 
     protected static Boolean getBooleanProperty(String propertyName) {
@@ -75,7 +75,7 @@ public class DOMProperties {
                 cachedProperties.put(propertyName, cachedProperty);
             }
         }
-        if (cachedProperty == null || (cachedProperty instanceof Boolean)) {
+        if (cachedProperty == null || cachedProperty instanceof Boolean) {
             return (Boolean)cachedProperty;
         } else {
             return null;
@@ -96,7 +96,7 @@ public class DOMProperties {
 
     public static boolean throwsExceptions() {
         Boolean booleanThrowsExceptions = getBooleanProperty(PROP_EXCEPTIONS);
-        return (booleanThrowsExceptions == null ? true : booleanThrowsExceptions.booleanValue());
+        return booleanThrowsExceptions == null ? true : booleanThrowsExceptions.booleanValue();
     }
 
     public static void setThrowsExceptions(boolean b) {

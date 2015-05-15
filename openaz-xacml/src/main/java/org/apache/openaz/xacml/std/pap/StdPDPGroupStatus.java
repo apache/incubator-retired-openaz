@@ -332,7 +332,7 @@ public class StdPDPGroupStatus implements PDPGroupStatus {
         if (!this.loadErrors.isEmpty()) {
             return false;
         }
-        return (this.status == Status.OK);
+        return this.status == Status.OK;
     }
 
     public void reset() {

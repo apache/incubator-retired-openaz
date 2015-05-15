@@ -318,8 +318,7 @@ public class JSONRequest {
      * @param stdMutableRequest
      * @throws JSONStructureException
      */
-    private static List<Attribute> parseAttribute(Identifier categoryID, ArrayList<?> attributes,
-                                                  StdMutableRequest stdMutableRequest)
+    private static List<Attribute> parseAttribute(Identifier categoryID, ArrayList<?> attributes)
         throws JSONStructureException {
         Iterator<?> iterAttributes = attributes.iterator();
 
@@ -331,7 +330,7 @@ public class JSONRequest {
                 throw new JSONStructureException("Expect Attribute content to be Map got "
                                                  + attributeMap.getClass());
             }
-            Attribute attribute = parseAttribute(categoryID, attributeMap, stdMutableRequest);
+            Attribute attribute = parseAttribute(categoryID, attributeMap);
             collectedAttributes.add(attribute);
         }
 
@@ -348,8 +347,7 @@ public class JSONRequest {
      * @return
      * @throws JSONStructureException
      */
-    private static Attribute parseAttribute(Identifier categoryID, Map<?, ?> attributeMap,
-                                            StdMutableRequest stdMutableRequest)
+    private static Attribute parseAttribute(Identifier categoryID, Map<?, ?> attributeMap)
         throws JSONStructureException {
 
         // TODO - ASSUME that the spec will remove the requirement that we MUST "handle" JavaScript special
@@ -392,7 +390,7 @@ public class JSONRequest {
         Object includeInResultObject = attributeMap.remove("IncludeInResult");
         Boolean includeInResult = makeBoolean(includeInResultObject, "IncludeInResult");
         if (includeInResult == null) {
-            includeInResult = new Boolean(false);
+            includeInResult = Boolean.FALSE;
         }
 
         //
@@ -466,15 +464,11 @@ public class JSONRequest {
                                 inferredDataTypeId = DataTypes.DT_STRING.getId();
                             }
 
-                        } else {
-                            if (inferredDataTypeId.equals(DataTypes.DT_INTEGER.getId())) {
-
-                                // special case - Double seen in Integer list means whole list is really
-                                // Double
-                                if (item instanceof Double) {
-                                    inferredDataTypeId = DataTypes.DT_DOUBLE.getId();
-                                }
-                            }
+                        } else if (inferredDataTypeId.equals(DataTypes.DT_INTEGER.getId())
+                            && item instanceof Double) {
+                            // special case - Double seen in Integer list means whole list is really
+                            // Double
+                            inferredDataTypeId = DataTypes.DT_DOUBLE.getId();
                         }
                     }
                     // we have inferred a data type for the whole array
@@ -526,10 +520,10 @@ public class JSONRequest {
                     } else {
                         Object convertedValue = dataType.convert(o);
                         attributeValue = new StdAttributeValue<Object>(dataTypeId, convertedValue);
-                        if (((convertedValue instanceof Integer || convertedValue instanceof Boolean || convertedValue instanceof Double) && o instanceof String)
-                            || (convertedValue instanceof Double && o instanceof Integer)
-                            || (convertedValue instanceof String && (o instanceof Integer
-                                                                     || o instanceof Boolean || o instanceof Double))) {
+                        if ((convertedValue instanceof Integer || convertedValue instanceof Boolean || convertedValue instanceof Double) && o instanceof String
+                            || convertedValue instanceof Double && o instanceof Integer
+                            || convertedValue instanceof String && (o instanceof Integer
+                                                                     || o instanceof Boolean || o instanceof Double)) {
                             // we converted a String to something else
                             logger.warn("Attribute Id '" + id.stringValue() + "' Value '" + incomingValue
                                         + "' in Array auto-converted from '" + o.getClass().getName()
@@ -554,10 +548,10 @@ public class JSONRequest {
                     Object convertedValue = dataType.convert(Value);
                     attributeValue = new StdAttributeValue<Object>(dataTypeId, convertedValue);
                     // some auto-conversions should be logged because they shouldn't be necessary
-                    if (((convertedValue instanceof BigInteger || convertedValue instanceof Boolean || convertedValue instanceof Double) && Value instanceof String)
-                        || (convertedValue instanceof Double && Value instanceof Integer)
-                        || (convertedValue instanceof String && (Value instanceof Integer
-                                                                 || Value instanceof Boolean || Value instanceof Double))) {
+                    if ((convertedValue instanceof BigInteger || convertedValue instanceof Boolean || convertedValue instanceof Double) && Value instanceof String
+                        || convertedValue instanceof Double && Value instanceof Integer
+                        || convertedValue instanceof String && (Value instanceof Integer
+                                                                 || Value instanceof Boolean || Value instanceof Double)) {
                         // we converted a String to something else
                         logger.warn("Attribute Id '" + id.stringValue() + "' Value '" + incomingValue
                                     + "' auto-converted from '" + Value.getClass().getName() + "' to type '"
@@ -666,13 +660,13 @@ public class JSONRequest {
         Object attributesMap = ((Map<?, ?>)categoryMap).remove("Attribute");
         if (attributesMap != null) {
             if (attributesMap instanceof ArrayList) {
-                attributeList = parseAttribute(categoryId, (ArrayList<?>)attributesMap, stdMutableRequest);
+                attributeList = parseAttribute(categoryId, (ArrayList<?>)attributesMap);
             } else if (attributesMap instanceof Map) {
                 // underlying code expects only collections of Attributes, so create a collection of one to
                 // pass this single value
                 ArrayList<Map<?, ?>> listForOne = new ArrayList<Map<?, ?>>();
                 listForOne.add((Map<?, ?>)attributesMap);
-                attributeList = parseAttribute(categoryId, listForOne, stdMutableRequest);
+                attributeList = parseAttribute(categoryId, listForOne);
             } else {
                 throw new JSONStructureException("Category '" + categoryName
                                                  + "' saw unexpected Attribute class "
@@ -815,7 +809,7 @@ public class JSONRequest {
                 if (is != null) {
                     is.close();
                 }
-            } catch (Exception idontcare) {
+            } catch (Exception idontcare) { //NOPMD
             }
         }
         return request;
@@ -1180,7 +1174,7 @@ public class JSONRequest {
                 if (os != null) {
                     os.close();
                 }
-            } catch (Exception idontcare) {
+            } catch (Exception idontcare) { //NOPMD
             }
         }
         return outputString;

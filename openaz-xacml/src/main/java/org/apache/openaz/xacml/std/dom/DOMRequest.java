@@ -86,7 +86,7 @@ public class DOMRequest {
                 if (is != null) {
                     is.close();
                 }
-            } catch (Exception idontcare) {
+            } catch (Exception idontcare) { //NOPMD
             }
         }
         return request;
@@ -115,7 +115,7 @@ public class DOMRequest {
                 if (fis != null) {
                     fis.close();
                 }
-            } catch (Exception idontcare) {
+            } catch (Exception idontcare) { //NOPMD
             }
         }
         return request;
@@ -364,17 +364,16 @@ public class DOMRequest {
                 System.out.println(fileXml.getAbsolutePath() + ":");
                 try {
                     DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
-                    assert (documentBuilder.isNamespaceAware());
+                    assert documentBuilder.isNamespaceAware();
                     Document documentRequest = documentBuilder.parse(fileXml);
-                    assert (documentRequest != null);
+                    assert documentRequest != null;
 
                     NodeList children = documentRequest.getChildNodes();
                     if (children == null || children.getLength() == 0) {
                         System.err.println("No Requests found in \"" + fileXml.getAbsolutePath() + "\"");
                         continue;
                     } else if (children.getLength() > 1) {
-                        System.err
-                            .println("Multiple Requests found in \"" + fileXml.getAbsolutePath() + "\"");
+                        System.err.println("Multiple Requests found in \"" + fileXml.getAbsolutePath() + "\"");
                     }
                     Node nodeRequest = children.item(0);
                     if (!nodeRequest.getLocalName().equals(XACML3.ELEMENT_REQUEST)) {

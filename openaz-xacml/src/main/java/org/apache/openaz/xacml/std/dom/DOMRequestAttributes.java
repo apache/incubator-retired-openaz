@@ -144,7 +144,7 @@ public class DOMRequestAttributes {
                         String childName = child.getLocalName();
                         if (XACML3.ELEMENT_ATTRIBUTE.equals(childName)) {
                             result = DOMAttribute.repair(child) || result;
-                        } else if (XACML3.ELEMENT_CONTENT.equals(childName)) {
+                        //} else if (XACML3.ELEMENT_CONTENT.equals(childName)) {
                         } else {
                             logger.warn("Unexpected element " + child.getNodeName());
                             elementRequestAttributes.removeChild(child);

@@ -51,12 +51,6 @@ public abstract class PEPEngineFactory {
     }
 
     /**
-     * The constructor is protected to prevent instantiation of the class.
-     */
-    protected PEPEngineFactory(Properties properties) {
-    }
-
-    /**
      * Creates a new <code>PEPEngineFactory</code> instance by examining initialization resources from various
      * places to determine the class to instantiate and return.
      *

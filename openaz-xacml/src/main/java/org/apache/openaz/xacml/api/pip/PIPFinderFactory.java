@@ -52,13 +52,6 @@ public abstract class PIPFinderFactory {
     }
 
     /**
-     * Protected constructor so this class cannot be instantiated.
-     */
-    protected PIPFinderFactory(Properties properties) {
-        this.properties = properties;
-    }
-
-    /**
      * Gets an instance of the configured <code>PIPFinderFactory</code> class.
      *
      * @return the configured <code>PIPFinderFactory</code>

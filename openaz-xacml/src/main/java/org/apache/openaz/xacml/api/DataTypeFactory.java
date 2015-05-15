@@ -56,12 +56,6 @@ public abstract class DataTypeFactory {
     }
 
     /**
-     * Protected constructor so this class cannot be instantiated.
-     */
-    protected DataTypeFactory(Properties properties) {
-    }
-
-    /**
      * Maps the given {@link Identifier} representing a XACML data type id to a {@link DataType} object
      * implementing that data type.
      *

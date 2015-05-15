@@ -123,7 +123,7 @@ public class DOMUtil {
      * @return true if the <code>Node</code> is non-null and is an XML element
      */
     public static boolean isElement(Node node) {
-        return (node != null && node.getNodeType() == Node.ELEMENT_NODE);
+        return node != null && node.getNodeType() == Node.ELEMENT_NODE;
     }
 
     /**

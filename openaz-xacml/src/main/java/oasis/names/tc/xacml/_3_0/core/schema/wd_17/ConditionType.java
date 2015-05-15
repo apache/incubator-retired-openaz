@@ -91,7 +91,7 @@ public class ConditionType {
      *            {@link javax.xml.bind.JAXBElement }{@code <}{@link AttributeValueType }{@code >}
      */
     public void setExpression(JAXBElement<?> value) {
-        this.expression = (value);
+        this.expression = value;
     }
 
 }

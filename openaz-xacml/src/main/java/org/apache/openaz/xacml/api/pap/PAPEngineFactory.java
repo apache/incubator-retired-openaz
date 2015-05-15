@@ -47,12 +47,6 @@ public abstract class PAPEngineFactory {
     }
 
     /**
-     * The constructor is protected to prevent instantiation of the class.
-     */
-    protected PAPEngineFactory(Properties properties) {
-    }
-
-    /**
      * Creates a new <code>PAPEngineFactory</code> instance by examining initialization resources from various
      * places to determine the class to instantiate and return.
      *

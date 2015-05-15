@@ -394,7 +394,7 @@ public class JSONResponse {
      */
     private static void parseObligationsOrAdvice(Object listObject, StdMutableResult stdMutableResult,
                                                  boolean isObligation) throws JSONStructureException {
-        String oaTypeName = (isObligation) ? "Obligations" : "AssociatedAdvice";
+        String oaTypeName = isObligation ? "Obligations" : "AssociatedAdvice";
 
         if (!(listObject instanceof List)) {
             throw new JSONStructureException(oaTypeName + " must be list");
@@ -531,7 +531,7 @@ public class JSONResponse {
      */
     private static void parseIdReferences(Object policyIdReferenceObject, StdMutableResult stdMutableResult,
                                           boolean isSet) throws JSONStructureException {
-        String idTypeName = (isSet) ? "PolicySetIdReference" : "PolicyIdReference";
+        String idTypeName = isSet ? "PolicySetIdReference" : "PolicyIdReference";
 
         if (!(policyIdReferenceObject instanceof List)) {
             throw new JSONStructureException(idTypeName + " must be array");
@@ -1133,7 +1133,7 @@ public class JSONResponse {
                 if (os != null) {
                     os.close();
                 }
-            } catch (Exception idontcare) {
+            } catch (Exception idontcare) { //NOPMD
             }
         }
         return outputString;
@@ -1216,16 +1216,14 @@ public class JSONResponse {
                 // if there is a status code, it must agree with the decision
                 // Permit/Deny/NotAllowed must all be OK
                 // Indeterminate must not be OK
-                if ((statusCodeId.equals(StdStatusCode.STATUS_CODE_OK.getStatusCodeValue()) && !(result
-                    .getDecision() == Decision.DENY || result.getDecision() == Decision.PERMIT || result
-                    .getDecision() == Decision.NOTAPPLICABLE))
-                    || (!statusCodeId.equals(StdStatusCode.STATUS_CODE_OK.getStatusCodeValue()) && !(result
-                        .getDecision() == Decision.INDETERMINATE
-                                                                                                     || result
-                                                                                                         .getDecision() == Decision.INDETERMINATE_DENY
-                                                                                                     || result
-                                                                                                         .getDecision() == Decision.INDETERMINATE_DENYPERMIT || result
-                        .getDecision() == Decision.INDETERMINATE_PERMIT))) {
+                if (statusCodeId.equals(StdStatusCode.STATUS_CODE_OK.getStatusCodeValue()) 
+                    && !(result.getDecision() == Decision.DENY || result.getDecision() == Decision.PERMIT 
+                        || result.getDecision() == Decision.NOTAPPLICABLE)
+                    || !statusCodeId.equals(StdStatusCode.STATUS_CODE_OK.getStatusCodeValue()) 
+                        && !(result.getDecision() == Decision.INDETERMINATE
+                            || result.getDecision() == Decision.INDETERMINATE_DENY
+                            || result.getDecision() == Decision.INDETERMINATE_DENYPERMIT 
+                            || result.getDecision() == Decision.INDETERMINATE_PERMIT)) {
                     throw new JSONStructureException("StatusCode '" + statusCodeId.stringValue()
                                                      + "' does not match Decision '"
                                                      + result.getDecision().toString());
@@ -1655,8 +1653,8 @@ public class JSONResponse {
             //
             //
 
-            if ((result.getPolicyIdentifiers() != null && result.getPolicyIdentifiers().size() > 0)
-                || (result.getPolicySetIdentifiers() != null && result.getPolicySetIdentifiers().size() > 0)) {
+            if (result.getPolicyIdentifiers() != null && result.getPolicyIdentifiers().size() > 0
+                || result.getPolicySetIdentifiers() != null && result.getPolicySetIdentifiers().size() > 0) {
 
                 Map<String, Object> policyIdentifierCollectionList = new HashMap<String, Object>();
                 // handle PolicyIds separately from PolicySetIds
