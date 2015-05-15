@@ -40,14 +40,14 @@ import org.apache.openaz.xacml.pdp.eval.EvaluationContextFactory;
 import org.apache.openaz.xacml.util.FactoryException;
 
 /**
- * ATTPDPEngineFactory extends {@link org.apache.openaz.xacml.api.pdp.PDPEngineFactory} by implementing the
- * abstract <code>newEngine</code> method to create a {@link ATTPDPEngine} instance and initialize it with
+ * OpenAZPDPEngineFactory extends {@link org.apache.openaz.xacml.api.pdp.PDPEngineFactory} by implementing the
+ * abstract <code>newEngine</code> method to create a {@link OpenAZPDPEngine} instance and initialize it with
  * policies and PIP instances based on configuration information provided to the factory.
  */
-public class ATTPDPEngineFactory extends PDPEngineFactory {
+public class OpenAZPDPEngineFactory extends PDPEngineFactory {
     private Log logger = LogFactory.getLog(this.getClass());
 
-    public ATTPDPEngineFactory() {
+    public OpenAZPDPEngineFactory() {
     }
 
     @Override
@@ -57,7 +57,7 @@ public class ATTPDPEngineFactory extends PDPEngineFactory {
             this.logger.error("Null EvaluationContextFactory");
             throw new FactoryException("Null EvaluationContextFactory");
         }
-        return new ATTPDPEngine(evaluationContextFactory, this.getDefaultBehavior(), this.getScopeResolver());
+        return new OpenAZPDPEngine(evaluationContextFactory, this.getDefaultBehavior(), this.getScopeResolver());
     }
 
     @Override
@@ -67,6 +67,6 @@ public class ATTPDPEngineFactory extends PDPEngineFactory {
             this.logger.error("Null EvaluationContextFactory");
             throw new FactoryException("Null EvaluationContextFactory");
         }
-        return new ATTPDPEngine(evaluationContextFactory, this.getDefaultBehavior(), this.getScopeResolver());
+        return new OpenAZPDPEngine(evaluationContextFactory, this.getDefaultBehavior(), this.getScopeResolver());
     }
 }

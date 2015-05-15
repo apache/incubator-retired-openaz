@@ -44,7 +44,7 @@ import org.apache.openaz.xacml.util.XACMLProperties;
  */
 public abstract class PDPEngineFactory {
     private static final String	FACTORYID = XACMLProperties.PROP_PDPENGINEFACTORY;
-    private static final String	DEFAULT_FACTORY_CLASSNAME = "org.apache.openaz.xacml.pdp.ATTPDPEngineFactory";
+    private static final String	DEFAULT_FACTORY_CLASSNAME = "org.apache.openaz.xacml.pdp.OpenAZPDPEngineFactory";
 
     private Decision defaultBehavior = Decision.INDETERMINATE;
     private ScopeResolver scopeResolver;

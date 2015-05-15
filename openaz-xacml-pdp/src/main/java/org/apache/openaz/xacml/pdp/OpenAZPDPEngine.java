@@ -70,7 +70,7 @@ import org.apache.openaz.xacml.util.FactoryException;
  * ATTPDPEngine implements the {@link org.apache.openaz.xacml.api.pdp.PDPEngine} interface using the XACML 3.0
  * specification.
  */
-public class ATTPDPEngine implements PDPEngine, Traceable {
+public class OpenAZPDPEngine implements PDPEngine, Traceable {
     private static final Status STATUS_ADVICE_NA = new StdStatus(StdStatusCode.STATUS_CODE_PROCESSING_ERROR,
                                                                  "Advice not allowed in combined decision");
     private static final Status STATUS_OBLIGATIONS_NA = new StdStatus(
@@ -119,12 +119,12 @@ public class ATTPDPEngine implements PDPEngine, Traceable {
         return this.traceEngine;
     }
 
-    public ATTPDPEngine(EvaluationContextFactory evaluationContextFactoryIn, ScopeResolver scopeResolverIn) {
+    public OpenAZPDPEngine(EvaluationContextFactory evaluationContextFactoryIn, ScopeResolver scopeResolverIn) {
         this.evaluationContextFactory = evaluationContextFactoryIn;
         this.scopeResolver = scopeResolverIn;
     }
 
-    public ATTPDPEngine(EvaluationContextFactory evaluationContextFactoryIn, Decision defaultDecisionIn,
+    public OpenAZPDPEngine(EvaluationContextFactory evaluationContextFactoryIn, Decision defaultDecisionIn,
                         ScopeResolver scopeResolverIn) {
         this(evaluationContextFactoryIn, scopeResolverIn);
         this.defaultDecision = defaultDecisionIn;
