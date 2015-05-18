@@ -43,7 +43,7 @@ public interface IDateTime<T> {
      * @param iso8601Duration the <code>ISO8601Duration</code> to add
      * @return a new <code>T</code> with the given <code>ISO8601Duration</code> added
      */
-    public T add(ISO8601Duration iso8601Duration);
+    T add(ISO8601Duration iso8601Duration);
 
     /**
      * Subtracts the given <code>ISO8601Duration</code> to the <code>IDateTime</code> object.
@@ -51,5 +51,5 @@ public interface IDateTime<T> {
      * @param iso8601Duration the <code>ISO8601Duration</code> to subtract
      * @return a new <code>T</code> with the given <code>ISO8601Duration</code> subtracted
      */
-    public T sub(ISO8601Duration iso8601Duration);
+    T sub(ISO8601Duration iso8601Duration);
 }

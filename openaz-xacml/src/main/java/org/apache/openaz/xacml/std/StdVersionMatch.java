@@ -123,9 +123,9 @@ public class StdVersionMatch implements VersionMatch {
                 iVersion++;
             } else {
                 int versionValue = versionComponents[iVersion];
-                if (((cmp == 0) && (versionValue == matchValue))
-                    || ((cmp < 0) && (versionValue <= matchValue))
-                    || ((cmp > 0) && (versionValue >= matchValue))) {
+                if (cmp == 0 && versionValue == matchValue
+                    || cmp < 0 && versionValue <= matchValue
+                    || cmp > 0 && versionValue >= matchValue) {
                     iVersion++;
                 } else {
                     return false;
@@ -133,7 +133,7 @@ public class StdVersionMatch implements VersionMatch {
             }
             iMatch++;
         }
-        return (iVersion == versionComponents.length && iMatch == matchComponents.length);
+        return iVersion == versionComponents.length && iMatch == matchComponents.length;
     }
 
     @Override
@@ -146,6 +146,15 @@ public class StdVersionMatch implements VersionMatch {
             VersionMatch objVersionMatch = (VersionMatch)obj;
             return ObjUtil.equalsAllowNull(this.getVersionMatch(), objVersionMatch.getVersionMatch());
         }
+    }
+    
+    @Override
+    public int hashCode() {
+        int result = 17;
+        if (getVersionMatch() != null) {
+            result = 31 * result + getVersionMatch().hashCode();
+        }
+        return result;
     }
 
     @Override

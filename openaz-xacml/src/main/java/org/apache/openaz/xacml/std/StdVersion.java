@@ -133,6 +133,15 @@ public class StdVersion implements Version {
             }
         }
     }
+    
+    @Override
+    public int hashCode() {
+        int result = 17;
+        if (getVersionDigits() != null) {
+            result = 31 * result + Arrays.hashCode(getVersionDigits());
+        }
+        return result;
+    }
 
     @Override
     public int compareTo(Version o) {

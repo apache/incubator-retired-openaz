@@ -104,11 +104,11 @@ public class IPv4Address extends IPAddress {
         }
         int slashPos = ipv4AddressString.indexOf('/');
         int colonPos = ipv4AddressString.indexOf(':');
-        if ((colonPos >= 0) && (colonPos < slashPos)) {
+        if (colonPos >= 0 && colonPos < slashPos) {
             throw new ParseException("Invalid IPv4 address string \"" + ipv4AddressString
                                      + "\": out of order components", colonPos);
         }
-        int endAddress = (slashPos >= 0 ? slashPos : (colonPos >= 0 ? colonPos : ipv4AddressString.length()));
+        int endAddress = slashPos >= 0 ? slashPos : colonPos >= 0 ? colonPos : ipv4AddressString.length();
         if (endAddress < 7) {
             throw new ParseException("Invalid IPv4 address string \"" + ipv4AddressString
                                      + "\": address too short", 0);
@@ -232,6 +232,21 @@ public class IPv4Address extends IPAddress {
 
             return true;
         }
+    }
+    
+    @Override
+    public int hashCode() {
+        int result = 17;
+        if (addressBytes != null) {
+            result = 31 * result + Arrays.hashCode(addressBytes);
+        }
+        if (addressMask != null) {
+            result = 31 * result + Arrays.hashCode(addressMask);
+        }
+        if (portRange != null) {
+            result = 31 * result + portRange.hashCode();
+        }
+        return result;
     }
 
 }

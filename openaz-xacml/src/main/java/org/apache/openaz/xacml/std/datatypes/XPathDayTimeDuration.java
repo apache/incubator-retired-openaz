@@ -112,11 +112,11 @@ public class XPathDayTimeDuration extends ISO8601Duration implements Comparable<
     public XPathDayTimeDuration getCanonicalDuration() {
         double fractionalSecondsLeft = Math.abs(this.getFractionalSeconds());
         int days = (int)(fractionalSecondsLeft / (24 * 60 * 60));
-        fractionalSecondsLeft -= (days * 24 * 60 * 60);
+        fractionalSecondsLeft -= days * 24 * 60 * 60;
         int hours = (int)(fractionalSecondsLeft / (60 * 60));
-        fractionalSecondsLeft -= (hours * 60 * 60);
+        fractionalSecondsLeft -= hours * 60 * 60;
         int minutes = (int)(fractionalSecondsLeft / 60);
-        fractionalSecondsLeft -= (minutes * 60);
+        fractionalSecondsLeft -= minutes * 60;
         return new XPathDayTimeDuration(this.getDurationSign(), days, hours, minutes, fractionalSecondsLeft);
     }
 

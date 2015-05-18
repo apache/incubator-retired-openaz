@@ -72,7 +72,7 @@ public class XPathYearMonthDuration extends ISO8601Duration implements Comparabl
         } else if (obj == this) {
             return true;
         } else {
-            return (this.getMonthsDuration() == ((XPathYearMonthDuration)obj).getMonthsDuration());
+            return this.getMonthsDuration() == ((XPathYearMonthDuration)obj).getMonthsDuration();
         }
     }
 

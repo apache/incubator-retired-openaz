@@ -118,10 +118,8 @@ public class RFC822Name implements Comparable<RFC822Name>, SemanticString {
         /*
          * Try and match the local part
          */
-        if (patternParts.length == 2) {
-            if (!patternParts[0].equals(this.getLocalName())) {
-                return false;
-            }
+        if (patternParts.length == 2 && !patternParts[0].equals(this.getLocalName())) {
+            return false;
         }
 
         String thisDomainName = this.getCanonicalDomainName();
@@ -161,7 +159,7 @@ public class RFC822Name implements Comparable<RFC822Name>, SemanticString {
 
     @Override
     public int hashCode() {
-        return (this.getLocalName().hashCode() + this.getCanonicalDomainName().hashCode());
+        return this.getLocalName().hashCode() + this.getCanonicalDomainName().hashCode();
     }
 
     @Override
@@ -171,7 +169,7 @@ public class RFC822Name implements Comparable<RFC822Name>, SemanticString {
         } else if (obj == this) {
             return true;
         } else {
-            return (this.compareTo((RFC822Name)obj) == 0);
+            return this.compareTo((RFC822Name)obj) == 0;
         }
     }
 

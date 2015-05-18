@@ -86,7 +86,7 @@ public class IPv6Address extends IPAddress {
                 return false;
             }
         }
-        return (addressBytes[5] == (short)0xFFFF);
+        return addressBytes[5] == (short)0xFFFF;
     }
 
     /**
@@ -236,7 +236,7 @@ public class IPv6Address extends IPAddress {
                     throw new ParseException("Invalid Ipv4Address in IPv6Address \"" + addressFields[i]
                                              + "\"", i);
                 }
-                assert (ipv4Octets.length == 4);
+                assert ipv4Octets.length == 4;
 
                 addressShorts[nAddressShorts++] = (short)(ipv4Octets[0] * 256 + ipv4Octets[1]);
                 addressShorts[nAddressShorts++] = (short)(ipv4Octets[2] * 256 + ipv4Octets[3]);
@@ -471,6 +471,21 @@ public class IPv6Address extends IPAddress {
 
             return true;
         }
+    }
+    
+    @Override
+    public int hashCode() {
+        int result = 17;
+        if (addressBytes != null) {
+            result = 31 * result + Arrays.hashCode(addressBytes);
+        }
+        if (prefix != null) {
+            result = 31 * result + prefix.hashCode();
+        }
+        if (portRange != null) {
+            result = 31 * result + portRange.hashCode();
+        }
+        return result;
     }
 
 }

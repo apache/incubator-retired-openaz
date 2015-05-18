@@ -205,7 +205,7 @@ public class RFC2396DomainName implements SemanticString {
                 }
             }
             if (this.getPortRange() == null) {
-                return (rfc2396DomainName.getPortRange() == null);
+                return rfc2396DomainName.getPortRange() == null;
             } else {
                 return this.getPortRange().equals(rfc2396DomainName.getPortRange());
             }

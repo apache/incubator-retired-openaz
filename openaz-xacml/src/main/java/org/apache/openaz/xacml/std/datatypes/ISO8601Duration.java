@@ -147,7 +147,7 @@ public class ISO8601Duration implements SemanticString {
         this.hours = hoursIn;
         this.minutes = minutesIn;
         this.seconds = (int)Math.floor(secondsIn);
-        this.millis = (int)Math.floor(((secondsIn * 1000) - (this.seconds * 1000)));
+        this.millis = (int)Math.floor(secondsIn * 1000 - this.seconds * 1000);
     }
 
     /**
@@ -250,7 +250,7 @@ public class ISO8601Duration implements SemanticString {
                     fractionalSeconds = durationChunk.getChunkValue();
                     break;
                 default:
-                    assert (false);
+                    assert false;
                     break;
                 }
 
@@ -297,7 +297,7 @@ public class ISO8601Duration implements SemanticString {
     }
 
     public double getFractionalSecs() {
-        double dSec = (this.seconds) + (((double)this.millis) / 1000);
+        double dSec = this.seconds + (double)this.millis / 1000;
         return dSec;
     }
 
@@ -315,14 +315,14 @@ public class ISO8601Duration implements SemanticString {
             return true;
         } else {
             ISO8601Duration iso8601Duration = (ISO8601Duration)obj;
-            return (this.getDurationSign() == iso8601Duration.getDurationSign()
+            return this.getDurationSign() == iso8601Duration.getDurationSign()
                     && this.getYears() == iso8601Duration.getYears()
                     && this.getMonths() == iso8601Duration.getMonths()
                     && this.getDays() == iso8601Duration.getDays()
                     && this.getHours() == iso8601Duration.getHours()
                     && this.getMinutes() == iso8601Duration.getMinutes()
-                    && this.getSeconds() == iso8601Duration.getSeconds() && this.getMillis() == iso8601Duration
-                .getMillis());
+                    && this.getSeconds() == iso8601Duration.getSeconds() 
+                    && this.getMillis() == iso8601Duration.getMillis();
 
         }
     }

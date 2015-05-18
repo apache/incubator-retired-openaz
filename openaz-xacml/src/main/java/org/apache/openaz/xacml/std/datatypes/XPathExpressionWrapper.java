@@ -142,6 +142,15 @@ public class XPathExpressionWrapper implements XPathExpression {
         XPathExpressionWrapper other = (XPathExpressionWrapper)o;
         return this.path.equals(other.path);
     }
+    
+    @Override
+    public int hashCode() {
+        int result = 17;
+        if (path != null) {
+            result = 31 * result + path.hashCode();
+        }
+        return result;
+    }
 
     @Override
     public String toString() {

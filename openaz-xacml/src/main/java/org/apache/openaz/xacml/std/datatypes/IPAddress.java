@@ -70,4 +70,7 @@ public abstract class IPAddress implements SemanticString {
 
     @Override
     public abstract boolean equals(Object obj);
+    
+    @Override
+    public abstract int hashCode();
 }

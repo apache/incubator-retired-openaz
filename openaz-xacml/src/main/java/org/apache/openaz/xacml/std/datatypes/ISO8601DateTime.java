@@ -297,8 +297,8 @@ public class ISO8601DateTime implements IDateTime<ISO8601DateTime>, Comparable<I
             return false;
         } else {
             ISO8601DateTime iso8601DateTime = (ISO8601DateTime)obj;
-            return (this.getHasTimeZone() == iso8601DateTime.getHasTimeZone())
-                   && (this.calendar.equals(iso8601DateTime.calendar));
+            return this.getHasTimeZone() == iso8601DateTime.getHasTimeZone()
+                   && this.calendar.equals(iso8601DateTime.calendar);
         }
     }
 
@@ -407,14 +407,12 @@ public class ISO8601DateTime implements IDateTime<ISO8601DateTime>, Comparable<I
          * Now determine if we have a milliseconds portion
          */
         int ms = 0;
-        if (startPos < strDateTime.length()) {
-            if (strDateTime.charAt(startPos) == '.') {
-                startPos++;
-                if ((ms = ParseUtils.getThreeDigitValue(strDateTime, startPos)) < 0 || ms >= 1000) {
-                    throw new ParseException("Invalid milliseconds", startPos);
-                }
-                startPos += 3;
+        if (startPos < strDateTime.length() && strDateTime.charAt(startPos) == '.') {
+            startPos++;
+            if ((ms = ParseUtils.getThreeDigitValue(strDateTime, startPos)) < 0 || ms >= 1000) {
+                throw new ParseException("Invalid milliseconds", startPos);
             }
+            startPos += 3;
         }
 
         /*

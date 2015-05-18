@@ -91,7 +91,7 @@ public final class PortRange implements SemanticString {
         if (port < 0) {
             return false;
         } else {
-            return ((port >= this.getPortMin()) && (this.getPortMax() < 0 || port <= this.getPortMax()));
+            return port >= this.getPortMin() && (this.getPortMax() < 0 || port <= this.getPortMax());
         }
     }
 
@@ -130,8 +130,8 @@ public final class PortRange implements SemanticString {
             return true;
         } else {
             PortRange portRange = (PortRange)obj;
-            return (this.getPortMax() == portRange.getPortMax() && this.getPortMin() == portRange
-                .getPortMin());
+            return this.getPortMax() == portRange.getPortMax() 
+                && this.getPortMin() == portRange.getPortMin();
         }
     }
 

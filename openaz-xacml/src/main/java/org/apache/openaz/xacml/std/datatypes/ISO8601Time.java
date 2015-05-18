@@ -246,14 +246,12 @@ public class ISO8601Time implements IDateTime<ISO8601Time>, Comparable<ISO8601Ti
          * Now determine if we have a milliseconds portion
          */
         int ms = 0;
-        if (startPos < timeString.length()) {
-            if (timeString.charAt(startPos) == '.') {
-                startPos++;
-                if ((ms = ParseUtils.getThreeDigitValue(timeString, startPos)) < 0 || ms >= 1000) {
-                    throw new ParseException("Invalid milliseconds", startPos);
-                }
-                startPos += 3;
+        if (startPos < timeString.length() && timeString.charAt(startPos) == '.') {
+            startPos++;
+            if ((ms = ParseUtils.getThreeDigitValue(timeString, startPos)) < 0 || ms >= 1000) {
+                throw new ParseException("Invalid milliseconds", startPos);
             }
+            startPos += 3;
         }
 
         /*
