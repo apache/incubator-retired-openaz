@@ -49,7 +49,7 @@ public class DataTypeString extends DataTypeBase<String> {
 
     @Override
     public String convert(Object source) throws DataTypeException {
-        if (source == null || (source instanceof String)) {
+        if (source == null || source instanceof String) {
             return (String)source;
         } else {
             return this.convertToString(source);

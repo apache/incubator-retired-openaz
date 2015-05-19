@@ -220,7 +220,7 @@ public class RequestParser {
         boolean added = false;
         for (StdMutableRequestAttributes a : attributes) {
             if (a.getCategory().equals(mutableAttribute.getCategory())
-                && (id != null ? a.getXmlId().equals(id) : (a.getXmlId() == null ? true : false))) {
+                && id != null ? a.getXmlId().equals(id) : a.getXmlId() == null ? true : false) {
                 //
                 // Category exists, add in the attribute values
                 //

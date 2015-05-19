@@ -49,7 +49,7 @@ public class DataTypeHexBinary extends DataTypeSemanticStringBase<HexBinary> {
 
     @Override
     public HexBinary convert(Object source) throws DataTypeException {
-        if (source == null || (source instanceof HexBinary)) {
+        if (source == null || source instanceof HexBinary) {
             return (HexBinary)source;
         } else if (source instanceof byte[]) {
             return new HexBinary((byte[])source);

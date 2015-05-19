@@ -51,7 +51,7 @@ public class DataTypeInteger extends DataTypeBase<BigInteger> {
 
     @Override
     public BigInteger convert(Object source) throws DataTypeException {
-        if (source == null || (source instanceof BigInteger)) {
+        if (source == null || source instanceof BigInteger) {
             return (BigInteger)source;
         } else if (source instanceof Integer) {
             return new BigInteger(source.toString());

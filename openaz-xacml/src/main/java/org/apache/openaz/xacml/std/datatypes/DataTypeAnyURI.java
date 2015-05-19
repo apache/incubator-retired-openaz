@@ -56,7 +56,7 @@ public class DataTypeAnyURI extends DataTypeBase<URI> {
 
     @Override
     public URI convert(Object source) throws DataTypeException {
-        if (source == null || (source instanceof URI)) {
+        if (source == null || source instanceof URI) {
             return (URI)source;
         } else if (source instanceof Identifier) {
             return ((Identifier)source).getUri();

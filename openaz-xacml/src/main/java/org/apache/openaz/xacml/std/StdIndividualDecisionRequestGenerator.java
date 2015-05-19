@@ -117,8 +117,8 @@ public class StdIndividualDecisionRequestGenerator {
                  */
                 Iterator<Attribute> iterAttributesMultipleContentSelector = requestAttributes
                     .getAttributes(XACML3.ID_MULTIPLE_CONTENT_SELECTOR);
-                assert (iterAttributesMultipleContentSelector != null && iterAttributesMultipleContentSelector
-                    .hasNext());
+                assert iterAttributesMultipleContentSelector != null && iterAttributesMultipleContentSelector
+                    .hasNext();
                 Attribute attributeMultipleContentSelector = iterAttributesMultipleContentSelector.next();
                 if (iterAttributesMultipleContentSelector.hasNext()) {
                     this.individualDecisionRequests
@@ -367,7 +367,7 @@ public class StdIndividualDecisionRequestGenerator {
                 if (attributeValueScopeString != null) {
                     scopeQualifier = ScopeQualifier.getScopeQualifier(attributeValueScopeString.getValue());
                 }
-            } catch (Exception ex) {
+            } catch (Exception ex) { //NOPMD
 
             }
         }
@@ -385,7 +385,7 @@ public class StdIndividualDecisionRequestGenerator {
      * @param request
      */
     protected void processScopes(Request request) {
-        assert (request.getStatus() == null || request.getStatus().isOk());
+        assert request.getStatus() == null || request.getStatus().isOk();
 
         /*
          * If there is no scope resolver, then just move on to the content selectors
@@ -406,7 +406,7 @@ public class StdIndividualDecisionRequestGenerator {
             return;
         }
         RequestAttributes requestAttributesResource = iterRequestAttributesResource.next();
-        assert (!iterRequestAttributesResource.hasNext());
+        assert !iterRequestAttributesResource.hasNext();
 
         /*
          * Get the requested scope
@@ -477,7 +477,7 @@ public class StdIndividualDecisionRequestGenerator {
             this.logger.warn("No scopes expanded.  Using original resource ids");
             iterAttributesResourceId = requestAttributesResource
                 .getAttributes(XACML3.ID_RESOURCE_RESOURCE_ID);
-            assert (iterAttributesResourceId != null);
+            assert iterAttributesResourceId != null;
             while (iterAttributesResourceId.hasNext()) {
                 requestAttributesBase.add(iterAttributesResourceId.next());
             }
@@ -506,7 +506,7 @@ public class StdIndividualDecisionRequestGenerator {
             this.processScopes(requestInProgress);
         } else {
             List<RequestAttributes> listCategoryAttributes = mapCategories.get(identifiers[pos]);
-            assert (listCategoryAttributes != null && listCategoryAttributes.size() > 0);
+            assert listCategoryAttributes != null && listCategoryAttributes.size() > 0;
             if (listCategoryAttributes.size() == 1) {
                 requestInProgress.add(listCategoryAttributes.get(0));
                 this.explodeOnCategory(identifiers, pos + 1, requestInProgress, mapCategories);
@@ -637,7 +637,7 @@ public class StdIndividualDecisionRequestGenerator {
             while (iterRequestReferences.hasNext()) {
                 Request requestFromReferences = this.processMultiRequest(request,
                                                                          iterRequestReferences.next());
-                assert (requestFromReferences != null);
+                assert requestFromReferences != null;
                 if (requestFromReferences.getStatus() == null || requestFromReferences.getStatus().isOk()) {
                     this.processRepeatedCategories(requestFromReferences);
                 } else {

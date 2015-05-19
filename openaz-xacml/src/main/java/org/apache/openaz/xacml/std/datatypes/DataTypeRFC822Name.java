@@ -52,7 +52,7 @@ public class DataTypeRFC822Name extends DataTypeSemanticStringBase<RFC822Name> {
 
     @Override
     public RFC822Name convert(Object source) throws DataTypeException {
-        if (source == null || (source instanceof RFC822Name)) {
+        if (source == null || source instanceof RFC822Name) {
             return (RFC822Name)source;
         } else {
             String stringValue = this.convertToString(source);

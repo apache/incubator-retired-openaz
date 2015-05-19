@@ -54,7 +54,7 @@ public class DataTypeX500Name extends DataTypeBase<X500Principal> {
 
     @Override
     public X500Principal convert(Object source) throws DataTypeException {
-        if (source == null || (source instanceof X500Principal)) {
+        if (source == null || source instanceof X500Principal) {
             return (X500Principal)source;
         } else {
             String stringValue = this.convertToString(source);

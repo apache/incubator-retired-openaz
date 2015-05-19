@@ -53,7 +53,7 @@ public class StdRequestDefaults implements RequestDefaults {
     public StdRequestDefaults() {
         try {
             this.xpathVersion = new URI(XACML.XPATHVERSION_2_0);
-        } catch (Exception ex) {
+        } catch (Exception ex) { //NOPMD
 
         }
     }

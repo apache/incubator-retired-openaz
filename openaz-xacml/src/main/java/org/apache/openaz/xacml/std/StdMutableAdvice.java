@@ -180,8 +180,8 @@ public class StdMutableAdvice implements Advice {
             return false;
         } else {
             Advice adviceObj = (Advice)obj;
-            return (ObjUtil.equalsAllowNull(this.getId(), adviceObj.getId()) && ListUtil
-                .equalsAllowNulls(this.getAttributeAssignments(), adviceObj.getAttributeAssignments()));
+            return ObjUtil.equalsAllowNull(this.getId(), adviceObj.getId()) && ListUtil
+                .equalsAllowNulls(this.getAttributeAssignments(), adviceObj.getAttributeAssignments());
         }
     }
 

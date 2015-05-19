@@ -51,7 +51,7 @@ public class DataTypeYearMonthDuration extends DataTypeSemanticStringBase<XPathY
 
     @Override
     public XPathYearMonthDuration convert(Object source) throws DataTypeException {
-        if (source == null || (source instanceof XPathYearMonthDuration)) {
+        if (source == null || source instanceof XPathYearMonthDuration) {
             return (XPathYearMonthDuration)source;
         } else {
             String stringValue = this.convertToString(source);

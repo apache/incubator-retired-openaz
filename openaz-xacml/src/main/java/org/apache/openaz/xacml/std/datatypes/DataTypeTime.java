@@ -54,7 +54,7 @@ public class DataTypeTime extends DataTypeSemanticStringBase<ISO8601Time> {
 
     @Override
     public ISO8601Time convert(Object source) throws DataTypeException {
-        if (source == null || (source instanceof ISO8601Time)) {
+        if (source == null || source instanceof ISO8601Time) {
             return (ISO8601Time)source;
         } else if (source instanceof Date) {
             return ISO8601Time.fromDate((Date)source);

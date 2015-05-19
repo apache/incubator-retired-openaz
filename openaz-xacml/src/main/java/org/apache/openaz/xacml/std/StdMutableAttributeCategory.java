@@ -159,7 +159,7 @@ public class StdMutableAttributeCategory implements AttributeCategory {
     @Override
     public boolean hasAttributes(Identifier attributeId) {
         List<Attribute> listAttributes = this.attributesById.get(attributeId);
-        return (listAttributes != null && listAttributes.size() > 0);
+        return listAttributes != null && listAttributes.size() > 0;
     }
 
     @Override

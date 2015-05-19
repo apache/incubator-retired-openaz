@@ -49,7 +49,7 @@ public class DataTypeBase64Binary extends DataTypeBase<Base64Binary> {
 
     @Override
     public Base64Binary convert(Object source) throws DataTypeException {
-        if (source == null || (source instanceof Base64Binary)) {
+        if (source == null || source instanceof Base64Binary) {
             return (Base64Binary)source;
         } else if (source instanceof byte[]) {
             return new Base64Binary((byte[])source);

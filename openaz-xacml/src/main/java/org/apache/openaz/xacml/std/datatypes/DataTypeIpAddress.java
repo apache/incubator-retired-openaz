@@ -52,7 +52,7 @@ public class DataTypeIpAddress extends DataTypeSemanticStringBase<IPAddress> {
 
     @Override
     public IPAddress convert(Object source) throws DataTypeException {
-        if (source == null || (source instanceof IPAddress)) {
+        if (source == null || source instanceof IPAddress) {
             return (IPAddress)source;
         } else {
             String stringValue = this.convertToString(source);

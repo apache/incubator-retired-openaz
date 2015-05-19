@@ -52,7 +52,7 @@ public class DataTypeXPathExpression extends DataTypeBase<XPathExpressionWrapper
 
     @Override
     public XPathExpressionWrapper convert(Object source) throws DataTypeException {
-        if (source == null || (source instanceof XPathExpressionWrapper)) {
+        if (source == null || source instanceof XPathExpressionWrapper) {
             return (XPathExpressionWrapper)source;
         } else if (source instanceof XPathExpression) {
             return new XPathExpressionWrapper((XPathExpression)source);

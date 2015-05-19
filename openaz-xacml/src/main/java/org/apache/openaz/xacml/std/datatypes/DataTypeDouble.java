@@ -49,7 +49,7 @@ public class DataTypeDouble extends DataTypeBase<Double> {
 
     @Override
     public Double convert(Object source) throws DataTypeException {
-        if (source == null || (source instanceof Double)) {
+        if (source == null || source instanceof Double) {
             return (Double)source;
         } else {
             String stringValue = this.convertToString(source);

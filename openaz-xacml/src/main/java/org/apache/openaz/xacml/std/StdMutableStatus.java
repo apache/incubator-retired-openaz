@@ -162,7 +162,7 @@ public class StdMutableStatus implements Status {
     @Override
     public boolean isOk() {
         StatusCode thisStatusCode = this.getStatusCode();
-        return (thisStatusCode == null || thisStatusCode.equals(StdStatusCode.STATUS_CODE_OK));
+        return thisStatusCode == null || thisStatusCode.equals(StdStatusCode.STATUS_CODE_OK);
     }
 
     @Override

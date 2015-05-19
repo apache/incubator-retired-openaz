@@ -51,7 +51,7 @@ public class DataTypeDayTimeDuration extends DataTypeSemanticStringBase<XPathDay
 
     @Override
     public XPathDayTimeDuration convert(Object source) throws DataTypeException {
-        if (source == null || (source instanceof XPathDayTimeDuration)) {
+        if (source == null || source instanceof XPathDayTimeDuration) {
             return (XPathDayTimeDuration)source;
         } else {
             String stringValue = this.convertToString(source);

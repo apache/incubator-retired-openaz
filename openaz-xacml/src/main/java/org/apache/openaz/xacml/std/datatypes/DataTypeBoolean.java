@@ -58,7 +58,7 @@ public class DataTypeBoolean extends DataTypeBase<Boolean> {
 
     @Override
     public Boolean convert(Object source) throws DataTypeException {
-        if (source == null || (source instanceof Boolean)) {
+        if (source == null || source instanceof Boolean) {
             return (Boolean)source;
         } else if (source instanceof Integer) {
             int iValue = ((Integer)source).intValue();

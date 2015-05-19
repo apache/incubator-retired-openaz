@@ -53,7 +53,7 @@ public class DataTypeDateTime extends DataTypeSemanticStringBase<ISO8601DateTime
 
     @Override
     public ISO8601DateTime convert(Object source) throws DataTypeException {
-        if (source == null || (source instanceof ISO8601DateTime)) {
+        if (source == null || source instanceof ISO8601DateTime) {
             return (ISO8601DateTime)source;
         } else if (source instanceof Calendar) {
             return ISO8601DateTime.fromCalendar((Calendar)source);

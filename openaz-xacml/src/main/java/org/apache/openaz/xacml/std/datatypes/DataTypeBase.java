@@ -110,12 +110,12 @@ public abstract class DataTypeBase<T> implements DataType<T> {
          * If the given Object is a DOM Node, get the XPathCategory from it and use it to create the
          * StdAttributeValue.
          */
-        if (source != null && (source instanceof Node)) {
+        if (source != null && source instanceof Node) {
             Identifier xpathCategory = null;
             try {
                 xpathCategory = DOMUtil.getIdentifierAttribute((Node)source, XACML3.ATTRIBUTE_XPATHCATEGORY,
                                                                false);
-            } catch (Exception ex) {
+            } catch (Exception ex) { //NOPMD
                 // TODO:
             }
             return new StdAttributeValue<T>(this.getId(), this.convert(source), xpathCategory);

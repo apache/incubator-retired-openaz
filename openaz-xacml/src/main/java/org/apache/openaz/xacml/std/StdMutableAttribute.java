@@ -241,7 +241,7 @@ public class StdMutableAttribute implements Attribute {
                     if (attributeValueTest.getDataTypeId().equals(dataType.getId())) {
                         try {
                             attributeValue = dataType.convertAttributeValue(attributeValueTest);
-                        } catch (DataTypeException ex) {
+                        } catch (DataTypeException ex) { //NOPMD
                             // TODO: Should log this somewhere. It should never happen unless
                             // the implementation of the provided dataType is broken.
                         }
@@ -254,7 +254,7 @@ public class StdMutableAttribute implements Attribute {
 
             @Override
             public boolean hasNext() {
-                return (this.attributeValueNextMatch != null);
+                return this.attributeValueNextMatch != null;
             }
 
             @Override

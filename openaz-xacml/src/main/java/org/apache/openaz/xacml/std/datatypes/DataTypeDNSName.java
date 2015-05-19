@@ -51,7 +51,7 @@ public class DataTypeDNSName extends DataTypeSemanticStringBase<RFC2396DomainNam
 
     @Override
     public RFC2396DomainName convert(Object source) throws DataTypeException {
-        if (source == null || (source instanceof RFC2396DomainName)) {
+        if (source == null || source instanceof RFC2396DomainName) {
             return (RFC2396DomainName)source;
         } else {
             String stringValue = this.convertToString(source);

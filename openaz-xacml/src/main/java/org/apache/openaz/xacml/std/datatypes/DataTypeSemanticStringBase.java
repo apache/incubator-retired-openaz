@@ -42,7 +42,7 @@ public abstract class DataTypeSemanticStringBase<T extends org.apache.openaz.xac
 
     @Override
     public String toStringValue(T source) throws DataTypeException {
-        return (source == null ? null : source.stringValue());
+        return source == null ? null : source.stringValue();
     }
 
 }
