@@ -155,6 +155,17 @@ public class StdRequestAttributes extends StdAttributeCategory implements Reques
                    && ObjUtil.equalsAllowNull(this.getXmlId(), objRequestAttributes.getXmlId());
         }
     }
+    
+    public int hashCode() {
+        int result = 17;
+        if (getContentRoot() != null) {
+            result = 31 * result + getContentRoot().hashCode();
+        }
+        if (getXmlId() != null) {
+            result = 31 * result + getXmlId().hashCode();
+        }
+        return result;
+    }
 
     @Override
     public String toString() {

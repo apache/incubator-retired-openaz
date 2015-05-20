@@ -67,6 +67,14 @@ public class StdRequestAttributesReference implements RequestAttributesReference
                                            objRequestAttributesReference.getReferenceId());
         }
     }
+    
+    public int hashCode() {
+        int result = 17;
+        if (getReferenceId() != null) {
+            result = 31 * result + getReferenceId().hashCode();
+        }
+        return result;
+    }
 
     @Override
     public String toString() {

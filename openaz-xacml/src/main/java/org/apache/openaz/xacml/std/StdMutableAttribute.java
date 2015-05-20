@@ -318,6 +318,25 @@ public class StdMutableAttribute implements Attribute {
                    && ListUtil.equalsAllowNulls(this.getValues(), objAttribute.getValues());
         }
     }
+    
+    @Override
+    public int hashCode() {
+        int result = 17;
+        if (getCategory() != null) {
+            result = 31 * result + getCategory().hashCode();
+        }
+        if (getAttributeId() != null) {
+            result = 31 * result + getAttributeId().hashCode();
+        }
+        result = 31 * result + Boolean.valueOf(getIncludeInResults()).hashCode();
+        if (getIssuer() != null) {
+            result = 31 * result + getIssuer().hashCode();
+        }
+        if (getValues() != null) {
+            result = 31 * result + getValues().hashCode();
+        }
+        return result;
+    }
 
     @Override
     public String toString() {

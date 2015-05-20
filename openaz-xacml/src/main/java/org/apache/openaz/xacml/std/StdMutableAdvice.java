@@ -91,12 +91,7 @@ public class StdMutableAdvice implements Advice {
     }
 
     /**
-<<<<<<< HEAD:openaz-xacml/src/main/java/org/apache/openaz/xacml/std/StdMutableAdvice.java
      * Creates a copy of the given {@link org.apache.openaz.xacml.api.Advice} as a new <code>StdMutableAdvice</code>.
-=======
-     * Creates a copy of the given {@link org.apache.openaz.xacml.api.Advice} as a new
-     * <code>StdMutableAdvice</code>.
->>>>>>> fbf04a9381a2cdc18cbbe04bdc63b86b9772f14b:openaz-xacml/src/main/java/com/att/research/xacml/std/StdMutableAdvice.java
      *
      * @param advice the <code>Advice</code> to copy
      * @return a new <code>StdMutableAdvice</code> that is a copy of the given <code>Advice</code>
@@ -111,12 +106,7 @@ public class StdMutableAdvice implements Advice {
     }
 
     /**
-<<<<<<< HEAD:openaz-xacml/src/main/java/org/apache/openaz/xacml/std/StdMutableAdvice.java
      * Sets the {@link org.apache.openaz.xacml.api.Identifier} representing the XACML AdviceId of the Advice represented by this <code>StdMutableAdvice</code>.
-=======
-     * Sets the {@link org.apache.openaz.xacml.api.Identifier} representing the XACML AdviceId of the Advice
-     * represented by this <code>StdMutableAdvice</code>.
->>>>>>> fbf04a9381a2cdc18cbbe04bdc63b86b9772f14b:openaz-xacml/src/main/java/com/att/research/xacml/std/StdMutableAdvice.java
      *
      * @param identifier the <code>Identifier</code> representing the XACML AdviceId of the Advice represented
      *            by this <code>StdMutableAdvice</code>.
@@ -183,6 +173,18 @@ public class StdMutableAdvice implements Advice {
             return ObjUtil.equalsAllowNull(this.getId(), adviceObj.getId()) && ListUtil
                 .equalsAllowNulls(this.getAttributeAssignments(), adviceObj.getAttributeAssignments());
         }
+    }
+    
+    @Override
+    public int hashCode() {
+        int result = 17;
+        if (getId() != null) {
+            result = 31 * result + getId().hashCode();
+        }
+        if (getAttributeAssignments() != null) {
+            result = 31 * result + getAttributeAssignments().hashCode();
+        }
+        return result;
     }
 
     @Override

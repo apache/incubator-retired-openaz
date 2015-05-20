@@ -174,6 +174,18 @@ public class StdMutableAttributeCategory implements AttributeCategory {
                    && ListUtil.equalsAllowNulls(this.getAttributes(), objAttributeCategory.getAttributes());
         }
     }
+    
+    @Override
+    public int hashCode() {
+        int result = 17;
+        if (getCategory() != null) {
+            result = 31 * result + getCategory().hashCode();
+        }
+        if (getAttributes() != null) {
+            result = 31 * result + getAttributes().hashCode();
+        }
+        return result;
+    }
 
     @Override
     public String toString() {

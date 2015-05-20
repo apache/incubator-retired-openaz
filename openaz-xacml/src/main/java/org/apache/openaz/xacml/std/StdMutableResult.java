@@ -87,12 +87,7 @@ public class StdMutableResult implements Result {
     }
 
     /**
-<<<<<<< HEAD:openaz-xacml/src/main/java/org/apache/openaz/xacml/std/StdMutableResult.java
      * Creates a new <code>StdMutableResult</code> with the given {@link org.apache.openaz.xacml.api.Decision} and {@link org.apache.openaz.xacml.api.Status}.
-=======
-     * Creates a new <code>StdMutableResult</code> with the given {@link org.apache.openaz.xacml.api.Decision}
-     * and {@link org.apache.openaz.xacml.api.Status}.
->>>>>>> fbf04a9381a2cdc18cbbe04bdc63b86b9772f14b:openaz-xacml/src/main/java/com/att/research/xacml/std/StdMutableResult.java
      *
      * @param decisionIn the <code>Decision</code> for the new <code>StdMutableResult</code>
      * @param statusIn the <code>Status</code> for the new <code>StdMutableResult</code>
@@ -104,13 +99,8 @@ public class StdMutableResult implements Result {
     }
 
     /**
-<<<<<<< HEAD:openaz-xacml/src/main/java/org/apache/openaz/xacml/std/StdMutableResult.java
      * Creates a new <code>StdMutableResult</code> with a {@link org.apache.openaz.xacml.api.Decision} of <code>INDETERMINATE</code> and
      * the given {@link org.apache.openaz.xacml.api.Status}.
-=======
-     * Creates a new <code>StdMutableResult</code> with a {@link org.apache.openaz.xacml.api.Decision} of
-     * <code>INDETERMINATE</code> and the given {@link org.apache.openaz.xacml.api.Status}.
->>>>>>> fbf04a9381a2cdc18cbbe04bdc63b86b9772f14b:openaz-xacml/src/main/java/com/att/research/xacml/std/StdMutableResult.java
      *
      * @param statusIn the <code>Status</code> for the new <code>StdMutableResult</code>
      */
@@ -119,13 +109,8 @@ public class StdMutableResult implements Result {
     }
 
     /**
-<<<<<<< HEAD:openaz-xacml/src/main/java/org/apache/openaz/xacml/std/StdMutableResult.java
      * Creates a new <code>StdMutableResult</code> with the given {@link org.apache.openaz.xacml.api.Decision} and a {@link org.apache.openaz.xacml.api.Status}
      * of OK.
-=======
-     * Creates a new <code>StdMutableResult</code> with the given {@link org.apache.openaz.xacml.api.Decision}
-     * and a {@link org.apache.openaz.xacml.api.Status} of OK.
->>>>>>> fbf04a9381a2cdc18cbbe04bdc63b86b9772f14b:openaz-xacml/src/main/java/com/att/research/xacml/std/StdMutableResult.java
      *
      * @param decisionIn the <code>Decision</code> for the new <code>StdMutableResult</code>
      */
@@ -208,12 +193,7 @@ public class StdMutableResult implements Result {
     }
 
     /**
-<<<<<<< HEAD:openaz-xacml/src/main/java/org/apache/openaz/xacml/std/StdMutableResult.java
      * Adds a copy of the given <code>Collection</code> of {@link org.apache.openaz.xacml.api.Obligation}s to this <code>StdMutableResult</code>.
-=======
-     * Adds a copy of the given <code>Collection</code> of {@link org.apache.openaz.xacml.api.Obligation}s to
-     * this <code>StdMutableResult</code>.
->>>>>>> fbf04a9381a2cdc18cbbe04bdc63b86b9772f14b:openaz-xacml/src/main/java/com/att/research/xacml/std/StdMutableResult.java
      *
      * @param obligationsIn the <code>Collection</code> of <code>Obligation</code>s to add
      */
@@ -443,6 +423,33 @@ public class StdMutableResult implements Result {
                    && ListUtil.equalsAllowNulls(this.getPolicySetIdentifiers(),
                                                 objResult.getPolicySetIdentifiers());
         }
+    }
+    
+    @Override
+    public int hashCode() {
+        int result = 17;
+        if (getDecision() != null) {
+            result = 31 * result + getDecision().hashCode();
+        }
+        if (getStatus() != null) {
+            result = 31 * result + getStatus().hashCode();
+        }
+        if (getObligations() != null) {
+            result = 31 * result + getObligations().hashCode();
+        }
+        if (getAssociatedAdvice() != null) {
+            result = 31 * result + getAssociatedAdvice().hashCode();
+        }
+        if (getAttributes() != null) {
+            result = 31 * result + getAttributes().hashCode();
+        }
+        if (getPolicyIdentifiers() != null) {
+            result = 31 * result + getPolicyIdentifiers().hashCode();
+        }
+        if (getPolicySetIdentifiers() != null) {
+            result = 31 * result + getPolicySetIdentifiers().hashCode();
+        }
+        return result;
     }
 
     @Override

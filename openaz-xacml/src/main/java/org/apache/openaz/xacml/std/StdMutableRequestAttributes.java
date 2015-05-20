@@ -173,6 +173,18 @@ public class StdMutableRequestAttributes extends StdMutableAttributeCategory imp
                    && ObjUtil.equalsAllowNull(this.getXmlId(), objRequestAttributes.getXmlId());
         }
     }
+    
+    @Override
+    public int hashCode() {
+        int result = 17;
+        if (getContentRoot() != null) {
+            result = 31 * result + getContentRoot().hashCode();
+        }
+        if (getXmlId() != null) {
+            result = 31 * result + getXmlId().hashCode();
+        }
+        return result;
+    }
 
     @Override
     public String toString() {

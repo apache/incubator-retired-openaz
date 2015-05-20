@@ -70,13 +70,8 @@ public class StdMutableResponse implements Response {
     }
 
     /**
-<<<<<<< HEAD:openaz-xacml/src/main/java/org/apache/openaz/xacml/std/StdMutableResponse.java
      * Creates a new <code>StdMutableResponse</code> with a copy of the {@link org.apache.openaz.xacml.api.Result}s in
      * the given <code>Collection</code>>
-=======
-     * Creates a new <code>StdMutableResponse</code> with a copy of the
-     * {@link org.apache.openaz.xacml.api.Result}s in the given <code>Collection</code>>
->>>>>>> fbf04a9381a2cdc18cbbe04bdc63b86b9772f14b:openaz-xacml/src/main/java/com/att/research/xacml/std/StdMutableResponse.java
      *
      * @param listResults the <code>Collection</code> of <code>Result</code>s for the new
      *            <code>StdMutableResponse</code>
@@ -138,6 +133,15 @@ public class StdMutableResponse implements Response {
             Response objResponse = (Response)obj;
             return ListUtil.equalsAllowNulls(this.getResults(), objResponse.getResults());
         }
+    }
+    
+    @Override
+    public int hashCode() {
+        int result = 17;
+        if (getResults() != null) {
+            result = 31 * result + getResults().hashCode();
+        }
+        return result;
     }
 
     @Override

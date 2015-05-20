@@ -155,6 +155,24 @@ public class StdMutableAttributeAssignment implements AttributeAssignment {
                    && ObjUtil.equalsAllowNull(this.getIssuer(), objAttributeAssignment.getIssuer());
         }
     }
+    
+    @Override
+    public int hashCode() {
+        int result = 17;
+        if (getCategory() != null) {
+            result = 31 * result + getCategory().hashCode();
+        }
+        if (getAttributeId() != null) {
+            result = 31 * result + getAttributeId().hashCode();
+        }
+        if (getAttributeValue() != null) {
+            result = 31 * result + getAttributeValue().hashCode();
+        }
+        if (getIssuer() != null) {
+            result = 31 * result + getIssuer().hashCode();
+        }
+        return result;
+    }
 
     @Override
     public String toString() {

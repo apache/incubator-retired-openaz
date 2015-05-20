@@ -267,6 +267,26 @@ public class StdMutableMissingAttributeDetail implements MissingAttributeDetail 
                                                 objMissingAttributeDetail.getAttributeValues());
         }
     }
+    
+    public int hashCode() {
+        int result = 17;
+        if (getCategory() != null) {
+            result = 31 * result + getCategory().hashCode();
+        }
+        if (getAttributeId() != null) {
+            result = 31 * result + getAttributeId().hashCode();
+        }
+        if (getDataTypeId() != null) {
+            result = 31 * result + getDataTypeId().hashCode();
+        }
+        if (getIssuer() != null) {
+            result = 31 * result + getIssuer().hashCode();
+        }
+        if (getAttributeValues() != null) {
+            result = 31 * result + getAttributeValues().hashCode();
+        }
+        return result;
+    }
 
     @Override
     public String toString() {

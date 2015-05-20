@@ -87,6 +87,18 @@ public class StdIdReference implements IdReference {
                    && ObjUtil.equalsAllowNull(this.getVersion(), objIdReference.getVersion());
         }
     }
+    
+    @Override
+    public int hashCode() {
+        int result = 17;
+        if (getId() != null) {
+            result = 31 * result + getId().hashCode();
+        }
+        if (getVersion() != null) {
+            result = 31 * result + getVersion().hashCode();
+        }
+        return result;
+    }
 
     @Override
     public String toString() {

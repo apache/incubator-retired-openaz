@@ -111,7 +111,6 @@ public class StdMutableRequest implements Request {
     }
 
     /**
-<<<<<<< HEAD:openaz-xacml/src/main/java/org/apache/openaz/xacml/std/StdMutableRequest.java
      * Creates a new <code>StdMutableRequest</code> with a default {@link org.apache.openaz.xacml.api.Status} and the given parameters.  The default <code>Status</code>
      * represents a XACML OK Status.
      *
@@ -120,21 +119,6 @@ public class StdMutableRequest implements Request {
      * @param combinedDecisionIn a boolean indicating whether multiple Decision Request Results should be combined into a single Result
      * @param listRequestAttributes a <code>Collection</code> of {@link org.apache.openaz.xacml.api.RequestAttributes} defining the parameters of the Request
      * @param listRequestReferences a <code>Collection</code> of {@link org.apache.openaz.xacml.api.RequestReference}s for multiple decision requests
-=======
-     * Creates a new <code>StdMutableRequest</code> with a default {@link org.apache.openaz.xacml.api.Status}
-     * and the given parameters. The default <code>Status</code> represents a XACML OK Status.
-     *
-     * @param requestDefaultsIn the {@link org.apache.openaz.xacml.api.RequestDefaults} representing the XACML
-     *            RequestDefaults
-     * @param returnPolicyIdListIn a boolean indicating whether XACML PolicyId and PolicySetIds should be
-     *            returned with the Results
-     * @param combinedDecisionIn a boolean indicating whether multiple Decision Request Results should be
-     *            combined into a single Result
-     * @param listRequestAttributes a <code>Collection</code> of
-     *            {@link org.apache.openaz.xacml.api.RequestAttributes} defining the parameters of the Request
-     * @param listRequestReferences a <code>Collection</code> of
-     *            {@link org.apache.openaz.xacml.api.RequestReference}s for multiple decision requests
->>>>>>> fbf04a9381a2cdc18cbbe04bdc63b86b9772f14b:openaz-xacml/src/main/java/com/att/research/xacml/std/StdMutableRequest.java
      */
     public StdMutableRequest(RequestDefaults requestDefaultsIn, boolean returnPolicyIdListIn,
                              boolean combinedDecisionIn, Collection<RequestAttributes> listRequestAttributes,
@@ -144,12 +128,7 @@ public class StdMutableRequest implements Request {
     }
 
     /**
-<<<<<<< HEAD:openaz-xacml/src/main/java/org/apache/openaz/xacml/std/StdMutableRequest.java
      * Creates a new <code>StdMutableRequest</code> that is a copy of the given {@link org.apache.openaz.xacml.api.Request}.
-=======
-     * Creates a new <code>StdMutableRequest</code> that is a copy of the given
-     * {@link org.apache.openaz.xacml.api.Request}.
->>>>>>> fbf04a9381a2cdc18cbbe04bdc63b86b9772f14b:openaz-xacml/src/main/java/com/att/research/xacml/std/StdMutableRequest.java
      *
      * @param request the <code>Request</code> to copy
      */
@@ -166,13 +145,8 @@ public class StdMutableRequest implements Request {
     }
 
     /**
-<<<<<<< HEAD:openaz-xacml/src/main/java/org/apache/openaz/xacml/std/StdMutableRequest.java
      * Creates a new <code>StdMutableRequest</code> with the given {@link org.apache.openaz.xacml.api.Status} representing its validity and
      * defaults for all other attributes.
-=======
-     * Creates a new <code>StdMutableRequest</code> with the given {@link org.apache.openaz.xacml.api.Status}
-     * representing its validity and defaults for all other attributes.
->>>>>>> fbf04a9381a2cdc18cbbe04bdc63b86b9772f14b:openaz-xacml/src/main/java/com/att/research/xacml/std/StdMutableRequest.java
      *
      * @param statusIn the <code>Status</code> for the new <code>StdMutableRequest</code>
      */
@@ -242,12 +216,7 @@ public class StdMutableRequest implements Request {
     }
 
     /**
-<<<<<<< HEAD:openaz-xacml/src/main/java/org/apache/openaz/xacml/std/StdMutableRequest.java
      * Adds a {@link org.apache.openaz.xacml.api.RequestAttributes} to the <code>RequestAttributes</code> in this <code>StdMutableRequest</code>>
-=======
-     * Adds a {@link org.apache.openaz.xacml.api.RequestAttributes} to the <code>RequestAttributes</code> in
-     * this <code>StdMutableRequest</code>>
->>>>>>> fbf04a9381a2cdc18cbbe04bdc63b86b9772f14b:openaz-xacml/src/main/java/com/att/research/xacml/std/StdMutableRequest.java
      *
      * @param requestAttributesNew the <code>RequestAttributes</code> to add to this
      *            <code>StdMutableRequest</code>
@@ -300,12 +269,7 @@ public class StdMutableRequest implements Request {
     }
 
     /**
-<<<<<<< HEAD:openaz-xacml/src/main/java/org/apache/openaz/xacml/std/StdMutableRequest.java
      * Adds a {@link org.apache.openaz.xacml.api.RequestReference} to the <code>RequestReference</code>s in this <code>StdMutableRequest</code>.
-=======
-     * Adds a {@link org.apache.openaz.xacml.api.RequestReference} to the <code>RequestReference</code>s in
-     * this <code>StdMutableRequest</code>.
->>>>>>> fbf04a9381a2cdc18cbbe04bdc63b86b9772f14b:openaz-xacml/src/main/java/com/att/research/xacml/std/StdMutableRequest.java
      *
      * @param requestReference the <code>RequestReference</code> to add
      */
@@ -337,6 +301,26 @@ public class StdMutableRequest implements Request {
                                                 objRequest.getRequestAttributes())
                    && ListUtil.equalsAllowNulls(this.getMultiRequests(), objRequest.getMultiRequests());
         }
+    }
+    
+    @Override
+    public int hashCode() {
+        int result = 17;
+        if (getStatus() != null) {
+            result = 31 * result + getStatus().hashCode();
+        }
+        if (getRequestDefaults() != null) {
+            result = 31 * result + getRequestDefaults().hashCode();
+        }
+        result = 31 * Boolean.valueOf(this.getCombinedDecision()).hashCode();
+        result = 17 * Boolean.valueOf(this.getReturnPolicyIdList()).hashCode();
+        if (getRequestAttributes() != null) {
+            result = 31 * result + getRequestAttributes().hashCode();
+        }
+        if (getMultiRequests() != null) {
+            result = 31 * result + getMultiRequests().hashCode();
+        }
+        return result;
     }
 
     @Override

@@ -74,6 +74,14 @@ public class StdRequestDefaults implements RequestDefaults {
             return ObjUtil.equalsAllowNull(this.getXPathVersion(), objRequestDefaults.getXPathVersion());
         }
     }
+    
+    public int hashCode() {
+        int result = 17;
+        if (getXPathVersion() != null) {
+            result = 31 * result + getXPathVersion().hashCode();
+        }
+        return result;
+    }
 
     @Override
     public String toString() {

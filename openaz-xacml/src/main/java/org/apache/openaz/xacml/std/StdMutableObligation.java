@@ -161,6 +161,18 @@ public class StdMutableObligation implements Obligation {
                                                 objObligation.getAttributeAssignments());
         }
     }
+    
+    @Override
+    public int hashCode() {
+        int result = 17;
+        if (getId() != null) {
+            result = 31 * result + getId().hashCode();
+        }
+        if (getAttributeAssignments() != null) {
+            result = 31 * result + getAttributeAssignments().hashCode();
+        }
+        return result;
+    }
 
     @Override
     public String toString() {

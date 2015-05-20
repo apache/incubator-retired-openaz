@@ -152,6 +152,15 @@ public class StdMutableStatusDetail implements StatusDetail {
                                              objStatusDetail.getMissingAttributeDetails());
         }
     }
+    
+    @Override
+    public int hashCode() {
+        int result = 17;
+        if (getMissingAttributeDetails() != null) {
+            result = 31 * result + getMissingAttributeDetails().hashCode();
+        }
+        return result;
+    }
 
     @Override
     public String toString() {

@@ -102,6 +102,24 @@ public class StdIdReferenceMatch implements IdReferenceMatch {
                        .equalsAllowNull(this.getLatestVersion(), objIdReferenceMatch.getLatestVersion());
         }
     }
+    
+    @Override
+    public int hashCode() {
+        int result = 17;
+        if (getId() != null) {
+            result = 31 * result + getId().hashCode();
+        }
+        if (getVersion() != null) {
+            result = 31 * result + getVersion().hashCode();
+        }
+        if (getEarliestVersion() != null) {
+            result = 31 * result + getEarliestVersion().hashCode();
+        }
+        if (getLatestVersion() != null) {
+            result = 31 * result + getLatestVersion().hashCode();
+        }
+        return result;
+    }
 
     @Override
     public String toString() {

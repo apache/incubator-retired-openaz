@@ -158,6 +158,21 @@ public class StdMutableStatus implements Status {
                    && ObjUtil.equalsAllowNull(this.getStatusDetail(), objStatus.getStatusDetail());
         }
     }
+    
+    @Override
+    public int hashCode() {
+        int result = 17;
+        if (getStatusCode() != null) {
+            result = 31 * result + getStatusCode().hashCode();
+        }
+        if (getStatusMessage() != null) {
+            result = 31 * result + getStatusMessage().hashCode();
+        }
+        if (getStatusDetail() != null) {
+            result = 31 * result + getStatusDetail().hashCode();
+        }
+        return result;
+    }
 
     @Override
     public boolean isOk() {

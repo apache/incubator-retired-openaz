@@ -93,6 +93,15 @@ public class StdMutableRequestReference implements RequestReference {
                                              objRequestReference.getAttributesReferences());
         }
     }
+    
+    @Override
+    public int hashCode() {
+        int result = 17;
+        if (getAttributesReferences() != null) {
+            result = 31 * result + getAttributesReferences().hashCode();
+        }
+        return result;
+    }
 
     @Override
     public String toString() {
