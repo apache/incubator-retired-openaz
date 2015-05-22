@@ -475,12 +475,13 @@ public class XACMLPdpServlet extends HttpServlet implements Runnable {
             // Read in the string
             //
             StringBuilder buffer = new StringBuilder();
-            BufferedReader reader = new BufferedReader(new InputStreamReader(request.getInputStream()));
-            String line;
-            while ((line = reader.readLine()) != null) {
-                buffer.append(line);
+            try (BufferedReader reader = new BufferedReader(new InputStreamReader(request.getInputStream()))) {
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    buffer.append(line);
+                }
+                incomingRequestString = buffer.toString();
             }
-            incomingRequestString = buffer.toString();
             logger.info(incomingRequestString);
             //
             // Parse into a request

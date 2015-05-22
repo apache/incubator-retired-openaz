@@ -177,19 +177,10 @@ public class DOMResponse {
 
     public static Response load(String xmlString) throws DOMStructureException {
         Response response = null;
-        InputStream is = null;
-        try {
-            is = new ByteArrayInputStream(xmlString.getBytes("UTF-8"));
+        try (InputStream is = new ByteArrayInputStream(xmlString.getBytes("UTF-8"))) {
             response = load(is);
         } catch (Exception ex) {
             throw new DOMStructureException("Exception loading String Response: " + ex.getMessage(), ex);
-        } finally {
-            try {
-                if (is != null) {
-                    is.close();
-                }
-            } catch (Exception idontcare) { //NOPMD
-            }
         }
         return response;
     }
@@ -204,8 +195,7 @@ public class DOMResponse {
      * @throws DOMStructureException
      */
     public static Response load(File fileResponse) throws DOMStructureException {
-        try {
-            BufferedReader br = new BufferedReader(new FileReader(fileResponse));
+        try (BufferedReader br = new BufferedReader(new FileReader(fileResponse))) {
             String responseString = "";
             String line;
             while ((line = br.readLine()) != null) {
@@ -324,20 +314,11 @@ public class DOMResponse {
      */
     public static String toString(Response response, boolean prettyPrint) throws Exception {
         String outputString = null;
-        ByteArrayOutputStream os = null;
-        try {
-            os = new ByteArrayOutputStream();
+        try (ByteArrayOutputStream os = new ByteArrayOutputStream()) {
             DOMResponse.convert(response, os, prettyPrint);
             outputString = new String(os.toByteArray(), "UTF-8");
         } catch (Exception ex) {
             throw ex;
-        } finally {
-            try {
-                if (os != null) {
-                    os.close();
-                }
-            } catch (Exception idontcare) { //NOPMD 
-            }
         }
         return outputString;
     }

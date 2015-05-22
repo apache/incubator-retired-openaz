@@ -798,19 +798,10 @@ public class JSONRequest {
      */
     public static Request load(String jsonString) throws JSONStructureException {
         Request request = null;
-        InputStream is = null;
-        try {
-            is = new ByteArrayInputStream(jsonString.getBytes("UTF-8"));
+        try (InputStream is = new ByteArrayInputStream(jsonString.getBytes("UTF-8"))) {
             request = JSONRequest.load(is);
         } catch (Exception ex) {
             throw new JSONStructureException("Exception loading String Request: " + ex.getMessage(), ex);
-        } finally {
-            try {
-                if (is != null) {
-                    is.close();
-                }
-            } catch (Exception idontcare) { //NOPMD
-            }
         }
         return request;
     }
@@ -1162,20 +1153,11 @@ public class JSONRequest {
      */
     public static String toString(Request request, boolean prettyPrint) throws Exception {
         String outputString = null;
-        ByteArrayOutputStream os = null;
-        try {
-            os = new ByteArrayOutputStream();
+        try (ByteArrayOutputStream os = new ByteArrayOutputStream()) {
             convert(request, os, prettyPrint);
             outputString = new String(os.toByteArray(), "UTF-8");
         } catch (Exception ex) {
             throw ex;
-        } finally {
-            try {
-                if (os != null) {
-                    os.close();
-                }
-            } catch (Exception idontcare) { //NOPMD
-            }
         }
         return outputString;
     }

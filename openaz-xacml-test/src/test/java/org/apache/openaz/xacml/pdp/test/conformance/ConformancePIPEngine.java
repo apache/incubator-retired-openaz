@@ -141,10 +141,8 @@ public class ConformancePIPEngine implements ConfigurableEngine {
                                       + " is not readable.");
             }
 
-            BufferedReader bufferedReader = null;
-            try {
-                bufferedReader = new BufferedReader(
-                                                    new InputStreamReader(new FileInputStream(fileAttributes)));
+            try (BufferedReader bufferedReader = new BufferedReader(
+                                                    new InputStreamReader(new FileInputStream(fileAttributes)))) {
                 String line;
                 while ((line = bufferedReader.readLine()) != null) {
                     if (line.length() > 0) {
@@ -156,10 +154,6 @@ public class ConformancePIPEngine implements ConfigurableEngine {
                         this.store(fields);
 
                     }
-                }
-            } finally {
-                if (bufferedReader != null) {
-                    bufferedReader.close();
                 }
             }
         }

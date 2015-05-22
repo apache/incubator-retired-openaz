@@ -144,42 +144,24 @@ final class StdPepAgent implements PepAgent {
     }
 
     private void logRequest(Request request) {
-        ByteArrayOutputStream out = new ByteArrayOutputStream();
-        try {
+        try (ByteArrayOutputStream out = new ByteArrayOutputStream()) {
             JSONRequest.convert(request, out);
             logger.debug(out.toString("UTF-8"));
         } catch (IOException e) {
             logger.debug("Error printing XACML request in JSON", e);
         } catch (JSONStructureException e) {
             logger.debug("Error printing XACML request in JSON", e);
-        } finally {
-            if (out != null) {
-                try {
-                    out.close();
-                } catch (IOException e) {
-                    logger.debug("Error closing stream");
-                }
-            }
         }
     }
 
     private void logResponse(Response response) {
-        ByteArrayOutputStream out = new ByteArrayOutputStream();
-        try {
+        try (ByteArrayOutputStream out = new ByteArrayOutputStream()) {
             JSONResponse.convert(response, out);
             logger.debug(out.toString("UTF-8"));
         } catch (IOException e) {
             logger.debug("Error printing XACML response in JSON", e);
         } catch (JSONStructureException e) {
             logger.debug("Error printing XACML response in JSON", e);
-        } finally {
-            if (out != null) {
-                try {
-                    out.close();
-                } catch (IOException e) {
-                    logger.debug("Error closing stream");
-                }
-            }
         }
     }
 

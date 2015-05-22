@@ -211,15 +211,9 @@ public class XACMLRepair {
                     fileOutput.delete();
                 }
             } else {
-                FileOutputStream fileOutputStream = null;
                 boolean bWritten = false;
-                try {
-                    fileOutputStream = new FileOutputStream(this.outputFileOrDirectory);
+                try (FileOutputStream fileOutputStream = new FileOutputStream(this.outputFileOrDirectory)) {
                     bWritten = this.run(inputStream, fileOrig, fileOutputStream, this.outputFileOrDirectory);
-                } finally {
-                    if (fileOutputStream != null) {
-                        fileOutputStream.close();
-                    }
                 }
                 if (!bWritten) {
                     this.outputFileOrDirectory.delete();

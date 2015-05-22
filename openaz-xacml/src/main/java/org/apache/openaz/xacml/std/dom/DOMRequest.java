@@ -33,9 +33,8 @@ package org.apache.openaz.xacml.std.dom;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.InputStream;
-import java.io.UnsupportedEncodingException;
+import java.io.IOException;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -75,19 +74,10 @@ public class DOMRequest {
      */
     public static Request load(String xmlString) throws DOMStructureException {
         Request request = null;
-        InputStream is = null;
-        try {
-            is = new ByteArrayInputStream(xmlString.getBytes("UTF-8"));
+        try (InputStream is = new ByteArrayInputStream(xmlString.getBytes("UTF-8"))) {
             request = DOMRequest.load(is);
-        } catch (UnsupportedEncodingException ex) {
+        } catch (IOException ex) {
             throw new DOMStructureException("Exception loading String Request: " + ex.getMessage(), ex);
-        } finally {
-            try {
-                if (is != null) {
-                    is.close();
-                }
-            } catch (Exception idontcare) { //NOPMD
-            }
         }
         return request;
     }
@@ -104,19 +94,10 @@ public class DOMRequest {
      */
     public static Request load(File fileRequest) throws DOMStructureException {
         Request request = null;
-        FileInputStream fis = null;
-        try {
-            fis = new FileInputStream(fileRequest);
+        try (FileInputStream fis = new FileInputStream(fileRequest)) {
             request = DOMRequest.load(fis);
-        } catch (FileNotFoundException ex) {
+        } catch (IOException ex) {
             throw new DOMStructureException("Exception loading File Request: " + ex.getMessage(), ex);
-        } finally {
-            try {
-                if (fis != null) {
-                    fis.close();
-                }
-            } catch (Exception idontcare) { //NOPMD
-            }
         }
         return request;
     }

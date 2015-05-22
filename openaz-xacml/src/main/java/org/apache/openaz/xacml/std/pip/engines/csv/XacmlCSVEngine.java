@@ -140,10 +140,8 @@ public class XacmlCSVEngine implements ConfigurableEngine {
                                       + " is not readable.");
             }
 
-            try (BufferedReader bufferedReader = new BufferedReader(
-                                                                    new InputStreamReader(
-                                                                                          new FileInputStream(
-                                                                                                              fileAttributes)))) {
+            try (BufferedReader bufferedReader 
+                = new BufferedReader(new InputStreamReader(new FileInputStream(fileAttributes)))) {
                 String line;
                 while ((line = bufferedReader.readLine()) != null) {
                     if (line.length() > 0) {
@@ -153,7 +151,6 @@ public class XacmlCSVEngine implements ConfigurableEngine {
                             continue;
                         }
                         this.store(fields);
-
                     }
                 }
             }

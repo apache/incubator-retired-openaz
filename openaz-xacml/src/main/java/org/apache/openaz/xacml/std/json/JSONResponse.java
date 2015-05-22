@@ -607,8 +607,7 @@ public class JSONResponse {
      * @throws JSONStructureException
      */
     public static Response load(File fileResponse) throws JSONStructureException {
-        try {
-            BufferedReader br = new BufferedReader(new FileReader(fileResponse));
+        try (BufferedReader br = new BufferedReader(new FileReader(fileResponse))) {
             String responseString = "";
             String line;
             while ((line = br.readLine()) != null) {
@@ -1121,20 +1120,11 @@ public class JSONResponse {
      */
     public static String toString(Response response, boolean prettyPrint) throws Exception {
         String outputString = null;
-        ByteArrayOutputStream os = null;
-        try {
-            os = new ByteArrayOutputStream();
+        try (ByteArrayOutputStream os = new ByteArrayOutputStream()) {
             JSONResponse.convert(response, os, prettyPrint);
             outputString = new String(os.toByteArray(), "UTF-8");
         } catch (Exception ex) {
             throw ex;
-        } finally {
-            try {
-                if (os != null) {
-                    os.close();
-                }
-            } catch (Exception idontcare) { //NOPMD
-            }
         }
         return outputString;
     }
