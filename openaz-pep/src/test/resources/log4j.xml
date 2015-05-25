@@ -19,6 +19,7 @@
 <log4j:configuration xmlns:log4j='http://jakarta.apache.org/log4j/'>
 
    <appender name="consoleAppender" class="org.apache.log4j.ConsoleAppender">
+      <param name="Threshold" value="INFO"/>
       <layout class="org.apache.log4j.PatternLayout">
          <param name="ConversionPattern" value="%d{HH:mm:ss.SSS} [%t] %5p %c{1} - %m%n"/>
       </layout>
@@ -43,7 +44,7 @@
    <root>
       <level value="debug"/>
       <appender-ref ref="consoleAppender"/>
-     <!-- <appender-ref ref="fileAppender"/> -->
+      <appender-ref ref="fileAppender"/>
    </root>
 
 </log4j:configuration>
