@@ -30,11 +30,10 @@
  */
 package org.apache.openaz.xacml.std.dom;
 
-import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileReader;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -48,8 +47,6 @@ import java.util.Iterator;
 
 import javax.security.auth.x500.X500Principal;
 import javax.xml.XMLConstants;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -176,13 +173,11 @@ public class DOMResponse {
     }
 
     public static Response load(String xmlString) throws DOMStructureException {
-        Response response = null;
         try (InputStream is = new ByteArrayInputStream(xmlString.getBytes("UTF-8"))) {
-            response = load(is);
+            return load(is);
         } catch (Exception ex) {
             throw new DOMStructureException("Exception loading String Response: " + ex.getMessage(), ex);
         }
-        return response;
     }
 
     /**
@@ -195,14 +190,8 @@ public class DOMResponse {
      * @throws DOMStructureException
      */
     public static Response load(File fileResponse) throws DOMStructureException {
-        try (BufferedReader br = new BufferedReader(new FileReader(fileResponse))) {
-            String responseString = "";
-            String line;
-            while ((line = br.readLine()) != null) {
-                responseString += line;
-            }
-            br.close();
-            return load(responseString);
+        try (FileInputStream fis = new FileInputStream(fileResponse)) {
+            return DOMResponse.load(fis);
         } catch (Exception e) {
             throw new DOMStructureException("File: " + fileResponse.getName() + " " + e.getMessage());
         }
@@ -233,40 +222,14 @@ public class DOMResponse {
      * @throws DOMStructureException
      */
     public static Response load(InputStream is) throws DOMStructureException {
-        /*
-         * Get the DocumentBuilderFactory
-         */
-        DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
-        if (documentBuilderFactory == null) {
-            throw new DOMStructureException("No XML DocumentBuilderFactory configured");
-        }
-        documentBuilderFactory.setNamespaceAware(true);
-
-        /*
-         * Get the DocumentBuilder
-         */
-        DocumentBuilder documentBuilder = null;
-        try {
-            documentBuilder = documentBuilderFactory.newDocumentBuilder();
-        } catch (Exception ex) {
-            throw new DOMStructureException("Exception creating DocumentBuilder: " + ex.getMessage(), ex);
-        }
-
-        /*
-         * Parse the XML file
-         */
-        Document document = null;
         Response request = null;
         try {
-            document = documentBuilder.parse(is);
+            Document document = DOMUtil.loadDocument(is);
             if (document == null) {
                 throw new Exception("Null document returned");
             }
 
-            Node rootNode = document.getFirstChild();
-            while (rootNode != null && rootNode.getNodeType() != Node.ELEMENT_NODE) {
-                rootNode = rootNode.getNextSibling();
-            }
+            Node rootNode = DOMUtil.getFirstChildElement(document);
             if (rootNode == null) {
                 throw new Exception("No child in document");
             }
@@ -862,8 +825,6 @@ public class DOMResponse {
      */
     public static void main(String[] args) {
         if (args.length > 0) {
-            DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
-            documentBuilderFactory.setNamespaceAware(true);
             for (String xmlFileName : args) {
                 File fileXml = new File(xmlFileName);
                 if (!fileXml.exists()) {
@@ -876,9 +837,7 @@ public class DOMResponse {
                 }
                 System.out.println(fileXml.getAbsolutePath() + ":");
                 try {
-                    DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
-                    assert documentBuilder.isNamespaceAware();
-                    Document documentResponse = documentBuilder.parse(fileXml);
+                    Document documentResponse = DOMUtil.loadDocument(fileXml);
                     assert documentResponse != null;
 
                     NodeList children = documentResponse.getChildNodes();

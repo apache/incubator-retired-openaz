@@ -38,8 +38,6 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBElement;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
 import oasis.names.tc.xacml._3_0.core.schema.wd_17.ResponseType;
@@ -48,6 +46,8 @@ import oasis.names.tc.xacml._3_0.core.schema.wd_17.ResultType;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.openaz.xacml.std.StdMutableResponse;
+import org.apache.openaz.xacml.std.dom.DOMStructureException;
+import org.apache.openaz.xacml.std.dom.DOMUtil;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -88,24 +88,15 @@ public class JaxpResponse extends StdMutableResponse {
      * @throws java.io.IOException
      * @throws org.xml.sax.SAXException
      * @throws javax.xml.bind.JAXBException
+     * @throws DOMStructureException 
      */
     public static JaxpResponse load(File fileXmlResponse) throws ParserConfigurationException, IOException,
-        SAXException, JAXBException {
+        SAXException, JAXBException, DOMStructureException {
         if (fileXmlResponse == null) {
             throw new NullPointerException("Null File");
         }
 
-        /*
-         * Create XML document factory and builder
-         */
-        DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
-        documentBuilderFactory.setNamespaceAware(true);
-        DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
-
-        /*
-         * Parse the file into a Document
-         */
-        Document document = documentBuilder.parse(fileXmlResponse);
+        Document document = DOMUtil.loadDocument(fileXmlResponse);
         if (document == null) {
             logger.error("No Document returned parsing \"" + fileXmlResponse.getAbsolutePath() + "\"");
             return null;

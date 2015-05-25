@@ -33,9 +33,6 @@ package org.apache.openaz.xacml.pdp.policy.dom;
 import java.io.File;
 import java.io.InputStream;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-
 import org.apache.openaz.xacml.api.XACML3;
 import org.apache.openaz.xacml.pdp.policy.PolicyDef;
 import org.apache.openaz.xacml.pdp.policy.PolicySet;
@@ -56,10 +53,7 @@ public abstract class DOMPolicyDef {
         throws DOMStructureException {
         PolicyDef policyDef = null;
         try {
-            Node rootNode = document.getFirstChild();
-            while (rootNode != null && rootNode.getNodeType() != Node.ELEMENT_NODE) {
-                rootNode = rootNode.getNextSibling();
-            }
+            Node rootNode = DOMUtil.getFirstChildElement(document);
             if (rootNode == null) {
                 throw new Exception("No child in document");
             }
@@ -88,31 +82,9 @@ public abstract class DOMPolicyDef {
     }
 
     public static PolicyDef load(InputStream inputStream) throws DOMStructureException {
-        /*
-         * Get the DocumentBuilderFactory
-         */
-        DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
-        if (documentBuilderFactory == null) {
-            throw new DOMStructureException("No XML DocumentBuilderFactory configured");
-        }
-        documentBuilderFactory.setNamespaceAware(true);
-
-        /*
-         * Get the DocumentBuilder
-         */
-        DocumentBuilder documentBuilder = null;
-        try {
-            documentBuilder = documentBuilderFactory.newDocumentBuilder();
-        } catch (Exception ex) {
-            throw new DOMStructureException("Exception creating DocumentBuilder: " + ex.getMessage(), ex);
-        }
-
-        /*
-         * Parse the XML file
-         */
         PolicyDef policyDef = null;
         try {
-            Document document = documentBuilder.parse(inputStream);
+            Document document = DOMUtil.loadDocument(inputStream);
             if (document == null) {
                 throw new Exception("Null document returned");
             }

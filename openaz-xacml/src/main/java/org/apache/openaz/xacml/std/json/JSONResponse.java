@@ -55,9 +55,6 @@ import java.util.Map;
 
 import javax.security.auth.x500.X500Principal;
 import javax.xml.XMLConstants;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -98,6 +95,7 @@ import org.apache.openaz.xacml.std.datatypes.DataTypes;
 import org.apache.openaz.xacml.std.datatypes.ExtendedNamespaceContext;
 import org.apache.openaz.xacml.std.datatypes.StringNamespaceContext;
 import org.apache.openaz.xacml.std.datatypes.XPathExpressionWrapper;
+import org.apache.openaz.xacml.std.dom.DOMUtil;
 import org.apache.openaz.xacml.util.FactoryException;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -753,18 +751,6 @@ public class JSONResponse {
                         // representation.
                         // TODO Unfortunately the JSON spec does not say how the XML is formatted
                         // (with/without whitespace, etc).
-                        DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-                        dbf.setNamespaceAware(true);
-                        DocumentBuilder db;
-                        try {
-                            db = dbf.newDocumentBuilder();
-                        } catch (ParserConfigurationException e1) {
-                            throw new JSONStructureException("Content unable to setup Parser Configuration");
-                        }
-                        //
-                        // Parse the content
-                        //
-                        Document doc = null;
 
                         //
                         // First of all, the String is possible escaped.
@@ -778,8 +764,9 @@ public class JSONResponse {
                         unescapedContent = "<ROOT>" + unescapedContent + "</ROOT>";
 
                         // logger.info("Escaped content: \n" + unescapedContent);
+                        Document doc = null;
                         try (InputStream bis = new ByteArrayInputStream(unescapedContent.getBytes("UTF-8"))) {
-                            doc = db.parse(bis);
+                            doc = DOMUtil.loadDocument(bis);
                         } catch (Exception ex) {
                             throw new JSONStructureException("Unable to parse Content '"
                                                              + detailObject.toString() + "'");

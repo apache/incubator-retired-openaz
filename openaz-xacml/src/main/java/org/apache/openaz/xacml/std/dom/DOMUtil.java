@@ -179,21 +179,18 @@ public class DOMUtil {
      * @param node the <code>Node</code> to search
      * @return the first child <code>Element</code> of the given <code>Node</code>
      */
-    public static Element getFirstChildElement(Node node) {
-        NodeList children = null;
-        int numChildren = 0;
-        if (node == null || (children = node.getChildNodes()) == null
-            || (numChildren = node.getChildNodes().getLength()) == 0) {
+    public static Element getFirstChildElement(Node rootNode) {
+        if (rootNode == null) {
             return null;
         }
-        Element result = null;
-        for (int i = 0; i < numChildren && result == null; i++) {
-            Node child = children.item(i);
-            if (child.getNodeType() == Node.ELEMENT_NODE) {
-                result = (Element)child;
-            }
+        Node node = rootNode.getFirstChild();
+        while (node != null && node.getNodeType() != Node.ELEMENT_NODE) {
+            node = node.getNextSibling();
         }
-        return result;
+        if (node != null && node.getNodeType() == Node.ELEMENT_NODE) {
+            return (Element)node;
+        }
+        return null;
     }
 
     protected static DOMStructureException newMissingAttributeException(Node node, String attributeName) {

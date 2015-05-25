@@ -33,9 +33,6 @@ package org.apache.openaz.xacml.pdp.policy.dom;
 import java.io.File;
 import java.util.Iterator;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.openaz.xacml.api.Identifier;
@@ -358,15 +355,11 @@ public class DOMPolicySet {
 
     public static void main(String args[]) {
         try {
-            DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
-            documentBuilderFactory.setNamespaceAware(true);
-            DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
-
             for (String fileName : args) {
                 File filePolicy = new File(fileName);
                 if (filePolicy.exists() && filePolicy.canRead()) {
                     try {
-                        Document documentPolicy = documentBuilder.parse(filePolicy);
+                        Document documentPolicy = DOMUtil.loadDocument(filePolicy);
                         if (documentPolicy.getFirstChild() == null) {
                             System.err.println(fileName + ": Error: No PolicySet found");
                         } else if (!XACML3.ELEMENT_POLICYSET.equals(documentPolicy.getFirstChild()

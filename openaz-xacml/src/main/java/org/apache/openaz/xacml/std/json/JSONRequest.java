@@ -53,9 +53,6 @@ import java.util.Map;
 
 import javax.security.auth.x500.X500Principal;
 import javax.xml.XMLConstants;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
@@ -88,6 +85,7 @@ import org.apache.openaz.xacml.std.datatypes.DataTypes;
 import org.apache.openaz.xacml.std.datatypes.ExtendedNamespaceContext;
 import org.apache.openaz.xacml.std.datatypes.StringNamespaceContext;
 import org.apache.openaz.xacml.std.datatypes.XPathExpressionWrapper;
+import org.apache.openaz.xacml.std.dom.DOMUtil;
 import org.apache.openaz.xacml.util.FactoryException;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
@@ -585,22 +583,6 @@ public class JSONRequest {
         }
 
         //
-        // Create XML document factory and builder
-        //
-        DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-        dbf.setNamespaceAware(true);
-        DocumentBuilder db;
-        try {
-            db = dbf.newDocumentBuilder();
-        } catch (ParserConfigurationException e1) {
-            throw new JSONStructureException("Content unable to setup Parser Configuration");
-        }
-        //
-        // Parse the content
-        //
-        Document doc = null;
-
-        //
         // First of all, the String is possible escaped.
         //
         // The meaning of "escaped" is defined in section 4.2.3.1 in the JSON spec
@@ -611,14 +593,14 @@ public class JSONRequest {
         // logger.info("Escaped content: \n" + unescapedContent);
 
         try (InputStream is = new ByteArrayInputStream(unescapedContent.getBytes("UTF-8"))) {
-            doc = db.parse(is);
+            Document doc = DOMUtil.loadDocument(is);
+            if (doc != null) {
+                return doc.getDocumentElement();
+            }
+            return null;
         } catch (Exception ex) {
             throw new JSONStructureException("Unable to parse Content '" + xmlContent + "'");
         }
-
-        Node node = doc.getDocumentElement();
-
-        return node;
     }
 
     /**

@@ -36,9 +36,6 @@ import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.IOException;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.openaz.xacml.api.Request;
@@ -73,13 +70,11 @@ public class DOMRequest {
      * @throws DOMStructureException
      */
     public static Request load(String xmlString) throws DOMStructureException {
-        Request request = null;
         try (InputStream is = new ByteArrayInputStream(xmlString.getBytes("UTF-8"))) {
-            request = DOMRequest.load(is);
+            return DOMRequest.load(is);
         } catch (IOException ex) {
             throw new DOMStructureException("Exception loading String Request: " + ex.getMessage(), ex);
         }
-        return request;
     }
 
     /**
@@ -93,13 +88,11 @@ public class DOMRequest {
      * @throws DOMStructureException
      */
     public static Request load(File fileRequest) throws DOMStructureException {
-        Request request = null;
         try (FileInputStream fis = new FileInputStream(fileRequest)) {
-            request = DOMRequest.load(fis);
+            return DOMRequest.load(fis);
         } catch (IOException ex) {
             throw new DOMStructureException("Exception loading File Request: " + ex.getMessage(), ex);
         }
-        return request;
     }
 
     /**
@@ -111,40 +104,14 @@ public class DOMRequest {
      * @throws DOMStructureException
      */
     public static Request load(InputStream is) throws DOMStructureException {
-        /*
-         * Get the DocumentBuilderFactory
-         */
-        DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
-        if (documentBuilderFactory == null) {
-            throw new DOMStructureException("No XML DocumentBuilderFactory configured");
-        }
-        documentBuilderFactory.setNamespaceAware(true);
-
-        /*
-         * Get the DocumentBuilder
-         */
-        DocumentBuilder documentBuilder = null;
-        try {
-            documentBuilder = documentBuilderFactory.newDocumentBuilder();
-        } catch (Exception ex) {
-            throw new DOMStructureException("Exception creating DocumentBuilder: " + ex.getMessage(), ex);
-        }
-
-        /*
-         * Parse the XML file
-         */
-        Document document = null;
         Request request = null;
         try {
-            document = documentBuilder.parse(is);
+            Document document = DOMUtil.loadDocument(is);
             if (document == null) {
                 throw new Exception("Null document returned");
             }
 
-            Node rootNode = document.getFirstChild();
-            while (rootNode != null && rootNode.getNodeType() != Node.ELEMENT_NODE) {
-                rootNode = rootNode.getNextSibling();
-            }
+            Node rootNode = DOMUtil.getFirstChildElement(document);
             if (rootNode == null) {
                 throw new Exception("No child in document");
             }
@@ -330,8 +297,6 @@ public class DOMRequest {
      */
     public static void main(String[] args) {
         if (args.length > 0) {
-            DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
-            documentBuilderFactory.setNamespaceAware(true);
             for (String xmlFileName : args) {
                 File fileXml = new File(xmlFileName);
                 if (!fileXml.exists()) {
@@ -344,9 +309,7 @@ public class DOMRequest {
                 }
                 System.out.println(fileXml.getAbsolutePath() + ":");
                 try {
-                    DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
-                    assert documentBuilder.isNamespaceAware();
-                    Document documentRequest = documentBuilder.parse(fileXml);
+                    Document documentRequest = DOMUtil.loadDocument(fileXml);
                     assert documentRequest != null;
 
                     NodeList children = documentRequest.getChildNodes();

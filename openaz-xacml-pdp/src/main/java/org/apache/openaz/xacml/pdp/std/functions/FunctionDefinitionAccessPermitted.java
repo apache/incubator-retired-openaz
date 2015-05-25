@@ -35,8 +35,6 @@ import java.io.InputStream;
 import java.net.URI;
 import java.util.List;
 
-import javax.xml.parsers.DocumentBuilderFactory;
-
 import org.apache.openaz.xacml.api.Identifier;
 import org.apache.openaz.xacml.api.Request;
 import org.apache.openaz.xacml.api.RequestAttributes;
@@ -49,6 +47,8 @@ import org.apache.openaz.xacml.std.StdStatusCode;
 import org.apache.openaz.xacml.std.datatypes.DataTypes;
 import org.apache.openaz.xacml.std.dom.DOMRequestAttributes;
 import org.apache.openaz.xacml.std.dom.DOMStructureException;
+import org.apache.openaz.xacml.std.dom.DOMUtil;
+import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 
 /**
@@ -147,10 +147,10 @@ public class FunctionDefinitionAccessPermitted extends FunctionDefinitionBase<Bo
         // TODO - need to get Namespace info from original Request? How can I recover the original Namespace
         // from the EvaluationContext?
         try (InputStream is = new ByteArrayInputStream(xmlContent.getBytes())) {
-            DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory.newInstance();
-            docBuilderFactory.setNamespaceAware(true);
-
-            newContentNode = docBuilderFactory.newDocumentBuilder().parse(is).getDocumentElement();
+            Document doc = DOMUtil.loadDocument(is);
+            if (doc != null) {
+                newContentNode = doc.getDocumentElement();
+            }
         } catch (Exception e) {
             String message = e.getMessage();
             if (e.getCause() != null) {

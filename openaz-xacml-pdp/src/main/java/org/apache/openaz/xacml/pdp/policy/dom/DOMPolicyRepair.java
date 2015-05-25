@@ -36,9 +36,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-
 import org.apache.openaz.xacml.api.XACML3;
 import org.apache.openaz.xacml.std.dom.DOMUtil;
 import org.w3c.dom.Document;
@@ -91,11 +88,8 @@ public class DOMPolicyRepair {
         /*
          * Get the XML Parser for the input file
          */
-        DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
-        documentBuilderFactory.setNamespaceAware(true);
         try {
-            DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
-            Document documentInput = documentBuilder.parse(inputStream);
+            Document documentInput = DOMUtil.loadDocument(inputStream);
             Element elementRoot = DOMUtil.getFirstChildElement(documentInput);
             if (elementRoot == null) {
                 System.err.println("No root element");
