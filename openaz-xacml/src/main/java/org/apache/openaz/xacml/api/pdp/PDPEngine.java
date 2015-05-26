@@ -38,7 +38,7 @@ import org.apache.openaz.xacml.api.Request;
 import org.apache.openaz.xacml.api.Response;
 
 /**
- * PEPEngine is the interface that applications use to make policy queries against a XACML 3.0 policy engine.
+ * PDPEngine is the interface that applications use to make policy queries against a XACML 3.0 policy engine.
  */
 public interface PDPEngine {
     /**

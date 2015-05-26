@@ -55,7 +55,7 @@ public abstract class ExtendedNamespaceContext implements NamespaceContext {
     @Override
     public String toString() {
         Iterator<String> prefixIt = this.getAllPrefixes();
-        StringBuffer sb = new StringBuffer("{[");
+        StringBuilder sb = new StringBuilder("{[");
         while (prefixIt.hasNext()) {
             String prefix = prefixIt.next();
             String namespaceUri = this.getNamespaceURI(prefix);

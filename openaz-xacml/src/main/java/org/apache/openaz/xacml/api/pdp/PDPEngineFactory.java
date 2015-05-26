@@ -145,24 +145,14 @@ public abstract class PDPEngineFactory {
     }
 
     /**
-<<<<<<< HEAD:openaz-xacml/src/main/java/org/apache/openaz/xacml/api/pdp/PDPEngineFactory.java
      * Creates a new <code>PDPEngine</code> using the default policy set and {@link org.apache.openaz.xacml.api.pip.PIPFinder}.
-=======
-     * Creates a new <code>PDPEngine</code> using the default policy set and
-     * {@link org.apache.openaz.xacml.api.pip.PIPFinder}.
->>>>>>> fbf04a9381a2cdc18cbbe04bdc63b86b9772f14b:openaz-xacml/src/main/java/com/att/research/xacml/api/pdp/PDPEngineFactory.java
      *
      * @return a new <code>PDPEngine</code>
      */
     public abstract PDPEngine newEngine() throws FactoryException;
 
     /**
-<<<<<<< HEAD:openaz-xacml/src/main/java/org/apache/openaz/xacml/api/pdp/PDPEngineFactory.java
      * Creates a new <code>PDPEngine</code> using the default policy set and {@link org.apache.openaz.xacml.api.pip.PIPFinder}.
-=======
-     * Creates a new <code>PDPEngine</code> using the default policy set and
-     * {@link org.apache.openaz.xacml.api.pip.PIPFinder}.
->>>>>>> fbf04a9381a2cdc18cbbe04bdc63b86b9772f14b:openaz-xacml/src/main/java/com/att/research/xacml/api/pdp/PDPEngineFactory.java
      *
      * @return a new <code>PDPEngine</code>
      */

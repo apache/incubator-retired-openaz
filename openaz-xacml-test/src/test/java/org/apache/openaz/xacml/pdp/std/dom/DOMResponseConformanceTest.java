@@ -92,7 +92,7 @@ public class DOMResponseConformanceTest {
                 // System.out.println("starting file="+currentFile.getName());
 
                 BufferedReader br = new BufferedReader(new FileReader(f));
-                StringBuffer sb = new StringBuffer();
+                StringBuilder sb = new StringBuilder();
                 String line;
                 while ((line = br.readLine()) != null) {
                     sb.append(line + "\n");

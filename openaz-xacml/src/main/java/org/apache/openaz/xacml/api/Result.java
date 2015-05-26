@@ -70,14 +70,8 @@ public interface Result {
     Collection<Advice> getAssociatedAdvice();
 
     /**
-<<<<<<< HEAD:openaz-xacml/src/main/java/org/apache/openaz/xacml/api/Result.java
      * Gets the <code>Collection</code> of {@link org.apache.openaz.xacml.api.AttributeCategory} objects in this <code>Result</code>.  If there
      * are no <code>AttributeCategory</code> objects this method must return an empty <code>Collection</code>.
-=======
-     * Gets the <code>Collection</code> of {@link org.apache.openaz.xacml.api.AttributeCategory} objects in
-     * this <code>Result</code>. If there are no <code>AttributeCategory</code> objects this method must
-     * return an empty <code>Collection</code>.
->>>>>>> fbf04a9381a2cdc18cbbe04bdc63b86b9772f14b:openaz-xacml/src/main/java/com/att/research/xacml/api/Result.java
      *
      * @return the <code>Collection</code> of <code>AttributeCategory</code> objects in this
      *         <code>Result</code>.
@@ -85,26 +79,16 @@ public interface Result {
     Collection<AttributeCategory> getAttributes();
 
     /**
-<<<<<<< HEAD:openaz-xacml/src/main/java/org/apache/openaz/xacml/api/Result.java
      * Gets the <code>Collection</code> of {@link org.apache.openaz.xacml.api.IdReference} objects referring to XACML 3.0 Policies
      * that are in this <code>Result</code>.
-=======
-     * Gets the <code>Collection</code> of {@link org.apache.openaz.xacml.api.IdReference} objects referring to
-     * XACML 3.0 Policies that are in this <code>Result</code>.
->>>>>>> fbf04a9381a2cdc18cbbe04bdc63b86b9772f14b:openaz-xacml/src/main/java/com/att/research/xacml/api/Result.java
      *
      * @return the <code>Collection</code> of Policy <code>IdReference</code>s in this <code>Result</code>.
      */
     Collection<IdReference> getPolicyIdentifiers();
 
     /**
-<<<<<<< HEAD:openaz-xacml/src/main/java/org/apache/openaz/xacml/api/Result.java
      * Gets the <code>Collection</code> of {@link org.apache.openaz.xacml.api.IdReference} objects referring to XACML 3.0 PolicySets
      * that are in this <code>Result</code>.
-=======
-     * Gets the <code>Collection</code> of {@link org.apache.openaz.xacml.api.IdReference} objects referring to
-     * XACML 3.0 PolicySets that are in this <code>Result</code>.
->>>>>>> fbf04a9381a2cdc18cbbe04bdc63b86b9772f14b:openaz-xacml/src/main/java/com/att/research/xacml/api/Result.java
      *
      * @return the <code>Collection</code> of PolicySet <code>IdReference</code>s in this <code>Result</code>.
      */

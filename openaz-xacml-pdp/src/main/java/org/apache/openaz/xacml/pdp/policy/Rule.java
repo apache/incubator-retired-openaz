@@ -270,43 +270,43 @@ public class Rule extends PolicyComponent implements Matchable, Evaluatable, Tra
 
     @Override
     public String toString() {
-        StringBuffer stringBuffer = new StringBuffer("{");
-        stringBuffer.append("super=");
-        stringBuffer.append(super.toString());
+        StringBuilder stringBuilder = new StringBuilder("{");
+        stringBuilder.append("super=");
+        stringBuilder.append(super.toString());
 
         Object objectToDump;
         if ((objectToDump = this.getRuleId()) != null) {
-            stringBuffer.append(",ruleId=");
-            stringBuffer.append((String)objectToDump);
+            stringBuilder.append(",ruleId=");
+            stringBuilder.append((String)objectToDump);
         }
         if ((objectToDump = this.getRuleEffect()) != null) {
-            stringBuffer.append(",ruleEffect=");
-            stringBuffer.append(objectToDump.toString());
+            stringBuilder.append(",ruleEffect=");
+            stringBuilder.append(objectToDump.toString());
         }
         if ((objectToDump = this.getDescription()) != null) {
-            stringBuffer.append(",description=");
-            stringBuffer.append((String)objectToDump);
+            stringBuilder.append(",description=");
+            stringBuilder.append((String)objectToDump);
         }
         if ((objectToDump = this.getTarget()) != null) {
-            stringBuffer.append(",target=");
-            stringBuffer.append(objectToDump.toString());
+            stringBuilder.append(",target=");
+            stringBuilder.append(objectToDump.toString());
         }
         if ((objectToDump = this.getCondition()) != null) {
-            stringBuffer.append(",condition=");
-            stringBuffer.append(objectToDump.toString());
+            stringBuilder.append(",condition=");
+            stringBuilder.append(objectToDump.toString());
         }
 
         String iterToDump;
         if ((iterToDump = StringUtils.toString(this.getObligationExpressions())) != null) {
-            stringBuffer.append(",obligationExpressions=");
-            stringBuffer.append(iterToDump);
+            stringBuilder.append(",obligationExpressions=");
+            stringBuilder.append(iterToDump);
         }
         if ((iterToDump = StringUtils.toString(this.getAdviceExpressions())) != null) {
-            stringBuffer.append(",adviceExpressions=");
-            stringBuffer.append(iterToDump);
+            stringBuilder.append(",adviceExpressions=");
+            stringBuilder.append(iterToDump);
         }
-        stringBuffer.append('}');
-        return stringBuffer.toString();
+        stringBuilder.append('}');
+        return stringBuilder.toString();
     }
 
     @Override

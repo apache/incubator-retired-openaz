@@ -294,7 +294,7 @@ public class DOMResponse {
      * @param tabCount
      * @param prettyPrint
      */
-    private static void outputStatusCode(StringBuffer sb, StatusCode statusCode, int tabCount,
+    private static void outputStatusCode(StringBuilder sb, StatusCode statusCode, int tabCount,
                                          boolean prettyPrint) {
         String prettyPrintString = "";
         if (prettyPrint) {
@@ -436,7 +436,7 @@ public class DOMResponse {
             throw new DOMStructureException("No Result in Response");
         }
 
-        StringBuffer sb = new StringBuffer();
+        StringBuilder sb = new StringBuilder();
 
         sb.append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
 

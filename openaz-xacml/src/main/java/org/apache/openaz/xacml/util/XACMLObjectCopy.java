@@ -248,7 +248,7 @@ public class XACMLObjectCopy {
     }
 
     public static String getContent(List<Object> content) {
-        StringBuffer buffer = new StringBuffer();
+        StringBuilder buffer = new StringBuilder();
         for (Object obj : content) {
             buffer.append(obj.toString());
         }
