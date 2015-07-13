@@ -86,9 +86,7 @@ public class DOMUtil {
     public static Node getDirectDocumentChild(Node node) throws DOMStructureException {
         Node nodeResult = null;
         try {
-            DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
-            documentBuilderFactory.setNamespaceAware(true);
-            DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
+            DocumentBuilder documentBuilder = getDocumentBuilder();
             Document documentRoot = documentBuilder.newDocument();
             Node nodeTopRoot = documentRoot.importNode(node, true);
             documentRoot.appendChild(nodeTopRoot);
@@ -712,8 +710,8 @@ public class DOMUtil {
         }
         return false;
     }
-
-    public static Document loadDocument(File fileDocument) throws DOMStructureException {
+    
+    public static DocumentBuilder getDocumentBuilder() throws DOMStructureException {
         /*
          * Get the DocumentBuilderFactory
          */
@@ -726,12 +724,15 @@ public class DOMUtil {
         /*
          * Get the DocumentBuilder
          */
-        DocumentBuilder documentBuilder = null;
         try {
-            documentBuilder = documentBuilderFactory.newDocumentBuilder();
+            return documentBuilderFactory.newDocumentBuilder();
         } catch (Exception ex) {
             throw new DOMStructureException("Exception creating DocumentBuilder: " + ex.getMessage(), ex);
         }
+    }
+
+    public static Document loadDocument(File fileDocument) throws DOMStructureException {
+        DocumentBuilder documentBuilder = getDocumentBuilder();
 
         /*
          * Parse the XML file
@@ -751,24 +752,7 @@ public class DOMUtil {
     }
 
     public static Document loadDocument(InputStream inputStreamDocument) throws DOMStructureException {
-        /*
-         * Get the DocumentBuilderFactory
-         */
-        DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
-        if (documentBuilderFactory == null) {
-            throw new DOMStructureException("No XML DocumentBuilderFactory configured");
-        }
-        documentBuilderFactory.setNamespaceAware(true);
-
-        /*
-         * Get the DocumentBuilder
-         */
-        DocumentBuilder documentBuilder = null;
-        try {
-            documentBuilder = documentBuilderFactory.newDocumentBuilder();
-        } catch (Exception ex) {
-            throw new DOMStructureException("Exception creating DocumentBuilder: " + ex.getMessage(), ex);
-        }
+        DocumentBuilder documentBuilder = getDocumentBuilder();
 
         /*
          * Parse the XML file
