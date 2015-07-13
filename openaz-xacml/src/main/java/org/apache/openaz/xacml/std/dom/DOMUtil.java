@@ -740,7 +740,7 @@ public class DOMUtil {
         try {
             document = documentBuilder.parse(fileDocument);
             if (document == null) {
-                throw new Exception("Null document returned");
+                throw new DOMStructureException("Null document returned");
             }
         } catch (Exception ex) {
             throw new DOMStructureException("Exception loading file \"" + fileDocument.getAbsolutePath()
@@ -777,7 +777,7 @@ public class DOMUtil {
         try {
             document = documentBuilder.parse(inputStreamDocument);
             if (document == null) {
-                throw new Exception("Null document returned");
+                throw new DOMStructureException("Null document returned");
             }
         } catch (Exception ex) {
             throw new DOMStructureException("Exception loading file from stream: " + ex.getMessage(), ex);

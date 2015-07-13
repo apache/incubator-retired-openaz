@@ -108,12 +108,12 @@ public class DOMRequest {
         try {
             Document document = DOMUtil.loadDocument(is);
             if (document == null) {
-                throw new Exception("Null document returned");
+                throw new DOMStructureException("Null document returned");
             }
 
             Node rootNode = DOMUtil.getFirstChildElement(document);
             if (rootNode == null) {
-                throw new Exception("No child in document");
+                throw new DOMStructureException("No child in document");
             }
 
             if (DOMUtil.isInNamespace(rootNode, XACML3.XMLNS)) {

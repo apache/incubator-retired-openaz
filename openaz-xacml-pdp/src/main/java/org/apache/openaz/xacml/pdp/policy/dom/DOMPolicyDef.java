@@ -55,7 +55,7 @@ public abstract class DOMPolicyDef {
         try {
             Node rootNode = DOMUtil.getFirstChildElement(document);
             if (rootNode == null) {
-                throw new Exception("No child in document");
+                throw new DOMStructureException("No child in document");
             }
 
             if (DOMUtil.isInNamespace(rootNode, XACML3.XMLNS)) {
@@ -86,7 +86,7 @@ public abstract class DOMPolicyDef {
         try {
             Document document = DOMUtil.loadDocument(inputStream);
             if (document == null) {
-                throw new Exception("Null document returned");
+                throw new DOMStructureException("Null document returned");
             }
             policyDef = newInstance(document, null);
         } catch (Exception ex) {
@@ -112,7 +112,7 @@ public abstract class DOMPolicyDef {
         try {
             Document document = DOMUtil.loadDocument(filePolicy);
             if (document == null) {
-                throw new Exception("Null document returned");
+                throw new DOMStructureException("Null document returned");
             }
             policyDef = newInstance(document, null);
         } catch (Exception ex) {
