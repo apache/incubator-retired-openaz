@@ -418,12 +418,7 @@ public class StdMutableRequest implements Request {
     }
 
     /**
-<<<<<<< HEAD:openaz-xacml/src/main/java/org/apache/openaz/xacml/std/StdMutableRequest.java
      * Sets the {@link org.apache.openaz.xacml.api.Status} indicating the validity of this <code>StdMutableRequest</code>.
-=======
-     * Sets the {@link org.apache.openaz.xacml.api.Status} indicating the validity of this
-     * <code>StdMutableRequest</code>.
->>>>>>> fbf04a9381a2cdc18cbbe04bdc63b86b9772f14b:openaz-xacml/src/main/java/com/att/research/xacml/std/StdMutableRequest.java
      *
      * @param statusIn the <code>Status</code> for this <code>StdMutableRequest</code>.
      */
