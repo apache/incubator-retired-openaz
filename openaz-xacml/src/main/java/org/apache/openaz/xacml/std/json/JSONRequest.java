@@ -1176,8 +1176,6 @@ public class JSONRequest {
             throw new NullPointerException("No Request in convert");
         }
 
-        String json = null;
-
         Map<String, Object> requestMap = new HashMap<String, Object>();
 
         // ReturnPolicyIdList
@@ -1338,7 +1336,7 @@ public class JSONRequest {
         try (OutputStreamWriter osw = new OutputStreamWriter(outputStream)) {
 
             // convert the request to json string
-            json = mapper.writeValueAsString(theWholeRequest);
+            String json = mapper.writeValueAsString(theWholeRequest);
 
             // write it
             osw.write(json);
