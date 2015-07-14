@@ -1109,12 +1109,9 @@ public class JSONRequest {
     //
     // Generate JSON string from a Request object created by another means (e.g. XML).
     //
-    // Used only in Testing
-    //
 
     /**
-     * Convert the {@link org.apache.openaz.xacml.api.Request} into an JSON string with pretty-printing. This
-     * is used only for debugging.
+     * Convert the {@link org.apache.openaz.xacml.api.Request} into an JSON string with pretty-printing.
      *
      * @param request
      * @return
@@ -1126,7 +1123,7 @@ public class JSONRequest {
 
     /**
      * Convert the {@link org.apache.openaz.xacml.api.Response} into an JSON string, pretty-printing is
-     * optional. This is used only for debugging.
+     * optional. 
      *
      * @param response
      * @param prettyPrint
