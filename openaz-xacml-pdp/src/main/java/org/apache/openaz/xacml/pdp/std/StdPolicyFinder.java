@@ -177,32 +177,23 @@ public class StdPolicyFinder implements PolicyFinder {
     }
 
     private PolicyDef loadPolicyDefFromURI(URI uri) throws StdPolicyFinderException {
-        PolicyDef policyDef = null;
-        InputStream inputStream = null;
+        this.logger.info("Loading policy from URI " + uri.toString());
+        URL url = null;
         try {
-            this.logger.info("Loading policy from URI " + uri.toString());
-            URL url = uri.toURL();
+            url = uri.toURL();
             this.logger.debug("Loading policy from URL " + url.toString());
-
-            inputStream = url.openStream();
-            policyDef = DOMPolicyDef.load(inputStream);
         } catch (MalformedURLException ex) {
             this.logger.debug("Unknown protocol for URI " + uri.toString());
             return null;
+        } 
+        
+        try (InputStream inputStream = url.openStream()) {
+            return DOMPolicyDef.load(inputStream);
         } catch (Exception ex) {
             this.logger.error("Exception loading policy definition", ex);
             throw new StdPolicyFinderException("Exception loading policy def from \"" + uri.toString()
                                                + "\": " + ex.getMessage(), ex);
-        } finally {
-            if (inputStream != null) {
-                try {
-                    inputStream.close();
-                } catch (Exception ex) { //NOPMD
-                    // TODO
-                }
-            }
         }
-        return policyDef;
     }
 
     /**

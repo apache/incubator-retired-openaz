@@ -111,31 +111,28 @@ public class StdPolicyFinderFactory extends PolicyFinderFactory {
         }
 
         if ((propLocation = properties.getProperty(policyId + PROP_URL)) != null) {
-            InputStream is = null;
+            URLConnection urlConnection = null;
             try {
                 URL url = new URL(propLocation);
-                URLConnection urlConnection = url.openConnection();
+                urlConnection = url.openConnection();
                 this.logger.info("Loading policy file " + url.toString());
-                is = urlConnection.getInputStream();
-                PolicyDef policyDef = DOMPolicyDef.load(is);
-                if (policyDef != null) {
-                    return policyDef;
-                }
             } catch (MalformedURLException ex) {
                 this.logger.error("Invalid URL " + propLocation + ": " + ex.getMessage(), ex);
             } catch (IOException ex) {
                 this.logger.error("IOException opening URL " + propLocation + ": " + ex.getMessage(), ex);
-            } catch (DOMStructureException ex) {
-                this.logger.error("Invalid Policy " + propLocation + ": " + ex.getMessage(), ex);
-                return new Policy(StdStatusCode.STATUS_CODE_SYNTAX_ERROR, ex.getMessage());
-            } finally {
-                if (is != null) {
-                    try {
-                        is.close();
-                    } catch (IOException e) {
-                        this.logger.error("Exception closing InputStream for GET of url " + propLocation
-                                          + " : " + e.getMessage() + "  (May be memory leak)", e);
+            }
+            
+            if (urlConnection != null) {
+                try (InputStream is = urlConnection.getInputStream()) {
+                    PolicyDef policyDef = DOMPolicyDef.load(is);
+                    if (policyDef != null) {
+                        return policyDef;
                     }
+                } catch (IOException ex) {
+                    this.logger.error("IOException opening URL " + propLocation + ": " + ex.getMessage(), ex);
+                } catch (DOMStructureException ex) {
+                    this.logger.error("Invalid Policy " + propLocation + ": " + ex.getMessage(), ex);
+                    return new Policy(StdStatusCode.STATUS_CODE_SYNTAX_ERROR, ex.getMessage());
                 }
             }
         }

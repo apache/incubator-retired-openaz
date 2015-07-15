@@ -41,7 +41,6 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBElement;
 import javax.xml.bind.Unmarshaller;
 import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
 
 import oasis.names.tc.xacml._3_0.core.schema.wd_17.AdviceExpressionType;
 import oasis.names.tc.xacml._3_0.core.schema.wd_17.AdviceExpressionsType;
@@ -74,6 +73,7 @@ import org.apache.openaz.xacml.std.StdAttributeAssignment;
 import org.apache.openaz.xacml.std.StdAttributeValue;
 import org.apache.openaz.xacml.std.StdMutableAdvice;
 import org.apache.openaz.xacml.std.StdMutableObligation;
+import org.apache.openaz.xacml.std.dom.DOMUtil;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -830,14 +830,9 @@ public class XACMLPolicyScanner {
     public static Object readPolicy(InputStream is) {
         try {
             //
-            // Create a DOM parser
-            //
-            DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-            dbf.setNamespaceAware(true);
-            DocumentBuilder db = dbf.newDocumentBuilder();
-            //
             // Parse the policy file
             //
+            DocumentBuilder db = DOMUtil.getDocumentBuilder();
             Document doc = db.parse(is);
             //
             // Because there is no root defined in xacml,

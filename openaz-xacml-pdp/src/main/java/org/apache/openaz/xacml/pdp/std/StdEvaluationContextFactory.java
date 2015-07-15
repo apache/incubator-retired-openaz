@@ -60,7 +60,7 @@ public class StdEvaluationContextFactory extends EvaluationContextFactory {
      * yes, then we are assuming that the given properties were not just meant to configure the evaluation
      * context, but all the other engines that get created. If no, then we are assuming the given properties
      * were only meant for the evaluation context. But this implementation as of 7/14 does not even need the
-     * properties for configuring itseof. The problem is, the caller does not have the ability to instantiate
+     * properties for configuring itself. The problem is, the caller does not have the ability to instantiate
      * the PIPFinder and PolicyFinder engines. This is done internally by the evaluation context. So how can
      * they have the ability to customize PIP/Policy factories with their own properties object if the
      * properties file isn't passed on? Thus, this class will pass on the properties file if given in the
