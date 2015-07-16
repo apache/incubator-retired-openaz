@@ -42,6 +42,7 @@ import org.junit.Test;
  * Test of PDP Functions (See XACML core spec section A.3) TO RUN - use jUnit In Eclipse select this file or
  * the enclosing directory, right-click and select Run As/JUnit Test
  */
+@SuppressWarnings("deprecation")
 public class FunctionDefinitionURIStringConcatenateTest {
 
     /*
@@ -54,7 +55,6 @@ public class FunctionDefinitionURIStringConcatenateTest {
      */
     List<FunctionArgument> arguments = new ArrayList<FunctionArgument>();
 
-    @SuppressWarnings("deprecation")
     @Test
     public void testURI_string_concatenate() {
 

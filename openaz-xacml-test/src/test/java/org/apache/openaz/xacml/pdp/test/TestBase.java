@@ -51,7 +51,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.apache.commons.cli.CommandLine;
-import org.apache.commons.cli.GnuParser;
+import org.apache.commons.cli.DefaultParser;
 import org.apache.commons.cli.HelpFormatter;
 import org.apache.commons.cli.Option;
 import org.apache.commons.cli.Options;
@@ -263,8 +263,7 @@ public class TestBase extends SimpleFileVisitor<Path> {
         //
         // Parse the command line options
         //
-        CommandLine cl;
-        cl = new GnuParser().parse(options, args);
+        CommandLine cl = new DefaultParser().parse(options, args);
         //
         // Check for what we have
         //

@@ -167,12 +167,12 @@ public class ConfigurableLDAPResolver implements LDAPResolver {
 
     private String evaluateVelocityTemplate(String template,
                                             final Map<String, PIPRequest> templateParameters,
-                                            final PIPEngine pipEngine, final PIPFinder pipFinder)
+                                            final PIPFinder pipFinder)
         throws PIPException {
         StringWriter out = new StringWriter();
         VelocityContext vctx = new VelocityContext();
         EventCartridge vec = new EventCartridge();
-        VelocityParameterWriter writer = new VelocityParameterWriter(pipEngine, pipFinder, templateParameters);
+        VelocityParameterWriter writer = new VelocityParameterWriter(pipFinder, templateParameters);
         vec.addEventHandler(writer);
         vec.attachToContext(vctx);
 
@@ -246,7 +246,7 @@ public class ConfigurableLDAPResolver implements LDAPResolver {
         if (this.logger.isTraceEnabled()) {
             this.logger.trace("(" + id + ") " + pipRequest);
         }
-        return evaluateVelocityTemplate(this.base, this.baseParameters, pipEngine, pipFinder);
+        return evaluateVelocityTemplate(this.base, this.baseParameters, pipFinder);
     }
 
     public void setBase(String base) throws PIPException {
@@ -274,7 +274,7 @@ public class ConfigurableLDAPResolver implements LDAPResolver {
             return null;
         }
 
-        return evaluateVelocityTemplate(this.filter, this.filterParameters, pipEngine, pipFinder);
+        return evaluateVelocityTemplate(this.filter, this.filterParameters, pipFinder);
     }
 
     public void setFilterString(String filter) throws PIPException {
@@ -407,12 +407,10 @@ public class ConfigurableLDAPResolver implements LDAPResolver {
 
     private class VelocityParameterWriter extends VelocityParameterHandler {
 
-        private PIPEngine engine;
         private PIPFinder finder;
         private Map<String, PIPRequest> parameters;
 
-        public VelocityParameterWriter(PIPEngine engine, PIPFinder finder, Map<String, PIPRequest> parameters) {
-            this.engine = engine;
+        public VelocityParameterWriter(PIPFinder finder, Map<String, PIPRequest> parameters) {
             this.finder = finder;
             this.parameters = parameters;
         }
