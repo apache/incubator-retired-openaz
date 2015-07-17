@@ -43,7 +43,7 @@ public class TestMapper {
 
     @Before
     public void setup() {
-        this.pepAgentFactory = new StdPepAgentFactory("/properties/testmapper.xacml.properties");
+        this.pepAgentFactory = new StdPepAgentFactory("properties/testmapper.xacml.properties");
     }
 
     /**

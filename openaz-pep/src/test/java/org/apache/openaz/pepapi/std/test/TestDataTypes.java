@@ -40,7 +40,7 @@ public class TestDataTypes {
          * System.setProperty("xacml.properties" ,
          * getClass().getClassLoader().getResource("properties/testdatatypes.xacml.properties").getPath());
          */
-        pepAgentFactory = new StdPepAgentFactory("/properties/testdatatypes.xacml.properties");
+        pepAgentFactory = new StdPepAgentFactory("properties/testdatatypes.xacml.properties");
     }
 
     /**

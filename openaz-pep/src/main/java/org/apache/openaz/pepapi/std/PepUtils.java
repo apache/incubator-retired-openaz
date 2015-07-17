@@ -24,7 +24,9 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import java.io.*;
+import java.util.HashSet;
 import java.util.Properties;
+import java.util.Set;
 
 /**
  *
@@ -64,7 +66,7 @@ public class PepUtils {
 
         // Try the location as a file first.
         File file = new File(propertyFile);
-        InputStream in;
+        InputStream in = null;
         if (file.exists() && file.canRead()) {
             if (!file.isAbsolute()) {
                 file = file.getAbsoluteFile();
@@ -72,15 +74,23 @@ public class PepUtils {
             try {
                 in = new FileInputStream(file);
             } catch (FileNotFoundException e) {
-                logger.info(propertyFile + " is not a file.");
+                logger.error("Error while accessing file: " + propertyFile);
+                throw new IllegalArgumentException(e);
             }
-        }
-
-        in = PepUtils.class.getResourceAsStream(propertyFile);
-
-        if (in == null) {
-            logger.error("Invalid classpath of file location: " + propertyFile);
-            throw new IllegalArgumentException("Invalid classpath or file location: " + propertyFile);
+        } else {
+            Set<ClassLoader> classLoaders = new HashSet<>();
+            classLoaders.add(PepUtils.class.getClassLoader());
+            classLoaders.add(Thread.currentThread().getContextClassLoader());
+            for(ClassLoader classLoader: classLoaders) {
+                in = classLoader.getResourceAsStream(propertyFile);
+                if(in != null) {
+                    break;
+                }
+            }
+            if(in == null) {
+                logger.error("Invalid classpath or file location: " + propertyFile);
+                throw new IllegalArgumentException("Invalid classpath or file location: " + propertyFile);
+            }
         }
 
         try {

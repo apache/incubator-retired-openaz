@@ -35,7 +35,7 @@ public class TestAPI {
 
     @Before
     public void setup() {
-        pepAgentFactory = new StdPepAgentFactory("/properties/testapi.xacml.properties");
+        pepAgentFactory = new StdPepAgentFactory("properties/testapi.xacml.properties");
     }
 
     /**

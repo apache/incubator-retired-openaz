@@ -47,8 +47,7 @@ public class StdPepAgentFactory implements PepAgentFactory {
         this.xacmlProperties = properties;
         this.pepConfig = new StdPepConfig(properties);
         try {
-            // FIXME: Error when invoking newInstance() with properties.
-            pdpEngineFactory = PDPEngineFactory.newInstance();
+            pdpEngineFactory = PDPEngineFactory.newInstance(properties);
         } catch (FactoryException e) {
             throw new PepException(e);
         }
