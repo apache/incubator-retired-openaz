@@ -57,7 +57,7 @@ import org.apache.openaz.xacml.api.Result;
  * command line argument. You should also direct the output to a file using -o or --output. (default is
  * Console) See the init() method in this file for other useful arguments. Example for a Windows machine: -i
  * testsets/conformance/xacml3.0-ct-v.0.4 -o \Users\yourLogin\Downloads\conformance.txt You must also set the
- * VM arguments: -Dxacml.properties=testsets/conformance/xacml.properties .
+ * VM arguments: -Dxacml.properties=src/test/resources/testsets/conformance/xacml.properties .
  * -Dlog4j.configuration=.\logging.properties
  */
 public class Conformance {
