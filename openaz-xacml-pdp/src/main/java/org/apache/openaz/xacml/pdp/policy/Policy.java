@@ -310,16 +310,17 @@ public class Policy extends PolicyDef {
             .combine(evaluationContext, ruleCombiningElements, this.getCombinerParameterList());
         assert evaluationResultCombined != null;
 
+        /*
+         * Add my id to the policy identifiers
+         */
+        if (evaluationContext.getRequest().getReturnPolicyIdList()) {
+            evaluationResultCombined.addPolicyIdentifier(this.getIdReference());
+        }
+
         if (evaluationResultCombined.getDecision() == Decision.DENY
             || evaluationResultCombined.getDecision() == Decision.PERMIT) {
             this.updateResult(evaluationResultCombined, evaluationContext);
 
-            /*
-             * Add my id to the policy identifiers
-             */
-            if (evaluationContext.getRequest().getReturnPolicyIdList()) {
-                evaluationResultCombined.addPolicyIdentifier(this.getIdReference());
-            }
         }
         if (evaluationContext.isTracing()) {
             evaluationContext.trace(new StdTraceEvent<Result>("Result", this, evaluationResultCombined));
