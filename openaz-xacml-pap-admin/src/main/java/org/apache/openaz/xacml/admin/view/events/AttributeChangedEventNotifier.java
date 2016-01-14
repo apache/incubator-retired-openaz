@@ -1,0 +1,78 @@
+/*
+ *  Licensed to the Apache Software Foundation (ASF) under one
+ *  or more contributor license agreements.  See the NOTICE file
+ *  distributed with this work for additional information
+ *  regarding copyright ownership.  The ASF licenses this file
+ *  to you under the Apache License, Version 2.0 (the
+ *  "License"); you may not use this file except in compliance
+ *  with the License.  You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing,
+ *  software distributed under the License is distributed on an
+ *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ *  KIND, either express or implied.  See the License for the
+ *  specific language governing permissions and limitations
+ *  under the License.
+ *
+ */
+
+package org.apache.openaz.xacml.admin.view.events;
+
+import java.util.ArrayList;
+import java.util.Collection;
+
+import org.apache.openaz.xacml.admin.jpa.Attribute;
+
+public interface AttributeChangedEventNotifier {
+
+	boolean	addListener(AttributeChangedEventListener listener);
+	
+	boolean removeListener(AttributeChangedEventListener listener);
+
+	void	fireAttributeChanged(Attribute attribute);
+	
+	void commit();
+	
+	Attribute	getAttribute();
+	
+	class BasicNotifier implements AttributeChangedEventNotifier {
+		Collection<AttributeChangedEventListener>	listeners = null;
+
+		@Override
+		public boolean addListener(AttributeChangedEventListener listener) {
+			if (this.listeners == null) {
+				this.listeners = new ArrayList<AttributeChangedEventListener>();
+			}
+			return this.listeners.add(listener);
+		}
+
+		@Override
+		public boolean removeListener(AttributeChangedEventListener listener) {
+			if (this.listeners == null) {
+				return false;
+			}
+			return this.listeners.remove(listener);
+		}
+
+		@Override
+		public void fireAttributeChanged(Attribute attribute) {
+			if (this.listeners == null) {
+				return;
+			}
+			for (AttributeChangedEventListener listener : this.listeners) {
+				listener.attributeChanged(attribute);
+			}
+		}
+		
+		public void commit() {
+			
+		}
+
+		public Attribute	getAttribute() {
+			return null;
+		}
+		
+	}
+}
