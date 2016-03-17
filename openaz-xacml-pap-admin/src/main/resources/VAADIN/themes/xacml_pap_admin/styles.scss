@@ -1,0 +1,9 @@
+@import "addons.scss";
+@import "xacml_pap_admin.scss";
+
+/* This file prefixes all rules with the theme name to avoid causing conflicts with other themes. */
+/* The actual styles should be defined in xacml_pap_admin.scss */
+.xacml_pap_admin {
+  @include addons;
+  @include xacml_pap_admin;
+}
