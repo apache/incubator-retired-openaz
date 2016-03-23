@@ -30,17 +30,13 @@ import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TestDataTypes {
+public class TestConfig {
 
     private PepAgentFactory pepAgentFactory;
 
     @Before
     public void setup() {
-        /*
-         * System.setProperty("xacml.properties" ,
-         * getClass().getClassLoader().getResource("properties/testdatatypes.xacml.properties").getPath());
-         */
-        pepAgentFactory = new StdPepAgentFactory("properties/testdatatypes.xacml.properties");
+        pepAgentFactory = new StdPepAgentFactory("properties/testconfig.xacml.properties");
     }
 
     /**
@@ -55,10 +51,10 @@ public class TestDataTypes {
      *
      */
     @Test
-    public void testPermitWithURIResource() {
-        Subject subject = Subject.newInstance("John Smith");
-        Action action = Action.newInstance("view");
-        Resource resource = Resource.newInstance(URI.create("file://repository/classified/abc"));
+    public void testPermitWithDefaultsMatch() {
+        Subject subject = Subject.newInstance();
+        Action action = Action.newInstance();
+        Resource resource = Resource.newInstance();
         PepResponse response = getPepAgent().decide(subject, action, resource);
         Assert.assertNotNull(response);
         Assert.assertEquals(true, response.allowed());
@@ -68,19 +64,13 @@ public class TestDataTypes {
      *
      */
     @Test
-    public void testMultiRequestWithURI() {
-        List<Resource> resources = new ArrayList<Resource>();
-        resources.add(Resource.newInstance(URI.create("file://repository/classified/abc")));
-        resources.add(Resource.newInstance(URI.create("file://repository/classified/xyz")));
-
-        Subject subject = Subject.newInstance("John Smith");
-        Action action = Action.newInstance("view");
-
-        List<PepResponse> responses = getPepAgent().bulkDecide(resources, action, subject);
-        Assert.assertNotNull(responses);
-        for (PepResponse response : responses) {
-            Assert.assertEquals(true, response.allowed());
-        }
+    public void testPermitWithDefaultsMismatch() {
+        Subject subject = Subject.newInstance("non-default-subject-id");
+        Action action = Action.newInstance("non-default-action-id");
+        Resource resource = Resource.newInstance("non-default-resource-id");
+        PepResponse response = getPepAgent().decide(subject, action, resource);
+        Assert.assertNotNull(response);
+        Assert.assertEquals(false, response.allowed());
     }
 
     public PepAgent getPepAgent() {

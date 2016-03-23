@@ -20,11 +20,13 @@
 
 package org.apache.openaz.pepapi.std;
 
+import org.apache.openaz.pepapi.PepRequest;
+import org.apache.openaz.pepapi.PepRequestAttributes;
 import org.apache.openaz.pepapi.Resource;
+import org.apache.openaz.xacml.api.XACML3;
 
-/**
- * Created by ajith on 12/11/14.
- */
+import java.net.URI;
+
 public class ResourceMapper extends CategoryContainerMapper {
 
     public ResourceMapper() {
@@ -32,10 +34,24 @@ public class ResourceMapper extends CategoryContainerMapper {
     }
 
     @Override
-    protected String resolveAttributeId(String attributeId) {
-        if (attributeId.equals(Resource.RESOURCE_ID_KEY)) {
-            return getPepConfig().getDefaultResourceId();
+    public void map(Object o, PepRequest pepRequest) {
+        Resource r = (Resource) o;
+        Object id = r.getId();
+        if (id == null) {
+            id = getPepConfig().getDefaultResourceId();
+
+            if (id != null) {
+                PepRequestAttributes resourceAttributes = pepRequest
+                        .getPepRequestAttributes(XACML3.ID_ATTRIBUTE_CATEGORY_RESOURCE);
+                if (id instanceof String)
+                    resourceAttributes.addAttribute(XACML3.ID_RESOURCE_RESOURCE_ID.stringValue(), (String) id);
+                else if (id instanceof URI)
+                    resourceAttributes.addAttribute(XACML3.ID_RESOURCE_RESOURCE_ID.stringValue(), (URI) id);
+                else
+                    throw new IllegalStateException("resource id is not an instance of String nor java.net.URI but " +
+                            r.getClass().getName());
+            }
         }
-        return attributeId;
+        super.map(o, pepRequest);
     }
 }
