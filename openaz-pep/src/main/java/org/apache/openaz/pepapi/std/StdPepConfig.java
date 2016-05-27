@@ -21,13 +21,11 @@
 package org.apache.openaz.pepapi.std;
 
 import com.google.common.base.Splitter;
-
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.openaz.pepapi.PepConfig;
 import org.apache.openaz.pepapi.PepResponseBehavior;
-import org.apache.openaz.xacml.api.XACML3;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -68,9 +66,6 @@ public final class StdPepConfig implements PepConfig {
 
     public StdPepConfig() {
         // Defaults
-        subjectIdURI = XACML3.ID_SUBJECT_SUBJECT_ID.stringValue();
-        actionIdURI = XACML3.ID_ACTION_ACTION_ID.stringValue();
-        resourceIdURI = XACML3.ID_RESOURCE_RESOURCE_ID.stringValue();
         indeterminateBehavior = PepResponseBehavior.THROW_EXCEPTION;
         notApplicableBehavior = PepResponseBehavior.RETURN_NO;
         mapperClassNames = Collections.emptyList();
@@ -119,7 +114,7 @@ public final class StdPepConfig implements PepConfig {
         if (!StringUtils.isEmpty(mapperClassNameString)) {
             List<String> mapperClassNames = new ArrayList<String>();
             for (String className : Splitter.on(",").omitEmptyStrings().trimResults()
-                .split(mapperClassNameString)) {
+                    .split(mapperClassNameString)) {
                 mapperClassNames.add(className);
             }
             this.mapperClassNames = Collections.unmodifiableList(mapperClassNames);

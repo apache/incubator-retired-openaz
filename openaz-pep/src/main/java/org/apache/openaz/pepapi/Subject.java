@@ -27,9 +27,7 @@ import org.apache.openaz.xacml.api.XACML3;
  */
 public class Subject extends CategoryContainer {
 
-    public static final String SUBJECT_ID_KEY = "SUBJECT_ID_KEY";
-
-    private String subjectIdValue;
+    private String id;
 
     private Subject() {
         super(XACML3.ID_SUBJECT_CATEGORY_ACCESS_SUBJECT);
@@ -47,14 +45,24 @@ public class Subject extends CategoryContainer {
     /**
      * Creates a new Subject instance containing a single default attribute with the given String value.
      *
-     * @param subjectIdValue
+     * @param id
      * @return
      */
-    public static Subject newInstance(String subjectIdValue) {
-        Subject s = new Subject();
-        s.subjectIdValue = subjectIdValue;
-        s.addAttribute(SUBJECT_ID_KEY, subjectIdValue);
+    public static Subject newInstance(String id) {
+        Subject s = newInstance().withId(id);
+        s.addAttribute(XACML3.ID_SUBJECT_SUBJECT_ID.stringValue(), id);
         return s;
+    }
+
+
+    /**
+     * Sets resource id value
+     *
+     * @return this
+     */
+    public Subject withId(String id) {
+        this.id = id;
+        return this;
     }
 
     /**
@@ -62,16 +70,8 @@ public class Subject extends CategoryContainer {
      *
      * @return
      */
-    public String getSubjectIdValue() {
-        return subjectIdValue;
+    public String getId() {
+        return id;
     }
 
-    @Override
-    public String toString() {
-        StringBuilder builder = new StringBuilder();
-        builder.append("subject-id value : " + subjectIdValue);
-        builder.append("\n");
-        builder.append(super.toString());
-        return builder.toString();
-    }
 }

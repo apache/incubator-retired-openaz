@@ -20,11 +20,11 @@
 
 package org.apache.openaz.pepapi.std;
 
+import org.apache.openaz.pepapi.PepRequest;
+import org.apache.openaz.pepapi.PepRequestAttributes;
 import org.apache.openaz.pepapi.Subject;
+import org.apache.openaz.xacml.api.XACML3;
 
-/**
- * Created by ajith on 12/11/14.
- */
 public class SubjectMapper extends CategoryContainerMapper {
 
     public SubjectMapper() {
@@ -32,10 +32,17 @@ public class SubjectMapper extends CategoryContainerMapper {
     }
 
     @Override
-    protected String resolveAttributeId(String attributeId) {
-        if (attributeId.equals(Subject.SUBJECT_ID_KEY)) {
-            return getPepConfig().getDefaultSubjectId();
+    public void map(Object o, PepRequest pepRequest) {
+        Subject s = (Subject) o;
+        String id = s.getId();
+        if (id == null) {
+            id = getPepConfig().getDefaultSubjectId();
+            if (id != null) {
+                PepRequestAttributes resourceAttributes = pepRequest
+                        .getPepRequestAttributes(XACML3.ID_SUBJECT_CATEGORY_ACCESS_SUBJECT);
+                resourceAttributes.addAttribute(XACML3.ID_SUBJECT_SUBJECT_ID.stringValue(), (String) id);
+            }
         }
-        return attributeId;
+        super.map(o, pepRequest);
     }
 }
