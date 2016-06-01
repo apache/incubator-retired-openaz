@@ -20,6 +20,7 @@
 
 package org.apache.openaz.pepapi;
 
+import org.apache.openaz.xacml.api.Identifier;
 import org.apache.openaz.xacml.api.XACML3;
 
 /**
@@ -27,7 +28,8 @@ import org.apache.openaz.xacml.api.XACML3;
  */
 public class Action extends CategoryContainer {
 
-    private String id;
+    public static final Identifier DEFAULT_IDENTIFIER_ID = XACML3.ID_ACTION_ACTION_ID;
+    private String idValue;
 
     private Action() {
         super(XACML3.ID_ATTRIBUTE_CATEGORY_ACTION);
@@ -42,35 +44,48 @@ public class Action extends CategoryContainer {
         return new Action();
     }
 
-
     /**
-     * Creates a new Action instance with id
+     * Creates a new Subject instance containing a single default attribute with the given String value.
      *
-     * @param id
+     * @param idValue
      * @return
      */
-    public static Action newInstance(String id) {
-        Action a = newInstance().withId(id);
-        a.addAttribute(XACML3.ID_ACTION_ACTION_ID.stringValue(), id);
-        return a;
+    public static Action newInstance(String idValue) {
+        return newInstance().withId(idValue);
     }
 
     /**
+     * Sets the Id of the action
      *
-     * @param id
+     * @param idValue
      * @return
      */
-    public Action withId(String id) {
-        this.id = id;
+    public Action withId(String idValue) {
+        this.idValue = idValue;
+        addAttribute(DEFAULT_IDENTIFIER_ID.stringValue(), idValue);
         return this;
     }
 
     /**
+     * Sets the id of the action and allows to set/override the default attribute key
+     *
+     * @param idKey
+     * @param idValue
+     * @return
+     */
+    public Action withId(Identifier idKey, String idValue) {
+        this.idValue = idValue;
+        addAttribute(idKey.stringValue(), idValue);
+        return this;
+    }
+
+    /**
+     * Returns the value of the id
      *
      * @return
      */
     public String getId() {
-        return id;
+        return idValue;
     }
 
 }

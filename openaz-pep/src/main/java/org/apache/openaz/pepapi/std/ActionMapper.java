@@ -23,7 +23,6 @@ package org.apache.openaz.pepapi.std;
 import org.apache.openaz.pepapi.Action;
 import org.apache.openaz.pepapi.PepRequest;
 import org.apache.openaz.pepapi.PepRequestAttributes;
-import org.apache.openaz.xacml.api.XACML3;
 
 public class ActionMapper extends CategoryContainerMapper {
 
@@ -33,14 +32,14 @@ public class ActionMapper extends CategoryContainerMapper {
 
     @Override
     public void map(Object o, PepRequest pepRequest) {
-        Action a = (Action) o;
-        String id = a.getId();
+        Action action = (Action) o;
+        String id = action.getId();
         if (id == null) {
             id = getPepConfig().getDefaultActionId();
             if (id != null) {
                 PepRequestAttributes resourceAttributes = pepRequest
-                        .getPepRequestAttributes(XACML3.ID_ATTRIBUTE_CATEGORY_ACTION);
-                resourceAttributes.addAttribute(XACML3.ID_ACTION_ACTION_ID.stringValue(), (String) id);
+                        .getPepRequestAttributes(action.getCategoryIdentifier());
+                resourceAttributes.addAttribute(Action.DEFAULT_IDENTIFIER_ID.stringValue(), (String) id);
             }
         }
         super.map(o, pepRequest);
