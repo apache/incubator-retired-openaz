@@ -20,37 +20,11 @@
 
 package org.apache.openaz.pepapi.std;
 
-import org.apache.openaz.pepapi.PepRequest;
-import org.apache.openaz.pepapi.PepRequestAttributes;
 import org.apache.openaz.pepapi.Resource;
-
-import java.net.URI;
 
 public class ResourceMapper extends CategoryContainerMapper {
 
     public ResourceMapper() {
         super(Resource.class);
-    }
-
-    @Override
-    public void map(Object o, PepRequest pepRequest) {
-        Resource resource = (Resource) o;
-        Object id = resource.getId();
-        if (id == null) {
-            id = getPepConfig().getDefaultResourceId();
-
-            if (id != null) {
-                PepRequestAttributes resourceAttributes = pepRequest
-                        .getPepRequestAttributes(resource.getCategoryIdentifier());
-                if (id instanceof String)
-                    resourceAttributes.addAttribute(Resource.DEFAULT_IDENTIFIER_ID.stringValue(), (String) id);
-                else if (id instanceof URI)
-                    resourceAttributes.addAttribute(Resource.DEFAULT_IDENTIFIER_ID.stringValue(), (URI) id);
-                else
-                    throw new IllegalStateException("resource id is not an instance of String nor java.net.URI but " +
-                            resource.getClass().getName());
-            }
-        }
-        super.map(o, pepRequest);
     }
 }

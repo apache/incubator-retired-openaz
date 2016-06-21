@@ -20,7 +20,6 @@
 
 package org.apache.openaz.pepapi;
 
-import org.apache.openaz.xacml.api.Identifier;
 import org.apache.openaz.xacml.api.XACML3;
 
 /**
@@ -28,8 +27,7 @@ import org.apache.openaz.xacml.api.XACML3;
  */
 public class Subject extends CategoryContainer {
 
-    public static final Identifier DEFAULT_IDENTIFIER_ID = XACML3.ID_SUBJECT_SUBJECT_ID;
-    private String idValue;
+    private String id;
 
     private Subject() {
         super(XACML3.ID_SUBJECT_CATEGORY_ACCESS_SUBJECT);
@@ -47,35 +45,22 @@ public class Subject extends CategoryContainer {
     /**
      * Creates a new Subject instance containing a single default attribute with the given String value.
      *
-     * @param idValue
+     * @param id
      * @return
      */
-    public static Subject newInstance(String idValue) {
-        return newInstance().withId(idValue);
+    public static Subject newInstance(String id) {
+        return newInstance().withId(id);
     }
 
     /**
      * Sets the Id of the subject
      *
-     * @param idValue
+     * @param id
      * @return
      */
-    public Subject withId(String idValue) {
-        this.idValue = idValue;
-        addAttribute(DEFAULT_IDENTIFIER_ID.stringValue(), idValue);
-        return this;
-    }
-
-    /**
-     * Sets the id of the subject and allows to set/override the default attribute key
-     *
-     * @param idKey
-     * @param idValue
-     * @return
-     */
-    public Subject withId(Identifier idKey, String idValue) {
-        this.idValue = idValue;
-        addAttribute(idKey.stringValue(), idValue);
+    public Subject withId(String id) {
+        this.id = id;
+        addAttribute(XACML3.ID_SUBJECT_SUBJECT_ID.stringValue(), id);
         return this;
     }
 
@@ -85,7 +70,7 @@ public class Subject extends CategoryContainer {
      * @return
      */
     public String getId() {
-        return idValue;
+        return id;
     }
 
 }

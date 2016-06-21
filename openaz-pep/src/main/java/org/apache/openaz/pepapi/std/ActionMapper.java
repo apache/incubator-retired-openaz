@@ -21,27 +21,10 @@
 package org.apache.openaz.pepapi.std;
 
 import org.apache.openaz.pepapi.Action;
-import org.apache.openaz.pepapi.PepRequest;
-import org.apache.openaz.pepapi.PepRequestAttributes;
 
 public class ActionMapper extends CategoryContainerMapper {
 
     public ActionMapper() {
         super(Action.class);
-    }
-
-    @Override
-    public void map(Object o, PepRequest pepRequest) {
-        Action action = (Action) o;
-        String id = action.getId();
-        if (id == null) {
-            id = getPepConfig().getDefaultActionId();
-            if (id != null) {
-                PepRequestAttributes resourceAttributes = pepRequest
-                        .getPepRequestAttributes(action.getCategoryIdentifier());
-                resourceAttributes.addAttribute(Action.DEFAULT_IDENTIFIER_ID.stringValue(), (String) id);
-            }
-        }
-        super.map(o, pepRequest);
     }
 }

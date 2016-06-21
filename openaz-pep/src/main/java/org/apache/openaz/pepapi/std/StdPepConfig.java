@@ -38,12 +38,6 @@ public final class StdPepConfig implements PepConfig {
 
     private static final String PEP_ISSUER = "pep.issuer";
 
-    private static final String PEP_DEFAULT_SUBJECT_ID = "pep.subject.id";
-
-    private static final String PEP_DEFAULT_ACTION_ID = "pep.action.id";
-
-    private static final String PEP_DEFAULT_RESOURCE_ID = "pep.resource.id";
-
     private static final String PEP_INDETERMINATE_BEHAVIOR = "pep.indeterminate.behavior";
 
     private static final String PEP_NOTAPPLICABLE_BEHAVIOR = "pep.notapplicable.behavior";
@@ -51,12 +45,6 @@ public final class StdPepConfig implements PepConfig {
     private static final String PEP_MAPPER_CLASSES = "pep.mapper.classes";
 
     private String issuer;
-
-    private String subjectIdURI;
-
-    private String actionIdURI;
-
-    private String resourceIdURI;
 
     private PepResponseBehavior indeterminateBehavior;
 
@@ -74,21 +62,6 @@ public final class StdPepConfig implements PepConfig {
     public StdPepConfig(Properties properties) {
         this();
         issuer = properties.getProperty(PEP_ISSUER);
-
-        String subjectIdURI = properties.getProperty(PEP_DEFAULT_SUBJECT_ID);
-        if (!StringUtils.isEmpty(subjectIdURI)) {
-            this.subjectIdURI = subjectIdURI;
-        }
-
-        String actionIdURI = properties.getProperty(PEP_DEFAULT_ACTION_ID);
-        if (!StringUtils.isEmpty(actionIdURI)) {
-            this.actionIdURI = actionIdURI;
-        }
-
-        String resourceIdURI = properties.getProperty(PEP_DEFAULT_RESOURCE_ID);
-        if (!StringUtils.isEmpty(resourceIdURI)) {
-            this.resourceIdURI = resourceIdURI;
-        }
 
         String indeterminateString = properties.getProperty(PEP_INDETERMINATE_BEHAVIOR);
         if (!StringUtils.isEmpty(indeterminateString)) {
@@ -125,21 +98,6 @@ public final class StdPepConfig implements PepConfig {
     @Override
     public String getIssuer() {
         return issuer;
-    }
-
-    @Override
-    public String getDefaultSubjectId() {
-        return subjectIdURI;
-    }
-
-    @Override
-    public String getDefaultResourceId() {
-        return resourceIdURI;
-    }
-
-    @Override
-    public String getDefaultActionId() {
-        return actionIdURI;
     }
 
     @Override

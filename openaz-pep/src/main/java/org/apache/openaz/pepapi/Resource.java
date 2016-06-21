@@ -20,7 +20,6 @@
 
 package org.apache.openaz.pepapi;
 
-import org.apache.openaz.xacml.api.Identifier;
 import org.apache.openaz.xacml.api.XACML3;
 
 import java.net.URI;
@@ -30,11 +29,8 @@ import java.net.URI;
  */
 public final class Resource extends CategoryContainer {
 
-    public static final Identifier DEFAULT_IDENTIFIER_ID = XACML3.ID_RESOURCE_RESOURCE_ID;
-    public static final Identifier DEFAULT_IDENTIFIER_LOCATION = XACML3.ID_RESOURCE_RESOURCE_LOCATION;
-
-    private Object idValue; // only java.lang.String or java.net.URI
-    private URI locationValue;
+    private Object id; // only java.lang.String or java.net.URI
+    private URI location;
 
     private Resource() {
         super(XACML3.ID_ATTRIBUTE_CATEGORY_RESOURCE);
@@ -52,32 +48,32 @@ public final class Resource extends CategoryContainer {
     /**
      * Creates a new Resource instance containing a single default attribute with the given String value.
      *
-     * @param idValue
+     * @param id
      * @return
      */
-    public static Resource newInstance(String idValue) {
-        return newInstance().withId(idValue);
+    public static Resource newInstance(String id) {
+        return newInstance().withId(id);
     }
 
     /**
      * Creates a new Resource instance containing a single default attribute with the given URI value.
      *
-     * @param idValue
+     * @param id
      * @return
      */
-    public static Resource newInstance(URI idValue) {
-        return newInstance().withId(idValue);
+    public static Resource newInstance(URI id) {
+        return newInstance().withId(id);
     }
 
     /**
      * Sets resource id value
      *
-     * @param idValue
+     * @param id
      * @return this
      */
-    public Resource withId(URI idValue) {
-        this.idValue = idValue;
-        addAttribute(DEFAULT_IDENTIFIER_ID.stringValue(), idValue);
+    public Resource withId(URI id) {
+        this.id = id;
+        addAttribute(XACML3.ID_RESOURCE_RESOURCE_ID.stringValue(), id);
         return this;
     }
 
@@ -85,62 +81,23 @@ public final class Resource extends CategoryContainer {
      * Sets resource id value
      *
      * @param id
-     * @param idValue
      * @return this
      */
-    public Resource withId(Identifier id, URI idValue) {
-        this.idValue = idValue;
-        addAttribute(id.stringValue(), idValue);
-        return this;
-    }
-
-    /**
-     * Sets resource id value
-     *
-     * @param idValue
-     * @return this
-     */
-    public Resource withId(String idValue) {
-        this.idValue = idValue;
-        addAttribute(DEFAULT_IDENTIFIER_ID.stringValue(), idValue);
-        return this;
-    }
-
-    /**
-     * Sets resource id value
-     *
-     * @param id
-     * @param idValue
-     * @return this
-     */
-    public Resource withId(Identifier id, String idValue) {
-        this.idValue = idValue;
-        addAttribute(id.stringValue(), idValue);
+    public Resource withId(String id) {
+        this.id = id;
+        addAttribute(XACML3.ID_RESOURCE_RESOURCE_ID.stringValue(), id);
         return this;
     }
 
     /**
      * Sets resource location
      *
-     * @param locationValue
+     * @param location
      * @return this
      */
-    public Resource withLocation(URI locationValue) {
-        this.locationValue = locationValue;
-        addAttribute(DEFAULT_IDENTIFIER_LOCATION.stringValue(), locationValue);
-        return this;
-    }
-
-    /**
-     * Sets resource location
-     *
-     * @param id
-     * @param locationValue
-     * @return this
-     */
-    public Resource withLocation(Identifier id, URI locationValue) {
-        this.locationValue = locationValue;
-        addAttribute(id.stringValue(), locationValue);
+    public Resource withLocation(URI location) {
+        this.location = location;
+        addAttribute(XACML3.ID_RESOURCE_RESOURCE_LOCATION.stringValue(), location);
         return this;
     }
 
@@ -150,7 +107,7 @@ public final class Resource extends CategoryContainer {
      * @return
      */
     public Object getId() {
-        return this.idValue;
+        return this.id;
     }
 
     /**
@@ -159,7 +116,7 @@ public final class Resource extends CategoryContainer {
      * @return
      */
     public URI getLocation() {
-        return locationValue;
+        return location;
     }
 
 }
