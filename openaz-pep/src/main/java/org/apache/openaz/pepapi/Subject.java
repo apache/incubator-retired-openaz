@@ -49,24 +49,23 @@ public class Subject extends CategoryContainer {
      * @return
      */
     public static Subject newInstance(String id) {
-        Subject s = newInstance().withId(id);
-        s.addAttribute(XACML3.ID_SUBJECT_SUBJECT_ID.stringValue(), id);
-        return s;
+        return newInstance().withId(id);
     }
 
-
     /**
-     * Sets resource id value
+     * Sets the Id of the subject
      *
-     * @return this
+     * @param id
+     * @return
      */
     public Subject withId(String id) {
         this.id = id;
+        addAttribute(XACML3.ID_SUBJECT_SUBJECT_ID.stringValue(), id);
         return this;
     }
 
     /**
-     * Returns the value of the default subjectIdValue attribute
+     * Returns the value of the id
      *
      * @return
      */

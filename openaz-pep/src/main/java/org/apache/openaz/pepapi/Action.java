@@ -42,30 +42,29 @@ public class Action extends CategoryContainer {
         return new Action();
     }
 
-
     /**
-     * Creates a new Action instance with id
+     * Creates a new Subject instance containing a single default attribute with the given String value.
      *
      * @param id
      * @return
      */
     public static Action newInstance(String id) {
-        Action a = newInstance().withId(id);
-        a.addAttribute(XACML3.ID_ACTION_ACTION_ID.stringValue(), id);
-        return a;
+        return newInstance().withId(id);
     }
 
     /**
+     * Sets the Id of the action
      *
      * @param id
      * @return
      */
     public Action withId(String id) {
         this.id = id;
+        addAttribute(XACML3.ID_ACTION_ACTION_ID.stringValue(), id);
         return this;
     }
-
-    /**
+/**
+     * Returns the value of the id
      *
      * @return
      */

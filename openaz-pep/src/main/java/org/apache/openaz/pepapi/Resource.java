@@ -29,8 +29,7 @@ import java.net.URI;
  */
 public final class Resource extends CategoryContainer {
 
-    // only java.lang.String or java.net.URI
-    private Object id;
+    private Object id; // only java.lang.String or java.net.URI
     private URI location;
 
     private Resource() {
@@ -53,9 +52,7 @@ public final class Resource extends CategoryContainer {
      * @return
      */
     public static Resource newInstance(String id) {
-        Resource r = newInstance().withId(id);
-        r.addAttribute(XACML3.ID_RESOURCE_RESOURCE_ID.stringValue(), id);
-        return r;
+        return newInstance().withId(id);
     }
 
     /**
@@ -65,43 +62,47 @@ public final class Resource extends CategoryContainer {
      * @return
      */
     public static Resource newInstance(URI id) {
-        Resource r = newInstance().withId(id);
-        r.addAttribute(XACML3.ID_RESOURCE_RESOURCE_ID.stringValue(), id);
-        return r;
+        return newInstance().withId(id);
     }
 
     /**
      * Sets resource id value
      *
+     * @param id
      * @return this
      */
     public Resource withId(URI id) {
         this.id = id;
+        addAttribute(XACML3.ID_RESOURCE_RESOURCE_ID.stringValue(), id);
         return this;
     }
 
     /**
      * Sets resource id value
      *
+     * @param id
      * @return this
      */
     public Resource withId(String id) {
         this.id = id;
+        addAttribute(XACML3.ID_RESOURCE_RESOURCE_ID.stringValue(), id);
         return this;
     }
 
     /**
      * Sets resource location
      *
+     * @param location
      * @return this
      */
     public Resource withLocation(URI location) {
+        this.location = location;
         addAttribute(XACML3.ID_RESOURCE_RESOURCE_LOCATION.stringValue(), location);
         return this;
     }
 
     /**
-     * Returns the value of the default id attribute
+     * Returns the value of the id attribute
      *
      * @return
      */

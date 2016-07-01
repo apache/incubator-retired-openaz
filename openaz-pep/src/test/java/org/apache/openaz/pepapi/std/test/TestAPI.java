@@ -65,7 +65,8 @@ public class TestAPI {
     public void testPermitWithLocationMatch() {
         Subject subject = Subject.newInstance("Bob");
         Action action = Action.newInstance("read");
-        Resource resource = Resource.newInstance(URI.create("/record/patient/Alice")).withLocation(URI.create("http://medical-records.com/"));
+        Resource resource = Resource.newInstance(URI.create("/record/patient/Alice"))
+                .withLocation(URI.create("http://medical-records.com/"));
         PepResponse response = getPepAgent().decide(subject, action, resource);
         Assert.assertNotNull(response);
         Assert.assertEquals(true, response.allowed());
@@ -78,7 +79,8 @@ public class TestAPI {
     public void testPermitWithLocationMismatch() {
         Subject subject = Subject.newInstance("Bob");
         Action action = Action.newInstance("read");
-        Resource resource = Resource.newInstance(URI.create("/record/patient/Alice")).withLocation(URI.create("http://restricted-records.com/"));
+        Resource resource = Resource.newInstance(URI.create("/record/patient/Alice"))
+                .withLocation(URI.create("http://restricted-records.com/"));
         PepResponse response = getPepAgent().decide(subject, action, resource);
         Assert.assertNotNull(response);
         Assert.assertEquals(false, response.allowed());

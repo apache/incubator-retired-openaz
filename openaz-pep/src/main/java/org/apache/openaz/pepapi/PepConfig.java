@@ -34,21 +34,6 @@ public interface PepConfig {
     /**
      * @return
      */
-    String getDefaultSubjectId();
-
-    /**
-     * @return
-     */
-    String getDefaultResourceId();
-
-    /**
-     * @return
-     */
-    String getDefaultActionId();
-
-    /**
-     * @return
-     */
     PepResponseBehavior getIndeterminateBehavior();
 
     /**
