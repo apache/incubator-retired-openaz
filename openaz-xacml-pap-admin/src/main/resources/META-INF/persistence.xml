@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+	<persistence-unit name="XACML-PAP-ADMIN">
+		<class>org.apache.openaz.xacml.admin.jpa.Attribute</class>
+		<class>org.apache.openaz.xacml.admin.jpa.AttributeAssignment</class>
+		<class>org.apache.openaz.xacml.admin.jpa.Category</class>
+		<class>org.apache.openaz.xacml.admin.jpa.ConstraintType</class>
+		<class>org.apache.openaz.xacml.admin.jpa.ConstraintValue</class>
+		<class>org.apache.openaz.xacml.admin.jpa.Datatype</class>
+		<class>org.apache.openaz.xacml.admin.jpa.Obadvice</class>
+		<class>org.apache.openaz.xacml.admin.jpa.ObadviceExpression</class>
+		<class>org.apache.openaz.xacml.admin.jpa.PolicyAlgorithms</class>
+		<class>org.apache.openaz.xacml.admin.jpa.RuleAlgorithms</class>
+		<class>org.apache.openaz.xacml.admin.jpa.FunctionArgument</class>
+		<class>org.apache.openaz.xacml.admin.jpa.FunctionDefinition</class>
+		<class>org.apache.openaz.xacml.admin.jpa.PIPConfigParam</class>
+		<class>org.apache.openaz.xacml.admin.jpa.PIPConfiguration</class>
+		<class>org.apache.openaz.xacml.admin.jpa.PIPResolver</class>
+		<class>org.apache.openaz.xacml.admin.jpa.PIPResolverParam</class>
+		<class>org.apache.openaz.xacml.admin.jpa.PIPType</class>
+		<properties>
+			<!-- 
+				The properties defined below are the default settings to be used when someone initially
+				wants to start working with the XACML-PAP-ADMIN web gui. They are not intended for production
+				use.
+				
+				They are setup to drop and create the tables and then load an initial set of data into the database
+				every time the application is deployed. So if you add anything to the dictionaries or PIP
+				configuration, they will get lost upon each deployment. It uses an H2 database engine configured
+				for a local file so you don't have to setup you're own SQL database environment to start.
+				
+				Instead of modifying this file directly, please refer to the xacml.admin.properties file for
+				customizing the application settings.
+				
+			 -->
+			<property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
+			<property name="javax.persistence.schema-generation.create-source" value="metadata-then-script"/>
+			<property name="javax.persistence.schema-generation.create-script-source" value="META-INF/views.sql" />
+			<property name="javax.persistence.schema-generation.drop-source" value="script"/>
+			<property name="javax.persistence.schema-generation.drop-script-source" value="META-INF/drop.sql" />
+			<property name="javax.persistence.sql-load-script-source" value="META-INF/data.sql" />
+			
+			<!-- 
+			
+			These properties should be set in the xacml.admin.properties file, so they can be re-used by non-JPA
+			database functionality.
+			
+			<property name="javax.persistence.jdbc.driver" value="org.h2.Driver"/>
+			<property name="javax.persistence.jdbc.url" value="jdbc:h2:file:sql/xacml"/>
+			<property name="javax.persistence.jdbc.user" value="sa"/>
+			<property name="javax.persistence.jdbc.password" value=""/>
+			 -->
+		</properties>
+	</persistence-unit>
+</persistence>

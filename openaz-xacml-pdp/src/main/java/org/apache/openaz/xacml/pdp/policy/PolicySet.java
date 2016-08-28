@@ -232,16 +232,17 @@ public class PolicySet extends PolicyDef {
             .combine(evaluationContext, listCombiningElements, getCombinerParameterList());
         assert evaluationResultCombined != null;
 
+        /*
+         * Add my id to the policy set identifiers
+         */
+        if (evaluationContext.getRequest().getReturnPolicyIdList()) {
+            evaluationResultCombined.addPolicySetIdentifier(this.getIdReference());
+        }
+
         if (evaluationResultCombined.getDecision() == Decision.DENY
             || evaluationResultCombined.getDecision() == Decision.PERMIT) {
             this.updateResult(evaluationResultCombined, evaluationContext);
 
-            /*
-             * Add my id to the policy set identifiers
-             */
-            if (evaluationContext.getRequest().getReturnPolicyIdList()) {
-                evaluationResultCombined.addPolicySetIdentifier(this.getIdReference());
-            }
         }
         if (evaluationContext.isTracing()) {
             evaluationContext.trace(new StdTraceEvent<Result>("Result", this, evaluationResultCombined));

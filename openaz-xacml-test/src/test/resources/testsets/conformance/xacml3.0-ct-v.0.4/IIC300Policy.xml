@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!--
   Licensed to the Apache Software Foundation (ASF) under one or more
   contributor license agreements.  See the NOTICE file distributed with
@@ -16,7 +16,6 @@
   limitations under the License.
 -->
 
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <Policy xmlns="urn:oasis:names:tc:xacml:3.0:core:schema:wd-17" 
 		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
 		PolicyId="urn:oasis:names:tc:xacml:2.0:conformance-test:IIC300:policy" 

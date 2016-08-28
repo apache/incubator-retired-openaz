@@ -168,13 +168,11 @@ public class TestAnnotation extends TestBase {
 
     };
 
-    @XACMLRequest(Defaults = "http://www.w3.org/TR/1999/Rec-xpath-19991116", multiRequest = @XACMLMultiRequest(values = {
-                                                           @XACMLRequestReference(values = {
-            "subject1", "action", "resource"
-        }), @XACMLRequestReference(values = {
-            "subject2", "action", "resource"
-        })
-                  }))
+    @XACMLRequest(Defaults = "http://www.w3.org/TR/1999/Rec-xpath-19991116",
+            multiRequest = @XACMLMultiRequest(values = {
+                    @XACMLRequestReference(values = {"subject1", "action", "resource"}),
+                    @XACMLRequestReference(values = {"subject2", "action", "resource"})
+            }))
     public class MyMultiRequestAttributes {
 
         @XACMLSubject(id = "subject1")
