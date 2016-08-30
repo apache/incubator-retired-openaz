@@ -26,6 +26,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -55,6 +56,34 @@ public class TestAPI {
                                                           "http://medico.com/record/patient/BartSimpson");
         Assert.assertNotNull(response);
         Assert.assertEquals(true, response.allowed());
+    }
+
+    /**
+     *
+     */
+    @Test
+    public void testPermitWithLocationMatch() {
+        Subject subject = Subject.newInstance("Bob");
+        Action action = Action.newInstance("read");
+        Resource resource = Resource.newInstance(URI.create("/record/patient/Alice"))
+                .withLocation(URI.create("http://medical-records.com/"));
+        PepResponse response = getPepAgent().decide(subject, action, resource);
+        Assert.assertNotNull(response);
+        Assert.assertEquals(true, response.allowed());
+    }
+
+    /**
+     *
+     */
+    @Test
+    public void testPermitWithLocationMismatch() {
+        Subject subject = Subject.newInstance("Bob");
+        Action action = Action.newInstance("read");
+        Resource resource = Resource.newInstance(URI.create("/record/patient/Alice"))
+                .withLocation(URI.create("http://restricted-records.com/"));
+        PepResponse response = getPepAgent().decide(subject, action, resource);
+        Assert.assertNotNull(response);
+        Assert.assertEquals(false, response.allowed());
     }
 
     /**

@@ -68,19 +68,6 @@ public class TestDataTypes {
      *
      */
     @Test
-    public void testPermitWithIntegerResource() {
-        Subject subject = Subject.newInstance("John Smith");
-        Action action = Action.newInstance("view");
-        Resource resource = Resource.newInstance(101L);
-        PepResponse response = getPepAgent().decide(subject, action, resource);
-        Assert.assertNotNull(response);
-        Assert.assertEquals(true, response.allowed());
-    }
-
-    /**
-     *
-     */
-    @Test
     public void testMultiRequestWithURI() {
         List<Resource> resources = new ArrayList<Resource>();
         resources.add(Resource.newInstance(URI.create("file://repository/classified/abc")));

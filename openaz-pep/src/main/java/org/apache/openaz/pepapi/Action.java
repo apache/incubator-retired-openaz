@@ -22,16 +22,12 @@ package org.apache.openaz.pepapi;
 
 import org.apache.openaz.xacml.api.XACML3;
 
-;
-
 /**
  * Container class that maps attributes to predefined XACML Action category.
  */
 public class Action extends CategoryContainer {
 
-    public static final String ACTION_ID_KEY = "ACTION_ID_KEY";
-
-    private String actionIdValue;
+    private String id;
 
     private Action() {
         super(XACML3.ID_ATTRIBUTE_CATEGORY_ACTION);
@@ -47,33 +43,33 @@ public class Action extends CategoryContainer {
     }
 
     /**
-     * Create a new Action instance containing a single default attribute with the given value
+     * Creates a new Subject instance containing a single default attribute with the given String value.
      *
-     * @param actionIdValue
+     * @param id
      * @return
      */
-    public static Action newInstance(String actionIdValue) {
-        Action a = new Action();
-        a.actionIdValue = actionIdValue;
-        a.addAttribute(ACTION_ID_KEY, actionIdValue);
-        return a;
+    public static Action newInstance(String id) {
+        return newInstance().withId(id);
     }
 
     /**
-     * Get the value for default attribute.
+     * Sets the Id of the action
+     *
+     * @param id
+     * @return
+     */
+    public Action withId(String id) {
+        this.id = id;
+        addAttribute(XACML3.ID_ACTION_ACTION_ID.stringValue(), id);
+        return this;
+    }
+/**
+     * Returns the value of the id
      *
      * @return
      */
-    public String getActionIdValue() {
-        return actionIdValue;
+    public String getId() {
+        return id;
     }
 
-    @Override
-    public String toString() {
-        StringBuilder builder = new StringBuilder();
-        builder.append("action-id value: " + actionIdValue);
-        builder.append("\n");
-        builder.append(super.toString());
-        return builder.toString();
-    }
 }

@@ -20,19 +20,17 @@
 
 package org.apache.openaz.pepapi;
 
-import java.net.URI;
-import java.util.Date;
-
 import org.apache.openaz.xacml.api.XACML3;
+
+import java.net.URI;
 
 /**
  * Container class that maps attributes to predefined XACML Resource category.
  */
 public final class Resource extends CategoryContainer {
 
-    public static final String RESOURCE_ID_KEY = "RESOURCE_ID_KEY";
-
-    private Object resourceIdValue;
+    private Object id; // only java.lang.String or java.net.URI
+    private URI location;
 
     private Resource() {
         super(XACML3.ID_ATTRIBUTE_CATEGORY_RESOURCE);
@@ -50,97 +48,75 @@ public final class Resource extends CategoryContainer {
     /**
      * Creates a new Resource instance containing a single default attribute with the given String value.
      *
-     * @param resourceIdValue
+     * @param id
      * @return
      */
-    public static Resource newInstance(String resourceIdValue) {
-        Resource r = new Resource();
-        r.resourceIdValue = resourceIdValue;
-        r.addAttribute(RESOURCE_ID_KEY, resourceIdValue);
-        return r;
+    public static Resource newInstance(String id) {
+        return newInstance().withId(id);
     }
 
     /**
      * Creates a new Resource instance containing a single default attribute with the given URI value.
      *
-     * @param resourceIdValue
+     * @param id
      * @return
      */
-    public static Resource newInstance(URI resourceIdValue) {
-        Resource r = new Resource();
-        r.resourceIdValue = resourceIdValue;
-        r.addAttribute(RESOURCE_ID_KEY, resourceIdValue);
-        return r;
+    public static Resource newInstance(URI id) {
+        return newInstance().withId(id);
     }
 
     /**
-     * Creates a new Resource instance containing a single default attribute with the given Long value.
+     * Sets resource id value
      *
-     * @param resourceIdValue
-     * @return
+     * @param id
+     * @return this
      */
-    public static Resource newInstance(Long resourceIdValue) {
-        Resource r = new Resource();
-        r.resourceIdValue = resourceIdValue;
-        r.addAttribute(RESOURCE_ID_KEY, resourceIdValue);
-        return r;
+    public Resource withId(URI id) {
+        this.id = id;
+        addAttribute(XACML3.ID_RESOURCE_RESOURCE_ID.stringValue(), id);
+        return this;
     }
 
     /**
-     * Creates a new Resource instance containing a single default attribute with the given Double value.
+     * Sets resource id value
      *
-     * @param resourceIdValue
-     * @return
+     * @param id
+     * @return this
      */
-    public static Resource newInstance(Double resourceIdValue) {
-        Resource r = new Resource();
-        r.resourceIdValue = resourceIdValue;
-        r.addAttribute(RESOURCE_ID_KEY, resourceIdValue);
-        return r;
+    public Resource withId(String id) {
+        this.id = id;
+        addAttribute(XACML3.ID_RESOURCE_RESOURCE_ID.stringValue(), id);
+        return this;
     }
 
     /**
-     * Creates a new Resource instance containing a single default attribute with the given Boolean value.
+     * Sets resource location
      *
-     * @param resourceIdValue
-     * @return
+     * @param location
+     * @return this
      */
-    public static Resource newInstance(Boolean resourceIdValue) {
-        Resource r = new Resource();
-        r.resourceIdValue = resourceIdValue;
-        r.addAttribute(RESOURCE_ID_KEY, resourceIdValue);
-        return r;
+    public Resource withLocation(URI location) {
+        this.location = location;
+        addAttribute(XACML3.ID_RESOURCE_RESOURCE_LOCATION.stringValue(), location);
+        return this;
     }
 
     /**
-     * Creates a new Resource instance containing a single default attribute with the given
-     * <code>java.util.Date</code> value.
+     * Returns the value of the id attribute
      *
-     * @param resourceIdValue
      * @return
      */
-    public static Resource newInstance(Date resourceIdValue) {
-        Resource r = new Resource();
-        r.resourceIdValue = resourceIdValue;
-        r.addAttribute(RESOURCE_ID_KEY, resourceIdValue);
-        return r;
+    public Object getId() {
+        return this.id;
     }
 
     /**
-     * Returns the value of the default resourceIdValue attribute
+     * Returns the value of the location attribute
      *
      * @return
      */
-    public Object getResourceIdValue() {
-        return resourceIdValue;
+    public URI getLocation() {
+        return location;
     }
 
-    @Override
-    public String toString() {
-        StringBuilder builder = new StringBuilder();
-        builder.append("resource-id value : " + resourceIdValue);
-        builder.append("\n");
-        builder.append(super.toString());
-        return builder.toString();
-    }
 }
