@@ -51,9 +51,9 @@ import oasis.names.tc.xacml._3_0.core.schema.wd_17.AttributeAssignmentType;
  */
 public class JaxpAttributeAssignment extends StdMutableAttributeAssignment {
 
-    protected JaxpAttributeAssignment(Identifier attributeIdIn, Identifier categoryIdIn, String issuerIn,
+    protected JaxpAttributeAssignment(Identifier categoryIdIn, Identifier attributeIdIn, String issuerIn,
                                       AttributeValue<?> attributeValueIn) {
-        super(attributeIdIn, categoryIdIn, issuerIn, attributeValueIn);
+        super(categoryIdIn, attributeIdIn, issuerIn, attributeValueIn);
     }
 
     public static JaxpAttributeAssignment newInstance(AttributeAssignmentType attributeAssignmentType) {
@@ -96,6 +96,6 @@ public class JaxpAttributeAssignment extends StdMutableAttributeAssignment {
                                                + dataTypeId.toString() + "\"", ex);
         }
 
-        return new JaxpAttributeAssignment(attributeId, categoryId, issuer, attributeValue);
+        return new JaxpAttributeAssignment(categoryId, attributeId, issuer, attributeValue);
     }
 }
