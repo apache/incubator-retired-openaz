@@ -51,7 +51,6 @@ import org.apache.openaz.xacml.std.dom.DOMStructureException;
 import org.apache.openaz.xacml.std.dom.DOMUtil;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 /**
@@ -60,7 +59,9 @@ import org.xml.sax.SAXException;
  */
 public class JaxpRequest extends StdMutableRequest {
     private static Log logger = LogFactory.getLog(JaxpRequest.class);
-
+    
+    private static JAXBContext context = null;
+        
     public JaxpRequest() {
     }
 
@@ -114,19 +115,17 @@ public class JaxpRequest extends StdMutableRequest {
             logger.error("No Document returned parsing \"" + fileXmlRequest.getAbsolutePath() + "\"");
             return null;
         }
-
-        NodeList nodeListRoot = document.getChildNodes();
-        if (nodeListRoot == null || nodeListRoot.getLength() == 0) {
-            logger.warn("No child elements of the XML document");
-            return null;
+        
+        Node nodeRoot = document.getDocumentElement();
+        
+        if(context == null) {
+            synchronized (JaxpRequest.class) {
+                if(context == null) {
+                    context = JAXBContext.newInstance(RequestType.class);
+                }
+            }
         }
-        Node nodeRoot = nodeListRoot.item(0);
-        if (nodeRoot == null || nodeRoot.getNodeType() != Node.ELEMENT_NODE) {
-            logger.warn("Root of the document is not an ELEMENT");
-            return null;
-        }
-
-        JAXBContext context = JAXBContext.newInstance(RequestType.class);
+        
         Unmarshaller unmarshaller = context.createUnmarshaller();
         JAXBElement<RequestType> jaxbElementRequest = unmarshaller.unmarshal(nodeRoot,
                                                                              RequestType.class);
