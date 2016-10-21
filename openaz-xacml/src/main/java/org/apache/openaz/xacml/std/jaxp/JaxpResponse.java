@@ -61,14 +61,6 @@ public class JaxpResponse extends StdMutableResponse {
     
     private static JAXBContext context = null;
     
-    private static void init() throws JAXBException {
-        synchronized (JaxpRequest.class) {
-        	if(context == null) {
-        		context = JAXBContext.newInstance(ResponseType.class);
-        	}
-        }
-    }
-    
     protected JaxpResponse() {
     }
 
@@ -114,7 +106,11 @@ public class JaxpResponse extends StdMutableResponse {
         Node nodeRoot = document.getDocumentElement();
 
         if(context == null) {
-            init();
+            synchronized (JaxpRequest.class) {
+                if(context == null) {
+                    context = JAXBContext.newInstance(ResponseType.class);
+                }
+            }
         }
         
         Unmarshaller unmarshaller = context.createUnmarshaller();

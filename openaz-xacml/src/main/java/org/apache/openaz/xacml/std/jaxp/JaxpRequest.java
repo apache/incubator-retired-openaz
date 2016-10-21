@@ -60,16 +60,8 @@ import org.xml.sax.SAXException;
 public class JaxpRequest extends StdMutableRequest {
     private static Log logger = LogFactory.getLog(JaxpRequest.class);
     
-	private static JAXBContext context = null;
-	    
-    private static void init() throws JAXBException {
-        synchronized (JaxpRequest.class) {
-        	if(context == null) {
-        		context = JAXBContext.newInstance(RequestType.class);
-        	}
-        }
-    }
-
+    private static JAXBContext context = null;
+        
     public JaxpRequest() {
     }
 
@@ -127,7 +119,11 @@ public class JaxpRequest extends StdMutableRequest {
         Node nodeRoot = document.getDocumentElement();
         
         if(context == null) {
-            init();
+            synchronized (JaxpRequest.class) {
+                if(context == null) {
+                    context = JAXBContext.newInstance(RequestType.class);
+                }
+            }
         }
         
         Unmarshaller unmarshaller = context.createUnmarshaller();
